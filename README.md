@@ -1,6 +1,8 @@
-# diplomarbeit
-The code for my "Diplomarbeit" will be uploaded as soon it is finished.
+# Diplomarbeit
 
+This is just a competitive troll fork from the porject of a friend of mine (alexl4123).
+
+### Basic README from alexl4123
 What is a "Diplomarbeit"?
 It is basically a highscholl thesis.
 
@@ -16,6 +18,14 @@ Why is the code not uploaded now?
 Because it is a thesis and we dont want any other contributions to our thesis,
 before we hand it in.
 
+
 When will the code be uploaded?
 After the 2017.04.18 (yyyy.mm.dd).
 
+### END of README
+
+
+
+## What are your intentions?
+
+ * Improve Project
