@@ -2,7 +2,7 @@
 
 ## How to install?
 
-In order to launch the JavaJess.jar,
+In order to launch the JavaChess.jar,
 you need the newest version of Java (Linux and Windows).
 Download JDK so you are also able to contribute to the software.
 On Windows simply open the jar with "java".
