@@ -1,7 +1,15 @@
 # Diplomarbeit
 
-What is a "Diplomarbeit"?
-It is basically a highscholl thesis.
+## How to install?
+
+In order to launch the JavaJess.jar,
+you need the newest version of Java (Linux and Windows).
+Download JDK so you are also able to contribute to the software.
+On Windows simply open the jar with "java".
+On Linux open the software with "java -jar JavaChess.jar"
+
+## What is a "Diplomarbeit"?
+It is basically a highschool thesis.
 
 What is my thesis about?
 We develop a chess game in Java.
@@ -11,8 +19,13 @@ Further we develop the game to be played on a Raspberry Pi or Android Device.
 Who is in the team?
 Myself (Alexander Beiser) and a college of mine.
 
-Why is the code not uploaded now?
-Because it is a thesis and we dont want any other contributions to our thesis,
-before we hand it in.
+## coding style?
 
-Code is uploaded - have fun ;)
+
+We don´t have a public "coding style policy" and
+trust you! - at least until now
+The only thing that would make the team happy is:
+COMMENTS - EVERYWHERE,
+so other people know what you have done
+
+## Code is uploaded - have fun ;)
