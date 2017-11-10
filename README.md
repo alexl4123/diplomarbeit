@@ -29,3 +29,4 @@ After the 2017.04.18 (yyyy.mm.dd).
 ## What are your intentions?
 
  * Improve Project
+ * Teach alexl4123 how to use GitHub
