@@ -28,4 +28,7 @@ The only thing that would make the team happy is:
 COMMENTS - EVERYWHERE,
 so other people know what you have done
 
-## Code is uploaded - have fun ;)
+## We just have added a small Wiki page, for further technical introduction
+
+
+## Code is uploaded - but a strange version - will be fixed soon - have fun ;)
