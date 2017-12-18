@@ -1,818 +1,820 @@
 package Game;
 
-import BackgroundMatrix.BackgroundGrid;
-import BackgroundMatrix.Move;
-import java.io.PrintStream;
 import java.util.ArrayList;
 
+import BackgroundMatrix.BackgroundGrid;
+import BackgroundMatrix.Move;
+import meeple.Farmer;
+import meeple.Jumper;
+import meeple.King;
+import meeple.Queen;
+import meeple.Runner;
+import meeple.SuperMeeple;
+import meeple.Tower;
+
+/**
+ * 
+ * @author alexl12 - 2017
+ * @category AI
+ * @version 1.1 - Draw
+ * 
+ *          Class for the AI Logic Here has the AI its brain Here is the AI The
+ *          AI is basically a MinMax AI with a EvaluationMethod. But MinMax has
+ *          certain improvements like AlphaBeta, iterative deepening and
+ *          ,,better moves''
+ * 
+ *          The improvements of MinMax are there for efficiency, so at a depth
+ *          of 5, there mustn´t be searched 36^(5), but less (cut offs)
+ * 
+ *          The evaluation basic principle is Material Balance (what is on the
+ *          field). But it also has PawnFormations and a table for each Meeple
+ *          what position is best.
+ * 
+ *          The class also has a own MoveMethod
+ * 
+ *
+ */
+public class AILogic {
+
+	/**
+	 * Both are not used
+	 */
+	private BackgroundGrid _WorkPos, _BestPos;
+
+	/**
+	 * to what depth should we search?
+	 */
+	public int MaxDepth;
+
+	/**
+	 * contains the number of best move The best Move is saved in ArrayList
+	 * BestMove
+	 */
+	public int _BestMove;
+
+	/**
+	 * Contains all the good moves on depth 0
+	 */
+	public ArrayList<MovePos> BestMove = new ArrayList<MovePos>();
+
+	/**
+	 * used to evaluate the best move
+	 */
+	public int loop;
+
+	/**
+	 * not currently used
+	 */
+	private int count;
+
+	// ----------------------------------------------------------
+
+	/**
+	 * The default constructor sets loop = 0.
+	 */
+	public AILogic() {
+		loop = 0;
+	}
+
+	/**
+	 * should be at first a caller for AlphaBeta method. Currently not used!
+	 * 
+	 * @param BGG2
+	 *            - BackgroundGrid - used for moves,...
+	 * @param Team
+	 *            - the current team
+	 * @return BackgroundGrid - what has changed
+	 */
+	public BackgroundGrid playGame(BackgroundGrid BGG2, boolean Team) {
+		
+		_WorkPos = BGG2;
+		_BestPos = null;
+
+		Float x = alphaBeta(0, _WorkPos, Team);
+
+		return BGG2;
+	}
+
+	/**
+	 * This Method is for IterativeDeepening. Iterative Deepening searches
+	 * increasingly, beginning at depth 0 to MaxDepth
+	 * 
+	 * 
+	 * 
+	 * @param depth
+	 *            - int - to what depth should be searched
+	 * @param BGG2
+	 *            - BackgroundGrid - contains the position of the meeples
+	 * @param Team
+	 *            - for which team should the AI work?
+	 * @return float - value of best move, represented in a float
+	 */
+	public float alphaBeta(int depth, BackgroundGrid BGG2, boolean Team) {
+		MaxDepth = depth;
+		count = 0;
+		float beta = 10000.0f;
+		for (int i = 1; i <= depth; i++) {
+			MaxDepth = i;
+			beta = alphaBetaHelper(0, BGG2, Team, 100000.0f, -beta);
+			System.out.println(beta);
+		}
+
+		return beta;
+	}
+
+	/**
+	 * Method consists of MinMax and AlphaBeta (due to ALphaBeta is an
+	 * improvement to MinMax)
+	 * 
+	 * @param depth
+	 *            - int - to what depth should AlphaBeta be searching
+	 * @param BGG2
+	 *            - BackgroundGrid - where the meeples are stored
+	 * @param Team
+	 *            - boolean - for what team should we do this
+	 * @param alpha
+	 *            - float - basically the upper boundary for the Maxer
+	 * @param beta
+	 *            - float - basically the lower boundary for the Maxer
+	 * @return float - the value of the best move
+	 */
+	public float alphaBetaHelper(int depth, BackgroundGrid BGG2, boolean Team, float alpha, float beta) {
+		
+		float Sum = boardEvaluation(BGG2, Team); // the value of the Board
+		if(Sum > 5000){
+			return 20000;
+		}
+		
+		if (depth >= MaxDepth) { // if the max depth has been reached, return
+									
+			return Sum;
+		}
+
+		for (int y = 0; y < 8; y++) { // loops threw all objects
+			for (int x = 0; x < 8; x++) {
+				int iPos = BGG2.iBackground[x][y];
+				if (iPos > 0) {
+					Move M = new Move();
+					M.setBGG(BGG2.iBackground);
+					M.setBGG2(BGG2);
+					
+					ArrayList<MovePos> AIM = M.getMoveMeeple(BGG2.iBackground, Team, iPos, x, y); 
+					for (MovePos A : AIM) { // loops threw all possible moves
+
+						BGG2.iBackground[A.PX][A.PY] = A.ID;
+						BGG2.iBackground[A.X][A.Y] = 0; // makes the move
+						if (A.ID3 > 0) {
+							BGG2.iBackground[A.X3][A.Y3] = 0;
+						}
+
+						if (A.ID4 > 0) {
+							BGG2.iBackground[A.X4][A.Y4] = 0;
+							if (A.X3 > 0) {
+								BGG2.iBackground[A.X3][A.Y3] = 0;
+							}
+							BGG2.iBackground[A.X5][A.Y5] = A.ID4;
+							BGG2.setbRookMoved(A.ID, true);
+							BGG2.setbKingMoved(A.ID, true);
+						}
+						
+						if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
+							BGG2.iBackground[A.PX][A.PY] = 140+ BGG2.getQueenNumber();
+						} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
+							BGG2.iBackground[A.PX][A.PY] = 240+ BGG2.getQueenNumber();
+						}
+						
+						
+						BGG2.changeTeam();
+						float Sum1 = -alphaBetaHelper(depth + 1, BGG2, !Team, -beta, -alpha);
+						/*
+						 * recursively calls itself with changed alphaBeta,
+						 * increased depth and changed team
+						 */
+						BGG2.iBackground[A.PX][A.PY] = A.ID2;
+						BGG2.iBackground[A.X][A.Y] = A.ID; 
+						if (A.ID3 > 0) {
+							BGG2.iBackground[A.X3][A.Y3] = A.ID3;
+						}
+
+						if (A.ID4 > 0) {
+							BGG2.iBackground[A.X4][A.Y4] = A.ID4;
+							if (A.X3 > 0) {
+								BGG2.iBackground[A.X3][A.Y3] = A.ID3;
+							}
+							BGG2.iBackground[A.X5][A.Y5] = A.ID5;
+							BGG2.setbRookMoved(A.ID, false);
+							BGG2.setbKingMoved(A.ID, false);
+						}
+						
+						if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
+							BGG2.iBackground[A.PX][A.PY] = A.ID2;
+						} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
+							BGG2.iBackground[A.PX][A.PY] = A.ID2;
+						}
+						
+						// returns the move
+															// to its previous
+															// position
+						BGG2.changeTeam();
+
+						if (Sum1 > beta) { // if it was a good move
+
+							beta = Sum1;
+							if (Sum1 >= alpha) { // if the move was so good, the
+													// opposing team would never
+													// take it
+								return alpha;
+							}
+							if (depth == 0) { // if at depth 0 and a good move
+								loop++;
+								BestMove.add(A);
+
+								_BestMove = loop;
+							}
+
+						}
+
+					} // foreach end
+				} // if a Meeple has been selected
+
+			}
+
+		}
+		return beta;
+	}
+
+	/**
+	 * At current stage of development, this evaluation method contains Material
+	 * Balance Pawn formations And piece square tables Evaluates a float number
+	 * for the given BackgroundGrid.
+	 * 
+	 * @param BGG2
+	 *            - BackgroundGrid for getting the current Board
+	 * @param Team
+	 *            - for which team the eval. should be made
+	 * @return S (float) - returns the current eval. number of the board
+	 */
+	public float boardEvaluation(BackgroundGrid BGG2, boolean Team) {
+		float S1 = 0;
+		float S2 = 0;
+		float S = 0;
+		int[][] Board = BGG2.iBackground;
+
+		// Material Balance
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				int SB = Board[x][y];
+
+				if (SB >= 100 && SB < 110) {
+					try {
+						S1 += 100; // if just a pawn exists
+						S1 += WhitePawnSquareTable[x][y]; // were the pawn
+															// should be!
+						if ((y - 1) >= 0 && (y + 1) < 8) {
+							if (Board[x][y - 1] > 100 && Board[x][y - 1] < 110) {
+								S1 -= 30; // If two Pawns are in the same row
+							} else if (Board[x][y + 1] > 200 && Board[x][y + 1] < 210) {
+								S1 -= 20; // If two opposite Pawns are standing
+											// face
+											// to face
+							} else {
+
+							}
+						}
+
+						if ((x - 1) >= 0 && (y + 1) < 8) {
+							if (Board[x - 1][y + 1] > 100 && Board[x - 1][y + 1] < 110) {
+								S1 += 40; // a pawn formation
+							}
+						}
+						if ((x + 1) < 8 && (y + 1) < 8) {
+							if (Board[x + 1][y + 1] > 100 && Board[x + 1][y + 1] < 110) {
+								S1 += 40;
+							}
+						}
+
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+
+				} else if (SB >= 110 && SB < 120) {
+					S1 += 500; // the rook (tower)
+					S1 += WhiteRookSquareTable[x][y];
+				} else if (SB >= 120 && SB < 130) {
+					S1 += 325; // the knight (jumper)
+					S1 += WhiteKnightSquareTable[x][y];
+				} else if (SB >= 130 && SB < 140) {
+					S1 += 300; // the bishop (runner)
+					S1 += WhiteBishopSquareTable[x][y];
+				} else if (SB >= 140 && SB < 150) {
+					S1 += 900; // the queen
+					S1 += WhiteQueenSquareTable[x][y];
+				} else if (SB == 150) {
+					S1 += 10000;
+					if (S1 > 11000) {
+						S1 += WhiteKingMiddleSquareTable[x][y];
+					} else {
+						S1 += WhiteKingEndSquareTable[x][y];
+					}
+
+				}
+
+				if (SB >= 200 && SB < 210) {
+					try {
+						S2 += 100; // if just a pawn exists
+						S2 += BlackPawnSquareTable[x][y]; // were the pawn
+															// should be!
+						if ((y + 1) < 8 && (y - 1) >= 0) {
+							if (Board[x][y + 1] >= 200 && Board[x][y + 1] < 210) {
+								S2 -= 30; // If two Pawns are in the same row
+							} else if (Board[x][y - 1] > 100 && Board[x][y - 1] < 110) {
+								S2 -= 20; // If two opposite Pawns are standing
+											// face
+											// to face
+							} else {
+
+							}
+						}
+
+						if ((x - 1) >= 0 && (y - 1) >= 0) {
+							if (Board[x - 1][y - 1] > 200 && Board[x - 1][y - 1] < 210) {
+								S2 += 40; // a pawn formation
+							}
+						}
+						if ((x + 1) < 8 && (y - 1) >= 0) {
+							if (Board[x + 1][y - 1] > 200 && Board[x + 1][y - 1] < 210) {
+								S2 += 40;
+							}
+						}
+
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+
+				} else if (SB >= 210 && SB < 220) {
+					S2 += 500; // the rook (tower)
+					S2 += BlackRookSquareTable[x][y];
+				} else if (SB >= 220 && SB < 230) {
+					S2 += 325; // the knight (jumper)
+					S2 += BlackKnightSquareTable[x][y];
+				} else if (SB >= 230 && SB < 240) {
+					S2 += 300; // the bishop (runner)
+					S2 += BlackKnightSquareTable[x][y];
+				} else if (SB >= 240 && SB < 250) {
+					S2 += 900; // the queen
+					S2 += BlackQueenSquareTable[x][y];
+				} else if (SB == 250) {
+					S2 += 10000;
+					if (S2 > 11000) {
+						S2 += BlackKingMiddleSquareTable[x][y];
+					} else {
+						S2 += BlackKingEndSquareTable[x][y];
+					}
+
+				}
+
+			}
+		}
+
+		// Mobility
+		// Tropism
+
+		if (Team) {
+			S = S1 - S2;
+		} else
+			S = S2 - S1;
+		return S;
+	}
+
+	/**
+	 * Sets the white pawn Square Table. A move square table ist basically the
+	 * location where a meeple should move to.
+	 * 
+	 * @return int[][] - what number on what position
+	 */
+	private int[][] WhitePawnTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 50, 50, 50, 50, 10, 10, 20, 30, 30, 20, 10,
+				10, 5, 5, 10, 25, 25, 10, 5, 5, 0, 0, 0, 20, 20, 0, 0, 0, 5, -5, -10, 0, 0, -10, -5, 5, 5, 10, 10, -20,
+				-20, 10, 10, 5, 0, 0, 0, 0, 0, 0, 0, 0 };
+		// these numbers are from the www
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * int[][] - just for performance purpose
+	 */
+	public int[][] WhitePawnSquareTable = WhitePawnTable();
+
+	// ----------------------------------------------------------------------------------------------------
+	/**
+	 * Sets the pawn Square Table
+	 * 
+	 * @return int[][] - what number on what position
+	 */
+	private int[][] BlackPawnTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 5, 10, 10, -20, -20, 10, 10, 5, 5, -5, -10, 0, 0, -10, -5, 5,
+				0, 0, 0, 20, 20, 0, 0, 0, 5, 5, 10, 25, 25, 10, 5, 5, 10, 10, 20, 30, 30, 20, 10, 10, 50, 50, 50, 50,
+				50, 50, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * int[][] just for performance purpose
+	 */
+	public int[][] BlackPawnSquareTable = BlackPawnTable();
+
+	// ---------------------------------------------------------------------------------------
+	/**
+	 * The Move Square table for the WhiteKnight
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] WhiteKnightTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { -50, -40, -30, -30, -30, -30, -40, -50, -40, -20, 0, 0, 0, 0, -20, -40, -30, 0, 10,
+				15, 15, 10, 0, -30, -30, 5, 15, 20, 20, 15, 5, -30, -30, 0, 15, 20, 20, 15, 0, -30, -30, 5, 10, 15, 15,
+				10, 5, -30, -40, -20, 0, 5, 5, 0, -20, -40, -50, -40, -30, -30, -30, -30, -40, -50 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * Performance
+	 */
+	public int[][] WhiteKnightSquareTable = WhiteKnightTable();
+
+	// -----------------------------------------------------------------------------------------
+	/**
+	 * The black knight move square table
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] BlackKnightTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { -50, -40, -30, -30, -30, -30, -40, -50, -40, -20, 0, 5, 5, 0, -20, -40, -30, 5, 10,
+				15, 15, 10, 5, -30, -30, 0, 15, 20, 20, 15, 0, -30, -30, 5, 15, 20, 20, 15, 5, -30, -30, 0, 10, 15, 15,
+				10, 0, -30, -40, -20, 0, 0, 0, 0, -20, -40, -50, -40, -30, -30, -30, -30, -40, -50 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * for performance
+	 */
+	public int[][] BlackKnightSquareTable = BlackKnightTable();
+
+	// ----------------------------------------------------------------------------------------
+	/**
+	 * The white bishop move square table
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] WhiteBishopTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { -20, -10, -10, -10, -10, -10, -10, -20, -10, 0, 0, 0, 0, 0, 0, -10, -10, 0, 5, 10, 10,
+				5, 0, -10, -10, 5, 5, 10, 10, 5, 5, -10, -10, 0, 10, 10, 10, 10, 0, -10, -10, 10, 10, 10, 10, 10, 10,
+				-10, -10, 5, 0, 0, 0, 0, 5, -10, -20, -10, -10, -10, -10, -10, -10, -20 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * just for performance
+	 */
+	public int[][] WhiteBishopSquareTable = WhiteBishopTable();
+
+	// ----------------------------------------------------------------------------------------
+	/**
+	 * The black bishop move square table
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] BlackBishopTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { -20, -10, -10, -10, -10, -10, -10, -20, -10, 5, 0, 0, 0, 0, 5, -10, -10, 10, 10, 10,
+				10, 10, 10, -10, -10, 0, 10, 10, 10, 10, 0, -10, -10, 5, 5, 10, 10, 5, 5, -10, -10, 0, 5, 10, 10, 5, 0,
+				-10, -10, 0, 0, 0, 0, 0, 0, -10, -20, -10, -10, -10, -10, -10, -10, -20 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * just for performance
+	 */
+	public int[][] BlackBishopSquareTable = BlackBishopTable();
+
+	// ----------------------------------------------------------------------------------------
+
+	/**
+	 * The white rook move square table
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] WhiteRookTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 5, 10, 10, 10, 10, 10, 10, 5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0,
+				0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, 0, 0,
+				0, 5, 5, 0, 0, 0 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * just for performance
+	 */
+	public int[][] WhiteRookSquareTable = WhiteRookTable();
+
+	// ----------------------------------------------------------------------------------------
+	/**
+	 * The black rook move square table
+	 * 
+	 * @return -int[][] - what number on what position
+	 */
+	private int[][] BlackRookTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { 0, 0, 0, 5, 5, 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0, 0,
+				0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, 5, 10, 10, 10, 10, 10, 10, 5, 0, 0,
+				0, 0, 0, 0, 0, 0 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * just for performance
+	 */
+	public int[][] BlackRookSquareTable = BlackRookTable();
+
+	// ----------------------------------------------------------------------------------------
+
+	/**
+	 * The white queen move square table
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] WhiteQueenTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { -20, -10, -10, -5, -5, -10, -10, -20, -10, 0, 0, 0, 0, 0, 0, -10, -10, 0, 5, 5, 5, 5,
+				0, -10, -5, 0, 5, 5, 5, 5, 0, -5, 0, 0, 5, 5, 5, 5, 0, -5, -10, 5, 5, 5, 5, 5, 0, -10, -10, 0, 5, 0, 0,
+				0, 0, -10, -20, -10, -10, -5, -5, -10, -10, -20 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * just for performance
+	 */
+	public int[][] WhiteQueenSquareTable = WhiteQueenTable();
+
+	// ----------------------------------------------------------------------------------------
+
+	/**
+	 * The black queen move square table
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] BlackQueenTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { -20, -10, -10, -5, -5, -10, -10, -20, -10, 0, 5, 0, 0, 0, 0, -10, -10, 5, 5, 5, 5, 5,
+				0, -10, 0, 0, 5, 5, 5, 5, 0, -5, -5, 0, 5, 5, 5, 5, 0, -5, -10, 0, 5, 5, 5, 5, 0, -10, -10, 0, 0, 0, 0,
+				0, 0, -10, -20, -10, -10, -5, -5, -10, -10, -20 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * Just for performance
+	 */
+	public int[][] BlackQueenSquareTable = BlackQueenTable();
+
+	// ----------------------------------------------------------------------------------------
+
+	/**
+	 * the white king middle move square table For the mid game
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] WhiteKingMiddleTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { 20, 30, 10, 0, 0, 10, 30, 20, 20, 20, 0, 0, 0, 0, 20, 20, -10, -20, -20, -20, -20,
+				-20, -20, -10, -20, -30, -30, -40, -40, -30, -30, -20, -30, -40, -40, -50, -50, -40, -40, -30, -30, -40,
+				-40, -50, -50, -40, -40, -30, -30, -40, -40, -50, -50, -40, -40, -30, -30, -40, -40, -50, -50, -40, -40,
+				-30 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * just for performance
+	 */
+	public int[][] WhiteKingMiddleSquareTable = WhiteKingMiddleTable();
+
+	// ----------------------------------------------------------------------------------------
+
+	/**
+	 * the black king move square table for the middle game
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] BlackKingMiddleTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { -30, -40, -40, -50, -50, -40, -40, -30, -30, -40, -40, -50, -50, -40, -40, -30, -30,
+				-40, -40, -50, -50, -40, -40, -30, -30, -40, -40, -50, -50, -40, -40, -30, -20, -30, -30, -40, -40, -30,
+				-30, -20, -10, -20, -20, -20, -20, -20, -20, -10, 20, 20, 0, 0, 0, 0, 20, 20, 20, 30, 10, 0, 0, 10, 30,
+				20 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * just for performance
+	 */
+	public int[][] BlackKingMiddleSquareTable = BlackKingMiddleTable();
+
+	// ----------------------------------------------------------------------------------------
+
+	/**
+	 * the white king end move square table. For the end game
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] WhiteKingEndTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { -50, -30, -30, -30, -30, -30, -30, -50, -30, -30, 0, 0, 0, 0, -30, -30, -30, -10, 20,
+				30, 30, 20, -10, -30, -30, -10, 30, 40, 40, 30, -10, -30, -30, -10, 30, 40, 40, 30, -10, -30, -30, -10,
+				20, 30, 30, 20, -10, -30, -30, -20, -10, 0, 0, -10, -20, -30, -50, -40, -30, -20, -20, -30, -40, -50 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * just for performance
+	 */
+	public int[][] WhiteKingEndSquareTable = WhiteKingEndTable();
+
+	// ----------------------------------------------------------------------------------------
+
+	/**
+	 * the black king end move square table for the end game
+	 * 
+	 * @return - int[][] - what number on what position
+	 */
+	private int[][] BlackKingEndTable() {
+		int[][] table;
+		int[] tableHelper;
+		table = new int[8][8];
+		tableHelper = new int[] { -50, -40, -30, -20, -20, -30, -40, -50, -30, -20, -10, 0, 0, -10, -20, -30, -30, -10,
+				20, 30, 30, 20, -10, -30, -30, -10, 30, 40, 40, 30, -10, -30, -30, -10, 30, 40, 40, 30, -10, -30, -30,
+				-10, 20, 30, 30, 20, -10, -30, -30, -30, 0, 0, 0, 0, -30, -30, -50, -30, -30, -30, -30, -30, -30, -50 };
+
+		int i = 0;
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				table[x][y] = tableHelper[i];
+				i++;
+			}
+		}
+
+		return table;
+	}
+
+	/**
+	 * just for performance
+	 */
+	public int[][] BlackKingEndSquareTable = BlackKingEndTable();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-public class AILogic
-{
-  private BackgroundGrid _WorkPos;
-  private BackgroundGrid _BestPos;
-  public int MaxDepth;
-  public int _BestMove;
-  public ArrayList<MovePos> BestMove = new ArrayList();
-  
-
-
-
-  public int loop;
-  
-
-
-
-  private int count;
-  
-
-
-
-
-  public AILogic()
-  {
-    loop = 0;
-  }
-  
-
-
-
-
-
-
-
-
-
-  public BackgroundGrid playGame(BackgroundGrid BGG2, boolean Team)
-  {
-    _WorkPos = BGG2;
-    _BestPos = null;
-    
-    Float x = Float.valueOf(alphaBeta(0, _WorkPos, Team));
-    
-    return BGG2;
-  }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-  public float alphaBeta(int depth, BackgroundGrid BGG2, boolean Team)
-  {
-    MaxDepth = depth;
-    count = 0;
-    float beta = 10000.0F;
-    for (int i = 1; i <= depth; i++) {
-      MaxDepth = i;
-      beta = alphaBetaHelper(0, BGG2, Team, 100000.0F, -beta);
-      System.out.println(beta);
-    }
-    
-    return beta;
-  }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  public float alphaBetaHelper(int depth, BackgroundGrid BGG2, boolean Team, float alpha, float beta)
-  {
-    float Sum = boardEvaluation(BGG2, Team);
-    if (Sum > 5000.0F) {
-      return 20000.0F;
-    }
-    
-    if (depth >= MaxDepth)
-    {
-      return Sum;
-    }
-    
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        int iPos = iBackground[x][y];
-        if (iPos > 0) {
-          Move M = new Move();
-          M.setBGG(iBackground);
-          M.setBGG2(BGG2);
-          
-          ArrayList<MovePos> AIM = M.getMoveMeeple(iBackground, Team, iPos, x, y);
-          for (MovePos A : AIM)
-          {
-            iBackground[PX][PY] = ID;
-            iBackground[X][Y] = 0;
-            if (ID3 > 0) {
-              iBackground[X3][Y3] = 0;
-            }
-            
-            if (ID4 > 0) {
-              iBackground[X4][Y4] = 0;
-              if (X3 > 0) {
-                iBackground[X3][Y3] = 0;
-              }
-              iBackground[X5][Y5] = ID4;
-              BGG2.setbRookMoved(ID, true);
-              BGG2.setbKingMoved(ID, true);
-            }
-            
-            if ((ID >= 100) && (ID < 110) && (Team) && (PY == 7)) {
-              iBackground[PX][PY] = (140 + BGG2.getQueenNumber());
-            } else if ((ID >= 200) && (ID < 210) && (!Team) && (PY == 0)) {
-              iBackground[PX][PY] = (240 + BGG2.getQueenNumber());
-            }
-            
-
-            BGG2.changeTeam();
-            float Sum1 = -alphaBetaHelper(depth + 1, BGG2, !Team, -beta, -alpha);
-            
-
-
-
-            iBackground[PX][PY] = ID2;
-            iBackground[X][Y] = ID;
-            if (ID3 > 0) {
-              iBackground[X3][Y3] = ID3;
-            }
-            
-            if (ID4 > 0) {
-              iBackground[X4][Y4] = ID4;
-              if (X3 > 0) {
-                iBackground[X3][Y3] = ID3;
-              }
-              iBackground[X5][Y5] = ID5;
-              BGG2.setbRookMoved(ID, false);
-              BGG2.setbKingMoved(ID, false);
-            }
-            
-            if ((ID >= 100) && (ID < 110) && (Team) && (PY == 7)) {
-              iBackground[PX][PY] = ID2;
-            } else if ((ID >= 200) && (ID < 210) && (!Team) && (PY == 0)) {
-              iBackground[PX][PY] = ID2;
-            }
-            
-
-
-
-            BGG2.changeTeam();
-            
-            if (Sum1 > beta)
-            {
-              beta = Sum1;
-              if (Sum1 >= alpha)
-              {
-
-                return alpha;
-              }
-              if (depth == 0) {
-                loop += 1;
-                BestMove.add(A);
-                
-                _BestMove = loop;
-              }
-            }
-          }
-        }
-      }
-    }
-    
-
-
-
-    return beta;
-  }
-  
-
-
-
-
-
-
-
-
-
-
-  public float boardEvaluation(BackgroundGrid BGG2, boolean Team)
-  {
-    float S1 = 0.0F;
-    float S2 = 0.0F;
-    float S = 0.0F;
-    int[][] Board = iBackground;
-    
-
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        int SB = Board[x][y];
-        
-        if ((SB >= 100) && (SB < 110)) {
-          try {
-            S1 += 100.0F;
-            S1 += WhitePawnSquareTable[x][y];
-            
-            if ((y - 1 >= 0) && (y + 1 < 8)) {
-              if ((Board[x][(y - 1)] > 100) && (Board[x][(y - 1)] < 110)) {
-                S1 -= 30.0F;
-              } else if ((Board[x][(y + 1)] > 200) && (Board[x][(y + 1)] < 210)) {
-                S1 -= 20.0F;
-              }
-            }
-            
-
-
-
-
-            if ((x - 1 >= 0) && (y + 1 < 8) && 
-              (Board[(x - 1)][(y + 1)] > 100) && (Board[(x - 1)][(y + 1)] < 110)) {
-              S1 += 40.0F;
-            }
-            
-            if ((x + 1 >= 8) || (y + 1 >= 8) || 
-              (Board[(x + 1)][(y + 1)] <= 100) || (Board[(x + 1)][(y + 1)] >= 110)) break label495;
-            S1 += 40.0F;
-
-          }
-          catch (Exception ex)
-          {
-            ex.printStackTrace();
-          }
-        }
-        else if ((SB >= 110) && (SB < 120)) {
-          S1 += 500.0F;
-          S1 += WhiteRookSquareTable[x][y];
-        } else if ((SB >= 120) && (SB < 130)) {
-          S1 += 325.0F;
-          S1 += WhiteKnightSquareTable[x][y];
-        } else if ((SB >= 130) && (SB < 140)) {
-          S1 += 300.0F;
-          S1 += WhiteBishopSquareTable[x][y];
-        } else if ((SB >= 140) && (SB < 150)) {
-          S1 += 900.0F;
-          S1 += WhiteQueenSquareTable[x][y];
-        } else if (SB == 150) {
-          S1 += 10000.0F;
-          if (S1 > 11000.0F) {
-            S1 += WhiteKingMiddleSquareTable[x][y];
-          } else {
-            S1 += WhiteKingEndSquareTable[x][y];
-          }
-        }
-        
-        label495:
-        if ((SB >= 200) && (SB < 210)) {
-          try {
-            S2 += 100.0F;
-            S2 += BlackPawnSquareTable[x][y];
-            
-            if ((y + 1 < 8) && (y - 1 >= 0)) {
-              if ((Board[x][(y + 1)] >= 200) && (Board[x][(y + 1)] < 210)) {
-                S2 -= 30.0F;
-              } else if ((Board[x][(y - 1)] > 100) && (Board[x][(y - 1)] < 110)) {
-                S2 -= 20.0F;
-              }
-            }
-            
-
-
-
-
-            if ((x - 1 >= 0) && (y - 1 >= 0) && 
-              (Board[(x - 1)][(y - 1)] > 200) && (Board[(x - 1)][(y - 1)] < 210)) {
-              S2 += 40.0F;
-            }
-            
-            if ((x + 1 >= 8) || (y - 1 < 0) || 
-              (Board[(x + 1)][(y - 1)] <= 200) || (Board[(x + 1)][(y - 1)] >= 210)) continue;
-            S2 += 40.0F;
-
-          }
-          catch (Exception ex)
-          {
-            ex.printStackTrace();
-          }
-        }
-        else if ((SB >= 210) && (SB < 220)) {
-          S2 += 500.0F;
-          S2 += BlackRookSquareTable[x][y];
-        } else if ((SB >= 220) && (SB < 230)) {
-          S2 += 325.0F;
-          S2 += BlackKnightSquareTable[x][y];
-        } else if ((SB >= 230) && (SB < 240)) {
-          S2 += 300.0F;
-          S2 += BlackKnightSquareTable[x][y];
-        } else if ((SB >= 240) && (SB < 250)) {
-          S2 += 900.0F;
-          S2 += BlackQueenSquareTable[x][y];
-        } else if (SB == 250) {
-          S2 += 10000.0F;
-          if (S2 > 11000.0F) {
-            S2 += BlackKingMiddleSquareTable[x][y];
-          } else {
-            S2 += BlackKingEndSquareTable[x][y];
-          }
-        }
-      }
-    }
-    
-
-
-
-
-
-    if (Team) {
-      S = S1 - S2;
-    } else
-      S = S2 - S1;
-    return S;
-  }
-  
-
-
-
-
-
-
-
-  private int[][] WhitePawnTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 50, 50, 50, 50, 10, 10, 20, 30, 30, 20, 10, 
-      10, 5, 5, 10, 25, 25, 10, 5, 5, 0, 0, 0, 20, 20, 0, 0, 0, 5, -5, -10, 0, 0, -10, -5, 5, 5, 10, 10, -20, 
-      -20, 10, 10, 5 };
-    
-
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] WhitePawnSquareTable = WhitePawnTable();
-  
-
-
-
-
-
-
-
-  private int[][] BlackPawnTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { 0, 0, 0, 0, 0, 0, 0, 0, 5, 10, 10, -20, -20, 10, 10, 5, 5, -5, -10, 0, 0, -10, -5, 5, 
-      0, 0, 0, 20, 20, 0, 0, 0, 5, 5, 10, 25, 25, 10, 5, 5, 10, 10, 20, 30, 30, 20, 10, 10, 50, 50, 50, 50, 
-      50, 50, 50, 50 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] BlackPawnSquareTable = BlackPawnTable();
-  
-
-
-
-
-
-
-
-  private int[][] WhiteKnightTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { -50, -40, -30, -30, -30, -30, -40, -50, -40, -20, 0, 0, 0, 0, -20, -40, -30, 0, 10, 
-      15, 15, 10, 0, -30, -30, 5, 15, 20, 20, 15, 5, -30, -30, 0, 15, 20, 20, 15, 0, -30, -30, 5, 10, 15, 15, 
-      10, 5, -30, -40, -20, 0, 5, 5, 0, -20, -40, -50, -40, -30, -30, -30, -30, -40, -50 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] WhiteKnightSquareTable = WhiteKnightTable();
-  
-
-
-
-
-
-
-
-  private int[][] BlackKnightTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { -50, -40, -30, -30, -30, -30, -40, -50, -40, -20, 0, 5, 5, 0, -20, -40, -30, 5, 10, 
-      15, 15, 10, 5, -30, -30, 0, 15, 20, 20, 15, 0, -30, -30, 5, 15, 20, 20, 15, 5, -30, -30, 0, 10, 15, 15, 
-      10, 0, -30, -40, -20, 0, 0, 0, 0, -20, -40, -50, -40, -30, -30, -30, -30, -40, -50 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] BlackKnightSquareTable = BlackKnightTable();
-  
-
-
-
-
-
-
-
-  private int[][] WhiteBishopTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { -20, -10, -10, -10, -10, -10, -10, -20, -10, 0, 0, 0, 0, 0, 0, -10, -10, 0, 5, 10, 10, 
-      5, 0, -10, -10, 5, 5, 10, 10, 5, 5, -10, -10, 0, 10, 10, 10, 10, 0, -10, -10, 10, 10, 10, 10, 10, 10, 
-      -10, -10, 5, 0, 0, 0, 0, 5, -10, -20, -10, -10, -10, -10, -10, -10, -20 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] WhiteBishopSquareTable = WhiteBishopTable();
-  
-
-
-
-
-
-
-
-  private int[][] BlackBishopTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { -20, -10, -10, -10, -10, -10, -10, -20, -10, 5, 0, 0, 0, 0, 5, -10, -10, 10, 10, 10, 
-      10, 10, 10, -10, -10, 0, 10, 10, 10, 10, 0, -10, -10, 5, 5, 10, 10, 5, 5, -10, -10, 0, 5, 10, 10, 5, 
-      0, -10, -10, 0, 0, 0, 0, 0, 0, -10, -20, -10, -10, -10, -10, -10, -10, -20 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] BlackBishopSquareTable = BlackBishopTable();
-  
-
-
-
-
-
-
-
-
-  private int[][] WhiteRookTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { 0, 0, 0, 0, 0, 0, 0, 0, 5, 10, 10, 10, 10, 10, 10, 5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 
-      0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, 
-      0, 0, 0, 5, 5 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] WhiteRookSquareTable = WhiteRookTable();
-  
-
-
-
-
-
-
-
-  private int[][] BlackRookTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { 0, 0, 0, 5, 5, 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 
-      0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, -5, 0, 0, 0, 0, 0, 0, -5, 5, 10, 10, 10, 10, 10, 10, 5 };
-    
-
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] BlackRookSquareTable = BlackRookTable();
-  
-
-
-
-
-
-
-
-
-  private int[][] WhiteQueenTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { -20, -10, -10, -5, -5, -10, -10, -20, -10, 0, 0, 0, 0, 0, 0, -10, -10, 0, 5, 5, 5, 5, 
-      0, -10, -5, 0, 5, 5, 5, 5, 0, -5, 0, 0, 5, 5, 5, 5, 0, -5, -10, 5, 5, 5, 5, 5, 0, -10, -10, 0, 5, 
-      0, 0, 0, 0, -10, -20, -10, -10, -5, -5, -10, -10, -20 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] WhiteQueenSquareTable = WhiteQueenTable();
-  
-
-
-
-
-
-
-
-
-  private int[][] BlackQueenTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { -20, -10, -10, -5, -5, -10, -10, -20, -10, 0, 5, 0, 0, 0, 0, -10, -10, 5, 5, 5, 5, 5, 
-      0, -10, 0, 0, 5, 5, 5, 5, 0, -5, -5, 0, 5, 5, 5, 5, 0, -5, -10, 0, 5, 5, 5, 5, 0, -10, -10, 
-      0, 0, 0, 0, 0, 0, -10, -20, -10, -10, -5, -5, -10, -10, -20 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] BlackQueenSquareTable = BlackQueenTable();
-  
-
-
-
-
-
-
-
-
-  private int[][] WhiteKingMiddleTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { 20, 30, 10, 0, 0, 10, 30, 20, 20, 20, 0, 0, 0, 0, 20, 20, -10, -20, -20, -20, -20, 
-      -20, -20, -10, -20, -30, -30, -40, -40, -30, -30, -20, -30, -40, -40, -50, -50, -40, -40, -30, -30, -40, 
-      -40, -50, -50, -40, -40, -30, -30, -40, -40, -50, -50, -40, -40, -30, -30, -40, -40, -50, -50, -40, -40, 
-      -30 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] WhiteKingMiddleSquareTable = WhiteKingMiddleTable();
-  
-
-
-
-
-
-
-
-
-  private int[][] BlackKingMiddleTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { -30, -40, -40, -50, -50, -40, -40, -30, -30, -40, -40, -50, -50, -40, -40, -30, -30, 
-      -40, -40, -50, -50, -40, -40, -30, -30, -40, -40, -50, -50, -40, -40, -30, -20, -30, -30, -40, -40, -30, 
-      -30, -20, -10, -20, -20, -20, -20, -20, -20, -10, 20, 20, 0, 0, 0, 0, 20, 20, 20, 30, 10, 0, 0, 10, 30, 
-      20 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] BlackKingMiddleSquareTable = BlackKingMiddleTable();
-  
-
-
-
-
-
-
-
-
-  private int[][] WhiteKingEndTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { -50, -30, -30, -30, -30, -30, -30, -50, -30, -30, 0, 0, 0, 0, -30, -30, -30, -10, 20, 
-      30, 30, 20, -10, -30, -30, -10, 30, 40, 40, 30, -10, -30, -30, -10, 30, 40, 40, 30, -10, -30, -30, -10, 
-      20, 30, 30, 20, -10, -30, -30, -20, -10, 0, 0, -10, -20, -30, -50, -40, -30, -20, -20, -30, -40, -50 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] WhiteKingEndSquareTable = WhiteKingEndTable();
-  
-
-
-
-
-
-
-
-
-  private int[][] BlackKingEndTable()
-  {
-    int[][] table = new int[8][8];
-    int[] tableHelper = { -50, -40, -30, -20, -20, -30, -40, -50, -30, -20, -10, 0, 0, -10, -20, -30, -30, -10, 
-      20, 30, 30, 20, -10, -30, -30, -10, 30, 40, 40, 30, -10, -30, -30, -10, 30, 40, 40, 30, -10, -30, -30, 
-      -10, 20, 30, 30, 20, -10, -30, -30, -30, 0, 0, 0, 0, -30, -30, -50, -30, -30, -30, -30, -30, -30, -50 };
-    
-    int i = 0;
-    for (int y = 0; y < 8; y++) {
-      for (int x = 0; x < 8; x++) {
-        table[x][y] = tableHelper[i];
-        i++;
-      }
-    }
-    
-    return table;
-  }
-  
-
-
-
-  public int[][] BlackKingEndSquareTable = BlackKingEndTable();
 }

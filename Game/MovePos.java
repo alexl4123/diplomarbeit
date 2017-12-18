@@ -1,23 +1,46 @@
 package Game;
 
-public class MovePos
-{
-  public int X;
-  public int Y;
-  public int PY;
-  public int PX;
-  public int ID;
-  public int ID2;
-  public int X3;
-  public int Y3;
-  public int ID3;
-  public int X4;
-  public int Y4;
-  public int ID4;
-  public int X5;
-  public int Y5;
-  public int ID5;
-  public double[][] Board;
-  
-  public MovePos() {}
+/**
+ * Saves the AI-Moves
+ * @author alexl12 - 2017
+ * @version 1.1 - Draw
+ *
+ */
+public class MovePos {
+	
+	/**
+	 * X - where the Meeple should move to on X
+	 * Y - where the Meeple should move to on Y
+	 * PY - where the Meeple came from on Y
+	 * PX - where the Meeple came from on X
+	 * ID - the ID of the Meeple
+	 * ID2 - what was on that tile before it became ,,ID'' 
+	 */
+	public int X,Y,PY,PX,ID,ID2;
+	
+	/**
+	 * For En Passant, Rochade,...
+	 * third field to Write
+	 */
+	public int X3, Y3, ID3;
+	
+	/**
+	 * For En Passant, Rochade,...
+	 * fourth field to write
+	 */
+	public int X4, Y4, ID4;
+	
+	/**
+	 * For En Passant, Rochade,...
+	 * fifth field to write
+	 */
+	public int X5, Y5, ID5;
+	
+	/**
+	 * the representation of the board
+	 */
+	public double[][] Board;
+	
+	
+	
 }
