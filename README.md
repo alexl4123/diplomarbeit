@@ -31,4 +31,4 @@ so other people know what you have done
 ## We just have added a small Wiki page, for further technical introduction
 
 
-## Code is uploaded - but a strange version - will be fixed soon - have fun ;)
+## Code is uploaded - have fun ;)
