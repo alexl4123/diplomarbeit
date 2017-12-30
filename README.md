@@ -13,11 +13,13 @@ It is basically a highschool thesis.
 
 What is my thesis about?
 We develop a chess game in Java.
-The GUI is the JavaFX GUI and we create an AI.
+The GUI is the JavaFX GUI and we create an AI (Artificial Intelligence).
 Further we develop the game to be played on a Raspberry Pi or Android Device.
 
+Further information can be found in the [Wiki](https://github.com/alexl4123/diplomarbeit/wiki)
+
 Who is in the team?
-Myself (Alexander Beiser) and a college of mine.
+Myself (Alexander Beiser) and a colleague of mine.
 
 ## coding style?
 
