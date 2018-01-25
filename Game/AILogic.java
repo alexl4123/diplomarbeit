@@ -14,7 +14,7 @@ import meeple.Tower;
 
 /**
  * 
- * @author alexl12 - 2017
+ * @author alexl12 - 2018
  * @category AI
  * @version 1.1 - Draw
  * 
@@ -142,7 +142,7 @@ public class AILogic {
 		
 		float Sum = boardEvaluation(BGG2, Team); // the value of the Board
 		if(Sum > 5000){
-			return 20000;
+			return 20000; //Why?
 		}
 		
 		if (depth >= MaxDepth) { // if the max depth has been reached, return
