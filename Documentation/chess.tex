@@ -53,6 +53,8 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{subfigure}
+\usepackage{hyperref}
+\usepackage{nameref}
   %\usepackage{theorem}
   %\usepackage[dvips]{color}
   %\usepackage{lmodern}
@@ -725,7 +727,7 @@ Java Chess nützt in Folge einige dieser Vorteile aus, vorallem Objektorientiert
 
 
 \subsubsection{Blockschaltbild}
-\label{BLOCKSCHALTBILD}
+\label{SUBSUBSEC:BLOCKSCHALTBILD}
 
 Hier wird ein Einblick gegeben, wie Java Chess funktioniert. Dies geschieht Anhand von einem Blockschaltbild, welches Pakete bzw. Klassen beschreibt: 
 
@@ -734,14 +736,14 @@ Hier wird ein Einblick gegeben, wie Java Chess funktioniert. Dies geschieht Anha
 %TODO
 
 \subsubsection{Initialisierung}
-\label{INIT}
+\label{SUBSUBSEC:INIT}
 
 \cmnt{Hier soll erklärt werden wie JavaChess initialisiert wird.}
 
-Als Referenz bzw. Hilfe siehe \ref{BLOCKSCHALTBILD}.
+Als Referenz bzw. Hilfe siehe \ref{SUBSUBSEC:BLOCKSCHALTBILD}.
 Zuerst startet das Programm in der Main Methode der Main Klasse. Als nächstes wird das Backgroundgrid Objekt initialisiert und das GUI-Objekt von der GUI-Klasse geladen. \\
 Dieses Objekt ladet im Anschluss die Board Gui Klasse, welche ein Canvas ist. In diesem ist eine gewisse Art des Zeichnens möglich. Dadurch wird auch das Schachbrett gezeichnet und in dieser Klasse findet der "Spielfluss" statt. \\ 
-Im default Modus startet das Spiel im "Local" game mode, siehe \ref{LOCAL_MODE}. Hier spielt der Spieler zuerst einen Zug, woraufhin kontrolliert wird ob der Zug legal ist. Da das Spiel im Local-Mode startet, wechselt der Spieler und das Schachbrett wird mit der Aufstellung nach Zug 1 neu gezeichnet.
+Im default Modus startet das Spiel im "Local" game mode, siehe \ref{SUBSEC:LOCAL_MODE}. Hier spielt der Spieler zuerst einen Zug, woraufhin kontrolliert wird ob der Zug legal ist. Da das Spiel im Local-Mode startet, wechselt der Spieler und das Schachbrett wird mit der Aufstellung nach Zug 1 neu gezeichnet.
 
 \subsection{Repräsentation der Figuren:}
 
@@ -769,7 +771,7 @@ Durch diese Matrix werden in Folge alle Zugberechnungen, KI-Berechnungen, etc. d
 
 
 \subsection{Zugmechanik und Local-Mode}
-\label{LOCAL_MODE}
+\label{SUBSEC:LOCAL_MODE}
 
 Sobald das Spiel geladen und initialisiert ist, wird automatisch der ,,Local'' Spielmodus ausgewählt. Dies ist der Hotseat modus, indem man auf einem Device nacheinander spielt. Dieses eigentliche Spiel geschieht in einem Objekt der ,,BoardGui'' Klasse. Die BoardGui Klasse ist ein Canvas Objekt, also ein Objekt auf dem man zum Beispiel zeichnen kann. Diese Funktion wird ausgenutzt, um das Spielfeld zu zeichnen. Wie dies genau geschieht wird in \TODO erläutert.  \\
 Nun ist der weiße Spieler an der Reihe. Welches Team an der Reihe ist, wird durch den Boolean ,,team'' bestimmt. Dieser Spielstand wird in einem Objekt der Backgroundgrid Klasse gespeichert. True bedeutet das der weiße Spieler am Zug ist, false das der Schwarze am Zug ist. \\
@@ -777,9 +779,20 @@ Der Spieler kann nun die Figur anwählen, die er bewegen möchte, oder die linke
 Nun muss der Spieler nur noch das Feld, auf das er ziehen möchte klicken bzw. die Figur darüber absetzen. Der Move algorithmus berechnet nun ob dieser Zug auch möglich ist, falls dieser Zug erlaubt ist wird die Hintergrundmatrix entsprechend umgeschrieben, entsprechend den neuen Positionen der Figuren. \\
 Im Local mode wird jetzt das Team gewechselt und die GUI neu gezeichnet, damit die Änderungen in der Matrix sichtbar werden. 
 
-\subsubsection{Zugmechanik-Die Move Klasse}
-\label{MOVE}
+\subsubsection{Die Move Klasse - Funktion}
+\label{SUBSUBSEC:MOVE}
 %TODO
+
+Es gibt aber mehrere Möglichkeiten, wie eine Abfrage des erlaubten Zuges entwickelt werden kann. Unser 1.Ansatz bestand darin, dass jede Figur ihren erlaubten Zug selber überprüft. Hierbei muss klar sein, dass wir für jede Figur ein eigenes Objekt, des jeweiligen Klassentypes (z.B.: Bauer) angelegt haben. Für die Zugüberprüfung wird an die Figur die Position übergeben, wohin sie ziehen soll und das momentane Spielfeld. Ein Boolean als Rückgabwert hat dann indiziert, ob dieser Zug legal war. \\
+Bevor eine solche Move Abfrage, aber überhaupt durchgeführt werden kann, muss diese auch aufgerufen werden und erkannt werden welcher Spielstein ausgewählt wurde. Dies geschah über eine weitere Move Klasse
+Der 1. Ansatz war somit nicht wirklich eine Klasse sondern auf viele Klassenverteilt. Funktioniert hat dies ohne bekannte Bugs, dadurch ist der Code aber stellenweise sehr unübersichtlich geworden, das Spiel einwenig unperformant und eine AI mit diesem Ansatz zu schreiben ist schlicht unvorstellbar. \\[2ex]
+Der 2. Ansatz bestand darin, alle Zugabfragen in einer Klasse zu implementieren. Dazu wurde dem Objekt dieser Klasse, die Koordinaten des zu bewegenden Spielsteines gegeben, wo dieser ist und wohin gezogen werden soll, und das Spielfeld. Geprüft wird wieder, ob der Spielzug erlaubt ist. Auch geschieht die Abfrage, welcher Spielstein ausgewählt wurde wieder über eine extrige Klasse.\\ 
+Vorteile ergeben sich aus der Übersicht, das Problem mit der Performance hat sich auch weitestegehend gelöst. Das Problem mit der KI ist aber geblieben und nun ist ein weiteres Problem dazugekommen: Wenn man auf eine Figur klickt erscheinen alle Felder, auf die man ziehen kann. Dies ist mit dieser Implementierung der Move Klasse wiederum eine unmöglichkeit zu programmieren.\\[2ex]
+Der 3.Ansatz beschäftigt sich...
+%Der 4. Ansatz kann als eine Art Box verstanden werden: Man sagt der Move Methode welche Figur man ausgewählt hat und man bekommt alle möglichen Züge zurück. Der eigentliche Zug muss aber extern durchgeführt werden.
+
+\subsubsection{Die Move Klasse - Code}
+\label{SUBSUBSEC:MOVECODE}
 
 \subsection{LAN-Mode}
 
@@ -792,37 +805,57 @@ Wie funktioniert die AI (Artificial Intelligence) des Schachspiels? \\
 Für die Beantwortung dieser Frage werden folgende Kapitel behandelt:
 
 \begin{itemize}
-	\item{Prinzipielle Möglichkeiten einer AI}
-	\item{Verwendete Schach-AI}
-	\item{Code}
+	\item{\nameref{SUBSUBSEC:GenAI}}
+	\item{\nameref{SUBSUBSEC:OurAI}}
+	\item{\nameref{SUBSUBSEC:MinMax}}
+	\item{\nameref{SUBSUBSEC:AICODE}}
 \end{itemize}
 
-\subsubsection{Prinzipielle Möglichkeiten einer AI}
+
+
+\subsubsection{Prinzipielle Moeglichkeiten einer AI}
+\label{SUBSUBSEC:GenAI}
 
 Der Terminus "AI" wird sehr oft verwendet, jedoch gibt es Unterschiede zwischen den AIs die größer nicht sein könnten. So gibt es zum Beispiel Künstliche Intelligenzen die durch Machine-Learning-Algorithmen basieren und andere, einfachere, denen ein Min-Max Prinzip zu Grunde liegt. \\
 Das Min-Max Prinzip lässt sich aber nur bei Spielen mit perfekter Information anwenden, wie Schach eines ist. Ein Spiel mit perfekter Information bedeutet, dass jeder Spieler alles weiß, so haben im Schach immer beide Spieler das gesamte Spielfeld im Blick. \\[2ex]
-Durch diese Art des Spiels können die theoretisch besten Züge ermittelt werden, um den besten möglichen Zug zu ziehen. Dazu muss der Algorithmus alle möglichen Spielzüge analysieren, bewerten und vergleichen um zu einem Zug zu machen. Dies ist ein sehr hoher Rechenaufwand, dafür einfacher zu implementieren. Diese Art der AI haben wir verwendet, siehe \ref{OurAI}. \\[3ex]
+Durch diese Art des Spiels können die theoretisch besten Züge ermittelt werden, um den besten möglichen Zug zu ziehen. Dazu muss der Algorithmus alle möglichen Spielzüge analysieren, bewerten und vergleichen um zu einem Zug zu machen. Dies ist ein sehr hoher Rechenaufwand, dafür einfacher zu implementieren. Diese Art der AI haben wir verwendet, siehe \ref{SUBSUBSEC:OurAI}. \\[3ex]
 Die andere Möglichkeit ist ein Machine-Learning-Algorithmus. Dieser versucht ein biologisches Gehirn nachzubauen, indem es ein Künstliches-Neurales-Netzwerk bildet. Diese Neuronen werden dahingehend trainiert, dass die AI aus einem gegebenen Satz Daten und/bzw. mit Hilfe einer Lernfunktion Rückschlüsse auf mögliche zukünftige Ereignisse schließt. Mathematisch gesehen basiert diese Art der KI auf der Wahrscheinlichkeitsrechnung.  \\
 Wichtig ist noch anzumerken, dass diese Art der KI selber lernen kann wie sie besser wird. Als Beispiel nehmen wir Schach, die KI spielt über längere Zeit gegen sich selber und muss um sich zu verbessern nicht unbedingt gegen andere Spieler, sowohl menschlich als auch maschinell antreten. \\
 Maschinelles Lernen ist ein sehr umfangreiches Thema, womit hier nur noch gesagt sei, dass maschinelles Lernen in letzter Zeit einige Durchbrüche erlebt hat. Um noch ein konkretes Beispiel zu nennen: Im Dezember 2017 gewann der von Google entwickelte Algorithmus AlphaZero gegen die Chess-Engine ,,Stockfish 8''. AlphaZero basiert auf maschinellen Lernen und Stockfish 8 auf der Vorausberechnung aller möglichen Züge. \\[2ex]
 Wieso wurde die AI nicht im maschinellen Lernen verfahren entwickelt? \\
 Dies hätte den Rahmen der Diplomarbeit gesprengt und wäre für sich allein genommen eine eigene Diplomarbeit.
 
-\subsubsection{Verwendete Schach-AI}
-\label{OurAI}
+\subsubsection{Verwendete Schach-AI-Funktion}
+\label{SUBSUBSEC:OurAI}
 
 Wie vorher schon beschrieben verwendet die Java-Chess-AI eine Abwandlung des Min-Max Algorithmus. Dieser wird ,,alphaBeta'' Algorithmus genannt. \\
 Prinzipiell sucht der Algorithmus nach dem besten Spielzug. Um dies tun zu können, benötigt es einen Algorithmus welcher alle möglichen Spielzüge bis zu einer gewissen Tiefe durchsucht und den besten Spielzug in Folge herausschreibt. \\ 
 Hierfür muss geklärt werden, welcher Spieler gerade die Oberhand hat. Im entwickelten Algorithmus besteht die fundamentale ,,Board-Evaluation'' aus der Materiellen Balance. Also welcher Spieler hat mehr und bessere Figuren. Anschließend werden noch  ,,Bauernformationen'', also wenn die Bauern sich gegenseitig decken und sogenannte ,,Piece Square Tables'' in die Kalkulation mit eingerechnet. Piece Square Tables geben an, wo die Figuren statistisch gesehen am besten stehen. Zum Beispiel stehen Türme lieber in der Mitte, als am Rand. Dadurch haben sie mehr Bewegungsfreiheit, was im Schachspiel eine der wichtigsten Strategien zum Sieg ist. Hierbei muss angemerkt werden, dass die Piece Square Tables von SchachmeisternInnen erstellt wurden, welche der Öffentlichkeit zugänglich gemacht worden sind. \\[2ex]
 Das Durchsuchen der möglichen Spielzüge läuft folgendermaßen ab: Es wird zuerst festgelegt bis zu welcher Tiefe (z.B.: 5) gesucht werden soll. Anschließend wird der 1. mögliche Zug getätigt. Anschließend ruft sich die Methode selbst rekursiv auf, wobei die Tiefe erhöht und das Team gewechselt wird und tätigt wiederum den 1. möglichen Zug. Dies geschieht solange bis die gewünschte Tiefe (5) erreicht ist, bei welcher die ,,Board-Evaluation'' durchgeführt wird. Dieser Wert wird zwischengespeichert und der zuletzt getätigte Zug wird rückgängig gemacht. \\
 Nun befindet sich der Algorithmus wieder in der Tiefe 4, in welcher der 2.mögliche Zug getätigt wird. Falls dieser Zug besser ist als der vorherige, überschreibt dieser den zwischengespeicherten 1. Zug. Falls nicht, wird er von nun an nicht länger berücksichtigt. \\
-Dies geschieht nun solange, bis alle relevanten Züge durchsucht wurden, welche nicht relevant sind wird in \ref{AICODE} behandelt. \\
-Sobald der beste Zug ermittelt wurde, folgt die übliche Schachmatt-Abfrage und das Überschreiben des Schachfeldes mit den neuen Positionen.
+Dies geschieht nun solange, bis alle relevanten Züge durchsucht wurden, welche nicht relevant sind wird in \ref{SUBSUBSEC:AICODE} behandelt. \\
+Sobald der beste Zug ermittelt wurde, folgt die übliche Schachmatt-Abfrage und das Überschreiben des Schachfeldes mit den neuen Positionen. Anschließend ist wie in \ref{SUBSUBSEC:BLOCKSCHALTBILD} gezeigt, wieder der Spieler an der Reihe. \\[2ex]
+Eines der größten Probleme des Algorithmus ist die Performance. Dazu ein simples Gedankenexperiment: Beim 1. Spielzug sind 20 mögliche Züge des weißen Spielers möglich und ebensoviele beim darauffolgenden Zug des schwarzen Spielers. Daraus resultiert aus den beiden Spielzügen \(20 \cdot 20 = 400\) verschiedene Stellungen. \\
+Gemittelt gibt es im Schach 28 mögliche Züge pro Spielzug. Nach 5 Zügen ergeben sich daraus schon 3.200.000 mögliche Stellungen, nach 6 wären es 64.000.000. Um zu einer Entscheidung zu kommen muss der Computer alle diese Züge analysieren und bewerten. Dies benötigt Rechenleistung, weshalb ein solcher Schachalgorithmus sehr abhängig von der verwendeten Hardware ist. \\
+Im weiteren Sinne ist dies der Grund warum solche künstlichen Intelligenzen gegen Künstliche-Neuronale-Netzwerke verlieren (siehe \ref{SUBSUBSEC:GenAI}). Die Min-Max Algorithmen können nicht ausreichend optimiert werden bzw. moderne Hardware besitzt einfach nicht genügend Rechenleistung um diesen Wettlauf standzuhalten. \\
 
-%TODO
-%-illustration?
+\subsubsection{Der MinMax-Algorithmus:}
+\label{SUBSUBSEC:MinMax}
+
+In den Kapiteln \ref{SUBSUBSEC:GenAI} und \ref{SUBSUBSEC:OurAI} wurde erwähnt, dass die JavaChess AI nach dem Min-Max Prinzip funktioniert, nur was ist dieses Prinzip?
+
+\includegraphics[width=16cm]{graphics/MinMax.jpg}
+
+MinMax ist nichts anderes, als das Erhalten des bestmöglichen Ergebnisses für einen Spieler, wenn die Züge des Gegenspielers miteingerechnet werden. In diesem Beispiel haben wir zwei Teams, Weiß und Schwarz. Diese sind durch die weißen Blasen erkenntlich. Weiters gilt für ein kompetitives Spiel wie Schach, dass das weiße Team immer ihr bestes Ergebnis herausholen möchte und das Schwarze auch ihres. Die Zahlen repräsentieren die Günstigkeit der Stellung für das weiße Team, wobei 10 die best mögliche Stellung ist und 1 die schlechteste. Für das schwarze Team ist dies umgekehrt, für sie ist 10 das schlechteste Ergebnis und 1 das Beste. \\
+Somit wird das schwarze Team immer das kleinere Ergebnis nehmen, quasi das MINIMUM herausholen (=Min) und die Weißen immer das höchstmögliche, also das MAXIMUM (=Max). Daher auch der Name, MinMax. \\
+Zurück zum Beispiel: Schwarz kann einmal wählen zwischen den Zahlen 5 \& 3, zwischen 10 \& 2 und zwischen 7 \& 8. Da die Schwarzen immer die niedrigere Zahl nehmen, kann die niedrigere Zahl in den schwarzen Bubble geschrieben werden (3, 2 \& 7). \\
+Somit muss sich der weiße Spieler nur noch zwischen 3 Zahlen entscheiden, bei denen er die höchste nimmt, also 7. Dies ist das best mögliche Ergebnis für das weiße Team.
+
 \subsubsection{Code}
-\label{AICODE}
+\label{SUBSUBSEC:AICODE}
+
+Die theoretischen Grundlagen zum Verständnis des Algorithmus sollten nun geklärt sein.\\
+
 
 
 %TODO
