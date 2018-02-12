@@ -97,8 +97,6 @@
 \definecolor{ddkrd}	{rgb}{0.25,0.0,0.0}
 \definecolor{dkrd}	{rgb}{0.70,0.0,0.0}
 \definecolor{indigo}	{rgb}{0.2,0.1,0.9}
-
-\usepackage{listings}
 \lstset{language=C}
 \lstset{basicstyle=\tiny}
   %\lstset{basicstyle=\small}
@@ -162,9 +160,39 @@
 %\renewcommand*{\familydefault}{\rmdefault}	%klassisches 'Roman' (statt MicroMurx...)
 \renewcommand*{\familydefault}{\sfdefault}	%klassisches 'Helvetica' statt 'MS-Arial'
 
+
+%===================================================
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
 %===================================================
 \begin{document}
 %\addtocontents{toc}{\protect\begin{multicols}{2}} %-fuer mehrspaltiges Inh.Verz
+
+
+
 
 \newcommand\logoB[1]{%
 	%dieses Macro '' zeichnet das "neue" HTL Logo mithilfe der
@@ -733,7 +761,6 @@ Hier wird ein Einblick gegeben, wie Java Chess funktioniert. Dies geschieht Anha
 
 \includegraphics[height=18cm]{graphics/block.jpg}
 \cmnt{Blockschaltbild verändern, da init Backgroundgrid und GUI-Objekt vertauscht sind.}
-%TODO
 
 \subsubsection{Initialisierung}
 \label{SUBSUBSEC:INIT}
@@ -781,18 +808,220 @@ Im Local mode wird jetzt das Team gewechselt und die GUI neu gezeichnet, damit d
 
 \subsubsection{Die Move Klasse - Funktion}
 \label{SUBSUBSEC:MOVE}
-%TODO
 
 Es gibt aber mehrere Möglichkeiten, wie eine Abfrage des erlaubten Zuges entwickelt werden kann. Unser 1.Ansatz bestand darin, dass jede Figur ihren erlaubten Zug selber überprüft. Hierbei muss klar sein, dass wir für jede Figur ein eigenes Objekt, des jeweiligen Klassentypes (z.B.: Bauer) angelegt haben. Für die Zugüberprüfung wird an die Figur die Position übergeben, wohin sie ziehen soll und das momentane Spielfeld. Ein Boolean als Rückgabwert hat dann indiziert, ob dieser Zug legal war. \\
 Bevor eine solche Move Abfrage, aber überhaupt durchgeführt werden kann, muss diese auch aufgerufen werden und erkannt werden welcher Spielstein ausgewählt wurde. Dies geschah über eine weitere Move Klasse
-Der 1. Ansatz war somit nicht wirklich eine Klasse sondern auf viele Klassenverteilt. Funktioniert hat dies ohne bekannte Bugs, dadurch ist der Code aber stellenweise sehr unübersichtlich geworden, das Spiel einwenig unperformant und eine AI mit diesem Ansatz zu schreiben ist schlicht unvorstellbar. \\[2ex]
-Der 2. Ansatz bestand darin, alle Zugabfragen in einer Klasse zu implementieren. Dazu wurde dem Objekt dieser Klasse, die Koordinaten des zu bewegenden Spielsteines gegeben, wo dieser ist und wohin gezogen werden soll, und das Spielfeld. Geprüft wird wieder, ob der Spielzug erlaubt ist. Auch geschieht die Abfrage, welcher Spielstein ausgewählt wurde wieder über eine extrige Klasse.\\ 
+Der 1. Ansatz war somit nicht wirklich eine Klasse sondern auf viele Klassenverteilt. Funktioniert hat dies ohne bekannte Bugs, dadurch ist der Code aber stellenweise sehr unübersichtlich geworden. Das Spiel wurde teilweise unperformant und eine AI mit diesem Ansatz zu schreiben ist schlicht unvorstellbar. \\[2ex]
+Der 2. Ansatz bestand darin, alle Zugabfragen in einer Klasse zu implementieren. Dazu wurde dem Objekt dieser Klasse, die Koordinaten des zu bewegenden Spielsteines gegeben, wo dieser ist und wohin gezogen werden soll und das Spielfeld. Geprüft wird wieder, ob der Spielzug erlaubt ist. Auch geschieht die Abfrage, welcher Spielstein ausgewählt wurde wieder über eine extrige Klasse.\\ 
 Vorteile ergeben sich aus der Übersicht, das Problem mit der Performance hat sich auch weitestegehend gelöst. Das Problem mit der KI ist aber geblieben und nun ist ein weiteres Problem dazugekommen: Wenn man auf eine Figur klickt erscheinen alle Felder, auf die man ziehen kann. Dies ist mit dieser Implementierung der Move Klasse wiederum eine unmöglichkeit zu programmieren.\\[2ex]
-Der 3.Ansatz beschäftigt sich...
-%Der 4. Ansatz kann als eine Art Box verstanden werden: Man sagt der Move Methode welche Figur man ausgewählt hat und man bekommt alle möglichen Züge zurück. Der eigentliche Zug muss aber extern durchgeführt werden.
+Der 3.Ansatz beschäftigt sich mit der Vorschau der möglichen Züge. Man gibt dem Objekt der Move Klasse einfach alles, was bereits im 2. Ansatz übergeben wurde. Nun wird aber ein int[][] aus möglichen Zügen zurückgegeben. Dies funktionierte ohne Probleme. \\
+Das einzige was als Problem deklariert werden kann, ist das dadurch das ,,DRY'' (Don´t repeat yourself) Prinzip verletzt wurde. In der Move Klasse ggab es nun einmal die Abfrage, ob der Zug erlaubt ist und einmal die Abfrage welche Züge erlaubt sind. Für die KI ist es von Vorteil, wenn sie alle möglichen Züge eines Spielsteines bekommt. Es sollte aber auch klar sein welcher Spielstein zuvor auf dem Feld stand, was durch diese Methode nur indirekt möglich ist. \\[2ex]
+Der 4.Ansatz nimmt sich allen diesen Problemen an, indem den 3. Ansatz ausbaut und eine neue ,,MovePos'' Klasse einführt. Die Move Klasse kann nun als eine Art Box verstanden werden: Man sagt der Move Methode welche Figur man ausgewählt hat und man erhält alle möglichen Züge als MovePos-ArrayList zurück. Der eigentliche Zug muss aber extern durchgeführt werden. \\
+Das Objekt der Klasse MovePos, beinhaltet die alte Position des Spielsteins, die neue Position, die ID des Spielsteins, die ID des Feldes auf das gezogen wurde und für die Rochade bzw. den En-Passant noch zwei weitere Informationen zu den Feldern, wo und was darauf war. \\
+Dadurch wird für die KI Berechnung, für die Zugüberprüfung und für das Anzeigen aller möglichen Züge die gleiche Basisstruktur der Zugberechnung verwendet. Der Unterschied besteht darin, dass die KI direkt die Zugberechnung aufruft währenddessen die Zugüberprüfung und das Anzeigen der möglichen Züge auf die Methode GetMove zurückgreift (überschreiben das Spielfeld).\\
+
 
 \subsubsection{Die Move Klasse - Code}
 \label{SUBSUBSEC:MOVECODE}
+%TODO
+
+
+Die Move Klasse beinhaltet momentan ca. 1400 Zeilen Code. \\
+Die folgende Dokumentation erfolgt als Pseudo Code:
+
+\lstset{language=Java}
+\begin{lstlisting}
+import...
+...
+public class Move{
+	private ArrayList _HitList;
+	private ArrayList _MoveList;
+	private ArrayList _LastMoveList;
+	private boolean _bSelect;
+	private int _iSelect;
+	...
+	public Move(){
+		_bSelect = false;
+		...
+		das Standardmaessig keine Figur ausgewaeht wurde
+		...
+	}			
+	...
+	//Methode fuer Spielerzug bzw. zum anzeigen aller moeglichen Positionen
+	public int[][] GetMove(Position und ID von Spielfigur, Objekt von Hintergrundmatrix){
+		...
+		//Die Differenz zwischen zuvor ausgewählter Figur und jetzt ausgewählten Zug Feld		
+		iDif = iPos - _iSelect
+		//Wenn die Figur bewegt werden darf
+		if(_bSelect && iDif >= 50){
+			//ArrayList von der Klasse MovePos
+			ArrayList MoveList = getMoveMeeple(Spielfeld,Team, Position Figur)
+			for(MovePos MP in MoveList){
+				if(MP-Position == Gewaehlte Position){
+					...
+					Ueberschreiben des alten Feldes mit den neuen Positionen
+					Auch fuer alle Spezialzuege
+					...		
+				}
+				
+			}
+		} else {
+			...
+			alle moeglichen Zuege
+			...
+			if(Position ist Figur){
+				ArrayList MoveList = getMoveMeeple(Spielfeld,Team,Position Figur)
+				for(MovePos MP in MoveList){
+					if(Zug auf Leeres Feld){
+						_MoveList.add(GezogenesFeld)
+					}else{
+						_HitList.add(GezogenesFeld)
+					}
+				}
+			}
+		}	
+		return GeaendertesSpielfeld		
+	}
+	
+	//Herzstueck der Move Klasse - gibt alle moeglichen Zuege zurueck
+	public ArrayList getMoveMeeple(Spielfeld, Position von Spielfigur){
+		new ArrayList MovePos...MP
+		if(Bauer){
+			//Zuege
+			if(einfacher Zug moeglich){
+				MovePos Zug...
+				...
+				MP.add(Zug) 
+				...			
+			}
+			if(zweifacher Zug moeglich){
+				MovePos Zug...
+				....
+				MP.add(Zug)
+				...
+			}
+			//Schlaege
+			if(weisses Team){
+				if(Schlag diagonal nach links moeglich){
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+				if(Schlag diagonal nach rechts moeglich){
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+			} else {
+				if(Schlag diagonal nach links moeglich){
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+				if(Schlag diagonal nach rechts moeglich){
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+			}
+			//EnPassant
+			if(min. 2. Zug){
+				...
+				letzerZug = getLastMove
+				...
+				if(wenn feindlicher Bauer danebensteht && ID letzer Zug == id Bauer daneben && Im letzen Zug 2 Felder bewegt worden sind){
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+			}	
+		}else if(Turm){
+			for(i=1 bis 7){
+				if(Feld in X bzw. Y Richtung Ziehbar bzw. Figur schlagbar && keine Figur dazwischen) {
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+			}
+		
+		}else if(Springer){
+			if(Feld auf eine von acht Arten ziehbar / schlagbar){
+				MovePos Zug...
+				....
+				MP.add(Zug)
+				...
+			}
+		}else if(Lauefer){
+			for(i=1 bis 7){
+				if(Feld in eine von vier Richtungen schlagbar/ziehbar){
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+			}
+		}else if(Dame){
+			for(i=1 bis 7){
+				if(Feld in eine von vier Richtungen schlagbar/ziehbar){
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+				if(Feld in X bzw. Y Richtung Ziehbar bzw. Figur schlagbar && keine Figur dazwischen) {
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+			}
+		
+		}else if(Koenig){
+			if(Standard Zuege moeglich){
+				MovePos Zug...
+				....
+				MP.add(Zug)
+				...
+			}
+			if(Feld 4 Felder links vom Koenig leer){
+				if(Check Rochade Bedingungen-alle Felder dazwischen leer-kein Feld ist bedroht){
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+					
+				}
+			}
+			if(Feld 3 Felder rechts vom Koenig leer){
+				if(Check Rochade Bedingungen-alle Felder dazwischen leer-kein Feld ist bedroht){
+					MovePos Zug...
+					....
+					MP.add(Zug)
+					...
+				}
+			}
+		
+		}
+		
+		return MP;
+	}
+	
+	...
+	Methode Bauerntausch
+	...
+	getSchach //ueberprueft ob Koenig im Schach ist (=vl. illegaler Zug)
+	getSchach2 //ueberprueft ob Koenig im Schach ist (Warnung an Spieler)
+	...
+	getter und setter Methoden fuer Private Variablen
+}
+\end{lstlisting}
+\lstset{language=German}
 
 \subsection{LAN-Mode}
 
