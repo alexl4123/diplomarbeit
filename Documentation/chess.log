@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.11.15)  12 FEB 2018 21:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.11.15)  13 FEB 2018 21:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -791,83 +791,6 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
-! Undefined control sequence.
-l.100 \lstset
-             {language=C}
-? R
-OK, entering \nonstopmode...
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.100 \lstset{l
-               anguage=C}
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Undefined control sequence.
-l.101 \lstset
-             {basicstyle=\tiny}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.104 \lstset
-             {backgroundcolor=\color{lightgrey}}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.105 \lstset
-             {showstringspaces=false}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.106 \lstset
-             {breaklines=true}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.108 \lstset
-             {morecomment=[l][\color{dkgn}]{\%},%
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.110 \lstset
-             {numbers=left}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (9.53555pt too wide) in paragraph at lines 100--111
-[]\T1/cmr/m/n/12 language=C ba-sicstyle= back-ground-co-lor=[][] showstringspac
-es=false breakli-
- []
-
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip59
 \f@ncyO@elh=\skip60
@@ -1294,45 +1217,45 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) (./chess.aux)
 \openout1 = `chess.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 191.
-LaTeX Font Info:    Try loading font information for OML+pxmi on input line 191
+LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 193.
+LaTeX Font Info:    Try loading font information for OML+pxmi on input line 193
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/omlpxmi.fd
 File: omlpxmi.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 191.
-LaTeX Font Info:    Try loading font information for OMS+pxsy on input line 191
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 193.
+LaTeX Font Info:    Try loading font information for OMS+pxsy on input line 193
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/omspxsy.fd
 File: omspxsy.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 191.
-LaTeX Font Info:    Try loading font information for OMX+pxex on input line 191
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 193.
+LaTeX Font Info:    Try loading font information for OMX+pxex on input line 193
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/omxpxex.fd
 File: omxpxex.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 191.
-LaTeX Font Info:    Try loading font information for U+pxexa on input line 191.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 193.
+LaTeX Font Info:    Try loading font information for U+pxexa on input line 193.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxexa.fd
 File: upxexa.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 191.
-LaTeX Font Info:    ... okay on input line 191.
-LaTeX Font Info:    Try loading font information for T1+pxss on input line 191.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 193.
+LaTeX Font Info:    ... okay on input line 193.
+LaTeX Font Info:    Try loading font information for T1+pxss on input line 193.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/t1pxss.fd
@@ -1353,10 +1276,10 @@ File: t1pxss.fd 2000/12/14 v1.0
 \everyMPtoPDFconversion=\toks46
 )
 \AtBeginShipoutBox=\box76
-Package hyperref Info: Link coloring OFF on input line 191.
-LaTeX Info: Redefining \ref on input line 191.
-LaTeX Info: Redefining \pageref on input line 191.
-LaTeX Info: Redefining \nameref on input line 191.
+Package hyperref Info: Link coloring OFF on input line 193.
+LaTeX Info: Redefining \ref on input line 193.
+LaTeX Info: Redefining \pageref on input line 193.
+LaTeX Info: Redefining \nameref on input line 193.
  (./chess.out) (./chess.out)
 \@outlinefile=\write4
 \openout4 = `chess.out'.
@@ -1365,91 +1288,66 @@ LaTeX Info: Redefining \nameref on input line 191.
 Preview: Fontsize 12pt
 Preview: PDFoutput 1
 \c@lstlisting=\count286
+<chess-pics.pdf, id=245, page=1, 57.90634pt x 57.90634pt>
+File: chess-pics.pdf Graphic file (type pdf)
 
-! Package graphics Error: Division by 0.
+<use chess-pics.pdf, page 1>
+Package pdftex.def Info: chess-pics.pdf, page1 used on input line 294.
+(pdftex.def)             Requested size: 57.90617pt x 57.90617pt.
+LaTeX Font Info:    Try loading font information for OT1+pxr on input line 294.
 
-See the graphics package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.288 \begin{titlepage}
-                       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-LaTeX Font Info:    Try loading font information for OT1+pxr on input line 288.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/ot1pxr.fd
 File: ot1pxr.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 288.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 294.
 
 (/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+pxmia on input line 288.
+LaTeX Font Info:    Try loading font information for U+pxmia on input line 294.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxmia.fd
 File: upxmia.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Try loading font information for U+pxsya on input line 288.
+LaTeX Font Info:    Try loading font information for U+pxsya on input line 294.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxsya.fd
 File: upxsya.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Try loading font information for U+pxsyb on input line 288.
+LaTeX Font Info:    Try loading font information for U+pxsyb on input line 294.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxsyb.fd
 File: utxsyb.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Try loading font information for U+pxsyc on input line 288.
+LaTeX Font Info:    Try loading font information for U+pxsyc on input line 294.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxsyc.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
-
-Package Fancyhdr Warning: \headheight is too small (42.67912pt): 
- Make it at least 67.34535pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 288.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 288.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 288.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 288.
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-Non-PDF special ignored!
-Non-PDF special ignored!
-Non-PDF special ignored!]
-Overfull \hbox (2.84525pt too wide) in paragraph at lines 300--323
+Overfull \hbox (2.84525pt too wide) in paragraph at lines 303--326
  []| $[]$ 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 326.
+(babel)             in language  on input line 329.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 326.
+(babel)             in language  on input line 329.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 326.
+(babel)             in language  on input line 329.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 326.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.326 \end{titlepage}
-                      [1] (./chess.toc
+(babel)             in language  on input line 329.
+[1
+
+
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./
+chess-pics.pdf>] (./chess.toc
 
 ! Package graphics Error: Division by 0.
 
@@ -1457,12 +1355,10 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.42 ...{6.3}Referenzhandbuch}{28}{subsection.6.3}
+l.42 ...{6.3}Referenzhandbuch}{31}{subsection.6.3}
                                                   
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
+? R
+OK, entering \nonstopmode...
 
 Package Fancyhdr Warning: \headheight is too small (42.67912pt): 
  Make it at least 67.34535pt.
@@ -1492,7 +1388,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.449 \clearpage
+l.452 \clearpage
                 \vfill\newpage%\part{U-Lektionen \dq{}embedded Systems\dq{}}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1505,51 +1401,28 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 449.
+(babel)             in language  on input line 452.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 449.
+(babel)             in language  on input line 452.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 449.
+(babel)             in language  on input line 452.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 449.
+(babel)             in language  on input line 452.
 [3]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 452.
+(babel)             in language  on input line 455.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 452.
+(babel)             in language  on input line 455.
 
-Underfull \hbox (badness 10000) in paragraph at lines 454--457
+Underfull \hbox (badness 10000) in paragraph at lines 457--460
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 469--469
+Underfull \hbox (badness 10000) in paragraph at lines 472--472
 
  []
 
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 486.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 486.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 487.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 487.
-
-Overfull \hbox (1.05025pt too wide) in paragraph at lines 489--491
-\T1/pxss/m/n/12 Alexander Bei-ser und Mar-cel Hu-ber ent-wi-ckel-ten im Zu-ge i
-h-rer Di-plom-ar-beit 2017/18
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 489--491
-
- []
-
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 491.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 491.
 
 ! Package graphics Error: Division by 0.
 
@@ -1557,8 +1430,8 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.493 
-      
+l.489 \newpage
+              
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -1570,21 +1443,43 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 493.
+(babel)             in language  on input line 489.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 493.
+(babel)             in language  on input line 489.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 493.
+(babel)             in language  on input line 489.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 493.
+(babel)             in language  on input line 489.
 [4
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 494.
+(babel)             in language  on input line 490.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 494.
+(babel)             in language  on input line 490.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 491.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 491.
 
+Overfull \hbox (1.05025pt too wide) in paragraph at lines 493--495
+\T1/pxss/m/n/12 Alexander Bei-ser und Mar-cel Hu-ber ent-wi-ckel-ten im Zu-ge i
+h-rer Di-plom-ar-beit 2017/18
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 493--495
+
+ []
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 495.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 495.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 498.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 498.
 
 ! Package graphics Error: Division by 0.
 
@@ -1592,7 +1487,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.498 	\newpage
+l.502 	\newpage
                
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1605,18 +1500,18 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 498.
+(babel)             in language  on input line 502.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 498.
+(babel)             in language  on input line 502.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 498.
+(babel)             in language  on input line 502.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 498.
+(babel)             in language  on input line 502.
 [5]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 500.
+(babel)             in language  on input line 504.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 500.
+(babel)             in language  on input line 504.
 
 
 ! Package graphics Error: Division by 0.
@@ -1625,7 +1520,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.520 \clearpage
+l.524 \clearpage
                 \vfill\newpage
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1638,15 +1533,15 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 520.
+(babel)             in language  on input line 524.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 520.
+(babel)             in language  on input line 524.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 520.
+(babel)             in language  on input line 524.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 520.
+(babel)             in language  on input line 524.
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 522--579
+Underfull \hbox (badness 10000) in paragraph at lines 526--583
 
  []
 
@@ -1657,7 +1552,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.583 \clearpage
+l.587 \clearpage
                 \vfill\newpage{}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1670,33 +1565,33 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 583.
+(babel)             in language  on input line 587.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 583.
+(babel)             in language  on input line 587.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 583.
+(babel)             in language  on input line 587.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 583.
+(babel)             in language  on input line 587.
 [7
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 586.
+(babel)             in language  on input line 590.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 586.
+(babel)             in language  on input line 590.
 
-Overfull \hbox (10.26624pt too wide) in paragraph at lines 588--590
+Overfull \hbox (10.26624pt too wide) in paragraph at lines 592--594
 \T1/pxss/m/n/12 Das Schach-pro-gramm wird un-ter der ,,Crea-ti-ve Com-mons Attr
 ibution-NonCommercial-
  []
 
-LaTeX Font Info:    Try loading font information for OMS+pxss on input line 591
+LaTeX Font Info:    Try loading font information for OMS+pxss on input line 595
 .
-LaTeX Font Info:    No file OMSpxss.fd. on input line 591.
+LaTeX Font Info:    No file OMSpxss.fd. on input line 595.
 
 LaTeX Font Warning: Font shape `OMS/pxss/m/n' undefined
 (Font)              using `OMS/pxsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 591.
+(Font)              for symbol `textbullet' on input line 595.
 
 
 ! Package graphics Error: Division by 0.
@@ -1705,7 +1600,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.608 \clearpage
+l.612 \clearpage
                 \vfill\newpage{}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1718,43 +1613,43 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 608.
+(babel)             in language  on input line 612.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 608.
+(babel)             in language  on input line 612.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 608.
+(babel)             in language  on input line 612.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 608.
+(babel)             in language  on input line 612.
 [8
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{section.1}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.611 \section{\sc Einleitung}
+l.615 \section{\sc Einleitung}
                               
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 611.
+(babel)             in language  on input line 615.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 611.
+(babel)             in language  on input line 615.
 pdfTeX warning (ext4): destination with the same identifier (name{section.2}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.628 \section{\sc Vertiefende Aufgabenstellung}
+l.632 \section{\sc Vertiefende Aufgabenstellung}
                                                 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 628.
+(babel)             in language  on input line 632.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 628.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 629.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 629.
+(babel)             in language  on input line 632.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 633.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 633.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 637.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 637.
 
 
 ! Package graphics Error: Division by 0.
@@ -1763,7 +1658,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.640 \clearpage
+l.644 \clearpage
                 \vfill\newpage{}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1776,13 +1671,13 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 640.
+(babel)             in language  on input line 644.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 640.
+(babel)             in language  on input line 644.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 640.
+(babel)             in language  on input line 644.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 640.
+(babel)             in language  on input line 644.
 [9
 
 ]
@@ -1793,7 +1688,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.640 \clearpage
+l.644 \clearpage
                 \vfill\newpage{}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1806,26 +1701,26 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 640.
+(babel)             in language  on input line 644.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 640.
+(babel)             in language  on input line 644.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 640.
+(babel)             in language  on input line 644.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 640.
+(babel)             in language  on input line 644.
 [10]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 643.
+(babel)             in language  on input line 647.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 643.
+(babel)             in language  on input line 647.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 644.
+(babel)             in language  on input line 648.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 644.
+(babel)             in language  on input line 648.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 652.
+(babel)             in language  on input line 656.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 652.
+(babel)             in language  on input line 656.
 
 
 ! Package graphics Error: Division by 0.
@@ -1834,7 +1729,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.673 	\item{
+l.677 	\item{
              Wenn eine identische Stellung drei mal mit identischen Zugmögl...
 
 Your command was ignored.
@@ -1848,32 +1743,32 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 673.
+(babel)             in language  on input line 677.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 673.
+(babel)             in language  on input line 677.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 673.
+(babel)             in language  on input line 677.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 673.
+(babel)             in language  on input line 677.
 [11
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 679.
+(babel)             in language  on input line 683.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 679.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 688.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 688.
+(babel)             in language  on input line 683.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 692.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 692.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 697.
+(babel)             in language  on input line 696.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 697.
+(babel)             in language  on input line 696.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 701.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 701.
 
 
 ! Package graphics Error: Division by 0.
@@ -1882,7 +1777,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.700 \end{itemize}
+l.704 \end{itemize}
                    
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1895,26 +1790,26 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 700.
+(babel)             in language  on input line 704.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 700.
+(babel)             in language  on input line 704.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 700.
+(babel)             in language  on input line 704.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 700.
+(babel)             in language  on input line 704.
 [12]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 702.
+(babel)             in language  on input line 706.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 702.
+(babel)             in language  on input line 706.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 707.
+(babel)             in language  on input line 711.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 707.
+(babel)             in language  on input line 711.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 716.
+(babel)             in language  on input line 720.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 716.
+(babel)             in language  on input line 720.
 
 
 ! Package graphics Error: Division by 0.
@@ -1923,7 +1818,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.727 \clearpage
+l.731 \clearpage
                 \vfill\newpage{}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1936,36 +1831,36 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 727.
+(babel)             in language  on input line 731.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 727.
+(babel)             in language  on input line 731.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 727.
+(babel)             in language  on input line 731.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 727.
+(babel)             in language  on input line 731.
 [13]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 730.
+(babel)             in language  on input line 734.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 730.
+(babel)             in language  on input line 734.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 731.
+(babel)             in language  on input line 735.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 731.
+(babel)             in language  on input line 735.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 747.
+(babel)             in language  on input line 751.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 747.
+(babel)             in language  on input line 751.
 
-Underfull \hbox (badness 10000) in paragraph at lines 749--752
+Underfull \hbox (badness 10000) in paragraph at lines 753--756
 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 757.
+(babel)             in language  on input line 761.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 757.
-<graphics/block.jpg, id=386, 22.56303pt x 31.924pt>
+(babel)             in language  on input line 761.
+<graphics/block.jpg, id=385, 22.56303pt x 31.924pt>
 
 ! Package graphics Error: Division by 0.
 
@@ -1973,7 +1868,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.762 ...graphics[height=18cm]{graphics/block.jpg}
+l.766 ...graphics[height=18cm]{graphics/block.jpg}
                                                   
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1986,24 +1881,24 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 762.
+(babel)             in language  on input line 766.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 762.
+(babel)             in language  on input line 766.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 762.
+(babel)             in language  on input line 766.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 762.
+(babel)             in language  on input line 766.
 [14
 
 ]
 File: graphics/block.jpg Graphic file (type jpg)
  <use graphics/block.jpg>
-Package pdftex.def Info: graphics/block.jpg used on input line 762.
+Package pdftex.def Info: graphics/block.jpg used on input line 766.
 (pdftex.def)             Requested size: 362.52895pt x 512.1496pt.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 765.
+(babel)             in language  on input line 769.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 765.
+(babel)             in language  on input line 769.
 
 
 ! Package graphics Error: Division by 0.
@@ -2012,7 +1907,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.774 
+l.778 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2025,29 +1920,29 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 774.
+(babel)             in language  on input line 778.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 774.
+(babel)             in language  on input line 778.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 774.
+(babel)             in language  on input line 778.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 774.
+(babel)             in language  on input line 778.
 [15 <./graphics/block.jpg>]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 775.
+(babel)             in language  on input line 779.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 775.
+(babel)             in language  on input line 779.
 
-Underfull \hbox (badness 10000) in paragraph at lines 797--798
+Underfull \hbox (badness 10000) in paragraph at lines 801--802
 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 800.
+(babel)             in language  on input line 804.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 800.
+(babel)             in language  on input line 804.
 ! Undefined control sequence.
-l.803 ...n. Wie dies genau geschieht wird in \TODO
+l.807 ...n. Wie dies genau geschieht wird in \TODO
                                                    erläutert.  \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2062,7 +1957,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.808 
+l.812 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2075,18 +1970,18 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 808.
+(babel)             in language  on input line 812.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 808.
+(babel)             in language  on input line 812.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 808.
+(babel)             in language  on input line 812.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 808.
+(babel)             in language  on input line 812.
 [16]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 809.
+(babel)             in language  on input line 813.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 809.
+(babel)             in language  on input line 813.
 
 
 ! Package inputenc Error: Unicode char ´ (U+B4)
@@ -2096,7 +1991,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.818 ... kann, ist das dadurch das ,,DRY'' (Don´
+l.822 ... kann, ist das dadurch das ,,DRY'' (Don´
                                                   t repeat yourself) Prinzip...
 
 Your command was ignored.
@@ -2104,7 +1999,7 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 812--822
+Underfull \hbox (badness 10000) in paragraph at lines 816--826
 
  []
 
@@ -2115,7 +2010,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.822 
+l.826 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2128,19 +2023,19 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 822.
+(babel)             in language  on input line 826.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 822.
+(babel)             in language  on input line 826.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 822.
+(babel)             in language  on input line 826.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 822.
+(babel)             in language  on input line 826.
 [17]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 824.
+(babel)             in language  on input line 828.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 824.
-LaTeX Font Info:    Try loading font information for T1+pxtt on input line 833.
+(babel)             in language  on input line 828.
+LaTeX Font Info:    Try loading font information for T1+pxtt on input line 837.
 
  (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/t1pxtt.fd
 File: t1pxtt.fd 2000/12/14 v1.0
@@ -2152,7 +2047,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.841 	private 
+l.845 	private 
                int _iSelect;
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2165,13 +2060,13 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 841.
+(babel)             in language  on input line 845.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 841.
+(babel)             in language  on input line 845.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 841.
+(babel)             in language  on input line 845.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 841.
+(babel)             in language  on input line 845.
 [18]
 
 ! Package inputenc Error: Unicode char �\lst@EC� (U+9EA4)
@@ -2181,7 +2076,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.853 ...e Differenz zwischen zuvor ausgewählter 
+l.857 ...e Differenz zwischen zuvor ausgewählter 
                                                   Figur und jetzt ausgewähl...
 
 Your command was ignored.
@@ -2196,7 +2091,7 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.853 ...gewählter Figur und jetzt ausgewählten 
+l.857 ...gewählter Figur und jetzt ausgewählten 
                                                   Zug Feld
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2209,7 +2104,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.880 				}
+l.884 				}
            
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2222,13 +2117,13 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 880.
+(babel)             in language  on input line 884.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 880.
+(babel)             in language  on input line 884.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 880.
+(babel)             in language  on input line 884.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 880.
+(babel)             in language  on input line 884.
 [19]
 
 ! Package graphics Error: Division by 0.
@@ -2237,7 +2132,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.921 					MP.
+l.925 					MP.
               add(Zug)
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2250,13 +2145,13 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 921.
+(babel)             in language  on input line 925.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 921.
+(babel)             in language  on input line 925.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 921.
+(babel)             in language  on input line 925.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 921.
+(babel)             in language  on input line 925.
 [20]
 
 ! Package graphics Error: Division by 0.
@@ -2265,7 +2160,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.960 		}e
+l.964 		}e
           lse if(Lauefer){
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2278,13 +2173,13 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 960.
+(babel)             in language  on input line 964.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 960.
+(babel)             in language  on input line 964.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 960.
+(babel)             in language  on input line 964.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 960.
+(babel)             in language  on input line 964.
 [21]
 
 ! Package graphics Error: Division by 0.
@@ -2293,8 +2188,8 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.999 				}
-           
+l.1003 				}
+            
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -2306,13 +2201,13 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 999.
+(babel)             in language  on input line 1003.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 999.
+(babel)             in language  on input line 1003.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 999.
+(babel)             in language  on input line 1003.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 999.
+(babel)             in language  on input line 1003.
 [22] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
@@ -2329,7 +2224,7 @@ See the Listings package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1024 \lstset{language=German}
+l.1028 \lstset{language=German}
                                
 The following languages weren't loadable:
     ,german$
@@ -2342,23 +2237,23 @@ See the Listings package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1024 \lstset{language=German}
+l.1028 \lstset{language=German}
                                
 The language is not loadable. Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1026.
+(babel)             in language  on input line 1030.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1026.
+(babel)             in language  on input line 1030.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1031.
+(babel)             in language  on input line 1035.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1031.
+(babel)             in language  on input line 1035.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1045.
+(babel)             in language  on input line 1049.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1045.
+(babel)             in language  on input line 1049.
 
 ! Package graphics Error: Division by 0.
 
@@ -2366,7 +2261,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1056 
+l.1060 
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2379,20 +2274,20 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1056.
+(babel)             in language  on input line 1060.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1056.
+(babel)             in language  on input line 1060.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1056.
+(babel)             in language  on input line 1060.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1056.
+(babel)             in language  on input line 1060.
 [23]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1057.
+(babel)             in language  on input line 1061.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1057.
+(babel)             in language  on input line 1061.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1060--1070
+Underfull \hbox (badness 10000) in paragraph at lines 1064--1074
 
  []
 
@@ -2403,7 +2298,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1070 
+l.1074 
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2416,13 +2311,13 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1070.
+(babel)             in language  on input line 1074.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1070.
+(babel)             in language  on input line 1074.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1070.
+(babel)             in language  on input line 1074.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1070.
+(babel)             in language  on input line 1074.
 [24]
 
 ! Package graphics Error: Division by 0.
@@ -2431,7 +2326,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1070 
+l.1074 
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2444,26 +2339,26 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1070.
+(babel)             in language  on input line 1074.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1070.
+(babel)             in language  on input line 1074.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1070.
+(babel)             in language  on input line 1074.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1070.
+(babel)             in language  on input line 1074.
 [25]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1071.
+(babel)             in language  on input line 1075.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1071.
- <graphics/MinMax.jpg, id=659, 677.53125pt x 292.09125pt>
+(babel)             in language  on input line 1075.
+ <graphics/MinMax.jpg, id=658, 677.53125pt x 292.09125pt>
 File: graphics/MinMax.jpg Graphic file (type jpg)
 
 <use graphics/MinMax.jpg>
-Package pdftex.def Info: graphics/MinMax.jpg used on input line 1076.
+Package pdftex.def Info: graphics/MinMax.jpg used on input line 1080.
 (pdftex.def)             Requested size: 455.24408pt x 196.26613pt.
 
-Overfull \hbox (31.85117pt too wide) in paragraph at lines 1076--1077
+Overfull \hbox (31.85117pt too wide) in paragraph at lines 1080--1081
 [][] 
  []
 
@@ -2474,7 +2369,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1082 
+l.1086 
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2487,22 +2382,18 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1082.
+(babel)             in language  on input line 1086.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1082.
+(babel)             in language  on input line 1086.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1082.
+(babel)             in language  on input line 1086.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1082.
+(babel)             in language  on input line 1086.
 [26 <./graphics/MinMax.jpg>]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1083.
+(babel)             in language  on input line 1087.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1083.
-
-Underfull \hbox (badness 10000) in paragraph at lines 1086--1087
-
- []
+(babel)             in language  on input line 1087.
 
 
 ! Package graphics Error: Division by 0.
@@ -2511,8 +2402,8 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1093 \clearpage
-                 \vfill\newpage{}
+l.1127 		//
+           der AlphaBeta Algorithmus - zur Zugevaluation
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -2524,38 +2415,102 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1093.
+(babel)             in language  on input line 1127.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1093.
+(babel)             in language  on input line 1127.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1093.
+(babel)             in language  on input line 1127.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1093.
+(babel)             in language  on input line 1127.
 [27]
+
+! Package graphics Error: Division by 0.
+
+See the graphics package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1165 		}
+          
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Package Fancyhdr Warning: \headheight is too small (42.67912pt): 
+ Make it at least 67.34535pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1095.
+(babel)             in language  on input line 1165.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1095.
+(babel)             in language  on input line 1165.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1103.
+(babel)             in language  on input line 1165.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1103.
+(babel)             in language  on input line 1165.
+[28]
+
+! Package graphics Error: Division by 0.
+
+See the graphics package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1206 					900 
+                Punkte zum schwarzen Team dazu zaehlen
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Package Fancyhdr Warning: \headheight is too small (42.67912pt): 
+ Make it at least 67.34535pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1109.
+(babel)             in language  on input line 1206.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1109.
+(babel)             in language  on input line 1206.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1115.
+(babel)             in language  on input line 1206.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1115.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1120.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1120.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1124.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1124.
+(babel)             in language  on input line 1206.
+[29] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2015/06/04 1.6 listings language file
+)
+
+! Package Listings Error: Couldn't load requested language.
+
+See the Listings package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1219 \lstset{language=German}
+                               
+The following languages weren't loadable:
+    ,german$
+This may cause errors in the sequel.
+
+
+! Package Listings Error: language german undefined.
+
+See the Listings package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1219 \lstset{language=German}
+                               
+The language is not loadable. Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
 ! Package graphics Error: Division by 0.
@@ -2564,7 +2519,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1139 \clearpage
+l.1224 \clearpage
                  \vfill\newpage{}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2577,38 +2532,91 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1139.
+(babel)             in language  on input line 1224.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1139.
+(babel)             in language  on input line 1224.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1139.
+(babel)             in language  on input line 1224.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1139.
-[28
+(babel)             in language  on input line 1224.
+[30]
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1226.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1226.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1234.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1234.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1240.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1240.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1246.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1246.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1251.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1251.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1255.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1255.
+
+
+! Package graphics Error: Division by 0.
+
+See the graphics package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1270 \clearpage
+                 \vfill\newpage{}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Package Fancyhdr Warning: \headheight is too small (42.67912pt): 
+ Make it at least 67.34535pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1270.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1270.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 1270.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 1270.
+[31
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{section.1}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1146 \section{\sc Abbildungsverzeichnis}
+l.1277 \section{\sc Abbildungsverzeichnis}
                                           \noindent%
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1146.
+(babel)             in language  on input line 1277.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1146.
+(babel)             in language  on input line 1277.
 LaTeX Font Info:    Font shape `T1/pxss/bx/it' in size <8> not available
-(Font)              Font shape `T1/pxss/bx/sl' tried instead on input line 1150
+(Font)              Font shape `T1/pxss/bx/sl' tried instead on input line 1281
 .
 pdfTeX warning (ext4): destination with the same identifier (name{section.2}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1156 \section{\sc Tabellenverzeichnis}
+l.1287 \section{\sc Tabellenverzeichnis}
                                         \noindent%
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1156.
+(babel)             in language  on input line 1287.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1156.
+(babel)             in language  on input line 1287.
 
 
 ! Package graphics Error: Division by 0.
@@ -2617,7 +2625,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1171 \clearpage
+l.1302 \clearpage
                  \vfill\newpage{}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2630,27 +2638,27 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1171.
+(babel)             in language  on input line 1302.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1171.
+(babel)             in language  on input line 1302.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1171.
+(babel)             in language  on input line 1302.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1171.
-[29
+(babel)             in language  on input line 1302.
+[32
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{section.3}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1176 \section{\sc Literaturverzeichnis}
+l.1307 \section{\sc Literaturverzeichnis}
                                          
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1176.
+(babel)             in language  on input line 1307.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1176.
+(babel)             in language  on input line 1307.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1178--1183
+Underfull \hbox (badness 10000) in paragraph at lines 1309--1314
 
  []
 
@@ -2661,7 +2669,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1248 	\item[10. Persönliche Mitteilungen]
+l.1379 	\item[10. Persönliche Mitteilungen]
                                             \hfill
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2674,14 +2682,14 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1248.
+(babel)             in language  on input line 1379.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1248.
+(babel)             in language  on input line 1379.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1248.
+(babel)             in language  on input line 1379.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1248.
-[30
+(babel)             in language  on input line 1379.
+[33
 
 ]
 
@@ -2691,7 +2699,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1268 \clearpage
+l.1399 \clearpage
                  \vfill\newpage{}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2704,44 +2712,44 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1268.
+(babel)             in language  on input line 1399.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1268.
+(babel)             in language  on input line 1399.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1268.
+(babel)             in language  on input line 1399.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1268.
-[31]
+(babel)             in language  on input line 1399.
+[34]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1274.
+(babel)             in language  on input line 1405.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1274.
+(babel)             in language  on input line 1405.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1278.
+(babel)             in language  on input line 1409.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1278.
+(babel)             in language  on input line 1409.
 
-Overfull \hbox (2.19574pt too wide) in paragraph at lines 1280--1290
+Overfull \hbox (2.19574pt too wide) in paragraph at lines 1411--1421
 \T1/pxss/m/n/12 �ber-pr�f-bar sein (nicht: "Ant-wort so schnell wie m�g-lich", 
 son-dern: "Ant-wort in 0.5s"). 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1291.
+(babel)             in language  on input line 1422.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1291.
+(babel)             in language  on input line 1422.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1300.
+(babel)             in language  on input line 1431.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1300.
+(babel)             in language  on input line 1431.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1318.
+(babel)             in language  on input line 1449.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1318.
+(babel)             in language  on input line 1449.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1325.
+(babel)             in language  on input line 1456.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1325.
+(babel)             in language  on input line 1456.
 
 ! Package graphics Error: Division by 0.
 
@@ -2749,7 +2757,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1327 	D
+l.1458 	D
          ie im Projekt verwendeten Qualitätsstandards und einzuhaltende Normen
 
 Your command was ignored.
@@ -2763,20 +2771,20 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1327.
+(babel)             in language  on input line 1458.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1327.
+(babel)             in language  on input line 1458.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1327.
+(babel)             in language  on input line 1458.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1327.
-[32
+(babel)             in language  on input line 1458.
+[35
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1332.
+(babel)             in language  on input line 1463.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1332.
+(babel)             in language  on input line 1463.
 
 
 ! Package graphics Error: Division by 0.
@@ -2785,7 +2793,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1368 \clearpage
+l.1499 \clearpage
                  \vfill\newpage
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2798,14 +2806,14 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1368.
+(babel)             in language  on input line 1499.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1368.
+(babel)             in language  on input line 1499.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1368.
+(babel)             in language  on input line 1499.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1368.
-[33]
+(babel)             in language  on input line 1499.
+[36]
 
 ! Package graphics Error: Division by 0.
 
@@ -2813,7 +2821,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1379 \clearpage
+l.1510 \clearpage
                  \vfill\newpage
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2826,56 +2834,56 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1379.
+(babel)             in language  on input line 1510.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1379.
+(babel)             in language  on input line 1510.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1379.
+(babel)             in language  on input line 1510.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1379.
-[34
+(babel)             in language  on input line 1510.
+[37
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1381.
+(babel)             in language  on input line 1512.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1381.
+(babel)             in language  on input line 1512.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1391.
+(babel)             in language  on input line 1522.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1391.
+(babel)             in language  on input line 1522.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1393.
+(babel)             in language  on input line 1524.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1393.
+(babel)             in language  on input line 1524.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1409.
+(babel)             in language  on input line 1540.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1409.
+(babel)             in language  on input line 1540.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1424.
+(babel)             in language  on input line 1555.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1424.
+(babel)             in language  on input line 1555.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1432.
+(babel)             in language  on input line 1563.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1432.
+(babel)             in language  on input line 1563.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1441.
+(babel)             in language  on input line 1572.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1441.
+(babel)             in language  on input line 1572.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@ifnextchar' on input line 1441.
+(hyperref)                removing `\@ifnextchar' on input line 1572.
 
 
-Overfull \hbox (12.1953pt too wide) in paragraph at lines 1441--1461
+Overfull \hbox (12.1953pt too wide) in paragraph at lines 1572--1592
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1441--1461
+Underfull \hbox (badness 10000) in paragraph at lines 1572--1592
 
  []
 
@@ -2886,7 +2894,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1461 
+l.1592 
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2899,20 +2907,20 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1461.
+(babel)             in language  on input line 1592.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1461.
+(babel)             in language  on input line 1592.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1461.
+(babel)             in language  on input line 1592.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1461.
-[35
+(babel)             in language  on input line 1592.
+[38
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1468.
+(babel)             in language  on input line 1599.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1468.
+(babel)             in language  on input line 1599.
 
 
 ! Package graphics Error: Division by 0.
@@ -2921,7 +2929,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1478 \clearpage
+l.1609 \clearpage
                  \vfill\newpage
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2934,22 +2942,22 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1478.
+(babel)             in language  on input line 1609.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1478.
+(babel)             in language  on input line 1609.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1478.
+(babel)             in language  on input line 1609.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1478.
-[36]
+(babel)             in language  on input line 1609.
+[39]
 LaTeX Font Info:    Font shape `T1/pxss/bx/it' in size <12> not available
-(Font)              Font shape `T1/pxss/bx/sl' tried instead on input line 1480
+(Font)              Font shape `T1/pxss/bx/sl' tried instead on input line 1611
 .
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1480.
+(babel)             in language  on input line 1611.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1480.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1508.
+(babel)             in language  on input line 1611.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1639.
 
 
 ! Package graphics Error: Division by 0.
@@ -2958,7 +2966,7 @@ See the graphics package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1508 \end{document}
+l.1639 \end{document}
                      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -2971,19 +2979,19 @@ Package Fancyhdr Warning: \headheight is too small (42.67912pt):
  This may cause the page layout to be inconsistent, however.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1508.
+(babel)             in language  on input line 1639.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1508.
+(babel)             in language  on input line 1639.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 1508.
+(babel)             in language  on input line 1639.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 1508.
-[37
+(babel)             in language  on input line 1639.
+[40
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1508.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1639.
  (./chess.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1508.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1639.
 
 
  *File List*
@@ -3113,6 +3121,7 @@ lstlang1.sty    2015/06/04 1.6 listings language file
 supp-pdf.mkii
    chess.out
    chess.out
+chess-pics.pdf    Graphic file (type pdf)
   ot1pxr.fd    2000/12/14 v1.0
    uwasy.fd    2003/10/30 v2.0 Wasy-2 symbol font definitions
   upxmia.fd    2000/12/14 v1.0
@@ -3125,46 +3134,47 @@ lstlang1.sty    2015/06/04 1.6 listings language file
 lstlang2.sty    2015/06/04 1.6 listings language file
 lstlang3.sty    2015/06/04 1.6 listings language file
 graphics/MinMax.jpg
+lstlang1.sty    2015/06/04 1.6 listings language file
+lstlang2.sty    2015/06/04 1.6 listings language file
+lstlang3.sty    2015/06/04 1.6 listings language file
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1508.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1639.
 
 Package rerunfilecheck Info: File `chess.out' has not changed.
 (rerunfilecheck)             Checksum: 06B76E7F9970B926D09C634336D4AE6F;4298.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1508.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1639.
  )
 (\end occurred inside a group at level 2)
 
-### simple group (level 2) entered at line 443 ({)
-### semi simple group (level 1) entered at line 442 (\begingroup)
+### simple group (level 2) entered at line 446 ({)
+### semi simple group (level 1) entered at line 445 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 22719 strings out of 493029
- 361901 string characters out of 6136233
- 596700 words of memory out of 5000000
- 25509 multiletter control sequences out of 15000+600000
- 116228 words of font info for 159 fonts, out of 8000000 for 9000
+ 22904 strings out of 493029
+ 364892 string characters out of 6136233
+ 612505 words of memory out of 5000000
+ 25567 multiletter control sequences out of 15000+600000
+ 115462 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,16n,72p,836b,2166s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/us
-r/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texm
-f-dist/fonts/type1/public/pxfonts/pxsy.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/pxfonts/rpxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/txfonts/rtxbsssc.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfont
-s/rtxsssc.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet
-ic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8a.pf
-b>
-Output written on chess.pdf (38 pages, 262762 bytes).
+ 43i,16n,72p,836b,2164s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</us
+r/share/texlive/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/txfonts/rtxbsssc.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/txfonts/rtxsssc.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/txfonts/t1xtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/
+uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/palatino/uplr8a.pfb>
+Output written on chess.pdf (40 pages, 255465 bytes).
 PDF statistics:
- 827 PDF objects out of 1000 (max. 8388607)
- 765 compressed objects within 8 object streams
- 288 named destinations out of 1000 (max. 500000)
- 504 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 982 PDF objects out of 1000 (max. 8388607)
+ 916 compressed objects within 10 object streams
+ 410 named destinations out of 1000 (max. 500000)
+ 509 words of extra memory for PDF output out of 10000 (max. 10000000)
 
