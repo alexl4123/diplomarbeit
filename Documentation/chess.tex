@@ -1027,6 +1027,113 @@ public class Move{
 \end{lstlisting}
 \lstset{language=German}
 
+\subsection{Schach und Schachmatt Abfrage:}
+\label{SUBSEC:checkmate}
+
+Die Schachmatt Abfrage teilt sich in zwei Methoden innerhalb der Backgroundgrid Klasse auf:
+\begin{itemize}
+	\item{\nameref{SUBSUBSEC:check}}
+	\item{\nameref{SUBSUBSEC:checkmate}}
+	\item{\nameref{SUBSUBSEC:checkking}}
+\end{itemize}
+
+
+
+\subsubsection{Schach}
+\label{SUBSUBSEC:check}
+
+Die Schachmethode kann auf JEDE Figur angewendet werden und gibt TRUE zurück, wenn diese von einer anderen Figur angegriffen werden kann. Logisch gesehen gibt sie FALSE zurück, wenn die Figur nicht angegriffen werden kann. \\
+Im Prinzip werden alle Figuren aufgerufen und überprüft ob diese die ,,ausgewählte'' Figur angreifen können. \\
+Pseudo Code:
+
+\lstset{language=Java}
+\begin{lstlisting}
+private boolean Schach(Spielfeld, Lokation der Spielfigur auf die Schach angewendet werden soll){
+	for(alle Figuren){
+		if(Figur ist Bauer und kann Spielfigur angreifen){
+			return true;		
+		} else if(Figur ist Turm und kann Spielfigur angreifen){
+			return true;
+		} else if(Figur ist Springer und kann Spielfigur angreifen){
+			return true;
+		} else if(Figur ist Laeufer und kann Spielfigur angreifen){
+			return true;
+		} else if(Figur ist Dame und kann Spielfigur angreifen){
+			return true;
+		} else if(Figur ist Koenig und kann Spielfigur angreifen){
+			return true;
+		}
+		
+	}
+	
+	return false;	
+}
+\end{lstlisting}
+\lstset{language=German}
+
+\subsubsection{Schachmatt}
+\label{SUBSUBSEC:checkmate}
+
+Die Schachmatt Methode kann nur auf den Koenig angewendet werden. Diese überprüft nacheinander alle Bedingungen, ob der Koenig wirklich Schachmatt ist. Anfangs wird überprüft ob er dem Angreifer ausweichen kann bzw. schlagen kann. Falls dies nicht möglich ist wird überprüft ob der Angreifer selbst geschlagen werden kann. \\
+Anschließend wird überprüft, ob es möglich ist, zwischen den Angreifer und den König mit irgendeiner Figur zu springen. \\
+Pseudo Code:
+
+\lstset{language=Java}
+\begin{lstlisting}
+private boolean Schachmatt(Spielfeld, ID und Postion des Koenigs, Backgroundgrid Objekt){
+	for(Positionen wo Koenig hinziehen kann){
+		if(Position nicht bedroht){
+			return false;
+		}
+	}
+	
+	if(Schach Methoden auf Angreifer anwenden == TRUE){
+		return false;
+	}
+	
+	for(alle moeglichen Zuege des Angreifers){
+		for(alle Figuren des anderen Teams){
+			for(alle Zuege der Figur)7
+				if(Zug moeglich && dadurch Koenig nicht mehr im Schach){
+					return false;
+				}
+			}			
+		}
+	}
+}
+\end{lstlisting}
+\lstset{language=German}
+
+
+\subsubsection{Schachking}
+\label{SUBSUBSEC:checkking}
+
+Schachking wird immer am Ende eines Zuges aufgerufen und überprüft ob ein Team Schachmatt ist. Falls dieser nicht Schach oder Schachmatt ist, wird nachgesehen ob eine Patt Situation vorrherrscht. Dies geschieht in der Draw Methode. \\
+Falls ein Team Schach ist wird nachgesehen ob dieser auch Schachmatt ist. 
+
+\lstset{language=Java}
+\begin{lstlisting}
+public boolean Schacking(team,Spielfeld,auf welche Figur/Position die Abfrage gemacht werden soll, Schachmatt/Schach, simulierter Koenig){
+	ID = ID des Koenigs
+	
+	Schach Abfrage auf ID
+	
+	if(wenn Schach nicht zutrifft und Schachmatt ausgefuehrt werden soll){
+		Patt Situation soll ermittelt werden
+	}
+	if(wenn Schach zutrifft und Schachmatt ausgefuehrt werden soll){
+		Schachmattabfrage
+		if(Schachmatt trifft zu und weisses Team){
+			weisses Team verliert
+		}	
+		if(Schachmatt trifft zu und schwarzes Team){
+			schwarzes Team verliert
+		}
+	}
+}
+\end{lstlisting}
+\lstset{language=German}
+
 \subsection{LAN-Mode}
 
 %TODO

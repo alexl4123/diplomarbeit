@@ -28,34 +28,38 @@
 \BOOKMARK [2][-]{subsection.4.4}{Zugmechanik und Local-Mode}{section.4}% 28
 \BOOKMARK [3][-]{subsubsection.4.4.1}{Die Move Klasse - Funktion}{subsection.4.4}% 29
 \BOOKMARK [3][-]{subsubsection.4.4.2}{Die Move Klasse - Code}{subsection.4.4}% 30
-\BOOKMARK [2][-]{subsection.4.5}{LAN-Mode}{section.4}% 31
-\BOOKMARK [2][-]{subsection.4.6}{AI-Mode}{section.4}% 32
-\BOOKMARK [3][-]{subsubsection.4.6.1}{Prinzipielle Moeglichkeiten einer AI}{subsection.4.6}% 33
-\BOOKMARK [3][-]{subsubsection.4.6.2}{Verwendete Schach-AI-Funktion}{subsection.4.6}% 34
-\BOOKMARK [3][-]{subsubsection.4.6.3}{Der MinMax-Algorithmus:}{subsection.4.6}% 35
-\BOOKMARK [3][-]{subsubsection.4.6.4}{Code}{subsection.4.6}% 36
-\BOOKMARK [1][-]{section.5}{Fertigungsdokumentation}{}% 37
-\BOOKMARK [1][-]{section.6}{Benutzerdokumentation}{}% 38
-\BOOKMARK [2][-]{subsection.6.1}{Installationsanleitung}{section.6}% 39
-\BOOKMARK [2][-]{subsection.6.2}{Anwendungsbeispiele}{section.6}% 40
-\BOOKMARK [2][-]{subsection.6.3}{Referenzhandbuch}{section.6}% 41
-\BOOKMARK [2][-]{subsection.6.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.6}% 42
-\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 43
-\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 44
-\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 45
-\BOOKMARK [1][-]{appendix.F}{Pflichtenheft}{}% 46
-\BOOKMARK [2][-]{subsection.F.1}{Funktionale Anforderungen}{appendix.F}% 47
-\BOOKMARK [2][-]{subsection.F.2}{Schnittstellen}{appendix.F}% 48
-\BOOKMARK [2][-]{subsection.F.3}{Abnahmekriterien}{appendix.F}% 49
-\BOOKMARK [2][-]{subsection.F.4}{Dokumentationsanforderungen}{appendix.F}% 50
-\BOOKMARK [2][-]{subsection.F.5}{Qualit\344tsstandards}{appendix.F}% 51
-\BOOKMARK [2][-]{subsection.F.6}{Abwicklungsprozess}{appendix.F}% 52
-\BOOKMARK [1][-]{appendix.G}{Zusammenfassung}{}% 53
-\BOOKMARK [2][-]{subsection.G.1}{Schlussfolgerung / Projekterfahrung}{appendix.G}% 54
-\BOOKMARK [2][-]{subsection.G.2}{Projektterminplanung}{appendix.G}% 55
-\BOOKMARK [2][-]{subsection.G.3}{Projektpersonalplanung und Kostenplanung}{appendix.G}% 56
-\BOOKMARK [3][-]{subsubsection.G.3.1}{Projektkostenplan}{subsection.G.3}% 57
-\BOOKMARK [3][-]{subsubsection.G.3.2}{Arbeitsnachweis Diplomarbeit}{subsection.G.3}% 58
-\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.G.3.2}% 59
-\BOOKMARK [3][-]{subsubsection.G.3.3}{Leistungscontrolling}{subsection.G.3}% 60
-\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.G.3.3}% 61
+\BOOKMARK [2][-]{subsection.4.5}{Schach und Schachmatt Abfrage:}{section.4}% 31
+\BOOKMARK [3][-]{subsubsection.4.5.1}{Schach}{subsection.4.5}% 32
+\BOOKMARK [3][-]{subsubsection.4.5.2}{Schachmatt}{subsection.4.5}% 33
+\BOOKMARK [3][-]{subsubsection.4.5.3}{Schachking}{subsection.4.5}% 34
+\BOOKMARK [2][-]{subsection.4.6}{LAN-Mode}{section.4}% 35
+\BOOKMARK [2][-]{subsection.4.7}{AI-Mode}{section.4}% 36
+\BOOKMARK [3][-]{subsubsection.4.7.1}{Prinzipielle Moeglichkeiten einer AI}{subsection.4.7}% 37
+\BOOKMARK [3][-]{subsubsection.4.7.2}{Verwendete Schach-AI-Funktion}{subsection.4.7}% 38
+\BOOKMARK [3][-]{subsubsection.4.7.3}{Der MinMax-Algorithmus:}{subsection.4.7}% 39
+\BOOKMARK [3][-]{subsubsection.4.7.4}{Code}{subsection.4.7}% 40
+\BOOKMARK [1][-]{section.5}{Fertigungsdokumentation}{}% 41
+\BOOKMARK [1][-]{section.6}{Benutzerdokumentation}{}% 42
+\BOOKMARK [2][-]{subsection.6.1}{Installationsanleitung}{section.6}% 43
+\BOOKMARK [2][-]{subsection.6.2}{Anwendungsbeispiele}{section.6}% 44
+\BOOKMARK [2][-]{subsection.6.3}{Referenzhandbuch}{section.6}% 45
+\BOOKMARK [2][-]{subsection.6.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.6}% 46
+\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 47
+\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 48
+\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 49
+\BOOKMARK [1][-]{appendix.F}{Pflichtenheft}{}% 50
+\BOOKMARK [2][-]{subsection.F.1}{Funktionale Anforderungen}{appendix.F}% 51
+\BOOKMARK [2][-]{subsection.F.2}{Schnittstellen}{appendix.F}% 52
+\BOOKMARK [2][-]{subsection.F.3}{Abnahmekriterien}{appendix.F}% 53
+\BOOKMARK [2][-]{subsection.F.4}{Dokumentationsanforderungen}{appendix.F}% 54
+\BOOKMARK [2][-]{subsection.F.5}{Qualit\344tsstandards}{appendix.F}% 55
+\BOOKMARK [2][-]{subsection.F.6}{Abwicklungsprozess}{appendix.F}% 56
+\BOOKMARK [1][-]{appendix.G}{Zusammenfassung}{}% 57
+\BOOKMARK [2][-]{subsection.G.1}{Schlussfolgerung / Projekterfahrung}{appendix.G}% 58
+\BOOKMARK [2][-]{subsection.G.2}{Projektterminplanung}{appendix.G}% 59
+\BOOKMARK [2][-]{subsection.G.3}{Projektpersonalplanung und Kostenplanung}{appendix.G}% 60
+\BOOKMARK [3][-]{subsubsection.G.3.1}{Projektkostenplan}{subsection.G.3}% 61
+\BOOKMARK [3][-]{subsubsection.G.3.2}{Arbeitsnachweis Diplomarbeit}{subsection.G.3}% 62
+\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.G.3.2}% 63
+\BOOKMARK [3][-]{subsubsection.G.3.3}{Leistungscontrolling}{subsection.G.3}% 64
+\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.G.3.3}% 65
