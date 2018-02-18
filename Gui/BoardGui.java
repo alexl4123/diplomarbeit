@@ -35,8 +35,10 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Paint;
 import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import network.hostingJob;
 import threadJobs.HighlightingJob;
 import javafx.scene.input.MouseEvent;
 
@@ -123,6 +125,11 @@ public class BoardGui extends Canvas {
 	 * determins wether an highlightanimation is running
 	 */
 	private boolean highlightAnimationRunning;
+	
+	/**
+	 * Used for enable and disable the Hosting Menu Button
+	 */
+	private boolean _blurryButtonOn;
 	
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
 
@@ -247,11 +254,20 @@ public class BoardGui extends Canvas {
 						_BGG2 = OMove.getBGG2();
 						L.setTeam(_BGG2.getTeam());
 						_Gui.setBGG2(_BGG2);
+						
+						if (_iChoose == 1){
+							_BGG2.getLan()._netWriteStream.writeObject(_BGG);
+						}
 					}
 					if (_iChoose == 1 && !L.getTeam()) { // if move has happend,
 															// do what it takes
 															// ,,LAN''
-						LAN _LAN = new LAN();
+						
+						
+						_BGG = (int[][]) _BGG2.getLan()._netReadStream.readObject();
+						redraw();
+						L.setTeam(true);
+						
 						
 						
 						
@@ -385,10 +401,11 @@ public class BoardGui extends Canvas {
 																			// takes
 																			// to
 																			// LAN
-						LAN _LAN = new LAN();
+						
 						System.out.println("LAN");
-						// HERE HUBER
-
+						
+						
+						
 						
 						
 						
@@ -660,7 +677,7 @@ public class BoardGui extends Canvas {
 						int J = JJ[0];
 
 						//HighlightField(J);
-						System.out.println("Highlighting");
+						
 						newHighlightMoveField(J);
 					}
 				}
@@ -835,28 +852,64 @@ public class BoardGui extends Canvas {
 
 	}
 
-	public void drawBlurryMenu(){
+	public void drawBlurryMenu(hostingJob stopJob){
 		
 		P1X = (_X / 100);
 		P1Y = (_Y / 100);
 		
 		BoxBlur frostEffect = new BoxBlur(10, 10, 1000);
 		gc.setEffect(frostEffect);
+		setBlurryButtonOn(true);
+		bThinking=true;
+		
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Mouse clicked" + "X:" + event.getX() + "  Y:" + event.getY() );
 				
+				if(_blurryButtonOn){
+				
+				System.out.println("Mouse clicked" + "X:" + event.getX() + "  Y:" + event.getY() );
+				System.out.println("Redrawing");
+				bThinking=false;
+				setHighlighting(true);
+				setBlurryButtonOn(false);
+				
+				if(_BGG2.getLan().getIsConnectet() == false){
+				System.out.println("socket stopped");
+				stopJob.stopSocket();
+				_Gui.setChoose(0);
+				_BGG2.setChoose(0);
+				_Gui.getMenu().setSelect(0);
+				}
+				
+				_Gui.getStage().setResizable(true);
+				
+				
+				
+				
+				
+					try {
+						DrawGrid(_BGG);
+					} catch (Exception e) {
+					
+					}
+				}
 			}
 		});
 		
 		try {
 			DrawGrid(_BGG);
-			gc.setFill(Color.DARKGRAY);
+			_Gui.getStage().setResizable(false);
+			gc.setFill(Color.ANTIQUEWHITE);
 			gc.setEffect(new DropShadow(10, Color.BLACK));
-			gc.fillRect(40*P1X, 45*P1Y, 20*P1X, 10*P1Y);
+			gc.fillRect(20*P1X, 35*P1Y, 60*P1X, 20*P1Y);
 			gc.setEffect(null);
+			gc.setFill(Color.BLACK);
+			gc.setFont(new Font(2*P1X));
+			gc.fillText("Waiting for Connections...", 50*P1X, 40*P1Y);
+			gc.fillText("Click to abort and proceed in local mode!", 50*P1X, 48*P1Y);
+			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -1009,6 +1062,25 @@ public class BoardGui extends Canvas {
 	public boolean getHighlighting() {
 		return highlighting;
 	}
+	
+	/**
+	 * gets the _blurryButtonOn
+	 * @return
+	 */
+		public boolean getBlurryButtonOn() {
+			return _blurryButtonOn;
+		}
+		
+		/**
+		 * sets the highlighting
+		 * @param highlighting
+		 */
+			public void setBlurryButtonOn(boolean _blurryButtonon) {
+				this._blurryButtonOn = _blurryButtonon;
+			}
+
+		
+		
 /**
  * sets the highlighting
  * @param highlighting
@@ -1040,5 +1112,13 @@ public class BoardGui extends Canvas {
 
 	public void setHighlightAnimationRunning(boolean highlightAnimationRunning) {
 		this.highlightAnimationRunning = highlightAnimationRunning;
+	}
+	
+	public GUI getGui(){
+		return _Gui;
+	}
+	
+	public void setBthinking(boolean b){
+		bThinking = b;
 	}
 }

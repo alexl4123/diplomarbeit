@@ -138,7 +138,7 @@ public class BoardGui {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 
-				if(servSock!=null&&BGG.getIsConnectet()==true){				//closing all these server-things
+				if(servSock!=null&&BGG.getLan().getIsConnectet()==true){				//closing all these server-things
 					SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
 					Thread TH = new Thread(SM);
 					TH.start();
@@ -162,7 +162,7 @@ public class BoardGui {
 					}
 
 
-				}else if(servSock==null&&BGG.getIsConnectet()==true){				//closing all these client-socket things
+				}else if(servSock==null&&BGG.getLan().getIsConnectet()==true){				//closing all these client-socket things
 
 
 					try{
@@ -181,7 +181,7 @@ public class BoardGui {
 
 
 
-				}else if(BGG.getIsConnectet()==false){
+				}else if(BGG.getLan().getIsConnectet()==false){
 
 					System.exit(1);
 
@@ -312,7 +312,7 @@ public class BoardGui {
 		
 		con1.setText("Connection Status: ");
 		con2.setEnabled(false);
-		if(BGG.getIsConnectet()==true){
+		if(BGG.getLan().getIsConnectet()==true){
 			con2.setBackground(Color.green);
 		}else{
 			con2.setBackground(Color.red);
@@ -370,7 +370,7 @@ public class BoardGui {
 				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
 				Thread TH = new Thread(SM);
 				TH.start();
-				if(isHost==true&&BGG.getIsConnectet()==false){
+				if(isHost==true&&BGG.getLan().getIsConnectet()==false){
 					BackgroundGrid freshBgg=new BackgroundGrid();
 					BGG=freshBgg;
 					ChessPanel.renewPanel(0,0,false);
@@ -394,8 +394,8 @@ public class BoardGui {
 				Thread TH = new Thread(SM);
 				TH.start();
 				if(isHost==true){
-					boolean temp=BGG.getIsConnectet();					//temporary connection state
-					BGG.setIsConnectet(false);
+					boolean temp=BGG.getLan().getIsConnectet();					//temporary connection state
+					BGG.getLan().setIsConnectet(false);
 					JFrame frmClickTheRight=new JFrame();				
 					JFileChooser chooseFile = new JFileChooser();		
 					chooseFile.showSaveDialog( frmClickTheRight);		//New file chooser for choosing the destination
@@ -417,7 +417,7 @@ public class BoardGui {
 						TH = new Thread(SM);
 						TH.start();
 					}
-					BGG.setIsConnectet(temp);
+					BGG.getLan().setIsConnectet(temp);
 				}
 			}		
 		});
@@ -432,7 +432,7 @@ public class BoardGui {
 				Thread TH = new Thread(SM);
 				TH.start();
 				//loading games
-				if(isHost==true&&BGG.getIsConnectet()==false){
+				if(isHost==true&&BGG.getLan().getIsConnectet()==false){
 					JFrame frmClickTheRight=new JFrame();
 					JFileChooser chooseFile = new JFileChooser();
 					chooseFile.showOpenDialog( frmClickTheRight); 			//file chooser
@@ -496,7 +496,7 @@ public class BoardGui {
 						e1.printStackTrace();
 					}
 					BG.servSock=null;								//ending connections
-					BGG.setIsConnectet(false);
+					BGG.getLan().setIsConnectet(false);
 					BGG.setMove(true);
 					Frame.setVisible(false);
 
@@ -516,7 +516,7 @@ public class BoardGui {
 				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
 				Thread TH = new Thread(SM);
 				TH.start();
-				if(BGG.getIsConnectet()==false){				
+				if(BGG.getLan().getIsConnectet()==false){				
 					consoleField = new JTextArea(10,40);		//creating a little console
 					Frame = new JFrame("Console");
 					Frame.setResizable(false);
@@ -590,7 +590,7 @@ public class BoardGui {
 				//connect to a host
 				isHost=false;
 				try {
-					if(BGG.getIsConnectet()==false){
+					if(BGG.getLan().getIsConnectet()==false){
 
 						JFrame ipFrame=new JFrame();
 
@@ -635,7 +635,7 @@ public class BoardGui {
 									
 									clientSock2=new Socket(address, 7500);
 
-									BGG.setIsConnectet(true);
+									BGG.getLan().setIsConnectet(true);
 									oos=new ObjectOutputStream(clientSock2.getOutputStream());		//creating streams
 									ois=new ObjectInputStream(clientSock2.getInputStream());
 									BGG= (BackgroundGrid) ois.readObject();
@@ -645,7 +645,7 @@ public class BoardGui {
 									
 									BGG.setMove(true);
 									
-									if(BGG.getIsConnectet()==true){
+									if(BGG.getLan().getIsConnectet()==true){
 										con2.setBackground(Color.green);
 									}else{
 										con2.setBackground(Color.red);
@@ -711,7 +711,7 @@ public class BoardGui {
 					TH.start();
 
 
-					if(BGG.getIsConnectet()==true&&servSock==null){
+					if(BGG.getLan().getIsConnectet()==true&&servSock==null){
 
 						network.remove(disconnect);	
 						try {	
@@ -721,7 +721,7 @@ public class BoardGui {
 							BG.getOOS().writeObject("end");
 							BG.getOOS().flush();									//ending all the streams
 							BG.getOOS().close();
-							BGG.setIsConnectet(false);
+							BGG.getLan().setIsConnectet(false);
 							BGG.setMove(true);
 
 						} catch (IOException e1) {
@@ -736,7 +736,7 @@ public class BoardGui {
 							clientSock2.close();
 							consoleField.append("streams closed \n\n");
 							Frame.setVisible(false);
-							if(BGG.getIsConnectet()==true){
+							if(BGG.getLan().getIsConnectet()==true){
 								con2.setBackground(Color.green);
 							}else{
 								con2.setBackground(Color.red);
@@ -1451,7 +1451,7 @@ public class BoardGui {
 									}else{
 										player2.setBackground(Color.black);
 									}
-									if(BGG.getIsConnectet()==true){
+									if(BGG.getLan().getIsConnectet()==true){
 										con2.setBackground(Color.green);
 									}else{
 										con2.setBackground(Color.red);
@@ -1513,7 +1513,7 @@ public class BoardGui {
 			ChooserF.setLocation(newPoint);
 
 			String[] Meeples = {"Queen","Jumper","Runner","Tower"};
-			JComboBox JBox = new JComboBox(Meeples); //a combo box with all .sav´s
+			JComboBox JBox = new JComboBox(Meeples); //a combo box with all .savï¿½s
 
 			//save or load
 
@@ -1656,7 +1656,7 @@ public class BoardGui {
 		 */
 		public void connectionWrite(){
 			try{
-				if(BGG.getIsConnectet()==true){
+				if(BGG.getLan().getIsConnectet()==true){
 
 					if(BGG.getMove()==true){
 
@@ -1698,7 +1698,7 @@ public class BoardGui {
 				}
 
 				BG.clientSock2=null;
-				BGG.setIsConnectet(false);if(BGG.getIsConnectet()==true){
+				BGG.getLan().setIsConnectet(false);if(BGG.getLan().getIsConnectet()==true){
 						con2.setBackground(Color.green);
 					}else{
 						con2.setBackground(Color.red);
@@ -1752,7 +1752,7 @@ public class BoardGui {
 						}
 
 						/*
-						 * Conversations (DON´T DELETE!!!): 
+						 * Conversations (DONï¿½T DELETE!!!): 
 						 * 
 						 * Soooo much space for meeples!!!<3
 						 * (?)
@@ -1761,7 +1761,7 @@ public class BoardGui {
 						 *  
 						 *  
 						 *  some men look at children and think they are cute...
-						 *  some just determine those in: can bite, don´t bite...
+						 *  some just determine those in: can bite, donï¿½t bite...
 						 */
 
 

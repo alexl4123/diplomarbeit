@@ -38,6 +38,7 @@ public class Menu extends MenuBar {
 	 * GameMode2 - if GameMode AI has been selected
 	 */
 	RadioMenuItem GameMode0, GameMode1, GameMode2;
+	int _GM;
 	
 	/**
 	 * the constructor builds the GUI
@@ -208,72 +209,24 @@ public class Menu extends MenuBar {
 				if(result.get() == hostButton){
 					
 					Gui.setChoose(1);
+				
 					
-					Alert hostingAlert = new Alert(AlertType.INFORMATION);
-					hostingAlert.setTitle("Hosting");
-					hostingAlert.setHeaderText("You are trying to host a network game!");
-					hostingAlert.setContentText("Please wait until another player joins you...");
-					
-					hostingJob hostJob = new hostingJob(Gui.getBGG2());
+					hostingJob hostJob = new hostingJob(Gui.getBGG2(), Gui.getBoardGui());
 					Thread hostingThread = new Thread(hostJob);
-					Gui.getBoardGui().drawBlurryMenu();
-					//hostingThread.start();
-					
-					//lösung für Später: Platform.runLater --> KEIN EIGENER THRAD --> vielleicht mit listener arbeiten
-					
-					/*abortButton = new ButtonType("abort");
-					
-					hostingAlert.getButtonTypes().setAll(abortButton);
-					AlertThreadJob ajob = new AlertThreadJob(AlertType.ERROR, "T", "e", "f", "c");
 					
 					
-					/*
-					try {
-						Thread.currentThread().wait(1);
-					} catch (InterruptedException e) {
-						
-						e.printStackTrace();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					finally {
-						System.out.println("finally");
-					}
+					Gui.getBoardGui().setHighlighting(false);
+					Gui.getBoardGui().drawBlurryMenu(hostJob);
+					
+					hostingThread.start();
 					
 					
-					Thread th = new Thread() {
-
-			            public synchronized void run() {
-			            	int i = 0;
-			            	while(Gui.getBGG2().getIsConnectet() == false){
-								//G
-								System.out.println("Dies ist eine While");
-								
-								if(ajob.getButtonPressed() == true){
-									Gui.setChoose(0);
-									hostJob.stopSocket();
-									
-									System.out.println(hostingThread.isAlive());
-									break;
-								}
-								
-								//i++;
-								
-								
-								
-							}
-			            	
-			            	
-			            }
-
-			        };
-					th.start();
-					*/
 					
 					
-					System.out.println(Gui.getBGG2().getIsConnectet());
 					
-					System.out.println("Ausgebrochen aus Hostingschleiffe");
+					
+					
+					
 					
 					
 					
@@ -283,6 +236,7 @@ public class Menu extends MenuBar {
 					Gui.setChoose(1);
 					
 					InetAddress joinAdress = null;
+					
 					
 					TextInputDialog ipDialogoue = new TextInputDialog("127.0.0.1");
 					ipDialogoue.setTitle("Connecting");
@@ -295,8 +249,20 @@ public class Menu extends MenuBar {
 							
 							joinAdress = InetAddress.getByName(ipResult.get());
 							System.out.println(joinAdress.toString());
-							Socket sockForClient = new Socket(joinAdress, 22359);
-							Gui.getBGG2().setSocketOfClient(sockForClient);
+							System.out.println(Gui.getBGG2().getLan().getIsConnectet());
+						
+							Gui.getBGG2().getLan().createSock(joinAdress);
+							
+							Gui.getBGG2().getLan().connecting(false);
+							Gui.getBGG2().getLan().setIsConnectet(true);
+							System.out.println("Clientisconnectedandrunning");
+							Gui.getBGG2().setTeam(false);
+							Gui.setBGG1( (int[][]) Gui.getBGG2().getLan()._netReadStream.readObject());
+							Gui.getBoardGui().setLastMoveList((ArrayList<int[]>) Gui.getBGG2().getLan()._netReadStream.readObject());
+							Gui.getBoardGui().DrawGrid(Gui.getBGG1());
+							Gui.getBoardGui().redraw();
+							
+							
 							
 						} catch (UnknownHostException e) {
 							Alert addressAlert = new Alert(AlertType.ERROR);
@@ -316,8 +282,16 @@ public class Menu extends MenuBar {
 							connectionAlert.show();
 							Gui.setChoose(0);
 							setSelect(Gui.getChoose());
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 					}
+					
+					
 					
 //----------------------------------------------------------------------------------------------------				
 					
@@ -358,6 +332,8 @@ public class Menu extends MenuBar {
 	 * @param i - int - GameMode 0 to 2 possible
 	 */
 	public void setSelect(int i){
+		
+		_GM=i;
 				if(i == 0){
 					GameMode0.setSelected(true);
 					GameMode1.setSelected(false);
@@ -371,5 +347,10 @@ public class Menu extends MenuBar {
 					GameMode0.setSelected(false);
 					GameMode1.setSelected(false);
 				}
+	}
+	
+	public int getGameMode(){
+		
+		return _GM;
 	}
 }

@@ -34,9 +34,9 @@ public class TheThreadWhoIsAlwaysWaitingJob implements Runnable{
 			//if there is a connection the accept it
 			cs=s.accept();
 			b.setClientSock(cs);
-			BGG.setIsConnectet(true);
+			BGG.getLan().setIsConnectet(true);
 			b.getTextArea().append("console>> Connection established");
-			if(BGG.getIsConnectet()==true){
+			if(BGG.getLan().getIsConnectet()==true){
 				b.con2.setBackground(Color.green);
 			}else{
 				b.con2.setBackground(Color.red);

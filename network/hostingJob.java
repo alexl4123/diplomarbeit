@@ -1,10 +1,18 @@
 package network;
 
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.event.InputEvent;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 import BackgroundMatrix.BackgroundGrid;
+import Gui.BoardGui;
+
 
 public class hostingJob implements Runnable {
 
@@ -12,11 +20,12 @@ public class hostingJob implements Runnable {
 	private ServerSocket serversock;
 	private BackgroundGrid bgg;
 	private Socket tempsock;
-	private int connectionCounter;		//counts how many clients are connectet. If > 1 --> Viewer
 	private boolean running;
+	private BoardGui BG;
 	
-	public hostingJob(BackgroundGrid bgg){
+	public hostingJob(BackgroundGrid bgg, BoardGui BG){
 		this.bgg=bgg;
+		this.BG=BG;
 	}
 	
 	public void run() {
@@ -24,8 +33,8 @@ public class hostingJob implements Runnable {
 		try {
 			
 			setServersock(new ServerSocket(22359));
-			connectionCounter = 0;
 			running = true;
+			
 			
 			
 		} catch (IOException e) {
@@ -40,26 +49,46 @@ public class hostingJob implements Runnable {
 				
 				System.out.println("Hosting");
 				tempsock = getServersock().accept();
-				System.out.println("connectet");
+				bgg.getLan().setSocket(tempsock);
+				bgg.getLan().connecting(true);
+				bgg.getLan().setIsConnectet(true);
+				running =false;
+				
+				System.out.println("Hosting connection cycle finished");
+	
+				
+					// resetting the blurry menu by a trick
+					PointerInfo a = MouseInfo.getPointerInfo();
+					Point b = a.getLocation();
+					int xOrig = (int)b.getX();
+		            int yOrig = (int)b.getY();
+		            
+		            try {
+		                Robot r = new Robot();
+		                r.mouseMove((int)(BG.getGui().getStage().getX()+(BG.getGui().getStage().getWidth()/2)),(int) (BG.getGui().getStage().getY()+(BG.getGui().getStage().getHeight()/2)));
+		              // r.mouseMove((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
+		                r.mousePress(InputEvent.BUTTON1_MASK); //press the left mouse button
+		                r.mouseRelease(InputEvent.BUTTON1_MASK); //release the left mouse button
 
-	//-------------------------------PLAYING CLIENT----------------------------------------------------------//
-				if(connectionCounter<1){
-					
-					bgg.setSocketOfHost(tempsock);
-					bgg.setIsConnectet(true);
-					connectionCounter++;
-					System.out.println("connection established");
-					
-				}
-	//--------------------------------VIEWVING CLIENT---------------------------------------------------------//			
+		                //move the mouse back to the original position
+		                r.mouseMove(xOrig, yOrig);
+		            } catch (Exception e) {
+		                System.out.println(e.toString());
+		            }
+		        
+		            bgg.getLan()._netWriteStream.writeObject(BG.getGui().getBGG1());
+		            bgg.getLan()._netWriteStream.writeObject(BG.getLastMoveList());
 				
-				else{
 					
-				}
+					
 				
-			} catch (IOException e) {
+			
 				
-				System.out.println("THREAD STOPPED WORKinG");
+				
+				
+			} catch (Exception e) {
+				
+				System.out.println("HOSTINGTHREAD STOPPED WORKING");
 			}
 			
 			
@@ -82,7 +111,7 @@ public class hostingJob implements Runnable {
 			
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+			System.out.println("Strange socket closure");
 		}
 	}
 }

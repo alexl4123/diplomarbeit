@@ -32,6 +32,7 @@ public class Main extends Application {
 					BackgroundGrid BGG = new BackgroundGrid();
 					GUI G = new GUI(BGG);
 					G.start(new Stage());
+					
 
 				} catch (Exception ex) {
 					ex.printStackTrace();

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import Game.LAN;
 import Game.MovePos;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -75,17 +76,13 @@ public class BackgroundGrid implements Serializable {
 	 */
 	
 	
-//-----------------------------NETWORK------------------------------------
-	private Socket socketOfHost;
-	private Socket socketOfClient;
-	public ObjectInputStream netReadStream;
-	public ObjectOutputStream netWriteStream;
+
+	
 //----------------------------------------------------------------------------	
 	
 	public ArrayList<MovePos> _TotalMoveList;
 	
 	boolean move; // when you can move
-	boolean isConnectet; // if a host-client connection is valid
 	short TurnRound; // to measure the turns of the current game
 	int QueenNumber;// how many add. queens are
 	int TowerNumber;// how many add. towers are
@@ -93,6 +90,7 @@ public class BackgroundGrid implements Serializable {
 	int RunnerNumber;// how many add. runners are
 	String name; // just for debugging
 	int _Choose; // Which game mode is selected
+	LAN _Lan;
 	private boolean[] bPawnSpecMoved, bKingMoved, bTowerMoved;
 
 	/**
@@ -114,7 +112,8 @@ public class BackgroundGrid implements Serializable {
 		RunnerNumber = 0;
 		TurnRound = 0;
 		move = true;
-		isConnectet = false;
+		_Lan=new LAN();
+		
 		team = true;
 		_TotalMoveList = new ArrayList<MovePos>();
 		iBackground = new int[8][8];
@@ -293,15 +292,7 @@ public class BackgroundGrid implements Serializable {
 		return this.move;
 	}
 
-	/**
-	 * if a session is established
-	 * 
-	 * @return this.isConnected - boolean - true if a connection has been
-	 *         established
-	 */
-	public boolean getIsConnectet() {
-		return this.isConnectet;
-	}
+	
 
 	/**
 	 * set if the player can move or not
@@ -313,15 +304,7 @@ public class BackgroundGrid implements Serializable {
 		this.move = temp;
 	}
 
-	/**
-	 * set if a session is established
-	 * 
-	 * @param temp
-	 *            - boolean - when it is connected set here true
-	 */
-	public void setIsConnectet(boolean temp) {
-		this.isConnectet = temp;
-	}
+	
 
 	/**
 	 * only for debugging
@@ -1295,35 +1278,14 @@ public class BackgroundGrid implements Serializable {
 	}
 	
 	
-	public Socket getSocketOfHost() {
-		return socketOfHost;
-	}
 
-	public void setSocketOfHost(Socket socketOfHost) {
-		this.socketOfHost = socketOfHost;
-	}
-
-	public Socket getSocketOfClient() {
-		return socketOfClient;
-	}
-
-	public void setSocketOfClient(Socket socketOfClient) {
-		this.socketOfClient = socketOfClient;
-	}
 
 	public int[][] Board;
 	
-	/**
-	 * Initializes the Input- and Outputstreams for networking
-	 * @throws IOException 
-	 */
-	public void creatNetworkStreams(Socket tempSock) throws IOException{
-	 
-		netReadStream = new ObjectInputStream(tempSock.getInputStream());
-		netWriteStream = new ObjectOutputStream(tempSock.getOutputStream());
-		
-	}
 	
+	public LAN getLan(){
+		return _Lan;
+	}
 	
 	
 	

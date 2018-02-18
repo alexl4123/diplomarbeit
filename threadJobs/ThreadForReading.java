@@ -62,7 +62,7 @@ public class ThreadForReading implements Runnable {
 					BG.getOOS().close();
 					BG.servSock.close();
 					BG.servSock=null;
-					BGG.setIsConnectet(false);
+					BGG.getLan().setIsConnectet(false);
 					BGG.setMove(true);
 					BG.Frame.setVisible(false);
 					BG.getTextArea().setText("");
@@ -76,7 +76,7 @@ public class ThreadForReading implements Runnable {
 					BG.getOOS().close();
 					BG.clientSock2.close();
 					BG.clientSock2=null;
-					BGG.setIsConnectet(false);
+					BGG.getLan().setIsConnectet(false);
 					BGG.setMove(true);
 					break;
 					
@@ -98,7 +98,7 @@ public class ThreadForReading implements Runnable {
 					BG.setBackgroundGridRead(BGG);
 					BG.ChessPanel.renewPanel(0, 0,false);
 					BG.ChessPanel.getSchach();
-					if(BGG.getIsConnectet()==true){
+					if(BGG.getLan().getIsConnectet()==true){
 						BG.con2.setBackground(Color.green);
 					}else{
 						BG.con2.setBackground(Color.red);

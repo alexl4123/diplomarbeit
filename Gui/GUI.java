@@ -86,6 +86,10 @@ public class GUI extends Application{
 		S = _S;
 		S.setWidth(700);
 		S.setHeight(500);
+		
+		
+		
+		
 		root = new BorderPane();
 		sc = new Scene(root, 600, 300);
 		
@@ -103,13 +107,8 @@ public class GUI extends Application{
 		
 		
 		
-		/*
-		BG.setHighlightAnimations(true);
-		BG.setHighlightAnimationRunning(false);
 		
-		/*
-		 * ------------ DELETE LATER
-		 */
+		
 		
 		BG.setBGG2(_BGG2);
 		BG.DrawGrid(_BGG);
@@ -221,6 +220,14 @@ public class GUI extends Application{
 		return _BGG2.getChoose();
 	}
 	
+	public int[][] getBGG1(){
+		return _BGG;
+	}
+	
+	public void setBGG1(int[][] bgg){
+		_BGG = bgg;
+	}
+	
 	/**
 	 * If you want to make a Draw
 	 */
@@ -251,5 +258,8 @@ public class GUI extends Application{
 		}
 	}
 	
+	public Menu getMenu(){
+		return M;
+	}
 	
 }

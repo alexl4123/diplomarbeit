@@ -14,7 +14,7 @@ import meeple.Tower;
 
 /**
  * 
- * @author alexl12 - 2018
+ * @author alexl12 - 2017
  * @category AI
  * @version 1.1 - Draw
  * 
@@ -24,7 +24,7 @@ import meeple.Tower;
  *          ,,better moves''
  * 
  *          The improvements of MinMax are there for efficiency, so at a depth
- *          of 5, there mustnï¿½t be searched 36^(5), but less (cut offs)
+ *          of 5, there mustn´t be searched 36^(5), but less (cut offs)
  * 
  *          The evaluation basic principle is Material Balance (what is on the
  *          field). But it also has PawnFormations and a table for each Meeple
@@ -142,7 +142,7 @@ public class AILogic {
 		
 		float Sum = boardEvaluation(BGG2, Team); // the value of the Board
 		if(Sum > 5000){
-			return 20000; //Guess: something todo with the King
+			return 20000;
 		}
 		
 		if (depth >= MaxDepth) { // if the max depth has been reached, return
