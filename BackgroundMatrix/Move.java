@@ -87,6 +87,11 @@ public class Move {
 	 * To redraw the Chess field after ,,Bauerntausch''
 	 */
 	private BoardGui BG;
+	
+	/**
+	 * for the launchpad
+	 */
+	private boolean _moveAllowed;
 
 	/**
 	 * The default constructor of Move is this Just says that nothing has been
@@ -112,7 +117,8 @@ public class Move {
 	 * @return TheMove - a int[][] which is drawn
 	 */
 	public int[][] GetMove(int iPos, int iPosX, int iPosY, BackgroundGrid BGG2) {
-
+		
+		_moveAllowed = false;
 		_BGG2 = BGG2;
 		TheMove = _BGG2.iBackground;
 		_Moved = false;
@@ -120,6 +126,7 @@ public class Move {
 		double[][] BoardRep = new double[8][8]; //Fuck Java
 		_MoveList.clear();
 		_HitList.clear();
+	
 		if (_bSelect && Check >= 50) { // Moving Objects
 			ArrayList<MovePos> MoveList = getMoveMeeple(_BGG, _BGG2.getTeam(), _iSelect, _iPosX, _iPosY);
 
@@ -183,7 +190,7 @@ public class Move {
 					}
 					MP.Board = BoardRep;
 					BGG2._TotalMoveList.add(MP);
-
+					_moveAllowed = true;
 					
 					
 					
@@ -1388,6 +1395,22 @@ public class Move {
 	public int getIPosX() {
 		return _iPosX;
 	}
+	
+	/**
+	 * overrides the last x pos
+	 * @param x - the x value of the meeple
+	 */
+	public void setIPosX(int x) {
+		_iPosX = x;
+	}
+	
+	/**
+	 * overrides the last y pos
+	 * @param y - the y value of the meeple
+	 */
+	public void setIPosY(int y) {
+		_iPosY = y;
+	}
 
 	/**
 	 * @return int _iPosY - Returns the previous selected Meeples Y Position in
@@ -1423,5 +1446,21 @@ public class Move {
 	 */
 	public void setBoardGui(BoardGui Gui) {
 		this.BG = Gui;
+	}
+	
+	/**
+	 * 
+	 * @param ID - int - overrides the last meeple
+	 */
+	public void setLastID(int ID) {
+		_iSelect = ID;
+	}
+	
+	/**
+	 * for the launchpad - if move has happenend
+	 * @return boolean - if move has happenend
+	 */
+	public boolean getMoveAlowed() {
+		return _moveAllowed;
 	}
 }

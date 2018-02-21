@@ -1279,7 +1279,9 @@ public class BackgroundGrid implements Serializable {
 	
 	
 
-
+	/**
+	 * I think i need this for the Move class...
+	 */
 	public int[][] Board;
 	
 	

@@ -3,7 +3,7 @@ package Gui;
 import java.awt.Button;
 import java.util.ArrayList;
 import java.util.Objects;
-
+import java.beans.*;
 import javax.swing.JFrame;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
@@ -11,6 +11,9 @@ import BackgroundMatrix.BackgroundGrid;
 import BackgroundMatrix.Move;
 import Game.*;
 import javafx.event.EventHandler;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
@@ -25,6 +28,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
@@ -41,6 +45,7 @@ import javafx.stage.Stage;
 import network.hostingJob;
 import threadJobs.HighlightingJob;
 import javafx.scene.input.MouseEvent;
+import launchpad.*;
 
 /**
  * @author alex12 - 2017
@@ -132,14 +137,21 @@ public class BoardGui extends Canvas {
 	private boolean _blurryButtonOn;
 	
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
+	
+	/**
+	 * For Holds Launchpad
+	 * BGG ist updated in redraw methode
+	 */
+	private launchpad _Lauch = new launchpad();
 
 	/**
 	 * Initial Setup for the GUI Contains the Listeners: .setOnMousePressed:
 	 * normal Click - Click game .setOnDragDetected: Start the Drag
 	 * .setOnMouseDragged: How the Meeple moves with the Mouse ;)
 	 * .setOnMouseReleased: Writes and Draws the Gui after Drag
+	 * @param <T>
 	 */
-	public BoardGui(GUI Gui) {
+	public <T> BoardGui(GUI Gui) {
 		bThinking = false;
 		_Gui = Gui;
 		bDrag = false;
@@ -154,14 +166,34 @@ public class BoardGui extends Canvas {
 		this.heightProperty().addListener(observable -> redraw());
 		this._X = this.getWidth();
 		this._Y = this.getHeight();
+		
+		
+		
+		_Lauch.iCount.addListener(new ChangeListener<Number>() {
+		
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				
+				
+				System.out.println("Old val:" + oldValue + "::NEW_VAL::" + newValue);
+				
+				_BGG2 = _Lauch.getBGG2();
+				L.setTeam(_BGG2.getTeam());
+				_Gui.setBGG2(_BGG2);
+				redraw();
+			}
+		});
+		
 
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+				
+				
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 					ButtonClick(event);
 				}
-
+				
 				event.consume();
 			}
 		});
@@ -845,6 +877,7 @@ public class BoardGui extends Canvas {
 			gc.setFill(oakBrown);
 			gc.fillRect(0, 0, this.getWidth(), this.getHeight());
 			try {
+				_Lauch.setBGG(_BGG2);
 				DrawGrid(_BGG);
 			} catch (Exception e) {
 			}
