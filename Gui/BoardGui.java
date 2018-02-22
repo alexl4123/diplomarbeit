@@ -142,7 +142,7 @@ public class BoardGui extends Canvas {
 	 * For Holds Launchpad
 	 * BGG ist updated in redraw methode
 	 */
-	private launchpad _Lauch = new launchpad();
+	private interface_class _Lauch = new interface_class();
 
 	/**
 	 * Initial Setup for the GUI Contains the Listeners: .setOnMousePressed:
@@ -188,7 +188,6 @@ public class BoardGui extends Canvas {
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				
 				
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 					ButtonClick(event);
@@ -299,7 +298,9 @@ public class BoardGui extends Canvas {
 						_BGG = (int[][]) _BGG2.getLan()._netReadStream.readObject();
 						redraw();
 						L.setTeam(true);
-						
+						//Give board to LAN Partner
+						//No press possible
+						//get Board
 						
 						
 						
@@ -327,6 +328,7 @@ public class BoardGui extends Canvas {
 		} catch (Exception ex) {
 
 		}
+		_Lauch.setBGG(_BGG2);
 		redraw();
 	}
 
@@ -1153,5 +1155,13 @@ public class BoardGui extends Canvas {
 	
 	public void setBthinking(boolean b){
 		bThinking = b;
+	}
+	
+	/**
+	 * For Hold&Klotz
+	 * @param Lauch - Object of interface_class
+	 */
+	public void setInterface_Class(interface_class Lauch) {
+		_Lauch = Lauch;
 	}
 }

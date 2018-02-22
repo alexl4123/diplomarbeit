@@ -16,6 +16,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import launchpad.launchpad;
 import meeple.*;
 import musik.SoundMachine;
 
@@ -1288,7 +1289,5 @@ public class BackgroundGrid implements Serializable {
 	public LAN getLan(){
 		return _Lan;
 	}
-	
-	
 	
 }

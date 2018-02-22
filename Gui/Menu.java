@@ -37,7 +37,7 @@ public class Menu extends MenuBar {
 	 * GameMode1 - if GameMode Lan has been selected
 	 * GameMode2 - if GameMode AI has been selected
 	 */
-	RadioMenuItem GameMode0, GameMode1, GameMode2;
+	RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode3;
 	int _GM;
 	
 	/**
@@ -61,6 +61,7 @@ public class Menu extends MenuBar {
 		GameMode0 = new RadioMenuItem("Game Mode Local");
 		GameMode1 = new RadioMenuItem("Game Mode LAN");
 		GameMode2 = new RadioMenuItem("Game Mode AI");
+		GameMode3 = new RadioMenuItem("Launchpad");
 		
 		//For Game Menu Items
 		MenuItem Draw = new MenuItem("Draw");
@@ -75,7 +76,7 @@ public class Menu extends MenuBar {
 		
 		
 		menuFile.getItems().addAll(newGame, Save, Load, Exit);
-		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, Draw);
+		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode3, Draw);
 		
 		
 		this.getMenus().addAll(menuFile, menuGame, menuSound);
@@ -309,7 +310,7 @@ public class Menu extends MenuBar {
 				
 			}
 		});
-		
+		//----------------------------------------------------------------------------------------------------	
 		//AI
 		GameMode2.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -321,7 +322,15 @@ public class Menu extends MenuBar {
 		
 		setSelect(Gui.getChoose());
 		
-		
+		//----------------------------------------------------------------------------------------------------	
+		//Launchpad
+		GameMode3.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				Gui.initLaunchad();
+			}
+		});
 		
 		
 	}
