@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import network.ReadingJob;
 import network.hostingJob;
 
 /**
@@ -39,6 +40,7 @@ public class Menu extends MenuBar {
 	 */
 	RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode3;
 	int _GM;
+	public ReadingJob rj;
 	
 	/**
 	 * the constructor builds the GUI
@@ -56,6 +58,7 @@ public class Menu extends MenuBar {
 		MenuItem Save = new MenuItem("Save");
 		MenuItem Load = new MenuItem("Load");
 		MenuItem Exit = new MenuItem("Exit");
+		MenuItem refresh = new MenuItem("DEBUG/Refresh");
 		
 		//RadioButton Items
 		GameMode0 = new RadioMenuItem("Game Mode Local");
@@ -75,7 +78,8 @@ public class Menu extends MenuBar {
 		GameMode0.setSelected(true);
 		
 		
-		menuFile.getItems().addAll(newGame, Save, Load, Exit);
+		
+		menuFile.getItems().addAll(newGame, Save, Load, Exit, refresh);						//delete refresh when publish
 		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode3, Draw);
 		
 		
@@ -104,6 +108,17 @@ public class Menu extends MenuBar {
 				
 			}
 		});
+		
+		refresh.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				Gui.getBoardGui().redraw();
+				
+			}
+			
+		});
+		
 		
 		//Save
 		Save.setOnAction(new EventHandler<ActionEvent>() {
@@ -212,7 +227,7 @@ public class Menu extends MenuBar {
 					Gui.setChoose(1);
 				
 					
-					hostingJob hostJob = new hostingJob(Gui.getBGG2(), Gui.getBoardGui());
+					hostingJob hostJob = new hostingJob(Gui);
 					Thread hostingThread = new Thread(hostJob);
 					
 					
@@ -258,8 +273,17 @@ public class Menu extends MenuBar {
 							Gui.getBGG2().getLan().setIsConnectet(true);
 							System.out.println("Clientisconnectedandrunning");
 							Gui.getBGG2().setTeam(false);
-							Gui.setBGG1( (int[][]) Gui.getBGG2().getLan()._netReadStream.readObject());
-							Gui.getBoardGui().setLastMoveList((ArrayList<int[]>) Gui.getBGG2().getLan()._netReadStream.readObject());
+							Gui.getBGG2().getLan().setFirstturn(true);
+							Gui.getBoardGui().setBthinking(true);
+							
+						//	Gui.setBGG1( (int[][]) Gui.getBGG2().getLan().netReadStream.readObject());
+							rj = new ReadingJob(Gui);
+							Thread rt = new Thread(rj);
+							rt.start();
+							
+							
+							
+							//Gui.getBoardGui().setLastMoveList((ArrayList<int[]>) Gui.getBGG2().getLan().netReadStream.readObject());
 							Gui.getBoardGui().DrawGrid(Gui.getBGG1());
 							Gui.getBoardGui().redraw();
 							

@@ -4,6 +4,8 @@ import java.awt.Button;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.beans.*;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
@@ -12,6 +14,7 @@ import BackgroundMatrix.Move;
 import Game.*;
 import javafx.event.EventHandler;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
@@ -151,12 +154,16 @@ public class BoardGui extends Canvas {
 	 * .setOnMouseReleased: Writes and Draws the Gui after Drag
 	 * @param <T>
 	 */
+	
+	public IntegerProperty BGGChange;
+	
 	public <T> BoardGui(GUI Gui) {
 		bThinking = false;
 		_Gui = Gui;
 		bDrag = false;
 		DGX = 0;
 		DGY = 0;
+		BGGChange = new SimpleIntegerProperty(0);
 		L = new Local();
 		L.startUpLocal();
 		gc = this.getGraphicsContext2D();
@@ -167,6 +174,41 @@ public class BoardGui extends Canvas {
 		this._X = this.getWidth();
 		this._Y = this.getHeight();
 		
+		
+		this.BGGChange.addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				
+				
+				
+				System.out.println("TRIGGERED");
+				try {
+					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				_BGG2.iBackground = _BGG;
+				_Gui.setBGG2(_BGG2);
+				bThinking = false;
+				redraw();
+				System.out.println("hab neu gezeichnet");
+				
+				
+			}
+			
+			
+		
+			
+			
+			
+		});
 		
 		
 		_Lauch.iCount.addListener(new ChangeListener<Number>() {
@@ -286,18 +328,47 @@ public class BoardGui extends Canvas {
 						L.setTeam(_BGG2.getTeam());
 						_Gui.setBGG2(_BGG2);
 						
-						if (_iChoose == 1){
-							_BGG2.getLan()._netWriteStream.writeObject(_BGG);
-						}
 					}
 					if (_iChoose == 1 && !L.getTeam()) { // if move has happend,
 															// do what it takes
 															// ,,LAN''
 						
 						
-						_BGG = (int[][]) _BGG2.getLan()._netReadStream.readObject();
+						
+						
+					/*	if(_BGG2.getLan().getFirstturn() == true){
+							
+							_BGG2.getLan().setFirstturn(false);
+							bThinking = true;
+							System.out.println("habala 1");
+							_BGG = (int[][]) _BGG2.getLan().netReadStream.readObject();
+							System.out.println("habala 2");
+							bThinking = false;
+						}*/
+						
+						
+						System.out.println("schreib jetzt1");
+						_BGG2.getLan().netWriteStream.writeObject(_BGG);
+						_BGG2.getLan().netWriteStream.flush();
+						for(int y = 0; y<8;y++){
+							for(int x = 0; x<8;x++){
+								System.out.print(":"+_BGG[x][y]+":");
+							}
+							System.out.println(" ");
+						}
+						System.out.println("Hab gschrieben1");
+						bThinking = true;
+						
+						
+						
+						/*
+						_BGG = (int[][]) _BGG2.getLan().netReadStream.readObject();
+						System.out.println("Hab gelesen du affe");
+						bThinking = false;
 						redraw();
-						L.setTeam(true);
+						*/
+						
+						
 						//Give board to LAN Partner
 						//No press possible
 						//get Board
@@ -418,6 +489,7 @@ public class BoardGui extends Canvas {
 																												// move
 																												// is
 																												// possible
+						System.out.println("Moved");
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
 						_BGG = XY;
 						_BGG2 = OMove.getBGG2();
@@ -436,8 +508,17 @@ public class BoardGui extends Canvas {
 																			// to
 																			// LAN
 						
-						System.out.println("LAN");
-						
+						System.out.println("schreib jetzt2");
+						_BGG2.getLan().netWriteStream.writeObject(_BGG);
+						_BGG2.getLan().netWriteStream.flush();
+						for(int y = 0; y<8;y++){
+							for(int x = 0; x<8;x++){
+								System.out.print(":"+_BGG[x][y]+":");
+							}
+							System.out.println(" ");
+						}
+						System.out.println("Hab gschrieben2");
+						bThinking = true;
 						
 						
 						
@@ -1155,6 +1236,10 @@ public class BoardGui extends Canvas {
 	
 	public void setBthinking(boolean b){
 		bThinking = b;
+	}
+	
+	public boolean getBthinking(){
+		return bThinking;
 	}
 	
 	/**

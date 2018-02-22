@@ -12,6 +12,7 @@ import java.net.Socket;
 
 import BackgroundMatrix.BackgroundGrid;
 import Gui.BoardGui;
+import Gui.GUI;
 
 
 public class hostingJob implements Runnable {
@@ -22,10 +23,12 @@ public class hostingJob implements Runnable {
 	private Socket tempsock;
 	private boolean running;
 	private BoardGui BG;
+	private GUI gui;
 	
-	public hostingJob(BackgroundGrid bgg, BoardGui BG){
-		this.bgg=bgg;
-		this.BG=BG;
+	public hostingJob(GUI newgui){
+		this.gui = newgui;
+		this.bgg=gui.getBGG2();
+		this.BG=gui.getBoardGui();
 	}
 	
 	public void run() {
@@ -76,10 +79,13 @@ public class hostingJob implements Runnable {
 		                System.out.println(e.toString());
 		            }
 		        
-		            bgg.getLan()._netWriteStream.writeObject(BG.getGui().getBGG1());
-		            bgg.getLan()._netWriteStream.writeObject(BG.getLastMoveList());
+		          //  bgg.getLan().netWriteStream.writeObject(BG.getGui().getBGG1());
+		           // bgg.getLan().netWriteStream.flush();
+		           // bgg.getLan().netWriteStream.writeObject(BG.getLastMoveList());
 				
-					
+		            gui.getMenu().rj = new ReadingJob(gui);
+					Thread rt = new Thread(gui.getMenu().rj);
+					rt.start();
 					
 				
 			

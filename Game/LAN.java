@@ -21,10 +21,11 @@ import java.net.Socket;
 public class LAN {
 
 	private Socket _theSocket = null;
-	public ObjectInputStream _netReadStream;
-	public ObjectOutputStream _netWriteStream;
+	public ObjectInputStream netReadStream;
+	public ObjectOutputStream netWriteStream;
 	private boolean _team;
-	boolean isConnectet; 					// if a host-client connection is valid
+	private boolean isConnectet; 					// if a host-client connection is valid
+	private boolean firstturn = false;				//used for offseting in the Lan game loop
 	
 	
 	
@@ -45,13 +46,13 @@ public class LAN {
 		System.out.println("trying to create streams");
 		
 		
-		_netWriteStream = new ObjectOutputStream(tempSock.getOutputStream());
+		netWriteStream = new ObjectOutputStream(tempSock.getOutputStream());
 		
 		System.out.println("Stream one created");
 		
-		_netWriteStream.flush();
+		netWriteStream.flush();
 		
-		_netReadStream = new ObjectInputStream(tempSock.getInputStream());
+		netReadStream = new ObjectInputStream(tempSock.getInputStream());
 		
 		
 		System.out.println("Stream two created");
@@ -117,6 +118,15 @@ public class LAN {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void setFirstturn(boolean choose){
+		firstturn = choose;
+	}
+	
+	public boolean getFirstturn(){
+		return firstturn;
 	}
 }
 
