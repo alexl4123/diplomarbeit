@@ -612,12 +612,15 @@ public class BoardGui extends Canvas {
 	 *            - int - which field to highlight (64 Fields)
 	 */
 	public void HighlightLField(int i) {
+		
+		
 		Tile T = TileList.get(i);
 		gc.setGlobalAlpha(0.01);
 
 		gc.setFill(Color.GREEN);
 		gc.fillRect(T.getX() * P1X, T.getY() * P1Y, T.getW() * P1X, T.getH() * P1Y);
 		gc.setGlobalAlpha(1);
+		
 	}
 //-----------------------------------------------------------------------------------------------------------
 	
@@ -1011,6 +1014,7 @@ public class BoardGui extends Canvas {
 				bThinking=false;
 				setHighlighting(true);
 				setBlurryButtonOn(false);
+				
 				if(_BGG2.getLan().getIsConnectet()==true){
 					
 					_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame, _Gui.getMenu().refresh);

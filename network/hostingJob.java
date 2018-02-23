@@ -18,7 +18,7 @@ import Gui.GUI;
 public class hostingJob implements Runnable {
 
 	
-	private ServerSocket serversock;
+	private ServerSocket serversock = null;
 	private BackgroundGrid bgg;
 	private Socket tempsock;
 	private boolean running;

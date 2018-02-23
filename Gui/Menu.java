@@ -42,6 +42,7 @@ public class Menu extends MenuBar {
 	public MenuItem newGame, Save, Load, Exit, refresh;
 	int _GM;
 	public ReadingJob rj;
+	public hostingJob hostJob;
 	
 	public javafx.scene.control.Menu menuFile;
 	public javafx.scene.control.Menu menuGame;
@@ -101,6 +102,7 @@ public class Menu extends MenuBar {
 			@Override
 			public void handle(ActionEvent event) {
 				Gui.newBG();
+				Gui.getBoardGui().setHighlighting(true);
 			}
 		});
 		
@@ -230,9 +232,11 @@ public class Menu extends MenuBar {
 				if(result.get() == hostButton){
 					
 					Gui.setChoose(1);
+					//Gui.newBG();
+					//Gui.getBoardGui().setHighlighting(true);
 				
 					
-					hostingJob hostJob = new hostingJob(Gui);
+					hostJob = new hostingJob(Gui);
 					Thread hostingThread = new Thread(hostJob);
 					
 					
