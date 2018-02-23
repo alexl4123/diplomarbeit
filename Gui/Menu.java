@@ -38,9 +38,14 @@ public class Menu extends MenuBar {
 	 * GameMode1 - if GameMode Lan has been selected
 	 * GameMode2 - if GameMode AI has been selected
 	 */
-	RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode3;
+	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode3;
+	public MenuItem newGame, Save, Load, Exit, refresh;
 	int _GM;
 	public ReadingJob rj;
+	
+	public javafx.scene.control.Menu menuFile;
+	public javafx.scene.control.Menu menuGame;
+	public javafx.scene.control.Menu menuSound;
 	
 	/**
 	 * the constructor builds the GUI
@@ -49,16 +54,16 @@ public class Menu extends MenuBar {
 	public Menu(GUI Gui){
 		
 		//Menus with Submenus 
-		javafx.scene.control.Menu menuFile = new javafx.scene.control.Menu("File");
-		javafx.scene.control.Menu menuGame = new javafx.scene.control.Menu("Game");
-		javafx.scene.control.Menu menuSound = new javafx.scene.control.Menu("Sound");
+		 menuFile = new javafx.scene.control.Menu("File");
+		 menuGame = new javafx.scene.control.Menu("Game");
+		 menuSound = new javafx.scene.control.Menu("Sound");
 		
 		//Adding Menu Items
-		MenuItem newGame = new MenuItem("New");
-		MenuItem Save = new MenuItem("Save");
-		MenuItem Load = new MenuItem("Load");
-		MenuItem Exit = new MenuItem("Exit");
-		MenuItem refresh = new MenuItem("DEBUG/Refresh");
+		 newGame = new MenuItem("New");
+		 Save = new MenuItem("Save");
+		 Load = new MenuItem("Load");
+		 Exit = new MenuItem("Exit");
+		 refresh = new MenuItem("DEBUG/Refresh");
 		
 		//RadioButton Items
 		GameMode0 = new RadioMenuItem("Game Mode Local");
@@ -280,7 +285,12 @@ public class Menu extends MenuBar {
 							rj = new ReadingJob(Gui);
 							Thread rt = new Thread(rj);
 							rt.start();
+							Gui.getBoardGui().L.setTeam(false);
+							Gui.getBGG2().setTeam(false);
 							
+							
+							menuFile.getItems().removeAll(Load, Save, newGame, refresh);
+							menuGame.getItems().removeAll(GameMode0, GameMode1, GameMode2, GameMode3);
 							
 							
 							//Gui.getBoardGui().setLastMoveList((ArrayList<int[]>) Gui.getBGG2().getLan().netReadStream.readObject());
@@ -382,8 +392,7 @@ public class Menu extends MenuBar {
 				}
 	}
 	
-	public int getGameMode(){
-		
-		return _GM;
-	}
+
 }
+
+

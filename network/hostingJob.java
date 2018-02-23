@@ -83,9 +83,7 @@ public class hostingJob implements Runnable {
 		           // bgg.getLan().netWriteStream.flush();
 		           // bgg.getLan().netWriteStream.writeObject(BG.getLastMoveList());
 				
-		            gui.getMenu().rj = new ReadingJob(gui);
-					Thread rt = new Thread(gui.getMenu().rj);
-					rt.start();
+		            
 					
 				
 			

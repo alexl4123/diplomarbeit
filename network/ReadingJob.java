@@ -27,7 +27,7 @@ public class ReadingJob implements Runnable {
 		compBGG2 = compBGG1;
 		
 		
-		while(theGui.getBGG2().getLan().getIsConnectet() ==true){
+		
 			
 			
 			
@@ -71,7 +71,7 @@ public class ReadingJob implements Runnable {
 			
 		}
 		
-	}
+	
 
 	public int[][] getBGG(){
 		return compBGG1;

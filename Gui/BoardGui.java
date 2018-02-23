@@ -45,6 +45,7 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import network.ReadingJob;
 import network.hostingJob;
 import threadJobs.HighlightingJob;
 import javafx.scene.input.MouseEvent;
@@ -97,7 +98,7 @@ public class BoardGui extends Canvas {
 	 * Local - if gamemode local has been set, contains everything needed for
 	 * that
 	 */
-	private Local L;
+	public Local L;
 
 	/**
 	 * Move - the move class
@@ -185,6 +186,14 @@ public class BoardGui extends Canvas {
 				System.out.println("TRIGGERED");
 				try {
 					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
+					if (_BGG2.getLan().getFirstturn() == true){
+						L.setTeam(false);
+						_BGG2.setTeam(false);
+					} else if (_BGG2.getLan().getFirstturn() == false){
+						L.setTeam(true);
+						_BGG2.setTeam(true);
+					}
+				
 					
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -197,6 +206,7 @@ public class BoardGui extends Canvas {
 				_BGG2.iBackground = _BGG;
 				_Gui.setBGG2(_BGG2);
 				bThinking = false;
+				System.out.println("switches bThinking to off");
 				redraw();
 				System.out.println("hab neu gezeichnet");
 				
@@ -230,7 +240,7 @@ public class BoardGui extends Canvas {
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				
+				System.out.println(bThinking + "::" + _BGG2.getTeam() + "::" + L.getTeam());
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 					ButtonClick(event);
 				}
@@ -320,7 +330,7 @@ public class BoardGui extends Canvas {
 					_BGG2.setTeam(L.getTeam());
 					_BGG = _BGG2.iBackground;
 					int iPos = OMove.getISelect();
-					if (((_iChoose == 1 && L.getTeam()) || (_iChoose == 2 && L.getTeam()) || _iChoose == 0)
+					if ((_iChoose == 1 || (_iChoose == 2 && L.getTeam()) || _iChoose == 0)
 							&& iPos != iMatrix) { // if move is possible
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
 						_BGG = XY;
@@ -329,7 +339,8 @@ public class BoardGui extends Canvas {
 						_Gui.setBGG2(_BGG2);
 						
 					}
-					if (_iChoose == 1 && !L.getTeam()) { // if move has happend,
+					System.out.println("::" + L.getTeam() + "::" + _BGG2.getLan().getFirstturn());
+					if (_iChoose == 1 && ((!L.getTeam() && !_BGG2.getLan().getFirstturn()) || (L.getTeam() && _BGG2.getLan().getFirstturn()))){ // if move has happend,
 															// do what it takes
 															// ,,LAN''
 						
@@ -357,8 +368,18 @@ public class BoardGui extends Canvas {
 							System.out.println(" ");
 						}
 						System.out.println("Hab gschrieben1");
-						bThinking = true;
 						
+						_BGG2.iBackground = _BGG;
+						_Gui.setBGG2(_BGG2);
+						
+						redraw();
+						
+						
+						bThinking = true;
+						_Gui.getMenu().rj = new ReadingJob(_Gui);
+						Thread rt = new Thread(_Gui.getMenu().rj);
+						rt.start();
+						System.out.println("Habs gezeichnet");
 						
 						
 						/*
@@ -990,7 +1011,12 @@ public class BoardGui extends Canvas {
 				bThinking=false;
 				setHighlighting(true);
 				setBlurryButtonOn(false);
-				
+				if(_BGG2.getLan().getIsConnectet()==true){
+					
+					_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame, _Gui.getMenu().refresh);
+					_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2, _Gui.getMenu().GameMode3);
+					
+				}
 				if(_BGG2.getLan().getIsConnectet() == false){
 				System.out.println("socket stopped");
 				stopJob.stopSocket();
