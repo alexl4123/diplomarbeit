@@ -25,10 +25,10 @@ public class Launchpad implements Runnable {
 
 	public static Launchpad entity;
 	public static LaunchpadController controller;
+	public static Interface_class chessinterface;
 	
 	private BoardGui _BG;
 	private BackgroundGrid _BGG;
-	private interface_class _Lauch;
 
 	private MidiDevice transdevice;
 	private MidiDevice recdevice;
@@ -144,7 +144,9 @@ public class Launchpad implements Runnable {
 		setup();
 		Launchpad.entity = this;
 		controller = new LaunchpadController();
+		
 	}
+	
 
 	/**
 	 * Init
@@ -175,7 +177,7 @@ public class Launchpad implements Runnable {
 	 * you have to do this, if redraw should work!!!
 	 */
 	public void updateInitRedraw() {
-		_BG.setInterface_Class(_Lauch);
+		_BG.setInterface_Class(chessinterface);
 	}
 
 }

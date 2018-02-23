@@ -145,7 +145,7 @@ public class BoardGui extends Canvas {
 	 * For Holds Launchpad
 	 * BGG ist updated in redraw methode
 	 */
-	private interface_class _Lauch = new interface_class();
+	private Interface_class _Lauch = new Interface_class();
 
 	/**
 	 * Initial Setup for the GUI Contains the Listeners: .setOnMousePressed:
@@ -1246,7 +1246,7 @@ public class BoardGui extends Canvas {
 	 * For Hold&Klotz
 	 * @param Lauch - Object of interface_class
 	 */
-	public void setInterface_Class(interface_class Lauch) {
+	public void setInterface_Class(Interface_class Lauch) {
 		_Lauch = Lauch;
 	}
 }
