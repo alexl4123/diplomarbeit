@@ -142,10 +142,15 @@ public class BoardGui extends Canvas {
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
 	
 	/**
+	 * if a Launchpad is connected
+	 */
+	private boolean _bLauch;
+	
+	/**
 	 * For Holds Launchpad
 	 * BGG ist updated in redraw methode
 	 */
-	private Interface_class _Lauch = new Interface_class();
+	private Launchpad _Lauch;
 
 	/**
 	 * Initial Setup for the GUI Contains the Listeners: .setOnMousePressed:
@@ -173,6 +178,7 @@ public class BoardGui extends Canvas {
 		this.heightProperty().addListener(observable -> redraw());
 		this._X = this.getWidth();
 		this._Y = this.getHeight();
+		_bLauch = false;
 		
 		
 		this.BGGChange.addListener(new ChangeListener<Number>() {
@@ -200,6 +206,11 @@ public class BoardGui extends Canvas {
 				redraw();
 				System.out.println("hab neu gezeichnet");
 				
+				if(_bLauch){
+					//For @Hold and @Klotz
+					_Lauch.setBG(_Gui.getBoardGui());
+					_Lauch.setBGG(_BGG2);
+				}
 				
 			}
 			
@@ -211,26 +222,13 @@ public class BoardGui extends Canvas {
 		});
 		
 		
-		_Lauch.iCount.addListener(new ChangeListener<Number>() {
 		
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				
-				
-				System.out.println("Old val:" + oldValue + "::NEW_VAL::" + newValue);
-				
-				_BGG2 = _Lauch.getBGG2();
-				L.setTeam(_BGG2.getTeam());
-				_Gui.setBGG2(_BGG2);
-				redraw();
-			}
-		});
 		
 
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				
+				L.setTeam(_BGG2.getTeam());
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 					ButtonClick(event);
 				}
@@ -243,6 +241,7 @@ public class BoardGui extends Canvas {
 
 			@Override
 			public void handle(MouseEvent event) {
+				L.setTeam(_BGG2.getTeam());
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack()  && !_BGG2.getDraw()) {
 					bDrag = true;
 
@@ -399,7 +398,11 @@ public class BoardGui extends Canvas {
 		} catch (Exception ex) {
 
 		}
-		_Lauch.setBGG(_BGG2);
+		if(_bLauch){
+			//For @Hold and @Klotz
+			_Lauch.setBG(_Gui.getBoardGui());
+			_Lauch.setBGG(_BGG2);
+		}
 		redraw();
 	}
 
@@ -475,6 +478,7 @@ public class BoardGui extends Canvas {
 	 */
 	private void ButtonClick(MouseEvent e) {
 		try {
+		
 			LastMoveList.clear();
 			for (Tile T : TileList) {
 				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && OMove.getBauer() == false) {
@@ -549,6 +553,11 @@ public class BoardGui extends Canvas {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
+		}
+		if(_bLauch){
+			//For @Hold and @Klotz
+			_Lauch.setBG(_Gui.getBoardGui());
+			_Lauch.setBGG(_BGG2);
 		}
 		redraw();
 	}
@@ -779,10 +788,14 @@ public class BoardGui extends Canvas {
 				dX = (x + 1) * 10 + (x + 2);
 				dY = (y + 1) * 10 + (y + 2);
 				int iBGG;
-				if (BGG[OMove.getIPosX()][OMove.getIPosY()] == BGG[x][y] && bDrag) {
+				try{
+					if (BGG[OMove.getIPosX()][OMove.getIPosY()] == BGG[x][y] && bDrag) {
+						iBGG = 0;
+					} else {
+						iBGG = BGG[x][y];
+					}
+				} catch(Exception e){
 					iBGG = 0;
-				} else {
-					iBGG = BGG[x][y];
 				}
 
 				if (OMove.getMoveList().size() > 0) {
@@ -960,10 +973,9 @@ public class BoardGui extends Canvas {
 			gc.setFill(oakBrown);
 			gc.fillRect(0, 0, this.getWidth(), this.getHeight());
 			try {
-				_Lauch.setBGG(_BGG2);
 				DrawGrid(_BGG);
 			} catch (Exception e) {
-			}
+				e.printStackTrace();			}
 		}
 
 	}
@@ -1243,10 +1255,26 @@ public class BoardGui extends Canvas {
 	}
 	
 	/**
-	 * For Hold&Klotz
-	 * @param Lauch - Object of interface_class
+	 * For the hold and klotz initiative
+	 * @param Lauch
 	 */
-	public void setInterface_Class(Interface_class Lauch) {
+	public void setLaunchpad(Launchpad Lauch){
 		_Lauch = Lauch;
+	}
+	
+	/**
+	 * if a Launchpad connects
+	 * @param State - if Launchpad connects - true
+	 */
+	public void setBLauch(boolean State){
+		_bLauch = State;
+	}
+	
+	/**
+	 * get if a Launchpad is connected
+	 * @return
+	 */
+	public boolean getBLauch(){
+		return _bLauch;
 	}
 }

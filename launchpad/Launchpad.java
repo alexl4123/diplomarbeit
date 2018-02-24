@@ -144,11 +144,20 @@ public class Launchpad implements Runnable {
 	
 
 	public void run() {
-		setup();
+		//setup();
 		Launchpad.entity = this;
-		controller = new LaunchpadController();
+		//controller = new LaunchpadController();
 		chessinterface = new ChessInterface();
-		//do some setup here (all the setup you need !! @alexbe)
+		interface_class = new Interface_class();
+		interface_class.setBGG(_BGG);
+		interface_class.setBG(_BG);
+		
+		//do more setup
+		System.out.println("Hey");
+		chessinterface.setupinterfaceclass(interface_class);
+		
+		chessinterface.moveFig(0, 1, 0, 3);
+		
 		
 	}
 	
@@ -157,6 +166,12 @@ public class Launchpad implements Runnable {
 	 * Init
 	 */
 	public Launchpad() {
+		
+	}
+	
+	public void start(BackgroundGrid BGG, BoardGui BG){
+		_BGG = BGG;
+		_BG = BG;
 		Thread t = new Thread(this);
 		t.start();
 	}
@@ -167,6 +182,7 @@ public class Launchpad implements Runnable {
 	 */
 	public void setBGG(BackgroundGrid BGG) {
 		_BGG = BGG;
+		interface_class.setBGG(_BGG);
 	}
 
 	/**
@@ -176,13 +192,9 @@ public class Launchpad implements Runnable {
 	 */
 	public void setBG(BoardGui BG) {
 		_BG = BG;
+		interface_class.setBG(_BG);
 	}
 
-	/**
-	 * you have to do this, if redraw should work!!!
-	 */
-	public void updateInitRedraw() {
-		_BG.setInterface_Class(interface_class);
-	}
+	
 
 }

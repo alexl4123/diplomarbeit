@@ -1,6 +1,7 @@
 package launchpad;
 
 import BackgroundMatrix.*;
+import Gui.BoardGui;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -11,7 +12,9 @@ public class Interface_class {
 	//ismyturn return boolean
 	
 	
-	private BackgroundGrid _BGG = new BackgroundGrid();
+	private BackgroundGrid _BGG;
+	
+	private BoardGui _BG;
 	
 	//Needed for event listener
 	public IntegerProperty iCount = new SimpleIntegerProperty(0);
@@ -51,11 +54,7 @@ public class Interface_class {
 	 * @return boolean - if move possible - true
 	 */
 	public boolean moveFig(int x, int y, int x2, int y2) {
-		
-		
-		
 		Move move = new Move();
-		
 
 		int ID = getMeepleID(x,y);
 		
@@ -68,14 +67,10 @@ public class Interface_class {
 		//move meeple from x&y to x2&y2
 		move.GetMove(getMeepleID(x2, y2), x2, y2, _BGG);
 		
-		//This code has to be at the end
-		//Because if this is executed, the GUI updates (Eventlistener on iCount)
-		//so basically a redraw...
-		iCount.set(iCount.get()+1);
-		if(iCount.get()>10000) {
-			iCount.set(0);
-		}
 		
+		_BGG = move.getBGG2();
+		_BG.setBGG2(_BGG);
+		_BG.redraw();
 		return move.getMoveAlowed();
 	}
 	
@@ -83,18 +78,23 @@ public class Interface_class {
 	 * Checks if the launchpad has its turn
 	 * @return Boolean - true if move allowed
 	 */
-	public boolean isMyTurn() {
+	public boolean isMyTurn(int x, int y) {
 		boolean myTurn;
 		int Choose = _BGG.getChoose();
 		boolean team = _BGG.getTeam();
-		if (((Choose == 1 && team) || (Choose == 2 && team) || Choose == 0)) {
-			myTurn = true;
-		}else {
-			myTurn = false;
+		int ID = _BGG.getBackgroundGrid(x, y);
+		boolean SelectedTeam = false;
+		
+		if(ID < 200){
+			SelectedTeam = true;
 		}
 		
-		
-		return myTurn;
+		//TODO
+		//For LAN and AI
+		if((SelectedTeam == team && Choose==0) || (Choose==2 && team && SelectedTeam)){
+			return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -103,6 +103,10 @@ public class Interface_class {
 	 */
 	public void setBGG(BackgroundGrid BGG2) {
 		_BGG = BGG2;
+	}
+	
+	public void setBG(BoardGui BG){
+		_BG = BG;
 	}
 	
 	/**

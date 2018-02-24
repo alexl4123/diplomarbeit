@@ -268,8 +268,11 @@ public class GUI extends Application{
 	 */
 	public void initLaunchad() {
 		Launchpad Lauch = new Launchpad();
-		Lauch.setBGG(_BGG2);
-		Lauch.setBG(BG);
+		Lauch.start(_BGG2, BG);
+		
+		
+		BG.setLaunchpad(Lauch);
+		BG.setBLauch(true);
 		
 	}
 	
