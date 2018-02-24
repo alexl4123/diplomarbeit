@@ -16,7 +16,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import launchpad.launchpad;
+import launchpad.Launchpad;
 import meeple.*;
 import musik.SoundMachine;
 

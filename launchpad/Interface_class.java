@@ -4,7 +4,7 @@ import BackgroundMatrix.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class interface_class {
+public class Interface_class {
 	//getboard return array
 	//getfig(x,y) return fig
 	//movefig(x,y,x2,y2) return boolean

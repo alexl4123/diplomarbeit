@@ -1,2 +1,10 @@
 /launchpad.class
 /interface_class.class
+/MidiInputReceiver.class
+/MidiOutputTransmitter.class
+/LaunchpadController.class
+/Launchpad.class
+/LaunchpadCommand.class
+/Convert.class
+/ChessInterface.class
+/Interface_class.class

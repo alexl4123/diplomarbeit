@@ -20,7 +20,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import launchpad.launchpad;
+import launchpad.Launchpad;
 
 /**
  * Combines all the Graphical Nodes
@@ -267,7 +267,7 @@ public class GUI extends Application{
 	 * Inits the Launchpad Class
 	 */
 	public void initLaunchad() {
-		launchpad Lauch = new launchpad();
+		Launchpad Lauch = new Launchpad();
 		Lauch.setBGG(_BGG2);
 		Lauch.setBG(BG);
 		
