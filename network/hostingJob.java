@@ -49,13 +49,16 @@ public class hostingJob implements Runnable {
 			
 			
 			try {
-				
+				Heartbeat hb = new Heartbeat(null, true);
+				Thread th = new Thread(hb);
+				th.start();
 				System.out.println("Hosting");
 				tempsock = getServersock().accept();
 				bgg.getLan().setSocket(tempsock);
 				bgg.getLan().connecting(true);
 				bgg.getLan().setIsConnectet(true);
 				running =false;
+				
 				
 				System.out.println("Hosting connection cycle finished");
 	

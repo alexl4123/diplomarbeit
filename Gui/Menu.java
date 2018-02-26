@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import network.Heartbeat;
 import network.ReadingJob;
 import network.hostingJob;
 
@@ -289,6 +290,11 @@ public class Menu extends MenuBar {
 							rj = new ReadingJob(Gui);
 							Thread rt = new Thread(rj);
 							rt.start();
+							
+							Heartbeat hb = new Heartbeat(joinAdress, false);
+							Thread th = new Thread(hb);
+							th.start();
+							
 							Gui.getBoardGui().L.setTeam(false);
 							Gui.getBGG2().setTeam(false);
 							

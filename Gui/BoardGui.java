@@ -156,7 +156,7 @@ public class BoardGui extends Canvas {
 	 * @param <T>
 	 */
 	
-	public IntegerProperty BGGChange;
+	public IntegerProperty BGGChange, Heatbeat;
 	
 	public <T> BoardGui(GUI Gui) {
 		bThinking = false;

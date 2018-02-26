@@ -46,7 +46,7 @@ public class Main extends Application {
 	}
 	
 	@Override
-	public void stop() throws Exception {
+	public void stop(){
 		
 	    System.out.println("overwritten");
 	    if(G.getMenu().hostJob.getServersock() != null){

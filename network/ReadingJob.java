@@ -63,7 +63,7 @@ public class ReadingJob implements Runnable {
 			
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			}	
 			
 			
