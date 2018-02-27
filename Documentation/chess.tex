@@ -265,23 +265,6 @@
 
 
 
-	%/*Header-Einstellung*/
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\sectionmark}[1]{\markright{#1}}
-\renewcommand{\subsectionmark}[1]{\markright{#1}}
-\renewcommand{\subsubsectionmark}[1]{\markright{#1}}
-\lhead{}
-\chead{\HtlHeader{}}
-\rhead{}
-\lfoot{Beiser/Huber}
-\cfoot{\thesection-\rightmark}
-%\cfoot{\thesubsubsection-\rightmark}
-\rfoot[\thepage]{\thepage/\pageref{LastPage}}
-\setlength{\headwidth}	{1.0\textwidth}
-\setlength{\headheight}{15mm}
-\renewcommand{\headrulewidth}{0.0pt}
-\renewcommand{\footrulewidth}{0.33pt}
 
 
 
@@ -340,6 +323,25 @@
 %\newpage	%erzwingt Seitenumbruch
 %\tableofcontents
 %====================================================================================
+
+
+	%/*Header-Einstellung*/
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\subsectionmark}[1]{\markright{#1}}
+\renewcommand{\subsubsectionmark}[1]{\markright{#1}}
+\lhead{}
+\chead{\HtlHeader{}}
+\rhead{}
+\lfoot{Beiser/Huber}
+\cfoot{\thesection-\rightmark}
+%\cfoot{\thesubsubsection-\rightmark}
+\rfoot[\thepage]{\thepage/\pageref{LastPage}}
+\setlength{\headwidth}	{1.0\textwidth}
+\setlength{\headheight}{15mm}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.33pt}
 
 
 \vfill
@@ -1019,8 +1021,8 @@ public class Move{
 	...
 	Methode Bauerntausch
 	...
-	getSchach //ueberprueft ob Koenig im Schach ist (=vl. illegaler Zug)
-	getSchach2 //ueberprueft ob Koenig im Schach ist (Warnung an Spieler)
+	getSchach //ueberprueft ob Koenig im Schach ist (=vl. illegaler Zug)-via Schachmatt Methode
+	getSchach2 //ueberprueft ob Koenig im Schach ist (Warnung an Spieler)-via Schachmatt Methode
 	...
 	getter und setter Methoden fuer Private Variablen
 }
@@ -1030,7 +1032,7 @@ public class Move{
 \subsection{Schach und Schachmatt Abfrage:}
 \label{SUBSEC:checkmate}
 
-Die Schachmatt Abfrage teilt sich in zwei Methoden innerhalb der Backgroundgrid Klasse auf:
+Die Schachmatt Abfrage teilt sich in drei Methoden innerhalb der Backgroundgrid Klasse auf:
 \begin{itemize}
 	\item{\nameref{SUBSUBSEC:check}}
 	\item{\nameref{SUBSUBSEC:checkmate}}
@@ -1109,7 +1111,8 @@ private boolean Schachmatt(Spielfeld, ID und Postion des Koenigs, Backgroundgrid
 \label{SUBSUBSEC:checkking}
 
 Schachking wird immer am Ende eines Zuges aufgerufen und überprüft ob ein Team Schachmatt ist. Falls dieser nicht Schach oder Schachmatt ist, wird nachgesehen ob eine Patt Situation vorrherrscht. Dies geschieht in der Draw Methode. \\
-Falls ein Team Schach ist wird nachgesehen ob dieser auch Schachmatt ist. 
+Falls ein Team Schach ist wird nachgesehen ob dieser auch Schachmatt ist. \\
+Pseudo Code:
 
 \lstset{language=Java}
 \begin{lstlisting}
@@ -1195,7 +1198,9 @@ Somit muss sich der weiße Spieler nur noch zwischen 3 Zahlen entscheiden, bei d
 \label{SUBSUBSEC:AICODE}
 
 Die theoretischen Grundlagen zum Verständnis des Algorithmus sollten nun geklärt sein.\\
-Die KI besteht aus zwei Klassen, AI und AILogic. AI wird als neuer Thread ausgeführt. 
+Die KI besteht aus zwei Klassen, AI und AILogic. AI wird als neuer Thread ausgeführt. \\
+Der nachfolgende Code zur AI erfolgt als Pseudo-Code Dokumentation.
+
 
 Klasse AI:
 
@@ -1325,8 +1330,93 @@ Klasse AI-Logic:
 \end{lstlisting}
 \lstset{language=German}
 
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+\section{ChessPI}
+\label{SEC:chesspi}
+
+ChessPI ist die Implementierung von JavaChess auf dem Raspberry PI. \\
+Wir haben uns zur Aufgabe gestellt das Schachprogramm auch auf einem Mikro-Computer zum funktionieren zu bekommen. An dem RaspberryPI wird ein Touchscreen angeschlossen, mit welchem der User interagieren kann. Weiters soll für den RaspberryPI mit angeschlossenen Touchscreen ein Gehäüse designt und eine Akkusteuerung entworfen werden. 
+Die Probleme die dabei auftreten könne sind unzählig, die hauptprobleme können aber determiniert werden:
+\begin{itemize}
+	\item{Der RaspberryPI besitzt zu wenig Rechenleistung}
+	\item{Die verfügbaren Java Versionen beinhalten nicht die von uns verwendeten Packages}
+	\item{Das Spiel ist nicht über einen Touchscreen spielbar}
+\end{itemize}
+
+\subsection{RaspberryPI}
+
+Der Raspberry PI ist ein vollwertiger Computer, welcher mit einem Linux/GNU OS läuft. Am häufigsten wird die Distribution Raspbian verwendet. \\
+Die von uns verwendete Version ist der Raspberry PI 3 model B. Dieser verfügt über eine Quad Core 1.2 GHz Broadcom BCM2837 CPU, 1 GB an RAM. Dies ist eine deutliche Steigerung gegenüber den vorherigen Modellen, womit das Problem notwendige Leistung zumindest leicht gelöst wird. \\
+
+\subsection{Touchscreen}
+
+Als Touchscreen wird das Ofizielle 7" Touchscreen Display verwendet. Dies hat eine Auflösung von 800x480 Pixel. \\
+Zusätzlich zum Display gibt es auch eine Adapterplatine, mit der der Touchscreen versorgt wird. \\
+Halterungen für die Adapterplatine und den Raspberry PI gibt es auf der Rückseite des Touchscreens.
+
+\subsection{Implementierung von JavaChess}
+
+Alle benötigten Schritte beziehen sich lediglich auf die Software Implementation, nicht auf die Hardware Implementation (Powerbank, Gehäuse). \\[1ex]
+
+\textbf{Vorbereitung:} \\[2ex]
+Es wird ein RaspberryPI 3, eine mikro SD-Karte mit Raspbian, eine Stromversorgung bzw. eine Powerbank mit einem maximalen Strom von 2.5 A, der 7" Touchscreen, die Adapterplatine, eine Internetverbindung idealerweise über ein LAN-Kabel und eine USB-Tastatur benötigt. \\
+
+\begin{enumerate}
+	\item{Die SD Karte mit Raspbian wird in den Raspberry PI gegeben}
+	\item{Die Adapterplatine und der Raspberry PI wird auf den Touchscreen geschraubt}
+	\item{Die Stromversorgung für den Display (VCC \& GND Pin- rotes und blaues Kabel) wird sichergestellt. Das Flachbandkabel / Datenkabel wird zwischen Raspberry PI und Adapterplatine angebracht.}
+	\item{Der Raspberry Pi wird an die Stromversorgung angeschlossen, dadurch sollte dieser nun booten und den Display automatisch erkennen.}
+	\item{Sobald Raspbian gebootet hat, wird das LAN-Kabel angeschlossen.}
+	\item{Nun sollten folgende Befehle in der BASH ausgeführt werden:}
+	\begin{enumerate}
+		\item{sudo apt-get update}
+		\item{sudo apt-get upgrade}
+		\item{sudo apt-get install oracle-java8-jdk}
+		\item{reboot}
+	\end{enumerate}
+	\item{Nun wurde Java installiert. Es muss noch JavaFX ,,dazuinstalliert'' werden, da dies nicht in der Java-Embedded-JDK Serie enthalten ist.}
+	\item{Es muss OpenJFX gedownloaded werden. URL: https://chriswhocodes.com/}
+	\item{Hier die Version für den Raspberry PI downloaden (ARMv6)}
+	\item{Die gedownloadete OpenJFX Zip muss im Installationsverzeichnis ovn Java-JDK8 ,,unzipped'' werden.}
+	\item{In Commandline wird nun folgender Befehl ausgeführt: unzip openjfx-sdk-overlay-linux-arm6hf.zip -d /<installations-verzeichnis-von-Java (z.B.: /home/pi/jdk1.8.0_92)>}
+	\item{Nun wird das aktuelle Schachspiel gedownloaded (die Jar), URL: https://github.com/alexl4123/diplomarbeit/releases}
+	\item{Das Schachspiel wird in das Verzeichnis der Wahl abgelegt.}
+	\item{Nun kann das Schachspiel gestartet werden, dazu muss der Touchscreen aber noch konfiguriert werden, da sonst ein ,,interessanter'' Offset geschieht.}
+	\item{Dazu muss zuerst der Touchscreen identifiziert werden: cat /sys/class/input/event1/uevent}
+	\item{Bei dem versuchs Raspberry PI war dieses Input Device: 0/0/0/0}
+	\item{Um das Schachspiel bequem zu öffnen wird empfohlen ein BASH-Skript zu erstellen:}
+	\item{\# /bin/bash \\
+	java -Dmonocle.input.0/0/0/0.minX=0 -Dmonocle.input.0/0/0/0.minY=0 -Dmonocle.input.0/0/0/0.maxX=800 -Dmonocle.input.0/0/0/0.maxY=500 -jar chess.jar}
+	\item{Nun das Skript öffnen: sudo ./<skript>}
+	\item{Das Schachspiel sollte sich nun öffnen.}
+\end{enumerate}
+	
+
 %TODO
-%Present Code.
+
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+\section{Akkusteuerung}
+\label{SEC:death}
+
+
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+\section{Gehäuse}
+\label{SEC:case}
+
+
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+\section{Android}
+\label{SEC:android}
+
+
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
