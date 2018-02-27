@@ -38,28 +38,35 @@
 \BOOKMARK [3][-]{subsubsection.4.7.2}{Verwendete Schach-AI-Funktion}{subsection.4.7}% 38
 \BOOKMARK [3][-]{subsubsection.4.7.3}{Der MinMax-Algorithmus:}{subsection.4.7}% 39
 \BOOKMARK [3][-]{subsubsection.4.7.4}{Code}{subsection.4.7}% 40
-\BOOKMARK [1][-]{section.5}{Fertigungsdokumentation}{}% 41
-\BOOKMARK [1][-]{section.6}{Benutzerdokumentation}{}% 42
-\BOOKMARK [2][-]{subsection.6.1}{Installationsanleitung}{section.6}% 43
-\BOOKMARK [2][-]{subsection.6.2}{Anwendungsbeispiele}{section.6}% 44
-\BOOKMARK [2][-]{subsection.6.3}{Referenzhandbuch}{section.6}% 45
-\BOOKMARK [2][-]{subsection.6.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.6}% 46
-\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 47
-\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 48
-\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 49
-\BOOKMARK [1][-]{appendix.F}{Pflichtenheft}{}% 50
-\BOOKMARK [2][-]{subsection.F.1}{Funktionale Anforderungen}{appendix.F}% 51
-\BOOKMARK [2][-]{subsection.F.2}{Schnittstellen}{appendix.F}% 52
-\BOOKMARK [2][-]{subsection.F.3}{Abnahmekriterien}{appendix.F}% 53
-\BOOKMARK [2][-]{subsection.F.4}{Dokumentationsanforderungen}{appendix.F}% 54
-\BOOKMARK [2][-]{subsection.F.5}{Qualit\344tsstandards}{appendix.F}% 55
-\BOOKMARK [2][-]{subsection.F.6}{Abwicklungsprozess}{appendix.F}% 56
-\BOOKMARK [1][-]{appendix.G}{Zusammenfassung}{}% 57
-\BOOKMARK [2][-]{subsection.G.1}{Schlussfolgerung / Projekterfahrung}{appendix.G}% 58
-\BOOKMARK [2][-]{subsection.G.2}{Projektterminplanung}{appendix.G}% 59
-\BOOKMARK [2][-]{subsection.G.3}{Projektpersonalplanung und Kostenplanung}{appendix.G}% 60
-\BOOKMARK [3][-]{subsubsection.G.3.1}{Projektkostenplan}{subsection.G.3}% 61
-\BOOKMARK [3][-]{subsubsection.G.3.2}{Arbeitsnachweis Diplomarbeit}{subsection.G.3}% 62
-\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.G.3.2}% 63
-\BOOKMARK [3][-]{subsubsection.G.3.3}{Leistungscontrolling}{subsection.G.3}% 64
-\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.G.3.3}% 65
+\BOOKMARK [1][-]{section.5}{ChessPI}{}% 41
+\BOOKMARK [2][-]{subsection.5.1}{RaspberryPI}{section.5}% 42
+\BOOKMARK [2][-]{subsection.5.2}{Touchscreen}{section.5}% 43
+\BOOKMARK [2][-]{subsection.5.3}{Implementierung von JavaChess}{section.5}% 44
+\BOOKMARK [1][-]{section.6}{Akkusteuerung}{}% 45
+\BOOKMARK [1][-]{section.7}{Geh\344use}{}% 46
+\BOOKMARK [1][-]{section.8}{Android}{}% 47
+\BOOKMARK [1][-]{section.9}{Fertigungsdokumentation}{}% 48
+\BOOKMARK [1][-]{section.10}{Benutzerdokumentation}{}% 49
+\BOOKMARK [2][-]{subsection.10.1}{Installationsanleitung}{section.10}% 50
+\BOOKMARK [2][-]{subsection.10.2}{Anwendungsbeispiele}{section.10}% 51
+\BOOKMARK [2][-]{subsection.10.3}{Referenzhandbuch}{section.10}% 52
+\BOOKMARK [2][-]{subsection.10.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.10}% 53
+\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 54
+\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 55
+\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 56
+\BOOKMARK [1][-]{appendix.F}{Pflichtenheft}{}% 57
+\BOOKMARK [2][-]{subsection.F.1}{Funktionale Anforderungen}{appendix.F}% 58
+\BOOKMARK [2][-]{subsection.F.2}{Schnittstellen}{appendix.F}% 59
+\BOOKMARK [2][-]{subsection.F.3}{Abnahmekriterien}{appendix.F}% 60
+\BOOKMARK [2][-]{subsection.F.4}{Dokumentationsanforderungen}{appendix.F}% 61
+\BOOKMARK [2][-]{subsection.F.5}{Qualit\344tsstandards}{appendix.F}% 62
+\BOOKMARK [2][-]{subsection.F.6}{Abwicklungsprozess}{appendix.F}% 63
+\BOOKMARK [1][-]{appendix.G}{Zusammenfassung}{}% 64
+\BOOKMARK [2][-]{subsection.G.1}{Schlussfolgerung / Projekterfahrung}{appendix.G}% 65
+\BOOKMARK [2][-]{subsection.G.2}{Projektterminplanung}{appendix.G}% 66
+\BOOKMARK [2][-]{subsection.G.3}{Projektpersonalplanung und Kostenplanung}{appendix.G}% 67
+\BOOKMARK [3][-]{subsubsection.G.3.1}{Projektkostenplan}{subsection.G.3}% 68
+\BOOKMARK [3][-]{subsubsection.G.3.2}{Arbeitsnachweis Diplomarbeit}{subsection.G.3}% 69
+\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.G.3.2}% 70
+\BOOKMARK [3][-]{subsubsection.G.3.3}{Leistungscontrolling}{subsection.G.3}% 71
+\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.G.3.3}% 72
