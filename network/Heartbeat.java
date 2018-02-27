@@ -46,7 +46,6 @@ public class Heartbeat implements Runnable {
 				System.out.println("settintHeartClientSock");
 				clientHeartSocket = new Socket(Clientadress, 23420);
 				createHeartbeatStreams(clientHeartSocket);
-				isRunning = true;
 				firsttry = true;
 				clientHeartSocket.setSoTimeout(15000);
 			}
@@ -59,12 +58,11 @@ public class Heartbeat implements Runnable {
 				heartBeatSocket = new ServerSocket(23420);
 				clientHeartSocket=heartBeatSocket.accept();
 				createHeartbeatStreams(clientHeartSocket);
-				isRunning = true;
 				clientHeartSocket.setSoTimeout(15000);
 
 			}
 			int testnumber = 0;
-
+			isRunning = true;
 			while(isRunning){
 
 

@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -89,7 +90,7 @@ public class GUI extends Application{
 		S.setWidth(700);
 		S.setHeight(500);
 		
-		
+		S.getIcons().add(new Image("/Images/JavaChess.png"));
 		
 		
 		root = new BorderPane();
@@ -122,6 +123,7 @@ public class GUI extends Application{
 		//------------------------------------------------
 		S.setTitle("JavaChess");
 		S.setScene(sc);
+		BG.setStartupbuttonOn(true);
 		BG.drawStartMenu();
 	
 		
@@ -249,11 +251,14 @@ public class GUI extends Application{
 			alert.setHeaderText("Draw request from player " + !_BGG2.getTeam());
 			alert.setContentText("if you agree to make a Draw press 'OK'.");
 			
+			
 			Optional<ButtonType> answer = alert.showAndWait();
 			if(answer.get() == ButtonType.OK){
 				_BGG2.setDraw(true);
+				getBoardGui().soundPlayer.playSound("menu");
 			}else{
 				_BGG2.changeTeam();
+				getBoardGui().soundPlayer.playSound("menu");
 			}
 			
 			

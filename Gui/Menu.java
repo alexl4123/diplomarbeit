@@ -39,8 +39,8 @@ public class Menu extends MenuBar {
 	 * GameMode1 - if GameMode Lan has been selected
 	 * GameMode2 - if GameMode AI has been selected
 	 */
-	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode3;
-	public MenuItem newGame, Save, Load, Exit, refresh, disconnect;
+	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode3, soundMute;
+	public MenuItem newGame, Save, Load, Exit, disconnect, volInc, volDec;
 	int _GM;
 	public ReadingJob rj;
 	public hostingJob hostJob;
@@ -66,13 +66,16 @@ public class Menu extends MenuBar {
 		 Load = new MenuItem("Load");
 		 Exit = new MenuItem("Exit");
 		 disconnect = new MenuItem("Disconnect");
-		 refresh = new MenuItem("DEBUG/Refresh");
+		 volInc = new MenuItem("Increase volume");
+		 volDec = new MenuItem("Decrease volume");
+		 //refresh = new MenuItem("DEBUG/Refresh");
 		
 		//RadioButton Items
 		GameMode0 = new RadioMenuItem("Game Mode Local");
 		GameMode1 = new RadioMenuItem("Game Mode LAN");
 		GameMode2 = new RadioMenuItem("Game Mode AI");
 		GameMode3 = new RadioMenuItem("Launchpad");
+		soundMute = new RadioMenuItem("Mute Sound");
 		
 		//For Game Menu Items
 		MenuItem Draw = new MenuItem("Draw");
@@ -85,11 +88,15 @@ public class Menu extends MenuBar {
 		GameMode2.setToggleGroup(group);
 		GameMode0.setSelected(true);
 		
+		//SoundGroup
+		ToggleGroup soundGroup = new ToggleGroup();
+		soundMute.setToggleGroup(soundGroup);
 		
 		
-		menuFile.getItems().addAll(newGame, Save, Load, Exit, refresh);						//delete refresh when publish
+		
+		menuFile.getItems().addAll(newGame, Save, Load, Exit);						//delete refresh when publish
 		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode3, Draw);
-		
+		menuSound.getItems().addAll(soundMute, volInc, volDec);
 		
 		this.getMenus().addAll(menuFile, menuGame, menuSound);
 		
@@ -103,6 +110,7 @@ public class Menu extends MenuBar {
 			
 			@Override
 			public void handle(ActionEvent event) {
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 				Gui.newBG();
 				Gui.getBoardGui().setHighlighting(true);
 			}
@@ -113,20 +121,78 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
+				
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 				System.exit(1);
 				
 			}
 		});
 		
-		refresh.setOnAction(new EventHandler<ActionEvent>(){
+		//SoundMute
+		
+		soundMute.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				if(Gui.getBoardGui().soundPlayer.getIsMuted()==false){
+					Gui.getBoardGui().soundPlayer.setIsMuted(true);
+					soundMute.setSelected(true);
+				} else {
+				Gui.getBoardGui().soundPlayer.setIsMuted(false);
+				soundMute.setSelected(false);
+				Gui.getBoardGui().soundPlayer.playSound("menu");
+					
+				}
+			}
+		});
+		
+		//Volume Increase
+		volInc.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				Gui.getBoardGui().redraw();
+				
+				
+				if(Gui.getBoardGui().soundPlayer.getVolume()<1.0){
+					double temp = Gui.getBoardGui().soundPlayer.getVolume()+0.1;
+					if(temp > 1.0){
+						Gui.getBoardGui().soundPlayer.setVolume(1.0);
+						Gui.getBoardGui().soundPlayer.playSound("menu");
+					}else{
+						Gui.getBoardGui().soundPlayer.setVolume(temp);
+						Gui.getBoardGui().soundPlayer.playSound("menu");
+					}	
+				}else{
+					Gui.getBoardGui().soundPlayer.playSound("menu");
+				}
+			}
+		});
+		
+		//Volume Decrease
+		volDec.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				
+				if(Gui.getBoardGui().soundPlayer.getVolume()>0.0){
+					double temp = Gui.getBoardGui().soundPlayer.getVolume()-0.1;
+					if(temp <= 0.0){
+						Gui.getBoardGui().soundPlayer.setVolume(0.1);
+						Gui.getBoardGui().soundPlayer.playSound("menu");
+					}else{
+						Gui.getBoardGui().soundPlayer.setVolume(temp);
+						Gui.getBoardGui().soundPlayer.playSound("menu");
+					}	
+				}else{
+					Gui.getBoardGui().soundPlayer.playSound("menu");
+				}
 				
 			}
-			
 		});
+		
+		
+		
+		
 		
 		//disconnect
 		disconnect.setOnAction(new EventHandler<ActionEvent>() {
@@ -135,6 +201,7 @@ public class Menu extends MenuBar {
 			public void handle(ActionEvent arg0) {
 				
 				
+					Gui.getBoardGui().soundPlayer.playSound("menu");
 					Gui.getBoardGui().heartBeatJob.setDisconnectInitiation(true);
 					Gui.getBoardGui().heartBeatJob.stopHeartBeat();
 			    	Gui.getMenu().hostJob.stopSocket();
@@ -153,6 +220,7 @@ public class Menu extends MenuBar {
 			@Override
 			public void handle(ActionEvent event) {
 				
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 				FileChooser fileC = new FileChooser();
 				fileC.setTitle("Open Game File");
 				fileC.setInitialFileName("chess.sav");
@@ -172,6 +240,8 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
+				
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 				FileChooser fileC = new FileChooser();
 				fileC.setTitle("Open Game File");
 				fileC.setInitialFileName("chess.sav");
@@ -200,16 +270,20 @@ public class Menu extends MenuBar {
 				if(!Gui.getBGG2().getSchachmattBlack() && !Gui.getBGG2().getSchachMattWhite() && !Gui.getBGG2().getDraw()){
 				
 				Alert alert = new Alert(AlertType.CONFIRMATION);
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 				alert.setContentText("Do you really want to make a draw?");
 				alert.setTitle("Wish to draw");
 				alert.setHeaderText("Wish to draw.");
-				
+
 				Optional<ButtonType> result = alert.showAndWait();
 				if(result.get() == ButtonType.OK){
+					
+					
+					Gui.getBoardGui().soundPlayer.playSound("menu");
 					Gui.getBGG2().changeTeam();
 					Gui.wishDraw();
 				} else {
-					
+					Gui.getBoardGui().soundPlayer.playSound("menu");
 				}
 				}
 			}
@@ -221,6 +295,7 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 				Gui.setChoose(0);
 				setSelect(Gui.getChoose());
 			}
@@ -234,6 +309,7 @@ public class Menu extends MenuBar {
 			public void handle(ActionEvent event) {
 													//MOVE LATER
 				Alert chooser = new Alert(AlertType.CONFIRMATION);
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 				chooser.setTitle("Select Mode");
 				chooser.setHeaderText("Choose, wether you would like to host or to join a game!");
 				chooser.setContentText("Select your option:");
@@ -241,6 +317,7 @@ public class Menu extends MenuBar {
 				ButtonType hostButton = new ButtonType("host");
 				ButtonType joinButton = new ButtonType("join");
 				ButtonType abortButton = new ButtonType("abort");
+				
 				
 				chooser.getButtonTypes().setAll(hostButton, joinButton, abortButton);
 				Optional <ButtonType> result = chooser.showAndWait();
@@ -251,6 +328,7 @@ public class Menu extends MenuBar {
 				
 				if(result.get() == hostButton){
 					
+					Gui.getBoardGui().soundPlayer.playSound("menu");
 					Gui.setChoose(1);
 					//Gui.newBG();
 					//Gui.getBoardGui().setHighlighting(true);
@@ -279,7 +357,7 @@ public class Menu extends MenuBar {
 				}else if(result.get() == joinButton){
 					
 					Gui.setChoose(1);
-					
+					Gui.getBoardGui().soundPlayer.playSound("menu");
 					InetAddress joinAdress = null;
 					
 					
@@ -292,6 +370,7 @@ public class Menu extends MenuBar {
 					if (ipResult.isPresent()){
 						try {
 							
+							Gui.getBoardGui().soundPlayer.playSound("menu");
 							joinAdress = InetAddress.getByName(ipResult.get());
 							System.out.println(joinAdress.toString());
 							System.out.println(Gui.getBGG2().getLan().getIsConnectet());
@@ -319,7 +398,7 @@ public class Menu extends MenuBar {
 							Gui.getBGG2().setTeam(false);
 							
 							
-							menuFile.getItems().removeAll(Load, Save, newGame, refresh);
+							menuFile.getItems().removeAll(Load, Save, newGame);
 							menuGame.getItems().removeAll(GameMode0, GameMode1, GameMode2, GameMode3);
 							menuGame.getItems().addAll(disconnect);
 							
@@ -364,6 +443,7 @@ public class Menu extends MenuBar {
 					
 				}else if(result.get() == abortButton){
 					
+					Gui.getBoardGui().soundPlayer.playSound("menu");
 					Gui.setChoose(0);
 					System.out.println(Gui.getChoose());
 					setSelect(Gui.getChoose());
@@ -382,6 +462,7 @@ public class Menu extends MenuBar {
 			@Override
 			public void handle(ActionEvent event) {
 				Gui.setChoose(2);
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 			}
 		});
 		
@@ -394,6 +475,7 @@ public class Menu extends MenuBar {
 			@Override
 			public void handle(ActionEvent event) {
 				Gui.initLaunchad();
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 			}
 		});
 		

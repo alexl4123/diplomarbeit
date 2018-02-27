@@ -9,9 +9,12 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
+import com.sun.jndi.ldap.ext.StartTlsResponseImpl;
+
 import BackgroundMatrix.BackgroundGrid;
 import BackgroundMatrix.Move;
 import Game.*;
+import audio.AudioManager;
 import javafx.event.EventHandler;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -139,7 +142,9 @@ public class BoardGui extends Canvas {
 	/**
 	 * Used for enable and disable the Hosting Menu Button
 	 */
-	private boolean _blurryButtonOn, heartbeatMenu;
+	private boolean _blurryButtonOn, startupbuttonOn, heartbeatMenu;
+	
+	public AudioManager soundPlayer;
 	
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
 	
@@ -169,6 +174,7 @@ public class BoardGui extends Canvas {
 		DGY = 0;
 		BGGChange = new SimpleIntegerProperty(0);
 		Heartbeat = new SimpleIntegerProperty(0);
+		soundPlayer = new AudioManager();
 		L = new Local();
 		L.startUpLocal();
 		gc = this.getGraphicsContext2D();
@@ -350,6 +356,7 @@ public class BoardGui extends Canvas {
 					_BGG2.setTeam(L.getTeam());
 					_BGG = _BGG2.iBackground;
 					int iPos = OMove.getISelect();
+					soundPlayer.playSound("move");
 					if ((_iChoose == 1 || (_iChoose == 2 && L.getTeam()) || _iChoose == 0)
 							&& iPos != iMatrix) { // if move is possible
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
@@ -1037,10 +1044,11 @@ public class BoardGui extends Canvas {
 					//----------------------------------------------------------------------
 					setHighlighting(true);
 					setBlurryButtonOn(false);
+					System.out.println("Restore Menus");
 					_Gui.setChoose(0);
 					_BGG2.setChoose(0);
 					_Gui.getMenu().setSelect(0);
-					_Gui.getMenu().menuFile.getItems().addAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame, _Gui.getMenu().refresh);
+					_Gui.getMenu().menuFile.getItems().addAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame);
 					_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2, _Gui.getMenu().GameMode3);
 					_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().disconnect);
 					heartBeatJob.setDisconnectInitiation(false);
@@ -1060,13 +1068,13 @@ public class BoardGui extends Canvas {
 				
 				if(_BGG2.getLan().getIsConnectet()==true){
 					
-					_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame, _Gui.getMenu().refresh);
+					_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame);
 					_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2, _Gui.getMenu().GameMode3);
 					_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().disconnect);
 				}
 				if(_BGG2.getLan().getIsConnectet() == false){
 				System.out.println("socket stopped");
-				stopJob.stopSocket();
+				//stopJob.stopSocket();
 				_Gui.setChoose(0);
 				_BGG2.setChoose(0);
 				_Gui.getMenu().setSelect(0);
@@ -1106,8 +1114,10 @@ public class BoardGui extends Canvas {
 				
 				if(heartBeatJob.getDisconnectInitiation()){
 					gc.fillText("You disconnected!", 50*P1X, 40*P1Y);
+					heartbeatMenu = false;
 				}else if(!heartBeatJob.getDisconnectInitiation()){
 					gc.fillText("The other Player disconnected!", 50*P1X, 40*P1Y);
+					heartbeatMenu = false;
 				}
 			gc.fillText("Click to abort and proceed in local mode!",50*P1X, 48*P1Y);
 			Platform.runLater(new Runnable() {
@@ -1138,17 +1148,33 @@ public class BoardGui extends Canvas {
 		P1X = (_X / 100);
 		P1Y = (_Y / 100);
 		
+		Color darkbrown=Color.web("#4D3322");
+		Color lightBrown= Color.web("#8C603C");
+		Color lightBrownGrad= Color.web("B78357");
+		Color birchBrown=Color.web("#D4AC7B");
+		Color birchBrownGrad= Color.web("#E8D1B7");
+		
+		Image Icon = new Image("/Images/JavaChess.png");
+		
+		//gc.drawImage(image, X, Y, 7.5 * P1X, 7.5 * P1Y);
+		
 		BoxBlur frostEffect = new BoxBlur(10, 10, 1000);
 		gc.setEffect(frostEffect);
 		
 
 		bThinking=true;
+		soundPlayer.playSound("startup");
 		
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
+				
+				if(_Gui.getBoardGui().getStartupbuttonOn() == true){
 				setHighlighting(true);
+				soundPlayer.playSound("menu");
+				setStartupbuttonOn(false);
+				
 				try {
 					DrawGrid(_BGG);
 					bThinking=false;
@@ -1158,7 +1184,7 @@ public class BoardGui extends Canvas {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+				}
 			}
 		});
 		
@@ -1177,11 +1203,11 @@ public class BoardGui extends Canvas {
 		gc.setLineWidth(1.5);
 		gc.strokeRect(10*P1X, 22*P1Y, 80*P1X, 56*P1Y);
 		gc.setLineWidth(1);
-		gc.setFill(Color.WHITE);
+		gc.setFill(getLinearGradient(lightBrown, lightBrownGrad, 0.9));
 		gc.setEffect(null);
 		gc.setFont(new Font(2.5*P1X*P1Y));
 		gc.fillText("JavaChess", 65*P1X, 40*P1Y);
-		gc.setFill(Color.GREY);
+		gc.setFill(Color.BLACK);
 		gc.strokeText("JavaChess", 65*P1X, 40*P1Y);
 		gc.setFont(new Font(2.5*P1X));
 		gc.setFill(Color.BLACK);
@@ -1189,6 +1215,7 @@ public class BoardGui extends Canvas {
 		gc.setLineWidth(1.2);
 		gc.strokeRect(48.5*P1X, 56.5*P1Y, 30*P1X, 8*P1Y);
 		gc.setLineWidth(1);
+		gc.drawImage(Icon, 30, 100 ,50*P1X, P1Y*60);
 		_Gui.getStage().setResizable(false);
 		
 	}
@@ -1406,5 +1433,13 @@ public class BoardGui extends Canvas {
 	 */
 	public void setInterface_Class(interface_class Lauch) {
 		_Lauch = Lauch;
+	}
+
+	public boolean getStartupbuttonOn() {
+		return startupbuttonOn;
+	}
+
+	public void setStartupbuttonOn(boolean startupbuttonOn) {
+		this.startupbuttonOn = startupbuttonOn;
 	}
 }
