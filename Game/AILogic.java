@@ -158,6 +158,8 @@ public class AILogic {
 					M.setBGG(BGG2.iBackground);
 					M.setBGG2(BGG2);
 					
+					/* no comment */
+					
 					ArrayList<MovePos> AIM = M.getMoveMeeple(BGG2.iBackground, Team, iPos, x, y); 
 					for (MovePos A : AIM) { // loops threw all possible moves
 

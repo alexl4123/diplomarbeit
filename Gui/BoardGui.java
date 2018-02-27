@@ -247,7 +247,7 @@ public class BoardGui extends Canvas {
 		});
 		
 		
-		_Lauch.iCount.addListener(new ChangeListener<Number>() {
+		_Lauch.iCount.addListener(new ChangeListener<Number>() {//git commit suicide
 		
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
