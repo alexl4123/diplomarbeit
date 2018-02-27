@@ -41,8 +41,19 @@ public class LaunchpadController {
 					if(LaunchpadCommand.getColor(raster, note) == 0) {
 						return;
 					}
+					
+					
+					if(!Launchpad.chessinterface.ismyTurn(Convert.notetoX(selectmessage.getData1()), Convert.notetoY(selectmessage.getData1()))) {
+						return;
+					}
+					
+					
+					//make check if you can use this (is it on your team? and are you allowed to move (your turn ))
+					
 					selectmessage.setMessage(command, channel, note, velocity);
 					//Launchpad.entity.sendMIDI(1, notetoled(note), 127);
+					
+					
 					LaunchpadCommand.setLED(note, 127);
 					select = true;
 				} catch (InvalidMidiDataException e) {
@@ -69,6 +80,8 @@ public class LaunchpadController {
 				}
 			}
 		}
+		
+		
 	}
 
 }

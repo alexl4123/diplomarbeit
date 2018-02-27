@@ -5,8 +5,7 @@ public class ChessInterface {
 	private Interface_class _interface_Class;
 	// move + redraw
 	public boolean moveFig(int x, int y, int x2, int y2) {
-		_interface_Class.moveFig(x, y, x2, y2);
-		return true;
+		return _interface_Class.moveFig(x, y, x2, y2);
 	}
 
 	public int getFig(int x, int y) {

@@ -21,7 +21,7 @@ public class MidiInputReceiver implements Receiver {
 				int note = shortMessage.getData1();
 				int value = shortMessage.getData2();
 				
-				//System.out.println("Channel: " + channel + "  note: " + note + "   value: " + value);
+				System.out.println("Channel: " + channel + "  note: " + note + "   value: " + value);
 				
 				Launchpad.controller.receive(shortMessage.getCommand(), channel, note, value);
 				

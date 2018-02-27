@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import launchpad.Launchpad;
 import network.ReadingJob;
 import network.hostingJob;
 
@@ -352,7 +353,11 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
-				Gui.initLaunchad();
+				if(GameMode3.isSelected()) {
+					Gui.initLaunchad();
+				}else {
+					Launchpad.stop();
+				}
 			}
 		});
 		
@@ -380,6 +385,14 @@ public class Menu extends MenuBar {
 					GameMode0.setSelected(false);
 					GameMode1.setSelected(false);
 				}
+	}
+	
+	public void setLaunchpadMode(boolean status) {
+		GameMode3.setSelected(status);
+	}
+	
+	public boolean getLaunchpadMode() {
+		return GameMode3.isSelected();
 	}
 	
 	public int getGameMode(){

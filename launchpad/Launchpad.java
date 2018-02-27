@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import BackgroundMatrix.BackgroundGrid;
 import Gui.BoardGui;
+import Gui.GUI;
 
 
 
@@ -26,15 +27,19 @@ public class Launchpad implements Runnable {
 	public static Launchpad entity;
 	public static LaunchpadController controller;
 	public static ChessInterface chessinterface;
+	public static Thread thread;
 	
 	private static Interface_class interface_class;
 
-	
+	private GUI gui;
 	private BoardGui _BG;
 	private BackgroundGrid _BGG;
+	
+	public boolean setup = false;
+	public boolean finsetup = false;
 
-	private MidiDevice transdevice;
-	private MidiDevice recdevice;
+	private static MidiDevice transdevice;
+	private static MidiDevice recdevice;
 
 	private String selectlaunchpad(MidiDevice.Info[] infos) {
 
@@ -74,15 +79,23 @@ public class Launchpad implements Runnable {
 		String input = (String) JOptionPane.showInputDialog(null, "Launchpad: ", "Launchpad Selector",
 				JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
 
+		
 		return input;
 	}
 
 	private void setup() {
+		setup = false;
 
 		MidiDevice device;
 		MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
 
 		String selection = selectlaunchpad(infos);
+		
+		if(selection == null) {
+			System.out.println("No Launchpad was selected!");
+			setup = false;
+			return;
+		}
 
 		for (int i = 0; i < infos.length; i++) {
 
@@ -121,7 +134,7 @@ public class Launchpad implements Runnable {
 			}
 		}
 		
-		
+		setup = true;
 	}
 
 	public void sendMIDI(int channel, int note, int velocity) {
@@ -144,29 +157,51 @@ public class Launchpad implements Runnable {
 	
 
 	public void run() {
-		//setup();
+		finsetup = false;
+		setup();
+		finsetup = true;
+		System.out.println("hey");
+		if(!setup) {
+			System.out.println("Exit Launchpad-mode!");
+			this.gui.getMenu().setLaunchpadMode(false);
+			return;
+		}
+		this.gui.initLaunchpad2(this);
 		Launchpad.entity = this;
-		//controller = new LaunchpadController();
+		controller = new LaunchpadController();
 		chessinterface = new ChessInterface();
 		interface_class = new Interface_class();
 		interface_class.setBGG(_BGG);
 		interface_class.setBG(_BG);
 		
 		//do more setup
-		System.out.println("Hey");
-		chessinterface.setupinterfaceclass(interface_class);
 		
-		chessinterface.moveFig(0, 1, 0, 3);
+		chessinterface.setupinterfaceclass(interface_class);
+		System.out.println("Setup Interface_class successful!");
 		
 		
 	}
 	
 
+	//TODO Implement Stop class (cleanup usw.)
+	public static void stop() {
+		if(transdevice != null) {
+		transdevice.close();
+		}
+		if(recdevice != null) {
+		recdevice.close();
+		}
+		Launchpad.thread.interrupt();
+		System.out.println("Killing Launchpad!");
+	}
+	
+	
 	/**
 	 * Init
 	 */
-	public Launchpad() {
-		
+	public Launchpad(GUI gui) {
+		this.gui = gui;
+		finsetup = false;
 	}
 	
 	public void start(BackgroundGrid BGG, BoardGui BG){
@@ -174,6 +209,7 @@ public class Launchpad implements Runnable {
 		_BG = BG;
 		Thread t = new Thread(this);
 		t.start();
+		Launchpad.thread = t;
 	}
 
 	/**
