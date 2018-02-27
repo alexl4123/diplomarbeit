@@ -83,6 +83,7 @@ public class GUI extends Application{
 	 * 
 	 * Sets the stage, Menu Pos. and BoardGui pos
 	 */
+	
 	public void start(Stage _S) throws Exception {
 		S = _S;
 		S.setWidth(700);
@@ -118,8 +119,18 @@ public class GUI extends Application{
 		M = new Menu(this);
 		root.setTop(M);
 		
+		//------------------------------------------------
+		S.setTitle("JavaChess");
 		S.setScene(sc);
+		BG.drawStartMenu();
+	
+		
+	
+		
+		//-------------------------------------------------------
 		S.show();
+		
+		
 		
 		
 		

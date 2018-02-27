@@ -1031,6 +1031,10 @@ public class BoardGui extends Canvas {
 				if(_blurryButtonOn && heartbeatMenu){
 					
 					bThinking=false;
+					
+					//---------------------------------------------------------------------
+					
+					//----------------------------------------------------------------------
 					setHighlighting(true);
 					setBlurryButtonOn(false);
 					_Gui.setChoose(0);
@@ -1127,6 +1131,69 @@ public class BoardGui extends Canvas {
 		
 		
 	}
+	
+	
+	public void drawStartMenu(){
+		
+		P1X = (_X / 100);
+		P1Y = (_Y / 100);
+		
+		BoxBlur frostEffect = new BoxBlur(10, 10, 1000);
+		gc.setEffect(frostEffect);
+		
+
+		bThinking=true;
+		
+		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				setHighlighting(true);
+				try {
+					DrawGrid(_BGG);
+					bThinking=false;
+					_Gui.getStage().setResizable(true);
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		
+		try {
+			DrawGrid(_BGG);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		gc.setFill(Color.ANTIQUEWHITE);
+		gc.setEffect(null);
+		gc.setEffect(new DropShadow(500, Color.BLACK));
+		gc.fillRect(10*P1X, 22*P1Y, 80*P1X, 56*P1Y);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(1.5);
+		gc.strokeRect(10*P1X, 22*P1Y, 80*P1X, 56*P1Y);
+		gc.setLineWidth(1);
+		gc.setFill(Color.WHITE);
+		gc.setEffect(null);
+		gc.setFont(new Font(2.5*P1X*P1Y));
+		gc.fillText("JavaChess", 65*P1X, 40*P1Y);
+		gc.setFill(Color.GREY);
+		gc.strokeText("JavaChess", 65*P1X, 40*P1Y);
+		gc.setFont(new Font(2.5*P1X));
+		gc.setFill(Color.BLACK);
+		gc.fillText("Click to start the Game", 63.5*P1X, 60*P1Y);
+		gc.setLineWidth(1.2);
+		gc.strokeRect(48.5*P1X, 56.5*P1Y, 30*P1X, 8*P1Y);
+		gc.setLineWidth(1);
+		_Gui.getStage().setResizable(false);
+		
+	}
+	
+	
 	
 	/**
 	 * Returns the current Game mode
