@@ -40,7 +40,7 @@ public class Menu extends MenuBar {
 	 * GameMode2 - if GameMode AI has been selected
 	 */
 	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode3;
-	public MenuItem newGame, Save, Load, Exit, refresh;
+	public MenuItem newGame, Save, Load, Exit, refresh, disconnect;
 	int _GM;
 	public ReadingJob rj;
 	public hostingJob hostJob;
@@ -65,6 +65,7 @@ public class Menu extends MenuBar {
 		 Save = new MenuItem("Save");
 		 Load = new MenuItem("Load");
 		 Exit = new MenuItem("Exit");
+		 disconnect = new MenuItem("Disconnect");
 		 refresh = new MenuItem("DEBUG/Refresh");
 		
 		//RadioButton Items
@@ -127,6 +128,24 @@ public class Menu extends MenuBar {
 			
 		});
 		
+		//disconnect
+		disconnect.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				
+					Gui.getBoardGui().heartBeatJob.setDisconnectInitiation(true);
+					Gui.getBoardGui().heartBeatJob.stopHeartBeat();
+			    	Gui.getMenu().hostJob.stopSocket();
+			    	
+			    
+				
+				
+				
+			}
+			
+		});
 		
 		//Save
 		Save.setOnAction(new EventHandler<ActionEvent>() {
@@ -291,9 +310,10 @@ public class Menu extends MenuBar {
 							Thread rt = new Thread(rj);
 							rt.start();
 							
-							Heartbeat hb = new Heartbeat(joinAdress, false);
-							Thread th = new Thread(hb);
+							Gui.getBoardGui().heartBeatJob = new Heartbeat(joinAdress, false, Gui.getBoardGui().Heartbeat);
+							Thread th = new Thread(Gui.getBoardGui().heartBeatJob);
 							th.start();
+							Heartbeat.heartThread=th;
 							
 							Gui.getBoardGui().L.setTeam(false);
 							Gui.getBGG2().setTeam(false);
@@ -301,6 +321,7 @@ public class Menu extends MenuBar {
 							
 							menuFile.getItems().removeAll(Load, Save, newGame, refresh);
 							menuGame.getItems().removeAll(GameMode0, GameMode1, GameMode2, GameMode3);
+							menuGame.getItems().addAll(disconnect);
 							
 							
 							//Gui.getBoardGui().setLastMoveList((ArrayList<int[]>) Gui.getBGG2().getLan().netReadStream.readObject());

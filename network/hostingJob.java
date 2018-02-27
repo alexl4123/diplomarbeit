@@ -49,9 +49,10 @@ public class hostingJob implements Runnable {
 			
 			
 			try {
-				Heartbeat hb = new Heartbeat(null, true);
-				Thread th = new Thread(hb);
+				gui.getBoardGui().heartBeatJob = new Heartbeat(null, true, gui.getBoardGui().Heartbeat);
+				Thread th = new Thread(gui.getBoardGui().heartBeatJob);
 				th.start();
+				Heartbeat.heartThread=th;
 				System.out.println("Hosting");
 				tempsock = getServersock().accept();
 				bgg.getLan().setSocket(tempsock);

@@ -13,6 +13,7 @@ import BackgroundMatrix.BackgroundGrid;
 import BackgroundMatrix.Move;
 import Game.*;
 import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -138,7 +139,7 @@ public class BoardGui extends Canvas {
 	/**
 	 * Used for enable and disable the Hosting Menu Button
 	 */
-	private boolean _blurryButtonOn;
+	private boolean _blurryButtonOn, heartbeatMenu;
 	
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
 	
@@ -156,7 +157,9 @@ public class BoardGui extends Canvas {
 	 * @param <T>
 	 */
 	
-	public IntegerProperty BGGChange, Heatbeat;
+	public IntegerProperty BGGChange, Heartbeat;
+	
+	public network.Heartbeat heartBeatJob;
 	
 	public <T> BoardGui(GUI Gui) {
 		bThinking = false;
@@ -165,6 +168,7 @@ public class BoardGui extends Canvas {
 		DGX = 0;
 		DGY = 0;
 		BGGChange = new SimpleIntegerProperty(0);
+		Heartbeat = new SimpleIntegerProperty(0);
 		L = new Local();
 		L.startUpLocal();
 		gc = this.getGraphicsContext2D();
@@ -175,6 +179,22 @@ public class BoardGui extends Canvas {
 		this._X = this.getWidth();
 		this._Y = this.getHeight();
 		
+		
+		this.Heartbeat.addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+				
+				System.out.println("Heartbeat Timeout");
+				_Gui.getBGG2().getLan().setIsConnectet(false);
+				heartbeatMenu = true;
+				_Gui.getBoardGui().drawBlurryMenu(null);
+				
+				
+				
+				
+			}
+		});
 		
 		this.BGGChange.addListener(new ChangeListener<Number>() {
 
@@ -1002,12 +1022,30 @@ public class BoardGui extends Canvas {
 		setBlurryButtonOn(true);
 		bThinking=true;
 		
+		
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
 				
-				if(_blurryButtonOn){
+				if(_blurryButtonOn && heartbeatMenu){
+					
+					bThinking=false;
+					setHighlighting(true);
+					setBlurryButtonOn(false);
+					_Gui.setChoose(0);
+					_BGG2.setChoose(0);
+					_Gui.getMenu().setSelect(0);
+					_Gui.getMenu().menuFile.getItems().addAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame, _Gui.getMenu().refresh);
+					_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2, _Gui.getMenu().GameMode3);
+					_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().disconnect);
+					heartBeatJob.setDisconnectInitiation(false);
+					_Gui.getStage().setResizable(true);
+					
+					
+				}
+				
+				if(_blurryButtonOn && !heartbeatMenu){
 				
 				System.out.println("Mouse clicked" + "X:" + event.getX() + "  Y:" + event.getY() );
 				System.out.println("Redrawing");
@@ -1015,11 +1053,12 @@ public class BoardGui extends Canvas {
 				setHighlighting(true);
 				setBlurryButtonOn(false);
 				
+				
 				if(_BGG2.getLan().getIsConnectet()==true){
 					
 					_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame, _Gui.getMenu().refresh);
 					_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2, _Gui.getMenu().GameMode3);
-					
+					_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().disconnect);
 				}
 				if(_BGG2.getLan().getIsConnectet() == false){
 				System.out.println("socket stopped");
@@ -1046,15 +1085,37 @@ public class BoardGui extends Canvas {
 		
 		try {
 			DrawGrid(_BGG);
-			_Gui.getStage().setResizable(false);
+			
 			gc.setFill(Color.ANTIQUEWHITE);
 			gc.setEffect(new DropShadow(10, Color.BLACK));
 			gc.fillRect(20*P1X, 35*P1Y, 60*P1X, 20*P1Y);
 			gc.setEffect(null);
 			gc.setFill(Color.BLACK);
 			gc.setFont(new Font(2*P1X));
+			
+			if(!heartbeatMenu){
 			gc.fillText("Waiting for Connections...", 50*P1X, 40*P1Y);
 			gc.fillText("Click to abort and proceed in local mode!", 50*P1X, 48*P1Y);
+			_Gui.getStage().setResizable(false);
+			}
+			else if(heartbeatMenu){
+				
+				if(heartBeatJob.getDisconnectInitiation()){
+					gc.fillText("You disconnected!", 50*P1X, 40*P1Y);
+				}else if(!heartBeatJob.getDisconnectInitiation()){
+					gc.fillText("The other Player disconnected!", 50*P1X, 40*P1Y);
+				}
+			gc.fillText("Click to abort and proceed in local mode!",50*P1X, 48*P1Y);
+			Platform.runLater(new Runnable() {
+				
+				@Override
+				public void run() {
+					_Gui.getStage().setResizable(false);
+					
+				}
+			});
+			 									
+			}
 			
 			
 		} catch (Exception e) {

@@ -13,7 +13,8 @@ import javafx.beans.property.IntegerProperty;
 
 public class Heartbeat implements Runnable {
 
-	private boolean isHoster, isRunning, firsttry;
+	public static Thread heartThread;
+	private boolean isHoster, isRunning, firsttry, initiateDisconnect;
 	private ServerSocket heartBeatSocket;
 	private IntegerProperty trigger;
 	private InetAddress Clientadress;
@@ -22,11 +23,13 @@ public class Heartbeat implements Runnable {
 	public ObjectInputStream heartReadStream;
 
 
-	public Heartbeat(InetAddress Clientadress, boolean host){
+	public Heartbeat(InetAddress Clientadress, boolean host, IntegerProperty trigger){
 
 		
 		this.Clientadress = Clientadress;
 		this.isHoster = host;
+		this.trigger = trigger;
+		initiateDisconnect = false;
 
 
 
@@ -92,16 +95,21 @@ public class Heartbeat implements Runnable {
 
 		} catch (InterruptedIOException e){
 
-			System.out.println("BLEEEEEEDED OUT - WOHOOOOOI");
+			System.out.println("Disconnected ");
 			isRunning = false;
+			trigger.set(trigger.get()+1);
 
 		} catch (IOException e) {
 			
 			System.out.println("Hearbeat IOEXCEPTION");
+			isRunning = false;
+			trigger.set(trigger.get()+1);
 			
 		} catch (InterruptedException e) {
 			
 			System.out.println("Heartbeat Interrupt Exception");
+			isRunning = false;
+			trigger.set(trigger.get()+1);
 		}
 
 
@@ -128,8 +136,22 @@ public class Heartbeat implements Runnable {
 		System.out.println("HeartStream two created");
 	}
 	
-	public void setIsRunning(boolean isRunning){
-		this.isRunning = isRunning; 
+	public void stopHeartBeat(){
+		this.isRunning = false;
+		//this.heartThread.interrupt();
+		
+			System.out.println("going to sleep");
+			this.heartThread.interrupt();
+	
 	}
+	
+	public void setDisconnectInitiation(boolean c){
+		this.initiateDisconnect = c;
+	}
+	
+	public boolean getDisconnectInitiation(){
+		return this.initiateDisconnect;
+	}
+	
 
 }
