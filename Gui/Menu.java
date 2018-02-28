@@ -310,6 +310,7 @@ public class Menu extends MenuBar {
 													//MOVE LATER
 				Alert chooser = new Alert(AlertType.CONFIRMATION);
 				Gui.getBoardGui().soundPlayer.playSound("menu");
+				int Backup = Gui.getChoose();
 				chooser.setTitle("Select Mode");
 				chooser.setHeaderText("Choose, wether you would like to host or to join a game!");
 				chooser.setContentText("Select your option:");
@@ -430,13 +431,22 @@ public class Menu extends MenuBar {
 						} catch (ClassNotFoundException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							Gui.setChoose(0);
+							setSelect(Gui.getChoose());
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							Gui.setChoose(0);
+							setSelect(Gui.getChoose());
 						}
+						
+					} else{
+						System.out.println("yolo");
+						Gui.setChoose(Backup);
+						setSelect(Gui.getChoose());
 					}
 					
-					
+					//TODO BUG somewhere around here!
 					
 //----------------------------------------------------------------------------------------------------				
 					
@@ -444,13 +454,14 @@ public class Menu extends MenuBar {
 				}else if(result.get() == abortButton){
 					
 					Gui.getBoardGui().soundPlayer.playSound("menu");
-					Gui.setChoose(0);
+					Gui.setChoose(Backup);
 					System.out.println(Gui.getChoose());
 					setSelect(Gui.getChoose());
 					
 				}else{
 					
-					
+					Gui.setChoose(0);
+					setSelect(Gui.getChoose());
 				}
 				
 			}
