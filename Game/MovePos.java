@@ -6,7 +6,7 @@ package Game;
  * @version 1.1 - Draw
  *
  */
-public class MovePos {
+public class MovePos implements Serializable{
 	
 	/**
 	 * X - where the Meeple should move to on X

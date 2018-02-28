@@ -18,7 +18,7 @@ import java.net.Socket;
  */
 
 
-public class LAN {
+public class LAN implements Serializable{
 
 	private Socket _theSocket = null;
 	public ObjectInputStream netReadStream;
