@@ -1,5 +1,7 @@
 package Game;
 
+import java.io.Serializable;
+
 /**
  * Saves the AI-Moves
  * @author alexl12 - 2017

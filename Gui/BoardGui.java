@@ -3,6 +3,7 @@ package Gui;
 import java.awt.Button;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.beans.*;
 import java.io.IOException;
 
@@ -266,7 +267,6 @@ public class BoardGui extends Canvas {
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println(bThinking + "::" + _BGG2.getTeam() + "::" + L.getTeam());
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 					ButtonClick(event);
 				}
@@ -357,7 +357,8 @@ public class BoardGui extends Canvas {
 					_BGG = _BGG2.iBackground;
 					int iPos = OMove.getISelect();
 					soundPlayer.playSound("move");
-					if ((_iChoose == 1 || (_iChoose == 2 && L.getTeam()) || _iChoose == 0)
+					
+					if ((_iChoose == 1 || (_iChoose == 2 && !L.getTeam()) || (_iChoose == 3 && L.getTeam()) || _iChoose == 0)
 							&& iPos != iMatrix) { // if move is possible
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
 						_BGG = XY;
@@ -366,7 +367,7 @@ public class BoardGui extends Canvas {
 						_Gui.setBGG2(_BGG2);
 						
 					}
-					System.out.println("::" + L.getTeam() + "::" + _BGG2.getLan().getFirstturn());
+					
 					if (_iChoose == 1 && ((!L.getTeam() && !_BGG2.getLan().getFirstturn()) || (L.getTeam() && _BGG2.getLan().getFirstturn()))){ // if move has happend,
 															// do what it takes
 															// ,,LAN''
@@ -426,20 +427,26 @@ public class BoardGui extends Canvas {
 						
 						
 						
-					} else if (_iChoose == 2 && !L.getTeam() && !OMove.getBauer()) {// if
-																					// move
-																					// has
-						// happend, do
-						// what it
-						// necessary
-						// ,,AI''
-						// Give and take Area
-						AI _AI = new AI(_BGG2, this);
+					} else if (_iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer()) {
+						//White AI
+						AI _AI = new AI(_BGG2, this,true,false);
+						_AI.start();
+						LastMoveList = _AI.getLMoveList();
+						bThinking = true;
+						redraw();
+						L.setTeam(false);
+					} else if (_iChoose == 3 && !_BGG2.getTeam() && !OMove.getBauer()) {
+						//Black AI
+						AI _AI = new AI(_BGG2, this,false,false);
 						_AI.start();
 						LastMoveList = _AI.getLMoveList();
 						bThinking = true;
 						redraw();
 						L.setTeam(true);
+					} else if(_iChoose == 4) {
+						AIvsAI AIFuckUp = new AIvsAI(_BGG2, this);
+						AIFuckUp.start();
+						bThinking = true;
 					}
 
 				}
@@ -533,11 +540,11 @@ public class BoardGui extends Canvas {
 					_BGG2.setTeam(L.getTeam());
 					_BGG = _BGG2.iBackground;
 					OMove.setBGG(_BGG);
-					if ((_iChoose == 1 && L.getTeam()) || (_iChoose == 2 && L.getTeam()) || _iChoose == 0) { // if
+					if ((_iChoose == 1 && L.getTeam()) || (_iChoose == 2 && !L.getTeam()) || (_iChoose == 3 && L.getTeam()) || _iChoose == 0) { // if
 																												// move
 																												// is
 																												// possible
-						System.out.println("Moved");
+						
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
 						_BGG = XY;
 						_BGG2 = OMove.getBGG2();
@@ -574,23 +581,26 @@ public class BoardGui extends Canvas {
 						
 						
 						
-					} else if (_iChoose == 2 && _BGG2.getTeam() != L.getTeam() && !OMove.getBauer()) {// if
-						// move
-						// has
-						// happend,
-						// do
-						// what
-						// it
-						// takes
-						// to
-						// AI
-
-						AI _AI = new AI(_BGG2, this);
+					} else if (_iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer()) {
+						//White AI
+						AI _AI = new AI(_BGG2, this,true,false);
+						_AI.start();
+						LastMoveList = _AI.getLMoveList();
+						bThinking = true;
+						redraw();
+						L.setTeam(false);
+					} else if (_iChoose == 3 && !_BGG2.getTeam() && !OMove.getBauer()) {
+						//Black AI
+						AI _AI = new AI(_BGG2, this,false,false);
 						_AI.start();
 						LastMoveList = _AI.getLMoveList();
 						bThinking = true;
 						redraw();
 						L.setTeam(true);
+					} else if(_iChoose == 4) {
+						AIvsAI AIFuckUp = new AIvsAI(_BGG2, this);
+						AIFuckUp.start();
+						bThinking = true;
 					}
 
 				}

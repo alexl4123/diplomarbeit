@@ -52,6 +52,10 @@ public class AI extends Thread {
 	 */
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
 	
+	/**
+	 * The team the AI plays
+	 */
+	private boolean _AiTeam;
 
 	/**
 	 * A boolean variable indicating whether the AICaller class is running. This
@@ -60,14 +64,20 @@ public class AI extends Thread {
 	 */
 	private static boolean bRunning = false;
 	
+	private boolean _AIvsAI;
+	
+	private AIvsAI _AIFuckUp;
+	
 	/**
 	 * The constructor
 	 * @param BGG2 - BackgroundGrid - sets the location of the meeples
 	 * @param Gui - Gui - for redrawing the Gui
 	 */
-	public AI(BackgroundGrid BGG2, BoardGui Gui) {
+	public AI(BackgroundGrid BGG2, BoardGui Gui, boolean AI_Team, boolean AIvsAI) {
 		this._BGG2 = BGG2;
 		this._Gui = Gui;
+		this._AiTeam = AI_Team;
+		_AIvsAI = AIvsAI;
 	}
 
 	/**
@@ -89,11 +99,12 @@ public class AI extends Thread {
 				BackgroundGrid BGGX = _BGG2;
 				
 				//here the real AI is called
-				float fx = AIL.alphaBeta(5, _BGG2, _BGG2.getTeam());
+				float fx = AIL.alphaBeta(5, _BGG2, _AiTeam);
 				
 				
 				//System.out.println("THE COMPUTER:"+fx);
 				if(fx > -5000){
+					try {
 					int i = AIL.BestMove.size();
 					
 					//gets the last ,,best'' move, because this one is ever the best
@@ -146,6 +157,9 @@ public class AI extends Thread {
 					LastMoveList.add(LML);
 					
 					//System.out.println("LML: +" + LastMoveList.get(0)[0]);
+					}catch(Exception ex) {
+						ex.printStackTrace();
+					}
 				}else{ //if somebody is mated
 					_BGG2.setSchachmattBlack(true);
 				}
@@ -160,6 +174,7 @@ public class AI extends Thread {
 		}
 		_Gui.setThinking(false);
 		_Gui.redraw();
+		if(!_AIvsAI) {
 		Platform.runLater(new Runnable() {
 
 	        @Override
@@ -169,6 +184,15 @@ public class AI extends Thread {
 	        }
 	        
 		});
+		}
+		
+		if(_AIvsAI && _AiTeam) {
+			_AIFuckUp.bAI_Thinking_White = false;
+		} else if(_AIvsAI && !_AiTeam) {
+			_AIFuckUp.bAI_Thinking_Black = false;
+		}
+		
+		
 		bRunning = false;
 
 	}
@@ -229,6 +253,10 @@ public class AI extends Thread {
 	 */
 	public BackgroundGrid getBGG() {
 		return _BGG2;
+	}
+	
+	public void setAIvsAI(AIvsAI AIFuckup) {
+		_AIFuckUp = AIFuckup;
 	}
 	
 	/**

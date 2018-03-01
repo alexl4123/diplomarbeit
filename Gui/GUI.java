@@ -251,8 +251,8 @@ public class GUI extends Application{
 			alert.setHeaderText("Draw request from player " + !_BGG2.getTeam());
 			alert.setContentText("if you agree to make a Draw press 'OK'.");
 			
-			
 			Optional<ButtonType> answer = alert.showAndWait();
+			
 			if(answer.get() == ButtonType.OK){
 				_BGG2.setDraw(true);
 				getBoardGui().soundPlayer.playSound("menu");
@@ -268,10 +268,13 @@ public class GUI extends Application{
 			alert.setContentText("Class GUI - Methode wishDraw() - place here what should be done in case of Network - switchTeam() already happend - send the request to the other player");
 			
 		} else if(BG.getChoose() == 2){
+			System.out.println("line 271");
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setHeaderText("In AI mode, no Draw is possible!");
+			alert.setHeaderText("It´t a Draw, the player gave up.");
 			alert.setContentText(null);
-			alert.setTitle("No Draw");
+			alert.setTitle("Draw");
+			alert.show();
+			_BGG2.setDraw(true);
 		}
 	}
 	

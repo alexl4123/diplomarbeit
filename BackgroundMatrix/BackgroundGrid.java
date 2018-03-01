@@ -584,6 +584,7 @@ public class BackgroundGrid implements Serializable {
 		if (Schach && !SchachMatt) {
 			
 			SchachmattWhite = SchachMatt(iID, BGG.iBackground, KingX, KingY, team, BGG);
+			System.out.println("Schach:" + Schach + ":SchachmattW" + SchachmattWhite);
 			if(SchachmattWhite){
 				
 				if (team) {
@@ -752,12 +753,8 @@ public class BackgroundGrid implements Serializable {
 							}
 
 						}
-
 						if (SumOfField == 0) {
 							_ID = iBack; _iX = X; _iY = Y;
-							if(iBack == 231){
-								System.out.println("231-KingX:" + KingX + ":KingY:" + KingY + ":");
-							}
 							return true;
 						}
 					}
@@ -904,13 +901,14 @@ public class BackgroundGrid implements Serializable {
 		Moves.setBGG2(BGG);
 		//Moves.GetMove(iID, KingX, KingY, BGG);
 		Moves.setBSelect(false);
-		
+		System.out.println("line 908:");
 		
 		int iYA, iXA;
 		
-		if(Schach(iBackground, _iX, _iY, !Team)){
+		/*if(Schach(iBackground, _iX, _iY, !Team)){
+			System.out.println("line 913");
 			return false;
-		}
+		}*/
 		int iBB = iBackground[_iX][_iY];
 		ArrayList<MovePos> AttackMoves = Moves.getMoveMeeple(iBackground, !Team, iBB, _iX, _iY);
 		for(MovePos MP : AttackMoves){
@@ -921,22 +919,22 @@ public class BackgroundGrid implements Serializable {
 					ArrayList<MovePos> DefenseMoves = Moves.getMoveMeeple(iBackground, Team, iBack, iXA, iYA);
 					
 					for(MovePos MPA : DefenseMoves){
-						if(MP.PX == 6 && MP.PY == 2){
-							//System.out.println(MPA.PX + ":::" + MPA.PY);
-						}
-						if(iBack == 131){
-							System.out.println(DefenseMoves.size() + "::DefenseMoves::" + iBack + ":Foe:" + MP.ID + ":Foe X:" + MP.PX + ":Foe Y:" + MP.PY);
-						}
 						
-						
-						if(MP.PX == MPA.PX && MP.PY == MPA.PY && MPA.ID != 150 && MPA.ID != 250){
+						if(MP.PX == MPA.PX && MP.PY == MPA.PY){
 							System.out.println(MP.PX + "::" + MPA.PX + "::" + MP.PY + "::" + MPA.PY+"::"+MPA.ID);
 							iBackground[MPA.PX][MPA.PY] = MPA.ID;
 							iBackground[MPA.X][MPA.Y] = MPA.ID2;
-							if(!SchachKing(Team, BGG, KingX, KingY, true, false)){
+							for(int itestY = 0; itestY < 8; itestY++) {
+								for(int itestX = 0; itestX < 8; itestX++) {
+									System.out.print(":"+Board[itestX][itestY]+":");
+								}
+								System.out.println("");
+							}
+							if(!SchachKing(Team, BGG, MPA.PX, MPA.PY, true, false) && !Schach(Board, MPA.PX, MPA.PY, Team)){
 								//System.out.println(MPA.PX + "::" + MPA.PY + "::Funkt");
 								iBackground[MPA.PX][MPA.PY] = MPA.ID2;
 								iBackground[MPA.X][MPA.Y] = MPA.ID;
+								System.out.println("line 941");
 								return false;
 							}
 							iBackground[MPA.PX][MPA.PY] = MPA.ID2;
@@ -976,6 +974,7 @@ public class BackgroundGrid implements Serializable {
 			//System.out.println(iXA + ":: " + iYA);
 			
 			if(Schach(iBackground, _iX, _iY, !Team)){
+				System.out.println("line 981");
 				return false;
 			}
 			
