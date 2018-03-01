@@ -91,7 +91,7 @@ public class BackgroundGrid implements Serializable {
 	int RunnerNumber;// how many add. runners are
 	String name; // just for debugging
 	int _Choose; // Which game mode is selected
-	LAN _Lan;
+	public LAN _Lan;
 	private boolean[] bPawnSpecMoved, bKingMoved, bTowerMoved;
 
 	/**
@@ -113,7 +113,7 @@ public class BackgroundGrid implements Serializable {
 		RunnerNumber = 0;
 		TurnRound = 0;
 		move = true;
-		_Lan=new LAN();
+		
 		
 		team = true;
 		_TotalMoveList = new ArrayList<MovePos>();
@@ -253,6 +253,8 @@ public class BackgroundGrid implements Serializable {
 			}
 
 		}
+		
+		_Lan=new LAN(iBackground);
 
 	}
 

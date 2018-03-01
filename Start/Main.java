@@ -50,8 +50,10 @@ public class Main extends Application {
 		
 	    
 	    if(G.getMenu().hostJob.getServersock() != null){
-	    	G.getMenu().hostJob.stopSocket();
 	    	G.getBoardGui().heartBeatJob.stopHeartBeat();
+	    	G.getMenu().hostJob.stopSocket();
+	    	
+	    	
 	    }
 	    
 	}
