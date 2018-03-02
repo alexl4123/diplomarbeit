@@ -69,7 +69,6 @@ public class BoardGui extends Canvas {
 
 	/**
 	 * where the entire board is drawn onto
-	 * test
 	 */
 	GraphicsContext gc;
 
@@ -277,7 +276,7 @@ public class BoardGui extends Canvas {
 			@Override
 			public void handle(MouseEvent event) {
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
-					ButtonClick(event);
+					ButtonReleased(event);
 				}
 
 				event.consume();
@@ -311,7 +310,7 @@ public class BoardGui extends Canvas {
 			public void handle(MouseEvent event) {
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack()  && !_BGG2.getDraw()) {
 					bDrag = false;
-					ButtonDragF(event);
+					ButtonReleased(event);
 				}
 
 			}
@@ -348,18 +347,20 @@ public class BoardGui extends Canvas {
 		}
 
 	}
-
+	
 	/**
-	 * Drag End
+	 * For Drag end or button clicked
 	 * 
 	 * @param e
 	 *            - Event (Mouse Event)
 	 */
-	private void ButtonDragF(MouseEvent e) {
+	private void ButtonReleased(MouseEvent e) {
 		try {
+			
 			LastMoveList.clear();
 			for (Tile T : TileList) {
 				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && !OMove.getBauer()) {
+					
 					OMove.setBoardGui(this);
 					int iMatrix = _BGG[T.getXP()][T.getYP()];
 					_BGG2.setTeam(L.getTeam());
@@ -457,7 +458,7 @@ public class BoardGui extends Canvas {
 				}
 			}
 		} catch (Exception ex) {
-
+			ex.printStackTrace();
 		}
 		_Lauch.setBGG(_BGG2);
 		redraw();
@@ -525,101 +526,7 @@ public class BoardGui extends Canvas {
 
 	}
 
-	/**
-	 * What happens when a mouse click has occurd? It is in this method,
-	 * basically at first it gets the Tile in 8x8 then it calls the getMove
-	 * method from the object OMove (class Move). Then it redraws the Scene
-	 * 
-	 * @param e
-	 *            - MouseEvent
-	 */
-	private void ButtonClick(MouseEvent e) {
-		try {
-			LastMoveList.clear();
-			for (Tile T : TileList) {
-				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && OMove.getBauer() == false) {
-					OMove.setBoardGui(this);
-					int iMatrix;
-					iMatrix = _BGG[T.getXP()][T.getYP()];
-
-					_BGG2.setTeam(L.getTeam());
-					_BGG = _BGG2.iBackground;
-					OMove.setBGG(_BGG);
-
-					if ((_iChoose == 1 && L.getTeam()) || (_iChoose == 2 && !L.getTeam()) || (_iChoose == 3 && L.getTeam()) || _iChoose == 0) { // if
-																												// move
-																												// is
-																												// possible
-						
-
-						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
-						_BGG = XY;
-						_BGG2 = OMove.getBGG2();
-						L.setTeam(_BGG2.getTeam());
-						_Gui.setBGG2(_BGG2);
-					}
-
-					if (_iChoose == 1 && _BGG2.getTeam() != L.getTeam()) { // if
-						// move
-						// has
-						// happend,
-						// do
-						// what
-						// it
-						// takes
-						// to
-						// LAN
-
-						System.out.println("schreib jetzt2");
-						_BGG2.getLan().netWriteStream.writeObject(_BGG);
-						_BGG2.getLan().netWriteStream.flush();
-						for(int y = 0; y<8;y++){
-							for(int x = 0; x<8;x++){
-								System.out.print(":"+_BGG[x][y]+":");
-							}
-							System.out.println(" ");
-						}
-						System.out.println("Hab gschrieben2");
-						bThinking = true;
-
-						
-						
-						
-						
-						
-						
-						
-					} else if (_iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer()) {
-						//White AI
-						AI _AI = new AI(_BGG2, this,true,false);
-						_AI.start();
-						LastMoveList = _AI.getLMoveList();
-						bThinking = true;
-						redraw();
-						L.setTeam(false);
-					} else if (_iChoose == 3 && !_BGG2.getTeam() && !OMove.getBauer()) {
-						//Black AI
-						AI _AI = new AI(_BGG2, this,false,false);
-
-						_AI.start();
-						LastMoveList = _AI.getLMoveList();
-						bThinking = true;
-						redraw();
-						L.setTeam(true);
-					} else if(_iChoose == 4) {
-						AIvsAI AIFuckUp = new AIvsAI(_BGG2, this);
-						AIFuckUp.start();
-						bThinking = true;
-					}
-
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		redraw();
-	}
-
+	
 	/**
 	 * Highlight fields where move is possible
 	 * 

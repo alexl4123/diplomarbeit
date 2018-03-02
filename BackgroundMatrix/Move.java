@@ -120,6 +120,7 @@ public class Move {
 		
 		_moveAllowed = false;
 		_BGG2 = BGG2;
+		_BGG = _BGG2.iBackground;
 		TheMove = _BGG2.iBackground;
 		_Moved = false;
 		int Check = Math.abs(iPos - _iSelect);
@@ -132,7 +133,7 @@ public class Move {
 
 			for (MovePos MP : MoveList) {
 				if (iPosX == MP.PX && iPosY == MP.PY && AllowedMove(MP)) {
-					
+					System.out.println("line 135");
 					_BGG2.Board = _BGG2.iBackground;
 					
 					
@@ -323,7 +324,7 @@ public class Move {
 
 	/**
 	 * Is the move method for AI and Player This method follows the DRY
-	 * principle (=Dont´t repead yourself) This methode gives back all possible
+	 * principle (=Dontï¿½t repead yourself) This methode gives back all possible
 	 * moves for one Meeple
 	 * 
 	 * @param BGG
@@ -1085,7 +1086,7 @@ public class Move {
 		ChooserF.setLocation(newPoint);
 
 		String[] Meeples = { "Queen", "Jumper", "Runner", "Tower" };
-		JComboBox JBox = new JComboBox(Meeples); // a combo box with all .sav´s
+		JComboBox JBox = new JComboBox(Meeples); // a combo box with all .savï¿½s
 
 		// save or load
 
