@@ -209,8 +209,7 @@ public class Move {
 
 		{
 			/*
-			 * Here will be one day, if a meeple is selected - all possible
-			 * moves should be displayed
+			 * All possible moves are written - displayed in BoardGui()
 			 */
 			if (iPos > 99) {
 				_LastMoveList.clear();
@@ -263,6 +262,9 @@ public class Move {
 			BGG2.changeTeam();
 			BGG2.higherTurnRound();
 			_Moved = false;
+		} else if(_bSelect) {
+			//only for Schach-Debug
+			//getSchach2();
 		}
 		return TheMove;
 	}
@@ -1201,13 +1203,6 @@ public class Move {
 				_BGG2.iBackground = TheMove;
 				getSchach2();
 				BG.redraw();
-				if(BG.getChoose() == 2){
-					AI _AI = new AI(_BGG2, BG);
-					_AI.start();
-					BG.setLastMoveList(_AI.getLMoveList());
-					BG.setThinking(true);
-					
-				}
 				// renewPanel(0, 0, false);
 				ChooserF.setVisible(false);
 
