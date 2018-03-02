@@ -70,6 +70,7 @@ public class BoardGui extends Canvas {
 	/**
 	 * where the entire board is drawn onto
 	 * test
+	 * test
 	 */
 	GraphicsContext gc;
 
