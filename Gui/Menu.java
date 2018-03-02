@@ -435,6 +435,7 @@ public class Menu extends MenuBar {
 
 								Gui.getBoardGui().L.setTeam(false);
 								Gui.getBGG2().setTeam(false);
+								Gui.getBoardGui().setOnlineHighlight(true);
 
 
 								menuFile.getItems().removeAll(Load, Save, newGame);
