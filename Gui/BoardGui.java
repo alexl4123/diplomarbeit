@@ -227,10 +227,14 @@ public class BoardGui extends Canvas {
 
 
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
+					_blurryButtonOn = true;
+					heartbeatMenu = true;
+					drawBlurryMenu(null);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					_blurryButtonOn = true;
+					heartbeatMenu = true;
+					drawBlurryMenu(null);
 					e.printStackTrace();
 				}
 
