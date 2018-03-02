@@ -375,8 +375,8 @@ public class BoardGui extends Canvas {
 						_BGG2 = OMove.getBGG2();
 						L.setTeam(_BGG2.getTeam());
 						_Gui.setBGG2(_BGG2);
-
 					}
+					
 					
 					if (_iChoose == 1 && ((!L.getTeam() && !_BGG2.getLan().getFirstturn()) || (L.getTeam() && _BGG2.getLan().getFirstturn()))){ // if move has happend,
 						// do what it takes

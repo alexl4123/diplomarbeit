@@ -76,6 +76,9 @@ public class BackgroundGrid implements Serializable {
 	 * for the Draw evaluation
 	 */
 	
+	/**
+	 * How deep the AI should search
+	 */
 	private int _iAiDepth;
 	
 	
@@ -84,6 +87,8 @@ public class BackgroundGrid implements Serializable {
 //----------------------------------------------------------------------------	
 	
 	public ArrayList<MovePos> _TotalMoveList;
+	private ArrayList<int[][]> _AllBoardStatesList;
+	private ArrayList<boolean[]> _AllTeamStatesList;
 	
 	boolean move; // when you can move
 	short TurnRound; // to measure the turns of the current game
@@ -105,7 +110,7 @@ public class BackgroundGrid implements Serializable {
 	 */
 	public BackgroundGrid() {
 		
-		// here i maybe should find a better option...
+		//some inits
 		bPawnSpecMoved = new boolean[20];
 		bKingMoved = new boolean[2];
 		bTowerMoved = new boolean[4];
@@ -119,12 +124,17 @@ public class BackgroundGrid implements Serializable {
 		
 		team = true;
 		_TotalMoveList = new ArrayList<MovePos>();
+		_AllBoardStatesList = new ArrayList<int[][]>();
+		_AllTeamStatesList = new ArrayList<boolean[]>();
+		
 		iBackground = new int[8][8];
 
 		for (int i = 0; i < 300; i++) {
 			Objectives.add(i);
 		}
-
+		
+		//make the default board state
+		
 		for (int Y = 0; Y < 8; Y++) {
 			for (int X = 0; X < 8; X++) {
 
@@ -248,13 +258,6 @@ public class BackgroundGrid implements Serializable {
 		TheKingBlack.setMeepleXPos(4);
 		TheKingBlack.setMeepleYPos(7); // only for the Kings
 		Objectives.set(iBackground[4][7], TheKingBlack);
-
-		// for testing (print the current field)
-		for (int Y = 0; Y < 8; Y++) {
-			for (int X = 0; X < 8; X++) {
-			}
-
-		}
 		
 		_Lan=new LAN(iBackground);
 
@@ -1301,8 +1304,47 @@ public class BackgroundGrid implements Serializable {
 		_iAiDepth = iAiDepth;
 	}
 	
+	/**
+	 * returns the current value for the AI Depth calculation
+	 * @return - int - AiDepth value
+	 */
 	public int getAiDepth(){
 		return _iAiDepth;
+	}
+	
+	/**
+	 * add a board state to the list
+	 * @param Board - int[][]
+	 */
+	public void addBoardState(int[][] Board){
+		int[][] iBoard = Board;
+		_AllBoardStatesList.add(iBoard);
+	}
+	
+	/**
+	 * returns the list with all the possible moves
+	 * @return - ArrayList[][]
+	 */
+	public ArrayList<int[][]> getBoardList(){
+		return _AllBoardStatesList;
+	}
+	
+	/**
+	 * Adds a team state
+	 * @param team - boolean
+	 */
+	public void addTeamState(boolean team){
+		boolean[] teamL  = new boolean[1];
+		teamL[0] = team;
+		_AllTeamStatesList.add(teamL);
+	}
+	
+	/**
+	 * return the list of all the team states
+	 * @return - ArrayList<boolean[]> - boolean[0] = team
+	 */
+	public ArrayList<boolean[]> getTeamList(){
+		return _AllTeamStatesList;
 	}
 	
 }
