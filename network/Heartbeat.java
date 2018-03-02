@@ -80,10 +80,10 @@ public class Heartbeat implements Runnable {
 				Thread.sleep(1000);
 				heartWriteStream.writeInt(testnumber);
 				heartWriteStream.flush();
-				System.out.println("WroteheartBeat");
+		//		System.out.println("WroteheartBeat");
 				Thread.sleep(1000);
 				heartReadStream.readInt();
-				System.out.println("ReadheartBeat");
+		//		System.out.println("ReadheartBeat");
 
 				Thread currentThread = Thread.currentThread();
 				currentThread.sleep(5);
@@ -138,9 +138,18 @@ public class Heartbeat implements Runnable {
 		this.isRunning = false;
 		//this.heartThread.interrupt();
 		
-			System.out.println("going to sleep");
+			
 			this.heartThread.interrupt();
 	
+	}
+	
+	public void stopServSocket(){
+		try {
+			heartBeatSocket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		//	e.printStackTrace();
+		}
 	}
 	
 	public void setDisconnectInitiation(boolean c){

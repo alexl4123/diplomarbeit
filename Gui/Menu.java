@@ -201,18 +201,25 @@ public class Menu extends MenuBar {
 		disconnect.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
-			public void handle(ActionEvent arg0) {
-
-
-				Gui.getBoardGui().soundPlayer.playSound("menu");
-				Gui.getBoardGui().heartBeatJob.setDisconnectInitiation(true);
-				Gui.getBoardGui().heartBeatJob.stopHeartBeat();
-				Gui.getMenu().hostJob.stopSocket();
-
-
-
-
-
+			public void handle(ActionEvent arg0) {		
+				
+					Gui.getBoardGui().soundPlayer.playSound("menu");
+					Gui.getBoardGui().heartBeatJob.setDisconnectInitiation(true);
+					Gui.getBoardGui().heartBeatJob.stopHeartBeat();
+					Gui.getBoardGui().setOnlineHighlight(false);
+					Gui.getBoardGui().setBthinking(false);
+					Gui.setChoose(0);
+					setSelect(0);
+					
+					try{
+			    	Gui.getMenu().hostJob.stopSocket();
+					}catch(Exception e){
+						
+					}
+			    	Gui.getMenu().menuFile.getItems().addAll(Gui.getMenu().Load, Gui.getMenu().Save, Gui.getMenu().newGame);
+					Gui.getMenu().menuGame.getItems().addAll(Gui.getMenu().GameMode0, Gui.getMenu().GameMode1, Gui.getMenu().GameMode2, Gui.getMenu().GameMode3);
+					Gui.getMenu().menuGame.getItems().removeAll(Gui.getMenu().disconnect);
+			
 			}
 
 		});
@@ -342,10 +349,21 @@ public class Menu extends MenuBar {
 
 					Gui.getBoardGui().soundPlayer.playSound("menu");
 					Gui.setChoose(1);
-					//Gui.newBG();
+					
+					//Gui.getBGG2().setTeam(true);
 					//Gui.getBoardGui().setHighlighting(true);
-
-
+					
+					/*try {
+						Gui.setBGG1(Gui.getBGG2().getLan().initSeed);
+						Gui.getBoardGui().DrawGrid(Gui.getBGG2().getLan().initSeed);
+						Gui.getBoardGui().redraw();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}*/
+					
+					Gui.getBoardGui().setOnlineHighlight(true);
+	
 					hostJob = new hostingJob(Gui);
 					Thread hostingThread = new Thread(hostJob);
 
@@ -430,12 +448,14 @@ public class Menu extends MenuBar {
 
 							}
 
+
 						} catch (UnknownHostException e) {
 							Alert addressAlert = new Alert(AlertType.ERROR);
 							addressAlert.setTitle("Error");
 							addressAlert.setHeaderText("Connection Failed");
 							addressAlert.setContentText("It seems that something is wrong with the IP address!");
 							addressAlert.show();
+							Gui.getBoardGui().setOnlineHighlight(false);
 							Gui.setChoose(0);
 							setSelect(Gui.getChoose());
 
@@ -446,22 +466,26 @@ public class Menu extends MenuBar {
 							connectionAlert.setHeaderText("COnnection Failed");
 							connectionAlert.setContentText("The desired host is not reachable.");
 							connectionAlert.show();
+							Gui.getBoardGui().setOnlineHighlight(false);
 							Gui.setChoose(0);
 							setSelect(Gui.getChoose());
 						} catch (ClassNotFoundException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							Gui.getBoardGui().setOnlineHighlight(false);
 							Gui.setChoose(0);
 							setSelect(Gui.getChoose());
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
+							Gui.getBoardGui().setOnlineHighlight(false);
 							Gui.setChoose(0);
 							setSelect(Gui.getChoose());
 						}
 
 					} else{
 						System.out.println("yolo");
+						Gui.getBoardGui().setOnlineHighlight(false);
 						Gui.setChoose(Backup);
 						setSelect(Gui.getChoose());
 					}
@@ -474,6 +498,7 @@ public class Menu extends MenuBar {
 				}else if(result.get() == abortButton){
 
 					Gui.getBoardGui().soundPlayer.playSound("menu");
+					Gui.getBoardGui().setOnlineHighlight(false);
 					Gui.setChoose(Backup);
 					System.out.println(Gui.getChoose());
 					setSelect(Gui.getChoose());
@@ -481,6 +506,7 @@ public class Menu extends MenuBar {
 				}else{
 
 					Gui.setChoose(0);
+					Gui.getBoardGui().setOnlineHighlight(false);
 					setSelect(Gui.getChoose());
 				}
 

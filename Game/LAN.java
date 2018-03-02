@@ -25,14 +25,19 @@ public class LAN implements Serializable{
 	public ObjectInputStream netReadStream;
 	public ObjectOutputStream netWriteStream;
 	private boolean _team;
+	public int[][] initSeed;
+
+	
+
 	private boolean isConnectet; 					// if a host-client connection is valid
 	private boolean firstturn = false;				//used for offseting in the Lan game loop
 	
 	
 	
-	public LAN(){
+	public LAN(int[][] BGG){
 		
 		isConnectet = false;
+		this.initSeed = BGG;
 
 	}
 	
@@ -100,6 +105,7 @@ public class LAN implements Serializable{
 		try{
 		createNetworkStreams(_theSocket);
 		System.out.println("Streams Created");
+		System.out.println(team);
 		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -129,6 +135,14 @@ public class LAN implements Serializable{
 	public boolean getFirstturn(){
 		return firstturn;
 	}
+	
+	/**
+	 * @param _team the _team to set
+	 */
+	public void set_team(boolean _team) {
+		this._team = _team;
+	}
+		
 }
 
 
