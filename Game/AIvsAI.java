@@ -31,7 +31,7 @@ public class AIvsAI extends Thread {
 				if(!bAI_Thinking_Black) {
 					bAI_Thinking_White = true;
 					_BG.setThinking(true);
-					AI _AI_White = new AI(_BGG2, _BG,true,true);
+					AI _AI_White = new AI(_BGG2, _BG,true,true,_BGG2.getAiDepth());
 					_AI_White.setAIvsAI(this);
 					_AI_White.start();
 				}
@@ -47,7 +47,7 @@ public class AIvsAI extends Thread {
 				
 				if(!bAI_Thinking_White) {
 					bAI_Thinking_Black = true;
-					AI _AI_Black = new AI(_BGG2, _BG,false,true);
+					AI _AI_Black = new AI(_BGG2, _BG,false,true,_BGG2.getAiDepth());
 					_AI_Black.setAIvsAI(this);
 					_AI_Black.start();
 				}

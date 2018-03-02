@@ -76,6 +76,8 @@ public class BackgroundGrid implements Serializable {
 	 * for the Draw evaluation
 	 */
 	
+	private int _iAiDepth;
+	
 	
 
 	
@@ -113,7 +115,7 @@ public class BackgroundGrid implements Serializable {
 		RunnerNumber = 0;
 		TurnRound = 0;
 		move = true;
-		
+		_iAiDepth = 5;
 		
 		team = true;
 		_TotalMoveList = new ArrayList<MovePos>();
@@ -1289,6 +1291,18 @@ public class BackgroundGrid implements Serializable {
 	
 	public LAN getLan(){
 		return _Lan;
+	}
+	
+	/**
+	 * 
+	 * @param iAiDepth-To which depth the AI calculation should be made
+	 */
+	public void setAiDepth(int iAiDepth){
+		_iAiDepth = iAiDepth;
+	}
+	
+	public int getAiDepth(){
+		return _iAiDepth;
 	}
 	
 }

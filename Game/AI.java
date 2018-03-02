@@ -68,16 +68,19 @@ public class AI extends Thread {
 	
 	private AIvsAI _AIFuckUp;
 	
+	private int _depth;
+	
 	/**
 	 * The constructor
 	 * @param BGG2 - BackgroundGrid - sets the location of the meeples
 	 * @param Gui - Gui - for redrawing the Gui
 	 */
-	public AI(BackgroundGrid BGG2, BoardGui Gui, boolean AI_Team, boolean AIvsAI) {
+	public AI(BackgroundGrid BGG2, BoardGui Gui, boolean AI_Team, boolean AIvsAI, int depth) {
 		this._BGG2 = BGG2;
 		this._Gui = Gui;
 		this._AiTeam = AI_Team;
 		_AIvsAI = AIvsAI;
+		_depth = depth;
 	}
 
 	/**
@@ -99,7 +102,7 @@ public class AI extends Thread {
 				BackgroundGrid BGGX = _BGG2;
 				
 				//here the real AI is called
-				float fx = AIL.alphaBeta(5, _BGG2, _AiTeam);
+				float fx = AIL.alphaBeta(_depth, _BGG2, _AiTeam);
 				
 				
 				//System.out.println("THE COMPUTER:"+fx);

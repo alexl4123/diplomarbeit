@@ -434,7 +434,8 @@ public class BoardGui extends Canvas {
 						
 					} else if (_iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer()) {
 						//White AI
-						AI _AI = new AI(_BGG2, this,true,false);
+						System.out.println("AI-Depth" + _BGG2.getAiDepth());
+						AI _AI = new AI(_BGG2, this,true,false,_BGG2.getAiDepth());
 						_AI.start();
 						LastMoveList = _AI.getLMoveList();
 						bThinking = true;
@@ -442,7 +443,8 @@ public class BoardGui extends Canvas {
 						L.setTeam(false);
 					} else if (_iChoose == 3 && !_BGG2.getTeam() && !OMove.getBauer()) {
 						//Black AI
-						AI _AI = new AI(_BGG2, this,false,false);
+						System.out.println("AI-Depth" + _BGG2.getAiDepth());
+						AI _AI = new AI(_BGG2, this,false,false,_BGG2.getAiDepth());
 
 						_AI.start();
 						LastMoveList = _AI.getLMoveList();
