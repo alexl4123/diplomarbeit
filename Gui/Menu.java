@@ -155,7 +155,9 @@ public class Menu extends MenuBar {
 			@Override
 			public void handle(ActionEvent event) {
 
-
+				PopUp pp = new PopUp(Gui);
+				pp.display();
+				
 				if(Gui.getBoardGui().soundPlayer.getVolume()<1.0){
 					double temp = Gui.getBoardGui().soundPlayer.getVolume()+0.1;
 					if(temp > 1.0){
