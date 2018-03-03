@@ -261,18 +261,20 @@ public class Move {
 			getSchach2();
 			BGG2.changeTeam();
 			BGG2.higherTurnRound();
+			
+			//add the board states
+			//the complicity is needed, due to same pointer errors
 			int[][] iBoard = new int[8][8];
-			iBoard = TheMove;
-			if(BGG2.getBoardList().size()>0){
-				int[][] iBoard2 = BGG2.getBoardList().get(BGG2.getBoardList().size()-1);
-				BGG2.getBoardList().add(iBoard);
-				BGG2.getBoardList().set(BGG2.getBoardList().size()-2, iBoard2);
-			}else{
-				BGG2.getBoardList().add(iBoard);
+			for(int iHY = 0; iHY < 8; iHY++){
+				for(int iHX = 0; iHX < 8; iHX++){
+					iBoard[iHX][iHY] = BGG2.iBackground[iHX][iHY];
+				}
+
 			}
-
-
+			BGG2.addBoardState(iBoard);
+			//add the team states
 			BGG2.addTeamState(BGG2.getTeam());
+			
 			_Moved = false;
 		} else if(_bSelect) {
 			//only for Schach-Debug
@@ -280,12 +282,17 @@ public class Move {
 
 			System.out.println("BoardListSize:" + BGG2.getBoardList().size() + "::" + BGG2.getTeamList().size());
 			if(BGG2.getBoardList().size() > 0){
-				int[][] iBoard = BGG2.getBoardList().get(0);
-				for(int iHY = 0; iHY < 8; iHY++){
-					for(int iHX = 0; iHX < 8; iHX++){
-						System.out.print(":" + iBoard[iHX][iHY] + ":");
+				int iH = 0;
+				for(int[][] iBoard : BGG2.getBoardList()){
+					
+					System.out.println("Team:" + BGG2.getTeamList().get(iH)[0]);
+					for(int iHY = 0; iHY < 8; iHY++){
+						for(int iHX = 0; iHX < 8; iHX++){
+							System.out.print(":" + iBoard[iHX][iHY] + ":");
+						}
+						System.out.println(":");
 					}
-					System.out.println(":");
+					iH++;
 				}
 
 			}
