@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import Game.LAN;
 import Game.MovePos;
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -91,6 +93,7 @@ public class BackgroundGrid implements Serializable {
 	int RunnerNumber;// how many add. runners are
 	String name; // just for debugging
 	int _Choose; // Which game mode is selected
+	public SimpleIntegerProperty turnProp, conProp, teamProp;
 	public LAN _Lan;
 	private boolean[] bPawnSpecMoved, bKingMoved, bTowerMoved;
 
@@ -107,6 +110,15 @@ public class BackgroundGrid implements Serializable {
 		bPawnSpecMoved = new boolean[20];
 		bKingMoved = new boolean[2];
 		bTowerMoved = new boolean[4];
+		
+		turnProp = new SimpleIntegerProperty();
+		conProp = new SimpleIntegerProperty();
+		teamProp = new SimpleIntegerProperty();
+		
+		turnProp.setValue(0);
+		conProp.setValue(0);
+		teamProp.setValue(0);
+		
 		QueenNumber = 0;
 		TowerNumber = 0;
 		JumperNumber = 0;
@@ -254,7 +266,7 @@ public class BackgroundGrid implements Serializable {
 
 		}
 		
-		_Lan=new LAN(iBackground);
+		_Lan=new LAN(iBackground, this);
 
 	}
 
@@ -272,6 +284,7 @@ public class BackgroundGrid implements Serializable {
 	 */
 	public void higherTurnRound() {
 		TurnRound++;
+		turnProp.setValue(turnProp.getValue() + 1);
 	}
 
 	/**

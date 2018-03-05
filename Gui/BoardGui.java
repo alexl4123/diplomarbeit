@@ -217,6 +217,7 @@ public class BoardGui extends Canvas {
 				System.out.println("TRIGGERED");
 				try {
 					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
+					_BGG2.higherTurnRound();
 					if (_BGG2.getLan().getFirstturn() == true){
 						L.setTeam(false);
 						_BGG2.setTeam(false);
@@ -410,7 +411,7 @@ public class BoardGui extends Canvas {
 
 						redraw();
 
-
+						_BGG2.higherTurnRound();
 						bThinking = true;
 						_Gui.getMenu().rj = new ReadingJob(_Gui);
 						Thread rt = new Thread(_Gui.getMenu().rj);

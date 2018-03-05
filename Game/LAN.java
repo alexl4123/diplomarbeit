@@ -11,6 +11,9 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import BackgroundMatrix.BackgroundGrid;
+import Gui.GUI;
+
 /**
  * Here should be the Lan game mode
  * @author alexl12 
@@ -26,6 +29,7 @@ public class LAN implements Serializable{
 	public ObjectOutputStream netWriteStream;
 	private boolean _team;
 	public int[][] initSeed;
+	private BackgroundGrid bgg;
 
 	
 
@@ -34,10 +38,11 @@ public class LAN implements Serializable{
 	
 	
 	
-	public LAN(int[][] BGG){
+	public LAN(int[][] BGG, BackgroundGrid BGG2){
 		
 		isConnectet = false;
 		this.initSeed = BGG;
+		this.bgg = BGG2;
 
 	}
 	
@@ -85,6 +90,8 @@ public class LAN implements Serializable{
 	 */
 	public void setIsConnectet(boolean temp) {
 		this.isConnectet = temp;
+		bgg.conProp.setValue(bgg.conProp.getValue()+1);
+		
 	}
 	
 	/**

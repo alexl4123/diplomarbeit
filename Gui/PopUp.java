@@ -50,7 +50,6 @@ public class PopUp {
 	      
 	
 	Color lightBrown= Color.web("#8C603C");
-	Group root = new Group();
 	
 	gc.setFill(Color.BLACK);
 	gc.strokeRect(44, 50, 255, 23);
@@ -93,14 +92,88 @@ public class PopUp {
 	Turncount.setLayoutX(50);
 	Turncount.setLayoutY(221);
 	
+	Label netPrefix = new Label("Connection:");
+	netPrefix.setLayoutX(190);
+	netPrefix.setLayoutY(221);
 	
 	
+	
+	Label netLabel2 = new Label("");
+	if(gui.getBGG2().getLan().getIsConnectet() == true){
+		netLabel2 = new Label("");
+		netLabel2.setText("Online");
+		System.out.println("Online");
+		netLabel2.setTextFill(Color.GREEN);
+		System.out.println("Greeeeeenee");
+	} else{
+		netLabel2 = new Label("");
+		netLabel2.setText("Offline");
+		netLabel2.setTextFill(Color.RED);
+	}
+		
+	netLabel2.setLayoutX(270);
+	netLabel2.setLayoutY(221);
+	Label netLabel = netLabel2;
+	Label teamPrefix = new Label("Current Team:");
+	teamPrefix.setLayoutX(355);
+	teamPrefix.setLayoutY(221);
+	
+	Label teamLabel = new Label();
+	
+	if(gui.getBGG2().getTeam()==true){
+		teamLabel.setText("White");
+	}else{
+		teamLabel.setText("Black");
+	}
+	
+	teamLabel.setLayoutX(450);
+	teamLabel.setLayoutY(221);
 	
 	
 	
 	//Elements
 	
+	gui.getBGG2().conProp.addListener(new ChangeListener<Number>(){
+
+		@Override
+		public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+			
+			if(gui.getBGG2().getLan().getIsConnectet() == true){
+				netLabel.setText("Online");
+				netLabel.setTextFill(Color.GREEN);
+				
+			} else{
+				
+				netLabel.setTextFill(Color.RED);
+				
+				changelabelText("offline", netLabel);
+			}
+			
+		}
+		
+		
+		
+	});
 	
+	gui.getBGG2().turnProp.addListener(new ChangeListener<Number>() {
+
+		@Override
+		public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+			Turncount.setText("TurnCount: " + gui.getBGG2().getTurnRound());
+			if(gui.getBGG2().getTeam()==true){
+				teamLabel.setText("White");
+			}else{
+				teamLabel.setText("Black");
+			}
+			
+			
+		}
+	});
+	
+	
+	//Label Listener
+	
+
 	//VolSlider
 	Slider VolSlider= new Slider(0.1,1.0,gui.getBoardGui().soundPlayer.getVolume());
 	
@@ -115,7 +188,14 @@ public class PopUp {
 			gui.getBoardGui().soundPlayer.setVolume(VolSlider.getValue());
 			vollabel.setText("Volume: " + (Math.round(gui.getBoardGui().soundPlayer.getVolume()*100)) + "%");
 			
+			if(gui.getBoardGui().soundPlayer.getVolume() > 0.9){
+				vollabel.setTextFill(Color.RED);
+			} else{
+				vollabel.setTextFill(Color.BLACK);
+			}
+			
 		}
+		
 		
 	});
 	
@@ -176,7 +256,7 @@ public class PopUp {
 	
 	
 	Group gp = new Group();
-	gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount);
+	gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, netPrefix, netLabel, teamPrefix, teamLabel);
 	Scene scene1= new Scene(gp, 600, 300, Color.WHITE);
 	
 	
@@ -187,6 +267,10 @@ public class PopUp {
 	popupwindow.setResizable(false);
 	popupwindow.showAndWait();
 	       
+	}
+	
+	private void changelabelText(String x, Label l){
+		l.setText(x);
 	}
 	
 	
