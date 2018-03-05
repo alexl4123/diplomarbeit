@@ -114,7 +114,21 @@ public class BoardGui extends Canvas {
 	 * bDrag - boolean - if a drag is currently happening bThinking - boolean -
 	 * if the AI is doing its job
 	 */
-	private boolean bDrag, bThinking;
+	private boolean bDrag, bThinking, rectMode;
+
+	/**
+	 * @return the rectMode
+	 */
+	public boolean isRectMode() {
+		return rectMode;
+	}
+
+	/**
+	 * @param rectMode the rectMode to set
+	 */
+	public void setRectMode(boolean rectMode) {
+		this.rectMode = rectMode;
+	}
 
 	/**
 	 * _Gui - GUI - for redrawing the GUI (?)
@@ -174,6 +188,7 @@ public class BoardGui extends Canvas {
 		bDrag = false;
 		DGX = 0;
 		DGY = 0;
+		this.rectMode = false;
 		BGGChange = new SimpleIntegerProperty(0);
 		Heartbeat = new SimpleIntegerProperty(0);
 		setOnlineHighlight(false);
@@ -285,7 +300,7 @@ public class BoardGui extends Canvas {
 			@Override
 			public void handle(MouseEvent event) {
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
-					ButtonReleased(event);
+					//ButtonReleased(event);
 				}
 
 				event.consume();
@@ -377,8 +392,7 @@ public class BoardGui extends Canvas {
 					int iPos = OMove.getISelect();
 					soundPlayer.playSound("move");
 					
-					if ((_iChoose == 1 || (_iChoose == 2 && _BGG2.getAITeam() && !L.getTeam()) || (_iChoose == 2 && !_BGG2.getAITeam() && L.getTeam()) || _iChoose == 0)
-							&& iPos != iMatrix) { // if move is possible
+					if ((_iChoose == 1 || (_iChoose == 2 && _BGG2.getAITeam() && !L.getTeam()) || (_iChoose == 2 && !_BGG2.getAITeam() && L.getTeam()) || _iChoose == 0)) { // if move is possible
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
 						_BGG = XY;
 						_BGG2 = OMove.getBGG2();
@@ -996,6 +1010,7 @@ public class BoardGui extends Canvas {
 					_Gui.getMenu().setSelect(0);
 					_Gui.getMenu().menuFile.getItems().addAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame);
 					_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2);
+					_Gui.getMenu().menuOther.getItems().addAll(_Gui.getMenu().Draw);
 					_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().disconnect);
 					heartBeatJob.setDisconnectInitiation(false);
 					heartbeatMenu = false;
@@ -1025,7 +1040,7 @@ public class BoardGui extends Canvas {
 
 					if(_BGG2.getLan().getIsConnectet()==true){
 
-						_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame);
+						_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame, _Gui.getMenu().Draw);
 						_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2);
 						_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().disconnect);
 					}

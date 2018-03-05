@@ -36,7 +36,7 @@ public class GUI extends Application{
 	/**
 	 * Stage of the current application
 	 */
-	private Stage S;
+	public Stage S;
 	
 	/**
 	 * BoardGui - for redrawing
@@ -137,11 +137,32 @@ public class GUI extends Application{
 		
 		
 		S.widthProperty().addListener((obs, oldVal, newVal) -> {
+			
+			if(BG.isRectMode() == true){
+				
+				S.setResizable(false);
+				S.setWidth(800);
+				S.setHeight(800);
+				
+				
+				}
+				
+			
+			
 			BG.setXY(S.getWidth()-15, S.getHeight()-75);
+			
 		});
 		
 		S.heightProperty().addListener((obs,oldVal,newVal) -> {
-		
+			
+			if(BG.isRectMode() == true){
+				
+				S.setWidth(800);
+				
+				
+				
+				}
+
 			BG.setXY(S.getWidth()-15, S.getHeight()-75);
 		});
 		
@@ -270,7 +291,7 @@ public class GUI extends Application{
 		} else if(BG.getChoose() == 2){
 			System.out.println("line 271");
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setHeaderText("It´t a Draw, the player gave up.");
+			alert.setHeaderText("Itï¿½t a Draw, the player gave up.");
 			alert.setContentText(null);
 			alert.setTitle("Draw");
 			alert.show();

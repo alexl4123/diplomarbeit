@@ -48,14 +48,14 @@ public class Menu extends MenuBar {
 	 * GameMode2 - if GameMode AI has been selected
 	 */
 	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode4, GameMode5, soundMute; //once upon a time, GameMode3 was the black AI...
-	public MenuItem newGame, Save, Load, Exit, disconnect, volInc, volDec;
+	public MenuItem newGame, Save, Load, Exit, disconnect, setUp, volDec, Draw;
 	int _GM;
 	public ReadingJob rj;
 	public hostingJob hostJob;
 
 	public javafx.scene.control.Menu menuFile;
 	public javafx.scene.control.Menu menuGame;
-	public javafx.scene.control.Menu menuSound;
+	public javafx.scene.control.Menu menuOther;
 
 	/**
 	 * the constructor builds the GUI
@@ -65,8 +65,8 @@ public class Menu extends MenuBar {
 
 		//Menus with Submenus 
 		menuFile = new javafx.scene.control.Menu("File");
-		menuGame = new javafx.scene.control.Menu("Game");
-		menuSound = new javafx.scene.control.Menu("Sound");
+		menuGame = new javafx.scene.control.Menu("Gamemodes");
+		menuOther = new javafx.scene.control.Menu("Other");
 
 		//Adding Menu Items
 		newGame = new MenuItem("New");
@@ -74,13 +74,13 @@ public class Menu extends MenuBar {
 		Load = new MenuItem("Load");
 		Exit = new MenuItem("Exit");
 		disconnect = new MenuItem("Disconnect");
-		volInc = new MenuItem("Increase volume");
+		setUp = new MenuItem("Setup");
 		volDec = new MenuItem("Decrease volume");
 		//refresh = new MenuItem("DEBUG/Refresh");
 
 		//RadioButton Items
-		GameMode0 = new RadioMenuItem("Game Mode Local");
-		GameMode1 = new RadioMenuItem("Game Mode LAN");
+		GameMode0 = new RadioMenuItem("Local");
+		GameMode1 = new RadioMenuItem("LAN");
 		GameMode2 = new RadioMenuItem("AI");
 		//RIP Black AI
 		GameMode4 = new RadioMenuItem("AI vs AI"); 
@@ -88,7 +88,7 @@ public class Menu extends MenuBar {
 		soundMute = new RadioMenuItem("Mute Sound");
 
 		//For Game Menu Items
-		MenuItem Draw = new MenuItem("Draw");
+		Draw = new MenuItem("Draw");
 
 
 		//RadioButton - Group
@@ -106,10 +106,10 @@ public class Menu extends MenuBar {
 
 
 		menuFile.getItems().addAll(newGame, Save, Load, Exit);						//delete refresh when publish
-		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode5, Draw);
-		menuSound.getItems().addAll(soundMute, volInc, volDec);
+		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode5);
+		menuOther.getItems().addAll(setUp,Draw);
 
-		this.getMenus().addAll(menuFile, menuGame, menuSound);
+		this.getMenus().addAll(menuFile, menuGame, menuOther);
 
 
 
@@ -157,27 +157,17 @@ public class Menu extends MenuBar {
 			}
 		});
 
-		//Volume Increase
-		volInc.setOnAction(new EventHandler<ActionEvent>() {
+		//Calling Popup
+		setUp.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 
+				Gui.getBoardGui().soundPlayer.playSound("menu");
 				PopUp pp = new PopUp(Gui);
 				pp.display();
 
-				if(Gui.getBoardGui().soundPlayer.getVolume()<1.0){
-					double temp = Gui.getBoardGui().soundPlayer.getVolume()+0.1;
-					if(temp > 1.0){
-						Gui.getBoardGui().soundPlayer.setVolume(1.0);
-						Gui.getBoardGui().soundPlayer.playSound("menu");
-					}else{
-						Gui.getBoardGui().soundPlayer.setVolume(temp);
-						Gui.getBoardGui().soundPlayer.playSound("menu");
-					}	
-				}else{
-					Gui.getBoardGui().soundPlayer.playSound("menu");
-				}
+				
 			}
 		});
 

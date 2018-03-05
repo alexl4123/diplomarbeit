@@ -77,7 +77,7 @@ public class PopUp {
 		AI.setLayoutX(30);
 		AI.setLayoutY(90);
 
-		Label INFO = new Label("Other Information: ");
+		Label INFO = new Label("Other Information and Options: ");
 		INFO.setFont(subtitleFont);
 		INFO.setLayoutX(30);
 		INFO.setLayoutY(175);
@@ -117,8 +117,8 @@ public class PopUp {
 		netLabel2.setLayoutX(270);
 		netLabel2.setLayoutY(221);
 		Label netLabel = netLabel2;
-		Label teamPrefix = new Label("Current Team:");
-		teamPrefix.setLayoutX(355);
+		Label teamPrefix = new Label("Current Team: ");
+		teamPrefix.setLayoutX(175);
 		teamPrefix.setLayoutY(221);
 
 		Label teamLabel = new Label();
@@ -129,7 +129,7 @@ public class PopUp {
 			teamLabel.setText("Black");
 		}
 
-		teamLabel.setLayoutX(450);
+		teamLabel.setLayoutX(270);
 		teamLabel.setLayoutY(221);
 
 
@@ -238,6 +238,29 @@ public class PopUp {
 				}
 			}
 		});
+		
+		CheckBox RectBoard = new CheckBox("Rectangular Board");
+		RectBoard.setLayoutX(355);
+		RectBoard.setLayoutY(221);
+		RectBoard.setSelected(gui.getBoardGui().isRectMode());
+		RectBoard.selectedProperty().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				
+				gui.S.setHeight(800);
+				gui.S.setWidth(800);
+				
+				if(gui.getBoardGui().isRectMode() == false){
+					gui.getBoardGui().setRectMode(true);
+				}else{
+					gui.getBoardGui().setRectMode(false);
+					gui.S.setResizable(true);
+				}
+				
+				
+			}
+		});
 
 
 		Button VolTest= new Button("Test sound");
@@ -318,8 +341,8 @@ public class PopUp {
 		});
 		
 		Group gp = new Group();
-		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, netPrefix, netLabel, teamPrefix, teamLabel, AILabel, AIslider, AICombo);
-		Scene scene1= new Scene(gp, 600, 300, Color.WHITE);
+		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, RectBoard);
+		Scene scene1= new Scene(gp, 600, 250, Color.WHITE);
 
 
 		popupwindow.initModality(Modality.NONE);
