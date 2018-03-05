@@ -90,8 +90,7 @@ public class LAN implements Serializable{
 	 */
 	public void setIsConnectet(boolean temp) {
 		this.isConnectet = temp;
-		bgg.conProp.setValue(bgg.conProp.getValue()+1);
-		
+		//TODO
 	}
 	
 	/**
@@ -129,7 +128,6 @@ public class LAN implements Serializable{
 		try {
 			_theSocket = new Socket (ip,22359);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

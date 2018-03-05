@@ -100,8 +100,8 @@ public class BackgroundGrid implements Serializable {
 	int RunnerNumber;// how many add. runners are
 	String name; // just for debugging
 	int _Choose; // Which game mode is selected
-	public SimpleIntegerProperty turnProp, conProp, teamProp;
 	public LAN _Lan;
+	private boolean _bAITeam;
 	private boolean[] bPawnSpecMoved, bKingMoved, bTowerMoved;
 
 	/**
@@ -118,13 +118,7 @@ public class BackgroundGrid implements Serializable {
 		bKingMoved = new boolean[2];
 		bTowerMoved = new boolean[4];
 		
-		turnProp = new SimpleIntegerProperty();
-		conProp = new SimpleIntegerProperty();
-		teamProp = new SimpleIntegerProperty();
 		
-		turnProp.setValue(0);
-		conProp.setValue(0);
-		teamProp.setValue(0);
 		
 		QueenNumber = 0;
 		TowerNumber = 0;
@@ -133,6 +127,7 @@ public class BackgroundGrid implements Serializable {
 		TurnRound = 0;
 		move = true;
 		_iAiDepth = 5;
+		_bAITeam = false;
 		
 		team = true;
 		_TotalMoveList = new ArrayList<MovePos>();
@@ -289,7 +284,6 @@ public class BackgroundGrid implements Serializable {
 	 */
 	public void higherTurnRound() {
 		TurnRound++;
-		turnProp.setValue(turnProp.getValue() + 1);
 	}
 
 	/**
@@ -931,26 +925,42 @@ public class BackgroundGrid implements Serializable {
 		}*/
 		int iBB = iBackground[_iX][_iY];
 		ArrayList<MovePos> AttackMoves = Moves.getMoveMeeple(iBackground, !Team, iBB, _iX, _iY);
+		MovePos MPSelf = new MovePos();
+		MPSelf.ID = iBB;
+		MPSelf.X = _iX;
+		MPSelf.Y = _iY;
+		MPSelf.PX = _iX;
+		MPSelf.PY = _iY;
+		AttackMoves.add(MPSelf);
 		for(MovePos MP : AttackMoves){
-			System.out.println(AttackMoves.size() + "::Attackmoves::" + iBB + ":MPA.ID:" + MP.ID);
+			System.out.println(AttackMoves.size() + "::Attackmoves::" + iBB + ":MPA.ID:" + MP.ID + "::X::"+MP.X+"::XP::"+MP.PX + ":Y:" + MP.Y + "::PY::" + MP.PY);
 			for(iYA = 0; iYA < 8; iYA ++){
 				for(iXA = 0; iXA < 8; iXA ++){
 					int iBack = iBackground[iXA][iYA];
 					ArrayList<MovePos> DefenseMoves = Moves.getMoveMeeple(iBackground, Team, iBack, iXA, iYA);
 					
+				
 					for(MovePos MPA : DefenseMoves){
-						
 						if(MP.PX == MPA.PX && MP.PY == MPA.PY){
 							System.out.println(MP.PX + "::" + MPA.PX + "::" + MP.PY + "::" + MPA.PY+"::"+MPA.ID);
+							//Make the possible defense move
 							iBackground[MPA.PX][MPA.PY] = MPA.ID;
-							iBackground[MPA.X][MPA.Y] = MPA.ID2;
+							iBackground[MPA.X][MPA.Y] = 0;
+							
+							//Give out the current state of the game for debug
 							for(int itestY = 0; itestY < 8; itestY++) {
 								for(int itestX = 0; itestX < 8; itestX++) {
 									System.out.print(":"+Board[itestX][itestY]+":");
 								}
 								System.out.println("");
 							}
-							if(!SchachKing(Team, BGG, MPA.PX, MPA.PY, true, false) && !Schach(Board, MPA.PX, MPA.PY, Team)){
+							
+							//get the king positition
+							
+							
+							System.out.println("KingX::"+KingX+"::KingY::"+KingY);
+							System.out.println("SchachKing:" + SchachKing(Team, BGG, KingX, KingY, true, false) + "::Team::" + Team + "::MPA.PX::" + MPA.PX + "::MPA.PY::" + MPA.PY);
+							if(!SchachKing(Team, BGG, KingX, KingY, true, false) && !Schach(Board, KingX, KingY, Team)){
 								//System.out.println(MPA.PX + "::" + MPA.PY + "::Funkt");
 								iBackground[MPA.PX][MPA.PY] = MPA.ID2;
 								iBackground[MPA.X][MPA.Y] = MPA.ID;
@@ -1358,6 +1368,14 @@ public class BackgroundGrid implements Serializable {
 	 */
 	public ArrayList<boolean[]> getTeamList(){
 		return _AllTeamStatesList;
+	}
+	
+	public void setAITeam(boolean AITeam) {
+		_bAITeam = AITeam;
+	}
+	
+	public boolean getAITeam() {
+		return _bAITeam;
 	}
 	
 }

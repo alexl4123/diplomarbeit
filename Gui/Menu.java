@@ -47,8 +47,7 @@ public class Menu extends MenuBar {
 	 * GameMode1 - if GameMode Lan has been selected
 	 * GameMode2 - if GameMode AI has been selected
 	 */
-	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode3, GameMode4, GameMode5, soundMute;
-	public CustomMenuItem AI_Control, ShowAiInfo;
+	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode4, GameMode5, soundMute; //once upon a time, GameMode3 was the black AI...
 	public MenuItem newGame, Save, Load, Exit, disconnect, volInc, volDec;
 	int _GM;
 	public ReadingJob rj;
@@ -57,7 +56,6 @@ public class Menu extends MenuBar {
 	public javafx.scene.control.Menu menuFile;
 	public javafx.scene.control.Menu menuGame;
 	public javafx.scene.control.Menu menuSound;
-	public javafx.scene.control.Menu menuAI;
 
 	/**
 	 * the constructor builds the GUI
@@ -69,7 +67,6 @@ public class Menu extends MenuBar {
 		menuFile = new javafx.scene.control.Menu("File");
 		menuGame = new javafx.scene.control.Menu("Game");
 		menuSound = new javafx.scene.control.Menu("Sound");
-		menuAI = new javafx.scene.control.Menu("AI-Control");
 
 		//Adding Menu Items
 		newGame = new MenuItem("New");
@@ -84,9 +81,9 @@ public class Menu extends MenuBar {
 		//RadioButton Items
 		GameMode0 = new RadioMenuItem("Game Mode Local");
 		GameMode1 = new RadioMenuItem("Game Mode LAN");
-		GameMode2 = new RadioMenuItem("White AI");
-		GameMode3 = new RadioMenuItem("Black AI");
-		GameMode4 = new RadioMenuItem("AI vs AI");
+		GameMode2 = new RadioMenuItem("AI");
+		//RIP Black AI
+		GameMode4 = new RadioMenuItem("AI vs AI"); 
 		GameMode5 = new RadioMenuItem("Launchpad");
 		soundMute = new RadioMenuItem("Mute Sound");
 
@@ -99,38 +96,20 @@ public class Menu extends MenuBar {
 		GameMode0.setToggleGroup(group);
 		GameMode1.setToggleGroup(group);
 		GameMode2.setToggleGroup(group);
-		GameMode3.setToggleGroup(group);
+		//RIP Black AI
 		GameMode0.setSelected(true);
 
 		//SoundGroup
 		ToggleGroup soundGroup = new ToggleGroup();
 		soundMute.setToggleGroup(soundGroup);
 
-		//AI-Control
-		Slider slider = new Slider();
-		slider.setMin(1);
-		slider.setMax(10);
-		slider.setValue(5);
-		slider.setShowTickLabels(true);
-		slider.setShowTickMarks(true);
-		slider.setMajorTickUnit(1);
-		slider.setMinorTickCount(0);
-		slider.snapToTicksProperty().set(true);
-		AI_Control = new CustomMenuItem(slider);
-		AI_Control.setHideOnClick(false);
-		
-		Text TXT = new Text();
-		TXT.setText("AI-Züge voraus berechnen: " + (int) slider.getValue());
-		ShowAiInfo = new CustomMenuItem(TXT);
-		ShowAiInfo.setHideOnClick(false);
 
-		
+
 		menuFile.getItems().addAll(newGame, Save, Load, Exit);						//delete refresh when publish
-		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode3, GameMode5, Draw);
+		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode5, Draw);
 		menuSound.getItems().addAll(soundMute, volInc, volDec);
-		menuAI.getItems().addAll(ShowAiInfo, AI_Control);
 
-		this.getMenus().addAll(menuFile, menuGame, menuSound, menuAI);
+		this.getMenus().addAll(menuFile, menuGame, menuSound);
 
 
 
@@ -186,7 +165,7 @@ public class Menu extends MenuBar {
 
 				PopUp pp = new PopUp(Gui);
 				pp.display();
-				
+
 				if(Gui.getBoardGui().soundPlayer.getVolume()<1.0){
 					double temp = Gui.getBoardGui().soundPlayer.getVolume()+0.1;
 					if(temp > 1.0){
@@ -233,24 +212,24 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent arg0) {		
-				
-					Gui.getBoardGui().soundPlayer.playSound("menu");
-					Gui.getBoardGui().heartBeatJob.setDisconnectInitiation(true);
-					Gui.getBoardGui().heartBeatJob.stopHeartBeat();
-					Gui.getBoardGui().setOnlineHighlight(false);
-					Gui.getBoardGui().setBthinking(false);
-					Gui.setChoose(0);
-					setSelect(0);
-					
-					try{
-			    	Gui.getMenu().hostJob.stopSocket();
-					}catch(Exception e){
-						
-					}
-			    	Gui.getMenu().menuFile.getItems().addAll(Gui.getMenu().Load, Gui.getMenu().Save, Gui.getMenu().newGame);
-					Gui.getMenu().menuGame.getItems().addAll(Gui.getMenu().GameMode0, Gui.getMenu().GameMode1, Gui.getMenu().GameMode2, Gui.getMenu().GameMode3);
-					Gui.getMenu().menuGame.getItems().removeAll(Gui.getMenu().disconnect);
-			
+
+				Gui.getBoardGui().soundPlayer.playSound("menu");
+				Gui.getBoardGui().heartBeatJob.setDisconnectInitiation(true);
+				Gui.getBoardGui().heartBeatJob.stopHeartBeat();
+				Gui.getBoardGui().setOnlineHighlight(false);
+				Gui.getBoardGui().setBthinking(false);
+				Gui.setChoose(0);
+				setSelect(0);
+
+				try{
+					Gui.getMenu().hostJob.stopSocket();
+				}catch(Exception e){
+
+				}
+				Gui.getMenu().menuFile.getItems().addAll(Gui.getMenu().Load, Gui.getMenu().Save, Gui.getMenu().newGame);
+				Gui.getMenu().menuGame.getItems().addAll(Gui.getMenu().GameMode0, Gui.getMenu().GameMode1, Gui.getMenu().GameMode2);
+				Gui.getMenu().menuGame.getItems().removeAll(Gui.getMenu().disconnect);
+
 			}
 
 		});
@@ -380,10 +359,10 @@ public class Menu extends MenuBar {
 
 					Gui.getBoardGui().soundPlayer.playSound("menu");
 					Gui.setChoose(1);
-					
+
 					//Gui.getBGG2().setTeam(true);
 					//Gui.getBoardGui().setHighlighting(true);
-					
+
 					/*try {
 						Gui.setBGG1(Gui.getBGG2().getLan().initSeed);
 						Gui.getBoardGui().DrawGrid(Gui.getBGG2().getLan().initSeed);
@@ -392,9 +371,9 @@ public class Menu extends MenuBar {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}*/
-					
+
 					Gui.getBoardGui().setOnlineHighlight(true);
-	
+
 					hostJob = new hostingJob(Gui);
 					Thread hostingThread = new Thread(hostJob);
 
@@ -470,7 +449,7 @@ public class Menu extends MenuBar {
 
 
 								menuFile.getItems().removeAll(Load, Save, newGame);
-								menuGame.getItems().removeAll(GameMode0, GameMode1, GameMode2, GameMode3);
+								menuGame.getItems().removeAll(GameMode0, GameMode1, GameMode2);
 								menuGame.getItems().addAll(disconnect);
 
 
@@ -550,23 +529,16 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
+			
 				Gui.setChoose(2);
 				Gui.getBoardGui().soundPlayer.playSound("menu");
+				
 			}
 		});
 
 		setSelect(Gui.getChoose());
-
-		//----------------------------------------------------------------------------------------------------	
-
-		GameMode3.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				Gui.setChoose(3);
-				Gui.getBoardGui().soundPlayer.playSound("menu");
-			}
-		});
+		
+		
 		GameMode4.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -585,19 +557,9 @@ public class Menu extends MenuBar {
 				Gui.getBoardGui().soundPlayer.playSound("menu");
 			}
 		});
-	
-		
-		//Slider AI
-		AI_Control.setOnAction(new EventHandler<ActionEvent>() {
 
-			@Override
-			public void handle(ActionEvent arg0) {
-				Slider S = (Slider) AI_Control.getContent();
-				Text TXT = (Text) ShowAiInfo.getContent();
-				TXT.setText("AI-Züge voraus berechnen: " + (int) S.getValue());
-				Gui.getBGG2().setAiDepth((int) S.getValue());
-			}
-		});
+
+
 	}
 
 	/**

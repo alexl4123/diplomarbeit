@@ -163,9 +163,10 @@ public class BoardGui extends Canvas {
 	 * @param <T>
 	 */
 
-	public IntegerProperty BGGChange, Heartbeat;
-
+	public IntegerProperty BGGChange, Heartbeat, turnProp, conProp, teamProp;
 	public network.Heartbeat heartBeatJob;
+	
+
 
 	public <T> BoardGui(GUI Gui) {
 		bThinking = false;
@@ -186,6 +187,13 @@ public class BoardGui extends Canvas {
 		this.heightProperty().addListener(observable -> redraw());
 		this._X = this.getWidth();
 		this._Y = this.getHeight();
+		turnProp = new SimpleIntegerProperty();
+		conProp = new SimpleIntegerProperty();
+		teamProp = new SimpleIntegerProperty();
+				
+		turnProp.setValue(0);
+		conProp.setValue(0);
+		teamProp.setValue(0);
 
 
 		this.Heartbeat.addListener(new ChangeListener<Number>() {
@@ -369,7 +377,7 @@ public class BoardGui extends Canvas {
 					int iPos = OMove.getISelect();
 					soundPlayer.playSound("move");
 					
-					if ((_iChoose == 1 || (_iChoose == 2 && !L.getTeam()) || (_iChoose == 3 && L.getTeam()) || _iChoose == 0)
+					if ((_iChoose == 1 || (_iChoose == 2 && _BGG2.getAITeam() && !L.getTeam()) || (_iChoose == 2 && !_BGG2.getAITeam() && L.getTeam()) || _iChoose == 0)
 							&& iPos != iMatrix) { // if move is possible
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
 						_BGG = XY;
@@ -412,7 +420,8 @@ public class BoardGui extends Canvas {
 						_Gui.setBGG2(_BGG2);
 
 						redraw();
-
+						
+						turnProp.setValue(_BGG2.getTurnRound());
 						_BGG2.higherTurnRound();
 						bThinking = true;
 						_Gui.getMenu().rj = new ReadingJob(_Gui);
@@ -433,7 +442,7 @@ public class BoardGui extends Canvas {
 						//No press possible
 						//get Board
 						
-					} else if (_iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer()) {
+					} else if (_iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer() && _BGG2.getAITeam()) {
 						//White AI
 						System.out.println("AI-Depth" + _BGG2.getAiDepth());
 						AI _AI = new AI(_BGG2, this,true,false,_BGG2.getAiDepth());
@@ -442,7 +451,7 @@ public class BoardGui extends Canvas {
 						bThinking = true;
 						redraw();
 						L.setTeam(false);
-					} else if (_iChoose == 3 && !_BGG2.getTeam() && !OMove.getBauer()) {
+					} else if (_iChoose == 2 && !_BGG2.getTeam() && !OMove.getBauer() && !_BGG2.getAITeam()) {
 						//Black AI
 						System.out.println("AI-Depth" + _BGG2.getAiDepth());
 						AI _AI = new AI(_BGG2, this,false,false,_BGG2.getAiDepth());
@@ -986,7 +995,7 @@ public class BoardGui extends Canvas {
 					_BGG2.setChoose(0);
 					_Gui.getMenu().setSelect(0);
 					_Gui.getMenu().menuFile.getItems().addAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame);
-					_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2, _Gui.getMenu().GameMode3);
+					_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2);
 					_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().disconnect);
 					heartBeatJob.setDisconnectInitiation(false);
 					heartbeatMenu = false;
@@ -1017,7 +1026,7 @@ public class BoardGui extends Canvas {
 					if(_BGG2.getLan().getIsConnectet()==true){
 
 						_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame);
-						_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2, _Gui.getMenu().GameMode3);
+						_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2);
 						_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().disconnect);
 					}
 					if(_BGG2.getLan().getIsConnectet() == false){

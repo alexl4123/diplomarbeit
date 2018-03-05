@@ -163,11 +163,12 @@ public class Move {
 					}
 
 					if (MP.ID >= 100 && MP.ID < 110 && _BGG2.getTeam() && MP.PY == 7) {
-						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
 						_Bauerntausch = true;
+						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
+						
 					} else if (MP.ID >= 200 && MP.ID < 210 && !_BGG2.getTeam() && MP.PY == 0) {
-						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
 						_Bauerntausch = true;
+						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
 					}
 
 					_Moved = true;
@@ -1141,7 +1142,7 @@ public class Move {
 					if (_BGG2.getQueenNumber() < 4) {
 
 						// Chooser = 1;
-						_BGG2.setMove(true);
+						
 
 						if (team == true) {
 							_BGG2.higherQueenNumber();
@@ -1158,6 +1159,7 @@ public class Move {
 							_BGG2.Objectives.set(Number + 240, khaleesi);
 							TheMove[XX][YY] = 240 + Number;
 						}
+						_BGG2.setMove(true);
 					} else {
 						JFrame Frame1 = new JFrame("");
 						JOptionPane.showMessageDialog(Frame1, "No more Queens available! Choose another one!",
@@ -1226,16 +1228,20 @@ public class Move {
 					}
 
 				}
-				_Bauerntausch = false;
+				ChooserF.setVisible(false);
+				
 				/*
 				 * connectionWrite(); BGG.higherTurnRound();
 				 * renewPanel(XX,YY,false);
 				 */
 				_BGG2.iBackground = TheMove;
+				_BGG2.setTeam(team);
 				getSchach2();
+				_BGG2.changeTeam();
 				BG.redraw();
+				_Bauerntausch = false;
 				// renewPanel(0, 0, false);
-				ChooserF.setVisible(false);
+				
 
 			}
 		});
@@ -1249,7 +1255,7 @@ public class Move {
 
 	/**
 	 * getSchach() simply returns a true _Blackschach when the Black king is in
-	 * check and a _Whiteschach wehn the White king is in check. This method is
+	 * check and a _Whiteschach when the White king is in check. This method is
 	 * use mainly for Moveing & Viewing
 	 */
 	public void getSchach() {

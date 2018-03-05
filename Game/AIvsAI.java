@@ -81,7 +81,7 @@ public class AIvsAI extends Thread {
 				
 				
 			
-		}while(7000 > AIL.boardEvaluation(_BGG2, true) && (-7000) < AIL.boardEvaluation(_BGG2, true) && !bSchachMattB && !bSchachMattW);
+		}while(15000 > AIL.boardEvaluation(_BGG2, true) && (-15000) < AIL.boardEvaluation(_BGG2, true) && !bSchachMattB && !bSchachMattW);
 		System.out.println("SkyNet halted");
 		
 	}
