@@ -217,6 +217,7 @@ public class BoardGui extends Canvas {
 				System.out.println("TRIGGERED");
 				try {
 					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
+					_BGG2.higherTurnRound();
 					if (_BGG2.getLan().getFirstturn() == true){
 						L.setTeam(false);
 						_BGG2.setTeam(false);
@@ -412,7 +413,7 @@ public class BoardGui extends Canvas {
 
 						redraw();
 
-
+						_BGG2.higherTurnRound();
 						bThinking = true;
 						_Gui.getMenu().rj = new ReadingJob(_Gui);
 						Thread rt = new Thread(_Gui.getMenu().rj);
@@ -587,7 +588,7 @@ public class BoardGui extends Canvas {
 		Color moveBlue = Color.rgb(164, 228, 234);
 		Color secondMoveBlue= Color.rgb(27, 112, 118);
 
-		if(getHighlighting()){
+		if(getHighlighting() == true){
 
 			if(getHighlightAnimations()==true){
 
@@ -616,7 +617,7 @@ public class BoardGui extends Canvas {
 		Color agressorRed = Color.rgb(187, 6, 6);
 		Color secondAgressorRed = Color.rgb(249, 53, 53);
 
-		if(getHighlighting()){
+		if(getHighlighting() == true){
 
 			if(getHighlightAnimations()==true){
 
@@ -732,9 +733,12 @@ public class BoardGui extends Canvas {
 				TileList.add(T);
 
 				if(T.getColor()==birchBrown){
-					gc.setFill(getLinearGradient(birchBrownGrad, birchBrown, 0.3));
+					
+					gc.setFill(getLinearGradient(birchBrownGrad, birchBrown, 0.9));				//org. 0.3
+					//gc.setFill(birchBrown);													//use for DEMO w/o Effect
 				}else{
-					gc.setFill(getLinearGradient(lightBrownGrad, lightBrown, 0.3));
+				  gc.setFill(getLinearGradient(lightBrownGrad, lightBrown, 0.9));
+					//gc.setFill(lightBrown);													//use for DEMO w/o Effect
 				}
 
 
@@ -1155,10 +1159,11 @@ public class BoardGui extends Canvas {
 
 		gc.setFill(Color.ANTIQUEWHITE);
 		gc.setEffect(null);
-		gc.setEffect(new DropShadow(500, Color.BLACK));
+		gc.setEffect(new DropShadow(25, Color.BLACK));					//setting the startup Dropshadow
 		gc.fillRect(10*P1X, 22*P1Y, 80*P1X, 56*P1Y);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(1.5);
+		gc.setEffect(null);
 		gc.strokeRect(10*P1X, 22*P1Y, 80*P1X, 56*P1Y);
 		gc.setLineWidth(1);
 		gc.setFill(getLinearGradient(lightBrown, lightBrownGrad, 0.9));
