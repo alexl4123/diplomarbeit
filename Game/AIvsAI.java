@@ -24,6 +24,8 @@ public class AIvsAI extends Thread {
 	public void run() {
 		boolean isRunning = true;
 		AILogic AIL = new AILogic();
+		boolean bSchachMattW = false;
+		boolean bSchachMattB = false;
 		
 		do {
 			
@@ -31,7 +33,7 @@ public class AIvsAI extends Thread {
 				if(!bAI_Thinking_Black) {
 					bAI_Thinking_White = true;
 					_BG.setThinking(true);
-					AI _AI_White = new AI(_BGG2, _BG,true,true);
+					AI _AI_White = new AI(_BGG2, _BG,true,true,_BGG2.getAiDepth());
 					_AI_White.setAIvsAI(this);
 					_AI_White.start();
 				}
@@ -47,7 +49,7 @@ public class AIvsAI extends Thread {
 				
 				if(!bAI_Thinking_White) {
 					bAI_Thinking_Black = true;
-					AI _AI_Black = new AI(_BGG2, _BG,false,true);
+					AI _AI_Black = new AI(_BGG2, _BG,false,true,_BGG2.getAiDepth());
 					_AI_Black.setAIvsAI(this);
 					_AI_Black.start();
 				}
@@ -60,10 +62,26 @@ public class AIvsAI extends Thread {
 						e.printStackTrace();
 					}
 				}
+				int KingX;
+				int KingY;
+				for(int iY = 0; iY < 8; iY++){
+					for(int iX = 0; iX < 8; iX++){
+						if(_BGG2.iBackground[iX][iY] == 150){
+							KingX = iX;
+							KingY = iY;
+							bSchachMattW = _BGG2.SchachKing(true, _BGG2, KingX, KingY, true, false);
+						}else if(_BGG2.iBackground[iX][iY] == 250){
+							KingX = iX;
+							KingY = iY;
+							bSchachMattW = _BGG2.SchachKing(false, _BGG2, KingX, KingY, true, false);
+						}
+					}
+				}
+				
 				
 				
 			
-		}while(7000 > AIL.boardEvaluation(_BGG2, true) && (-7000) < AIL.boardEvaluation(_BGG2, true));
+		}while(7000 > AIL.boardEvaluation(_BGG2, true) && (-7000) < AIL.boardEvaluation(_BGG2, true) && !bSchachMattB && !bSchachMattW);
 		System.out.println("SkyNet halted");
 		
 	}

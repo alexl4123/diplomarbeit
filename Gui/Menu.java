@@ -8,6 +8,12 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import com.sun.javafx.geom.BaseBounds;
+import com.sun.javafx.geom.transform.BaseTransform;
+import com.sun.javafx.jmx.MXNodeAlgorithm;
+import com.sun.javafx.jmx.MXNodeAlgorithmContext;
+import com.sun.javafx.sg.prism.NGNode;
+
 import BackgroundMatrix.BackgroundGrid;
 import Game.AILogic;
 import Game.MovePos;
@@ -16,8 +22,10 @@ import SaveLoad.save;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import network.Heartbeat;
@@ -40,6 +48,7 @@ public class Menu extends MenuBar {
 	 * GameMode2 - if GameMode AI has been selected
 	 */
 	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode3, GameMode4, GameMode5, soundMute;
+	public CustomMenuItem AI_Control, ShowAiInfo;
 	public MenuItem newGame, Save, Load, Exit, disconnect, volInc, volDec;
 	int _GM;
 	public ReadingJob rj;
@@ -48,6 +57,7 @@ public class Menu extends MenuBar {
 	public javafx.scene.control.Menu menuFile;
 	public javafx.scene.control.Menu menuGame;
 	public javafx.scene.control.Menu menuSound;
+	public javafx.scene.control.Menu menuAI;
 
 	/**
 	 * the constructor builds the GUI
@@ -59,6 +69,7 @@ public class Menu extends MenuBar {
 		menuFile = new javafx.scene.control.Menu("File");
 		menuGame = new javafx.scene.control.Menu("Game");
 		menuSound = new javafx.scene.control.Menu("Sound");
+		menuAI = new javafx.scene.control.Menu("AI-Control");
 
 		//Adding Menu Items
 		newGame = new MenuItem("New");
@@ -95,13 +106,31 @@ public class Menu extends MenuBar {
 		ToggleGroup soundGroup = new ToggleGroup();
 		soundMute.setToggleGroup(soundGroup);
 
+		//AI-Control
+		Slider slider = new Slider();
+		slider.setMin(1);
+		slider.setMax(10);
+		slider.setValue(5);
+		slider.setShowTickLabels(true);
+		slider.setShowTickMarks(true);
+		slider.setMajorTickUnit(1);
+		slider.setMinorTickCount(0);
+		slider.snapToTicksProperty().set(true);
+		AI_Control = new CustomMenuItem(slider);
+		AI_Control.setHideOnClick(false);
+		
+		Text TXT = new Text();
+		TXT.setText("AI-Züge voraus berechnen: " + (int) slider.getValue());
+		ShowAiInfo = new CustomMenuItem(TXT);
+		ShowAiInfo.setHideOnClick(false);
 
-
+		
 		menuFile.getItems().addAll(newGame, Save, Load, Exit);						//delete refresh when publish
 		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode3, GameMode5, Draw);
 		menuSound.getItems().addAll(soundMute, volInc, volDec);
+		menuAI.getItems().addAll(ShowAiInfo, AI_Control);
 
-		this.getMenus().addAll(menuFile, menuGame, menuSound);
+		this.getMenus().addAll(menuFile, menuGame, menuSound, menuAI);
 
 
 
@@ -554,6 +583,19 @@ public class Menu extends MenuBar {
 			public void handle(ActionEvent event) {
 				Gui.initLaunchad();
 				Gui.getBoardGui().soundPlayer.playSound("menu");
+			}
+		});
+	
+		
+		//Slider AI
+		AI_Control.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				Slider S = (Slider) AI_Control.getContent();
+				Text TXT = (Text) ShowAiInfo.getContent();
+				TXT.setText("AI-Züge voraus berechnen: " + (int) S.getValue());
+				Gui.getBGG2().setAiDepth((int) S.getValue());
 			}
 		});
 	}
