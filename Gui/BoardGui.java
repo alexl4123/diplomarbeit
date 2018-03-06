@@ -179,7 +179,7 @@ public class BoardGui extends Canvas {
 
 	public IntegerProperty BGGChange, Heartbeat, turnProp, conProp, teamProp;
 	public network.Heartbeat heartBeatJob;
-	
+
 
 
 	public <T> BoardGui(GUI Gui) {
@@ -205,7 +205,7 @@ public class BoardGui extends Canvas {
 		turnProp = new SimpleIntegerProperty();
 		conProp = new SimpleIntegerProperty();
 		teamProp = new SimpleIntegerProperty();
-				
+
 		turnProp.setValue(0);
 		conProp.setValue(0);
 		teamProp.setValue(0);
@@ -299,8 +299,11 @@ public class BoardGui extends Canvas {
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+				System.out.println("Mouse Pressed");
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
-					//ButtonReleased(event);
+
+					bDrag = false;
+					ButtonReleased(event, true);
 				}
 
 				event.consume();
@@ -312,6 +315,7 @@ public class BoardGui extends Canvas {
 			@Override
 			public void handle(MouseEvent event) {
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack()  && !_BGG2.getDraw()) {
+
 					bDrag = true;
 
 					ButtonDragE(event);
@@ -333,8 +337,9 @@ public class BoardGui extends Canvas {
 			@Override
 			public void handle(MouseEvent event) {
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack()  && !_BGG2.getDraw()) {
+					System.out.println("Mouse Released");
 					bDrag = false;
-					ButtonReleased(event);
+					ButtonReleased(event, false);
 				}
 
 			}
@@ -371,36 +376,44 @@ public class BoardGui extends Canvas {
 		}
 
 	}
-	
+
+	ArrayList<int[]> SaveMoveList = new ArrayList<int[]>();
+
 	/**
 	 * For Drag end or button clicked
 	 * 
 	 * @param e
 	 *            - Event (Mouse Event)
 	 */
-	private void ButtonReleased(MouseEvent e) {
+	private void ButtonReleased(MouseEvent e, boolean ButtonPressed) {
 		try {
-			
+
 			LastMoveList.clear();
 			for (Tile T : TileList) {
 				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && !OMove.getBauer()) {
-					
+
 					OMove.setBoardGui(this);
 					int iMatrix = _BGG[T.getXP()][T.getYP()];
 					_BGG2.setTeam(L.getTeam());
 					_BGG = _BGG2.iBackground;
 					int iPos = OMove.getISelect();
-					soundPlayer.playSound("move");
 					
-					if ((_iChoose == 1 || (_iChoose == 2 && _BGG2.getAITeam() && !L.getTeam()) || (_iChoose == 2 && !_BGG2.getAITeam() && L.getTeam()) || _iChoose == 0)) { // if move is possible
+					if(ButtonPressed && iMatrix==0){
+						//soundPlayer.playSound("move");
+					}
+					System.out.println("::DEBUG::"+(ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260)))) + "::BUTTON::"+ButtonPressed+"::IPOS::"+(iMatrix > 0 && iMatrix < 160)+"::IPOS::"+iMatrix);
+					if (((!ButtonPressed && (OMove.getISelect() > 0) && (iPos != iMatrix)) || (ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260))))) && (_iChoose == 1 || (_iChoose == 2 && _BGG2.getAITeam() && !L.getTeam()) || (_iChoose == 2 && !_BGG2.getAITeam() && L.getTeam()) || _iChoose == 0)) { // if move is possible
+						soundPlayer.playSound("move");
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
+						System.out.println("VALID");
 						_BGG = XY;
 						_BGG2 = OMove.getBGG2();
 						L.setTeam(_BGG2.getTeam());
 						_Gui.setBGG2(_BGG2);
 					}
-					
-					
+
+
+
 					if (_iChoose == 1 && ((!L.getTeam() && !_BGG2.getLan().getFirstturn()) || (L.getTeam() && _BGG2.getLan().getFirstturn()))){ // if move has happend,
 						// do what it takes
 						// ,,LAN''
@@ -434,7 +447,7 @@ public class BoardGui extends Canvas {
 						_Gui.setBGG2(_BGG2);
 
 						redraw();
-						
+
 						turnProp.setValue(_BGG2.getTurnRound());
 						_BGG2.higherTurnRound();
 						bThinking = true;
@@ -455,7 +468,7 @@ public class BoardGui extends Canvas {
 						//Give board to LAN Partner
 						//No press possible
 						//get Board
-						
+
 					} else if (_iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer() && _BGG2.getAITeam()) {
 						//White AI
 						System.out.println("AI-Depth" + _BGG2.getAiDepth());
@@ -552,7 +565,7 @@ public class BoardGui extends Canvas {
 
 	}
 
-	
+
 	/**
 	 * Highlight fields where move is possible
 	 * 
@@ -597,9 +610,9 @@ public class BoardGui extends Canvas {
 		gc.setGlobalAlpha(0.01);
 
 		gc.setFill(Color.GREEN);
-		
+
 		if(getOnlineHighlight() == false){
-		gc.fillRect(T.getX() * P1X, T.getY() * P1Y, T.getW() * P1X, T.getH() * P1Y);}
+			gc.fillRect(T.getX() * P1X, T.getY() * P1Y, T.getW() * P1X, T.getH() * P1Y);}
 		gc.setGlobalAlpha(1);
 
 	}
@@ -756,11 +769,11 @@ public class BoardGui extends Canvas {
 				TileList.add(T);
 
 				if(T.getColor()==birchBrown){
-					
+
 					gc.setFill(getLinearGradient(birchBrownGrad, birchBrown, 0.9));				//org. 0.3
 					//gc.setFill(birchBrown);													//use for DEMO w/o Effect
 				}else{
-				  gc.setFill(getLinearGradient(lightBrownGrad, lightBrown, 0.9));
+					gc.setFill(getLinearGradient(lightBrownGrad, lightBrown, 0.9));
 					//gc.setFill(lightBrown);													//use for DEMO w/o Effect
 				}
 
@@ -981,7 +994,7 @@ public class BoardGui extends Canvas {
 		P1X = (_X / 100);
 		P1Y = (_Y / 100);
 
-		
+
 		System.out.println("drawing blurry menu");
 		BoxBlur frostEffect = new BoxBlur(10, 10, 1000);
 		gc.setEffect(frostEffect);
@@ -1014,7 +1027,7 @@ public class BoardGui extends Canvas {
 					_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().disconnect);
 					heartBeatJob.setDisconnectInitiation(false);
 					heartbeatMenu = false;
-					
+
 					if(_BGG2.getLan().getTeam() == true){
 						try{
 							System.out.println("killing");
@@ -1046,7 +1059,7 @@ public class BoardGui extends Canvas {
 					}
 					if(_BGG2.getLan().getIsConnectet() == false){
 						System.out.println("socket stopped");
-						
+
 
 						if(_BGG2.getLan().getTeam() == true){
 							try{
@@ -1054,7 +1067,7 @@ public class BoardGui extends Canvas {
 								heartBeatJob.stopServSocket();
 								stopJob.stopSocket();}
 							catch(Exception e){
-								
+
 							}
 						}
 						setOnlineHighlight(false);
@@ -1064,20 +1077,20 @@ public class BoardGui extends Canvas {
 					}
 				}
 
-					_Gui.getStage().setResizable(true);
-
-					
+				_Gui.getStage().setResizable(true);
 
 
 
-					try {
-						DrawGrid(_BGG);
-					} catch (Exception e) {
-						
-						System.out.println("EROOR DURING REDRAWING");
-						
-					}
-				
+
+
+				try {
+					DrawGrid(_BGG);
+				} catch (Exception e) {
+
+					System.out.println("EROOR DURING REDRAWING");
+
+				}
+
 			}
 		});
 

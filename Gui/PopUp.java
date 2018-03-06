@@ -56,7 +56,7 @@ public class PopUp {
 
 		gc.setFill(Color.BLACK);
 		gc.strokeRect(44, 50, 255, 23);
-		gc.strokeRect(44, 138, 372, 23);
+		gc.strokeRect(44, 138, 272, 23);
 
 
 		Label titleLabel= new Label("Options:");
@@ -137,7 +137,7 @@ public class PopUp {
 
 
 
-		Label AILabel = new Label("AI-Zuege voraus berechnen: " + gui.getBGG2().getAiDepth());
+		Label AILabel = new Label("Difficulty Level: " + gui.getBGG2().getAiDepth());
 		AILabel.setLayoutX(50);
 		AILabel.setLayoutY(138);
 
@@ -239,7 +239,7 @@ public class PopUp {
 			}
 		});
 		
-		CheckBox RectBoard = new CheckBox("Rectangular Board");
+		CheckBox RectBoard = new CheckBox("Square Board");
 		RectBoard.setLayoutX(355);
 		RectBoard.setLayoutY(221);
 		RectBoard.setSelected(gui.getBoardGui().isRectMode());
@@ -248,14 +248,15 @@ public class PopUp {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				
-				gui.S.setHeight(800);
-				gui.S.setWidth(800);
+				
 				
 				if(gui.getBoardGui().isRectMode() == false){
 					gui.getBoardGui().setRectMode(true);
+					gui.S.setWidth(600);
+					gui.S.setHeight(600);
 				}else{
 					gui.getBoardGui().setRectMode(false);
-					gui.S.setResizable(true);
+					
 				}
 				
 				
@@ -295,14 +296,14 @@ public class PopUp {
 		AIslider.setMinorTickCount(0);
 		AIslider.snapToTicksProperty().set(true);
 
-		AIslider.setLayoutX(270);
+		AIslider.setLayoutX(170);
 		AIslider.setLayoutY(141);
 
 		AIslider.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				AILabel.setText("AI-Zuege voraus berechnen: " + (int) AIslider.getValue());	
+				AILabel.setText("Difficulty Level: " + (int) AIslider.getValue());	
 				gui.getBGG2().setAiDepth((int) AIslider.getValue());
 			}
 		});
@@ -347,6 +348,7 @@ public class PopUp {
 
 		popupwindow.initModality(Modality.NONE);
 		popupwindow.setTitle("Options and Information");
+		
 
 		popupwindow.setScene(scene1);
 		popupwindow.setResizable(false);

@@ -276,22 +276,28 @@ public class Move {
 			//add the team states
 			BGG2.addTeamState(BGG2.getTeam());
 			
+			System.out.println("Moved");
+			for(int[] ii :_LastMoveList){
+				int i = ii[0];
+				BG.HighlightLField(i);
+			}
+			
 			_Moved = false;
 		} else if(_bSelect) {
 			//only for Schach-Debug
 			//getSchach2();
 
-			System.out.println("BoardListSize:" + BGG2.getBoardList().size() + "::" + BGG2.getTeamList().size());
+			//System.out.println("BoardListSize:" + BGG2.getBoardList().size() + "::" + BGG2.getTeamList().size());
 			if(BGG2.getBoardList().size() > 0){
 				int iH = 0;
 				for(int[][] iBoard : BGG2.getBoardList()){
 					
-					System.out.println("Team:" + BGG2.getTeamList().get(iH)[0]);
+					//System.out.println("Team:" + BGG2.getTeamList().get(iH)[0]);
 					for(int iHY = 0; iHY < 8; iHY++){
 						for(int iHX = 0; iHX < 8; iHX++){
-							System.out.print(":" + iBoard[iHX][iHY] + ":");
+							//System.out.print(":" + iBoard[iHX][iHY] + ":");
 						}
-						System.out.println(":");
+						//System.out.println(":");
 					}
 					iH++;
 				}
@@ -1404,6 +1410,14 @@ public class Move {
 	public ArrayList<int[]> getMoveList() {
 		return _MoveList;
 	}
+	
+	/**
+	 * Sets the move list
+	 * @param newMovelist
+	 */
+	public void setMoveList(ArrayList<int[]> newMovelist){
+		_MoveList = newMovelist;
+	}
 
 	/**
 	 * @return ArrayList<int[]> HitList - The List for the possible strikes
@@ -1418,6 +1432,14 @@ public class Move {
 	 */
 	public ArrayList<int[]> getLastMoveList() {
 		return _LastMoveList;
+	}
+	
+	/**
+	 * Sets the last move list
+	 * @param newLastMoveList - ArrayList<int[]>
+	 */
+	public void setLastMoveList(ArrayList<int[]> newLastMoveList){
+		_LastMoveList = newLastMoveList;
 	}
 
 	/**

@@ -32,7 +32,9 @@ public class AudioManager {
 			
 			case "move": 
 				meepleClick.setVolume(Volume);
+				System.out.println("move sound played");
 				meepleClick.play(); break;
+				
 				
 			case "menu": 
 				menuClick.setVolume(Volume);
