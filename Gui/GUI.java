@@ -1,6 +1,10 @@
 package Gui;
 
 
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
+import java.awt.Robot;
 import java.awt.datatransfer.Clipboard;
 import java.util.Optional;
 
@@ -78,6 +82,8 @@ public class GUI extends Application{
 		_BGG2 = BGG;
 		_BGG = _BGG2.iBackground;
 	}
+	
+	double withsave;
 
 	@Override
 	/**
@@ -87,6 +93,8 @@ public class GUI extends Application{
 	 * Sets the stage, Menu Pos. and BoardGui pos
 	 */
 
+	
+	
 	public void start(Stage _S) throws Exception {
 		S = _S;
 		S.setWidth(700);
@@ -134,30 +142,39 @@ public class GUI extends Application{
 		//-------------------------------------------------------
 		S.show();
 
-	
+		
+		
 		
 
 	
 
 		S.widthProperty().addListener((obs, oldVal, newVal) -> {
-
+			
+			
 			if(BG.isRectMode() == true){
 
 				
 				System.out.println("Dead Area");
 				System.out.println(S.getWidth() + "::WIDTH");
 				System.out.println(S.getHeight() + "::HEIGHT");
+				
+				
 				if(S.getWidth()/S.getHeight() != 1){
 					S.setWidth(S.getHeight());
 				}
+				
+		
+				
 				BG.setXY(S.getWidth()-15, S.getHeight()-75);
+				
+				
 			}
 
 			
 		
 
 			else{
-				System.out.println("NOPE");
+				
 				BG.setXY(S.getWidth()-15, S.getHeight()-75);
 			}
 		});

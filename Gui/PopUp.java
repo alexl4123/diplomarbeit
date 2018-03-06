@@ -33,6 +33,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class PopUp {
 
@@ -345,7 +346,7 @@ public class PopUp {
 		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, RectBoard);
 		Scene scene1= new Scene(gp, 600, 250, Color.WHITE);
 
-
+		
 		popupwindow.initModality(Modality.NONE);
 		popupwindow.setTitle("Options and Information");
 		
