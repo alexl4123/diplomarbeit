@@ -164,10 +164,15 @@ public class BoardGui extends Canvas {
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
 
 	/**
+	 * if a Launchpad is connected
+	 */
+	private boolean _bLauch;
+	
+	/**
 	 * For Holds Launchpad
 	 * BGG ist updated in redraw methode
 	 */
-	private interface_class _Lauch = new interface_class();
+	private Launchpad _Lauch;
 
 	/**
 	 * Initial Setup for the GUI Contains the Listeners: .setOnMousePressed:
@@ -202,6 +207,7 @@ public class BoardGui extends Canvas {
 		this.heightProperty().addListener(observable -> redraw());
 		this._X = this.getWidth();
 		this._Y = this.getHeight();
+<<<<<<< HEAD
 		turnProp = new SimpleIntegerProperty();
 		conProp = new SimpleIntegerProperty();
 		teamProp = new SimpleIntegerProperty();
@@ -230,6 +236,11 @@ public class BoardGui extends Canvas {
 			}
 		});
 
+=======
+		_bLauch = false;
+		
+		
+>>>>>>> pr/18
 		this.BGGChange.addListener(new ChangeListener<Number>() {
 
 			@Override
@@ -268,8 +279,18 @@ public class BoardGui extends Canvas {
 				System.out.println("switches bThinking to off");
 				redraw();
 				System.out.println("hab neu gezeichnet");
+<<<<<<< HEAD
 
 
+=======
+				
+				if(_bLauch){
+					//For @Hold and @Klotz
+					_Lauch.setBG(_Gui.getBoardGui());
+					_Lauch.setBGG(_BGG2);
+				}
+				
+>>>>>>> pr/18
 			}
 
 
@@ -278,6 +299,7 @@ public class BoardGui extends Canvas {
 
 
 		});
+<<<<<<< HEAD
 
 
 		_Lauch.iCount.addListener(new ChangeListener<Number>() {//git commit suicide
@@ -295,11 +317,21 @@ public class BoardGui extends Canvas {
 			}
 		});
 
+=======
+		
+		
+		
+		
+>>>>>>> pr/18
 
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+<<<<<<< HEAD
 				System.out.println("Mouse Pressed");
+=======
+				L.setTeam(_BGG2.getTeam());
+>>>>>>> pr/18
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 
 					bDrag = false;
@@ -314,6 +346,7 @@ public class BoardGui extends Canvas {
 
 			@Override
 			public void handle(MouseEvent event) {
+				L.setTeam(_BGG2.getTeam());
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack()  && !_BGG2.getDraw()) {
 
 					bDrag = true;
@@ -499,7 +532,11 @@ public class BoardGui extends Canvas {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		_Lauch.setBGG(_BGG2);
+		if(_bLauch){
+			//For @Hold and @Klotz
+			_Lauch.setBG(_Gui.getBoardGui());
+			_Lauch.setBGG(_BGG2);
+		}
 		redraw();
 	}
 
@@ -565,6 +602,102 @@ public class BoardGui extends Canvas {
 
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * What happens when a mouse click has occurd? It is in this method,
+	 * basically at first it gets the Tile in 8x8 then it calls the getMove
+	 * method from the object OMove (class Move). Then it redraws the Scene
+	 * 
+	 * @param e
+	 *            - MouseEvent
+	 */
+	private void ButtonClick(MouseEvent e) {
+		try {
+		
+			LastMoveList.clear();
+			for (Tile T : TileList) {
+				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && OMove.getBauer() == false) {
+					OMove.setBoardGui(this);
+					int iMatrix;
+					iMatrix = _BGG[T.getXP()][T.getYP()];
+
+					_BGG2.setTeam(L.getTeam());
+					_BGG = _BGG2.iBackground;
+					OMove.setBGG(_BGG);
+					if ((_iChoose == 1 && L.getTeam()) || (_iChoose == 2 && L.getTeam()) || _iChoose == 0) { // if
+																												// move
+																												// is
+																												// possible
+						System.out.println("Moved");
+						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
+						_BGG = XY;
+						_BGG2 = OMove.getBGG2();
+						L.setTeam(_BGG2.getTeam());
+						_Gui.setBGG2(_BGG2);
+					}
+
+					if (_iChoose == 1 && _BGG2.getTeam() != L.getTeam()) { // if
+																			// move
+																			// has
+																			// happend,
+																			// do
+																			// what
+																			// it
+																			// takes
+																			// to
+																			// LAN
+						
+						System.out.println("schreib jetzt2");
+						_BGG2.getLan().netWriteStream.writeObject(_BGG);
+						_BGG2.getLan().netWriteStream.flush();
+						for(int y = 0; y<8;y++){
+							for(int x = 0; x<8;x++){
+								System.out.print(":"+_BGG[x][y]+":");
+							}
+							System.out.println(" ");
+						}
+						System.out.println("Hab gschrieben2");
+						bThinking = true;
+						
+						
+						
+						
+						
+						
+						
+					} else if (_iChoose == 2 && _BGG2.getTeam() != L.getTeam() && !OMove.getBauer()) {// if
+						// move
+						// has
+						// happend,
+						// do
+						// what
+						// it
+						// takes
+						// to
+						// AI
+
+						AI _AI = new AI(_BGG2, this);
+						_AI.start();
+						LastMoveList = _AI.getLMoveList();
+						bThinking = true;
+						redraw();
+						L.setTeam(true);
+					}
+
+				}
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		if(_bLauch){
+			//For @Hold and @Klotz
+			_Lauch.setBG(_Gui.getBoardGui());
+			_Lauch.setBGG(_BGG2);
+		}
+		redraw();
+	}
+>>>>>>> pr/18
 
 	/**
 	 * Highlight fields where move is possible
@@ -800,10 +933,14 @@ public class BoardGui extends Canvas {
 				dX = (x + 1) * 10 + (x + 2);
 				dY = (y + 1) * 10 + (y + 2);
 				int iBGG;
-				if (BGG[OMove.getIPosX()][OMove.getIPosY()] == BGG[x][y] && bDrag) {
+				try{
+					if (BGG[OMove.getIPosX()][OMove.getIPosY()] == BGG[x][y] && bDrag) {
+						iBGG = 0;
+					} else {
+						iBGG = BGG[x][y];
+					}
+				} catch(Exception e){
 					iBGG = 0;
-				} else {
-					iBGG = BGG[x][y];
 				}
 
 				if (OMove.getMoveList().size() > 0) {
@@ -981,10 +1118,9 @@ public class BoardGui extends Canvas {
 			gc.setFill(oakBrown);
 			gc.fillRect(0, 0, this.getWidth(), this.getHeight());
 			try {
-				_Lauch.setBGG(_BGG2);
 				DrawGrid(_BGG);
 			} catch (Exception e) {
-			}
+				e.printStackTrace();			}
 		}
 
 	}
@@ -1428,12 +1564,13 @@ public class BoardGui extends Canvas {
 	}
 
 	/**
-	 * For Hold&Klotz
-	 * @param Lauch - Object of interface_class
+	 * For the hold and klotz initiative
+	 * @param Lauch
 	 */
-	public void setInterface_Class(interface_class Lauch) {
+	public void setLaunchpad(Launchpad Lauch){
 		_Lauch = Lauch;
 	}
+<<<<<<< HEAD
 
 	public boolean getStartupbuttonOn() {
 		return startupbuttonOn;
@@ -1450,5 +1587,22 @@ public class BoardGui extends Canvas {
 	public boolean setOnlineHighlight(boolean onlineHighlight) {
 		this.onlineHighlight = onlineHighlight;
 		return onlineHighlight;
+=======
+	
+	/**
+	 * if a Launchpad connects
+	 * @param State - if Launchpad connects - true
+	 */
+	public void setBLauch(boolean State){
+		_bLauch = State;
+	}
+	
+	/**
+	 * get if a Launchpad is connected
+	 * @return
+	 */
+	public boolean getBLauch(){
+		return _bLauch;
+>>>>>>> pr/18
 	}
 }

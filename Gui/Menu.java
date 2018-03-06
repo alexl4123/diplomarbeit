@@ -28,7 +28,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+<<<<<<< HEAD
 import network.Heartbeat;
+=======
+import launchpad.Launchpad;
+>>>>>>> pr/18
 import network.ReadingJob;
 import network.hostingJob;
 
@@ -543,8 +547,16 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
+<<<<<<< HEAD
 				Gui.initLaunchad();
 				Gui.getBoardGui().soundPlayer.playSound("menu");
+=======
+				if(GameMode3.isSelected()) {
+					Gui.initLaunchad();
+				}else {
+					Launchpad.stop();
+				}
+>>>>>>> pr/18
 			}
 		});
 
@@ -560,6 +572,7 @@ public class Menu extends MenuBar {
 	public void setSelect(int i){
 
 		_GM=i;
+<<<<<<< HEAD
 		if(i == 0){
 			GameMode0.setSelected(true);
 			GameMode1.setSelected(false);
@@ -573,6 +586,34 @@ public class Menu extends MenuBar {
 			GameMode0.setSelected(false);
 			GameMode1.setSelected(false);
 		}
+=======
+				if(i == 0){
+					GameMode0.setSelected(true);
+					GameMode1.setSelected(false);
+					GameMode2.setSelected(false);
+				} else if(i == 1){
+					GameMode1.setSelected(true);
+					GameMode0.setSelected(false);
+					GameMode2.setSelected(false);
+				}else if (i == 2){
+					GameMode2.setSelected(true);
+					GameMode0.setSelected(false);
+					GameMode1.setSelected(false);
+				}
+	}
+	
+	public void setLaunchpadMode(boolean status) {
+		GameMode3.setSelected(status);
+	}
+	
+	public boolean getLaunchpadMode() {
+		return GameMode3.isSelected();
+	}
+	
+	public int getGameMode(){
+		
+		return _GM;
+>>>>>>> pr/18
 	}
 
 
