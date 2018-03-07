@@ -1,7 +1,5 @@
 package javachess.game;
 
-import java.util.concurrent.TimeUnit;
-
 import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.gui.BoardGui;
 

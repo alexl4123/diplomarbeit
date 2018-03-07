@@ -3,35 +3,20 @@ package javachess.gui;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Optional;
-
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.jmx.MXNodeAlgorithm;
-import com.sun.javafx.jmx.MXNodeAlgorithmContext;
-import com.sun.javafx.sg.prism.NGNode;
-
 import javachess.backgroundmatrix.BackgroundGrid;
-import javachess.game.AILogic;
-import javachess.game.MovePos;
 import javachess.launchpad.Launchpad;
 import javachess.network.Heartbeat;
 import javachess.network.ReadingJob;
 import javachess.network.hostingJob;
 import javachess.saveload.Load;
 import javachess.saveload.Save;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 /**
  * @author alex - 2017

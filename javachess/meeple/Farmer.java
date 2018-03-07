@@ -1,9 +1,7 @@
 package javachess.meeple;
 
 import java.net.URL;
-
 import javax.swing.ImageIcon;
-
 import javachess.backgroundmatrix.BackgroundGrid;
 
 /**

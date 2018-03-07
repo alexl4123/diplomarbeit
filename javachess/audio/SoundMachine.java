@@ -1,12 +1,7 @@
 package javachess.audio;
 
 import java.io.*;
-import java.net.URL;
-
-import javax.net.*;
 import javax.sound.sampled.*;
-
-import javachess.guistuff.BoardGui;
  
 /**
  * @author alexl12
@@ -17,9 +12,13 @@ import javachess.guistuff.BoardGui;
  * It is a thread
  *
  */
+
+@SuppressWarnings("unused")
 public class SoundMachine extends Thread{  
+	
+	
     private File sf;//only for finding out, if the file is there
-    private final int EXTERNAL_BUFFER_SIZE = 524288; //for reading
+	private final int EXTERNAL_BUFFER_SIZE = 524288; //for reading
     private SourceDataLine line = null;
     private AudioInputStream ais = null;
     private FloatControl volume; 

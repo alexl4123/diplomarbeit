@@ -2,7 +2,6 @@ package javachess.meeple;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import javachess.backgroundmatrix.BackgroundGrid;
 
 /**

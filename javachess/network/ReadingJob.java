@@ -1,10 +1,7 @@
 package javachess.network;
 
-import java.io.IOException;
-import java.time.chrono.IsoChronology;
-
 import javachess.gui.GUI;
-import javafx.beans.property.IntegerProperty;
+
 
 public class ReadingJob implements Runnable {
 	

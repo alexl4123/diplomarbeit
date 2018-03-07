@@ -1,7 +1,6 @@
 package javachess.start;
 
 import javachess.backgroundmatrix.BackgroundGrid;
-import javachess.game.Local;
 import javachess.gui.GUI;
 import javafx.application.Application;
 import javafx.application.Platform;

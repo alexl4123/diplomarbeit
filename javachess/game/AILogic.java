@@ -4,14 +4,6 @@ import java.util.ArrayList;
 
 import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.backgroundmatrix.Move;
-import javachess.meeple.Farmer;
-import javachess.meeple.Jumper;
-import javachess.meeple.King;
-import javachess.meeple.Queen;
-import javachess.meeple.Runner;
-import javachess.meeple.SuperMeeple;
-import javachess.meeple.Tower;
-
 /**
  * 
  * @author alexl12 - 2017

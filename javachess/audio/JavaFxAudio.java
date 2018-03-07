@@ -3,7 +3,6 @@ package javachess.audio;
 import java.net.URL;
 
 
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -24,10 +23,10 @@ public class JavaFxAudio {
 		Media meepleClicksound = new Media(rsc1.toString());
 		meepleClick = new MediaPlayer(meepleClicksound);
 		
-		Media menuClicksound = new Media(rsc1.toString());
+		Media menuClicksound = new Media(rsc2.toString());
 		menuClick = new MediaPlayer(menuClicksound);
 		
-		Media startupsound = new Media(rsc1.toString());
+		Media startupsound = new Media(rsc3.toString());
 		startup = new MediaPlayer(startupsound);
 		
 		

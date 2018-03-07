@@ -1,25 +1,14 @@
 package javachess.backgroundmatrix;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.Socket;
 import java.util.ArrayList;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import javachess.game.LAN;
 import javachess.game.MovePos;
-import javachess.launchpad.Launchpad;
 import javachess.meeple.*;
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
+
 
 /**
  * @author alex - 2017
@@ -38,6 +27,7 @@ import javafx.scene.control.ButtonType;
  *
  */
 public class BackgroundGrid implements Serializable {
+
 
 	/**
 	 * The representation of the Meeples (contains the Numeric Value equivalent

@@ -4,12 +4,10 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
 import java.awt.Robot;
-import java.awt.Toolkit;
 import java.awt.event.InputEvent;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.gui.BoardGui;
 import javachess.gui.GUI;

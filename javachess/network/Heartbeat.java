@@ -7,8 +7,6 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
-
 import javafx.beans.property.IntegerProperty;
 
 public class Heartbeat implements Runnable {
