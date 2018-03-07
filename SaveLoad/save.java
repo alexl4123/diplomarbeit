@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import BackgroundMatrix.BackgroundGrid;
+import javachess.backgroundmatrix.BackgroundGrid;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -42,21 +42,21 @@ public class save {
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("File couldn´t be saved!");
+			alert.setHeaderText("File couldnï¿½t be saved!");
 			alert.setContentText("File could not be found!");
 			alert.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("File couldn´t be saved!");
+			alert.setHeaderText("File couldnï¿½t be saved!");
 			alert.setContentText("Input Output error. Should this error continue to pop up, please contact us!");
 			alert.showAndWait();
 		} catch (NullPointerException e){
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("File couldn´t be saved!");
+			alert.setHeaderText("File couldnï¿½t be saved!");
 			alert.setContentText("File could not be found!");
 			alert.showAndWait();
 		}

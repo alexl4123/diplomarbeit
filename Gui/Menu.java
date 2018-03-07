@@ -14,11 +14,11 @@ import com.sun.javafx.jmx.MXNodeAlgorithm;
 import com.sun.javafx.jmx.MXNodeAlgorithmContext;
 import com.sun.javafx.sg.prism.NGNode;
 
-import BackgroundMatrix.BackgroundGrid;
-import Game.AILogic;
-import Game.MovePos;
 import SaveLoad.load;
 import SaveLoad.save;
+import javachess.backgroundmatrix.BackgroundGrid;
+import javachess.game.AILogic;
+import javachess.game.MovePos;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

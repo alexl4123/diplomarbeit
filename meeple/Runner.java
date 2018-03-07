@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import BackgroundMatrix.BackgroundGrid;
+import javachess.backgroundmatrix.BackgroundGrid;
 
 
 /**

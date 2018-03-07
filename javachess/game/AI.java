@@ -1,12 +1,12 @@
-package Game;
+package javachess.game;
 
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import BackgroundMatrix.BackgroundGrid;
 import Gui.BoardGui;
+import javachess.backgroundmatrix.BackgroundGrid;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

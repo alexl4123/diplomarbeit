@@ -1,4 +1,4 @@
-package audio;
+package javachess.audio;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,9 +21,9 @@ public class NativeAudio {
 	private AudioInputStream audioStream;
 	private AudioFormat audioFormat;
 	private SourceDataLine sourceLine;
-	private final URL meeplesound = getClass().getResource("/audio/MeepleClick.wav");
-	private final URL menusound = getClass().getResource("/audio/menuClick.wav");
-	private final URL startupsound = getClass().getResource("/audio/Startup.wav");
+	private final URL meeplesound = getClass().getResource("/javachess/audio/MeepleClick.wav");
+	private final URL menusound = getClass().getResource("/javachess/audio/menuClick.wav");
+	private final URL startupsound = getClass().getResource("/javachess/audio/Startup.wav");
 
 	public NativeAudio() {
 		

@@ -8,9 +8,9 @@ import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Transmitter;
 import javax.swing.JOptionPane;
 
-import BackgroundMatrix.BackgroundGrid;
 import Gui.BoardGui;
 import Gui.GUI;
+import javachess.backgroundmatrix.BackgroundGrid;
 
 
 

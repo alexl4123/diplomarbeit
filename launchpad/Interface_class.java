@@ -1,7 +1,7 @@
 package launchpad;
 
-import BackgroundMatrix.*;
 import Gui.BoardGui;
+import javachess.backgroundmatrix.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 

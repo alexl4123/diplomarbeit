@@ -10,11 +10,10 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
-
-import BackgroundMatrix.BackgroundGrid;
-import BackgroundMatrix.Move;
-import Game.*;
-import audio.AudioManager;
+import javachess.audio.AudioManager;
+import javachess.backgroundmatrix.BackgroundGrid;
+import javachess.backgroundmatrix.Move;
+import javachess.game.*;
 import javafx.event.EventHandler;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;

@@ -1,6 +1,6 @@
-package Game;
-import BackgroundMatrix.BackgroundGrid;
+package javachess.game;
 import Gui.*;
+import javachess.backgroundmatrix.BackgroundGrid;
 import javafx.stage.Stage;
 
 

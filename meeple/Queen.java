@@ -4,7 +4,7 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
-import BackgroundMatrix.BackgroundGrid;
+import javachess.backgroundmatrix.BackgroundGrid;
 
 
 /**

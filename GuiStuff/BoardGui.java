@@ -27,8 +27,8 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import BackgroundMatrix.*;
 import GuiStuff.BoardGui.ChessField.ChessButton;
+import javachess.backgroundmatrix.*;
 import meeple.*;
 import musik.SoundMachine;
 import threadJobs.TheThreadWhoIsAlwaysWaitingJob;

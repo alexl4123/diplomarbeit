@@ -1,9 +1,9 @@
-package Game;
+package javachess.game;
 
 import java.util.concurrent.TimeUnit;
 
-import BackgroundMatrix.BackgroundGrid;
 import Gui.BoardGui;
+import javachess.backgroundmatrix.BackgroundGrid;
 
 public class AIvsAI extends Thread {
 	

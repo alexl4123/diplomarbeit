@@ -1,4 +1,4 @@
-package BackgroundMatrix;
+package javachess.backgroundmatrix;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import Game.LAN;
-import Game.MovePos;
+import javachess.game.LAN;
+import javachess.game.MovePos;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

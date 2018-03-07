@@ -1,4 +1,4 @@
-package audio;
+package javachess.audio;
 
 
 public class AudioManager {

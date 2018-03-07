@@ -1,8 +1,8 @@
 package Start;
 
-import BackgroundMatrix.BackgroundGrid;
-import Game.Local;
 import Gui.GUI;
+import javachess.backgroundmatrix.BackgroundGrid;
+import javachess.game.Local;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;

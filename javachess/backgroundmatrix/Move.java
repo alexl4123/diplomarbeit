@@ -1,4 +1,4 @@
-package BackgroundMatrix;
+package javachess.backgroundmatrix;
 
 import java.awt.BorderLayout;
 import java.awt.Point;
@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
-import Game.AI;
-import Game.MovePos;
 import Gui.BoardGui;
 import Gui.GUI;
+import javachess.game.AI;
+import javachess.game.MovePos;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;

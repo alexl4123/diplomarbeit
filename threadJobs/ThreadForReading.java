@@ -6,8 +6,8 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import BackgroundMatrix.BackgroundGrid;
 import GuiStuff.BoardGui;
+import javachess.backgroundmatrix.BackgroundGrid;
 
 /**
  * @author alexl12

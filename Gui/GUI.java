@@ -8,7 +8,7 @@ import java.awt.Robot;
 import java.awt.datatransfer.Clipboard;
 import java.util.Optional;
 
-import BackgroundMatrix.BackgroundGrid;
+import javachess.backgroundmatrix.BackgroundGrid;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;

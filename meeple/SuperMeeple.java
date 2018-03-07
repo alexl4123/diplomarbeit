@@ -3,7 +3,7 @@ package meeple;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import BackgroundMatrix.BackgroundGrid;
+import javachess.backgroundmatrix.BackgroundGrid;
 
 /**
  * @author alexl12

@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import BackgroundMatrix.BackgroundGrid;
 import GuiStuff.BoardGui;
+import javachess.backgroundmatrix.BackgroundGrid;
 /**
  * @author alexl12
  * @version 1.1 - Draw

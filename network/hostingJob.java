@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import BackgroundMatrix.BackgroundGrid;
 import Gui.BoardGui;
 import Gui.GUI;
+import javachess.backgroundmatrix.BackgroundGrid;
 
 
 public class hostingJob implements Runnable {
