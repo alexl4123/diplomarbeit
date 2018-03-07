@@ -13,17 +13,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
-import Gui.BoardGui;
-import Gui.GUI;
 import javachess.game.AI;
 import javachess.game.MovePos;
+import javachess.gui.BoardGui;
+import javachess.gui.GUI;
+import javachess.meeple.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import meeple.*;
 
 /**
  * @author alex - 2017

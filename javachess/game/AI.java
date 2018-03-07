@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import Gui.BoardGui;
 import javachess.backgroundmatrix.BackgroundGrid;
+import javachess.gui.BoardGui;
+import javachess.meeple.*;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import meeple.*;
 
 /**
  * @author alex - 2017

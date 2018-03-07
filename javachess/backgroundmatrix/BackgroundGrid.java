@@ -12,15 +12,15 @@ import javax.swing.JOptionPane;
 
 import javachess.game.LAN;
 import javachess.game.MovePos;
+import javachess.launchpad.Launchpad;
+import javachess.meeple.*;
+import javachess.musik.SoundMachine;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import launchpad.Launchpad;
-import meeple.*;
-import musik.SoundMachine;
 
 /**
  * @author alex - 2017

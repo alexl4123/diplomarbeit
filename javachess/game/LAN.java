@@ -11,8 +11,8 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import Gui.GUI;
 import javachess.backgroundmatrix.BackgroundGrid;
+import javachess.gui.GUI;
 
 /**
  * Here should be the Lan game mode
