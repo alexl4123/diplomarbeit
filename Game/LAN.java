@@ -7,8 +7,12 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
+
+import BackgroundMatrix.BackgroundGrid;
+import Gui.GUI;
 
 /**
  * Here should be the Lan game mode
@@ -18,20 +22,27 @@ import java.net.Socket;
  */
 
 
-public class LAN {
+public class LAN implements Serializable{
 
 	private Socket _theSocket = null;
 	public ObjectInputStream netReadStream;
 	public ObjectOutputStream netWriteStream;
 	private boolean _team;
+	public int[][] initSeed;
+	private BackgroundGrid bgg;
+
+	
+
 	private boolean isConnectet; 					// if a host-client connection is valid
 	private boolean firstturn = false;				//used for offseting in the Lan game loop
 	
 	
 	
-	public LAN(){
+	public LAN(int[][] BGG, BackgroundGrid BGG2){
 		
 		isConnectet = false;
+		this.initSeed = BGG;
+		this.bgg = BGG2;
 
 	}
 	
@@ -79,6 +90,7 @@ public class LAN {
 	 */
 	public void setIsConnectet(boolean temp) {
 		this.isConnectet = temp;
+		//TODO
 	}
 	
 	/**
@@ -99,6 +111,7 @@ public class LAN {
 		try{
 		createNetworkStreams(_theSocket);
 		System.out.println("Streams Created");
+		System.out.println(team);
 		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -115,7 +128,6 @@ public class LAN {
 		try {
 			_theSocket = new Socket (ip,22359);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -128,6 +140,14 @@ public class LAN {
 	public boolean getFirstturn(){
 		return firstturn;
 	}
+	
+	/**
+	 * @param _team the _team to set
+	 */
+	public void set_team(boolean _team) {
+		this._team = _team;
+	}
+		
 }
 
 

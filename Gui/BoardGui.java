@@ -3,16 +3,21 @@ package Gui;
 import java.awt.Button;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.beans.*;
 import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
+import com.sun.jndi.ldap.ext.StartTlsResponseImpl;
+
 import BackgroundMatrix.BackgroundGrid;
 import BackgroundMatrix.Move;
 import Game.*;
+import audio.AudioManager;
 import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -45,6 +50,7 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import network.ReadingJob;
 import network.hostingJob;
 import threadJobs.HighlightingJob;
 import javafx.scene.input.MouseEvent;
@@ -97,7 +103,7 @@ public class BoardGui extends Canvas {
 	 * Local - if gamemode local has been set, contains everything needed for
 	 * that
 	 */
-	private Local L;
+	public Local L;
 
 	/**
 	 * Move - the move class
@@ -108,7 +114,21 @@ public class BoardGui extends Canvas {
 	 * bDrag - boolean - if a drag is currently happening bThinking - boolean -
 	 * if the AI is doing its job
 	 */
-	private boolean bDrag, bThinking;
+	private boolean bDrag, bThinking, rectMode;
+
+	/**
+	 * @return the rectMode
+	 */
+	public boolean isRectMode() {
+		return rectMode;
+	}
+
+	/**
+	 * @param rectMode the rectMode to set
+	 */
+	public void setRectMode(boolean rectMode) {
+		this.rectMode = rectMode;
+	}
 
 	/**
 	 * _Gui - GUI - for redrawing the GUI (?)
@@ -118,29 +138,31 @@ public class BoardGui extends Canvas {
 	/**
 	 * ArrayList<int[]> - LastMoveList - is for the last move of the AI
 	 */
-	
+
 	/**
 	 * activates or deactivates highlighting
 	 */
 	private boolean highlighting;
-	
+
 	/**
 	 * activates or deactivates highlightanimations
 	 */
 	private boolean highlightAnimations;
-	
+
 	/**
 	 * determins wether an highlightanimation is running
 	 */
 	private boolean highlightAnimationRunning;
-	
+
 	/**
 	 * Used for enable and disable the Hosting Menu Button
 	 */
-	private boolean _blurryButtonOn;
-	
+	private boolean _blurryButtonOn, startupbuttonOn, heartbeatMenu, onlineHighlight;
+
+	public AudioManager soundPlayer;
+
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
-	
+
 	/**
 	 * if a Launchpad is connected
 	 */
@@ -159,16 +181,23 @@ public class BoardGui extends Canvas {
 	 * .setOnMouseReleased: Writes and Draws the Gui after Drag
 	 * @param <T>
 	 */
-	
-	public IntegerProperty BGGChange;
-	
+
+	public IntegerProperty BGGChange, Heartbeat, turnProp, conProp, teamProp;
+	public network.Heartbeat heartBeatJob;
+
+
+
 	public <T> BoardGui(GUI Gui) {
 		bThinking = false;
 		_Gui = Gui;
 		bDrag = false;
 		DGX = 0;
 		DGY = 0;
+		this.rectMode = false;
 		BGGChange = new SimpleIntegerProperty(0);
+		Heartbeat = new SimpleIntegerProperty(0);
+		setOnlineHighlight(false);
+		soundPlayer = new AudioManager();
 		L = new Local();
 		L.startUpLocal();
 		gc = this.getGraphicsContext2D();
@@ -179,30 +208,70 @@ public class BoardGui extends Canvas {
 		this._X = this.getWidth();
 		this._Y = this.getHeight();
 		_bLauch = false;
-		
-		
+		turnProp = new SimpleIntegerProperty();
+		conProp = new SimpleIntegerProperty();
+		teamProp = new SimpleIntegerProperty();
+
+		turnProp.setValue(0);
+		conProp.setValue(0);
+		teamProp.setValue(0);
+
+
+		this.Heartbeat.addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+
+				if(_Gui.getBGG2().getLan().getIsConnectet()==true){
+					System.out.println("Heartbeat Timeout");
+					_Gui.getBGG2().getLan().setIsConnectet(false);
+					heartbeatMenu = true;
+					_Gui.getBoardGui().drawBlurryMenu(Gui.getMenu().hostJob);
+
+				}else{
+					System.out.println("here");
+				}
+
+
+			}
+		});
+
 		this.BGGChange.addListener(new ChangeListener<Number>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				
-				
-				
+
+
+
 				System.out.println("TRIGGERED");
 				try {
 					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
-					
+					_BGG2.higherTurnRound();
+					if (_BGG2.getLan().getFirstturn() == true){
+						L.setTeam(false);
+						_BGG2.setTeam(false);
+					} else if (_BGG2.getLan().getFirstturn() == false){
+						L.setTeam(true);
+						_BGG2.setTeam(true);
+					}
+
+
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
+					_blurryButtonOn = true;
+					heartbeatMenu = true;
+					drawBlurryMenu(null);
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					_blurryButtonOn = true;
+					heartbeatMenu = true;
+					drawBlurryMenu(null);
 					e.printStackTrace();
 				}
-				
+
 				_BGG2.iBackground = _BGG;
 				_Gui.setBGG2(_BGG2);
 				bThinking = false;
+				System.out.println("switches bThinking to off");
 				redraw();
 				System.out.println("hab neu gezeichnet");
 				
@@ -213,26 +282,40 @@ public class BoardGui extends Canvas {
 				}
 				
 			}
-			
-			
-		
-			
-			
-			
+
 		});
-		
-		
-		
-		
+
+/*
+ * 
+ * git merge 
+		_Lauch.iCount.addListener(new ChangeListener<Number>() {//git commit suicide
+
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+
+				System.out.println("Old val:" + oldValue + "::NEW_VAL::" + newValue);
+
+				_BGG2 = _Lauch.getBGG2();
+				L.setTeam(_BGG2.getTeam());
+				_Gui.setBGG2(_BGG2);
+				redraw();
+			}
+		});
+*/
 
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+
 				L.setTeam(_BGG2.getTeam());
+
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
-					ButtonClick(event);
+
+					bDrag = false;
+					ButtonReleased(event, true);
 				}
-				
+
 				event.consume();
 			}
 		});
@@ -243,6 +326,7 @@ public class BoardGui extends Canvas {
 			public void handle(MouseEvent event) {
 				L.setTeam(_BGG2.getTeam());
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack()  && !_BGG2.getDraw()) {
+
 					bDrag = true;
 
 					ButtonDragE(event);
@@ -264,8 +348,9 @@ public class BoardGui extends Canvas {
 			@Override
 			public void handle(MouseEvent event) {
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack()  && !_BGG2.getDraw()) {
+					System.out.println("Mouse Released");
 					bDrag = false;
-					ButtonDragF(event);
+					ButtonReleased(event, false);
 				}
 
 			}
@@ -303,40 +388,52 @@ public class BoardGui extends Canvas {
 
 	}
 
+	ArrayList<int[]> SaveMoveList = new ArrayList<int[]>();
+
 	/**
-	 * Drag End
+	 * For Drag end or button clicked
 	 * 
 	 * @param e
 	 *            - Event (Mouse Event)
 	 */
-	private void ButtonDragF(MouseEvent e) {
+	private void ButtonReleased(MouseEvent e, boolean ButtonPressed) {
 		try {
+
 			LastMoveList.clear();
 			for (Tile T : TileList) {
 				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && !OMove.getBauer()) {
+
 					OMove.setBoardGui(this);
 					int iMatrix = _BGG[T.getXP()][T.getYP()];
 					_BGG2.setTeam(L.getTeam());
 					_BGG = _BGG2.iBackground;
 					int iPos = OMove.getISelect();
-					if (((_iChoose == 1 && L.getTeam()) || (_iChoose == 2 && L.getTeam()) || _iChoose == 0)
-							&& iPos != iMatrix) { // if move is possible
+					
+					if(ButtonPressed && iMatrix==0){
+						//soundPlayer.playSound("move");
+					}
+					System.out.println("::DEBUG::"+(ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260)))) + "::BUTTON::"+ButtonPressed+"::IPOS::"+(iMatrix > 0 && iMatrix < 160)+"::IPOS::"+iMatrix);
+					if (((!ButtonPressed && (OMove.getISelect() > 0) && (iPos != iMatrix)) || (ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260))))) && (_iChoose == 1 || (_iChoose == 2 && _BGG2.getAITeam() && !L.getTeam()) || (_iChoose == 2 && !_BGG2.getAITeam() && L.getTeam()) || _iChoose == 0)) { // if move is possible
+						soundPlayer.playSound("move");
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
+						System.out.println("VALID");
 						_BGG = XY;
 						_BGG2 = OMove.getBGG2();
 						L.setTeam(_BGG2.getTeam());
 						_Gui.setBGG2(_BGG2);
-						
 					}
-					if (_iChoose == 1 && !L.getTeam()) { // if move has happend,
-															// do what it takes
-															// ,,LAN''
-						
-						
-						
-						
-					/*	if(_BGG2.getLan().getFirstturn() == true){
-							
+
+
+
+					if (_iChoose == 1 && ((!L.getTeam() && !_BGG2.getLan().getFirstturn()) || (L.getTeam() && _BGG2.getLan().getFirstturn()))){ // if move has happend,
+						// do what it takes
+						// ,,LAN''
+
+
+
+
+						/*	if(_BGG2.getLan().getFirstturn() == true){
+
 							_BGG2.getLan().setFirstturn(false);
 							bThinking = true;
 							System.out.println("habala 1");
@@ -344,8 +441,8 @@ public class BoardGui extends Canvas {
 							System.out.println("habala 2");
 							bThinking = false;
 						}*/
-						
-						
+
+
 						System.out.println("schreib jetzt1");
 						_BGG2.getLan().netWriteStream.writeObject(_BGG);
 						_BGG2.getLan().netWriteStream.flush();
@@ -356,47 +453,62 @@ public class BoardGui extends Canvas {
 							System.out.println(" ");
 						}
 						System.out.println("Hab gschrieben1");
+
+						_BGG2.iBackground = _BGG;
+						_Gui.setBGG2(_BGG2);
+
+						redraw();
+
+						turnProp.setValue(_BGG2.getTurnRound());
+						_BGG2.higherTurnRound();
 						bThinking = true;
-						
-						
-						
+						_Gui.getMenu().rj = new ReadingJob(_Gui);
+						Thread rt = new Thread(_Gui.getMenu().rj);
+						rt.start();
+						System.out.println("Habs gezeichnet");
+
+
 						/*
 						_BGG = (int[][]) _BGG2.getLan().netReadStream.readObject();
 						System.out.println("Hab gelesen du affe");
 						bThinking = false;
 						redraw();
-						*/
-						
-						
+						 */
+
+
 						//Give board to LAN Partner
 						//No press possible
 						//get Board
-						
-						
-						
-						
-						
-						
-					} else if (_iChoose == 2 && !L.getTeam() && !OMove.getBauer()) {// if
-																					// move
-																					// has
-						// happend, do
-						// what it
-						// necessary
-						// ,,AI''
-						// Give and take Area
-						AI _AI = new AI(_BGG2, this);
+
+					} else if (_iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer() && _BGG2.getAITeam()) {
+						//White AI
+						System.out.println("AI-Depth" + _BGG2.getAiDepth());
+						AI _AI = new AI(_BGG2, this,true,false,_BGG2.getAiDepth());
+						_AI.start();
+						LastMoveList = _AI.getLMoveList();
+						bThinking = true;
+						redraw();
+						L.setTeam(false);
+					} else if (_iChoose == 2 && !_BGG2.getTeam() && !OMove.getBauer() && !_BGG2.getAITeam()) {
+						//Black AI
+						System.out.println("AI-Depth" + _BGG2.getAiDepth());
+						AI _AI = new AI(_BGG2, this,false,false,_BGG2.getAiDepth());
+
 						_AI.start();
 						LastMoveList = _AI.getLMoveList();
 						bThinking = true;
 						redraw();
 						L.setTeam(true);
+					} else if(_iChoose == 4) {
+						AIvsAI AIFuckUp = new AIvsAI(_BGG2, this);
+						AIFuckUp.start();
+						bThinking = true;
 					}
 
 				}
 			}
 		} catch (Exception ex) {
-
+			ex.printStackTrace();
 		}
 		if(_bLauch){
 			//For @Hold and @Klotz
@@ -468,99 +580,6 @@ public class BoardGui extends Canvas {
 
 	}
 
-	/**
-	 * What happens when a mouse click has occurd? It is in this method,
-	 * basically at first it gets the Tile in 8x8 then it calls the getMove
-	 * method from the object OMove (class Move). Then it redraws the Scene
-	 * 
-	 * @param e
-	 *            - MouseEvent
-	 */
-	private void ButtonClick(MouseEvent e) {
-		try {
-		
-			LastMoveList.clear();
-			for (Tile T : TileList) {
-				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && OMove.getBauer() == false) {
-					OMove.setBoardGui(this);
-					int iMatrix;
-					iMatrix = _BGG[T.getXP()][T.getYP()];
-
-					_BGG2.setTeam(L.getTeam());
-					_BGG = _BGG2.iBackground;
-					OMove.setBGG(_BGG);
-					if ((_iChoose == 1 && L.getTeam()) || (_iChoose == 2 && L.getTeam()) || _iChoose == 0) { // if
-																												// move
-																												// is
-																												// possible
-						System.out.println("Moved");
-						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
-						_BGG = XY;
-						_BGG2 = OMove.getBGG2();
-						L.setTeam(_BGG2.getTeam());
-						_Gui.setBGG2(_BGG2);
-					}
-
-					if (_iChoose == 1 && _BGG2.getTeam() != L.getTeam()) { // if
-																			// move
-																			// has
-																			// happend,
-																			// do
-																			// what
-																			// it
-																			// takes
-																			// to
-																			// LAN
-						
-						System.out.println("schreib jetzt2");
-						_BGG2.getLan().netWriteStream.writeObject(_BGG);
-						_BGG2.getLan().netWriteStream.flush();
-						for(int y = 0; y<8;y++){
-							for(int x = 0; x<8;x++){
-								System.out.print(":"+_BGG[x][y]+":");
-							}
-							System.out.println(" ");
-						}
-						System.out.println("Hab gschrieben2");
-						bThinking = true;
-						
-						
-						
-						
-						
-						
-						
-					} else if (_iChoose == 2 && _BGG2.getTeam() != L.getTeam() && !OMove.getBauer()) {// if
-						// move
-						// has
-						// happend,
-						// do
-						// what
-						// it
-						// takes
-						// to
-						// AI
-
-						AI _AI = new AI(_BGG2, this);
-						_AI.start();
-						LastMoveList = _AI.getLMoveList();
-						bThinking = true;
-						redraw();
-						L.setTeam(true);
-					}
-
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		if(_bLauch){
-			//For @Hold and @Klotz
-			_Lauch.setBG(_Gui.getBoardGui());
-			_Lauch.setBGG(_BGG2);
-		}
-		redraw();
-	}
 
 	/**
 	 * Highlight fields where move is possible
@@ -600,85 +619,90 @@ public class BoardGui extends Canvas {
 	 *            - int - which field to highlight (64 Fields)
 	 */
 	public void HighlightLField(int i) {
+
+
 		Tile T = TileList.get(i);
 		gc.setGlobalAlpha(0.01);
 
 		gc.setFill(Color.GREEN);
-		gc.fillRect(T.getX() * P1X, T.getY() * P1Y, T.getW() * P1X, T.getH() * P1Y);
+
+		if(getOnlineHighlight() == false){
+			gc.fillRect(T.getX() * P1X, T.getY() * P1Y, T.getW() * P1X, T.getH() * P1Y);}
 		gc.setGlobalAlpha(1);
+
 	}
-//-----------------------------------------------------------------------------------------------------------
-	
+	//-----------------------------------------------------------------------------------------------------------
+
 	public void newHighlightMoveField(int tileNumber){
-		
+
 		Tile T= TileList.get(tileNumber);
 		Color moveBlue = Color.rgb(164, 228, 234);
 		Color secondMoveBlue= Color.rgb(27, 112, 118);
-		
-		if(getHighlighting()){
-			
+
+		if(getHighlighting() == true){
+
 			if(getHighlightAnimations()==true){
-				
+
 				setHighlightAnimationRunning(true);
 				HighlightingJob hj=new HighlightingJob(this, T, this.gc, moveBlue, secondMoveBlue);
 				Thread th=new Thread(hj);
 				th.start();
-				
-				
+
+
 			}else{
-				
-				
+
+
 				gc.setStroke(getLinearGradient(secondMoveBlue, moveBlue, 1));
 				gc.setLineWidth(2);
 				gc.strokeRect(T.getX()*P1X, T.getY()*P1Y, T.getH()*P1X, T.getW()*P1Y);
-				
+
 			}
-			
-			
+
+
 		}
-		
+
 	}
-	
+
 	public void newHighlightStrikeField(int tileNumber){
 		Tile T= TileList.get(tileNumber);
 		Color agressorRed = Color.rgb(187, 6, 6);
 		Color secondAgressorRed = Color.rgb(249, 53, 53);
-		
-		if(getHighlighting()){
-			
-			 if(getHighlightAnimations()==true){
-					
-					//insert Animatet codes here
-					
-				}else{
-					
-					gc.setStroke(getLinearGradient(agressorRed, secondAgressorRed, 1));
-					gc.setLineWidth(2);
-					gc.strokeRect(T.getX()*P1X, T.getY()*P1Y, T.getH()*P1X, T.getW()*P1Y);
-					
-				}
-		}
-	}
-	
-	
-	public void newHighlightLastField(int tileNumber){
-		
-		if(getHighlighting()){
-			
+
+		if(getHighlighting() == true){
+
 			if(getHighlightAnimations()==true){
-				
+
 				//insert Animatet codes here
-				
+
 			}else{
-				
-				//insert non - Animatet codes here
-				
+
+				gc.setStroke(getLinearGradient(agressorRed, secondAgressorRed, 1));
+				gc.setLineWidth(2);
+				gc.strokeRect(T.getX()*P1X, T.getY()*P1Y, T.getH()*P1X, T.getW()*P1Y);
+
 			}
-			
 		}
-		
 	}
-	
+
+
+	public void newHighlightLastField(int tileNumber){
+
+		if(getHighlighting()){
+
+			if(getHighlightAnimations()==true){
+
+				//insert Animatet codes here
+
+			}else{
+
+				//insert non - Animatet codes here
+
+			}
+
+		}
+
+	}
+
 
 	// ------------------------------------------------------------------------------------------------------
 	/**
@@ -688,20 +712,20 @@ public class BoardGui extends Canvas {
 	public void DrawGrid(int[][] BGG) throws Exception {
 
 		_BGG = BGG;
-		
+
 		//Fuckloads of Colors
 		Color darkbrown=Color.web("#4D3322");
 		Color lightBrown= Color.web("#8C603C");
 		Color lightBrownGrad= Color.web("B78357");
 		Color birchBrown=Color.web("#D4AC7B");
 		Color birchBrownGrad= Color.web("#E8D1B7");
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
 		TileList.clear();
 		P1X = (_X / 100);
 		P1Y = (_Y / 100);
@@ -717,12 +741,12 @@ public class BoardGui extends Canvas {
 			double x = (i * (0.3 + 11.75)-8.75) * P1X;
 			gc.fillRect(x, 0, 0.3 * P1X, _Y);
 		}
-													
+
 
 		/*
 		 * Lines Horizontal
 		 */
-			gc.fillRect(0, 0, _X, 0.3 * P1Y);
+		gc.fillRect(0, 0, _X, 0.3 * P1Y);
 		for (int i = 1; i < 9; i++) {
 			double y = (i * (0.3 + 11.75)-8.75) * P1Y;
 			gc.fillRect(0, y, _X, 0.3 * P1Y);
@@ -752,25 +776,28 @@ public class BoardGui extends Canvas {
 				double dY = ((y + 2) * 0.3 + (y + 1) * 11.75)-8.75;
 				Tile T = new Tile(dX, dY, 11.75, 11.75);
 				Paint p = gc.getFill();
-				
+
 				T.setID(i);
 				T.setXP(x);
 				T.setYP(y);
 				T.setColor((Color) p);
 				TileList.add(T);
-				
+
 				if(T.getColor()==birchBrown){
-					gc.setFill(getLinearGradient(birchBrownGrad, birchBrown, 0.3));
+
+					gc.setFill(getLinearGradient(birchBrownGrad, birchBrown, 0.9));				//org. 0.3
+					//gc.setFill(birchBrown);													//use for DEMO w/o Effect
 				}else{
-					gc.setFill(getLinearGradient(lightBrownGrad, lightBrown, 0.3));
+					gc.setFill(getLinearGradient(lightBrownGrad, lightBrown, 0.9));
+					//gc.setFill(lightBrown);													//use for DEMO w/o Effect
 				}
-				
-				
+
+
 				gc.fillRect(T.getX() * P1X, T.getY() * P1Y, T.getW() * P1X, T.getH() * P1Y);
-				
-				
-				
-				
+
+
+
+
 			}
 		}
 		// -----------------------------------------------------------------------------------------------------
@@ -805,7 +832,7 @@ public class BoardGui extends Canvas {
 						int J = JJ[0];
 
 						//HighlightField(J);
-						
+
 						newHighlightMoveField(J);
 					}
 				}
@@ -900,15 +927,15 @@ public class BoardGui extends Canvas {
 			double X = 5.3;
 			//double Y = 5 + y + 1 + (10 * y);    <-- Old formula
 			double Y = (y*11.75) + (2*0.3) + 3 +(y*0.3);
-			
+
 			gc.setFill(darkbrown);
 			gc.fillRect(0.3*P1X, Y*P1Y, 3*P1X, 11.75*P1Y);
 			gc.setFill(Color.SILVER);
 			gc.setTextAlign(TextAlignment.CENTER);
 			gc.setTextBaseline(VPos.CENTER);
-			
-			
-			
+
+
+
 			String s = Objects.toString((y+1));
 			gc.fillText(s, (X-3.6) * P1X, (Y+5.5) * P1Y);
 		}
@@ -966,9 +993,9 @@ public class BoardGui extends Canvas {
 	 * green) then calls DrawGrid(_BGG); _BGG is the Backgroundgrid
 	 */
 	public void redraw() {
-		
+
 		Color oakBrown=new Color (0.247,0.145,0.062,1);
-		
+
 		if (!bThinking) {
 			gc.setFill(oakBrown);
 			gc.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -981,74 +1008,238 @@ public class BoardGui extends Canvas {
 	}
 
 	public void drawBlurryMenu(hostingJob stopJob){
-		
+
 		P1X = (_X / 100);
 		P1Y = (_Y / 100);
-		
+
+
+		System.out.println("drawing blurry menu");
 		BoxBlur frostEffect = new BoxBlur(10, 10, 1000);
 		gc.setEffect(frostEffect);
 		setBlurryButtonOn(true);
 		bThinking=true;
-		
+
+
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
-				
-				if(_blurryButtonOn){
-				
-				System.out.println("Mouse clicked" + "X:" + event.getX() + "  Y:" + event.getY() );
-				System.out.println("Redrawing");
-				bThinking=false;
-				setHighlighting(true);
-				setBlurryButtonOn(false);
-				
-				if(_BGG2.getLan().getIsConnectet() == false){
-				System.out.println("socket stopped");
-				stopJob.stopSocket();
-				_Gui.setChoose(0);
-				_BGG2.setChoose(0);
-				_Gui.getMenu().setSelect(0);
+
+				if(_blurryButtonOn == true && heartbeatMenu == true){
+
+					bThinking=false;
+
+					//---------------------------------------------------------------------
+
+					//----------------------------------------------------------------------
+					setHighlighting(true);
+					setOnlineHighlight(false);
+					setBlurryButtonOn(false);
+					System.out.println("Restore Menus");
+					_Gui.setChoose(0);
+					_BGG2.setChoose(0);
+					_Gui.getMenu().setSelect(0);
+					_Gui.getMenu().menuFile.getItems().addAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame);
+					_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2);
+					_Gui.getMenu().menuOther.getItems().addAll(_Gui.getMenu().Draw);
+					_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().disconnect);
+					heartBeatJob.setDisconnectInitiation(false);
+					heartbeatMenu = false;
+
+					if(_BGG2.getLan().getTeam() == true){
+						try{
+							System.out.println("killing");
+							heartBeatJob.stopServSocket();
+							stopJob.stopSocket();}
+						catch(Exception e){
+							System.out.println("STUPID EXCEPTION");
+						}
+					}
+					_Gui.getStage().setResizable(true);
+
+
 				}
-				
-				_Gui.getStage().setResizable(true);
-				
-				
-				
-				
-				
-					try {
-						DrawGrid(_BGG);
-					} catch (Exception e) {
-					
+
+				if(_blurryButtonOn == true && heartbeatMenu == false){
+
+					//System.out.println("Mouse clicked" + "X:" + event.getX() + "  Y:" + event.getY() );
+					System.out.println("Redrawing");
+					bThinking=false;
+					setHighlighting(true);
+					setBlurryButtonOn(false);
+
+
+					if(_BGG2.getLan().getIsConnectet()==true){
+
+						_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame, _Gui.getMenu().Draw);
+						_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2);
+						_Gui.getMenu().menuGame.getItems().addAll(_Gui.getMenu().disconnect);
+					}
+					if(_BGG2.getLan().getIsConnectet() == false){
+						System.out.println("socket stopped");
+
+
+						if(_BGG2.getLan().getTeam() == true){
+							try{
+								System.out.println("killing2");
+								heartBeatJob.stopServSocket();
+								stopJob.stopSocket();}
+							catch(Exception e){
+
+							}
+						}
+						setOnlineHighlight(false);
+						_Gui.setChoose(0);
+						_BGG2.setChoose(0);
+						_Gui.getMenu().setSelect(0);
 					}
 				}
+
+				_Gui.getStage().setResizable(true);
+
+
+
+
+
+				try {
+					DrawGrid(_BGG);
+				} catch (Exception e) {
+
+					System.out.println("EROOR DURING REDRAWING");
+
+				}
+
 			}
 		});
-		
+
 		try {
 			DrawGrid(_BGG);
-			_Gui.getStage().setResizable(false);
+
 			gc.setFill(Color.ANTIQUEWHITE);
 			gc.setEffect(new DropShadow(10, Color.BLACK));
 			gc.fillRect(20*P1X, 35*P1Y, 60*P1X, 20*P1Y);
 			gc.setEffect(null);
 			gc.setFill(Color.BLACK);
 			gc.setFont(new Font(2*P1X));
-			gc.fillText("Waiting for Connections...", 50*P1X, 40*P1Y);
-			gc.fillText("Click to abort and proceed in local mode!", 50*P1X, 48*P1Y);
-			
-			
+
+			if(!heartbeatMenu){
+				gc.fillText("Waiting for Connections...", 50*P1X, 40*P1Y);
+				gc.fillText("Click to abort and proceed in local mode!", 50*P1X, 48*P1Y);
+				_Gui.getStage().setResizable(false);
+			}
+			else if(heartbeatMenu){
+
+				if(heartBeatJob.getDisconnectInitiation()){
+					gc.fillText("You disconnected!", 50*P1X, 40*P1Y);
+
+				}else if(!heartBeatJob.getDisconnectInitiation()){
+					gc.fillText("The other Player disconnected!", 50*P1X, 40*P1Y);
+
+				}
+				gc.fillText("Click to abort and proceed in local mode!",50*P1X, 48*P1Y);
+				Platform.runLater(new Runnable() {
+
+					@Override
+					public void run() {
+						_Gui.getStage().setResizable(false);
+
+					}
+				});
+
+			}
+
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
-		
-		
+
+
+
+
 	}
-	
+
+
+	public void drawStartMenu(){
+
+		P1X = (_X / 100);
+		P1Y = (_Y / 100);
+
+		Color darkbrown=Color.web("#4D3322");
+		Color lightBrown= Color.web("#8C603C");
+		Color lightBrownGrad= Color.web("B78357");
+		Color birchBrown=Color.web("#D4AC7B");
+		Color birchBrownGrad= Color.web("#E8D1B7");
+
+		Image Icon = new Image("/Images/JavaChess.png");
+
+		//gc.drawImage(image, X, Y, 7.5 * P1X, 7.5 * P1Y);
+
+		BoxBlur frostEffect = new BoxBlur(10, 10, 1000);
+		gc.setEffect(frostEffect);
+
+
+		bThinking=true;
+		soundPlayer.playSound("startup");
+
+		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+
+				if(_Gui.getBoardGui().getStartupbuttonOn() == true){
+					setHighlighting(true);
+					soundPlayer.playSound("menu");
+					setStartupbuttonOn(false);
+
+					try {
+						DrawGrid(_BGG);
+						bThinking=false;
+						_Gui.getStage().setResizable(true);
+
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+
+		try {
+			DrawGrid(_BGG);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		gc.setFill(Color.ANTIQUEWHITE);
+		gc.setEffect(null);
+		gc.setEffect(new DropShadow(25, Color.BLACK));					//setting the startup Dropshadow
+		gc.fillRect(10*P1X, 22*P1Y, 80*P1X, 56*P1Y);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(1.5);
+		gc.setEffect(null);
+		gc.strokeRect(10*P1X, 22*P1Y, 80*P1X, 56*P1Y);
+		gc.setLineWidth(1);
+		gc.setFill(getLinearGradient(lightBrown, lightBrownGrad, 0.9));
+		gc.setEffect(null);
+		gc.setFont(new Font(2.5*P1X*P1Y));
+		gc.fillText("JavaChess", 65*P1X, 40*P1Y);
+		gc.setFill(Color.BLACK);
+		gc.strokeText("JavaChess", 65*P1X, 40*P1Y);
+		gc.setFont(new Font(2.5*P1X));
+		gc.setFill(Color.BLACK);
+		gc.fillText("Click to start the Game", 63.5*P1X, 60*P1Y);
+		gc.setLineWidth(1.2);
+		gc.strokeRect(48.5*P1X, 56.5*P1Y, 30*P1X, 8*P1Y);
+		gc.setLineWidth(1);
+		gc.drawImage(Icon, 30, 100 ,50*P1X, P1Y*60);
+		_Gui.getStage().setResizable(false);
+
+	}
+
+
+
 	/**
 	 * Returns the current Game mode
 	 * 
@@ -1079,12 +1270,12 @@ public class BoardGui extends Canvas {
 	public double get_X(){
 		return this._X;
 	}
-	
+
 	public double get_Y(){
 		return this._Y;
-		
+
 	}
-	
+
 	/**
 	 * Sets the BackgroundGrid
 	 * 
@@ -1157,67 +1348,67 @@ public class BoardGui extends Canvas {
 		LastMoveList = LastMoveL;
 	}
 
-/**
- * 
- * @param Color1
- * @param Color2
- * @return
- * 
- * 		Creates a beautyful linear color gradiation
- */
+	/**
+	 * 
+	 * @param Color1
+	 * @param Color2
+	 * @return
+	 * 
+	 * 		Creates a beautyful linear color gradiation
+	 */
 	public LinearGradient getLinearGradient(Color Color1, Color Color2, double repeatValue ){
 		LinearGradient linGradient = new LinearGradient(0, 0, repeatValue, repeatValue, true, CycleMethod.REFLECT, new Stop(0.0, Color1), new Stop(1.0, Color2));
 		return linGradient;
 	}
-	
-/**
- * 
- * @param Color1
- * @param Color2
- * @return
- * 			
- * 		Creates a beautycul radial color gradiation
- */
+
+	/**
+	 * 
+	 * @param Color1
+	 * @param Color2
+	 * @return
+	 * 			
+	 * 		Creates a beautycul radial color gradiation
+	 */
 	public RadialGradient getRadialGradient(Color Color1, Color Color2){
-		
+
 		RadialGradient radGradient = new RadialGradient(0, 0, 0.5, 0.5, 1, true, CycleMethod.REFLECT, new Stop(0.0, Color1), new Stop(1.0, Color2));
 		return radGradient;
 	}
-/**
- * gets the highlighting
- * @return
- */
+	/**
+	 * gets the highlighting
+	 * @return
+	 */
 	public boolean getHighlighting() {
 		return highlighting;
 	}
-	
+
 	/**
 	 * gets the _blurryButtonOn
 	 * @return
 	 */
-		public boolean getBlurryButtonOn() {
-			return _blurryButtonOn;
-		}
-		
-		/**
-		 * sets the highlighting
-		 * @param highlighting
-		 */
-			public void setBlurryButtonOn(boolean _blurryButtonon) {
-				this._blurryButtonOn = _blurryButtonon;
-			}
+	public boolean getBlurryButtonOn() {
+		return _blurryButtonOn;
+	}
 
-		
-		
-/**
- * sets the highlighting
- * @param highlighting
- */
+	/**
+	 * sets the highlighting
+	 * @param highlighting
+	 */
+	public void setBlurryButtonOn(boolean _blurryButtonon) {
+		this._blurryButtonOn = _blurryButtonon;
+	}
+
+
+
+	/**
+	 * sets the highlighting
+	 * @param highlighting
+	 */
 	public void setHighlighting(boolean highlighting) {
 		this.highlighting = highlighting;
 	}
 
-	
+
 	/**
 	 * gets the highlightanimationstates
 	 * @return
@@ -1241,19 +1432,19 @@ public class BoardGui extends Canvas {
 	public void setHighlightAnimationRunning(boolean highlightAnimationRunning) {
 		this.highlightAnimationRunning = highlightAnimationRunning;
 	}
-	
+
 	public GUI getGui(){
 		return _Gui;
 	}
-	
+
 	public void setBthinking(boolean b){
 		bThinking = b;
 	}
-	
+
 	public boolean getBthinking(){
 		return bThinking;
 	}
-	
+
 	/**
 	 * For the hold and klotz initiative
 	 * @param Lauch
@@ -1261,6 +1452,7 @@ public class BoardGui extends Canvas {
 	public void setLaunchpad(Launchpad Lauch){
 		_Lauch = Lauch;
 	}
+
 	
 	/**
 	 * if a Launchpad connects
@@ -1276,5 +1468,23 @@ public class BoardGui extends Canvas {
 	 */
 	public boolean getBLauch(){
 		return _bLauch;
+
 	}
+	public boolean getStartupbuttonOn() {
+		return startupbuttonOn;
+	}
+
+	public void setStartupbuttonOn(boolean startupbuttonOn) {
+		this.startupbuttonOn = startupbuttonOn;
+	}
+
+	public boolean getOnlineHighlight() {
+		return onlineHighlight;
+	}
+
+	public boolean setOnlineHighlight(boolean onlineHighlight) {
+		this.onlineHighlight = onlineHighlight;
+		return onlineHighlight;
+	}
+	
 }

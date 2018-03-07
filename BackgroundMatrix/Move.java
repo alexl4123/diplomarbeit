@@ -87,7 +87,7 @@ public class Move {
 	 * To redraw the Chess field after ,,Bauerntausch''
 	 */
 	private BoardGui BG;
-	
+
 	/**
 	 * for the launchpad
 	 */
@@ -117,31 +117,31 @@ public class Move {
 	 * @return TheMove - a int[][] which is drawn
 	 */
 	public int[][] GetMove(int iPos, int iPosX, int iPosY, BackgroundGrid BGG2) {
-		
+
 		_moveAllowed = false;
 		_BGG2 = BGG2;
+		_BGG = _BGG2.iBackground;
 		TheMove = _BGG2.iBackground;
 		_Moved = false;
 		int Check = Math.abs(iPos - _iSelect);
 		double[][] BoardRep = new double[8][8]; //Fuck Java
 		_MoveList.clear();
 		_HitList.clear();
-	
+
 		if (_bSelect && Check >= 50) { // Moving Objects
 			ArrayList<MovePos> MoveList = getMoveMeeple(_BGG, _BGG2.getTeam(), _iSelect, _iPosX, _iPosY);
 
 			for (MovePos MP : MoveList) {
 				if (iPosX == MP.PX && iPosY == MP.PY && AllowedMove(MP)) {
-					
 					_BGG2.Board = _BGG2.iBackground;
-					
-					
+
+
 					//int[][] XYZ = TheMove;
 					//MMP.setBoard(XYZ);
 					_LastMove.clear();
 					TheMove[MP.X][MP.Y] = 0;
 					TheMove[MP.PX][MP.PY] = MP.ID;
-					
+
 					if (MP.ID3 > 0) {
 						TheMove[MP.X3][MP.Y3] = 0;
 					}
@@ -163,11 +163,12 @@ public class Move {
 					}
 
 					if (MP.ID >= 100 && MP.ID < 110 && _BGG2.getTeam() && MP.PY == 7) {
-						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
 						_Bauerntausch = true;
+						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
+						
 					} else if (MP.ID >= 200 && MP.ID < 210 && !_BGG2.getTeam() && MP.PY == 0) {
-						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
 						_Bauerntausch = true;
+						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
 					}
 
 					_Moved = true;
@@ -181,36 +182,35 @@ public class Move {
 					int[] iHH = new int[1];
 					iHH[0] = MP.X + (8 * MP.Y);
 					_LastMoveList.add(iHH);
-					
+
 					for(int Y = 0; Y < 8; Y++){
 						for(int X = 0; X < 8; X++){
 							BoardRep[X][Y] = (double) _BGG2.iBackground[X][Y];
-							
+
 						}
 					}
 					MP.Board = BoardRep;
 					BGG2._TotalMoveList.add(MP);
 					_moveAllowed = true;
-					
-					
-					
-					
-					
+
+
+
+
+
 				}
 
 			}
 
 			// TheMove = Moveing(iPos, iPosX, iPosY, BGG2);
 			MoveList.clear(); // clear both lists, that no possible moves are
-								// displayed (because nothing is selected)
+			// displayed (because nothing is selected)
 			_HitList.clear();
 
 		} else
 
 		{
 			/*
-			 * Here will be one day, if a meeple is selected - all possible
-			 * moves should be displayed
+			 * All possible moves are written - displayed in BoardGui()
 			 */
 			if (iPos > 99) {
 				_LastMoveList.clear();
@@ -257,12 +257,52 @@ public class Move {
 		}
 
 		if (_Moved) { // if a meeple has been moved change teams, higher the
-						// turn round and check checked ;)
-			
+			// turn round and check checked ;)
+
 			getSchach2();
 			BGG2.changeTeam();
 			BGG2.higherTurnRound();
+			
+			//add the board states
+			//the complicity is needed, due to same pointer errors
+			int[][] iBoard = new int[8][8];
+			for(int iHY = 0; iHY < 8; iHY++){
+				for(int iHX = 0; iHX < 8; iHX++){
+					iBoard[iHX][iHY] = BGG2.iBackground[iHX][iHY];
+				}
+
+			}
+			BGG2.addBoardState(iBoard);
+			//add the team states
+			BGG2.addTeamState(BGG2.getTeam());
+			
+			System.out.println("Moved");
+			for(int[] ii :_LastMoveList){
+				int i = ii[0];
+				BG.HighlightLField(i);
+			}
+			
 			_Moved = false;
+		} else if(_bSelect) {
+			//only for Schach-Debug
+			//getSchach2();
+
+			//System.out.println("BoardListSize:" + BGG2.getBoardList().size() + "::" + BGG2.getTeamList().size());
+			if(BGG2.getBoardList().size() > 0){
+				int iH = 0;
+				for(int[][] iBoard : BGG2.getBoardList()){
+					
+					//System.out.println("Team:" + BGG2.getTeamList().get(iH)[0]);
+					for(int iHY = 0; iHY < 8; iHY++){
+						for(int iHX = 0; iHX < 8; iHX++){
+							//System.out.print(":" + iBoard[iHX][iHY] + ":");
+						}
+						//System.out.println(":");
+					}
+					iH++;
+				}
+
+			}
 		}
 		return TheMove;
 	}
@@ -301,7 +341,7 @@ public class Move {
 		}
 
 		allowed = !_BGG2.SchachKing(_BGG2.getTeam(), _BGG2, KingX, KingY, true, false);
-	
+
 		TheMove[MP.X][MP.Y] = MP.ID;
 		TheMove[MP.PX][MP.PY] = MP.ID2;
 		if (MP.ID3 > 0) {
@@ -321,7 +361,7 @@ public class Move {
 
 	/**
 	 * Is the move method for AI and Player This method follows the DRY
-	 * principle (=Dont´t repead yourself) This methode gives back all possible
+	 * principle (=Dontï¿½t repead yourself) This methode gives back all possible
 	 * moves for one Meeple
 	 * 
 	 * @param BGG
@@ -1083,7 +1123,7 @@ public class Move {
 		ChooserF.setLocation(newPoint);
 
 		String[] Meeples = { "Queen", "Jumper", "Runner", "Tower" };
-		JComboBox JBox = new JComboBox(Meeples); // a combo box with all .sav´s
+		JComboBox JBox = new JComboBox(Meeples); // a combo box with all .savï¿½s
 
 		// save or load
 
@@ -1108,7 +1148,7 @@ public class Move {
 					if (_BGG2.getQueenNumber() < 4) {
 
 						// Chooser = 1;
-						_BGG2.setMove(true);
+						
 
 						if (team == true) {
 							_BGG2.higherQueenNumber();
@@ -1125,6 +1165,7 @@ public class Move {
 							_BGG2.Objectives.set(Number + 240, khaleesi);
 							TheMove[XX][YY] = 240 + Number;
 						}
+						_BGG2.setMove(true);
 					} else {
 						JFrame Frame1 = new JFrame("");
 						JOptionPane.showMessageDialog(Frame1, "No more Queens available! Choose another one!",
@@ -1193,23 +1234,20 @@ public class Move {
 					}
 
 				}
-				_Bauerntausch = false;
+				ChooserF.setVisible(false);
+				
 				/*
 				 * connectionWrite(); BGG.higherTurnRound();
 				 * renewPanel(XX,YY,false);
 				 */
 				_BGG2.iBackground = TheMove;
+				_BGG2.setTeam(team);
 				getSchach2();
+				_BGG2.changeTeam();
 				BG.redraw();
-				if(BG.getChoose() == 2){
-					AI _AI = new AI(_BGG2, BG);
-					_AI.start();
-					BG.setLastMoveList(_AI.getLMoveList());
-					BG.setThinking(true);
-					
-				}
+				_Bauerntausch = false;
 				// renewPanel(0, 0, false);
-				ChooserF.setVisible(false);
+				
 
 			}
 		});
@@ -1223,7 +1261,7 @@ public class Move {
 
 	/**
 	 * getSchach() simply returns a true _Blackschach when the Black king is in
-	 * check and a _Whiteschach wehn the White king is in check. This method is
+	 * check and a _Whiteschach when the White king is in check. This method is
 	 * use mainly for Moveing & Viewing
 	 */
 	public void getSchach() {
@@ -1372,6 +1410,14 @@ public class Move {
 	public ArrayList<int[]> getMoveList() {
 		return _MoveList;
 	}
+	
+	/**
+	 * Sets the move list
+	 * @param newMovelist
+	 */
+	public void setMoveList(ArrayList<int[]> newMovelist){
+		_MoveList = newMovelist;
+	}
 
 	/**
 	 * @return ArrayList<int[]> HitList - The List for the possible strikes
@@ -1387,6 +1433,14 @@ public class Move {
 	public ArrayList<int[]> getLastMoveList() {
 		return _LastMoveList;
 	}
+	
+	/**
+	 * Sets the last move list
+	 * @param newLastMoveList - ArrayList<int[]>
+	 */
+	public void setLastMoveList(ArrayList<int[]> newLastMoveList){
+		_LastMoveList = newLastMoveList;
+	}
 
 	/**
 	 * @return int _iPosX - Returns the previous selected Meeples X Position in
@@ -1395,7 +1449,7 @@ public class Move {
 	public int getIPosX() {
 		return _iPosX;
 	}
-	
+
 	/**
 	 * overrides the last x pos
 	 * @param x - the x value of the meeple
@@ -1403,7 +1457,7 @@ public class Move {
 	public void setIPosX(int x) {
 		_iPosX = x;
 	}
-	
+
 	/**
 	 * overrides the last y pos
 	 * @param y - the y value of the meeple
@@ -1447,7 +1501,7 @@ public class Move {
 	public void setBoardGui(BoardGui Gui) {
 		this.BG = Gui;
 	}
-	
+
 	/**
 	 * 
 	 * @param ID - int - overrides the last meeple
@@ -1455,7 +1509,7 @@ public class Move {
 	public void setLastID(int ID) {
 		_iSelect = ID;
 	}
-	
+
 	/**
 	 * for the launchpad - if move has happenend
 	 * @return boolean - if move has happenend

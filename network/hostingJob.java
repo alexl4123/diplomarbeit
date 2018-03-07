@@ -18,9 +18,10 @@ import Gui.GUI;
 public class hostingJob implements Runnable {
 
 	
-	private ServerSocket serversock;
+	private ServerSocket serversock = null;
 	private BackgroundGrid bgg;
 	private Socket tempsock;
+	public Thread th;
 	private boolean running;
 	private BoardGui BG;
 	private GUI gui;
@@ -49,13 +50,18 @@ public class hostingJob implements Runnable {
 			
 			
 			try {
-				
+				gui.getBoardGui().heartBeatJob = new Heartbeat(null, true, gui.getBoardGui().Heartbeat);
+				this. th = new Thread(gui.getBoardGui().heartBeatJob);
+				this.th.start();
+				Heartbeat.heartThread=th;
 				System.out.println("Hosting");
+				bgg.getLan().set_team(true);
 				tempsock = getServersock().accept();
 				bgg.getLan().setSocket(tempsock);
 				bgg.getLan().connecting(true);
 				bgg.getLan().setIsConnectet(true);
 				running =false;
+				
 				
 				System.out.println("Hosting connection cycle finished");
 	
@@ -83,9 +89,7 @@ public class hostingJob implements Runnable {
 		           // bgg.getLan().netWriteStream.flush();
 		           // bgg.getLan().netWriteStream.writeObject(BG.getLastMoveList());
 				
-		            gui.getMenu().rj = new ReadingJob(gui);
-					Thread rt = new Thread(gui.getMenu().rj);
-					rt.start();
+		            
 					
 				
 			
@@ -95,6 +99,8 @@ public class hostingJob implements Runnable {
 			} catch (Exception e) {
 				
 				System.out.println("HOSTINGTHREAD STOPPED WORKING");
+			//	e.printStackTrace(); 
+				
 			}
 			
 			
@@ -113,7 +119,9 @@ public class hostingJob implements Runnable {
 		try {
 			
 			this.serversock.close();
+			gui.getBoardGui().heartBeatJob.stopHeartBeat();
 			this.running=false;
+			gui.getBGG2().getLan().setIsConnectet(false);
 			
 		} catch (IOException e) {
 			

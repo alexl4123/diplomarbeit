@@ -246,13 +246,8 @@ public class BackgroundGrid implements Serializable {
 		TheKingBlack.setMeepleXPos(4);
 		TheKingBlack.setMeepleYPos(7); // only for the Kings
 		Objectives.set(iBackground[4][7], TheKingBlack);
-
-		// for testing (print the current field)
-		for (int Y = 0; Y < 8; Y++) {
-			for (int X = 0; X < 8; X++) {
-			}
-
-		}
+		
+		_Lan=new LAN(iBackground, this);
 
 	}
 
@@ -584,6 +579,7 @@ public class BackgroundGrid implements Serializable {
 		if (Schach && !SchachMatt) {
 			
 			SchachmattWhite = SchachMatt(iID, BGG.iBackground, KingX, KingY, team, BGG);
+			System.out.println("Schach:" + Schach + ":SchachmattW" + SchachmattWhite);
 			if(SchachmattWhite){
 				
 				if (team) {
@@ -752,12 +748,8 @@ public class BackgroundGrid implements Serializable {
 							}
 
 						}
-
 						if (SumOfField == 0) {
 							_ID = iBack; _iX = X; _iY = Y;
-							if(iBack == 231){
-								System.out.println("231-KingX:" + KingX + ":KingY:" + KingY + ":");
-							}
 							return true;
 						}
 					}
@@ -904,13 +896,14 @@ public class BackgroundGrid implements Serializable {
 		Moves.setBGG2(BGG);
 		//Moves.GetMove(iID, KingX, KingY, BGG);
 		Moves.setBSelect(false);
-		
+		System.out.println("line 908:");
 		
 		int iYA, iXA;
 		
-		if(Schach(iBackground, _iX, _iY, !Team)){
+		/*if(Schach(iBackground, _iX, _iY, !Team)){
+			System.out.println("line 913");
 			return false;
-		}
+		}*/
 		int iBB = iBackground[_iX][_iY];
 		ArrayList<MovePos> AttackMoves = Moves.getMoveMeeple(iBackground, !Team, iBB, _iX, _iY);
 		for(MovePos MP : AttackMoves){

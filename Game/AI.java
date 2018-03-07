@@ -52,6 +52,10 @@ public class AI extends Thread {
 	 */
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
 	
+	/**
+	 * The team the AI plays
+	 */
+	private boolean _AiTeam;
 
 	/**
 	 * A boolean variable indicating whether the AICaller class is running. This
@@ -60,14 +64,23 @@ public class AI extends Thread {
 	 */
 	private static boolean bRunning = false;
 	
+	private boolean _AIvsAI;
+	
+	private AIvsAI _AIFuckUp;
+	
+	private int _depth;
+	
 	/**
 	 * The constructor
 	 * @param BGG2 - BackgroundGrid - sets the location of the meeples
 	 * @param Gui - Gui - for redrawing the Gui
 	 */
-	public AI(BackgroundGrid BGG2, BoardGui Gui) {
+	public AI(BackgroundGrid BGG2, BoardGui Gui, boolean AI_Team, boolean AIvsAI, int depth) {
 		this._BGG2 = BGG2;
 		this._Gui = Gui;
+		this._AiTeam = AI_Team;
+		_AIvsAI = AIvsAI;
+		_depth = depth;
 	}
 
 	/**
@@ -89,11 +102,12 @@ public class AI extends Thread {
 				BackgroundGrid BGGX = _BGG2;
 				
 				//here the real AI is called
-				float fx = AIL.alphaBeta(5, _BGG2, _BGG2.getTeam());
+				float fx = AIL.alphaBeta(_depth, _BGG2, _AiTeam);
 				
 				
 				//System.out.println("THE COMPUTER:"+fx);
-				if(fx > -5000){
+				if((fx > -5000) && (fx < 5000)){
+					try {
 					int i = AIL.BestMove.size();
 					
 					//gets the last ,,best'' move, because this one is ever the best
@@ -129,15 +143,31 @@ public class AI extends Thread {
 						_BGG2.iBackground[A.PX][A.PY] = 240+ _BGG2.getQueenNumber();
 					}
 					
-					//A.setBoard(_BGG2.iBackground);
-					//_BGG2.addMoveListItem(A);
+					
+				
+					
+					
 					_BGG2.higherTurnRound();
 					
-					//Object O = _BGG2.Objects(A.ID);
-					//setMeeplePos(O, A);
+					//add the board states
+					//the complicity is needed, due to same pointer errors
+					int[][] iBoard = new int[8][8];
+					for(int iHY = 0; iHY < 8; iHY++){
+						for(int iHX = 0; iHX < 8; iHX++){
+							iBoard[iHX][iHY] = _BGG2.iBackground[iHX][iHY];
+						}
+
+					}
+					_BGG2.addBoardState(iBoard);
+					//add the team states
+					
+					_BGG2.addTeamState(!_AiTeam);
+					
+					
+					
+					
 					int[] LML = new int[8];
 					LML[0] = A.X +  (A.Y * 8);
-					//System.out.println("LML: " + LML[0]);
 					LastMoveList.add(LML);
 					int[] LML1 = new int[8];
 					LML1[0] = A.PX  + (A.PY * 8);
@@ -145,7 +175,9 @@ public class AI extends Thread {
 					LastMoveList.add(LML1);
 					LastMoveList.add(LML);
 					
-					//System.out.println("LML: +" + LastMoveList.get(0)[0]);
+					}catch(Exception ex) {
+						ex.printStackTrace();
+					}
 				}else{ //if somebody is mated
 					_BGG2.setSchachmattBlack(true);
 				}
@@ -158,8 +190,11 @@ public class AI extends Thread {
 			}
 			bRunning = false;
 		}
+		//that the player may move
 		_Gui.setThinking(false);
 		_Gui.redraw();
+		//when the two AIs play against each other, no check -> improves performance drastically
+		if(!_AIvsAI) {
 		Platform.runLater(new Runnable() {
 
 	        @Override
@@ -169,6 +204,19 @@ public class AI extends Thread {
 	        }
 	        
 		});
+		}
+		
+		/*
+		 * In AIvsAI mode it is necessary to know, when the other AI is thinking
+		 * so the other AI wont try to move
+		*/
+		if(_AIvsAI && _AiTeam) {
+			_AIFuckUp.bAI_Thinking_White = false;
+		} else if(_AIvsAI && !_AiTeam) {
+			_AIFuckUp.bAI_Thinking_Black = false;
+		}
+		
+		
 		bRunning = false;
 
 	}
@@ -229,6 +277,10 @@ public class AI extends Thread {
 	 */
 	public BackgroundGrid getBGG() {
 		return _BGG2;
+	}
+	
+	public void setAIvsAI(AIvsAI AIFuckup) {
+		_AIFuckUp = AIFuckup;
 	}
 	
 	/**

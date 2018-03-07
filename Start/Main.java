@@ -16,6 +16,8 @@ import javafx.stage.Stage;
  *
  */
 public class Main extends Application {
+	
+	GUI G;
 
 	public static void main(String[] args) {
 
@@ -30,7 +32,7 @@ public class Main extends Application {
 			public void run() {
 				try {
 					BackgroundGrid BGG = new BackgroundGrid();
-					GUI G = new GUI(BGG);
+					 G = new GUI(BGG);
 					G.start(new Stage());
 					
 
@@ -41,6 +43,19 @@ public class Main extends Application {
 			}
 		});
 
+	}
+	
+	@Override
+	public void stop(){
+		
+	    
+	    if(G.getMenu().hostJob.getServersock() != null){
+	    	G.getBoardGui().heartBeatJob.stopHeartBeat();
+	    	G.getMenu().hostJob.stopSocket();
+	    	
+	    	
+	    }
+	    
 	}
 
 }

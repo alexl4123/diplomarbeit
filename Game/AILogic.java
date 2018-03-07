@@ -112,12 +112,22 @@ public class AILogic {
 	public float alphaBeta(int depth, BackgroundGrid BGG2, boolean Team) {
 		MaxDepth = depth;
 		count = 0;
-		float beta = 10000.0f;
+		float beta = -10000.0f;
+		
+		beta = alphaBetaHelper(0, BGG2, Team, -beta, beta);
+		System.out.println(beta);
+		
+		/*
 		for (int i = 1; i <= depth; i++) {
 			MaxDepth = i;
-			beta = alphaBetaHelper(0, BGG2, Team, 100000.0f, -beta);
+			float fNewBeta = -10000;
+			fNewBeta = alphaBetaHelper(0, BGG2, Team, -beta, beta);
+			if(fNewBeta > beta) {
+				beta = fNewBeta;
+			}
 			System.out.println(beta);
 		}
+		*/
 
 		return beta;
 	}
@@ -127,7 +137,7 @@ public class AILogic {
 	 * improvement to MinMax)
 	 * 
 	 * @param depth
-	 *            - int - to what depth should AlphaBeta be searching
+	 *            - int - which depth the AlphaBeta currently is
 	 * @param BGG2
 	 *            - BackgroundGrid - where the meeples are stored
 	 * @param Team
@@ -141,8 +151,10 @@ public class AILogic {
 	public float alphaBetaHelper(int depth, BackgroundGrid BGG2, boolean Team, float alpha, float beta) {
 		
 		float Sum = boardEvaluation(BGG2, Team); // the value of the Board
-		if(Sum > 5000){
-			return 20000;
+		if(Sum > 50000){
+			return 200000;
+		}else if(Sum < (-50000)) {
+			return (-200000);
 		}
 		
 		if (depth >= MaxDepth) { // if the max depth has been reached, return
@@ -158,9 +170,11 @@ public class AILogic {
 					M.setBGG(BGG2.iBackground);
 					M.setBGG2(BGG2);
 					
+					/* no comment */
+					
 					ArrayList<MovePos> AIM = M.getMoveMeeple(BGG2.iBackground, Team, iPos, x, y); 
 					for (MovePos A : AIM) { // loops threw all possible moves
-
+						
 						BGG2.iBackground[A.PX][A.PY] = A.ID;
 						BGG2.iBackground[A.X][A.Y] = 0; // makes the move
 						if (A.ID3 > 0) {
@@ -220,17 +234,79 @@ public class AILogic {
 						if (Sum1 > beta) { // if it was a good move
 
 							beta = Sum1;
-							if (Sum1 >= alpha) { // if the move was so good, the
-													// opposing team would never
-													// take it
-								return alpha;
-							}
+							//---------------------------------------------------------------------------------------
+							if(depth==1 && A.ID==240 && A.PX == 5 && beta==-365) {
+								System.out.println("Sum1:"+Sum1 + "::beta::"+beta+"::ID::"+A.ID+":X:"+A.PX+"::Y::"+A.PY+"::max_depth::"+depth);
+								
+								BGG2.iBackground[A.PX][A.PY] = A.ID;
+								BGG2.iBackground[A.X][A.Y] = 0; // makes the move
+								if (A.ID3 > 0) {
+									BGG2.iBackground[A.X3][A.Y3] = 0;
+								}
+
+								if (A.ID4 > 0) {
+									BGG2.iBackground[A.X4][A.Y4] = 0;
+									if (A.X3 > 0) {
+										BGG2.iBackground[A.X3][A.Y3] = 0;
+									}
+									BGG2.iBackground[A.X5][A.Y5] = A.ID4;
+									BGG2.setbRookMoved(A.ID, true);
+									BGG2.setbKingMoved(A.ID, true);
+								}
+								
+								if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
+									BGG2.iBackground[A.PX][A.PY] = 140+ BGG2.getQueenNumber();
+								} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
+									BGG2.iBackground[A.PX][A.PY] = 240+ BGG2.getQueenNumber();
+								}
+								
+								for (int Y = 0; Y < 8; Y++) {
+									for (int X = 0; X < 8; X++) {
+										System.out.print(":"+BGG2.iBackground[X][Y]+":");
+									}
+									System.out.println("");
+								}
+								
+								BGG2.iBackground[A.PX][A.PY] = A.ID2;
+								BGG2.iBackground[A.X][A.Y] = A.ID; 
+								if (A.ID3 > 0) {
+									BGG2.iBackground[A.X3][A.Y3] = A.ID3;
+								}
+
+								if (A.ID4 > 0) {
+									BGG2.iBackground[A.X4][A.Y4] = A.ID4;
+									if (A.X3 > 0) {
+										BGG2.iBackground[A.X3][A.Y3] = A.ID3;
+									}
+									BGG2.iBackground[A.X5][A.Y5] = A.ID5;
+									BGG2.setbRookMoved(A.ID, false);
+									BGG2.setbKingMoved(A.ID, false);
+								}
+								
+								if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
+									BGG2.iBackground[A.PX][A.PY] = A.ID2;
+								} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
+									BGG2.iBackground[A.PX][A.PY] = A.ID2;
+								}
+								
+								
+							}	//---------------------------------------------------------------------------------------
+
+						
 							if (depth == 0) { // if at depth 0 and a good move
+								System.out.println("Sum1:"+Sum1 + "::beta::"+beta+"::loop::"+loop+"::ID::"+A.ID+"::max_depth::"+MaxDepth);
 								loop++;
 								BestMove.add(A);
 
 								_BestMove = loop;
 							}
+							
+							if (beta >= alpha) { // if the move was so good, the
+													// opposing team would never
+													// take it
+								return beta;
+							}
+							
 
 						}
 
@@ -310,8 +386,8 @@ public class AILogic {
 					S1 += 900; // the queen
 					S1 += WhiteQueenSquareTable[x][y];
 				} else if (SB == 150) {
-					S1 += 10000;
-					if (S1 > 11000) {
+					S1 += 100000;
+					if (S1 > 110000) {
 						S1 += WhiteKingMiddleSquareTable[x][y];
 					} else {
 						S1 += WhiteKingEndSquareTable[x][y];
@@ -364,8 +440,8 @@ public class AILogic {
 					S2 += 900; // the queen
 					S2 += BlackQueenSquareTable[x][y];
 				} else if (SB == 250) {
-					S2 += 10000;
-					if (S2 > 11000) {
+					S2 += 100000;
+					if (S2 > 110000) {
 						S2 += BlackKingMiddleSquareTable[x][y];
 					} else {
 						S2 += BlackKingEndSquareTable[x][y];
