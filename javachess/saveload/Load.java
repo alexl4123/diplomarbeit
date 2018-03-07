@@ -17,7 +17,7 @@ import javafx.scene.control.Alert.AlertType;
  *	Class for loading.
  *	Gets the File and returns a BackgroundGrid
  */
-public class load {
+public class Load {
 	
 	/**
 	 * only method - returns BackgroundGrid.

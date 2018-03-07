@@ -14,7 +14,6 @@ import javachess.game.LAN;
 import javachess.game.MovePos;
 import javachess.launchpad.Launchpad;
 import javachess.meeple.*;
-import javachess.musik.SoundMachine;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

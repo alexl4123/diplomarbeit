@@ -21,8 +21,8 @@ import javachess.launchpad.Launchpad;
 import javachess.network.Heartbeat;
 import javachess.network.ReadingJob;
 import javachess.network.hostingJob;
-import javachess.saveload.load;
-import javachess.saveload.save;
+import javachess.saveload.Load;
+import javachess.saveload.Save;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -241,7 +241,7 @@ public class Menu extends MenuBar {
 				fileC.getExtensionFilters().add(extFilter);
 
 				File f = fileC.showSaveDialog(Gui.getStage());
-				save s = new save();
+				Save s = new Save();
 				s.saveFile(Gui.getBGG2(), f); //Opens the SAVE class
 			}
 		});
@@ -262,7 +262,7 @@ public class Menu extends MenuBar {
 				fileC.getExtensionFilters().add(extFilter);
 
 				File f = fileC.showOpenDialog(Gui.getStage());
-				load l = new load();
+				Load l = new Load();
 				BackgroundGrid BGG2 = l.openFile(f); 
 				if(BGG2 != null){
 					Gui.LoadBG(BGG2); //Opens the LOAD class

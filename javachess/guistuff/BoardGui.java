@@ -27,10 +27,10 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import javachess.audio.SoundMachine;
 import javachess.backgroundmatrix.*;
 import javachess.guistuff.BoardGui.ChessField.ChessButton;
 import javachess.meeple.*;
-import javachess.musik.SoundMachine;
 import javachess.threadjobs.TheThreadWhoIsAlwaysWaitingJob;
 import javachess.threadjobs.ThreadForReading;
 

@@ -17,7 +17,7 @@ import javafx.scene.control.Alert.AlertType;
  * Saves the BackgroundGrid to a given location
  *
  */
-public class save {
+public class Save {
 	
 	/**
 	 * only method - simply saves the BackgroundGrid to File f

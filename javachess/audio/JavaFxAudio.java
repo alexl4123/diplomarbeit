@@ -15,7 +15,7 @@ public class JavaFxAudio {
 
 	public JavaFxAudio() {
 		final URL rsc1 = getClass().getResource("/javachess/audio/MeepleClick.mp3");
-		final URL rsc2 = getClass().getResource("/javachess/audio/menuClick.mp3");
+		final URL rsc2 = getClass().getResource("/javachess/audio/MenuClick.mp3");
 		final URL rsc3 = getClass().getResource("/javachess/audio/Startup.mp3");
 
 		Volume = 0.5;

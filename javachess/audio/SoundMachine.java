@@ -1,4 +1,4 @@
-package javachess.musik;
+package javachess.audio;
 
 import java.io.*;
 import java.net.URL;

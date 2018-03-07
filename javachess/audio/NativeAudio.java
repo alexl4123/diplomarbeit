@@ -22,7 +22,7 @@ public class NativeAudio {
 	private AudioFormat audioFormat;
 	private SourceDataLine sourceLine;
 	private final URL meeplesound = getClass().getResource("/javachess/audio/MeepleClick.wav");
-	private final URL menusound = getClass().getResource("/javachess/audio/menuClick.wav");
+	private final URL menusound = getClass().getResource("/javachess/audio/MenuClick.wav");
 	private final URL startupsound = getClass().getResource("/javachess/audio/Startup.wav");
 
 	public NativeAudio() {
