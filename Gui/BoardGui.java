@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
-import com.sun.jndi.ldap.ext.StartTlsResponseImpl;
 
 import BackgroundMatrix.BackgroundGrid;
 import BackgroundMatrix.Move;

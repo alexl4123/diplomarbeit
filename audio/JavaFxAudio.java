@@ -9,7 +9,6 @@ import javafx.scene.media.MediaPlayer;
 
 public class JavaFxAudio {
 
-	//private AudioClip meepleClick, menuClick, startup;
 	private MediaPlayer meepleClick, menuClick, startup;
 	private boolean isMuted = false;
 	private double Volume;
@@ -21,10 +20,7 @@ public class JavaFxAudio {
 
 		Volume = 0.5;
 
-		//meepleClick = new AudioClip(rsc1.toString());
-		//menuClick = new AudioClip(rsc2.toString());
-		//startup = new AudioClip(rsc3.toString());
-		
+
 		Media meepleClicksound = new Media(rsc1.toString());
 		meepleClick = new MediaPlayer(meepleClicksound);
 		
