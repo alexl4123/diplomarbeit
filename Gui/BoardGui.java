@@ -308,7 +308,7 @@ public class BoardGui extends Canvas {
 			@Override
 			public void handle(MouseEvent event) {
 
-				L.setTeam(_BGG2.getTeam());
+				//L.setTeam(_BGG2.getTeam());
 
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 
@@ -815,6 +815,7 @@ public class BoardGui extends Canvas {
 				dX = (x + 1) * 10 + (x + 2);
 				dY = (y + 1) * 10 + (y + 2);
 				int iBGG;
+	/*
 				try{
 					if (BGG[OMove.getIPosX()][OMove.getIPosY()] == BGG[x][y] && bDrag) {
 						iBGG = 0;
@@ -824,7 +825,18 @@ public class BoardGui extends Canvas {
 				} catch(Exception e){
 					iBGG = 0;
 				}
-
+*/
+				try {
+				if (BGG[OMove.getIPosX()][OMove.getIPosY()] == BGG[x][y] && bDrag) {
+					iBGG = 0;
+				} else {
+					iBGG = BGG[x][y];
+				}
+				
+				}catch(Exception e) {
+					iBGG = 0;
+				}
+				
 				if (OMove.getMoveList().size() > 0) {
 					for (int ii = 0; ii < OMove.getMoveList().size(); ii++) {
 						int[] JJ = new int[8];

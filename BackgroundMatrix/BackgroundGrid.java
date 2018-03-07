@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 import Game.LAN;
 import Game.MovePos;
 import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -76,12 +78,19 @@ public class BackgroundGrid implements Serializable {
 	 * for the Draw evaluation
 	 */
 	
+	/**
+	 * How deep the AI should search
+	 */
+	private int _iAiDepth;
+	
 	
 
 	
 //----------------------------------------------------------------------------	
 	
 	public ArrayList<MovePos> _TotalMoveList;
+	private ArrayList<int[][]> _AllBoardStatesList;
+	private ArrayList<boolean[]> _AllTeamStatesList;
 	
 	boolean move; // when you can move
 	short TurnRound; // to measure the turns of the current game
@@ -91,7 +100,8 @@ public class BackgroundGrid implements Serializable {
 	int RunnerNumber;// how many add. runners are
 	String name; // just for debugging
 	int _Choose; // Which game mode is selected
-	LAN _Lan;
+	public LAN _Lan;
+	private boolean _bAITeam;
 	private boolean[] bPawnSpecMoved, bKingMoved, bTowerMoved;
 
 	/**
@@ -103,26 +113,35 @@ public class BackgroundGrid implements Serializable {
 	 */
 	public BackgroundGrid() {
 		
-		// here i maybe should find a better option...
+		//some inits
 		bPawnSpecMoved = new boolean[20];
 		bKingMoved = new boolean[2];
 		bTowerMoved = new boolean[4];
+		
+		
+		
 		QueenNumber = 0;
 		TowerNumber = 0;
 		JumperNumber = 0;
 		RunnerNumber = 0;
 		TurnRound = 0;
 		move = true;
-		_Lan=new LAN();
+		_iAiDepth = 5;
+		_bAITeam = false;
 		
 		team = true;
 		_TotalMoveList = new ArrayList<MovePos>();
+		_AllBoardStatesList = new ArrayList<int[][]>();
+		_AllTeamStatesList = new ArrayList<boolean[]>();
+		
 		iBackground = new int[8][8];
 
 		for (int i = 0; i < 300; i++) {
 			Objectives.add(i);
 		}
-
+		
+		//make the default board state
+		
 		for (int Y = 0; Y < 8; Y++) {
 			for (int X = 0; X < 8; X++) {
 
@@ -906,30 +925,46 @@ public class BackgroundGrid implements Serializable {
 		}*/
 		int iBB = iBackground[_iX][_iY];
 		ArrayList<MovePos> AttackMoves = Moves.getMoveMeeple(iBackground, !Team, iBB, _iX, _iY);
+		MovePos MPSelf = new MovePos();
+		MPSelf.ID = iBB;
+		MPSelf.X = _iX;
+		MPSelf.Y = _iY;
+		MPSelf.PX = _iX;
+		MPSelf.PY = _iY;
+		AttackMoves.add(MPSelf);
 		for(MovePos MP : AttackMoves){
-			System.out.println(AttackMoves.size() + "::Attackmoves::" + iBB + ":MPA.ID:" + MP.ID);
+			System.out.println(AttackMoves.size() + "::Attackmoves::" + iBB + ":MPA.ID:" + MP.ID + "::X::"+MP.X+"::XP::"+MP.PX + ":Y:" + MP.Y + "::PY::" + MP.PY);
 			for(iYA = 0; iYA < 8; iYA ++){
 				for(iXA = 0; iXA < 8; iXA ++){
 					int iBack = iBackground[iXA][iYA];
 					ArrayList<MovePos> DefenseMoves = Moves.getMoveMeeple(iBackground, Team, iBack, iXA, iYA);
 					
+				
 					for(MovePos MPA : DefenseMoves){
-						if(MP.PX == 6 && MP.PY == 2){
-							//System.out.println(MPA.PX + ":::" + MPA.PY);
-						}
-						if(iBack == 131){
-							System.out.println(DefenseMoves.size() + "::DefenseMoves::" + iBack + ":Foe:" + MP.ID + ":Foe X:" + MP.PX + ":Foe Y:" + MP.PY);
-						}
-						
-						
-						if(MP.PX == MPA.PX && MP.PY == MPA.PY && MPA.ID != 150 && MPA.ID != 250){
+						if(MP.PX == MPA.PX && MP.PY == MPA.PY){
 							System.out.println(MP.PX + "::" + MPA.PX + "::" + MP.PY + "::" + MPA.PY+"::"+MPA.ID);
+							//Make the possible defense move
 							iBackground[MPA.PX][MPA.PY] = MPA.ID;
-							iBackground[MPA.X][MPA.Y] = MPA.ID2;
-							if(!SchachKing(Team, BGG, KingX, KingY, true, false)){
+							iBackground[MPA.X][MPA.Y] = 0;
+							
+							//Give out the current state of the game for debug
+							for(int itestY = 0; itestY < 8; itestY++) {
+								for(int itestX = 0; itestX < 8; itestX++) {
+									System.out.print(":"+Board[itestX][itestY]+":");
+								}
+								System.out.println("");
+							}
+							
+							//get the king positition
+							
+							
+							System.out.println("KingX::"+KingX+"::KingY::"+KingY);
+							System.out.println("SchachKing:" + SchachKing(Team, BGG, KingX, KingY, true, false) + "::Team::" + Team + "::MPA.PX::" + MPA.PX + "::MPA.PY::" + MPA.PY);
+							if(!SchachKing(Team, BGG, KingX, KingY, true, false) && !Schach(Board, KingX, KingY, Team)){
 								//System.out.println(MPA.PX + "::" + MPA.PY + "::Funkt");
 								iBackground[MPA.PX][MPA.PY] = MPA.ID2;
 								iBackground[MPA.X][MPA.Y] = MPA.ID;
+								System.out.println("line 941");
 								return false;
 							}
 							iBackground[MPA.PX][MPA.PY] = MPA.ID2;
@@ -969,6 +1004,7 @@ public class BackgroundGrid implements Serializable {
 			//System.out.println(iXA + ":: " + iYA);
 			
 			if(Schach(iBackground, _iX, _iY, !Team)){
+				System.out.println("line 981");
 				return false;
 			}
 			
@@ -1281,6 +1317,65 @@ public class BackgroundGrid implements Serializable {
 	
 	public LAN getLan(){
 		return _Lan;
+	}
+	
+	/**
+	 * 
+	 * @param iAiDepth-To which depth the AI calculation should be made
+	 */
+	public void setAiDepth(int iAiDepth){
+		_iAiDepth = iAiDepth;
+	}
+	
+	/**
+	 * returns the current value for the AI Depth calculation
+	 * @return - int - AiDepth value
+	 */
+	public int getAiDepth(){
+		return _iAiDepth;
+	}
+	
+	/**
+	 * add a board state to the list
+	 * @param Board - int[][]
+	 */
+	public void addBoardState(int[][] Board){
+		int[][] iBoard = Board;
+		_AllBoardStatesList.add(iBoard);
+	}
+	
+	/**
+	 * returns the list with all the possible moves
+	 * @return - ArrayList[][]
+	 */
+	public ArrayList<int[][]> getBoardList(){
+		return _AllBoardStatesList;
+	}
+	
+	/**
+	 * Adds a team state
+	 * @param team - boolean
+	 */
+	public void addTeamState(boolean team){
+		boolean[] teamL  = new boolean[1];
+		teamL[0] = team;
+		_AllTeamStatesList.add(teamL);
+	}
+	
+	/**
+	 * return the list of all the team states
+	 * @return - ArrayList<boolean[]> - boolean[0] = team
+	 */
+	public ArrayList<boolean[]> getTeamList(){
+		return _AllTeamStatesList;
+	}
+	
+	public void setAITeam(boolean AITeam) {
+		_bAITeam = AITeam;
+	}
+	
+	public boolean getAITeam() {
+		return _bAITeam;
 	}
 	
 }
