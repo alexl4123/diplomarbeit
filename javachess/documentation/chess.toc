@@ -1,0 +1,73 @@
+\select@language {ngerman}
+\contentsline {section}{Erklaerung der Eigenstaendigkeit der Arbeit}{4}{section*.1}
+\contentsline {section}{\numberline {1}Zusammenfassung des Projektergebnisses}{5}{section.1}
+\contentsline {subsection}{\numberline {1.1}Kurzfassung /Abstract}{5}{subsection.1.1}
+\contentsline {subsubsection}{\numberline {1.1.1}Alexander Beiser}{5}{subsubsection.1.1.1}
+\contentsline {subsubsection}{\numberline {1.1.2}Marcel Huber}{5}{subsubsection.1.1.2}
+\contentsline {subsection}{\numberline {1.2}Projektergebnis}{6}{subsection.1.2}
+\contentsline {section}{\numberline {2}Lizenz:}{8}{section.2}
+\contentsline {section}{\numberline {1}\sc Einleitung}{9}{section.1}
+\contentsline {section}{\numberline {2}\sc Vertiefende Aufgabenstellung}{9}{section.2}
+\contentsline {subsection}{\numberline {2.1}Alexander Beiser}{9}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Marcel Huber}{9}{subsection.2.2}
+\contentsline {section}{\numberline {3}Schach, eine Erkl\IeC {\"a}rung}{11}{section.3}
+\contentsline {subsection}{\numberline {3.1}Was ist Schach?}{11}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Spielregeln:}{11}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Zugregel Bauer:}{12}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Zugregel Springer:}{12}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Zugregel L\IeC {\"a}ufer:}{12}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Zugregel Turm:}{13}{subsubsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.5}Zugregel Dame:}{13}{subsubsection.3.2.5}
+\contentsline {subsubsection}{\numberline {3.2.6}Zugregel K\IeC {\"o}nig:}{13}{subsubsection.3.2.6}
+\contentsline {subsection}{\numberline {3.3}Schachmaschinen:}{13}{subsection.3.3}
+\contentsline {section}{\numberline {4}Java Chess}{14}{section.4}
+\contentsline {subsection}{\numberline {4.1}Einf\IeC {\"u}hrung:}{14}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Java Chess - \IeC {\"U}bersicht}{14}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Blockschaltbild}{15}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Initialisierung}{15}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}Repr\IeC {\"a}sentation der Figuren:}{16}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Zugmechanik und Local-Mode}{16}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Die Move Klasse - Funktion}{17}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}Die Move Klasse - Code}{18}{subsubsection.4.4.2}
+\contentsline {subsection}{\numberline {4.5}Schach und Schachmatt Abfrage:}{23}{subsection.4.5}
+\contentsline {subsubsection}{\numberline {4.5.1}Schach}{24}{subsubsection.4.5.1}
+\contentsline {subsubsection}{\numberline {4.5.2}Schachmatt}{24}{subsubsection.4.5.2}
+\contentsline {subsubsection}{\numberline {4.5.3}Schachking}{25}{subsubsection.4.5.3}
+\contentsline {subsection}{\numberline {4.6}LAN-Mode}{26}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}AI-Mode}{26}{subsection.4.7}
+\contentsline {subsubsection}{\numberline {4.7.1}Prinzipielle Moeglichkeiten einer AI}{26}{subsubsection.4.7.1}
+\contentsline {subsubsection}{\numberline {4.7.2}Verwendete Schach-AI-Funktion}{27}{subsubsection.4.7.2}
+\contentsline {subsubsection}{\numberline {4.7.3}Der MinMax-Algorithmus:}{28}{subsubsection.4.7.3}
+\contentsline {subsubsection}{\numberline {4.7.4}Code}{29}{subsubsection.4.7.4}
+\contentsline {section}{\numberline {5}ChessPI}{33}{section.5}
+\contentsline {subsection}{\numberline {5.1}RaspberryPI}{33}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Touchscreen}{33}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Implementierung von JavaChess}{33}{subsection.5.3}
+\contentsline {section}{\numberline {6}Akkusteuerung}{36}{section.6}
+\contentsline {section}{\numberline {7}Geh\IeC {\"a}use}{37}{section.7}
+\contentsline {section}{\numberline {8}Android}{38}{section.8}
+\contentsline {section}{\numberline {9}\sc Fertigungsdokumentation}{39}{section.9}
+\contentsline {section}{\numberline {10}\sc Benutzerdokumentation}{39}{section.10}
+\contentsline {subsection}{\numberline {10.1}Installationsanleitung}{39}{subsection.10.1}
+\contentsline {subsection}{\numberline {10.2}Anwendungsbeispiele}{39}{subsection.10.2}
+\contentsline {subsection}{\numberline {10.3}Referenzhandbuch}{39}{subsection.10.3}
+\contentsline {subsection}{\numberline {10.4}Fehlermeldungen und Hinweise auf Fehlerursachen}{39}{subsection.10.4}
+\contentsline {section}{\numberline {I\tmspace +\thickmuskip {.2777em}}\sc Abbildungsverzeichnis}{40}{section.1}
+\contentsline {section}{\numberline {II\tmspace +\thickmuskip {.2777em}}\sc Tabellenverzeichnis}{40}{section.2}
+\contentsline {section}{\numberline {III\tmspace +\thickmuskip {.2777em}}\sc Literaturverzeichnis}{41}{section.3}
+\contentsline {section}{\numberline {6\tmspace +\thickmuskip {.2777em}}\sc Pflichtenheft}{43}{appendix.F}
+\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.1}Funktionale Anforderungen}{43}{subsection.F.1}
+\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.2}Schnittstellen}{43}{subsection.F.2}
+\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.3}Abnahmekriterien}{43}{subsection.F.3}
+\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.4}Dokumentationsanforderungen}{43}{subsection.F.4}
+\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.5}Qualit\IeC {\"a}tsstandards}{44}{subsection.F.5}
+\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.6}Abwicklungsprozess}{44}{subsection.F.6}
+\contentsline {section}{\numberline {7\tmspace +\thickmuskip {.2777em}}\sc Zusammenfassung}{46}{appendix.G}
+\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.1}Schlussfolgerung / Projekterfahrung}{46}{subsection.G.1}
+\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.2}Projektterminplanung}{46}{subsection.G.2}
+\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3}Projektpersonalplanung und Kostenplanung}{46}{subsection.G.3}
+\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.1}Projektkostenplan}{46}{subsubsection.G.3.1}
+\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.2}Arbeitsnachweis Diplomarbeit}{46}{subsubsection.G.3.2}
+\contentsline {paragraph}{\color {teal}Tabelle 1: Arbeitsaufstellung}{47}{section*.4}
+\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.3}Leistungscontrolling}{47}{subsubsection.G.3.3}
+\contentsline {paragraph}{\em Abzugeben sind:}{48}{section*.5}
