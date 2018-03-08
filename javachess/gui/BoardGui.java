@@ -433,7 +433,7 @@ public class BoardGui extends Canvas {
 
 						_BGG2.iBackground = _BGG;
 						_Gui.setBGG2(_BGG2);
-
+						//Josi was here
 						redraw();
 
 						turnProp.setValue(_BGG2.getTurnRound());

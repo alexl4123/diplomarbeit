@@ -887,6 +887,7 @@ public class BackgroundGrid implements Serializable {
 					BGG2.iBackground[KingX][KingY] = 0;
 					BGG2.iBackground[KingX+X][KingY + Y] = iID;
 					if(!BGG2.SchachKing(Team, BGG, KingX+X, KingY+Y, true, false) && dBack > 50){ // when not Schach and it is a Field or foe - not mated
+						
 						BGG2.iBackground[KingX][KingY] = iID;
 						BGG2.iBackground[KingX+X][KingY + Y] =iDBackup;
 						return false;
@@ -940,15 +941,22 @@ public class BackgroundGrid implements Serializable {
 							for(int itestY = 0; itestY < 8; itestY++) {
 								for(int itestX = 0; itestX < 8; itestX++) {
 									System.out.print(":"+Board[itestX][itestY]+":");
+									if(Team && Board[itestX][itestY]==150){
+										KingX=itestX;
+										KingY=itestY;
+									}else if(!Team && Board[itestX][itestY]==250){
+										KingX=itestX;
+										KingY=itestY;
+									}
 								}
 								System.out.println("");
 							}
 							
 							//get the king positition
-							
+
 							
 							System.out.println("KingX::"+KingX+"::KingY::"+KingY);
-							System.out.println("SchachKing:" + SchachKing(Team, BGG, KingX, KingY, true, false) + "::Team::" + Team + "::MPA.PX::" + MPA.PX + "::MPA.PY::" + MPA.PY);
+							System.out.println("SchachKing:" + Schach(Board, KingX, KingY, Team) + "::Team::" + Team + "::MPA.PX::" + MPA.PX + "::MPA.PY::" + MPA.PY);
 							if(!SchachKing(Team, BGG, KingX, KingY, true, false) && !Schach(Board, KingX, KingY, Team)){
 								//System.out.println(MPA.PX + "::" + MPA.PY + "::Funkt");
 								iBackground[MPA.PX][MPA.PY] = MPA.ID2;
