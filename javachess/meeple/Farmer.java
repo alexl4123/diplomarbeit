@@ -37,11 +37,11 @@ public class Farmer extends SuperMeeple {
 	public ImageIcon getIcon(){
 
 		if(super.isteam()==true){											//Team white
-			URL url=Farmer.class.getResource("/Images/pawnWhite.png");		//path of the icon
+			URL url=Farmer.class.getResource("/javachess/images/pawnWhite.png");		//path of the icon
 			ImageIcon icon = new ImageIcon(url);							
 			return icon;
 		}else if(super.isteam()==false){									//Team black
-			URL url=Farmer.class.getResource("/Images/pawnBlack.png");
+			URL url=Farmer.class.getResource("/javachess/images/pawnBlack.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else{

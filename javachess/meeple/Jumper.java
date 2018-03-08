@@ -33,11 +33,11 @@ public class Jumper extends SuperMeeple {
 	public ImageIcon getIcon(){
 
 		if(super.isteam()==true){														//same like in the pawn class
-			URL url=Farmer.class.getResource("/Images/jumperWhite.png");
+			URL url=Farmer.class.getResource("/javachess/images/jumperWhite.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else if(super.isteam()==false){
-			URL url=Farmer.class.getResource("/Images/jumperBlack.png");
+			URL url=Farmer.class.getResource("/javachess/images/jumperBlack.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else{

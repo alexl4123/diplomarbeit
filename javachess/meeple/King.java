@@ -35,11 +35,11 @@ public class King extends SuperMeeple {
 	public ImageIcon getIcon(){
 
 		if(super.isteam()==true){
-			URL url=King.class.getResource("/Images/kingWhite.png");
+			URL url=King.class.getResource("/javachess/images/kingWhite.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else if(super.isteam()==false){
-			URL url=King.class.getResource("/Images/kingBlack.png");
+			URL url=King.class.getResource("/javachess/images/kingBlack.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else{

@@ -34,12 +34,12 @@ public class Queen extends SuperMeeple {
 	public ImageIcon getIcon(){
 
 		if(super.isteam()==true){
-			URL url=Queen.class.getResource("/Images/queenWhite.png");
+			URL url=Queen.class.getResource("/javachess/images/queenWhite.png");
 			ImageIcon icon = new ImageIcon(url);
 
 			return icon;
 		}else if(super.isteam()==false){
-			URL url=Queen.class.getResource("/Images/queenBlack.png");
+			URL url=Queen.class.getResource("/javachess/images/queenBlack.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else{

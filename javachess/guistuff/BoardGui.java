@@ -74,7 +74,9 @@ public class BoardGui {
 	/**
 	 * Main method. Instances a Backgroundgrid and a Boardgui.
 	 */
+	/*
 	public static void main(String[] args) {
+		
 		
 		
 		
@@ -85,14 +87,14 @@ public class BoardGui {
 		BG.Gui();
 
 	}
-	
+	*/
 
 	/**
 	 * Creates the whole GUI.
 	 */
 	public void Gui(){
 		
-		URL url=BoardGui.class.getResource("/Images/gameIcon.png");    //setting icon
+		URL url=BoardGui.class.getResource("/javachess/images/gameIcon.png");    //setting icon
 		ImageIcon GameIcon = new ImageIcon(url);					   
 		ChessFrame.setIconImage(GameIcon.getImage());
 		
@@ -1766,8 +1768,6 @@ public class BoardGui {
 			public void noIcon(int X1, int Y1){
 				setIcon(null);
 			}
-
-
 		}
 
 	}

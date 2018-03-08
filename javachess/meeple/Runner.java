@@ -36,11 +36,11 @@ public class Runner extends SuperMeeple {
 	public ImageIcon getIcon(){
 
 		if(super.isteam()==true){
-			URL url=Runner.class.getResource("/Images/runnerWhite.png");
+			URL url=Runner.class.getResource("/javachess/images/runnerWhite.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else if(super.isteam()==false){
-			URL url=Runner.class.getResource("/Images/runnerBlack.png");
+			URL url=Runner.class.getResource("/javachess/images/runnerBlack.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else{

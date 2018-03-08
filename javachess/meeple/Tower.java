@@ -31,11 +31,11 @@ public class Tower extends SuperMeeple {
 
 		
 		if(super.isteam()==true){
-			URL url=Tower.class.getResource("/Images/towerWhite.png");
+			URL url=Tower.class.getResource("/javachess/images/towerWhite.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else if(super.isteam()==false){
-			URL url=Tower.class.getResource("/Images/towerBlack.png");
+			URL url=Tower.class.getResource("/javachess/images/towerBlack.png");
 			ImageIcon icon = new ImageIcon(url);
 			return icon;
 		}else{
