@@ -22,7 +22,6 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 import javax.swing.*;
-import javachess.audio.SoundMachine;
 import javachess.backgroundmatrix.*;
 import javachess.guistuff.BoardGui.ChessField.ChessButton;
 import javachess.meeple.*;
@@ -58,9 +57,8 @@ public class BoardGui {
 	public JButton player2 = new JButton();
 	public JButton con2 = new JButton();
 	JLabel turn1 = new JLabel();
-	SoundMachine SM1; 
 	private JFrame VolumeFrame;
-	private Thread TH; 
+	
 
 /**
  * Defuault constructor which sets the Backgroundgrid.
@@ -94,9 +92,6 @@ public class BoardGui {
 	 */
 	public void Gui(){
 		
-		SM1 = new SoundMachine("/musik/music7.wav",1);
-		TH = new Thread(SM1);
-		TH.start();
 		URL url=BoardGui.class.getResource("/Images/gameIcon.png");    //setting icon
 		ImageIcon GameIcon = new ImageIcon(url);					   
 		ChessFrame.setIconImage(GameIcon.getImage());
@@ -134,9 +129,6 @@ public class BoardGui {
 			public void windowClosing(WindowEvent arg0) {
 
 				if(servSock!=null&&BGG.getLan().getIsConnectet()==true){				//closing all these server-things
-					SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-					Thread TH = new Thread(SM);
-					TH.start();
 					try{
 						BG.getOOS().writeObject("end");
 						System.out.println("end has been written! ");
@@ -187,9 +179,6 @@ public class BoardGui {
 
 			@Override
 			public void windowClosed(WindowEvent arg0) {
-				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-				Thread TH = new Thread(SM);
-				TH.start();
 
 			}
 
@@ -226,12 +215,6 @@ public class BoardGui {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try{
-					
-					SM1.muteVOL();
-				}catch(Exception ex){
-					System.out.println("no mute");
-				}
 				
 				
 			}
@@ -242,16 +225,6 @@ public class BoardGui {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				try{
-					SM1.redurceVOl();
-					
-				}catch(Exception ex){
-					
-					
-				}
-				
-				
-				
 			}
 		});
 		
@@ -259,11 +232,7 @@ public class BoardGui {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try{
-					SM1.increaseVOL();
-				}catch(Exception ex){
-					
-				}
+				
 				
 				
 			}
@@ -362,9 +331,7 @@ public class BoardGui {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-				Thread TH = new Thread(SM);
-				TH.start();
+
 				if(isHost==true&&BGG.getLan().getIsConnectet()==false){
 					BackgroundGrid freshBgg=new BackgroundGrid();
 					BGG=freshBgg;
@@ -385,9 +352,7 @@ public class BoardGui {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-				Thread TH = new Thread(SM);
-				TH.start();
+				
 				if(isHost==true){
 					boolean temp=BGG.getLan().getIsConnectet();					//temporary connection state
 					BGG.getLan().setIsConnectet(false);
@@ -400,17 +365,12 @@ public class BoardGui {
 						ObjectOutputStream oos=new ObjectOutputStream(fw);		//streams and exception handling
 						oos.writeObject(BGG);
 						oos.close();
-						SM = new SoundMachine("/musik/menuClick.wav",0);
-						TH = new Thread(SM);
-						TH.start();
-
+						
 					}
 					catch(Exception ex){
 						JFrame Frame1 = new JFrame("a frame");						//POPUP
 						JOptionPane.showMessageDialog(Frame1, "File has not been saved!", "Error", 0);
-						SM = new SoundMachine("/musik/menuClick.wav",0);
-						TH = new Thread(SM);
-						TH.start();
+						
 					}
 					BGG.getLan().setIsConnectet(temp);
 				}
@@ -423,9 +383,7 @@ public class BoardGui {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {	
-				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-				Thread TH = new Thread(SM);
-				TH.start();
+				
 				//loading games
 				if(isHost==true&&BGG.getLan().getIsConnectet()==false){
 					JFrame frmClickTheRight=new JFrame();
@@ -464,9 +422,7 @@ public class BoardGui {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {			//writes an end object and ends all connections
-				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-				Thread TH = new Thread(SM);
-				TH.start();
+				
 				try{
 					BG.getOOS().writeObject("end");
 					System.out.println("end has been written! ");
@@ -508,9 +464,7 @@ public class BoardGui {
 
 
 			public void actionPerformed(ActionEvent arg0) {
-				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-				Thread TH = new Thread(SM);
-				TH.start();
+				
 				if(BGG.getLan().getIsConnectet()==false){				
 					consoleField = new JTextArea(10,40);		//creating a little console
 					Frame = new JFrame("Console");
@@ -579,9 +533,7 @@ public class BoardGui {
 
 
 			public void actionPerformed(ActionEvent arg0) {		
-				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-				Thread TH = new Thread(SM);
-				TH.start();
+				
 				//connect to a host
 				isHost=false;
 				try {
@@ -622,9 +574,7 @@ public class BoardGui {
 							@Override
 							public void actionPerformed(ActionEvent arg0) {
 								try{
-									SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-									Thread TH = new Thread(SM);
-									TH.start();
+									
 									String address=ipField.getText();				//Sets IP input, connects to the host
 
 									
@@ -662,9 +612,7 @@ public class BoardGui {
 
 							@Override
 							public void actionPerformed(ActionEvent arg0) {
-								SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-								Thread TH = new Thread(SM);
-								TH.start();
+								
 								ipFrame.setVisible(false);
 								ipField.setText("");
 								network.remove(disconnect);
@@ -701,11 +649,7 @@ public class BoardGui {
 			public void actionPerformed(ActionEvent e) {
 				
 				try{
-					SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-					Thread TH = new Thread(SM);
-					TH.start();
-
-
+					
 					if(BGG.getLan().getIsConnectet()==true&&servSock==null){
 
 						network.remove(disconnect);	
@@ -757,9 +701,7 @@ public class BoardGui {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-				Thread TH = new Thread(SM);
-				TH.start();
+				
 				
 				buildVolumeFrame();
 				VolumeFrame.setVisible(true);
@@ -773,12 +715,9 @@ public class BoardGui {
 			public void actionPerformed(ActionEvent e) {
 				
 				//getSM1Thread().interrupt();
-				SM1.killSound();
 				
-				SoundMachine SM = new SoundMachine("/musik/menuClick.wav",0);
-				Thread TH = new Thread(SM);
 				
-				TH.start();
+				
 				
 				
 				
@@ -807,9 +746,7 @@ public class BoardGui {
 
 	}
 
-	public Thread getSM1Thread(){
-		return TH;
-	}
+
 	
 	public JMenu getNetworkMenu(){
 
@@ -1001,9 +938,7 @@ public class BoardGui {
 							
 								//Buttons[BGG.getX()][BGG.getY()].setBackground(Color.blue);
 								
-								SoundMachine SM = new SoundMachine("/musik/buttonClick.wav",0);
-								Thread TH = new Thread(SM);
-								TH.start();
+							
 								boolean moveMeeple = false;
 								//System.out.println(BGG.getBackgroundGrid(Buttons[XX][YY].getXPos(), Buttons[XX][YY].getYPos()));
 								//first try of a move (ONLY FOR TRY!!!)
@@ -1325,9 +1260,7 @@ public class BoardGui {
 												moveMeeple = true;
 												TheFarmer.setLastMovedInRound(BGG.getTurnRound());
 												
-												SM = new SoundMachine("/musik/strike.wav",0);
-												TH = new Thread(SM);
-												TH.start();
+												
 												
 												//Bauerntausch
 												if(TheFarmer.isteam()==true&&Buttons[XX][YY].getYPos()==7){
@@ -1353,9 +1286,7 @@ public class BoardGui {
 												TheKing.setMeepleXPos(Buttons[XX][YY].getXPos());
 												TheKing.setMeepleYPos(Buttons[XX][YY].getYPos());
 												moveMeeple = true;
-												SM = new SoundMachine("/musik/strike.wav",0);
-												TH = new Thread(SM);
-												TH.start();
+												
 											}
 
 										}else if(BGG.getObject() instanceof Tower){
@@ -1369,9 +1300,7 @@ public class BoardGui {
 												TheTower.setMeepleXPos(Buttons[XX][YY].getXPos());
 												TheTower.setMeepleYPos(Buttons[XX][YY].getYPos());
 												moveMeeple = true;
-												SM = new SoundMachine("/musik/strike.wav",0);
-												TH = new Thread(SM);
-												TH.start();
+												
 											}
 										}else if(BGG.getObject() instanceof Runner){
 
@@ -1385,9 +1314,7 @@ public class BoardGui {
 												TheRunner.setMeepleXPos(Buttons[XX][YY].getXPos());
 												TheRunner.setMeepleYPos(Buttons[XX][YY].getYPos());
 												moveMeeple = true;
-												SM = new SoundMachine("/musik/strike.wav",0);
-												TH = new Thread(SM);
-												TH.start();
+												
 
 											}
 										}else if(BGG.getObject() instanceof Queen){
@@ -1401,9 +1328,7 @@ public class BoardGui {
 												khaleesi.setMeepleXPos(Buttons[XX][YY].getXPos());
 												khaleesi.setMeepleYPos(Buttons[XX][YY].getYPos());
 												moveMeeple = true;
-												SM = new SoundMachine("/musik/strike.wav",0);
-												TH = new Thread(SM);
-												TH.start();
+												
 											}
 										}else if(BGG.getObject() instanceof Jumper){
 
@@ -1415,9 +1340,7 @@ public class BoardGui {
 												drogo.setMeepleXPos(Buttons[XX][YY].getXPos());
 												drogo.setMeepleYPos(Buttons[XX][YY].getYPos());
 												moveMeeple = true;
-												SM = new SoundMachine("/musik/strike.wav",0);
-												TH = new Thread(SM);
-												TH.start();
+												
 
 											}
 										}
@@ -1459,13 +1382,7 @@ public class BoardGui {
 									BGG.setObject(BGG.Objects(Back));
 								}
 								if(BGG.getSchachmattWhite()==true){
-									try{
-										SM1.redurceVOl();
-										SM1.redurceVOl();
-										SM1.redurceVOl();
-									}catch(Exception ex){
-										
-									}
+									
 									
 									int Turns = BGG.getTurnRound()/2;
 									JOptionPane.showMessageDialog(ChessFrame, "Game Over; The game lastet: "+(Turns+1)+" turns.", "Schachmatt", 1);
