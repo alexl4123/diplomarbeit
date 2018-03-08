@@ -9,6 +9,7 @@ import javafx.scene.media.MediaPlayer;
 public class JavaFxAudio {
 
 	private MediaPlayer meepleClick, menuClick, startup;
+	private Media meepleClicksound, menuClicksound, startupsound;
 	private boolean isMuted = false;
 	private double Volume;
 
@@ -20,14 +21,14 @@ public class JavaFxAudio {
 		Volume = 0.5;
 
 
-		Media meepleClicksound = new Media(rsc1.toString());
-		meepleClick = new MediaPlayer(meepleClicksound);
+		meepleClicksound = new Media(rsc1.toString());
+		//meepleClick = new MediaPlayer(meepleClicksound);
 		
-		Media menuClicksound = new Media(rsc2.toString());
-		menuClick = new MediaPlayer(menuClicksound);
+		menuClicksound = new Media(rsc2.toString());
+		//menuClick = new MediaPlayer(menuClicksound);
 		
-		Media startupsound = new Media(rsc3.toString());
-		startup = new MediaPlayer(startupsound);
+		startupsound = new Media(rsc3.toString());
+		//startup = new MediaPlayer(startupsound);
 		
 		
 	}
@@ -39,17 +40,20 @@ public class JavaFxAudio {
 			switch (choose) {
 
 			case "move":
+				meepleClick = new MediaPlayer(meepleClicksound);
 				meepleClick.setVolume(Volume);
 				System.out.println("move sound played");
 				meepleClick.play();
 				break;
 
 			case "menu":
+				menuClick = new MediaPlayer(menuClicksound);
 				menuClick.setVolume(Volume);
 				menuClick.play();
 				break;
 
 			case "startup":
+				startup = new MediaPlayer(startupsound);
 				startup.setVolume(Volume);
 				startup.play();
 				break;
