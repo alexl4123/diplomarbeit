@@ -103,94 +103,79 @@ public class AI extends Thread {
 
 
 				//System.out.println("THE COMPUTER:"+fx);
-				//if((fx > -5000) && (fx < 5000)){
-					try {
-						int i = AIL.BestMove.size();
 
-						//gets the last ,,best'' move, because this one is ever the best
-						MovePos A = AIL.BestMove.get(i - 1);
-						_BGG2.iBackground[A.PX][A.PY] = A.ID;
-						_BGG2.iBackground[A.X][A.Y] = 0; // makes the move
-						if (A.ID3 > 0) {
+				try {
+					int i = AIL.BestMove.size();
+
+					//gets the last ,,best'' move, because this one is ever the best
+					MovePos A = AIL.BestMove.get(i - 1);
+					_BGG2.iBackground[A.PX][A.PY] = A.ID;
+					_BGG2.iBackground[A.X][A.Y] = 0; // makes the move
+					if (A.ID3 > 0) {
+						_BGG2.iBackground[A.X3][A.Y3] = 0;
+					}
+
+					if (A.ID4 > 0) {
+						_BGG2.iBackground[A.X4][A.Y4] = 0;
+						if (A.X3 > 0) {
 							_BGG2.iBackground[A.X3][A.Y3] = 0;
 						}
+						_BGG2.iBackground[A.X5][A.Y5] = A.ID4;
+						_BGG2.setbRookMoved(A.ID, true);
+						_BGG2.setbKingMoved(A.ID, true);
+						int[] iRoch1 = new int[1];
+						int[] iRoch2 = new int[1];
+						iRoch1[0] = A.X5 + (8*A.Y5);
+						iRoch2[0] = A.X4 + (8*A.Y4);
 
-						if (A.ID4 > 0) {
-							_BGG2.iBackground[A.X4][A.Y4] = 0;
-							if (A.X3 > 0) {
-								_BGG2.iBackground[A.X3][A.Y3] = 0;
-							}
-							_BGG2.iBackground[A.X5][A.Y5] = A.ID4;
-							_BGG2.setbRookMoved(A.ID, true);
-							_BGG2.setbKingMoved(A.ID, true);
-							int[] iRoch1 = new int[1];
-							int[] iRoch2 = new int[1];
-							iRoch1[0] = A.X5 + (8*A.Y5);
-							iRoch2[0] = A.X4 + (8*A.Y4);
+						LastMoveList.add(iRoch1);
+						LastMoveList.add(iRoch2);
+					}
 
-							LastMoveList.add(iRoch1);
-							LastMoveList.add(iRoch2);
+					if(A.ID >= 100 && A.ID < 110 && _BGG2.getTeam() && A.PY == 7){
+						_BGG2.higherQueenNumber();
+						_BGG2.iBackground[A.PX][A.PY] = 140+ _BGG2.getQueenNumber();
+					} else if(A.ID >= 200 && A.ID < 210 && !_BGG2.getTeam() && A.PY == 0){
+						_BGG2.higherQueenNumber();
+						_BGG2.iBackground[A.PX][A.PY] = 240+ _BGG2.getQueenNumber();
+					}
+
+
+					
+
+
+					_BGG2.higherTurnRound();
+
+					//add the board states
+					//the complicity is needed, due to same pointer errors
+					int[][] iBoard = new int[8][8];
+					for(int iHY = 0; iHY < 8; iHY++){
+						for(int iHX = 0; iHX < 8; iHX++){
+							iBoard[iHX][iHY] = _BGG2.iBackground[iHX][iHY];
 						}
 
-						if(A.ID >= 100 && A.ID < 110 && _BGG2.getTeam() && A.PY == 7){
-							_BGG2.higherQueenNumber();
-							_BGG2.iBackground[A.PX][A.PY] = 140+ _BGG2.getQueenNumber();
-						} else if(A.ID >= 200 && A.ID < 210 && !_BGG2.getTeam() && A.PY == 0){
-							_BGG2.higherQueenNumber();
-							_BGG2.iBackground[A.PX][A.PY] = 240+ _BGG2.getQueenNumber();
-						}
-
-
-
-
-
-						_BGG2.higherTurnRound();
-
-						//add the board states
-						//the complicity is needed, due to same pointer errors
-						int[][] iBoard = new int[8][8];
-						for(int iHY = 0; iHY < 8; iHY++){
-							for(int iHX = 0; iHX < 8; iHX++){
-								iBoard[iHX][iHY] = _BGG2.iBackground[iHX][iHY];
-							}
-
-						}
-						_BGG2.addBoardState(iBoard);
-						//add the team states
-
-						_BGG2.addTeamState(!_AiTeam);
-
-
-
-
-						int[] LML = new int[8];
-						LML[0] = A.X +  (A.Y * 8);
-						LastMoveList.add(LML);
-						int[] LML1 = new int[8];
-						LML1[0] = A.PX  + (A.PY * 8);
-
-						LastMoveList.add(LML1);
-						LastMoveList.add(LML);
-
-					}catch(Exception ex) {
-						ex.printStackTrace();
 					}
-				/*}else if(_AiTeam){ //if somebody is mated
+					_BGG2.addBoardState(iBoard);
+					//add the team states
 
-					System.out.println("_AiTeam");
-					if(fx>5000) {
-						_BGG2.setSchachmattBlack(true);
-					}else if(fx<-5000) {
-						_BGG2.setSchachmattWhite(true);
-					}
-				}else if(!_AiTeam) {
-					System.out.println("!_AiTeam");
-					if(fx>5000) {
-						_BGG2.setSchachmattWhite(true);
-					}else if(fx<-5000) {
-						_BGG2.setSchachmattBlack(true);
-					}
-				}*/
+					_BGG2.addTeamState(!_AiTeam);
+
+
+
+
+					int[] LML = new int[8];
+					LML[0] = A.X +  (A.Y * 8);
+					LastMoveList.add(LML);
+					int[] LML1 = new int[8];
+					LML1[0] = A.PX  + (A.PY * 8);
+
+					LastMoveList.add(LML1);
+					LastMoveList.add(LML);
+
+				}catch(Exception ex) {
+					ex.printStackTrace();
+				}
+
 
 			}
 			bRunning = false;

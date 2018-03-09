@@ -1286,7 +1286,7 @@ public class Move {
 	 * BackgroundGrid.getSchachmatt()
 	 */
 	public void getSchach2() {
-		JFrame Frame1 = new JFrame();
+		
 		boolean Blackschach, Whiteschach;
 		int XKing2, YKing2, XKing1, YKing1;
 		XKing2 = 10;

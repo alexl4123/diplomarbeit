@@ -20,6 +20,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -224,6 +226,7 @@ public class BoardGui extends Canvas {
 				try {
 					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
 					_BGG2.higherTurnRound();
+					
 					if (_BGG2.getLan().getFirstturn() == true){
 						L.setTeam(false);
 						_BGG2.setTeam(false);
@@ -246,6 +249,7 @@ public class BoardGui extends Canvas {
 				}
 
 				_BGG2.iBackground = _BGG;
+				_BGG2.Board = _BGG;
 				_Gui.setBGG2(_BGG2);
 				bThinking = false;
 				System.out.println("switches bThinking to off");
@@ -257,7 +261,52 @@ public class BoardGui extends Canvas {
 					_Lauch.setBG(_Gui.getBoardGui());
 					_Lauch.setBGG(_BGG2);
 				}
+				
+				System.out.println("line 227");
+				int iWKingX,iBKingX, iWKingY, iBKingY;
+				iWKingX = 0;
+				iWKingY = 0;
+				iBKingX = 0;
+				iBKingY = 0;
+				for(int iY = 0; iY < 8; iY++){
+					for(int iX = 0; iX < 8; iX++){
+						if(_BGG2.iBackground[iX][iY]==150){
+							iWKingX=iX;
+							iWKingY=iY;
+						}else if(_BGG2.iBackground[iX][iY]==250){
+							iBKingX = iX;
+							iBKingY = iY;
+						}
+					}
+				}
 
+				System.out.println("Schach for Team True");
+			//	_BGG2.SchachKing(true, _BGG2, iWKingX, iWKingY, false, false);
+				System.out.println("Schach for Team false");
+				//_BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
+				
+				//---------------------------------------------------------------------------------
+				
+				 boolean Blackschach = _BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
+				if (Blackschach == true && !_BGG2.getSchachMattBlack()) {							
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("check");
+								alert.setHeaderText("Blackking is in check!");
+								alert.setContentText("Blackking is in check!");
+								alert.showAndWait();
+
+				}
+				boolean Whiteschach = _BGG2.SchachKing(true, _BGG2, iWKingX, iWKingY, false, false);
+				if (Whiteschach == true && !_BGG2.getSchachmattWhite()) {		
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("check");
+								alert.setHeaderText("Whiteking is in check!");
+								alert.setContentText("Whiteking is in check!");
+								alert.showAndWait();
+					
+				}
+				//---------------------------------------------------------------------------------
+				
 			}
 
 		});
@@ -296,7 +345,9 @@ public class BoardGui extends Canvas {
 						}
 					}
 				}
-				System.out.println("Draw:"+_BGG2.SchachKing(true, _BGG2, KingX, KingY, false, false));
+				//System.out.println("Draw:"+_BGG2.SchachKing(true, _BGG2, KingX, KingY, false, false));
+				
+				
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 
 					bDrag = false;
@@ -387,6 +438,8 @@ public class BoardGui extends Canvas {
 		try {
 
 			LastMoveList.clear();
+			System.out.println("BoardGui-TileList:" +TileList.size());
+			
 			for (Tile T : TileList) {
 				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && !OMove.getBauer()) {
 
@@ -413,21 +466,7 @@ public class BoardGui extends Canvas {
 
 
 					if (_iChoose == 1 && ((!L.getTeam() && !_BGG2.getLan().getFirstturn()) || (L.getTeam() && _BGG2.getLan().getFirstturn()))){ // if move has happend,
-						// do what it takes
-						// ,,LAN''
-
-
-
-
-						/*	if(_BGG2.getLan().getFirstturn() == true){
-
-							_BGG2.getLan().setFirstturn(false);
-							bThinking = true;
-							System.out.println("habala 1");
-							_BGG = (int[][]) _BGG2.getLan().netReadStream.readObject();
-							System.out.println("habala 2");
-							bThinking = false;
-						}*/
+						 //LAN
 
 
 						System.out.println("schreib jetzt1");
@@ -443,7 +482,7 @@ public class BoardGui extends Canvas {
 
 						_BGG2.iBackground = _BGG;
 						_Gui.setBGG2(_BGG2);
-						//Josi was here
+						//Josi was here  //welch ehre
 						redraw();
 
 						turnProp.setValue(_BGG2.getTurnRound());
