@@ -109,6 +109,7 @@ public class AI extends Thread {
 
 					//gets the last ,,best'' move, because this one is ever the best
 					MovePos A = AIL.BestMove.get(i - 1);
+					
 					_BGG2.iBackground[A.PX][A.PY] = A.ID;
 					_BGG2.iBackground[A.X][A.Y] = 0; // makes the move
 					if (A.ID3 > 0) {
@@ -155,30 +156,86 @@ public class AI extends Thread {
 						}
 
 					}
-					_BGG2.addBoardState(iBoard);
-					//add the team states
+					
+					
+					int XKing, YKing;
+					XKing = 10;
+					YKing = 10;
+					
+					for(int Y = 0; Y < 8; Y++){
+						for(int X = 0; X < 8; X++){
+							if(_BGG2.iBackground[X][Y] == 150 && _AiTeam){
+								XKing = X;
+								YKing = Y;
+							}
+							if(_BGG2.iBackground[X][Y] == 250 && !_AiTeam){
+								XKing = X;
+								YKing = Y;
+							}
+						}
+					}
+					if(_BGG2.SchachKing(_AiTeam, _BGG2, XKing, YKing, true, false)){
+						//illegal AI Move
+						
+						
+							//End Game
+							if(_AiTeam){
+								_BGG2.setSchachmattWhite(true);
+							}else{
+								_BGG2.setSchachmattBlack(true);
+							}
+							
+							Platform.runLater(new Runnable() {
 
-					_BGG2.addTeamState(!_AiTeam);
+								@Override
+								public void run() {
+									try {
+										 Alert alert = new Alert(AlertType.INFORMATION);
+										  alert.setTitle("Check Mate");
+										  
+										  alert.setHeaderText("The AI has lost the game! It wanted to make an illegal move... The game took " + _BGG2.getTurnRound() + " turns.");
+										  alert.showAndWait();
+
+									} catch (Exception ex) {
+										ex.printStackTrace();
+									}
+
+								}
+							});
+							
+						
+						
+						
+					}else{
+						_BGG2.addBoardState(iBoard);
+						//add the team states
+
+						_BGG2.addTeamState(!_AiTeam);
 
 
 
 
-					int[] LML = new int[8];
-					LML[0] = A.X +  (A.Y * 8);
-					LastMoveList.add(LML);
-					int[] LML1 = new int[8];
-					LML1[0] = A.PX  + (A.PY * 8);
+						int[] LML = new int[8];
+						LML[0] = A.X +  (A.Y * 8);
+						LastMoveList.add(LML);
+						int[] LML1 = new int[8];
+						LML1[0] = A.PX  + (A.PY * 8);
 
-					LastMoveList.add(LML1);
-					LastMoveList.add(LML);
-
+						LastMoveList.add(LML1);
+						LastMoveList.add(LML);
+						
+						bRunning = false;
+					}
+					
 				}catch(Exception ex) {
 					ex.printStackTrace();
+					
+					bRunning = false;
 				}
 
 
 			}
-			bRunning = false;
+		
 		}
 		//that the player may move
 		_Gui.setThinking(false);
