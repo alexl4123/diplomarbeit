@@ -17,8 +17,9 @@ public class MovePos implements Serializable{
 	 * PX - where the Meeple came from on X
 	 * ID - the ID of the Meeple
 	 * ID2 - what was on that tile before it became ,,ID'' 
+	 * Beata - for the AI
 	 */
-	public int X,Y,PY,PX,ID,ID2;
+	public int X,Y,PY,PX,ID,ID2, Beta;
 	
 	/**
 	 * For En Passant, Rochade,...
@@ -41,8 +42,5 @@ public class MovePos implements Serializable{
 	/**
 	 * the representation of the board
 	 */
-	public double[][] Board;
-	
-	
-	
+	public double[][] Board;	
 }

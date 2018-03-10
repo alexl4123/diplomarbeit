@@ -10,8 +10,6 @@ public class AudioManager {
 	private boolean bfxaudio = false;
 	
 	public AudioManager(){
-		
-
 		try {
 			this.fxaudio = new JavaFxAudio();
 			this.bfxaudio = true;

@@ -263,7 +263,7 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if(!Gui.getBGG2().getSchachmattBlack() && !Gui.getBGG2().getSchachMattWhite() && !Gui.getBGG2().getDraw()){
+				if(!Gui.getBGG2().getSchachmattBlack() && !Gui.getBGG2().getSchachmattWhite() && !Gui.getBGG2().getDraw()){
 
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					Gui.getBoardGui().soundPlayer.playSound("menu");

@@ -21,9 +21,9 @@ public class NativeAudio {
 	private AudioInputStream audioStream;
 	private AudioFormat audioFormat;
 	private SourceDataLine sourceLine;
-	private final URL meeplesound = getClass().getResource("/javachess/audio/MeepleClick.wav");
-	private final URL menusound = getClass().getResource("/javachess/audio/MenuClick.wav");
-	private final URL startupsound = getClass().getResource("/javachess/audio/Startup.wav");
+	private final URL meeplesound = AudioSystem.class.getResource("/javachess/audio/MeepleClick.wav");
+	private final URL menusound = AudioSystem.class.getResource("/javachess/audio/MenuClick.wav");
+	private final URL startupsound = AudioSystem.class.getResource("/javachess/audio/Startup.wav");
 
 	public NativeAudio() {
 		
@@ -46,7 +46,8 @@ public class NativeAudio {
 		}
 
 		try {
-			audioStream = AudioSystem.getAudioInputStream(soundFile);
+			//AudioSystem.getAudioInputStream(AudioSystem.class.getResource(filename))
+			audioStream = AudioSystem.getAudioInputStream(filename);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);

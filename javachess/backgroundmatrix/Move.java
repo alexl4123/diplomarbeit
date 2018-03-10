@@ -182,7 +182,7 @@ public class Move {
 						}
 					}
 					MP.Board = BoardRep;
-					BGG2._TotalMoveList.add(MP);
+					//BGG2._TotalMoveList.add(MP);
 					_moveAllowed = true;
 
 
@@ -302,18 +302,18 @@ public class Move {
 	public boolean AllowedMove(MovePos MP) {
 		boolean allowed;
 
-		TheMove[MP.X][MP.Y] = 0;
-		TheMove[MP.PX][MP.PY] = MP.ID;
+		_BGG[MP.X][MP.Y] = 0;
+		_BGG[MP.PX][MP.PY] = MP.ID;
 		if (MP.ID3 > 0) {
-			TheMove[MP.X3][MP.Y3] = 0;
+			_BGG[MP.X3][MP.Y3] = 0;
 		}
 
 		if (MP.ID4 > 0) {
-			TheMove[MP.X4][MP.Y4] = 0;
+			_BGG[MP.X4][MP.Y4] = 0;
 			if (MP.X3 > 0) {
-				TheMove[MP.X3][MP.Y3] = 0;
+				_BGG[MP.X3][MP.Y3] = 0;
 			}
-			TheMove[MP.X5][MP.Y5] = MP.ID4;
+			_BGG[MP.X5][MP.Y5] = MP.ID4;
 		}
 
 		int KingX, KingY;
@@ -334,18 +334,18 @@ public class Move {
 
 		allowed = !_BGG2.SchachKing(_BGG2.getTeam(), _BGG2, KingX, KingY, true, false);
 
-		TheMove[MP.X][MP.Y] = MP.ID;
-		TheMove[MP.PX][MP.PY] = MP.ID2;
+		_BGG[MP.X][MP.Y] = MP.ID;
+		_BGG[MP.PX][MP.PY] = MP.ID2;
 		if (MP.ID3 > 0) {
-			TheMove[MP.X3][MP.Y3] = MP.ID3;
+			_BGG[MP.X3][MP.Y3] = MP.ID3;
 		}
 
 		if (MP.ID4 > 0) {
-			TheMove[MP.X4][MP.Y4] = MP.ID4;
+			_BGG[MP.X4][MP.Y4] = MP.ID4;
 			if (MP.X3 > 0) {
-				TheMove[MP.X3][MP.Y3] = MP.ID3;
+				_BGG[MP.X3][MP.Y3] = MP.ID3;
 			}
-			TheMove[MP.X5][MP.Y5] = MP.ID5;
+			_BGG[MP.X5][MP.Y5] = MP.ID5;
 		}
 
 		return allowed;
@@ -1017,7 +1017,7 @@ public class Move {
 					}
 				}
 			}
-			if (iX - 4 >= 0) { // rojhate left (4 wide)
+			if (iX - 4 >= 0) { // rochade left (4 wide)
 				if (BGG[iX - 1][iY] == 0 && BGG[iX - 2][iY] == 0 && BGG[iX - 3][iY] == 0) {
 					boolean Schach = false;
 					for (int iXHelp = 0; iXHelp <= 4; iXHelp++) {
@@ -1027,7 +1027,7 @@ public class Move {
 						}
 					}
 
-					if (Schach == false) {
+					if (!Schach) {
 						int iIDRook = BGG[iX - 4][iY];
 						if (!_BGG2.getbKingMoved(iID) && !_BGG2.getbRookMoved(iIDRook)) {
 							MovePos MPN = new MovePos();
@@ -1053,7 +1053,7 @@ public class Move {
 				}
 			}
 
-			if (iX + 3 <= 7) { // rojhate left (4 wide)
+			if (iX + 3 <= 7) { // rochade right (3 wide)
 				if (BGG[iX + 1][iY] == 0 && BGG[iX + 2][iY] == 0) {
 					boolean Schach = false;
 					for (int iXHelp = 0; iXHelp <= 3; iXHelp++) {
@@ -1062,7 +1062,7 @@ public class Move {
 						}
 					}
 
-					if (Schach == false) {
+					if (!Schach) {
 						int iIDRook = BGG[iX + 3][iY];
 						if (!_BGG2.getbKingMoved(iID) && !_BGG2.getbRookMoved(iIDRook)) {
 							MovePos MPN = new MovePos();
@@ -1308,7 +1308,7 @@ public class Move {
 		_BGG2.iBackground = TheMove;
 
 		Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, false, false);
-		if (Blackschach == true && !_BGG2.getSchachMattBlack()) {
+		if (Blackschach == true && !_BGG2.getSchachmattBlack()) {
 			Platform.runLater(new Runnable() {
 
 				@Override

@@ -20,6 +20,7 @@ public class AIvsAI extends Thread {
 	}
 	
 	public void run() {
+		_BG.setThinking(true);
 		boolean isRunning = true;
 		AILogic AIL = new AILogic();
 		boolean bSchachMattW = false;
@@ -27,15 +28,15 @@ public class AIvsAI extends Thread {
 		
 		do {
 			
-				
+				//init white AI
 				if(!bAI_Thinking_Black) {
 					bAI_Thinking_White = true;
-					_BG.setThinking(true);
 					AI _AI_White = new AI(_BGG2, _BG,true,true,_BGG2.getAiDepth());
 					_AI_White.setAIvsAI(this);
 					_AI_White.start();
 				}
 				
+				//wait while thinking
 				while(bAI_Thinking_White) {
 					try {
 						Thread.currentThread().sleep(100);
@@ -43,6 +44,25 @@ public class AIvsAI extends Thread {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}
+				
+				int KingX;
+				int KingY;
+				for(int iY = 0; iY < 8; iY++){
+					for(int iX = 0; iX < 8; iX++){
+						if(_BGG2.iBackground[iX][iY] == 150){
+							KingX = iX;
+							KingY = iY;
+							bSchachMattW = _BGG2.SchachKing(true, _BGG2, KingX, KingY, false, false);
+						}else if(_BGG2.iBackground[iX][iY] == 250){
+							KingX = iX;
+							KingY = iY;
+							bSchachMattB = _BGG2.SchachKing(false, _BGG2, KingX, KingY, false, false);
+						}
+					}
+				}
+				if(_BGG2.getSchachmattBlack() || _BGG2.getSchachmattWhite()){
+					break;
 				}
 				
 				if(!bAI_Thinking_White) {
@@ -60,18 +80,17 @@ public class AIvsAI extends Thread {
 						e.printStackTrace();
 					}
 				}
-				int KingX;
-				int KingY;
+				
 				for(int iY = 0; iY < 8; iY++){
 					for(int iX = 0; iX < 8; iX++){
 						if(_BGG2.iBackground[iX][iY] == 150){
 							KingX = iX;
 							KingY = iY;
-							bSchachMattW = _BGG2.SchachKing(true, _BGG2, KingX, KingY, true, false);
+							bSchachMattW = _BGG2.SchachKing(true, _BGG2, KingX, KingY, false, false);
 						}else if(_BGG2.iBackground[iX][iY] == 250){
 							KingX = iX;
 							KingY = iY;
-							bSchachMattW = _BGG2.SchachKing(false, _BGG2, KingX, KingY, true, false);
+							bSchachMattB = _BGG2.SchachKing(false, _BGG2, KingX, KingY, false, false);
 						}
 					}
 				}
@@ -79,8 +98,8 @@ public class AIvsAI extends Thread {
 				
 				
 			
-		}while(15000 > AIL.boardEvaluation(_BGG2, true) && (-15000) < AIL.boardEvaluation(_BGG2, true) && !bSchachMattB && !bSchachMattW);
-		System.out.println("SkyNet halted");
+		}while(15000 > AIL.boardEvaluation(_BGG2.iBackground, true) && (-15000) < AIL.boardEvaluation(_BGG2.iBackground, true) && !_BGG2.getSchachmattBlack() && !_BGG2.getSchachmattWhite() && _BGG2.getTurnRound()<250);
+		System.out.println("SkyNet halted:BOARD:"+AIL.boardEvaluation(_BGG2.iBackground, true)+"::"+bSchachMattB+"::"+bSchachMattW);
 		
 	}
 }

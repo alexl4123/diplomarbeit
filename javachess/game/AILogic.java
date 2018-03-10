@@ -78,7 +78,7 @@ public class AILogic {
 	 * @return BackgroundGrid - what has changed
 	 */
 	public BackgroundGrid playGame(BackgroundGrid BGG2, boolean Team) {
-		
+
 		_WorkPos = BGG2;
 		_BestPos = null;
 
@@ -105,10 +105,10 @@ public class AILogic {
 		MaxDepth = depth;
 		count = 0;
 		float beta = -10000.0f;
-		
+
 		beta = alphaBetaHelper(0, BGG2, Team, -beta, beta);
 		System.out.println(beta);
-		
+
 		/*
 		for (int i = 1; i <= depth; i++) {
 			MaxDepth = i;
@@ -119,7 +119,7 @@ public class AILogic {
 			}
 			System.out.println(beta);
 		}
-		*/
+		 */
 
 		return beta;
 	}
@@ -141,16 +141,16 @@ public class AILogic {
 	 * @return float - the value of the best move
 	 */
 	public float alphaBetaHelper(int depth, BackgroundGrid BGG2, boolean Team, float alpha, float beta) {
-		
-		float Sum = boardEvaluation(BGG2, Team); // the value of the Board
+
+		float Sum = boardEvaluation(BGG2.iBackground, Team); // the value of the Board
 		if(Sum > 50000){
 			return 200000;
 		}else if(Sum < (-50000)) {
 			return (-200000);
 		}
-		
+
 		if (depth >= MaxDepth) { // if the max depth has been reached, return
-									
+
 			return Sum;
 		}
 
@@ -160,149 +160,167 @@ public class AILogic {
 				if (iPos > 0) {
 					Move M = new Move();
 					M.setBGG(BGG2.iBackground);
+					
 					M.setBGG2(BGG2);
-					
+
 					/* no comment */
-					
+
 					ArrayList<MovePos> AIM = M.getMoveMeeple(BGG2.iBackground, Team, iPos, x, y); 
 					for (MovePos A : AIM) { // loops threw all possible moves
-						
-						BGG2.iBackground[A.PX][A.PY] = A.ID;
-						BGG2.iBackground[A.X][A.Y] = 0; // makes the move
-						if (A.ID3 > 0) {
-							BGG2.iBackground[A.X3][A.Y3] = 0;
-						}
+						if(M.AllowedMove(A)){
 
-						if (A.ID4 > 0) {
-							BGG2.iBackground[A.X4][A.Y4] = 0;
-							if (A.X3 > 0) {
+							BGG2.iBackground[A.PX][A.PY] = A.ID;
+							BGG2.iBackground[A.X][A.Y] = 0; // makes the move
+							if (A.ID3 > 0) {
 								BGG2.iBackground[A.X3][A.Y3] = 0;
 							}
-							BGG2.iBackground[A.X5][A.Y5] = A.ID4;
-							BGG2.setbRookMoved(A.ID, true);
-							BGG2.setbKingMoved(A.ID, true);
-						}
-						
-						if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
-							BGG2.iBackground[A.PX][A.PY] = 140+ BGG2.getQueenNumber();
-						} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
-							BGG2.iBackground[A.PX][A.PY] = 240+ BGG2.getQueenNumber();
-						}
-						
-						
-						BGG2.changeTeam();
-						float Sum1 = -alphaBetaHelper(depth + 1, BGG2, !Team, -beta, -alpha);
-						/*
-						 * recursively calls itself with changed alphaBeta,
-						 * increased depth and changed team
-						 */
-						BGG2.iBackground[A.PX][A.PY] = A.ID2;
-						BGG2.iBackground[A.X][A.Y] = A.ID; 
-						if (A.ID3 > 0) {
-							BGG2.iBackground[A.X3][A.Y3] = A.ID3;
-						}
 
-						if (A.ID4 > 0) {
-							BGG2.iBackground[A.X4][A.Y4] = A.ID4;
-							if (A.X3 > 0) {
-								BGG2.iBackground[A.X3][A.Y3] = A.ID3;
-							}
-							BGG2.iBackground[A.X5][A.Y5] = A.ID5;
-							BGG2.setbRookMoved(A.ID, false);
-							BGG2.setbKingMoved(A.ID, false);
-						}
-						
-						if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
-							BGG2.iBackground[A.PX][A.PY] = A.ID2;
-						} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
-							BGG2.iBackground[A.PX][A.PY] = A.ID2;
-						}
-						
-						// returns the move
-															// to its previous
-															// position
-						BGG2.changeTeam();
-
-						if (Sum1 > beta) { // if it was a good move
-
-							beta = Sum1;
-							//---------------------------------------------------------------------------------------
-							if(depth==1 && A.ID==240 && A.PX == 5 && beta==-365) {
-								System.out.println("Sum1:"+Sum1 + "::beta::"+beta+"::ID::"+A.ID+":X:"+A.PX+"::Y::"+A.PY+"::max_depth::"+depth);
-								
-								BGG2.iBackground[A.PX][A.PY] = A.ID;
-								BGG2.iBackground[A.X][A.Y] = 0; // makes the move
-								if (A.ID3 > 0) {
+							//Rochade
+							if (A.ID4 > 0) {
+								BGG2.iBackground[A.X4][A.Y4] = 0;
+								if (A.X3 > 0) {
 									BGG2.iBackground[A.X3][A.Y3] = 0;
 								}
+								BGG2.iBackground[A.X5][A.Y5] = A.ID4;
+							}
 
-								if (A.ID4 > 0) {
-									BGG2.iBackground[A.X4][A.Y4] = 0;
-									if (A.X3 > 0) {
-										BGG2.iBackground[A.X3][A.Y3] = 0;
-									}
-									BGG2.iBackground[A.X5][A.Y5] = A.ID4;
-									BGG2.setbRookMoved(A.ID, true);
-									BGG2.setbKingMoved(A.ID, true);
-								}
-								
-								if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
-									BGG2.iBackground[A.PX][A.PY] = 140+ BGG2.getQueenNumber();
-								} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
-									BGG2.iBackground[A.PX][A.PY] = 240+ BGG2.getQueenNumber();
-								}
-								
-								for (int Y = 0; Y < 8; Y++) {
-									for (int X = 0; X < 8; X++) {
-										System.out.print(":"+BGG2.iBackground[X][Y]+":");
-									}
-									System.out.println("");
-								}
-								
-								BGG2.iBackground[A.PX][A.PY] = A.ID2;
-								BGG2.iBackground[A.X][A.Y] = A.ID; 
-								if (A.ID3 > 0) {
+							//Bauerntausch
+							if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
+								BGG2.iBackground[A.PX][A.PY] = 140+ BGG2.getQueenNumber();
+							} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
+								BGG2.iBackground[A.PX][A.PY] = 240+ BGG2.getQueenNumber();
+							}
+
+
+							BGG2.changeTeam();
+							float Sum1 = -alphaBetaHelper(depth + 1, BGG2, !Team, -beta, -alpha);
+							/*
+							 * recursively calls itself with changed alphaBeta,
+							 * increased depth and changed team
+							 */
+							BGG2.iBackground[A.PX][A.PY] = A.ID2;
+							BGG2.iBackground[A.X][A.Y] = A.ID; 
+							if (A.ID3 > 0) {
+								BGG2.iBackground[A.X3][A.Y3] = A.ID3;
+							}
+
+							//Rochade rueckgaengig
+							if (A.ID4 > 0) {
+								BGG2.iBackground[A.X4][A.Y4] = A.ID4;
+								if (A.X3 > 0) {
 									BGG2.iBackground[A.X3][A.Y3] = A.ID3;
 								}
+								BGG2.iBackground[A.X5][A.Y5] = A.ID5;
+							}
+							//Bauerntausch rueckgaengig
+							if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
+								BGG2.iBackground[A.PX][A.PY] = A.ID2;
+							} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
+								BGG2.iBackground[A.PX][A.PY] = A.ID2;
+							}
 
-								if (A.ID4 > 0) {
-									BGG2.iBackground[A.X4][A.Y4] = A.ID4;
-									if (A.X3 > 0) {
+							// returns the move
+							// to its previous
+							// position
+							BGG2.changeTeam();
+
+							if(BGG2.getHardCoreAI() && Sum1 > beta){
+								beta = Sum1;
+
+								if (depth == 0) { // if at depth 0 and a good move
+									System.out.println("Sum1:"+Sum1 + "::beta::"+beta+"::loop::"+loop+"::ID::"+A.ID+"::max_depth::"+MaxDepth);
+									loop++;
+									A.Beta = (int) Sum1;
+									BestMove.add(A);
+
+									_BestMove = loop;
+								}
+
+								if (beta >= alpha) { // if the move was so good, the
+									// opposing team would never
+									// take it
+									return beta;
+								}
+
+							}
+							if (!BGG2.getHardCoreAI() && Sum1 >= beta) { // if it was a good move
+
+								beta = Sum1;
+								//---------------------------------------------------------------------------------------
+								if(depth==1 && A.ID==240 && A.PX == 5 && beta==-365) {
+									System.out.println("Sum1:"+Sum1 + "::beta::"+beta+"::ID::"+A.ID+":X:"+A.PX+"::Y::"+A.PY+"::max_depth::"+depth);
+
+									BGG2.iBackground[A.PX][A.PY] = A.ID;
+									BGG2.iBackground[A.X][A.Y] = 0; // makes the move
+									if (A.ID3 > 0) {
+										BGG2.iBackground[A.X3][A.Y3] = 0;
+									}
+
+									if (A.ID4 > 0) {
+										BGG2.iBackground[A.X4][A.Y4] = 0;
+										if (A.X3 > 0) {
+											BGG2.iBackground[A.X3][A.Y3] = 0;
+										}
+										BGG2.iBackground[A.X5][A.Y5] = A.ID4;
+									}
+
+									if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
+										BGG2.iBackground[A.PX][A.PY] = 140+ BGG2.getQueenNumber();
+									} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
+										BGG2.iBackground[A.PX][A.PY] = 240+ BGG2.getQueenNumber();
+									}
+
+									for (int Y = 0; Y < 8; Y++) {
+										for (int X = 0; X < 8; X++) {
+											System.out.print(":"+BGG2.iBackground[X][Y]+":");
+										}
+										System.out.println("");
+									}
+
+									BGG2.iBackground[A.PX][A.PY] = A.ID2;
+									BGG2.iBackground[A.X][A.Y] = A.ID; 
+									if (A.ID3 > 0) {
 										BGG2.iBackground[A.X3][A.Y3] = A.ID3;
 									}
-									BGG2.iBackground[A.X5][A.Y5] = A.ID5;
-									BGG2.setbRookMoved(A.ID, false);
-									BGG2.setbKingMoved(A.ID, false);
+
+									if (A.ID4 > 0) {
+										BGG2.iBackground[A.X4][A.Y4] = A.ID4;
+										if (A.X3 > 0) {
+											BGG2.iBackground[A.X3][A.Y3] = A.ID3;
+										}
+										BGG2.iBackground[A.X5][A.Y5] = A.ID5;
+									}
+
+									if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
+										BGG2.iBackground[A.PX][A.PY] = A.ID2;
+									} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
+										BGG2.iBackground[A.PX][A.PY] = A.ID2;
+									}
+
+
+								}	//---------------------------------------------------------------------------------------
+
+
+								if (depth == 0) { // if at depth 0 and a good move
+									System.out.println("Sum1:"+Sum1 + "::beta::"+beta+"::loop::"+loop+"::ID::"+A.ID+"::max_depth::"+MaxDepth);
+									loop++;
+									A.Beta = (int) Sum1;
+									BestMove.add(A);
+
+									_BestMove = loop;
 								}
-								
-								if(A.ID >= 100 && A.ID < 110 && Team && A.PY == 7){
-									BGG2.iBackground[A.PX][A.PY] = A.ID2;
-								} else if(A.ID >= 200 && A.ID < 210 && !Team && A.PY == 0){
-									BGG2.iBackground[A.PX][A.PY] = A.ID2;
+
+								if (beta >= alpha) { // if the move was so good, the
+									// opposing team would never
+									// take it
+									return beta;
 								}
-								
-								
-							}	//---------------------------------------------------------------------------------------
 
-						
-							if (depth == 0) { // if at depth 0 and a good move
-								System.out.println("Sum1:"+Sum1 + "::beta::"+beta+"::loop::"+loop+"::ID::"+A.ID+"::max_depth::"+MaxDepth);
-								loop++;
-								BestMove.add(A);
 
-								_BestMove = loop;
 							}
-							
-							if (beta >= alpha) { // if the move was so good, the
-													// opposing team would never
-													// take it
-								return beta;
-							}
-							
 
-						}
-
-					} // foreach end
+						} // foreach end
+					}//Check AllowedMove end
 				} // if a Meeple has been selected
 
 			}
@@ -322,11 +340,11 @@ public class AILogic {
 	 *            - for which team the eval. should be made
 	 * @return S (float) - returns the current eval. number of the board
 	 */
-	public float boardEvaluation(BackgroundGrid BGG2, boolean Team) {
+	public float boardEvaluation(int[][] Board, boolean Team) {
 		float S1 = 0;
 		float S2 = 0;
 		float S = 0;
-		int[][] Board = BGG2.iBackground;
+		//int[][] Board = BGG2.iBackground;
 
 		// Material Balance
 		for (int y = 0; y < 8; y++) {
@@ -337,14 +355,14 @@ public class AILogic {
 					try {
 						S1 += 100; // if just a pawn exists
 						S1 += WhitePawnSquareTable[x][y]; // were the pawn
-															// should be!
+						// should be!
 						if ((y - 1) >= 0 && (y + 1) < 8) {
 							if (Board[x][y - 1] > 100 && Board[x][y - 1] < 110) {
 								S1 -= 30; // If two Pawns are in the same row
 							} else if (Board[x][y + 1] > 200 && Board[x][y + 1] < 210) {
 								S1 -= 20; // If two opposite Pawns are standing
-											// face
-											// to face
+								// face
+								// to face
 							} else {
 
 							}
@@ -391,14 +409,14 @@ public class AILogic {
 					try {
 						S2 += 100; // if just a pawn exists
 						S2 += BlackPawnSquareTable[x][y]; // were the pawn
-															// should be!
+						// should be!
 						if ((y + 1) < 8 && (y - 1) >= 0) {
 							if (Board[x][y + 1] >= 200 && Board[x][y + 1] < 210) {
 								S2 -= 30; // If two Pawns are in the same row
 							} else if (Board[x][y - 1] > 100 && Board[x][y - 1] < 110) {
 								S2 -= 20; // If two opposite Pawns are standing
-											// face
-											// to face
+								// face
+								// to face
 							} else {
 
 							}

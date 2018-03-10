@@ -117,14 +117,14 @@ public class GUI extends Application{
 		S.setTitle("JavaChess");
 		S.setScene(sc);
 		BG.setStartupbuttonOn(true);
-		BG.drawStartMenu();
+		
 
 
 
 
 		//-------------------------------------------------------
 		S.show();
-
+		BG.drawStartMenu();
 		
 		
 		
@@ -188,20 +188,10 @@ public class GUI extends Application{
 	 * If button new on the menu has been pressed
 	 */
 	public void newBG(){
-		BackgroundGrid BGG = new BackgroundGrid();
-		int iChoose = BG.getChoose();
-		BG = new BoardGui(this);
-		BG.setXY(S.getWidth()-15, S.getHeight()-75);
-		try {
-			BG.DrawGrid(BGG.iBackground);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		BGG.setChoose(iChoose);
-		BG.setChoose(iChoose);
-		BG.setBGG2(BGG);
+		_BGG2.ResetStats();
+		BG.setTeam(_BGG2.getTeam());
 		BG.redraw();
-		root.setCenter(BG);
+		
 	}
 
 	/**

@@ -2,11 +2,15 @@ package javachess.backgroundmatrix;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Optional;
+
+import javachess.game.AILogic;
 import javachess.game.LAN;
 import javachess.game.MovePos;
 import javachess.meeple.*;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 
 
@@ -39,10 +43,10 @@ public class BackgroundGrid implements Serializable {
 	 * A nother representation of the Meeples (contains the Meeple Objects)
 	 */
 	public ArrayList<Object> Objectives = new ArrayList<Object>(); // to save
-																	// all the
-																	// meeples
-																	// (number
-																	// of item =
+	// all the
+	// meeples
+	// (number
+	// of item =
 	/**
 	 * The current team // ID)
 	 */
@@ -52,35 +56,36 @@ public class BackgroundGrid implements Serializable {
 	 * if the white team is mated
 	 */
 	private boolean SchachmattWhite; // if the Whiteking is "schachmatt"
-	
+
 	/**
 	 * if the black team is mated
 	 */
 	private boolean SchachmattBlack; //if the blackking is ''schachmatt''
-	
+
 	/**
 	 * if a draw occurd (wether from Stalemate, agree, no check mate possible, 50. Moves without pawn move, capture or casteling or threefold position)
 	 */
 	private boolean _Draw;
-	
+
 	/**
-	 * for the Draw evaluation
+	 * set hardcore AI
 	 */
-	
+	private boolean HardCoreAI;
+
 	/**
 	 * How deep the AI should search
 	 */
 	private int _iAiDepth;
-	
-	
 
-	
-//----------------------------------------------------------------------------	
-	
-	public ArrayList<MovePos> _TotalMoveList;
+
+
+
+	//----------------------------------------------------------------------------	
+
+	//public ArrayList<MovePos> _TotalMoveList;
 	private ArrayList<int[][]> _AllBoardStatesList;
 	private ArrayList<boolean[]> _AllTeamStatesList;
-	
+
 	boolean move; // when you can move
 	short TurnRound; // to measure the turns of the current game
 	int QueenNumber;// how many add. queens are
@@ -101,14 +106,14 @@ public class BackgroundGrid implements Serializable {
 	 * 
 	 */
 	public BackgroundGrid() {
-		
+
 		//some inits
 		bPawnSpecMoved = new boolean[20];
 		bKingMoved = new boolean[2];
 		bTowerMoved = new boolean[4];
-		
-		
-		
+		HardCoreAI = false;
+
+
 		QueenNumber = 0;
 		TowerNumber = 0;
 		JumperNumber = 0;
@@ -117,145 +122,15 @@ public class BackgroundGrid implements Serializable {
 		move = true;
 		_iAiDepth = 5;
 		_bAITeam = false;
-		
+
 		team = true;
-		_TotalMoveList = new ArrayList<MovePos>();
+		//_TotalMoveList = new ArrayList<MovePos>();
 		_AllBoardStatesList = new ArrayList<int[][]>();
 		_AllTeamStatesList = new ArrayList<boolean[]>();
-		
+
 		iBackground = new int[8][8];
 
-		for (int i = 0; i < 300; i++) {
-			Objectives.add(i);
-		}
-		
-		//make the default board state
-		
-		for (int Y = 0; Y < 8; Y++) {
-			for (int X = 0; X < 8; X++) {
-
-				// Default start:
-
-				// empty
-				if ((Y >= 2) && (Y <= 5)) {
-					iBackground[X][Y] = 0;
-
-				} else if (Y == 1) {
-					// team white
-					iBackground[X][Y] = 101 + X; // 101 due to Move
-					Farmer TheFarmer = new Farmer(true, iBackground[X][Y], X, Y);
-					TheFarmer.setMeepleXPos(X);
-					TheFarmer.setMeepleYPos(Y);
-					Objectives.set(iBackground[X][Y], TheFarmer);
-
-				} else if (Y == 6) {
-					// team black
-					iBackground[X][Y] = 200 + X;
-
-					Farmer TheFarmer = new Farmer(false, iBackground[X][Y], X, Y);
-					TheFarmer.setMeepleXPos(X);
-					TheFarmer.setMeepleYPos(Y);
-					Objectives.set(iBackground[X][Y], TheFarmer);
-
-				}
-			}
-		}
-		// team white
-		iBackground[0][0] = 110;// tower 1
-		Tower TheTower = new Tower(true, iBackground[0][0], 0, 0);
-		TheTower.setMeepleXPos(0);
-		TheTower.setMeepleYPos(0);
-		Objectives.set(iBackground[0][0], TheTower);
-		iBackground[7][0] = 111;// tower 2
-		TheTower = new Tower(true, iBackground[7][0], 7, 0);
-		TheTower.setMeepleXPos(7);
-		TheTower.setMeepleYPos(0);
-		Objectives.set(iBackground[7][0], TheTower);
-
-		iBackground[1][0] = 120; // rider 1
-		Jumper Drogo = new Jumper(true, iBackground[1][0], 1, 0);
-		Drogo.setMeepleXPos(1);
-		Drogo.setMeepleYPos(0);
-		Objectives.set(iBackground[1][0], Drogo);
-
-		iBackground[6][0] = 121; // rider 2
-		Drogo = new Jumper(true, iBackground[6][0], 6, 0);
-		Drogo.setMeepleXPos(6);
-		Drogo.setMeepleYPos(0);
-		Objectives.set(iBackground[6][0], Drogo);
-
-		iBackground[2][0] = 130; // runner 1
-		Runner TheRunner = new Runner(true, iBackground[2][0], 2, 0);
-		TheRunner.setMeepleXPos(2);
-		TheRunner.setMeepleYPos(0);
-		Objectives.set(iBackground[2][0], TheRunner);
-		iBackground[5][0] = 131; // runner 2
-		TheRunner = new Runner(true, iBackground[5][0], 5, 0);
-		TheRunner.setMeepleXPos(5);
-		TheRunner.setMeepleYPos(0);
-		Objectives.set(iBackground[5][0], TheRunner);
-
-		iBackground[3][0] = 140; // Queen
-		Queen khaleesi = new Queen(true, iBackground[3][0], 3, 0);
-		khaleesi.setMeepleXPos(3);
-		khaleesi.setMeepleYPos(0);
-		Objectives.set(iBackground[3][0], khaleesi);
-
-		iBackground[4][0] = 150; // King
-		King TheKingWhite = new King(true, 150, 4, 0);
-		TheKingWhite.setMeepleXPos(4);
-		TheKingWhite.setMeepleYPos(0); // only for the Kings
-		Objectives.set(150, TheKingWhite);
-
-		// team black
-		// same for the other team except king and queen changed X-Pos+
-		iBackground[0][7] = 210; // tower 1
-		TheTower = new Tower(false, iBackground[0][7], 0, 7);
-		TheTower.setMeepleXPos(0);
-		TheTower.setMeepleYPos(7);
-		Objectives.set(iBackground[0][7], TheTower);
-		iBackground[7][7] = 211; // tower 2
-		TheTower = new Tower(false, iBackground[7][7], 7, 7);
-		TheTower.setMeepleXPos(7);
-		TheTower.setMeepleYPos(7);
-		Objectives.set(iBackground[7][7], TheTower);
-
-		iBackground[1][7] = 220; // rider 1
-		Drogo = new Jumper(false, iBackground[1][7], 1, 7);
-		Drogo.setMeepleXPos(1);
-		Drogo.setMeepleYPos(7);
-		Objectives.set(iBackground[1][7], Drogo);
-
-		iBackground[6][7] = 221; // rider 2
-		Drogo = new Jumper(false, iBackground[6][7], 6, 7);
-		Drogo.setMeepleXPos(6);
-		Drogo.setMeepleYPos(7);
-		Objectives.set(iBackground[6][7], Drogo);
-
-		iBackground[2][7] = 230; // runner 1
-		TheRunner = new Runner(false, iBackground[2][7], 2, 7);
-		TheRunner.setMeepleXPos(2);
-		TheRunner.setMeepleYPos(7);
-		Objectives.set(iBackground[2][7], TheRunner);
-		iBackground[5][7] = 231; // runner 2
-		TheRunner = new Runner(false, iBackground[5][7], 5, 7);
-		TheRunner.setMeepleXPos(5);
-		TheRunner.setMeepleYPos(7);
-		Objectives.set(iBackground[5][7], TheRunner);
-
-		iBackground[3][7] = 240; // queen
-		khaleesi = new Queen(false, iBackground[3][7], 3, 7);
-		khaleesi.setMeepleXPos(3);
-		khaleesi.setMeepleYPos(7);
-		Objectives.set(iBackground[3][7], khaleesi);
-
-		iBackground[4][7] = 250; // king
-		King TheKingBlack = new King(false, iBackground[4][7], 4, 7);
-		TheKingBlack.setMeepleXPos(4);
-		TheKingBlack.setMeepleYPos(7); // only for the Kings
-		Objectives.set(iBackground[4][7], TheKingBlack);
-		
-		_Lan=new LAN(iBackground, this);
+		NewBoard();
 
 	}
 
@@ -296,7 +171,7 @@ public class BackgroundGrid implements Serializable {
 		return this.move;
 	}
 
-	
+
 
 	/**
 	 * set if the player can move or not
@@ -308,7 +183,7 @@ public class BackgroundGrid implements Serializable {
 		this.move = temp;
 	}
 
-	
+
 
 	/**
 	 * only for debugging
@@ -510,8 +385,8 @@ public class BackgroundGrid implements Serializable {
 	 * Only used for SchachKing (= checkking) The ID of the King attacker and the location of the attacker
 	 */
 	private int _ID, _iX, _iY;
-	
-	
+
+
 
 	/**
 	 * Only used for SchachKing (= checkking) The number of attackers
@@ -539,16 +414,16 @@ public class BackgroundGrid implements Serializable {
 	 */
 	public boolean SchachKing(boolean team, BackgroundGrid BGG, int KingX, int KingY, boolean SchachMatt,
 			boolean bSimKingOnTile) {
-		
-		
+
+
 		SchachmattWhite= false;
 		SchachmattBlack= false;
-		
+
 		if(KingX <0 || KingX >= 8 || KingY < 0 || KingY >= 8){
 			return false;
 		}
-		
-		
+
+
 		int iID;
 		boolean Schach = false;
 		if (KingX <= 7 && KingY <= 7) {
@@ -562,86 +437,86 @@ public class BackgroundGrid implements Serializable {
 		} else if (bSimKingOnTile && !team) {
 			iID = 250;
 		}
-		
+
 		//System.out.println("team:" + team + ":KingX:" + KingX + ":KingY:" + KingY + ":iID:" + iID);
 		//System.out.println(iID + ":IID:");
 		switch (iID) {
 		case 150: {
 			Schach = Schach(BGG.iBackground, KingX, KingY, team);
 		}
-			break;
+		break;
 		case 250: {
 			Schach = Schach(BGG.iBackground, KingX, KingY, team);
 		}
-			break;
+		break;
 		default: {
 			Schach = false;
 		}
-			break;
+		break;
 		}
-		
-		if(!SchachMatt && !Schach){
+
+		if(!SchachMatt && !Schach && !_Draw){
 			_Draw = CalcDraw(iID, BGG.iBackground, KingX, KingY, team, BGG);
 		}
 
 		if (Schach && !SchachMatt) {
-			
+
 			SchachmattWhite = SchachMatt(iID, BGG.iBackground, KingX, KingY, team, BGG);
 			System.out.println("Schach:" + Schach + ":SchachmattW" + SchachmattWhite);
 			if(SchachmattWhite){
-				
+
 				if (team) {
-					
-					 Platform.runLater(new Runnable() {
 
-							@Override
-							public void run() {
-								try {
-									 Alert alert = new Alert(AlertType.INFORMATION);
-									  alert.setTitle("Check Mate");
-									  
-									  alert.setHeaderText("White lost the game! The game took " + TurnRound + " turns.");
-									  alert.showAndWait();
+					Platform.runLater(new Runnable() {
 
-								} catch (Exception ex) {
-									ex.printStackTrace();
-								}
+						@Override
+						public void run() {
+							try {
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Check Mate");
 
+								alert.setHeaderText("White lost the game! The game took " + TurnRound + " turns.");
+								alert.showAndWait();
+
+							} catch (Exception ex) {
+								ex.printStackTrace();
 							}
-						});
-					
-					  SchachmattBlack =false;
-					  SchachmattWhite = true;
-					  
-					  } else {
-					  SchachmattBlack = true;
-					  SchachmattWhite = false;
-					  
-					  Platform.runLater(new Runnable() {
 
-							@Override
-							public void run() {
-								try {
-									Alert alert = new Alert(AlertType.INFORMATION);
-									  alert.setTitle("Check Mate");
-									  alert.setHeaderText("Black lost the game! The game took " + TurnRound + "turns.");
-									  alert.showAndWait();
+						}
+					});
 
-								} catch (Exception ex) {
-									ex.printStackTrace();
-								}
+					SchachmattBlack =false;
+					SchachmattWhite = true;
 
+				} else {
+					SchachmattBlack = true;
+					SchachmattWhite = false;
+
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+							try {
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Check Mate");
+								alert.setHeaderText("Black lost the game! The game took " + TurnRound + "turns.");
+								alert.showAndWait();
+
+							} catch (Exception ex) {
+								ex.printStackTrace();
 							}
-						});
-					  
-					  
-					  
-					  } 
-				
+
+						}
+					});
+
+
+
+				} 
+
 			}
 		}
-		
-		
+
+
 
 		return Schach;
 	}
@@ -659,9 +534,9 @@ public class BackgroundGrid implements Serializable {
 
 		for (int Y = 0; Y < 8; Y++) {
 			for (int X = 0; X < 8; X++) {
-				
+
 				int iBack = iBackground[X][Y];
-				
+
 				if ((iBack >= 200 && iBack < 210 && Team) || (iBack >= 100 && iBack < 110 && !Team)) {
 					if (KingY == Y - 1 && Team) {
 						if (KingX == X - 1 || KingX == X + 1) {
@@ -771,12 +646,12 @@ public class BackgroundGrid implements Serializable {
 					int SumOfField = 0;
 					//System.out.println("733:" + iBack + ":dD:" + dD + ":dX:" + dX + ":dY:" + dY);
 					if(dD == Float.POSITIVE_INFINITY){
-						
+
 						dD = 2;
 					}
 					//System.out.println("731:" + Team + ":dD:" + dD + ":dX:" + dX + ":dY:" + dY + ":X:" + X + ":Y:" + Y + ":KingX:" + KingX + ":KingY:" + KingY);
 					if (dD == 1) {
-						
+
 						if (dX == 1) {
 							_ID = iBack; _iX = X; _iY = Y;
 							return true;
@@ -802,10 +677,10 @@ public class BackgroundGrid implements Serializable {
 					} else if (KingY == Y) {
 						dX = Math.abs(KingX - X);
 						SumOfField = 0;
-						
+
 						if (dX == 1) {
 							_ID = iBack; _iX = X; _iY = Y;
-							
+
 							return true;
 						}
 						for (int x = 1; x < dX; x++) {
@@ -816,7 +691,7 @@ public class BackgroundGrid implements Serializable {
 								SumOfField += iBackground[x + X][Y];
 							}
 
-							
+
 						}
 
 						if (SumOfField == 0) {
@@ -839,7 +714,7 @@ public class BackgroundGrid implements Serializable {
 								SumOfField += iBackground[X][Y + y];
 							}
 
-						
+
 						}
 
 						if (SumOfField == 0) {
@@ -875,9 +750,9 @@ public class BackgroundGrid implements Serializable {
 	 * @return If a King is mated (true) or the game continues (false)
 	 */
 	private boolean SchachMatt(int iID, int[][] iBackground, int KingX, int KingY, boolean Team, BackgroundGrid BGG) {
-		
-		
-		
+
+
+
 		for (int Y = -1; Y <= 1; Y++) {
 			for (int X = -1; X <= 1; X++) {
 				if(KingX+X >= 0 && KingX+X <8 && KingY+Y >= 0 && KingY+Y < 8){ //Due to bugs
@@ -888,7 +763,7 @@ public class BackgroundGrid implements Serializable {
 					BGG2.iBackground[KingX][KingY] = 0;
 					BGG2.iBackground[KingX+X][KingY + Y] = iID;
 					if(!BGG2.SchachKing(Team, BGG, KingX+X, KingY+Y, true, false) && dBack > 50){ // when not Schach and it is a Field or foe - not mated
-						
+
 						BGG2.iBackground[KingX][KingY] = iID;
 						BGG2.iBackground[KingX+X][KingY + Y] =iDBackup;
 						return false;
@@ -896,20 +771,20 @@ public class BackgroundGrid implements Serializable {
 					BGG2.iBackground[KingX][KingY] = iID;
 					BGG2.iBackground[KingX+X][KingY + Y] =iDBackup;
 				}
-				
+
 			}
 
 		}
-		
+
 		Move Moves = new Move();
 		Moves.setBGG(iBackground);
 		Moves.setBGG2(BGG);
 		//Moves.GetMove(iID, KingX, KingY, BGG);
 		Moves.setBSelect(false);
 		System.out.println("line 908:");
-		
+
 		int iYA, iXA;
-		
+
 		/*if(Schach(iBackground, _iX, _iY, !Team)){
 			System.out.println("line 913");
 			return false;
@@ -929,15 +804,15 @@ public class BackgroundGrid implements Serializable {
 				for(iXA = 0; iXA < 8; iXA ++){
 					int iBack = iBackground[iXA][iYA];
 					ArrayList<MovePos> DefenseMoves = Moves.getMoveMeeple(iBackground, Team, iBack, iXA, iYA);
-					
-				
+
+
 					for(MovePos MPA : DefenseMoves){
 						if(MP.PX == MPA.PX && MP.PY == MPA.PY){
 							System.out.println(MP.PX + "::" + MPA.PX + "::" + MP.PY + "::" + MPA.PY+"::"+MPA.ID);
 							//Make the possible defense move
 							iBackground[MPA.PX][MPA.PY] = MPA.ID;
 							iBackground[MPA.X][MPA.Y] = 0;
-							
+
 							//Give out the current state of the game for debug
 							for(int itestY = 0; itestY < 8; itestY++) {
 								for(int itestX = 0; itestX < 8; itestX++) {
@@ -952,10 +827,10 @@ public class BackgroundGrid implements Serializable {
 								}
 								System.out.println("");
 							}
-							
+
 							//get the king positition
 
-							
+
 							System.out.println("KingX::"+KingX+"::KingY::"+KingY);
 							System.out.println("SchachKing:" + Schach(iBackground, KingX, KingY, Team) + "::Team::" + Team + "::MPA.PX::" + MPA.PX + "::MPA.PY::" + MPA.PY);
 							if(!SchachKing(Team, BGG, KingX, KingY, true, false) && !Schach(iBackground, KingX, KingY, Team)){
@@ -967,17 +842,17 @@ public class BackgroundGrid implements Serializable {
 							}
 							iBackground[MPA.PX][MPA.PY] = MPA.ID2;
 							iBackground[MPA.X][MPA.Y] = MPA.ID;
-							
+
 						}
 					}
 				}
 			}
 		}
-		
+
 		for(int iHelp = 0; iHelp < Moves.getMoveList().size(); iHelp++){
 			int[] IDAR = Moves.getMoveList().get(iHelp);
 			int IDA = IDAR[0];
-			
+
 			if(IDA < 8)
 			{
 				iYA = 0;
@@ -996,23 +871,23 @@ public class BackgroundGrid implements Serializable {
 			}else{
 				iYA = 7;
 			}
-			
+
 			iXA = IDA - (iYA * 8);
-			
+
 			//System.out.println(iXA + ":: " + iYA);
-			
+
 			if(Schach(iBackground, _iX, _iY, !Team)){
 				System.out.println("line 981");
 				return false;
 			}
-			
-			
+
+
 		}
-		
+
 
 		return true;
 	}
-	
+
 	/**
 	 * Calculates if a Draw has occurd,
 	 * actually calcs:
@@ -1029,8 +904,8 @@ public class BackgroundGrid implements Serializable {
 	 * @return boolean - if true then it is a Draw
 	 */
 	private boolean CalcDraw(int iID, int[][] iBackground, int KingX, int KingY, boolean team, BackgroundGrid BGG){
-		
-		
+
+
 		boolean Draw = false;
 		int iSum1 = 0; //Stalemate
 		int iSum2 = 0;
@@ -1039,24 +914,24 @@ public class BackgroundGrid implements Serializable {
 				if((iBackground[X][Y] >= 100 && iBackground[X][Y] < 160 && team) || (iBackground[X][Y] >= 200 && iBackground[X][Y] < 260 && !team)){
 					iSum1 += iBackground[X][Y];
 				}
-				
+
 				if((iBackground[X][Y] >= 100 && iBackground[X][Y] < 160 && !team) || (iBackground[X][Y] >= 200 && iBackground[X][Y] < 260 && team)){
 					iSum2 += iBackground[X][Y];
 				}
-				
-				
+
+
 			}
 		}
-		
+
 		if((iSum1 == 150 && team) || (iSum1 == 250 && !team)){
 			Move M = new Move();
 			M.setBGG(iBackground);
 			M.setBGG2(BGG);
 			M.GetMove(iID, KingX, KingY, BGG);
 			ArrayList<MovePos> KingMoves = M.getMoveMeeple(iBackground, team, iID, KingX, KingY);
-			
+
 			boolean SchachKingMove = true;
-			
+
 			for(MovePos MP : KingMoves) {
 				iBackground[MP.PX][MP.PY] = MP.ID;
 				iBackground[MP.X][MP.Y] = 0;
@@ -1065,15 +940,15 @@ public class BackgroundGrid implements Serializable {
 					break;
 				}
 			}
-			
-			
-			
+
+
+
 			System.out.println("SchachKingMove:"+SchachKingMove+"::"+team+"::_iX::"+KingX+"::iY::"+KingY);
 			if(SchachKingMove){
 				Draw = true;
 				System.out.println("Draw by no King move possible");
 				Platform.runLater(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						Alert alert = new Alert(AlertType.INFORMATION);
@@ -1086,58 +961,292 @@ public class BackgroundGrid implements Serializable {
 			}
 		} else if((iSum1 >= 270 && iSum1 < 290 && iSum2 == 250 && team) || (iSum1 >= 470 && iSum1 < 490 && iSum2 == 150 && !team)){
 			Platform.runLater(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setHeaderText("Draw");
 					alert.setContentText("The game cannot be continued due to the impossible of check mate.");
 					alert.setTitle("Draw");
-					alert.showAndWait();
+					
+					Optional<ButtonType> result = alert.showAndWait();
+					if(result.get() == ButtonType.OK){
+						setDraw(true);
+					} else {
+						setDraw(false);
+					}
 				}
 			});
+			return getDraw();
 		}
-		
-		
-		if(_TotalMoveList.size()>=50){
+
+
+		if(TurnRound >= 50){
 			System.out.println(">= 50");
 			int iCounter = 0;
+			int[][] IArr = _AllBoardStatesList.get(_AllBoardStatesList.size()-1);
+			AILogic AIL = new AILogic();
+			int iBoardRep = (int) AIL.boardEvaluation(IArr,team);
+
+			int iMeeples = 0;
+
+			for(int iY = 0; iY < 8; iY ++){
+				for(int iX = 0; iX < 8; iX++){
+					if(IArr[iX][iY]>0){
+						iMeeples++;
+					}
+					if(IArr[iX][iY]>=100 && IArr[iX][iY]<110){
+
+					}
+				}
+			}
+
 			for(int iHelp = 49; iHelp >= 0; iHelp -= 1){
-				MovePos MP = _TotalMoveList.get(_TotalMoveList.size()-iHelp);
-				
-				if((MP.ID >= 100 && MP.ID < 110) || (MP.ID >= 200 && MP.ID < 210) || MP.ID2 != 0 || MP.ID4 != 0){
-					iCounter = 0;
+
+				int iMeeplesRef = 0;
+				int[][] IArrRef = _AllBoardStatesList.get(_AllBoardStatesList.size()-iHelp);
+				boolean brck = false;
+				for(int iY = 0; iY < 8; iY ++){
+					for(int iX = 0; iX < 8; iX++){
+						//no meeple killed
+						if(IArrRef[iX][iY]>0){
+							iMeeplesRef++;
+						}
+
+						//no Pawn moved
+						if((IArrRef[iX][iY]>=100 && IArrRef[iX][iY]<110) || (IArrRef[iX][iY]>=200 && IArrRef[iX][iY] < 210)){
+							if(IArr[iX][iY] != IArrRef[iX][iY]){
+								brck = true;
+							}
+						}
+					}
+				}
+
+				if(iMeeples != iMeeplesRef || brck){
 					break;
-				}else {
+				}else{
 					iCounter++;
+				}
+
+
+
+
+			}
+
+			//no meeple killed or no Pawn moved
+			if(iCounter >= 49){
+				return true;
+			}
+		}
+		
+		//claim draw by threefold repetition
+		if(TurnRound >= 6){
+			int iCount = 0;
+			boolean BoardsEqual = true;
+			
+			for(int[][] iBoards : _AllBoardStatesList){
+				iCount = 0;
+				
+				for(int[][] iBoards2 : _AllBoardStatesList){
+					BoardsEqual = true;
+					for(int iY = 0; iY < 8; iY++){
+						for(int iX = 0; iX < 8; iX++){
+							if(iBoards[iX][iY] != iBoards2[iX][iY])
+								BoardsEqual = false;
+						}
+					}
+					if(BoardsEqual){
+						
+						iCount++;
+						System.out.println("Equals..."+iCount+"::LIST_SIZE::"+_AllBoardStatesList.size());
+					}
+						
+					
+				}
+				if(iCount >= 3 && (_Choose != 2 ||(_Choose == 2 && _bAITeam != this.team))){
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+							Alert alert = new Alert(AlertType.CONFIRMATION);
+							alert.setHeaderText("Draw by threefold repetition");
+							alert.setContentText("Do you want to claim a draw by threefold repetition?");
+							alert.setTitle("Draw");
+							alert.showAndWait();
+						}
+					});
+					
+					return true;
 				}
 			}
 			
-			if(iCounter >= 50){
-				Draw = true;
-			}
+			
+			
+			
 		}
-		
-		if(_TotalMoveList.size() >=6){
-			int icount = 0;
-			for(MovePos MP1 : _TotalMoveList){
-				icount = 0;
-				for(MovePos MP2 : _TotalMoveList){
-					if(java.util.Arrays.deepEquals(MP1.Board, MP2.Board)){
-						System.out.println(MP1.ID + "::" + MP2.ID);
-						icount++;
-						if(icount > 3){
-							return true;
-						}
-					}
-					
-					
+
+		return Draw;
+	}
+
+	/**
+	 * for new game
+	 * reset all boart stats, like TotalMoveList and init new board
+	 */
+	public void ResetStats(){
+		NewBoard();
+		//_TotalMoveList.clear();
+		TurnRound = 1;
+		_AllBoardStatesList.clear();
+		_AllTeamStatesList.clear();
+
+		setbKingMoved(150, false);
+		setbKingMoved(250, false);
+		setbRookMoved(110, false);
+		setbRookMoved(111, false);
+		setbRookMoved(210, false);
+		setbRookMoved(211, false);
+
+		team = true;
+		SchachmattBlack = false;
+		SchachmattWhite = false;
+		_Draw = false;
+
+	}
+
+	public void NewBoard(){
+		for (int i = 0; i < 300; i++) {
+			Objectives.add(i);
+		}
+
+		//make the default board state
+
+		for (int Y = 0; Y < 8; Y++) {
+			for (int X = 0; X < 8; X++) {
+
+				// Default start:
+
+				// empty
+				if ((Y >= 2) && (Y <= 5)) {
+					iBackground[X][Y] = 0;
+
+				} else if (Y == 1) {
+					// team white
+					iBackground[X][Y] = 101 + X; // 101 due to Move
+					Farmer TheFarmer = new Farmer(true, iBackground[X][Y], X, Y);
+					TheFarmer.setMeepleXPos(X);
+					TheFarmer.setMeepleYPos(Y);
+					Objectives.set(iBackground[X][Y], TheFarmer);
+
+				} else if (Y == 6) {
+					// team black
+					iBackground[X][Y] = 200 + X;
+
+					Farmer TheFarmer = new Farmer(false, iBackground[X][Y], X, Y);
+					TheFarmer.setMeepleXPos(X);
+					TheFarmer.setMeepleYPos(Y);
+					Objectives.set(iBackground[X][Y], TheFarmer);
+
 				}
 			}
 		}
-		
-		return Draw;
+		// team white
+		iBackground[0][0] = 110;// tower 1
+		Tower TheTower = new Tower(true, iBackground[0][0], 0, 0);
+		TheTower.setMeepleXPos(0);
+		TheTower.setMeepleYPos(0);
+		Objectives.set(iBackground[0][0], TheTower);
+		iBackground[7][0] = 111;// tower 2
+		TheTower = new Tower(true, iBackground[7][0], 7, 0);
+		TheTower.setMeepleXPos(7);
+		TheTower.setMeepleYPos(0);
+		Objectives.set(iBackground[7][0], TheTower);
+
+		iBackground[1][0] = 120; // rider 1
+		Jumper Drogo = new Jumper(true, iBackground[1][0], 1, 0);
+		Drogo.setMeepleXPos(1);
+		Drogo.setMeepleYPos(0);
+		Objectives.set(iBackground[1][0], Drogo);
+
+		iBackground[6][0] = 121; // rider 2
+		Drogo = new Jumper(true, iBackground[6][0], 6, 0);
+		Drogo.setMeepleXPos(6);
+		Drogo.setMeepleYPos(0);
+		Objectives.set(iBackground[6][0], Drogo);
+
+		iBackground[2][0] = 130; // runner 1
+		Runner TheRunner = new Runner(true, iBackground[2][0], 2, 0);
+		TheRunner.setMeepleXPos(2);
+		TheRunner.setMeepleYPos(0);
+		Objectives.set(iBackground[2][0], TheRunner);
+		iBackground[5][0] = 131; // runner 2
+		TheRunner = new Runner(true, iBackground[5][0], 5, 0);
+		TheRunner.setMeepleXPos(5);
+		TheRunner.setMeepleYPos(0);
+		Objectives.set(iBackground[5][0], TheRunner);
+
+		iBackground[3][0] = 140; // Queen
+		Queen khaleesi = new Queen(true, iBackground[3][0], 3, 0);
+		khaleesi.setMeepleXPos(3);
+		khaleesi.setMeepleYPos(0);
+		Objectives.set(iBackground[3][0], khaleesi);
+
+		iBackground[4][0] = 150; // King
+		King TheKingWhite = new King(true, 150, 4, 0);
+		TheKingWhite.setMeepleXPos(4);
+		TheKingWhite.setMeepleYPos(0); // only for the Kings
+		Objectives.set(150, TheKingWhite);
+
+		// team black
+		// same for the other team except king and queen changed X-Pos+
+		iBackground[0][7] = 210; // tower 1
+		TheTower = new Tower(false, iBackground[0][7], 0, 7);
+		TheTower.setMeepleXPos(0);
+		TheTower.setMeepleYPos(7);
+		Objectives.set(iBackground[0][7], TheTower);
+		iBackground[7][7] = 211; // tower 2
+		TheTower = new Tower(false, iBackground[7][7], 7, 7);
+		TheTower.setMeepleXPos(7);
+		TheTower.setMeepleYPos(7);
+		Objectives.set(iBackground[7][7], TheTower);
+
+		iBackground[1][7] = 220; // rider 1
+		Drogo = new Jumper(false, iBackground[1][7], 1, 7);
+		Drogo.setMeepleXPos(1);
+		Drogo.setMeepleYPos(7);
+		Objectives.set(iBackground[1][7], Drogo);
+
+		iBackground[6][7] = 221; // rider 2
+		Drogo = new Jumper(false, iBackground[6][7], 6, 7);
+		Drogo.setMeepleXPos(6);
+		Drogo.setMeepleYPos(7);
+		Objectives.set(iBackground[6][7], Drogo);
+
+		iBackground[2][7] = 230; // runner 1
+		TheRunner = new Runner(false, iBackground[2][7], 2, 7);
+		TheRunner.setMeepleXPos(2);
+		TheRunner.setMeepleYPos(7);
+		Objectives.set(iBackground[2][7], TheRunner);
+		iBackground[5][7] = 231; // runner 2
+		TheRunner = new Runner(false, iBackground[5][7], 5, 7);
+		TheRunner.setMeepleXPos(5);
+		TheRunner.setMeepleYPos(7);
+		Objectives.set(iBackground[5][7], TheRunner);
+
+		iBackground[3][7] = 240; // queen
+		khaleesi = new Queen(false, iBackground[3][7], 3, 7);
+		khaleesi.setMeepleXPos(3);
+		khaleesi.setMeepleYPos(7);
+		Objectives.set(iBackground[3][7], khaleesi);
+
+		iBackground[4][7] = 250; // king
+		King TheKingBlack = new King(false, iBackground[4][7], 4, 7);
+		TheKingBlack.setMeepleXPos(4);
+		TheKingBlack.setMeepleYPos(7); // only for the Kings
+		Objectives.set(iBackground[4][7], TheKingBlack);
+
+		_Lan=new LAN(iBackground, this);
 	}
+
 
 	/**
 	 * 
@@ -1163,7 +1272,7 @@ public class BackgroundGrid implements Serializable {
 	public void setSchachmattBlack(boolean Schachmatt){
 		this.SchachmattBlack = Schachmatt;
 	}
-	
+
 	/**
 	 * @return get Schachmatt for Black team
 	 */
@@ -1197,7 +1306,7 @@ public class BackgroundGrid implements Serializable {
 	public int getChoose() {
 		return _Choose;
 	}
-	
+
 	/**
 	 * Set if the king has been moved
 	 * @param iID - to identify which king
@@ -1208,7 +1317,7 @@ public class BackgroundGrid implements Serializable {
 		case 250: bKingMoved[1] = Moved; break;
 		}
 	}
-	
+
 	/**
 	 * Get if a King has been moved
 	 * @param iID - to identify the king
@@ -1221,7 +1330,7 @@ public class BackgroundGrid implements Serializable {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Set if a Rook (tower) has been moved
 	 * @param iID - to identify the rook / tower
@@ -1234,7 +1343,7 @@ public class BackgroundGrid implements Serializable {
 		case 211: bTowerMoved[3] = Moved; break;
 		}
 	}
-	
+
 	/**
 	 * Get if a tower has been moved
 	 * @param iID - to identify the rook / tower
@@ -1247,33 +1356,17 @@ public class BackgroundGrid implements Serializable {
 		case 210: return bTowerMoved[2];
 		case 211: return bTowerMoved[3];
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * To lower queen number (for AI)
 	 */
 	public void lowerQueenNumber(){
 		QueenNumber -= 1;
 	}
-	
-	/**
-	 * 
-	 * @return Returns true if the white king is mated (end of game)
-	 */
-	public boolean getSchachMattWhite(){
-		return SchachmattWhite;
-	}
-	
-	/**
-	 * 
-	 * @return Returns true if the black king is mated (end of game)
-	 */
-	public boolean getSchachMattBlack(){
-		return SchachmattBlack;
-	}
-	
+
 	/**
 	 * 
 	 * @return returns true if a Draw has occurd (end of game)
@@ -1281,7 +1374,7 @@ public class BackgroundGrid implements Serializable {
 	public boolean getDraw(){
 		return _Draw;
 	}
-	
+
 	/**
 	 * 
 	 * @param Draw - to set if a Draw has occurd
@@ -1289,51 +1382,51 @@ public class BackgroundGrid implements Serializable {
 	public void setDraw(boolean Draw){
 		_Draw = Draw;
 	}
-	
+	/*
 	/**
 	 * add a new move to the MoveList
 	 * @param MP - MovePos object - will be added to the MoveList
-	 */
+	 *
 	public void addMoveListItem(MovePos MP){
 		_TotalMoveList.add(MP);
 	}
-	
+
 	/**
 	 * Remove last Item in the Move List
-	 */
+	 *
 	public void removeLastMoveListItem(){
 		if(_TotalMoveList.size()-1 > 0){
 			_TotalMoveList.remove((_TotalMoveList.size()-1));
 		}
-		
+
 	}
-	
+
 	/**
 	 * get a item from the Move List
 	 * @param i - which item
 	 * @return - MovePos object
-	 */
+	 *
 	public MovePos getMovelistItem(int i){
 		if(i >= 0 && i < _TotalMoveList.size()){
 			return _TotalMoveList.get(i);
 		}
-		
+
 		return null;
-		
-	}
-	
-	
+
+	}*/
+
+
 
 	/**
 	 * I think i need this for the Move class...
 	 */
 	public int[][] Board;
-	
-	
+
+
 	public LAN getLan(){
 		return _Lan;
 	}
-	
+
 	/**
 	 * 
 	 * @param iAiDepth-To which depth the AI calculation should be made
@@ -1341,7 +1434,7 @@ public class BackgroundGrid implements Serializable {
 	public void setAiDepth(int iAiDepth){
 		_iAiDepth = iAiDepth;
 	}
-	
+
 	/**
 	 * returns the current value for the AI Depth calculation
 	 * @return - int - AiDepth value
@@ -1349,7 +1442,7 @@ public class BackgroundGrid implements Serializable {
 	public int getAiDepth(){
 		return _iAiDepth;
 	}
-	
+
 	/**
 	 * add a board state to the list
 	 * @param Board - int[][]
@@ -1358,7 +1451,7 @@ public class BackgroundGrid implements Serializable {
 		int[][] iBoard = Board;
 		_AllBoardStatesList.add(iBoard);
 	}
-	
+
 	/**
 	 * returns the list with all the possible moves
 	 * @return - ArrayList[][]
@@ -1366,7 +1459,7 @@ public class BackgroundGrid implements Serializable {
 	public ArrayList<int[][]> getBoardList(){
 		return _AllBoardStatesList;
 	}
-	
+
 	/**
 	 * Adds a team state
 	 * @param team - boolean
@@ -1376,7 +1469,7 @@ public class BackgroundGrid implements Serializable {
 		teamL[0] = team;
 		_AllTeamStatesList.add(teamL);
 	}
-	
+
 	/**
 	 * return the list of all the team states
 	 * @return - ArrayList<boolean[]> - boolean[0] = team
@@ -1384,13 +1477,21 @@ public class BackgroundGrid implements Serializable {
 	public ArrayList<boolean[]> getTeamList(){
 		return _AllTeamStatesList;
 	}
-	
+
 	public void setAITeam(boolean AITeam) {
 		_bAITeam = AITeam;
 	}
-	
+
 	public boolean getAITeam() {
 		return _bAITeam;
 	}
-	
+
+	public boolean getHardCoreAI() {
+		return HardCoreAI;
+	}
+
+	public void setHardCoreAI(boolean hardCoreAI) {
+		HardCoreAI = hardCoreAI;
+	}
+
 }

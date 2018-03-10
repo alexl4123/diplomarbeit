@@ -153,6 +153,14 @@ public class BoardGui extends Canvas {
 	 */
 	private Launchpad _Lauch;
 
+	
+
+	public IntegerProperty BGGChange, Heartbeat, turnProp, conProp, teamProp;
+	public javachess.network.Heartbeat heartBeatJob;
+
+	
+	
+
 	/**
 	 * Initial Setup for the GUI Contains the Listeners: .setOnMousePressed:
 	 * normal Click - Click game .setOnDragDetected: Start the Drag
@@ -160,12 +168,6 @@ public class BoardGui extends Canvas {
 	 * .setOnMouseReleased: Writes and Draws the Gui after Drag
 	 * @param <T>
 	 */
-
-	public IntegerProperty BGGChange, Heartbeat, turnProp, conProp, teamProp;
-	public javachess.network.Heartbeat heartBeatJob;
-
-
-
 	public <T> BoardGui(GUI Gui) {
 		bThinking = false;
 		_Gui = Gui;
@@ -288,7 +290,7 @@ public class BoardGui extends Canvas {
 				//---------------------------------------------------------------------------------
 				
 				 boolean Blackschach = _BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
-				if (Blackschach == true && !_BGG2.getSchachMattBlack()) {							
+				if (Blackschach == true && !_BGG2.getSchachmattBlack()) {							
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("check");
 								alert.setHeaderText("Blackking is in check!");
@@ -333,7 +335,9 @@ public class BoardGui extends Canvas {
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-
+				
+				
+				
 				//L.setTeam(_BGG2.getTeam());
 				int KingX = 0;
 				int KingY = 0;
@@ -346,10 +350,10 @@ public class BoardGui extends Canvas {
 					}
 				}
 				//System.out.println("Draw:"+_BGG2.SchachKing(true, _BGG2, KingX, KingY, false, false));
-				
+				System.out.println("HardCoreMode::"+_BGG2.getHardCoreAI());
 				
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
-
+					System.out.println("Pressed");
 					bDrag = false;
 					ButtonReleased(event, true);
 				}
@@ -449,9 +453,6 @@ public class BoardGui extends Canvas {
 					_BGG = _BGG2.iBackground;
 					int iPos = OMove.getISelect();
 
-					if(ButtonPressed && iMatrix==0){
-						//soundPlayer.playSound("move");
-					}
 					System.out.println("::DEBUG::"+(ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260)))) + "::BUTTON::"+ButtonPressed+"::IPOS::"+(iMatrix > 0 && iMatrix < 160)+"::IPOS::"+iMatrix+"::SELECT::"+OMove.getBSelect()+"::iSelect::"+OMove.getISelect());
 					if (((!ButtonPressed && (OMove.getISelect() > 0) && (iPos != iMatrix)) || (ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260))))) && (_iChoose == 1 || (_iChoose == 2 && _BGG2.getAITeam() && !L.getTeam()) || (_iChoose == 2 && !_BGG2.getAITeam() && L.getTeam()) || _iChoose == 0)) { // if move is possible
 						soundPlayer.playSound("move");
@@ -1199,7 +1200,16 @@ public class BoardGui extends Canvas {
 
 
 	public void drawStartMenu(){
-
+		
+		/*
+		try{
+			soundPlayer.playSound("startup");
+		}catch(Exception ex){
+			System.out.println("Startup Sound Failed");
+		}
+		*/
+		
+		
 		P1X = (_X / 100);
 		P1Y = (_Y / 100);
 
@@ -1219,7 +1229,7 @@ public class BoardGui extends Canvas {
 
 		bThinking=true;
 		try{
-		soundPlayer.playSound("startup");
+			soundPlayer.playSound("startup");
 		}catch(Exception ex){
 			System.out.println("Startup Sound Failed");
 		}
@@ -1229,14 +1239,13 @@ public class BoardGui extends Canvas {
 
 			@Override
 			public void handle(MouseEvent event) {
-
 				if(_Gui.getBoardGui().getStartupbuttonOn() == true){
 					setHighlighting(true);
 					
 					setStartupbuttonOn(false);
 
 					try {
-						soundPlayer.playSound("menu");
+						//soundPlayer.playSound("menu");
 						DrawGrid(_BGG);
 						bThinking=false;
 						_Gui.getStage().setResizable(true);
@@ -1248,16 +1257,17 @@ public class BoardGui extends Canvas {
 				}
 			}
 		});
-
+		
+		//StartUpScreen
+		
 		try {
 			DrawGrid(_BGG);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		gc.setFill(Color.ANTIQUEWHITE);
-		gc.setEffect(null);
+		gc.setFill(Color.BLACK);
+		//gc.setEffect(null);
 		gc.setEffect(new DropShadow(25, Color.BLACK));					//setting the startup Dropshadow
 		gc.fillRect(10*P1X, 22*P1Y, 80*P1X, 56*P1Y);
 		gc.setStroke(Color.BLACK);
@@ -1280,7 +1290,7 @@ public class BoardGui extends Canvas {
 		gc.drawImage(Icon, 30, 100 ,50*P1X, P1Y*60);
 		_Gui.getStage().setResizable(false);
 		System.out.println("Startup finished");
-
+		
 	}
 
 

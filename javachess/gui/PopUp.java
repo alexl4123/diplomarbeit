@@ -224,7 +224,29 @@ public class PopUp {
 				}
 			}
 		});
-		
+
+		//Checkbox Hardcore AI
+
+		CheckBox HardCoreAI = new CheckBox("HardCore AI");
+		HardCoreAI.setSelected(gui.getBGG2().getHardCoreAI());
+
+		HardCoreAI.setLayoutX(330);
+		HardCoreAI.setLayoutY(141);
+
+		HardCoreAI.selectedProperty().addListener(new ChangeListener<Boolean>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
+				if(HardCoreAI.isSelected()){
+					gui.getBGG2().setHardCoreAI(true);
+				}else{
+					gui.getBGG2().setHardCoreAI(false);
+				}
+				
+			}
+		});
+
+		//Sqare Board
 		CheckBox RectBoard = new CheckBox("Square Board");
 		RectBoard.setLayoutX(355);
 		RectBoard.setLayoutY(221);
@@ -233,19 +255,19 @@ public class PopUp {
 
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				
-				
-				
+
+
+
 				if(gui.getBoardGui().isRectMode() == false){
 					gui.getBoardGui().setRectMode(true);
 					gui.S.setWidth(600);
 					gui.S.setHeight(600);
 				}else{
 					gui.getBoardGui().setRectMode(false);
-					
+
 				}
-				
-				
+
+
 			}
 		});
 
@@ -297,7 +319,7 @@ public class PopUp {
 
 		//------------------------------
 		//AI-Combo Box
-		
+
 		ComboBox<String> AICombo = new ComboBox<String>();
 		AICombo.setEditable(false);
 		AICombo.getItems().add("Black-AI");
@@ -308,10 +330,10 @@ public class PopUp {
 		}else {
 			AICombo.getSelectionModel().select(0);
 		}
-		
+
 		AICombo.setLayoutX(440);
 		AICombo.setLayoutY(134);
-		
+
 		AICombo.valueProperty().addListener(new ChangeListener<String>() {
 
 			@Override
@@ -323,18 +345,18 @@ public class PopUp {
 				}else {
 					System.out.println("Error fucking error in PopUp.java");
 				}
-				
+
 			}
 		});
-		
+
 		Group gp = new Group();
-		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, RectBoard);
+		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, HardCoreAI, RectBoard);
 		Scene scene1= new Scene(gp, 600, 250, Color.WHITE);
 
-		
+
 		popupwindow.initModality(Modality.NONE);
 		popupwindow.setTitle("Options and Information");
-		
+
 
 		popupwindow.setScene(scene1);
 		popupwindow.setResizable(false);
