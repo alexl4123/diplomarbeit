@@ -338,7 +338,7 @@ public class BoardGui extends Canvas {
 				
 				
 				
-				//L.setTeam(_BGG2.getTeam());
+				L.setTeam(_BGG2.getTeam());
 				int KingX = 0;
 				int KingY = 0;
 				for(int iY = 0; iY<8; iY++) {
@@ -1200,16 +1200,7 @@ public class BoardGui extends Canvas {
 
 
 	public void drawStartMenu(){
-		
-		/*
-		try{
-			soundPlayer.playSound("startup");
-		}catch(Exception ex){
-			System.out.println("Startup Sound Failed");
-		}
-		*/
-		
-		
+				
 		P1X = (_X / 100);
 		P1Y = (_Y / 100);
 
@@ -1266,7 +1257,7 @@ public class BoardGui extends Canvas {
 			e.printStackTrace();
 		}
 
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.ANTIQUEWHITE);
 		//gc.setEffect(null);
 		gc.setEffect(new DropShadow(25, Color.BLACK));					//setting the startup Dropshadow
 		gc.fillRect(10*P1X, 22*P1Y, 80*P1X, 56*P1Y);

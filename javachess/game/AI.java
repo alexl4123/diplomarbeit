@@ -231,6 +231,7 @@ public class AI extends Thread {
 
 						//add the team states
 						_BGG2.higherTurnRound();
+						_Gui.getGui().getMenu().getPp().getLoadTurn().getItems().add("Turn:"+_BGG2.getTurnRound());
 						_BGG2.addTeamState(!_AiTeam);
 
 

@@ -42,6 +42,10 @@ public class Menu extends MenuBar {
 	public javafx.scene.control.Menu menuFile;
 	public javafx.scene.control.Menu menuGame;
 	public javafx.scene.control.Menu menuOther;
+	private PopUp pp;
+
+
+	
 
 	/**
 	 * the constructor builds the GUI
@@ -75,7 +79,9 @@ public class Menu extends MenuBar {
 
 		//For Game Menu Items
 		Draw = new MenuItem("Draw");
-
+		
+		pp = new PopUp(Gui);
+		pp.display();
 
 		//RadioButton - Group
 		ToggleGroup group = new ToggleGroup();
@@ -150,8 +156,7 @@ public class Menu extends MenuBar {
 			public void handle(ActionEvent event) {
 
 				Gui.getBoardGui().soundPlayer.playSound("menu");
-				PopUp pp = new PopUp(Gui);
-				pp.display();
+				pp.showPopUpWindow();
 
 				
 			}
@@ -578,6 +583,14 @@ public class Menu extends MenuBar {
 	public int getGameMode(){
 		
 		return _GM;
+	}
+	
+	public PopUp getPp() {
+		return pp;
+	}
+
+	public void setPp(PopUp pp) {
+		this.pp = pp;
 	}
 
 

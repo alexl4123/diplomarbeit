@@ -131,6 +131,17 @@ public class BackgroundGrid implements Serializable {
 		iBackground = new int[8][8];
 
 		NewBoard();
+		int[][] iBoard = new int[8][8];
+		for(int iHY = 0; iHY < 8; iHY++){
+			for(int iHX = 0; iHX < 8; iHX++){
+				iBoard[iHX][iHY] = iBackground[iHX][iHY];
+			}
+
+		}
+		_AllBoardStatesList.add(iBoard);
+		boolean[] States = new boolean[1];
+		States[0] = true;
+		_AllTeamStatesList.add(States);
 
 	}
 
@@ -148,6 +159,10 @@ public class BackgroundGrid implements Serializable {
 	 */
 	public void higherTurnRound() {
 		TurnRound++;
+	}
+	
+	public void setTurnRound(short TR){
+		TurnRound = TR;
 	}
 
 	/**
@@ -937,8 +952,12 @@ public class BackgroundGrid implements Serializable {
 				iBackground[MP.X][MP.Y] = 0;
 				if(!Schach(iBackground, MP.PX, MP.PY, team)) {
 					SchachKingMove = false;
+					iBackground[MP.PX][MP.PY] = MP.ID2;
+					iBackground[MP.X][MP.Y] = MP.ID;
 					break;
 				}
+				iBackground[MP.PX][MP.PY] = MP.ID2;
+				iBackground[MP.X][MP.Y] = MP.ID;
 			}
 
 
@@ -959,7 +978,7 @@ public class BackgroundGrid implements Serializable {
 					}
 				});
 			}
-		} else if((iSum1 >= 270 && iSum1 < 290 && iSum2 == 250 && team) || (iSum1 >= 470 && iSum1 < 490 && iSum2 == 150 && !team)){
+		} else if((iSum1 >= 270 && iSum1 < 290 && iSum2 == 250 && team) || (iSum2 >= 470 && iSum2 < 490 && iSum1 == 150 && !team)){
 			Platform.runLater(new Runnable() {
 
 				@Override

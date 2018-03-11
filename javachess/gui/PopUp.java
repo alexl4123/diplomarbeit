@@ -22,6 +22,13 @@ import javafx.stage.Stage;
 
 public class PopUp {
 
+	private Label teamLabel;
+	
+	private ComboBox<String> LoadTurn;
+	
+	private Stage popupwindow=new Stage();
+
+	
 
 	public GUI gui;
 
@@ -32,9 +39,9 @@ public class PopUp {
 
 	public void display(){
 
-		Stage popupwindow=new Stage();
+		
 
-		Canvas c = new Canvas(600,300);
+		Canvas c = new Canvas(600,400);
 		GraphicsContext gc = c.getGraphicsContext2D(); 
 
 
@@ -80,6 +87,10 @@ public class PopUp {
 		Label Turncount  = new Label("TurnCount: " + gui.getBGG2().getTurnRound());
 		Turncount.setLayoutX(50);
 		Turncount.setLayoutY(221);
+		
+		Label LoadTurnLabel = new Label("Load turn: ");
+		LoadTurnLabel.setLayoutX(50);
+		LoadTurnLabel.setLayoutY(267);
 
 		Label netPrefix = new Label("Connection:");
 		netPrefix.setLayoutX(190);
@@ -107,7 +118,7 @@ public class PopUp {
 		teamPrefix.setLayoutX(175);
 		teamPrefix.setLayoutY(221);
 
-		Label teamLabel = new Label();
+		teamLabel = new Label();
 
 		if(gui.getBGG2().getTeam()==true){
 			teamLabel.setText("White");
@@ -348,10 +359,56 @@ public class PopUp {
 
 			}
 		});
+		
+		//Label-TurnRound-ComboBox
+		
+		LoadTurn = new ComboBox<String>();
+		LoadTurn.setEditable(false);
+		LoadTurn.getItems().add("Turn:"+gui.getBGG2().getTurnRound());
+
+		
+		LoadTurn.getSelectionModel().select(0);
+		LoadTurn.setLayoutX(175);
+		LoadTurn.setLayoutY(267);
+
+		LoadTurn.valueProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				String[] Splits = newValue.split(":");
+				try{
+					int LoadTurn = (Integer.parseInt(Splits[1]));
+					
+					//Get team and Board
+					gui.getBGG2().iBackground = gui.getBGG2().getBoardList().get(LoadTurn);
+					gui.getBGG2().Board = gui.getBGG2().getBoardList().get(LoadTurn);
+					gui.getBGG2().setTeam(gui.getBGG2().getTeamList().get(LoadTurn)[0]);
+					System.out.println("team...:"+gui.getBGG2().getTeam());
+					
+					//Draw team and Board
+					gui.getBoardGui().redraw();
+					gui.getBoardGui().DrawGrid(gui.getBGG2().iBackground);
+					
+					//New Board state
+					
+					int Size = gui.getBGG2().getBoardList().size();
+					
+					for(int i = Size-1; i > LoadTurn; i--){
+						gui.getBGG2().getBoardList().remove(i);
+						gui.getBGG2().getTeamList().remove(i);
+						PopUp.this.LoadTurn.getItems().remove(i);
+					}
+					gui.getBGG2().setTurnRound((short) LoadTurn);
+					
+				}catch(Exception ex){
+					
+				}
+			}
+		});
 
 		Group gp = new Group();
-		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, HardCoreAI, RectBoard);
-		Scene scene1= new Scene(gp, 600, 250, Color.WHITE);
+		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, HardCoreAI, RectBoard, LoadTurnLabel, LoadTurn);
+		Scene scene1= new Scene(gp, 600, 400, Color.WHITE);
 
 
 		popupwindow.initModality(Modality.NONE);
@@ -360,12 +417,32 @@ public class PopUp {
 
 		popupwindow.setScene(scene1);
 		popupwindow.setResizable(false);
-		popupwindow.showAndWait();
+		//popupwindow.showAndWait();
 
+	}
+	
+	public void showPopUpWindow(){
+		popupwindow.showAndWait();
 	}
 
 	private void changelabelText(String x, Label l){
 		l.setText(x);
+	}
+	
+	public Label getTeamLabel() {
+		return teamLabel;
+	}
+
+	public void setTeamLabel(Label teamLabel) {
+		this.teamLabel = teamLabel;
+	}
+	
+	public ComboBox<String> getLoadTurn() {
+		return LoadTurn;
+	}
+
+	public void setLoadTurn(ComboBox<String> loadTurn) {
+		LoadTurn = loadTurn;
 	}
 
 

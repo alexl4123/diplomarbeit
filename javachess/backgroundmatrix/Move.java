@@ -254,7 +254,7 @@ public class Move {
 			getSchach2();
 			BGG2.changeTeam();
 			BGG2.higherTurnRound();
-			
+			BG.getGui().getMenu().getPp().getLoadTurn().getItems().add("Turn:"+BGG2.getTurnRound());
 			//add the board states
 			//the complicity is needed, due to same pointer errors
 			int[][] iBoard = new int[8][8];
