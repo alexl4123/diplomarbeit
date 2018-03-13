@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -191,6 +192,25 @@ public class GUI extends Application{
 		_BGG2.ResetStats();
 		BG.setTeam(_BGG2.getTeam());
 		BG.redraw();
+		try {
+			BG.DrawGrid(_BGG2.iBackground);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		try {
+			M.getPp().getLoadTurn().getItems().clear();
+		}catch(Exception ex) {
+			//no exception
+		}
+		M.getPp().getLoadTurn().getItems().add("Turn:"+_BGG2.getTurnRound());
+		M.getPp().getLoadTurn().getSelectionModel().select(0);
+		
+		M.getPp().getAICombo().getSelectionModel().select(0);
+		M.getPp().getAIslider().setValue(_BGG2.getAiDepth());
+		M.getPp().getHardCoreAI().setSelected(_BGG2.getHardCoreAI());
 		
 	}
 
@@ -206,12 +226,43 @@ public class GUI extends Application{
 			e.printStackTrace();
 		}
 		M.setSelect(BGG2.getChoose());
-		BG.setChoose(_BGG2.getChoose());
+		BG.setChoose(BGG2.getChoose());
 		BG.setTeam(BGG2.getTeam());
-		BG.setChoose(0);
 		BG.setBGG2(BGG2);
+		
+		try {
+			M.getPp().getLoadTurn().getItems().clear();
+		}catch(Exception ex) {
+			//no exception
+		}
+		
+		for(int iCount = 0;  iCount <= BGG2.getTurnRound(); iCount++) {
+			
+			M.getPp().getLoadTurn().getItems().add("Turn:"+iCount);
+			
+		}
+		M.getPp().getLoadTurn().getSelectionModel().select(0);
+		
+		M.getPp().getAIslider().setValue(BGG2.getAiDepth());
+		M.getPp().getHardCoreAI().setSelected(BGG2.getHardCoreAI());
+		if(BGG2.getAITeam()) {
+			M.getPp().getAICombo().getSelectionModel().select(1);
+		}else {
+			M.getPp().getAICombo().getSelectionModel().select(0);
+		}
+		
 		BG.redraw();
+		try {
+			BG.DrawGrid(BGG2.iBackground);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		root.setCenter(BG);
+		
+		
+		
+		
 	}
 
 	/**

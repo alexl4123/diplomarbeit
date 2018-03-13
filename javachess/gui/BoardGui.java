@@ -515,7 +515,7 @@ public class BoardGui extends Canvas {
 						LastMoveList = _AI.getLMoveList();
 						bThinking = true;
 						redraw();
-						L.setTeam(false);
+						_BGG2.setTeam(false);
 					} else if (_iChoose == 2 && !_BGG2.getTeam() && !OMove.getBauer() && !_BGG2.getAITeam()) {
 						//Black AI
 						System.out.println("AI-Depth" + _BGG2.getAiDepth());
@@ -525,7 +525,7 @@ public class BoardGui extends Canvas {
 						LastMoveList = _AI.getLMoveList();
 						bThinking = true;
 						redraw();
-						L.setTeam(true);
+						_BGG2.setTeam(true);
 					} else if(_iChoose == 4) {
 						AIvsAI AIFuckUp = new AIvsAI(_BGG2, this);
 						AIFuckUp.start();

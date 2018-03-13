@@ -120,7 +120,7 @@ public class BackgroundGrid implements Serializable {
 		RunnerNumber = 0;
 		TurnRound = 0;
 		move = true;
-		_iAiDepth = 5;
+		_iAiDepth = 3;
 		_bAITeam = false;
 
 		team = true;
@@ -1114,10 +1114,14 @@ public class BackgroundGrid implements Serializable {
 	public void ResetStats(){
 		NewBoard();
 		//_TotalMoveList.clear();
-		TurnRound = 1;
+		TurnRound = 0;
 		_AllBoardStatesList.clear();
 		_AllTeamStatesList.clear();
-
+		
+		
+		
+		//add the team states
+		
 		setbKingMoved(150, false);
 		setbKingMoved(250, false);
 		setbRookMoved(110, false);
@@ -1126,10 +1130,24 @@ public class BackgroundGrid implements Serializable {
 		setbRookMoved(211, false);
 
 		team = true;
+		setTeam(true);
+		
+		
 		SchachmattBlack = false;
 		SchachmattWhite = false;
 		_Draw = false;
+		
+		int[][] iBoard = new int[8][8];
+		for(int iHY = 0; iHY < 8; iHY++){
+			for(int iHX = 0; iHX < 8; iHX++){
+				iBoard[iHX][iHY] = iBackground[iHX][iHY];
+			}
 
+		}
+		_AllBoardStatesList.add(iBoard);
+		addTeamState(getTeam());
+		
+		
 	}
 
 	public void NewBoard(){

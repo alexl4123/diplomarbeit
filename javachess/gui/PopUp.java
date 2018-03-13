@@ -28,6 +28,14 @@ public class PopUp {
 	
 	private Stage popupwindow=new Stage();
 
+	private Slider AIslider;
+	
+	private ComboBox<String> AICombo;
+	
+	private CheckBox HardCoreAI;
+	
+	
+
 	
 
 	public GUI gui;
@@ -238,7 +246,7 @@ public class PopUp {
 
 		//Checkbox Hardcore AI
 
-		CheckBox HardCoreAI = new CheckBox("HardCore AI");
+		HardCoreAI = new CheckBox("HardCore AI");
 		HardCoreAI.setSelected(gui.getBGG2().getHardCoreAI());
 
 		HardCoreAI.setLayoutX(330);
@@ -307,9 +315,9 @@ public class PopUp {
 		//AI
 
 		//AI-Control
-		Slider AIslider = new Slider();
+		AIslider = new Slider();
 		AIslider.setMin(1);
-		AIslider.setMax(10);
+		AIslider.setMax(6);
 		AIslider.setValue(gui.getBGG2().getAiDepth());
 		AIslider.setMajorTickUnit(1);
 		AIslider.setMinorTickCount(0);
@@ -331,7 +339,7 @@ public class PopUp {
 		//------------------------------
 		//AI-Combo Box
 
-		ComboBox<String> AICombo = new ComboBox<String>();
+		AICombo = new ComboBox<String>();
 		AICombo.setEditable(false);
 		AICombo.getItems().add("Black-AI");
 		AICombo.getItems().add("White-AI");
@@ -375,8 +383,9 @@ public class PopUp {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				String[] Splits = newValue.split(":");
+				
 				try{
+					String[] Splits = newValue.split(":");
 					int LoadTurn = (Integer.parseInt(Splits[1]));
 					
 					//Get team and Board
@@ -401,7 +410,7 @@ public class PopUp {
 					gui.getBGG2().setTurnRound((short) LoadTurn);
 					
 				}catch(Exception ex){
-					
+					System.out.println("Exceptioned..."+ex.getMessage());
 				}
 			}
 		});
@@ -421,10 +430,16 @@ public class PopUp {
 
 	}
 	
+	
+
+	
+
 	public void showPopUpWindow(){
 		popupwindow.showAndWait();
 	}
 
+	//---------------------------------------------------------------------------------------
+	//Getter and setters
 	private void changelabelText(String x, Label l){
 		l.setText(x);
 	}
@@ -443,6 +458,30 @@ public class PopUp {
 
 	public void setLoadTurn(ComboBox<String> loadTurn) {
 		LoadTurn = loadTurn;
+	}
+	
+	public Slider getAIslider() {
+		return AIslider;
+	}
+
+	public void setAIslider(Slider aIslider) {
+		AIslider = aIslider;
+	}
+	
+	public ComboBox<String> getAICombo() {
+		return AICombo;
+	}
+
+	public void setAICombo(ComboBox<String> aICombo) {
+		AICombo = aICombo;
+	}
+	
+	public CheckBox getHardCoreAI() {
+		return HardCoreAI;
+	}
+
+	public void setHardCoreAI(CheckBox hardCoreAI) {
+		HardCoreAI = hardCoreAI;
 	}
 
 

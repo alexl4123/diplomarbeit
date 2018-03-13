@@ -47,12 +47,15 @@ public class Main extends Application {
 	@Override
 	public void stop(){
 		
-	    
+	    try {
 	    if(G.getMenu().hostJob.getServersock() != null){
 	    	G.getBoardGui().heartBeatJob.stopHeartBeat();
 	    	G.getMenu().hostJob.stopSocket();
 	    	
 	    	
+	    }
+	    }catch(Exception ex) {
+	    	System.exit(0);
 	    }
 	    
 	}

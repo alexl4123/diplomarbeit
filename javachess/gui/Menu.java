@@ -34,7 +34,7 @@ public class Menu extends MenuBar {
 	 * GameMode2 - if GameMode AI has been selected
 	 */
 	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode4, GameMode5, soundMute; //once upon a time, GameMode3 was the black AI...
-	public MenuItem newGame, Save, Load, Exit, disconnect, setUp, volDec, Draw;
+	public MenuItem newGame, Save, Load, Exit, disconnect, setUp, about_menu, help_menu, Draw;
 	int _GM;
 	public ReadingJob rj;
 	public hostingJob hostJob;
@@ -43,9 +43,11 @@ public class Menu extends MenuBar {
 	public javafx.scene.control.Menu menuGame;
 	public javafx.scene.control.Menu menuOther;
 	private PopUp pp;
+	private About about;
+	private Help help;
 
 
-	
+
 
 	/**
 	 * the constructor builds the GUI
@@ -65,13 +67,15 @@ public class Menu extends MenuBar {
 		Exit = new MenuItem("Exit");
 		disconnect = new MenuItem("Disconnect");
 		setUp = new MenuItem("Setup");
-		volDec = new MenuItem("Decrease volume");
+
+		about_menu = new MenuItem("About");
+		help_menu = new MenuItem("Help");
 		//refresh = new MenuItem("DEBUG/Refresh");
 
 		//RadioButton Items
-		GameMode0 = new RadioMenuItem("Local");
-		GameMode1 = new RadioMenuItem("LAN");
-		GameMode2 = new RadioMenuItem("AI");
+		GameMode0 = new RadioMenuItem("HotSeat");
+		GameMode1 = new RadioMenuItem("Online");
+		GameMode2 = new RadioMenuItem("Computer");
 		//RIP Black AI
 		GameMode4 = new RadioMenuItem("AI vs AI"); 
 		GameMode5 = new RadioMenuItem("Launchpad");
@@ -79,9 +83,13 @@ public class Menu extends MenuBar {
 
 		//For Game Menu Items
 		Draw = new MenuItem("Draw");
-		
+
 		pp = new PopUp(Gui);
 		pp.display();
+		about = new About(Gui);
+		about.display();
+		help = new Help(Gui);
+		help.display();
 
 		//RadioButton - Group
 		ToggleGroup group = new ToggleGroup();
@@ -99,7 +107,7 @@ public class Menu extends MenuBar {
 
 		menuFile.getItems().addAll(newGame, Save, Load, Exit);						//delete refresh when publish
 		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode5);
-		menuOther.getItems().addAll(setUp,Draw);
+		menuOther.getItems().addAll(setUp,about_menu,help_menu,Draw);
 
 		this.getMenus().addAll(menuFile, menuGame, menuOther);
 
@@ -158,28 +166,30 @@ public class Menu extends MenuBar {
 				Gui.getBoardGui().soundPlayer.playSound("menu");
 				pp.showPopUpWindow();
 
-				
+
 			}
 		});
 
-		//Volume Decrease
-		volDec.setOnAction(new EventHandler<ActionEvent>() {
+		//About
+		about_menu.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 
-				if(Gui.getBoardGui().soundPlayer.getVolume()>0.0){
-					double temp = Gui.getBoardGui().soundPlayer.getVolume()-0.1;
-					if(temp <= 0.0){
-						Gui.getBoardGui().soundPlayer.setVolume(0.1);
-						Gui.getBoardGui().soundPlayer.playSound("menu");
-					}else{
-						Gui.getBoardGui().soundPlayer.setVolume(temp);
-						Gui.getBoardGui().soundPlayer.playSound("menu");
-					}	
-				}else{
-					Gui.getBoardGui().soundPlayer.playSound("menu");
-				}
+				Gui.getBoardGui().soundPlayer.playSound("menu");
+				about.showAboutWindow();
+
+			}
+		});
+
+		//Help
+		help_menu.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+
+				Gui.getBoardGui().soundPlayer.playSound("menu");
+				help.showHelpWindow();
 
 			}
 		});
@@ -510,16 +520,16 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
-			
+
 				Gui.setChoose(2);
 				Gui.getBoardGui().soundPlayer.playSound("menu");
-				
+
 			}
 		});
 
 		setSelect(Gui.getChoose());
-		
-		
+
+
 		GameMode4.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -557,34 +567,34 @@ public class Menu extends MenuBar {
 
 		_GM=i;
 
-				if(i == 0){
-					GameMode0.setSelected(true);
-					GameMode1.setSelected(false);
-					GameMode2.setSelected(false);
-				} else if(i == 1){
-					GameMode1.setSelected(true);
-					GameMode0.setSelected(false);
-					GameMode2.setSelected(false);
-				}else if (i == 2){
-					GameMode2.setSelected(true);
-					GameMode0.setSelected(false);
-					GameMode1.setSelected(false);
-				}
+		if(i == 0){
+			GameMode0.setSelected(true);
+			GameMode1.setSelected(false);
+			GameMode2.setSelected(false);
+		} else if(i == 1){
+			GameMode1.setSelected(true);
+			GameMode0.setSelected(false);
+			GameMode2.setSelected(false);
+		}else if (i == 2){
+			GameMode2.setSelected(true);
+			GameMode0.setSelected(false);
+			GameMode1.setSelected(false);
+		}
 	}
-	
+
 	public void setLaunchpadMode(boolean status) {
 		GameMode5.setSelected(status);
 	}
-	
+
 	public boolean getLaunchpadMode() {
 		return GameMode5.isSelected();
 	}
-	
+
 	public int getGameMode(){
-		
+
 		return _GM;
 	}
-	
+
 	public PopUp getPp() {
 		return pp;
 	}
