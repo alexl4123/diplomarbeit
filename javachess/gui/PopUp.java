@@ -15,6 +15,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -291,8 +292,8 @@ public class PopUp {
 					gui.getStage().setResizable(false);
 					
 					gui.S.setY(50);
-					gui.S.setWidth(Screen.getMainScreen().getVisibleHeight() - 100);
-					gui.S.setHeight(Screen.getMainScreen().getVisibleHeight() - 100);
+					gui.S.setWidth(Screen.getMainScreen().getVisibleHeight() - 200);
+					gui.S.setHeight(Screen.getMainScreen().getVisibleHeight() - 200);
 				}else{
 					gui.getBoardGui().setRectMode(false);
 					gui.getStage().setResizable(true);
@@ -438,6 +439,7 @@ public class PopUp {
 
 		popupwindow.setScene(scene1);
 		popupwindow.setResizable(false);
+		popupwindow.getIcons().add(new Image("javachess/images/JavaChess.png"));
 		//popupwindow.showAndWait();
 
 	}

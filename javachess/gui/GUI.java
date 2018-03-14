@@ -125,6 +125,8 @@ public class GUI extends Application{
 
 		//-------------------------------------------------------
 		S.show();
+		S.setMinHeight(500);
+		S.setMinWidth(500);
 		BG.drawStartMenu();
 		
 		
@@ -135,48 +137,26 @@ public class GUI extends Application{
 		S.widthProperty().addListener((obs, oldVal, newVal) -> {
 			
 			
-			if(BG.isRectMode() == true){
-
-				
-				System.out.println("Dead Area");
-				System.out.println(S.getWidth() + "::WIDTH");
-				System.out.println(S.getHeight() + "::HEIGHT");
-				
-				
-				if(S.getWidth()/S.getHeight() != 1){
-					S.setWidth(S.getHeight());
-				}
+			
 				
 		
 				
 				BG.setXY(S.getWidth()-15, S.getHeight()-75);
 				
 				
-			}
+			
 
 			
 		
 
-			else{
-				
-				BG.setXY(S.getWidth()-15, S.getHeight()-75);
-			}
+			
 		});
 
 		S.heightProperty().addListener((obs,oldVal,newVal) -> {
 
-			if(BG.isRectMode() == true){
-
-				S.setWidth(newVal.doubleValue());
-				System.out.println(S.getWidth());
-				S.setHeight(newVal.doubleValue());
-				System.out.println(S.getHeight());
-				
-
-			}
-			else{
+			
 				BG.setXY(S.getWidth()-15, S.getHeight()-75);
-			}
+			
 		});
 
 		

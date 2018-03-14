@@ -70,7 +70,7 @@ public class Help {
 		scrollPane.setStyle("-fx-focus-color: transparent;");
 
 		//----------------------------------------------------------
-		Label Header = new Label("Help - JavaChess, ChessPI AndChess:");
+		Label Header = new Label("Help - JavaChess:");
 		Header.setLayoutX(5);
 		Header.setLayoutY(5);
 		Header.setFont(TitleFont);
@@ -122,9 +122,10 @@ public class Help {
 				+ "In this field you play chess and win against your friens! \n"
 				+ "Select a meeple by pressing on it. The game will show you all allowed moves. The other possibility is to drag a meeple and let loose at the wished destination (again the movable fields will be shown). \n"
 				+ "There is also an upper bar. This bar is the ,,menu-bar''. Here are three different options: \n"
-				+ "File: Here you can start a new, save the current, load a previous or exit the game.\n"
+				+ "Game: Here you can start a new, save the current, load a previous or exit the game.\n"
 				+ "GameModes: You can select the differenct game modes, disscussed in 1).\n"
-				+ "Other: Here are the settings, the help page (which you obviously found), the about page and you can claim a draw.");
+				+ "Other: Here are the settings and the option to claim a draw.\n"
+				+ "Help: The help page and the 'about page' is found here. ");
 
 		//----------------------------------------------------------
 		Label LAN_Label = new Label("3) LAN - Local Area Network (Online)");
@@ -138,7 +139,13 @@ public class Help {
 		LAN_Text.setLayoutX(20);
 		LAN_Text.setLayoutY(905);
 		LAN_Text.setTextAlignment(TextAlignment.JUSTIFY);
-		LAN_Text.setText("Coming soon (currently under construction)..."); //TODO -For HEGL
+		LAN_Text.setText("With the LAN mode, you can play with friends, even when they use an other computer.\n"
+				+ "To play via netowrk, one player needs to be the 'host' and the other one the 'client'.\n"
+				+ "The host opens a game and waits for connections, the client activeley connects to a host.\n"
+				+ "If you want to play via network, you need to click the 'Gamemodes' button in the menu bar. Then you need to select 'online'.\n"
+				+ "After that, you can choose wether you want to be the client or the host. If you are the host, just wait for a client to connect to you.\n"
+				+ "if you are the client, you need to enter the IP-address of the host. The host-IP is displayed on the screen of the host.\n"
+				+ "To abort a game, simply click on 'Gamemodes' in the menu bar and select 'disconnect'."); //TODO -For HEGL
 
 
 
@@ -146,14 +153,14 @@ public class Help {
 		//TODO -after LAN has been added, fix layout
 		Label AI_Label = new Label("4) AI - Artificial Intelligence");
 		AI_Label.setLayoutX(5);
-		AI_Label.setLayoutY(960);
+		AI_Label.setLayoutY(1200);
 		AI_Label.setFont(subtitleFont);
 
 		Text AI_Text = new Text();
 		AI_Text.setFont(new Font(16));
 		AI_Text.setWrappingWidth(500);
 		AI_Text.setLayoutX(20);
-		AI_Text.setLayoutY(1005);
+		AI_Text.setLayoutY(1245);
 		AI_Text.setTextAlignment(TextAlignment.JUSTIFY);
 		AI_Text.setText("This doen't want to explain, how the AI works (you can read it on GitHub, see ,,about''), "
 				+ "this gives the player enough information to play the game properly. \n"
@@ -175,15 +182,16 @@ public class Help {
 		End_Text.setFont(new Font(18));
 		End_Text.setWrappingWidth(500);
 		End_Text.setLayoutX(20);
-		End_Text.setLayoutY(1505);
+		End_Text.setLayoutY(1700);
 		End_Text.setTextAlignment(TextAlignment.JUSTIFY);
 		End_Text.setText("We hope, we could inform you how to play this game. If the very very unlikely situation occurs, "
-				+ "that you still have questions, feel free to contact us on GitHub (alexl4123 and Hegl1). Link is in the about field.");
+				+ "that you still have questions, feel free to contact us on GitHub (alexl4123 and Hegl1). Link is in the about field.\n");
 		//----------------------------------------------------------
 
 		Group gp = new Group();
 		gp.getChildren().addAll(c,Header, general,gameModes_Label, gameModes, GUI_Label, GUI_Text,LAN_Label,LAN_Text, AI_Label, AI_Text, End_Text);
 		scrollPane.setContent(gp);
+		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		VBox root = new VBox();
 		root.getChildren().addAll(scrollPane);
 		Scene scene1= new Scene(root, Color.WHITE);
@@ -191,7 +199,7 @@ public class Help {
 		HelpWindow.initModality(Modality.NONE);
 		HelpWindow.setTitle("Help");
 
-
+		HelpWindow.getIcons().add(new Image("javachess/images/JavaChess.png"));
 		HelpWindow.setScene(scene1);
 		HelpWindow.setResizable(false);
 

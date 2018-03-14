@@ -229,8 +229,8 @@ public class BoardGui extends Canvas {
 
 				System.out.println("TRIGGERED");
 				try {
+
 					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
-					
 					_BGG2.higherTurnRound();
 					
 					if (_BGG2.getLan().getFirstturn() == true){

@@ -14,8 +14,10 @@ import javachess.saveload.Load;
 import javachess.saveload.Save;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.stage.FileChooser;
 
 /**
@@ -42,6 +44,7 @@ public class Menu extends MenuBar {
 	public javafx.scene.control.Menu menuFile;
 	public javafx.scene.control.Menu menuGame;
 	public javafx.scene.control.Menu menuOther;
+	public javafx.scene.control.Menu menuHelp;
 	private PopUp pp;
 	private About about;
 	private Help help;
@@ -56,9 +59,11 @@ public class Menu extends MenuBar {
 	public Menu(GUI Gui){
 
 		//Menus with Submenus 
-		menuFile = new javafx.scene.control.Menu("File");
+		menuFile = new javafx.scene.control.Menu("Game");
 		menuGame = new javafx.scene.control.Menu("Gamemodes");
 		menuOther = new javafx.scene.control.Menu("Other");
+		menuHelp = new javafx.scene.control.Menu("Help");
+		
 
 		//Adding Menu Items
 		newGame = new MenuItem("New");
@@ -107,9 +112,10 @@ public class Menu extends MenuBar {
 
 		menuFile.getItems().addAll(newGame, Save, Load, Exit);						//delete refresh when publish
 		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode5);
-		menuOther.getItems().addAll(setUp,about_menu,help_menu,Draw);
+		menuOther.getItems().addAll(setUp,Draw);
+		menuHelp.getItems().addAll(about_menu,help_menu);
 
-		this.getMenus().addAll(menuFile, menuGame, menuOther);
+		this.getMenus().addAll(menuFile, menuGame, menuOther, menuHelp);
 
 
 
@@ -296,8 +302,7 @@ public class Menu extends MenuBar {
 							Gui.wishDraw();
 						}else if(_GM==1) {
 							Gui.wishDraw();
-							//LAN
-							//see GUI - wishDraw();
+							
 						}else if(_GM==2) {
 							Gui.wishDraw();
 						}
@@ -326,8 +331,11 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
-				//MOVE LATER
-				Alert chooser = new Alert(AlertType.CONFIRMATION);
+				
+				Alert chooser = new Alert(AlertType.INFORMATION);
+					
+				
+				
 				Gui.getBoardGui().soundPlayer.playSound("menu");
 				int Backup = Gui.getChoose();
 				chooser.setTitle("Select Mode");
@@ -336,10 +344,11 @@ public class Menu extends MenuBar {
 
 				ButtonType hostButton = new ButtonType("host");
 				ButtonType joinButton = new ButtonType("join");
-				ButtonType abortButton = new ButtonType("abort");
-
-
+				ButtonType abortButton = new ButtonType("abort", ButtonData.CANCEL_CLOSE);
+			
+				
 				chooser.getButtonTypes().setAll(hostButton, joinButton, abortButton);
+				
 				Optional <ButtonType> result = chooser.showAndWait();
 
 
@@ -398,7 +407,8 @@ public class Menu extends MenuBar {
 					ipDialogoue.setTitle("Connecting");
 					ipDialogoue.setHeaderText("Please enter the IP address of the host!");
 					ipDialogoue.setContentText("The address should look like this: ");
-
+					
+					
 					Optional<String> ipResult = ipDialogoue.showAndWait();
 					if (ipResult.isPresent()){
 						try {
@@ -487,7 +497,7 @@ public class Menu extends MenuBar {
 							setSelect(Gui.getChoose());
 						}
 
-					} else{
+					} else {
 						System.out.println("yolo");
 						Gui.getBoardGui().setOnlineHighlight(false);
 						Gui.setChoose(Backup);
@@ -509,6 +519,7 @@ public class Menu extends MenuBar {
 
 				}else{
 
+					System.out.println("here");
 					Gui.setChoose(0);
 					Gui.getBoardGui().setOnlineHighlight(false);
 					setSelect(Gui.getChoose());

@@ -62,7 +62,7 @@ public class About {
 		Title.setLayoutY(5);
 		
 		Image image = new Image("/javachess/images/JavaChess.png");
-		gc.drawImage(image, 0, 0, 300, 300);
+		gc.drawImage(image, 0, 0, 365, 300);
 		
 		//-----------------------------------------------------------------
 		Label Devs = new Label("Developers:");
@@ -140,6 +140,7 @@ public class About {
 
 		AboutWindow.initModality(Modality.NONE);
 		AboutWindow.setTitle("About");
+		AboutWindow.getIcons().add(new Image("javachess/images/JavaChess.png"));
 
 
 		AboutWindow.setScene(scene1);
