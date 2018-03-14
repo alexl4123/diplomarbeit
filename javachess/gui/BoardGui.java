@@ -3,6 +3,8 @@ package javachess.gui;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.io.IOException;
+import java.net.InetAddress;
+
 import javachess.audio.AudioManager;
 import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.backgroundmatrix.Move;
@@ -34,6 +36,7 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import sun.net.InetAddressCachePolicy;
 
 /**
  * @author alex12 - 2017
@@ -227,6 +230,7 @@ public class BoardGui extends Canvas {
 				System.out.println("TRIGGERED");
 				try {
 					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
+					
 					_BGG2.higherTurnRound();
 					
 					if (_BGG2.getLan().getFirstturn() == true){
@@ -473,6 +477,7 @@ public class BoardGui extends Canvas {
 						System.out.println("schreib jetzt1");
 						_BGG2.getLan().netWriteStream.writeObject(_BGG);
 						_BGG2.getLan().netWriteStream.flush();
+						//_Gui.getStage().setResizable(false);						
 						for(int y = 0; y<8;y++){
 							for(int x = 0; x<8;x++){
 								System.out.print(":"+_BGG[x][y]+":");
@@ -989,7 +994,7 @@ public class BoardGui extends Canvas {
 			gc.setFill(Color.SILVER);
 			gc.setTextAlign(TextAlignment.CENTER);
 			gc.setTextBaseline(VPos.CENTER);
-
+			
 			String s = null;
 			switch (x) {
 			case 0:
@@ -1162,7 +1167,9 @@ public class BoardGui extends Canvas {
 			gc.setFont(new Font(2*P1X));
 
 			if(!heartbeatMenu){
-				gc.fillText("Waiting for Connections...", 50*P1X, 40*P1Y);
+				InetAddress iadr = InetAddress.getLocalHost();
+				String[] inetString = iadr.toString().split("/");
+				gc.fillText("Waiting for connections on IP " + inetString[1], 50*P1X, 40*P1Y);
 				gc.fillText("Click to abort and proceed in local mode!", 50*P1X, 48*P1Y);
 				_Gui.getStage().setResizable(false);
 			}
@@ -1240,6 +1247,7 @@ public class BoardGui extends Canvas {
 						DrawGrid(_BGG);
 						bThinking=false;
 						_Gui.getStage().setResizable(true);
+						_Gui.getRoot().setTop(_Gui.getMenu());
 
 					} catch (Exception e) {
 						// TODO Auto-generated catch block

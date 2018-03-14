@@ -370,6 +370,8 @@ public class Menu extends MenuBar {
 
 
 					Gui.getBoardGui().setHighlighting(false);
+					Gui.newBG();
+					
 					Gui.getBoardGui().drawBlurryMenu(hostJob);
 
 					hostingThread.start();

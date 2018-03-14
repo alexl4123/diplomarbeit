@@ -7,6 +7,7 @@ import java.util.Optional;
 import javachess.game.AILogic;
 import javachess.game.LAN;
 import javachess.game.MovePos;
+import javachess.gui.GUI;
 import javachess.meeple.*;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -77,6 +78,7 @@ public class BackgroundGrid implements Serializable {
 	 */
 	private int _iAiDepth;
 
+	private GUI gui;
 
 
 
@@ -112,7 +114,7 @@ public class BackgroundGrid implements Serializable {
 		bKingMoved = new boolean[2];
 		bTowerMoved = new boolean[4];
 		HardCoreAI = false;
-
+		
 
 		QueenNumber = 0;
 		TowerNumber = 0;
@@ -491,6 +493,7 @@ public class BackgroundGrid implements Serializable {
 								alert.setTitle("Check Mate");
 
 								alert.setHeaderText("White lost the game! The game took " + TurnRound + " turns.");
+								gui.newBG();
 								alert.showAndWait();
 
 							} catch (Exception ex) {
@@ -515,6 +518,7 @@ public class BackgroundGrid implements Serializable {
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Check Mate");
 								alert.setHeaderText("Black lost the game! The game took " + TurnRound + "turns.");
+								gui.newBG();
 								alert.showAndWait();
 
 							} catch (Exception ex) {
@@ -1529,6 +1533,14 @@ public class BackgroundGrid implements Serializable {
 
 	public void setHardCoreAI(boolean hardCoreAI) {
 		HardCoreAI = hardCoreAI;
+	}
+
+	public GUI getGui() {
+		return gui;
+	}
+
+	public void setGui(GUI gui) {
+		this.gui = gui;
 	}
 
 }

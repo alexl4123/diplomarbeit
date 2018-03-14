@@ -335,8 +335,8 @@ public class BoardGui {
 				
 
 				if(isHost==true&&BGG.getLan().getIsConnectet()==false){
-					BackgroundGrid freshBgg=new BackgroundGrid();
-					BGG=freshBgg;
+				//	BackgroundGrid freshBgg=new BackgroundGrid();
+				//	BGG=freshBgg;
 					ChessPanel.renewPanel(0,0,false);
 					if(BGG.getTeam()==true){
 						player2.setBackground(Color.white);

@@ -32,6 +32,7 @@ public class Main extends Application {
 				try {
 					BackgroundGrid BGG = new BackgroundGrid();
 					 G = new GUI(BGG);
+					 BGG.setGui(G);
 					G.start(new Stage());
 					
 

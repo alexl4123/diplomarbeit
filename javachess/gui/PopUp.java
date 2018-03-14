@@ -1,5 +1,7 @@
 package javachess.gui;
 
+import com.sun.glass.ui.Screen;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -229,16 +231,19 @@ public class PopUp {
 
 
 
-
 				if(gui.getBoardGui().soundPlayer.getIsMuted()==false){
 
-
+					
 					gui.getBoardGui().soundPlayer.setIsMuted(true);
+					vollabel.setDisable(true);
+					VolSlider.setDisable(true);
 
 
 				} else{
 
 					gui.getBoardGui().soundPlayer.setIsMuted(false);
+					vollabel.setDisable(false);
+					VolSlider.setDisable(false);
 
 				}
 			}
@@ -246,7 +251,7 @@ public class PopUp {
 
 		//Checkbox Hardcore AI
 
-		HardCoreAI = new CheckBox("HardCore AI");
+		HardCoreAI = new CheckBox("Better AI");
 		HardCoreAI.setSelected(gui.getBGG2().getHardCoreAI());
 
 		HardCoreAI.setLayoutX(330);
@@ -275,18 +280,25 @@ public class PopUp {
 			@Override
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 
-
+				if(gui.getBoardGui().getBlurryButtonOn() == true){
+					
+				}else{
+					
+				
 
 				if(gui.getBoardGui().isRectMode() == false){
 					gui.getBoardGui().setRectMode(true);
-					gui.S.setWidth(600);
-					gui.S.setHeight(600);
+					gui.getStage().setResizable(false);
+					
+					gui.S.setY(50);
+					gui.S.setWidth(Screen.getMainScreen().getVisibleHeight() - 100);
+					gui.S.setHeight(Screen.getMainScreen().getVisibleHeight() - 100);
 				}else{
 					gui.getBoardGui().setRectMode(false);
-
+					gui.getStage().setResizable(true);
 				}
 
-
+				}
 			}
 		});
 
@@ -417,7 +429,7 @@ public class PopUp {
 
 		Group gp = new Group();
 		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, HardCoreAI, RectBoard, LoadTurnLabel, LoadTurn);
-		Scene scene1= new Scene(gp, 600, 400, Color.WHITE);
+		Scene scene1= new Scene(gp, 600, 300, Color.WHITE);
 
 
 		popupwindow.initModality(Modality.NONE);

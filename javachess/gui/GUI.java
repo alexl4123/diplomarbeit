@@ -87,8 +87,8 @@ public class GUI extends Application{
 		S.getIcons().add(new Image("javachess/images/JavaChess.png"));
 
 
-		root = new BorderPane();
-		sc = new Scene(root, 600, 300);
+		setRoot(new BorderPane());
+		sc = new Scene(getRoot(), 600, 300);
 
 		_BGG2.setChoose(0);
 		BG = new BoardGui(this);
@@ -110,9 +110,9 @@ public class GUI extends Application{
 		BG.setBGG2(_BGG2);
 		BG.DrawGrid(_BGG);
 		BG.setChoose(0);
-		root.setCenter(BG);
+		getRoot().setCenter(BG);
 		M = new Menu(this);
-		root.setTop(M);
+		//root.setTop(M);
 
 		//------------------------------------------------
 		S.setTitle("JavaChess");
@@ -258,7 +258,7 @@ public class GUI extends Application{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		root.setCenter(BG);
+		getRoot().setCenter(BG);
 		
 		
 		
@@ -371,6 +371,14 @@ public class GUI extends Application{
 	public void initLaunchpad2(Launchpad Lauch) {		
 		BG.setLaunchpad(Lauch);
 		BG.setBLauch(true);
+	}
+
+	public BorderPane getRoot() {
+		return root;
+	}
+
+	public void setRoot(BorderPane root) {
+		this.root = root;
 	}
 
 }

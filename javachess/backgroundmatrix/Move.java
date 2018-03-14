@@ -78,7 +78,7 @@ public class Move {
 	/**
 	 * To redraw the Chess field after ,,Bauerntausch''
 	 */
-	private BoardGui BG;
+	public BoardGui BG;
 
 	/**
 	 * for the launchpad
