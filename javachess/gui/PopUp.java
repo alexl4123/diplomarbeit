@@ -26,20 +26,20 @@ import javafx.stage.Stage;
 public class PopUp {
 
 	private Label teamLabel;
-	
+
 	private ComboBox<String> LoadTurn;
-	
+
 	private Stage popupwindow=new Stage();
 
 	private Slider AIslider;
-	
-	private ComboBox<String> AICombo;
-	
-	private CheckBox HardCoreAI;
-	
-	
 
-	
+	private ComboBox<String> AICombo;
+
+	private CheckBox HardCoreAI;
+
+
+
+
 
 	public GUI gui;
 
@@ -50,7 +50,7 @@ public class PopUp {
 
 	public void display(){
 
-		
+
 
 		Canvas c = new Canvas(600,400);
 		GraphicsContext gc = c.getGraphicsContext2D(); 
@@ -98,7 +98,7 @@ public class PopUp {
 		Label Turncount  = new Label("TurnCount: " + gui.getBGG2().getTurnRound());
 		Turncount.setLayoutX(50);
 		Turncount.setLayoutY(221);
-		
+
 		Label LoadTurnLabel = new Label("Load turn: ");
 		LoadTurnLabel.setLayoutX(50);
 		LoadTurnLabel.setLayoutY(267);
@@ -234,7 +234,7 @@ public class PopUp {
 
 				if(gui.getBoardGui().soundPlayer.getIsMuted()==false){
 
-					
+
 					gui.getBoardGui().soundPlayer.setIsMuted(true);
 					vollabel.setDisable(true);
 					VolSlider.setDisable(true);
@@ -267,7 +267,7 @@ public class PopUp {
 				}else{
 					gui.getBGG2().setHardCoreAI(false);
 				}
-				
+
 			}
 		});
 
@@ -282,22 +282,22 @@ public class PopUp {
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 
 				if(gui.getBoardGui().getBlurryButtonOn() == true){
-					
-				}else{
-					
-				
 
-				if(gui.getBoardGui().isRectMode() == false){
-					gui.getBoardGui().setRectMode(true);
-					gui.getStage().setResizable(false);
-					
-					gui.S.setY(50);
-					gui.S.setWidth(Screen.getMainScreen().getVisibleHeight() - 200);
-					gui.S.setHeight(Screen.getMainScreen().getVisibleHeight() - 200);
 				}else{
-					gui.getBoardGui().setRectMode(false);
-					gui.getStage().setResizable(true);
-				}
+
+
+
+					if(gui.getBoardGui().isRectMode() == false){
+						gui.getBoardGui().setRectMode(true);
+						gui.getStage().setResizable(false);
+
+						gui.S.setY(50);
+						gui.S.setWidth(Screen.getMainScreen().getVisibleHeight() - 200);
+						gui.S.setHeight(Screen.getMainScreen().getVisibleHeight() - 200);
+					}else{
+						gui.getBoardGui().setRectMode(false);
+						gui.getStage().setResizable(true);
+					}
 
 				}
 			}
@@ -330,7 +330,7 @@ public class PopUp {
 		//AI-Control
 		AIslider = new Slider();
 		AIslider.setMin(1);
-		AIslider.setMax(6);
+		AIslider.setMax(5);
 		AIslider.setValue(gui.getBGG2().getAiDepth());
 		AIslider.setMajorTickUnit(1);
 		AIslider.setMinorTickCount(0);
@@ -344,7 +344,7 @@ public class PopUp {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 				AILabel.setText("Difficulty Level: " + (int) AIslider.getValue());	
-				gui.getBGG2().setAiDepth((int) AIslider.getValue());
+				gui.getBGG2().setAiDepth((int) AIslider.getValue()+1);
 			}
 		});
 
@@ -380,14 +380,113 @@ public class PopUp {
 
 			}
 		});
+
+		//Undo and Redo
+
+		Button BUndo = new Button("Undo");
+		BUndo.setLayoutX(157);
+		BUndo.setLayoutY(267);
 		
+
+		BUndo.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent Event) {
+
+				if(gui.getBGG2().getChoose()!=1){
+					BUndo.setDisable(false);
+					try{
+						int LoadTurn = gui.getBGG2().getTurnRound()-1;
+						System.out.println("Loads Turn Round:"+LoadTurn);
+						//Get team and Board
+						
+						int[][] iBoard = new int[8][8];
+						for(int iHY = 0; iHY < 8; iHY++){
+							for(int iHX = 0; iHX < 8; iHX++){
+								iBoard[iHX][iHY] = gui.getBGG2().getBoardList().get(LoadTurn)[iHX][iHY];
+							}
+
+						}
+						gui.getBGG2().iBackground = iBoard;
+						gui.getBGG2().Board = iBoard;
+						gui.getBGG2().setTeam(gui.getBGG2().getTeamList().get(LoadTurn)[0]);
+						//System.out.println("team...:"+gui.getBGG2().getTeam());
+
+						//Draw team and Board
+						gui.getBoardGui().redraw();
+						gui.getBoardGui().DrawGrid(gui.getBGG2().iBackground);
+
+						gui.getBGG2().setTurnRound((short) LoadTurn);
+
+					}catch(Exception ex){
+						System.out.println("Exceptioned..."+ex.getMessage());
+					}
+
+					gui.getBoardGui().soundPlayer.playSound("menu");
+				}else{
+					BUndo.setDisable(true);
+				}
+			}
+
+
+		});
+		
+		
+		Button BRedo = new Button("Redo");
+		BRedo.setLayoutX(230);
+		BRedo.setLayoutY(267);
+		
+
+		BRedo.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent Event) {
+
+				if(gui.getBGG2().getChoose()!=1){
+					BRedo.setDisable(false);
+					try{
+						if(gui.getBGG2().getBoardList().size()-1 > gui.getBGG2().getTurnRound()){
+							int LoadTurn = gui.getBGG2().getTurnRound()+1;
+							System.out.println("Loads Turn Round:"+LoadTurn);
+							//Get team and Board
+							//Security measure (QA told me so)
+							int[][] iBoard = new int[8][8];
+							for(int iHY = 0; iHY < 8; iHY++){
+								for(int iHX = 0; iHX < 8; iHX++){
+									iBoard[iHX][iHY] = gui.getBGG2().getBoardList().get(LoadTurn)[iHX][iHY];
+								}
+
+							}
+							gui.getBGG2().iBackground = iBoard;
+							gui.getBGG2().Board = iBoard;
+							gui.getBGG2().setTeam(gui.getBGG2().getTeamList().get(LoadTurn)[0]);
+							
+							//Draw team and Board
+							gui.getBoardGui().redraw();
+							gui.getBoardGui().DrawGrid(gui.getBGG2().iBackground);
+							gui.getBGG2().setTurnRound((short) LoadTurn);
+						}
+
+					}catch(Exception ex){
+						System.out.println("Exceptioned..."+ex.getMessage());
+					}
+
+					gui.getBoardGui().soundPlayer.playSound("menu");
+				}else{
+					BRedo.setDisable(true);
+				}
+			}
+
+
+		});
+
 		//Label-TurnRound-ComboBox
-		
+		/*
 		LoadTurn = new ComboBox<String>();
 		LoadTurn.setEditable(false);
 		LoadTurn.getItems().add("Turn:"+gui.getBGG2().getTurnRound());
 
-		
+
 		LoadTurn.getSelectionModel().select(0);
 		LoadTurn.setLayoutX(175);
 		LoadTurn.setLayoutY(267);
@@ -396,40 +495,41 @@ public class PopUp {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				
+
 				try{
 					String[] Splits = newValue.split(":");
 					int LoadTurn = (Integer.parseInt(Splits[1]));
-					
+
 					//Get team and Board
 					gui.getBGG2().iBackground = gui.getBGG2().getBoardList().get(LoadTurn);
 					gui.getBGG2().Board = gui.getBGG2().getBoardList().get(LoadTurn);
 					gui.getBGG2().setTeam(gui.getBGG2().getTeamList().get(LoadTurn)[0]);
 					System.out.println("team...:"+gui.getBGG2().getTeam());
-					
+
 					//Draw team and Board
 					gui.getBoardGui().redraw();
 					gui.getBoardGui().DrawGrid(gui.getBGG2().iBackground);
-					
+
 					//New Board state
-					
+
 					int Size = gui.getBGG2().getBoardList().size();
-					
+
 					for(int i = Size-1; i > LoadTurn; i--){
 						gui.getBGG2().getBoardList().remove(i);
 						gui.getBGG2().getTeamList().remove(i);
 						PopUp.this.LoadTurn.getItems().remove(i);
 					}
 					gui.getBGG2().setTurnRound((short) LoadTurn);
-					
+
 				}catch(Exception ex){
 					System.out.println("Exceptioned..."+ex.getMessage());
 				}
 			}
 		});
+		 */
 
 		Group gp = new Group();
-		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, HardCoreAI, RectBoard, LoadTurnLabel, LoadTurn);
+		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, HardCoreAI, RectBoard, LoadTurnLabel, BUndo,BRedo);
 		Scene scene1= new Scene(gp, 600, 300, Color.WHITE);
 
 
@@ -443,10 +543,10 @@ public class PopUp {
 		//popupwindow.showAndWait();
 
 	}
-	
-	
 
-	
+
+
+
 
 	public void showPopUpWindow(){
 		popupwindow.showAndWait();
@@ -457,7 +557,7 @@ public class PopUp {
 	private void changelabelText(String x, Label l){
 		l.setText(x);
 	}
-	
+
 	public Label getTeamLabel() {
 		return teamLabel;
 	}
@@ -465,7 +565,7 @@ public class PopUp {
 	public void setTeamLabel(Label teamLabel) {
 		this.teamLabel = teamLabel;
 	}
-	
+
 	public ComboBox<String> getLoadTurn() {
 		return LoadTurn;
 	}
@@ -473,7 +573,7 @@ public class PopUp {
 	public void setLoadTurn(ComboBox<String> loadTurn) {
 		LoadTurn = loadTurn;
 	}
-	
+
 	public Slider getAIslider() {
 		return AIslider;
 	}
@@ -481,7 +581,7 @@ public class PopUp {
 	public void setAIslider(Slider aIslider) {
 		AIslider = aIslider;
 	}
-	
+
 	public ComboBox<String> getAICombo() {
 		return AICombo;
 	}
@@ -489,7 +589,7 @@ public class PopUp {
 	public void setAICombo(ComboBox<String> aICombo) {
 		AICombo = aICombo;
 	}
-	
+
 	public CheckBox getHardCoreAI() {
 		return HardCoreAI;
 	}

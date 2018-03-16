@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,7 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javachess.game.MovePos;
 import javachess.gui.BoardGui;
+import javachess.gui.GUI;
 import javachess.meeple.*;
+import javachess.network.ReadingJob;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -89,8 +92,26 @@ public class Move {
 	 * The default constructor of Move is this Just says that nothing has been
 	 * selected
 	 */
+	
+	private GUI _Gui;
+	
+	/**
+	 * @return the _Gui
+	 */
+	public GUI get_Gui() {
+		return _Gui;
+	}
+
+	/**
+	 * @param _Gui the _Gui to set
+	 */
+	public void set_Gui(GUI _Gui) {
+		this._Gui = _Gui;
+	}
+
 	public Move() {
 		_bSelect = false;
+		
 	}
 
 	/**
@@ -254,7 +275,11 @@ public class Move {
 			getSchach2();
 			BGG2.changeTeam();
 			BGG2.higherTurnRound();
-			BG.getGui().getMenu().getPp().getLoadTurn().getItems().add("Turn:"+BGG2.getTurnRound());
+			
+			
+			
+			
+			//BG.getGui().getMenu().getPp().getLoadTurn().getItems().add("Turn:"+BGG2.getTurnRound());
 			//add the board states
 			//the complicity is needed, due to same pointer errors
 			int[][] iBoard = new int[8][8];
@@ -264,9 +289,22 @@ public class Move {
 				}
 
 			}
-			BGG2.addBoardState(iBoard);
-			//add the team states
-			BGG2.addTeamState(BGG2.getTeam());
+			if(BGG2.getTurnRound()!=BGG2.getBoardList().size()){
+				for(int iRM = BGG2.getBoardList().size()-1; iRM >= BGG2.getTurnRound(); iRM--){
+					System.out.println("Override board state:"+iRM+"::BOARD::"+BGG2.getBoardList().size());
+					BGG2.getBoardList().set(iRM,iBoard);
+					boolean[] IB = new boolean[1];
+					IB[0] = BGG2.getTeam();
+					BGG2.getTeamList().set(iRM, IB);
+				}
+			}else{
+				BGG2.addBoardState(iBoard);
+				//add the team states
+				BGG2.addTeamState(BGG2.getTeam());
+			}
+			
+			System.out.println("Turn Round:"+BGG2.getTurnRound()+"::Size::"+BGG2.getBoardList().size());
+			
 			
 			System.out.println("Moved");
 			for(int[] ii :_LastMoveList){
@@ -1238,6 +1276,35 @@ public class Move {
 				_BGG2.changeTeam();
 				BG.redraw();
 				_Bauerntausch = false;
+				
+				if(_BGG2.getLan().getIsConnectet() == true){
+					
+					try {
+						_BGG2.getLan().netWriteStream.writeObject(_BGG2.iBackground);
+						_BGG2.getLan().netWriteStream.flush();
+						System.out.println("Hab gschrieben1");
+
+						_BGG2.iBackground = _BGG;
+						
+						_Gui.setBGG2(_BGG2);
+						//Josi was here  //welch ehre
+						_Gui.getBoardGui().redraw();
+
+						_Gui.getBoardGui().turnProp.setValue(_BGG2.getTurnRound());
+						_BGG2.higherTurnRound();
+						_Gui.getBoardGui().setBthinking(true);
+						_Gui.getMenu().rj = new ReadingJob(_Gui);
+						Thread rt = new Thread(_Gui.getMenu().rj);
+						rt.start();
+						System.out.println("Habs gezeichnet");
+
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+				
 				// renewPanel(0, 0, false);
 				
 

@@ -185,8 +185,8 @@ public class GUI extends Application{
 		}catch(Exception ex) {
 			//no exception
 		}
-		M.getPp().getLoadTurn().getItems().add("Turn:"+_BGG2.getTurnRound());
-		M.getPp().getLoadTurn().getSelectionModel().select(0);
+		
+		BG.turnProp.setValue(_BGG2.getTurnRound());
 		
 		M.getPp().getAICombo().getSelectionModel().select(0);
 		M.getPp().getAIslider().setValue(_BGG2.getAiDepth());
@@ -216,12 +216,13 @@ public class GUI extends Application{
 			//no exception
 		}
 		
-		for(int iCount = 0;  iCount <= BGG2.getTurnRound(); iCount++) {
+		/*for(int iCount = 0;  iCount <= BGG2.getTurnRound(); iCount++) {
 			
 			M.getPp().getLoadTurn().getItems().add("Turn:"+iCount);
 			
 		}
 		M.getPp().getLoadTurn().getSelectionModel().select(0);
+		*/
 		
 		M.getPp().getAIslider().setValue(BGG2.getAiDepth());
 		M.getPp().getHardCoreAI().setSelected(BGG2.getHardCoreAI());
@@ -235,9 +236,9 @@ public class GUI extends Application{
 		try {
 			BG.DrawGrid(BGG2.iBackground);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		BG.turnProp.setValue(_BGG2.getTurnRound());
 		getRoot().setCenter(BG);
 		
 		

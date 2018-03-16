@@ -187,6 +187,7 @@ public class BoardGui extends Canvas {
 		gc = this.getGraphicsContext2D();
 		OMove = new Move();
 		OMove.setBoardGui(this);
+		OMove.set_Gui(_Gui);
 		this.widthProperty().addListener(observable -> redraw());
 		this.heightProperty().addListener(observable -> redraw());
 		this._X = this.getWidth();
@@ -316,25 +317,9 @@ public class BoardGui extends Canvas {
 			}
 
 		});
+		
+		
 
-		/*
-		 * 
-		 * git merge 
-		_Lauch.iCount.addListener(new ChangeListener<Number>() {//git commit suicide
-
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-
-				System.out.println("Old val:" + oldValue + "::NEW_VAL::" + newValue);
-
-				_BGG2 = _Lauch.getBGG2();
-				L.setTeam(_BGG2.getTeam());
-				_Gui.setBGG2(_BGG2);
-				redraw();
-			}
-		});
-		 */
 
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
@@ -466,11 +451,12 @@ public class BoardGui extends Canvas {
 						_BGG2 = OMove.getBGG2();
 						L.setTeam(_BGG2.getTeam());
 						_Gui.setBGG2(_BGG2);
+						turnProp.setValue(_BGG2.getTurnRound());
 					}
 
 
 
-					if (_iChoose == 1 && ((!L.getTeam() && !_BGG2.getLan().getFirstturn()) || (L.getTeam() && _BGG2.getLan().getFirstturn()))){ // if move has happend,
+					if (_iChoose == 1 && !OMove.getBauer() && ((!L.getTeam() && !_BGG2.getLan().getFirstturn()) || (L.getTeam() && _BGG2.getLan().getFirstturn()))){ // if move has happend,
 						 //LAN
 
 
