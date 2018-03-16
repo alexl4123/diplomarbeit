@@ -7,7 +7,6 @@ import java.util.Optional;
 import javachess.game.AILogic;
 import javachess.game.LAN;
 import javachess.game.MovePos;
-import javachess.gui.GUI;
 import javachess.meeple.*;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -77,11 +76,6 @@ public class BackgroundGrid implements Serializable {
 	 * How deep the AI should search
 	 */
 	private int _iAiDepth;
-
-	private GUI gui;
-
-
-
 	//----------------------------------------------------------------------------	
 
 	//public ArrayList<MovePos> _TotalMoveList;
@@ -431,7 +425,7 @@ public class BackgroundGrid implements Serializable {
 	 */
 	public boolean SchachKing(boolean team, BackgroundGrid BGG, int KingX, int KingY, boolean SchachMatt,
 			boolean bSimKingOnTile) {
-
+		int LocalTurn = TurnRound;
 
 		SchachmattWhite= false;
 		SchachmattBlack= false;
@@ -492,8 +486,8 @@ public class BackgroundGrid implements Serializable {
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Check Mate");
 
-								alert.setHeaderText("White lost the game! The game took " + TurnRound + " turns.");
-								gui.newBG();
+								alert.setHeaderText("White lost the game! The game took " + LocalTurn + " turns.");
+								
 								alert.showAndWait();
 
 							} catch (Exception ex) {
@@ -517,8 +511,8 @@ public class BackgroundGrid implements Serializable {
 							try {
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Check Mate");
-								alert.setHeaderText("Black lost the game! The game took " + TurnRound + "turns.");
-								gui.newBG();
+								alert.setHeaderText("Black lost the game! The game took " + LocalTurn + "turns.");
+								
 								alert.showAndWait();
 
 							} catch (Exception ex) {
@@ -1533,14 +1527,6 @@ public class BackgroundGrid implements Serializable {
 
 	public void setHardCoreAI(boolean hardCoreAI) {
 		HardCoreAI = hardCoreAI;
-	}
-
-	public GUI getGui() {
-		return gui;
-	}
-
-	public void setGui(GUI gui) {
-		this.gui = gui;
 	}
 
 }

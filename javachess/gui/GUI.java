@@ -1,5 +1,6 @@
 package javachess.gui;
 
+import java.io.Serializable;
 import java.util.Optional;
 import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.launchpad.Launchpad;

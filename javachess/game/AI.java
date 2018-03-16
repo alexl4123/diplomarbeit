@@ -231,10 +231,12 @@ public class AI extends Thread {
 
 						//add the team states
 						_BGG2.higherTurnRound();
-						_Gui.getGui().getMenu().getPp().getLoadTurn().getItems().add("Turn:"+_BGG2.getTurnRound());
 						_BGG2.addTeamState(!_AiTeam);
-
-
+						try{
+						_Gui.turnProp.set(_BGG2.getTurnRound());
+						}catch(Exception ex){
+							System.out.println("Exception handeled:"+ex.getMessage());
+						}
 						int[] LML = new int[8];
 						LML[0] = A.X +  (A.Y * 8);
 						LastMoveList.add(LML);
@@ -248,11 +250,6 @@ public class AI extends Thread {
 						bRunning = false;
 						System.out.println("Break - line 211 - AI.java");
 						break;
-
-
-
-
-
 					}
 					System.out.println("Line 219 - AI.java");
 

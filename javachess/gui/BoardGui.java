@@ -2,7 +2,19 @@ package javachess.gui;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.InetAddress;
 
 import javachess.audio.AudioManager;
@@ -10,6 +22,10 @@ import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.backgroundmatrix.Move;
 import javachess.game.*;
 import javachess.launchpad.*;
+import javachess.meeple.Jumper;
+import javachess.meeple.Queen;
+import javachess.meeple.Runner;
+import javachess.meeple.Tower;
 import javachess.network.ReadingJob;
 import javachess.network.hostingJob;
 import javachess.threadjobs.HighlightingJob;
@@ -156,13 +172,13 @@ public class BoardGui extends Canvas {
 	 */
 	private Launchpad _Lauch;
 
-	
+
 
 	public IntegerProperty BGGChange, Heartbeat, turnProp, conProp, teamProp;
 	public javachess.network.Heartbeat heartBeatJob;
 
-	
-	
+
+
 
 	/**
 	 * Initial Setup for the GUI Contains the Listeners: .setOnMousePressed:
@@ -186,8 +202,6 @@ public class BoardGui extends Canvas {
 		L.startUpLocal();
 		gc = this.getGraphicsContext2D();
 		OMove = new Move();
-		OMove.setBoardGui(this);
-		OMove.set_Gui(_Gui);
 		this.widthProperty().addListener(observable -> redraw());
 		this.heightProperty().addListener(observable -> redraw());
 		this._X = this.getWidth();
@@ -233,7 +247,7 @@ public class BoardGui extends Canvas {
 
 					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
 					_BGG2.higherTurnRound();
-					
+
 					if (_BGG2.getLan().getFirstturn() == true){
 						L.setTeam(false);
 						_BGG2.setTeam(false);
@@ -268,7 +282,7 @@ public class BoardGui extends Canvas {
 					_Lauch.setBG(_Gui.getBoardGui());
 					_Lauch.setBGG(_BGG2);
 				}
-				
+
 				System.out.println("line 227");
 				int iWKingX,iBKingX, iWKingY, iBKingY;
 				iWKingX = 0;
@@ -288,45 +302,47 @@ public class BoardGui extends Canvas {
 				}
 
 				System.out.println("Schach for Team True");
-			//	_BGG2.SchachKing(true, _BGG2, iWKingX, iWKingY, false, false);
+				//	_BGG2.SchachKing(true, _BGG2, iWKingX, iWKingY, false, false);
 				System.out.println("Schach for Team false");
 				//_BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
-				
+
 				//---------------------------------------------------------------------------------
-				
-				 boolean Blackschach = _BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
+
+				boolean Blackschach = _BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
 				if (Blackschach == true && !_BGG2.getSchachmattBlack()) {							
-								Alert alert = new Alert(AlertType.INFORMATION);
-								alert.setTitle("check");
-								alert.setHeaderText("Blackking is in check!");
-								alert.setContentText("Blackking is in check!");
-								alert.showAndWait();
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("check");
+					alert.setHeaderText("Blackking is in check!");
+					alert.setContentText("Blackking is in check!");
+					alert.showAndWait();
 
 				}
 				boolean Whiteschach = _BGG2.SchachKing(true, _BGG2, iWKingX, iWKingY, false, false);
 				if (Whiteschach == true && !_BGG2.getSchachmattWhite()) {		
-								Alert alert = new Alert(AlertType.INFORMATION);
-								alert.setTitle("check");
-								alert.setHeaderText("Whiteking is in check!");
-								alert.setContentText("Whiteking is in check!");
-								alert.showAndWait();
-					
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("check");
+					alert.setHeaderText("Whiteking is in check!");
+					alert.setContentText("Whiteking is in check!");
+					alert.showAndWait();
+
 				}
-				//---------------------------------------------------------------------------------
 				
+				
+				//---------------------------------------------------------------------------------
+
 			}
 
 		});
-		
-		
+
+
 
 
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				
-				
-				
+
+
+
 				L.setTeam(_BGG2.getTeam());
 				int KingX = 0;
 				int KingY = 0;
@@ -340,7 +356,7 @@ public class BoardGui extends Canvas {
 				}
 				//System.out.println("Draw:"+_BGG2.SchachKing(true, _BGG2, KingX, KingY, false, false));
 				System.out.println("HardCoreMode::"+_BGG2.getHardCoreAI());
-				
+
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 					System.out.println("Pressed");
 					bDrag = false;
@@ -432,11 +448,10 @@ public class BoardGui extends Canvas {
 
 			LastMoveList.clear();
 			System.out.println("BoardGui-TileList:" +TileList.size());
-			
+
 			for (Tile T : TileList) {
 				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && !OMove.getBauer()) {
 
-					OMove.setBoardGui(this);
 					int iMatrix = _BGG[T.getXP()][T.getYP()];
 					_BGG2.setTeam(L.getTeam());
 					_BGG = _BGG2.iBackground;
@@ -452,12 +467,13 @@ public class BoardGui extends Canvas {
 						L.setTeam(_BGG2.getTeam());
 						_Gui.setBGG2(_BGG2);
 						turnProp.setValue(_BGG2.getTurnRound());
+
 					}
 
 
 
 					if (_iChoose == 1 && !OMove.getBauer() && ((!L.getTeam() && !_BGG2.getLan().getFirstturn()) || (L.getTeam() && _BGG2.getLan().getFirstturn()))){ // if move has happend,
-						 //LAN
+						//LAN
 
 
 						System.out.println("schreib jetzt1");
@@ -521,6 +537,11 @@ public class BoardGui extends Canvas {
 						AIvsAI AIFuckUp = new AIvsAI(_BGG2, this);
 						AIFuckUp.start();
 						bThinking = true;
+					}
+					
+					if(_BGG2.getSchachmattBlack() || _BGG2.getSchachmattWhite()){
+						
+						_Gui.newBG();
 					}
 
 				}
@@ -980,7 +1001,7 @@ public class BoardGui extends Canvas {
 			gc.setFill(Color.SILVER);
 			gc.setTextAlign(TextAlignment.CENTER);
 			gc.setTextBaseline(VPos.CENTER);
-			
+
 			String s = null;
 			switch (x) {
 			case 0:
@@ -1193,7 +1214,7 @@ public class BoardGui extends Canvas {
 
 
 	public void drawStartMenu(){
-				
+
 		P1X = (_X / 100);
 		P1Y = (_Y / 100);
 
@@ -1217,15 +1238,15 @@ public class BoardGui extends Canvas {
 		}catch(Exception ex){
 			System.out.println("Startup Sound Failed");
 		}
-		
-		
+
+
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
 				if(_Gui.getBoardGui().getStartupbuttonOn() == true){
 					setHighlighting(true);
-					
+
 					setStartupbuttonOn(false);
 
 					try {
@@ -1242,9 +1263,9 @@ public class BoardGui extends Canvas {
 				}
 			}
 		});
-		
+
 		//StartUpScreen
-		
+
 		try {
 			DrawGrid(_BGG);
 		} catch (Exception e) {
@@ -1275,7 +1296,7 @@ public class BoardGui extends Canvas {
 		gc.drawImage(Icon, 30, 100 ,50*P1X, P1Y*60);
 		_Gui.getStage().setResizable(false);
 		System.out.println("Startup finished");
-		
+
 	}
 
 

@@ -1,21 +1,8 @@
 package javachess.backgroundmatrix;
 
-import java.awt.BorderLayout;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javachess.game.MovePos;
-import javachess.gui.BoardGui;
-import javachess.gui.GUI;
 import javachess.meeple.*;
-import javachess.network.ReadingJob;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -78,40 +65,18 @@ public class Move {
 	 */
 	private ArrayList<MovePos> _LastMove = new ArrayList<MovePos>();
 
-	/**
-	 * To redraw the Chess field after ,,Bauerntausch''
-	 */
-	public BoardGui BG;
 
 	/**
 	 * for the launchpad
 	 */
 	private boolean _moveAllowed;
 
-	/**
-	 * The default constructor of Move is this Just says that nothing has been
-	 * selected
-	 */
-	
-	private GUI _Gui;
-	
-	/**
-	 * @return the _Gui
-	 */
-	public GUI get_Gui() {
-		return _Gui;
-	}
 
-	/**
-	 * @param _Gui the _Gui to set
-	 */
-	public void set_Gui(GUI _Gui) {
-		this._Gui = _Gui;
-	}
+
 
 	public Move() {
 		_bSelect = false;
-		
+
 	}
 
 	/**
@@ -176,11 +141,11 @@ public class Move {
 					}
 
 					if (MP.ID >= 100 && MP.ID < 110 && _BGG2.getTeam() && MP.PY == 7) {
-						_Bauerntausch = true;
+						_Bauerntausch = false;
 						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
-						
+
 					} else if (MP.ID >= 200 && MP.ID < 210 && !_BGG2.getTeam() && MP.PY == 0) {
-						_Bauerntausch = true;
+						_Bauerntausch = false;
 						Bauerntausch(_BGG2.getTeam(), MP.PX, MP.PY);
 					}
 
@@ -275,10 +240,10 @@ public class Move {
 			getSchach2();
 			BGG2.changeTeam();
 			BGG2.higherTurnRound();
-			
-			
-			
-			
+
+
+
+
 			//BG.getGui().getMenu().getPp().getLoadTurn().getItems().add("Turn:"+BGG2.getTurnRound());
 			//add the board states
 			//the complicity is needed, due to same pointer errors
@@ -302,16 +267,16 @@ public class Move {
 				//add the team states
 				BGG2.addTeamState(BGG2.getTeam());
 			}
-			
+
 			System.out.println("Turn Round:"+BGG2.getTurnRound()+"::Size::"+BGG2.getBoardList().size());
-			
-			
+
+
 			System.out.println("Moved");
 			for(int[] ii :_LastMoveList){
 				int i = ii[0];
-				BG.HighlightLField(i);
+				//BG.HighlightLField(i);
 			}
-			
+
 			_Moved = false;
 		} else if(_bSelect) {
 			//only for Schach-Debug
@@ -321,7 +286,7 @@ public class Move {
 			if(BGG2.getBoardList().size() > 0){
 				int iH = 0;
 				for(int[][] iBoard : BGG2.getBoardList()){
-					
+
 					//System.out.println("Team:" + BGG2.getTeamList().get(iH)[0]);
 					for(int iHY = 0; iHY < 8; iHY++){
 						for(int iHX = 0; iHX < 8; iHX++){
@@ -1141,439 +1106,276 @@ public class Move {
 	 *            which pos.
 	 */
 	public void Bauerntausch(boolean team, int XX, int YY) {
+		int Number;
+		if (_BGG2.getTeam() == true) {
+			_BGG2.higherQueenNumber();
+			Number = _BGG2.getQueenNumber();
+			_BGG2.setBackgroundGrid(XX, YY, Number + 140);
+			Queen khaleesi = new Queen(true, Number + 140, XX, YY);
+			_BGG2.Objectives.set(Number + 140, khaleesi);
+			_BGG2.iBackground[XX][YY] = 140 + Number;
+		} else {
+			_BGG2.higherQueenNumber();
+			Number = _BGG2.getQueenNumber();
+			_BGG2.setBackgroundGrid(XX, YY, Number + 240);
+			Queen khaleesi = new Queen(false, Number + 240, XX, YY);
+			_BGG2.Objectives.set(Number + 240, khaleesi);
+			TheMove[XX][YY] = 240 + Number;
+		}
+		_BGG2.setMove(true);
 
-		JFrame ChooserF = new JFrame("which meeple?");
-		int Xpos = 200;
-		int Ypos = 200;
-		ChooserF.setResizable(false);
+	
+}
 
-		Point newPoint = new Point(Xpos, Ypos);
+/**
+ * getSchach() simply returns a true _Blackschach when the Black king is in
+ * check and a _Whiteschach when the White king is in check. This method is
+ * use mainly for Moveing & Viewing
+ */
+public void getSchach() {
 
-		ChooserF.setSize(200, 110);
-		ChooserF.setLocation(newPoint);
+	King K1, K2;
+	int XKing1, XKing2;
+	int YKing1, YKing2;
 
-		String[] Meeples = { "Queen", "Jumper", "Runner", "Tower" };
-		JComboBox JBox = new JComboBox(Meeples); // a combo box with all .sav�s
+	K1 = (King) _BGG2.Objects(150);
+	XKing1 = K1.getXMeeplePos();
+	YKing1 = K1.getYMeeplePos();
 
-		// save or load
+	K2 = (King) _BGG2.Objects(250);
+	XKing2 = K2.getXMeeplePos();
+	YKing2 = K2.getYMeeplePos();
 
-		JButton JBut = new JButton("Choose");
+	_Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, true, false);
+	if (_Blackschach) {
 
-		JPanel southPanel = new JPanel();
-		JPanel northPanel = new JPanel();
+	}
+	_Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, true, false);
+	if (_Whiteschach) {
+	}
 
-		northPanel.add(JBox);
-		southPanel.add(JBut);
+}
 
-		JBut.addActionListener(new ActionListener() {
+/**
+ * to check if a king is in "Schach". Different output for each King Not for
+ * SCHACHMATT!!! Schachmatt is detected automatically, but you get it via
+ * BackgroundGrid.getSchachmatt()
+ */
+public void getSchach2() {
+
+	boolean Blackschach, Whiteschach;
+	int XKing2, YKing2, XKing1, YKing1;
+	XKing2 = 10;
+	XKing1 = 10;
+	YKing1 = 10;
+	YKing2 = 10;
+	for (int Y = 0; Y < 8; Y++) {
+		for (int X = 0; X < 8; X++) {
+			if (TheMove[X][Y] == 150) {
+				XKing1 = X;
+				YKing1 = Y;
+			}
+			if (TheMove[X][Y] == 250) {
+				XKing2 = X;
+				YKing2 = Y;
+			}
+		}
+	}
+	_BGG2.iBackground = TheMove;
+
+	Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, false, false);
+	if (Blackschach == true && !_BGG2.getSchachmattBlack()) {
+		Platform.runLater(new Runnable() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				int Number = 0;
-				String NoOne = (String) JBox.getSelectedItem();
-				int WhichOne = 0;
+			public void run() {
+				try {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("check");
+					alert.setHeaderText("Blackking is in check!");
+					alert.setContentText("Blackking is in check!");
+					alert.showAndWait();
 
-				if (NoOne == "Queen") {
-
-					if (_BGG2.getQueenNumber() < 4) {
-
-						// Chooser = 1;
-						
-
-						if (team == true) {
-							_BGG2.higherQueenNumber();
-							Number = _BGG2.getQueenNumber();
-							_BGG2.setBackgroundGrid(XX, YY, Number + 140);
-							Queen khaleesi = new Queen(true, Number + 140, XX, YY);
-							_BGG2.Objectives.set(Number + 140, khaleesi);
-							TheMove[XX][YY] = 140 + Number;
-						} else {
-							_BGG2.higherQueenNumber();
-							Number = _BGG2.getQueenNumber();
-							_BGG2.setBackgroundGrid(XX, YY, Number + 240);
-							Queen khaleesi = new Queen(false, Number + 240, XX, YY);
-							_BGG2.Objectives.set(Number + 240, khaleesi);
-							TheMove[XX][YY] = 240 + Number;
-						}
-						_BGG2.setMove(true);
-					} else {
-						JFrame Frame1 = new JFrame("");
-						JOptionPane.showMessageDialog(Frame1, "No more Queens available! Choose another one!",
-								"OTHER MEEPLE", 0);
-						Bauerntausch(team, 0, 0);
-					}
-
-				} else if (NoOne == "Jumper") {
-
-					// Chooser = 2;
-
-					if (team == true) {
-						_BGG2.higherJumperNumber();
-						Number = _BGG2.getJumperNumber();
-						_BGG2.setBackgroundGrid(XX, YY, Number + 121);
-						Jumper drogo = new Jumper(true, Number + 121, XX, YY);
-						_BGG2.Objectives.set(Number + 121, drogo);
-						TheMove[XX][YY] = 121 + Number;
-					} else {
-						_BGG2.higherJumperNumber();
-						Number = _BGG2.getJumperNumber();
-						_BGG2.setBackgroundGrid(XX, YY, Number + 221);
-						Jumper drogo = new Jumper(false, Number + 221, XX, YY);
-						_BGG2.Objectives.set(Number + 221, drogo);
-						TheMove[XX][YY] = 221 + Number;
-					}
-
-				} else if (NoOne == "Runner") {
-
-					// Chooser=3;
-
-					if (team == true) {
-						_BGG2.higherRunnerNumber();
-						Number = _BGG2.getRunnerNumber();
-						_BGG2.setBackgroundGrid(XX, YY, Number + 131);
-						Runner runni = new Runner(true, Number + 131, XX, YY);
-						_BGG2.Objectives.set(Number + 131, runni);
-						TheMove[XX][YY] = 131 + Number;
-					} else {
-						_BGG2.higherRunnerNumber();
-						Number = _BGG2.getRunnerNumber();
-						_BGG2.setBackgroundGrid(XX, YY, Number + 231);
-						Runner runni = new Runner(false, Number + 231, XX, YY);
-						_BGG2.Objectives.set(Number + 231, runni);
-						TheMove[XX][YY] = 231 + Number;
-					}
-
-				} else if (NoOne == "Tower") {
-
-					// Chooser = 4;
-
-					if (team == true) {
-						_BGG2.higherTowerNumber();
-						Number = _BGG2.getTowerNumber();
-						_BGG2.setBackgroundGrid(XX, YY, Number + 111);
-						Tower TheRedKeep = new Tower(true, Number + 111, XX, YY);
-						_BGG2.Objectives.set(Number + 111, TheRedKeep);
-						TheMove[XX][YY] = 111 + Number;
-					} else {
-						_BGG2.higherTowerNumber();
-						Number = _BGG2.getTowerNumber();
-						_BGG2.setBackgroundGrid(XX, YY, Number + 211);
-						Tower TheRedKeep = new Tower(false, Number + 211, XX, YY);
-						_BGG2.Objectives.set(Number + 211, TheRedKeep);
-						TheMove[XX][YY] = 211 + Number;
-					}
-
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
-				ChooserF.setVisible(false);
-				
-				/*
-				 * connectionWrite(); BGG.higherTurnRound();
-				 * renewPanel(XX,YY,false);
-				 */
-				_BGG2.iBackground = TheMove;
-				_BGG2.setTeam(team);
-				getSchach2();
-				_BGG2.changeTeam();
-				BG.redraw();
-				_Bauerntausch = false;
-				
-				if(_BGG2.getLan().getIsConnectet() == true){
-					
-					try {
-						_BGG2.getLan().netWriteStream.writeObject(_BGG2.iBackground);
-						_BGG2.getLan().netWriteStream.flush();
-						System.out.println("Hab gschrieben1");
-
-						_BGG2.iBackground = _BGG;
-						
-						_Gui.setBGG2(_BGG2);
-						//Josi was here  //welch ehre
-						_Gui.getBoardGui().redraw();
-
-						_Gui.getBoardGui().turnProp.setValue(_BGG2.getTurnRound());
-						_BGG2.higherTurnRound();
-						_Gui.getBoardGui().setBthinking(true);
-						_Gui.getMenu().rj = new ReadingJob(_Gui);
-						Thread rt = new Thread(_Gui.getMenu().rj);
-						rt.start();
-						System.out.println("Habs gezeichnet");
-
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-				}
-				
-				// renewPanel(0, 0, false);
-				
 
 			}
 		});
 
-		ChooserF.add(northPanel, BorderLayout.NORTH);
-		ChooserF.add(southPanel, BorderLayout.SOUTH);
-		ChooserF.setUndecorated(true);
-		ChooserF.setVisible(true);
-
 	}
+	Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, false, false);
+	if (Whiteschach == true && !_BGG2.getSchachmattWhite()) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("check");
+					alert.setHeaderText("Whiteking is in check!");
+					alert.setContentText("Whiteking is in check!");
+					alert.showAndWait();
 
-	/**
-	 * getSchach() simply returns a true _Blackschach when the Black king is in
-	 * check and a _Whiteschach when the White king is in check. This method is
-	 * use mainly for Moveing & Viewing
-	 */
-	public void getSchach() {
-
-		King K1, K2;
-		int XKing1, XKing2;
-		int YKing1, YKing2;
-
-		K1 = (King) _BGG2.Objects(150);
-		XKing1 = K1.getXMeeplePos();
-		YKing1 = K1.getYMeeplePos();
-
-		K2 = (King) _BGG2.Objects(250);
-		XKing2 = K2.getXMeeplePos();
-		YKing2 = K2.getYMeeplePos();
-
-		_Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, true, false);
-		if (_Blackschach) {
-
-		}
-		_Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, true, false);
-		if (_Whiteschach) {
-		}
-
-	}
-
-	/**
-	 * to check if a king is in "Schach". Different output for each King Not for
-	 * SCHACHMATT!!! Schachmatt is detected automatically, but you get it via
-	 * BackgroundGrid.getSchachmatt()
-	 */
-	public void getSchach2() {
-		
-		boolean Blackschach, Whiteschach;
-		int XKing2, YKing2, XKing1, YKing1;
-		XKing2 = 10;
-		XKing1 = 10;
-		YKing1 = 10;
-		YKing2 = 10;
-		for (int Y = 0; Y < 8; Y++) {
-			for (int X = 0; X < 8; X++) {
-				if (TheMove[X][Y] == 150) {
-					XKing1 = X;
-					YKing1 = Y;
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
-				if (TheMove[X][Y] == 250) {
-					XKing2 = X;
-					YKing2 = Y;
-				}
+
 			}
-		}
-		_BGG2.iBackground = TheMove;
-
-		Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, false, false);
-		if (Blackschach == true && !_BGG2.getSchachmattBlack()) {
-			Platform.runLater(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("check");
-						alert.setHeaderText("Blackking is in check!");
-						alert.setContentText("Blackking is in check!");
-						alert.showAndWait();
-
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
-
-				}
-			});
-
-		}
-		Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, false, false);
-		if (Whiteschach == true && !_BGG2.getSchachmattWhite()) {
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("check");
-						alert.setHeaderText("Whiteking is in check!");
-						alert.setContentText("Whiteking is in check!");
-						alert.showAndWait();
-
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
-
-				}
-			});
-
-		}
+		});
 
 	}
 
-	/**
-	 * @param int[][]
-	 *            BGG - is a int[][] - to set the Background Array
-	 */
-	public void setBGG(int[][] BGG) {
-		_BGG = BGG;
-	}
+}
 
-	/**
-	 * @param boolean
-	 *            sel - set boolean _bSelect (if a Meeple has been selected)
-	 */
-	public void setBSelect(boolean sel) {
-		_bSelect = sel;
-	}
+/**
+ * @param int[][]
+ *            BGG - is a int[][] - to set the Background Array
+ */
+public void setBGG(int[][] BGG) {
+	_BGG = BGG;
+}
 
-	/**
-	 * @return int[][] _BGG - returns the BackgroundGrid,Grid
-	 */
-	public int[][] getBGG() {
-		return _BGG;
-	}
+/**
+ * @param boolean
+ *            sel - set boolean _bSelect (if a Meeple has been selected)
+ */
+public void setBSelect(boolean sel) {
+	_bSelect = sel;
+}
 
-	/**
-	 * @return int _iSelect - Returns the number of the previous selected Meeple
-	 */
-	public int getISelect() {
-		return _iSelect;
-	}
+/**
+ * @return int[][] _BGG - returns the BackgroundGrid,Grid
+ */
+public int[][] getBGG() {
+	return _BGG;
+}
 
-	/**
-	 * @return boolean _beSelect - returns if a Meeple has been selected
-	 */
-	public boolean getBSelect() {
-		return _bSelect;
-	}
+/**
+ * @return int _iSelect - Returns the number of the previous selected Meeple
+ */
+public int getISelect() {
+	return _iSelect;
+}
 
-	/**
-	 * @return boolean _Bauerntausch - returns true if a Bauerntausch is
-	 *         currently happening
-	 */
-	public boolean getBauer() {
-		return _Bauerntausch;
-	}
+/**
+ * @return boolean _beSelect - returns if a Meeple has been selected
+ */
+public boolean getBSelect() {
+	return _bSelect;
+}
 
-	/**
-	 * @return ArrayList<int[]> MoveList - The List for the possible Moves
-	 */
-	public ArrayList<int[]> getMoveList() {
-		return _MoveList;
-	}
-	
-	/**
-	 * Sets the move list
-	 * @param newMovelist
-	 */
-	public void setMoveList(ArrayList<int[]> newMovelist){
-		_MoveList = newMovelist;
-	}
+/**
+ * @return boolean _Bauerntausch - returns true if a Bauerntausch is
+ *         currently happening
+ */
+public boolean getBauer() {
+	return _Bauerntausch;
+}
 
-	/**
-	 * @return ArrayList<int[]> HitList - The List for the possible strikes
-	 */
-	public ArrayList<int[]> getHitList() {
-		return _HitList;
-	}
+/**
+ * @return ArrayList<int[]> MoveList - The List for the possible Moves
+ */
+public ArrayList<int[]> getMoveList() {
+	return _MoveList;
+}
 
-	/**
-	 * 
-	 * @return ArrayList<int[]> - LastMoveList - List where you have last moved
-	 */
-	public ArrayList<int[]> getLastMoveList() {
-		return _LastMoveList;
-	}
-	
-	/**
-	 * Sets the last move list
-	 * @param newLastMoveList - ArrayList<int[]>
-	 */
-	public void setLastMoveList(ArrayList<int[]> newLastMoveList){
-		_LastMoveList = newLastMoveList;
-	}
+/**
+ * Sets the move list
+ * @param newMovelist
+ */
+public void setMoveList(ArrayList<int[]> newMovelist){
+	_MoveList = newMovelist;
+}
 
-	/**
-	 * @return int _iPosX - Returns the previous selected Meeples X Position in
-	 *         8x8
-	 */
-	public int getIPosX() {
-		return _iPosX;
-	}
+/**
+ * @return ArrayList<int[]> HitList - The List for the possible strikes
+ */
+public ArrayList<int[]> getHitList() {
+	return _HitList;
+}
 
-	/**
-	 * overrides the last x pos
-	 * @param x - the x value of the meeple
-	 */
-	public void setIPosX(int x) {
-		_iPosX = x;
-	}
+/**
+ * 
+ * @return ArrayList<int[]> - LastMoveList - List where you have last moved
+ */
+public ArrayList<int[]> getLastMoveList() {
+	return _LastMoveList;
+}
 
-	/**
-	 * overrides the last y pos
-	 * @param y - the y value of the meeple
-	 */
-	public void setIPosY(int y) {
-		_iPosY = y;
-	}
+/**
+ * Sets the last move list
+ * @param newLastMoveList - ArrayList<int[]>
+ */
+public void setLastMoveList(ArrayList<int[]> newLastMoveList){
+	_LastMoveList = newLastMoveList;
+}
 
-	/**
-	 * @return int _iPosY - Returns the previous selected Meeples Y Position in
-	 *         8x8
-	 */
-	public int getIPosY() {
-		return _iPosY;
-	}
+/**
+ * @return int _iPosX - Returns the previous selected Meeples X Position in
+ *         8x8
+ */
+public int getIPosX() {
+	return _iPosX;
+}
 
-	/**
-	 * 
-	 * @return _BGG2 - backgroundGrid - returns the BackgroundGrid object - used
-	 *         for drawing
-	 */
-	public BackgroundGrid getBGG2() {
-		return _BGG2;
-	}
+/**
+ * overrides the last x pos
+ * @param x - the x value of the meeple
+ */
+public void setIPosX(int x) {
+	_iPosX = x;
+}
 
-	/**
-	 * Set the Backgroundgrid
-	 * 
-	 * @param BGG
-	 *            - object of class BackgroundGrid
-	 */
-	public void setBGG2(BackgroundGrid BGG) {
-		_BGG2 = BGG;
-	}
+/**
+ * overrides the last y pos
+ * @param y - the y value of the meeple
+ */
+public void setIPosY(int y) {
+	_iPosY = y;
+}
 
-	/**
-	 * sets the current active Board Gui - for redrawing after Bauerntausch
-	 * 
-	 * @param Gui
-	 */
-	public void setBoardGui(BoardGui Gui) {
-		this.BG = Gui;
-	}
+/**
+ * @return int _iPosY - Returns the previous selected Meeples Y Position in
+ *         8x8
+ */
+public int getIPosY() {
+	return _iPosY;
+}
 
-	/**
-	 * 
-	 * @param ID - int - overrides the last meeple
-	 */
-	public void setLastID(int ID) {
-		_iSelect = ID;
-	}
+/**
+ * 
+ * @return _BGG2 - backgroundGrid - returns the BackgroundGrid object - used
+ *         for drawing
+ */
+public BackgroundGrid getBGG2() {
+	return _BGG2;
+}
 
-	/**
-	 * for the launchpad - if move has happenend
-	 * @return boolean - if move has happenend
-	 */
-	public boolean getMoveAlowed() {
-		return _moveAllowed;
-	}
+/**
+ * Set the Backgroundgrid
+ * 
+ * @param BGG
+ *            - object of class BackgroundGrid
+ */
+public void setBGG2(BackgroundGrid BGG) {
+	_BGG2 = BGG;
+}
+
+
+
+/**
+ * 
+ * @param ID - int - overrides the last meeple
+ */
+public void setLastID(int ID) {
+	_iSelect = ID;
+}
+
+/**
+ * for the launchpad - if move has happenend
+ * @return boolean - if move has happenend
+ */
+public boolean getMoveAlowed() {
+	return _moveAllowed;
+}
 }

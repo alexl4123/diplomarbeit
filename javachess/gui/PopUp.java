@@ -417,6 +417,7 @@ public class PopUp {
 						gui.getBoardGui().DrawGrid(gui.getBGG2().iBackground);
 
 						gui.getBGG2().setTurnRound((short) LoadTurn);
+						gui.getBoardGui().turnProp.set(LoadTurn);
 
 					}catch(Exception ex){
 						System.out.println("Exceptioned..."+ex.getMessage());
@@ -465,6 +466,7 @@ public class PopUp {
 							gui.getBoardGui().redraw();
 							gui.getBoardGui().DrawGrid(gui.getBGG2().iBackground);
 							gui.getBGG2().setTurnRound((short) LoadTurn);
+							gui.getBoardGui().turnProp.set(LoadTurn);
 						}
 
 					}catch(Exception ex){
