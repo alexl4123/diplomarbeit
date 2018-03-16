@@ -514,7 +514,7 @@ public class BoardGui extends Canvas {
 						//No press possible
 						//get Board
 
-					} else if (_iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer() && _BGG2.getAITeam()) {
+					} else if (!ButtonPressed && _iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer() && _BGG2.getAITeam()) {
 						//White AI
 						System.out.println("AI-Depth" + _BGG2.getAiDepth());
 						AI _AI = new AI(_BGG2, this,true,false,_BGG2.getAiDepth());
@@ -523,7 +523,7 @@ public class BoardGui extends Canvas {
 						bThinking = true;
 						redraw();
 						_BGG2.setTeam(false);
-					} else if (_iChoose == 2 && !_BGG2.getTeam() && !OMove.getBauer() && !_BGG2.getAITeam()) {
+					} else if (!ButtonPressed && _iChoose == 2 && !_BGG2.getTeam() && !OMove.getBauer() && !_BGG2.getAITeam()) {
 						//Black AI
 						System.out.println("AI-Depth" + _BGG2.getAiDepth());
 						AI _AI = new AI(_BGG2, this,false,false,_BGG2.getAiDepth());

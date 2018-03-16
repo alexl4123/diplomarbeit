@@ -100,11 +100,11 @@ public class Help {
 		gameModes.setLayoutY(235);
 		gameModes.setTextAlignment(TextAlignment.JUSTIFY);
 		gameModes.setText("In this game, there are three ,,main'' GameModes, one hidden GameMode and the Launchpad support. \n"
-				+ "a) The default GameMode is the ,,Hot-Seat'' mode. In this mode the player can play against a friend (or himself) on the screen. \n"
-				+ "b) The LAN mode ist the online mode. Here you can play against your friends in the local area network. See  3) for further instructions.\n"
-				+ "c) The AI mode is the ,,computer'' mode. You can play here against the Artificial Intelligence. See 4) for further instructions. \n"
+				+ "a) The default GameMode is the ,,Hot-Seat'' mode. In this mode, the player can play against a friend (or himself) on the screen. \n"
+				+ "b) The Online mode is the LAN mode. Here you can play against your friends in the local area network. See  3) for further instructions.\n"
+				+ "c) The computer mode is the ,,LAN'' mode. You can play here against the Artificial Intelligence. See 4) for further instructions. \n"
 				+ "d) The ,,hidden'' mode, is were two AIs turn agains each other. Let's be curios who wins... \n"
-				+ "e) The Launchpad mode. This is the result of the cooperation with an other thesis. Here you can plug in the launchpad (8x8-LED-Touch Field), select which version you want to have, and play with the launchpad or the Java application.");
+				+ "e) The Launchpad mode. This is the result of the cooperation with the other thesis. Here you can plug in the launchpad (8x8-LED-Touch Field), select which version you want to have, and play with the launchpad or the Java application.");
 
 		//----------------------------------------------------------
 		Label GUI_Label = new Label("2) GUI - Graphical User Interface");
@@ -118,12 +118,12 @@ public class Help {
 		GUI_Text.setLayoutX(20);
 		GUI_Text.setLayoutY(585);
 		GUI_Text.setTextAlignment(TextAlignment.JUSTIFY);
-		GUI_Text.setText("In your front you will see the chess field, an 8x8 field.\n"
-				+ "In this field you play chess and win against your friens! \n"
+		GUI_Text.setText("In your front, you will see the chess field, an 8x8 field.\n"
+				+ "In this field you play chess and win against your friends! \n"
 				+ "Select a meeple by pressing on it. The game will show you all allowed moves. The other possibility is to drag a meeple and let loose at the wished destination (again the movable fields will be shown). \n"
 				+ "There is also an upper bar. This bar is the ,,menu-bar''. Here are three different options: \n"
 				+ "Game: Here you can start a new, save the current, load a previous or exit the game.\n"
-				+ "GameModes: You can select the differenct game modes, disscussed in 1).\n"
+				+ "GameModes: You can select the different game modes, discussed in 1).\n"
 				+ "Other: Here are the settings and the option to claim a draw.\n"
 				+ "Help: The help page and the 'about page' is found here. ");
 
@@ -162,18 +162,18 @@ public class Help {
 		AI_Text.setLayoutX(20);
 		AI_Text.setLayoutY(1245);
 		AI_Text.setTextAlignment(TextAlignment.JUSTIFY);
-		AI_Text.setText("This doen't want to explain, how the AI works (you can read it on GitHub, see ,,about''), "
-				+ "this gives the player enough information to play the game properly. \n"
-				+ "Default, the AI is the black team with difficulty level 3. The difficulty level indicates the pre simulated moves, so three means,"
+		AI_Text.setText("This doesn't want to explain, how the AI works (you can read it on GitHub, see about \n"
+				+ "this gives the player enough information to play the game properly.  \n"
+				+ "Default, the AI is the black team with difficulty level 3. The difficulty level indicates the pre-simulated moves, so three means,"
 				+ "that the AI thinks three rounds into the future. \n"
-				+ "If you increase this value via the slider in setup, the AI performs unlinear better, "
+				+ "If you increase this value via the slider in setup, the AI performs nonlinear better, "
 				+ "but your pc might be to slow, to handle the necessary computing \n"
-				+ "There is also an ,,Hardcore-Mode''. In this mode the AI is bound to an much better core algorithm, which means for you,"
+				+ "There is also an Better AI mode. In this mode, the AI is bound to a much better core algorithm, which means for you,"
 				+ "that you probably won't beat it on difficulty >= 4. \n"
 				+ "...but there is one more thing... if you open the LAN mode and try to host, try to put into the IP Address field"
 				+ "the following words: SkyNet (attention Case sensitive without space). No click on a random white meeple and whoops, "
 				+ "the AI plays against itself... ;-) \n"
-				+ "Futher you can choose against which AI you want to play. You can choose this in the drop down "
+				+ "Further you can choose against which AI you want to play. You can choose this in the drop down "
 				+ "menu in the setup field (Black and White). This is not the team you want to play with, it is the AI Team!");
 
 		
@@ -185,7 +185,7 @@ public class Help {
 		End_Text.setLayoutY(1700);
 		End_Text.setTextAlignment(TextAlignment.JUSTIFY);
 		End_Text.setText("We hope, we could inform you how to play this game. If the very very unlikely situation occurs, "
-				+ "that you still have questions, feel free to contact us on GitHub (alexl4123 and Hegl1). Link is in the about field.\n");
+				+ "that you still have questions, feel free to contact us on GitHub (alexl4123 and Hegl1). The Link is in the about field.\n");
 		//----------------------------------------------------------
 
 		Group gp = new Group();
