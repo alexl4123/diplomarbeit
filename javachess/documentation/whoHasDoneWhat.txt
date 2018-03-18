@@ -1,0 +1,24 @@
+Alexander Beiser:
+-LaTeX Setup 
+-1) Kurzfassung (Deutsch)
+-2) Lizenz
+
+-1) Einleitung
+-2) Vertiefende Aufgabenstellung (komplett)
+-3) Schach, eine Erklärung (komplett)
+-4) Java Chess
+	-4.1) Einführung
+	-4.2) Java Chess -Übersicht
+		-4.2.1 Blockschaltbild
+		-4.2.2 Initialisierung
+	-4.3) Repräsentation der Figuren
+	-4.4) Zugmechanik und Local mode
+		-4.4.1) Die Move Klasse - Funktion
+		-4.4.2) Die MOve KLasse - Code
+	-4.5) Schach und Schachmatt (alles)
+	-4.7) AI-Mode (alles)
+-5) ChessPI (alles)
+-6) Akkusteuerung (alles)
+-7) Gehäuse (alles)
+
+Marcel Huber:
