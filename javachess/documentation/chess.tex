@@ -1,12 +1,6 @@
 %xhversion{v2.01 RdF} %PdJ,PdL,PdM,PdS,PdU,Pe6,PeI,PfB,PfD,RbN,RbP,RcL,RdC,RdD,RdF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	TODO:
-%	-Überarbeitung des Blockschaltbildes
-%	-MOVE Klasse
-%	-Wie funktioniert der LAN-Modus
-%	-AI-Möglichkeiten
-%	-Verwendete AI
-%	-Code-AI
+%TODO: -siehe GitHub-Projects
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	die auskommentierten 'usepackage'-Anweisungen sind
@@ -65,6 +59,19 @@
   %\usepackage{ulem}	... produziertma nFehler ban 'latex' run
 \usepackage{longtable}		% fuer tabellen ueber mehrere Seiten
 \usepackage{xcolor}
+\usepackage[ngerman]{babel}
+\usepackage[pdfborderstyle={/S/U/W 1}]{hyperref}
+%\usepackage[demo]{graphicx}
+%\addto{\captionsngerman}{%
+  %\renewcommand*{\contentsname}{Inhaltsverzeichnis}
+  %\renewcommand*{\listfigurename}{Abbildungen}
+%  \renewcommand*{\listtablename}{Tabellen}
+  %\renewcommand*{\figurename}{Abb.}
+  %\renewcommand*{\tablename}{Tab.}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \definecolor{lightgrey}	{gray}{0.85}
 \definecolor{llltgy}	{gray}{0.98}
 \definecolor{lltgy}	{gray}{0.96}
@@ -316,10 +323,10 @@
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{\markright{#1}}
 \renewcommand{\subsubsectionmark}[1]{\markright{#1}}
-\lhead{}
-\chead{\HtlHeader{}}
-\rhead{}
-\lfoot{Beiser/Huber}
+\lhead{Diplomarbeit - JavaChess}
+\chead{}
+\rhead{Alexander Beiser, Marcel Huber}
+\lfoot{5CHEL-2018}
 \cfoot{\thesection-\rightmark}
 %\cfoot{\thesubsubsection-\rightmark}
 \rfoot[\thepage]{\thepage/\pageref{LastPage}}
@@ -436,10 +443,10 @@
 
 
 %====================================================================================
-\clearpage\vfill\newpage%\part{U-Lektionen \dq{}embedded Systems\dq{}}
+\newpage%\part{U-Lektionen \dq{}embedded Systems\dq{}}
 %====================================================================================
 
-\addcontentsline{toc}{section}{Erklaerung der Eigenstaendigkeit der Arbeit}
+\addcontentsline{toc}{section}{Erklärung der Eigenständigkeit der Arbeit}
 \section*{\Large\sc Erklärung der Eigenständigkeit der Arbeit}
 	\hfill\\[ 8mm]
 	EIDESSTATTLICHE ERKLÄRUNG
@@ -749,8 +756,13 @@ Java Chess nützt in Folge einige dieser Vorteile aus, vorallem Objektorientiert
 \label{SUBSUBSEC:BLOCKSCHALTBILD}
 
 Hier wird ein Einblick gegeben, wie Java Chess funktioniert. Dies geschieht Anhand von einem Blockschaltbild, welches Pakete bzw. Klassen beschreibt: 
+\begin{figure}
+  \centering
+   	\includegraphics[width=12cm]{graphics/block.png}
+  \caption{Das Blockschaltbild}
+  \label{fig:block}
+\end{figure}
 
-\includegraphics[height=18cm]{graphics/block.png}
 \cmnt{Blockschaltbild verändern, da init Backgroundgrid und GUI-Objekt vertauscht sind.}
 
 \subsubsection{Initialisierung}
@@ -791,7 +803,7 @@ Durch diese Matrix werden in Folge alle Zugberechnungen, KI-Berechnungen, etc. d
 \subsection{Zugmechanik und Local-Mode}
 \label{SUBSEC:LOCAL_MODE}
 
-Sobald das Spiel geladen und initialisiert ist, wird automatisch der ,,Local'' Spielmodus ausgewählt. Dies ist der Hotseat modus, indem man auf einem Device nacheinander spielt. Dieses eigentliche Spiel geschieht in einem Objekt der ,,BoardGui'' Klasse. Die BoardGui Klasse ist ein Canvas Objekt, also ein Objekt auf dem man zum Beispiel zeichnen kann. Diese Funktion wird ausgenutzt, um das Spielfeld zu zeichnen. Wie dies genau geschieht wird in \TODO erläutert.  \\
+Sobald das Spiel geladen und initialisiert ist, wird automatisch der ,,Local'' Spielmodus ausgewählt. Dies ist der Hotseat modus, indem man auf einem Device nacheinander spielt. Dieses eigentliche Spiel geschieht in einem Objekt der ,,BoardGui'' Klasse. Die BoardGui Klasse ist ein Canvas Objekt, also ein Objekt auf dem man zum Beispiel zeichnen kann. Diese Funktion wird ausgenutzt, um das Spielfeld zu zeichnen. Wie dies genau geschieht wird in \textbf{TODO} erläutert.  \\
 Nun ist der weiße Spieler an der Reihe. Welches Team an der Reihe ist, wird durch den Boolean ,,team'' bestimmt. Dieser Spielstand wird in einem Objekt der Backgroundgrid Klasse gespeichert. True bedeutet das der weiße Spieler am Zug ist, false das der Schwarze am Zug ist. \\
 Der Spieler kann nun die Figur anwählen, die er bewegen möchte, oder die linke Maustaste gedrückt halten und so die Figur über das Brett ,,schweben'' lassen. In dieser Position werden alle möglichen Bewegungen des Spielsteins angezeigt. Hier ist zu erwähnen, dass potentielle Angriffe anders dargestellt werden, wie eine Bewegung. \\
 Nun muss der Spieler nur noch das Feld, auf das er ziehen möchte klicken bzw. die Figur darüber absetzen. Der Move algorithmus berechnet nun ob dieser Zug auch möglich ist, falls dieser Zug erlaubt ist wird die Hintergrundmatrix entsprechend umgeschrieben, entsprechend den neuen Positionen der Figuren. \\
@@ -806,7 +818,7 @@ Der 1. Ansatz war somit nicht wirklich eine Klasse sondern auf viele Klassenvert
 Der 2. Ansatz bestand darin, alle Zugabfragen in einer Klasse zu implementieren. Dazu wurde dem Objekt dieser Klasse, die Koordinaten des zu bewegenden Spielsteines gegeben, wo dieser ist und wohin gezogen werden soll und das Spielfeld. Geprüft wird wieder, ob der Spielzug erlaubt ist. Auch geschieht die Abfrage, welcher Spielstein ausgewählt wurde wieder über eine extrige Klasse.\\ 
 Vorteile ergeben sich aus der Übersicht, das Problem mit der Performance hat sich auch weitestegehend gelöst. Das Problem mit der KI ist aber geblieben und nun ist ein weiteres Problem dazugekommen: Wenn man auf eine Figur klickt erscheinen alle Felder, auf die man ziehen kann. Dies ist mit dieser Implementierung der Move Klasse wiederum eine unmöglichkeit zu programmieren.\\[2ex]
 Der 3.Ansatz beschäftigt sich mit der Vorschau der möglichen Züge. Man gibt dem Objekt der Move Klasse einfach alles, was bereits im 2. Ansatz übergeben wurde. Nun wird aber ein int[][] aus möglichen Zügen zurückgegeben. Dies funktionierte ohne Probleme. \\
-Das einzige was als Problem deklariert werden kann, ist das dadurch das ,,DRY'' (Don´t repeat yourself) Prinzip verletzt wurde. In der Move Klasse ggab es nun einmal die Abfrage, ob der Zug erlaubt ist und einmal die Abfrage welche Züge erlaubt sind. Für die KI ist es von Vorteil, wenn sie alle möglichen Züge eines Spielsteines bekommt. Es sollte aber auch klar sein welcher Spielstein zuvor auf dem Feld stand, was durch diese Methode nur indirekt möglich ist. \\[2ex]
+Das einzige was als Problem deklariert werden kann, ist das dadurch das ,,DRY'' (Don't repeat yourself) Prinzip verletzt wurde. In der Move Klasse gab es nun einmal die Abfrage, ob der Zug erlaubt ist und einmal die Abfrage welche Züge erlaubt sind. Für die KI ist es von Vorteil, wenn sie alle möglichen Züge eines Spielsteines bekommt. Es sollte aber auch klar sein welcher Spielstein zuvor auf dem Feld stand, was durch diese Methode nur indirekt möglich ist. \\[2ex]
 Der 4.Ansatz nimmt sich allen diesen Problemen an, indem den 3. Ansatz ausbaut und eine neue ,,MovePos'' Klasse einführt. Die Move Klasse kann nun als eine Art Box verstanden werden: Man sagt der Move Methode welche Figur man ausgewählt hat und man erhält alle möglichen Züge als MovePos-ArrayList zurück. Der eigentliche Zug muss aber extern durchgeführt werden. \\
 Das Objekt der Klasse MovePos, beinhaltet die alte Position des Spielsteins, die neue Position, die ID des Spielsteins, die ID des Feldes auf das gezogen wurde und für die Rochade bzw. den En-Passant noch zwei weitere Informationen zu den Feldern, wo und was darauf war. \\
 Dadurch wird für die KI Berechnung, für die Zugüberprüfung und für das Anzeigen aller möglichen Züge die gleiche Basisstruktur der Zugberechnung verwendet. Der Unterschied besteht darin, dass die KI direkt die Zugberechnung aufruft währenddessen die Zugüberprüfung und das Anzeigen der möglichen Züge auf die Methode GetMove zurückgreift (überschreiben das Spielfeld).\\
@@ -841,7 +853,7 @@ public class Move{
 	//Methode fuer Spielerzug bzw. zum anzeigen aller moeglichen Positionen
 	public int[][] GetMove(Position und ID von Spielfigur, Objekt von Hintergrundmatrix){
 		...
-		//Die Differenz zwischen zuvor ausgewählter Figur und jetzt ausgewählten Zug Feld		
+		//Die Differenz zwischen zuvor ausgewaehlter Figur und jetzt ausgewaehlten Zug Feld		
 		iDif = iPos - _iSelect
 		//Wenn die Figur bewegt werden darf
 		if(_bSelect && iDif >= 50){
@@ -1012,7 +1024,7 @@ public class Move{
 	getter und setter Methoden fuer Private Variablen
 }
 \end{lstlisting}
-\lstset{language=German}
+%\lstset{language=German}
 
 \subsection{Schach und Schachmatt Abfrage:}
 \label{SUBSEC:checkmate}
@@ -1056,7 +1068,7 @@ private boolean Schach(Spielfeld, Lokation der Spielfigur auf die Schach angewen
 	return false;	
 }
 \end{lstlisting}
-\lstset{language=German}
+%\lstset{language=German}
 
 \subsubsection{Schachmatt}
 \label{SUBSUBSEC:checkmate}
@@ -1089,7 +1101,7 @@ private boolean Schachmatt(Spielfeld, ID und Postion des Koenigs, Backgroundgrid
 	}
 }
 \end{lstlisting}
-\lstset{language=German}
+%\lstset{language=German}
 
 
 \subsubsection{Schachking}
@@ -1120,7 +1132,7 @@ public boolean Schacking(team,Spielfeld,auf welche Figur/Position die Abfrage ge
 	}
 }
 \end{lstlisting}
-\lstset{language=German}
+%\lstset{language=German}
 
 \subsection{LAN-Mode}
 
@@ -1313,7 +1325,7 @@ Klasse AI-Logic:
 		
 	}	
 \end{lstlisting}
-\lstset{language=German}
+%\lstset{language=German}
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -1365,7 +1377,7 @@ Es wird ein RaspberryPI 3, eine mikro SD-Karte mit Raspbian, eine Stromversorgun
 	\item{Es muss OpenJFX gedownloaded werden. URL: https://chriswhocodes.com/}
 	\item{Hier die Version für den Raspberry PI downloaden (ARMv6)}
 	\item{Die gedownloadete OpenJFX Zip muss im Installationsverzeichnis ovn Java-JDK8 ,,unzipped'' werden.}
-	\item{In Commandline wird nun folgender Befehl ausgeführt: unzip openjfx-sdk-overlay-linux-arm6hf.zip -d /<installations-verzeichnis-von-Java (z.B.: /home/pi/jdk1.8.0_92)>}
+	\item{In Commandline wird nun folgender Befehl ausgeführt: unzip openjfx-sdk-overlay-linux-arm6hf.zip -d /<installations-verzeichnis-von-Java (z.B.: /home/pi/jdk1.8.0\_92)>}
 	\item{Nun wird das aktuelle Schachspiel gedownloaded (die Jar), URL: https://github.com/alexl4123/diplomarbeit/releases}
 	\item{Das Schachspiel wird in das Verzeichnis der Wahl abgelegt.}
 	\item{Nun kann das Schachspiel gestartet werden, dazu muss der Touchscreen aber noch konfiguriert werden, da sonst ein ,,interessanter'' Offset geschieht.}

@@ -1,12 +1,6 @@
 %xhversion{v2.01 RdF} %PdJ,PdL,PdM,PdS,PdU,Pe6,PeI,PfB,PfD,RbN,RbP,RcL,RdC,RdD,RdF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%	TODO:
-%	-Überarbeitung des Blockschaltbildes
-%	-MOVE Klasse
-%	-Wie funktioniert der LAN-Modus
-%	-AI-Möglichkeiten
-%	-Verwendete AI
-%	-Code-AI
+%TODO: -siehe GitHub-Projects
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	die auskommentierten 'usepackage'-Anweisungen sind
@@ -65,6 +59,18 @@
   %\usepackage{ulem}	... produziertma nFehler ban 'latex' run
 \usepackage{longtable}		% fuer tabellen ueber mehrere Seiten
 \usepackage{xcolor}
+\usepackage[ngerman]{babel}
+%\usepackage[demo]{graphicx}
+%\addto{\captionsngerman}{%
+  %\renewcommand*{\contentsname}{Inhaltsverzeichnis}
+  %\renewcommand*{\listfigurename}{Abbildungen}
+%  \renewcommand*{\listtablename}{Tabellen}
+  %\renewcommand*{\figurename}{Abb.}
+  %\renewcommand*{\tablename}{Tab.}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \definecolor{lightgrey}	{gray}{0.85}
 \definecolor{llltgy}	{gray}{0.98}
 \definecolor{lltgy}	{gray}{0.96}
@@ -316,10 +322,10 @@
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{\markright{#1}}
 \renewcommand{\subsubsectionmark}[1]{\markright{#1}}
-\lhead{}
-\chead{\HtlHeader{}}
-\rhead{}
-\lfoot{Beiser/Huber}
+\lhead{Diplomarbeit - JavaChess}
+\chead{}
+\rhead{Alexander Beiser, Marcel Huber}
+\lfoot{5CHEL-2018}
 \cfoot{\thesection-\rightmark}
 %\cfoot{\thesubsubsection-\rightmark}
 \rfoot[\thepage]{\thepage/\pageref{LastPage}}
@@ -436,7 +442,7 @@
 
 
 %====================================================================================
-\clearpage\vfill\newpage%\part{U-Lektionen \dq{}embedded Systems\dq{}}
+\newpage%\part{U-Lektionen \dq{}embedded Systems\dq{}}
 %====================================================================================
 
 \addcontentsline{toc}{section}{Erklaerung der Eigenstaendigkeit der Arbeit}
@@ -749,8 +755,13 @@ Java Chess nützt in Folge einige dieser Vorteile aus, vorallem Objektorientiert
 \label{SUBSUBSEC:BLOCKSCHALTBILD}
 
 Hier wird ein Einblick gegeben, wie Java Chess funktioniert. Dies geschieht Anhand von einem Blockschaltbild, welches Pakete bzw. Klassen beschreibt: 
+\begin{figure}
+  \centering
+   	\includegraphics[width=12cm]{graphics/block.png}
+  \caption{Das Blockschaltbild}
+  \label{fig:block}
+\end{figure}
 
-\includegraphics[height=18cm]{graphics/block.png}
 \cmnt{Blockschaltbild verändern, da init Backgroundgrid und GUI-Objekt vertauscht sind.}
 
 \subsubsection{Initialisierung}

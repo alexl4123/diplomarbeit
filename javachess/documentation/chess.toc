@@ -1,4 +1,5 @@
-\contentsline {section}{Erklaerung der Eigenstaendigkeit der Arbeit}{4}{section*.1}
+\babel@toc {ngerman}{}
+\contentsline {section}{Erkl\IeC {\"a}rung der Eigenst\IeC {\"a}ndigkeit der Arbeit}{4}{section*.1}
 \contentsline {section}{\numberline {1}Zusammenfassung des Projektergebnisses}{5}{section.1}
 \contentsline {subsection}{\numberline {1.1}Kurzfassung /Abstract}{5}{subsection.1.1}
 \contentsline {subsubsection}{\numberline {1.1.1}Alexander Beiser}{5}{subsubsection.1.1.1}
@@ -29,7 +30,7 @@
 \contentsline {subsubsection}{\numberline {4.4.1}Die Move Klasse - Funktion}{17}{subsubsection.4.4.1}
 \contentsline {subsubsection}{\numberline {4.4.2}Die Move Klasse - Code}{18}{subsubsection.4.4.2}
 \contentsline {subsection}{\numberline {4.5}Schach und Schachmatt Abfrage:}{23}{subsection.4.5}
-\contentsline {subsubsection}{\numberline {4.5.1}Schach}{24}{subsubsection.4.5.1}
+\contentsline {subsubsection}{\numberline {4.5.1}Schach}{23}{subsubsection.4.5.1}
 \contentsline {subsubsection}{\numberline {4.5.2}Schachmatt}{24}{subsubsection.4.5.2}
 \contentsline {subsubsection}{\numberline {4.5.3}Schachking}{25}{subsubsection.4.5.3}
 \contentsline {subsection}{\numberline {4.6}LAN-Mode}{26}{subsection.4.6}
