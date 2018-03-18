@@ -54,13 +54,13 @@
 \usepackage{multicol}		% 2-, 3-, ... -spaltige Formatierung mit 'multicols'
 \usepackage{multirow}		% fuer 'tabular' - Tabellen
 \usepackage{makeidx}
-  %\usepackage{pdfpages}	% fuer 'includepdf' (iNimmMeistens 'includegraphics[page=1,...]')
 \usepackage{mdwlist}		% f. 'compact lists' "itemize*", "enumerate*", "description*"
   %\usepackage{ulem}	... produziertma nFehler ban 'latex' run
 \usepackage{longtable}		% fuer tabellen ueber mehrere Seiten
 \usepackage{xcolor}
 \usepackage[ngerman]{babel}
 \usepackage[pdfborderstyle={/S/U/W 1}]{hyperref}
+\usepackage{float}
 %\usepackage[demo]{graphicx}
 %\addto{\captionsngerman}{%
   %\renewcommand*{\contentsname}{Inhaltsverzeichnis}
@@ -236,7 +236,6 @@
 \newcommand{\HtlHeader}[0]{%
 	\hspace*{-11mm}%
 	\raisebox{-1mm}{\logoB{0.12}}%
-	%\includegraphics[width=10.3mm]{pics/logo}
 	\hspace*{2mm}%
 	\parbox[b]{110mm}{\flushleft
 		{\fontsize{20pt}{20pt}\selectfont\bf HTL}
@@ -250,7 +249,6 @@
 		}
 	}%
 	\hspace*{5mm}%
-	%\raisebox{-0.2mm}{ \includegraphics[width=25mm]{pics/HTLgenlogo02}}
 	\\[-1.5mm]\rule{\textwidth}{0.5pt}
 	%\hfill
 }%HtlHeader
@@ -517,13 +515,14 @@
 %======================================================================================
 \clearpage\vfill\newpage
 %======================================================================================
+\cmnt{	
 	\vspace*{-10mm}\noindent%
 	{\Large\bf Inhaltsverzeichnis}\\
  \renewcommand{\theenumii}{\arabic{enumii}}
  \renewcommand{\labelenumii}{\theenumi.\theenumii}
  \renewcommand{\theenumiii}{\arabic{enumiii}}
  \renewcommand{\labelenumiii}{\theenumi.\theenumii.\theenumiii}
-\cmnt{
+
 {\yhbu
 	Formale und sprachliche Aspekte \dotfill i		\\
 	Zitierregeln \dotfill iv				\\
@@ -581,7 +580,8 @@
 \clearpage\vfill\newpage{}
 %=================================================================================
 
-\section{Lizenz:}
+\section{Lizenz}
+\label{SEC:licence}
 
 Das Schachprogramm wird unter der ,,Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License'' entwickelt. \\
 Dies räumt jeden Menschen folgende Rechte ein: 
@@ -594,7 +594,7 @@ Allerdings muss dies unter den folgenden Bedingungen geschehen:
 \begin{itemize}
 	\item{\textbf{Zuschreibung:} Man muss die Namen der Entwickler entsprechend anführen und angeben, ob Veränderungen gemacht wurden.}
 	\item{\textbf{Nicht kommerziell:} Das Programm darf nicht kommerziell benützt werden.}
-	\item{\textbf{Gleiche Lizenz:} Sobald Veränderungen gemacht wurden, muss die original Lizenz weiter verwendet werden. Auch darf nicht von der obigen genannten Lizenz abgewichen werden.}
+	\item{\textbf{Gleiche Lizenz:} Sobald Veränderungen gemacht wurden, muss die Originallizenz weiter verwendet werden. Auch darf nicht von der obigen genannten Lizenz abgewichen werden.}
 	\item{\textbf{Gesetzeskonform:} Das Programm darf nicht so verändert werden, dass die Nutzung illegal wird.}
 \end{itemize}
 
@@ -607,14 +607,15 @@ Allerdings muss dies unter den folgenden Bedingungen geschehen:
 %=================================================================================
 \setcounter{section}{0}
 \section{\sc Einleitung}
+\label{SEC:INTRODUCTION}
 
-	Alexander und Marcel sind beide begeisterte Schachspieler, womit die Entwicklung eines Schachspiels nahe liegt. Gegen Ende des 4.Jahres der HTL trafen sie die Entscheidung ein Schachspiel selber zu entwickeln und keine Diplomarbeit von einer Firma anzunehmen. Für die Entwicklung ihres Schachspiels, werden sie von ,,Elektrotechnik Beiser'' unterstüzt. Diese Firma übernimmt etwaige anfallende kosten für die Hardwarekomponenten.\\
+	Alexander Beiser und Marcel Huber sind beide begeisterte Schachspieler, womit die Entwicklung eines Schachspiels nahe liegt. Gegen Ende des 4.Jahres der HTL trafen sie die Entscheidung ein Schachspiel selber zu entwickeln und keine Diplomarbeit von einer Firma anzunehmen. Für die Entwicklung ihres Schachspiels werden sie von ,,Elektrotechnik Beiser'' unterstüzt. Diese Firma übernimmt die anfallenden Kosten für die Hardwarekomponenten.\\
 	Anfang der 5.Klasse der HTL kamen die Sondierungsgespräche mit ihrem Betreuer Ing. MSc. Signitzer Markus, 
-welcher Ihnen sagte was im Zuge dieser Diplomarbeit alles erledigt werden müsse. \\
-Durch die Gespräche kam man zum Schluss, dass für die Diplomarbeit ein Schachspiel in Java entwickelt werden muss und dieses auf einen RaspberryPI, als auch auf Android Geräte potiert werden soll. Weiteres wird eine Akkusteuerung für den RaspberryPI entwickelt und ein Gehäuse designed und mittels Schuleigenen 3D-Drucker ausgedruckt. \\
-	Die GUI des Spiels soll mit JavaFX erstellt werden. Das Spiel soll gegen eine selbstentwickelte Künstliche Intelligenz spielbar sein, im Hot Seat Modus oder im Local Area Network. \\
+welcher ihnen bekannt gab, was im Zuge dieser Diplomarbeit alles erledigt werden muss. \\
+Durch die Gespräche kam man zum Schluss, dass für die Diplomarbeit ein Schachspiel in Java entwickelt werden muss und dieses auf einen RaspberryPI, als auch auf Android Geräte potiert werden soll. Weiteres wird eine Akkusteuerung für den RaspberryPI entwickelt und ein Gehäuse designed und mittels schuleigenen 3D-Drucker ausgedruckt. \\
+	Die GUI des Spiels soll mit JavaFX erstellt werden. Das Spiel soll gegen eine selbstentwickelte künstliche Intelligenz spielbar sein, im Hot Seat Modus oder im Local Area Network. \\
 	Im Hot Seat Modus spielt man auf einem PC abwechselnt die Partien.
-	Details werden in einem Pflichtenheft festgehalten, dieses Pflichtenhet befindet sich im Anhang.
+	Details werden in einem Pflichtenheft festgehalten, dieses Pflichtenheft befindet sich im Anhang.
 	
 
 	{\yhbu
@@ -631,7 +632,7 @@ Implementierung des Schachspiels auf den Raspberry-PI, gleichzeitige designen de
  \subsection{Marcel Huber}
 	Entwicklung der Netzwerkfähigkeit und Implementierung von Java FX.
 Verbesserung und Weiterentwicklung der audio- und visuellen Gestaltung.
-Entwicklung der Android-App und Fertigung des Raspberry PI-Gehäuses
+Entwicklung der Android-App.
 
 
 %=================================================================================
@@ -639,25 +640,29 @@ Entwicklung der Android-App und Fertigung des Raspberry PI-Gehäuses
 %=================================================================================
 
 \section{Schach, eine Erklärung}
+\label{SEC:CHESS}
+
 \subsection{Was ist Schach?}
-Um den Aufbau des Programmes nachzuvollziehen zu können, sollten die Grundregeln des Schachspiels geläufig sein. Hier haben wir versucht, die wichtigsten kurz Zusammenzufassen. \\
+\label{SUBSEC:CHESS-EXPLAIN}
+Um den Aufbau des Programmes nach vollziehen zu können, sollten die Grundregeln des Schachspiels geläufig sein. Hier haben wir versucht, die wichtigsten Regeln kurz zusammenzufassen. \\
 Was ist Schach? \\
-Schach ist ein strategisches Brettspiel, indem es darum geht die feindliche Seite zuschlagen. Die feindliche Seite hat asbald verloren, wann der König gefallen ist. \\
+Schach ist ein strategisches Brettspiel, indem es darum geht die feindliche Seite zu schlagen. Die feindliche Seite hat verloren, wenn der König im Schachmatt steht. \\
 Der Name Schach kommt aus dem persichen ,,Schah'' und bedeutet so viel wie König, woher der Name ,,königliches Spiel'' stammt. \\
 Ursprünglich wurde das Spiel vermutlich in Nordindien erfunden und kam im Zuge der islamischen Expansion, von 630 bis ca. 750, nach Europa.
 
 
-\subsection{Spielregeln:}
+\subsection{Spielregeln}
+\label{SUBSEC:GAMERULES}
 
-Nach der 1.Erklärung was Schach ist, kommen wir zu den Spielregeln.
-Schach wird aufm einem 8*8 karierten Feld gespielt. Die Nummerrierung erfolgt horizontal durch das Alphabet, a bis h und vertikal durch Ziffern, 1 bis 8.
+Nach der ersten Erklärung was Schach ist, kommen wir zu den Spielregeln.
+Schach wird auf einem 8*8 karierten Feld gespielt. Die Nummerrierung erfolgt horizontal durch das Alphabet, a bis h und vertikal durch Ziffern, 1 bis 8.
 Zu Beginn gibt es zwei Teams, meist Weiß und Schwarz, mit jeweils 16 Figuren.
 Folgende Figuren sind zu Beginn am Feld:
 \begin{itemize}
 	\item{8 Bauern}
-	\item{2 Springern}
-	\item{2 Läufern}
-	\item{2 Türmen}
+	\item{2 Springer}
+	\item{2 Läufer}
+	\item{2 Türme}
 	\item{1 Dame}
 	\item{1 König}
 \end{itemize}
@@ -667,42 +672,47 @@ Patt Möglichkeiten:
 \begin{itemize}
 	\item{ entsteht wenn eine der Parteien keinen legalen Zug mehr ausführen kann }
 	\item{Durch ein ,,technisches Remis'', wenn außer den beiden Königen nur mehr ein Läufer oder Springer am Feld ist.}
-	\item{Wenn 50 Züge lang keine Spielfigur geschlagen oder ein Bauer bewegt wurde und der am Zug befindliche Spieler das Remis verkündet.}
+	\item{Wenn 50 Züge lang keine Spielfigur geschlagen oder kein Bauer bewegt wurde und der am Zug befindliche Spieler das Remis verkündet.}
 	\item{Wenn eine identische Stellung drei mal mit identischen Zugmöglichkeiten mindestens drei mal vorkommt, kann ein Spieler ein Remis beantragen.}
-	\item{Wenn 75 Züge lang keine Figur geschlagen bzw. ein Bauer gezogen wurde oder fünmal diesselbe Stellung mit gleichen Zugmöglichkeiten entstanden ist. Hierbei wird das Remis automatisch vom Schiedsrichter/Schachspiel eingeleitet.}
 \end{itemize}
 
 Nun folgen die Zugregeln:
 
-\subsubsection{Zugregel Bauer:}
+\subsubsection{Zugregel Bauer}
+\label{SUBSUBSEC:PAWN}
 \begin{itemize}
 	\item{Bauer darf einen Schritt nach vorne ziehen, wenn das Feld leer ist}
 	\item{Befindet sich der Bauer in der Ausgangsposition und wurde noch nicht gezogen, kann er auch wahlweise zwei Schritte vorrücken.}
 	\item{Der Bauer schlägt vorwärts diagonal ein Feld.}
 	\item{Spezialzug: ,,En Passant''. Dies kann er als einzige Spielfigur, wenn ein feindlicher Bauer zuvor einen Doppelschritt gemacht hat und somit den eigenen Bauern die Option nimmt, den gegnerischen Bauern anzugreifen. Falls er ausgeführt wird, ist der feindliche Bauer vernichtet und der eigene rückt diagonal ein Feld hinter den nicht mehr existierenden Bauern.}
-	\item{Sobald ein Bauer die gegnerische ,,Grundreihe'' erreicht, wird ein Bauerntausch durchgeführt. Hier muss der Bauer gegen Dame, Turm, Läufer oder einen Springer eingetauscht werden.}
+	\item{Sobald ein Bauer die gegnerische ,,Grundreihe'' erreicht, wird ein Bauerntausch durchgeführt. Hier muss der Bauer gegen eine Dame eingetauscht werden.}
 \end{itemize}
 
-\subsubsection{Zugregel Springer:}
+\subsubsection{Zugregel Springer}
+\label{SUBSUBSEC:JUMPER}
 \begin{itemize}
 	\item{Der Springer darf auf das Feld ziehen, dass zwei Felder horizontal bzw. diagonal und eines diagonal bzw. horizontal (gegengleich) versetzt ist. z.B.: Von  b8 auf c6}
 \end{itemize}
-\subsubsection{Zugregel Läufer:}
+\subsubsection{Zugregel Läufer}
+\label{SUBSUBSEC:BISHOP}
 \begin{itemize}
-	\item{Läufer dürfen diagonal, so weit wie sie wollen ziehen und schlagen. Jedoch darf er nicht über eine Figur ziehen.}
+	\item{Läufer dürfen diagonal, so weit wie sie wollen ziehen und schlagen, jedoch darf er nicht über eine Figur ziehen.}
 \end{itemize}
 
-\subsubsection{Zugregel Turm:}
+\subsubsection{Zugregel Turm}
+\label{SUBSUBSEC:ROOK}
 \begin{itemize}
 	\item{Ein Turm darf horizontal bzw. vertikal ziehen und schlagen wie weit er will, jedoch nicht über Figuren hinweg.}
 \end{itemize}
 
-\subsubsection{Zugregel Dame:}
+\subsubsection{Zugregel Dame}
+\label{SUBSUBSEC:QUEEN}
 \begin{itemize}
 	\item{Eine Dame darf horizontal, vertikal bzw. diagonal ziehen und schlagen so weit wie sie will, jedoch nicht über Figuren hinweg.}
 \end{itemize}
 
-\subsubsection{Zugregel König:}
+\subsubsection{Zugregel König}
+\label{SUBSUBSEC:KING}
 \begin{itemize}
 	\item{Der König kann horizontal, vertikal bzw. diagonal ein Feld ziehen.}
 	\item{Spezialzug: ,,Rochade''. Dabei wird der König entweder zwei Felder nach links, bzw. zwei Felder nach rechts bewegt. Der Turm bewegt sich dabei drei Felder nach rechts bzw. zwei Fleder nach links. König und Turm dürfen bis zu diesen Zug noch nicht bewegt worden sein, weiters darf keines der Felder über das sie ziehen, der König oder der Turm bedroht werden.}
@@ -711,7 +721,8 @@ Nun folgen die Zugregeln:
 
 %===========================================================================================
 
-\subsection{Schachmaschinen:}
+\subsection{Schachmaschinen}
+\label{SUBSUBSEC:CHESS-COMPUTERS}
 
 Seit dem es die Möglichkeit gibt einen Schachspielenden Mechanismus zu bauen, hat man dies auch getan. Zu Anfang war dies noch der ,,schachspielende Türke'', welcher 1769 von Wolfgang von Kempelen konstruiert wurde. \\ 
 Der richtige Durchbruch geschah aber erst durch die Erfindung des Computers. Die Hardware wurde immer Leistungsfähiger, wodurch der Mensch als Gegner immer weiter in Bedrängung geriet. 1997 schlug der von IBM speziell entwickelte Schachcomputer Deep Blue, den damaligen Schachweltmeister Kasparow, wodurch die Künstliche Intelligenz in diesem Bereich offiziell den Menschen überholt hat. \\
@@ -726,7 +737,10 @@ Heutzutage wird gegen Schachcomputer vor allem zu Trainingszwecken gespielt. Sol
 %===========================================================================================
 
 \section{Java Chess}
-\subsection{Einführung:}
+\label{SEC:JAVACHESS}
+
+\subsection{Einführung}
+\label{SUBSEC:JAVACHESS-INTRO}
 
 Bevor mit der Dokumentation des Programmcodes begonnen werden kann, werden zuerst einige Möglichkeiten beschrieben, wie ein Schachprogramm prinzipiell programmiert werden kann.
 
@@ -743,6 +757,7 @@ Falls das Brett die Position der Figuren kennt und diese Figuren lediglich über
 Wir entschieden uns für diese Lösung.
 
 \subsection{Java Chess - Übersicht}
+\label{SUBSEC:JAVACHESS-OVERVIEW}
 
 JavaChess ist in der Programmiersprache Java geschrieben. Java ist eine Objektorientierte, Klassenbasierte hochsprache der Informatik. Java hat den Vorteil, dass es nicht Hardware gebunden ist und somit ein Programm, geschrieben auf einer Distribution des Betriebssystems GNU/Linux auf (zumindest theoretisch) allen unterstüzten Systemen läuft. \\
 Somit können wir unser Spiel auch auf einem Raspberry-PI lauffähig machen. \\
@@ -755,15 +770,17 @@ Java Chess nützt in Folge einige dieser Vorteile aus, vorallem Objektorientiert
 \subsubsection{Blockschaltbild}
 \label{SUBSUBSEC:BLOCKSCHALTBILD}
 
-Hier wird ein Einblick gegeben, wie Java Chess funktioniert. Dies geschieht Anhand von einem Blockschaltbild, welches Pakete bzw. Klassen beschreibt: 
-\begin{figure}
+Hier wird ein Einblick gegeben, wie Java Chess funktioniert. Dies geschieht Anhand von einem Blockschaltbild, welches Pakete bzw. Klassen beschreibt: \\
+\vspace{1cm}
+
+
+\begin{figure}[H]
   \centering
-   	\includegraphics[width=12cm]{graphics/block.png}
+   	\includegraphics[width=14cm]{graphics/block.png}
   \caption{Das Blockschaltbild}
   \label{fig:block}
 \end{figure}
 
-\cmnt{Blockschaltbild verändern, da init Backgroundgrid und GUI-Objekt vertauscht sind.}
 
 \subsubsection{Initialisierung}
 \label{SUBSUBSEC:INIT}
@@ -782,20 +799,23 @@ Eine solche Zahl besteht aus 3-Ziffer, z.B.: 102. Diese ist der 2. weiße Bauer,
 Diese Matrix ist in einem Objekt von der ,,Background-Matrix'' gespeichert. \\
 Zu Beginn einer jeden Partie wird einmal die Startaufstellung im ,,Constructor'' der ,,Background-Matrix'' initialisiert:
 
-\begin{center}
-	\begin{tabular}{| c | c | c | c | c | c | c | c |}
-		\hline
-		110 & 120 	& 	130 & 140 	& 150 	& 131 	& 121 	& 	111 \\ \hline
-		101 & 102 	& 	103 & 	104 & 	105 & 	106 & 	107 & 	108 \\ \hline
-		0	&	0	& 	0	&	0	&	0	&	0	&	0	&	0	\\ \hline
-		0	&	0	& 	0	&	0	&	0	&	0	&	0	&	0 	\\ \hline
-		0	&	0	& 	0	&	0	&	0	&	0	&	0	&	0 	\\ \hline
-		0	&	0	& 	0	&	0	&	0	&	0	&	0	&	0 	\\ \hline
-		201 &	202 &	203	&	204	&	205	&	206	&	207	&	208	\\ \hline
-		210 & 	220	&	230	&	240	&	250	&	231	&	221	&	211 \\ 
-		\hline	
-	\end{tabular}
-\end{center}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{| c | c | c | c | c | c | c | c |}
+			\hline
+			110 & 120 	& 	130 & 140 	& 150 	& 131 	& 121 	& 	111 \\ \hline
+			101 & 102 	& 	103 & 	104 & 	105 & 	106 & 	107 & 	108 \\ \hline
+			0	&	0	& 	0	&	0	&	0	&	0	&	0	&	0	\\ \hline
+			0	&	0	& 	0	&	0	&	0	&	0	&	0	&	0 	\\ \hline
+			0	&	0	& 	0	&	0	&	0	&	0	&	0	&	0 	\\ \hline
+			0	&	0	& 	0	&	0	&	0	&	0	&	0	&	0 	\\ \hline
+			201 &	202 &	203	&	204	&	205	&	206	&	207	&	208	\\ \hline
+			210 & 	220	&	230	&	240	&	250	&	231	&	221	&	211 \\ 
+			\hline	
+		\end{tabular}
+		\caption{Repräsentation der Figuren}
+		\label{TABLE:REPRESENTATION-MEEPLES}
+	\end{table}
 
 Durch diese Matrix werden in Folge alle Zugberechnungen, KI-Berechnungen, etc. durchgeführt. \\
 
@@ -826,7 +846,6 @@ Dadurch wird für die KI Berechnung, für die Zugüberprüfung und für das Anze
 
 \subsubsection{Die Move Klasse - Code}
 \label{SUBSUBSEC:MOVECODE}
-%TODO
 
 
 Die Move Klasse beinhaltet momentan ca. 1400 Zeilen Code. \\
@@ -1026,7 +1045,7 @@ public class Move{
 \end{lstlisting}
 %\lstset{language=German}
 
-\subsection{Schach und Schachmatt Abfrage:}
+\subsection{Schach, Schachmatt und Patt Abfrage}
 \label{SUBSEC:checkmate}
 
 Die Schachmatt Abfrage teilt sich in drei Methoden innerhalb der Backgroundgrid Klasse auf:
@@ -1107,7 +1126,7 @@ private boolean Schachmatt(Spielfeld, ID und Postion des Koenigs, Backgroundgrid
 \subsubsection{Schachking}
 \label{SUBSUBSEC:checkking}
 
-Schachking wird immer am Ende eines Zuges aufgerufen und überprüft ob ein Team Schachmatt ist. Falls dieser nicht Schach oder Schachmatt ist, wird nachgesehen ob eine Patt Situation vorrherrscht. Dies geschieht in der Draw Methode. \\
+Die Schachking Methode wird immer am Ende eines Zuges aufgerufen und überprüft ob ein Team Schachmatt ist. Falls dieser nicht Schach oder Schachmatt ist, wird nachgesehen ob eine Patt Situation vorherrscht. Dies geschieht in der Draw Methode. \\
 Falls ein Team Schach ist wird nachgesehen ob dieser auch Schachmatt ist. \\
 Pseudo Code:
 
@@ -1133,6 +1152,65 @@ public boolean Schacking(team,Spielfeld,auf welche Figur/Position die Abfrage ge
 }
 \end{lstlisting}
 %\lstset{language=German}
+
+\subsubsection{DRAW (Patt)}
+\label{SUBSUBSEC:draw}
+
+Die CalcDraw() Methode überprüft, ob ein Unentschieden entstanden ist. Welche Möglichkeiten für ein Unentschieden es gibt befindet sich in den \nameref{SUBSEC:GAMERULES}. \\
+Zuerst wird gezählt wie viele Figuren das jeweilige Team noch hat. Wenn nur mehr der König übrig ist, wird überprüft ob ein Patt vorherrscht. Es werden alle möglichen Züge des Königs durch simuliert und falls kein gültiger dabei ist, herrscht ein Patt vor. \\
+Weiters wird geprüft, ob sich ein Matt durch zu wenige Spielfiguren ergeben hat, falls dies ebenso nicht der Fall ist werden noch threefold Repetition und die 50 Zug Regel überprüft. \\[2ex]
+Die Methode CalcDraw() ist eine Methode mit einem private Zugriffsmodifikator, womit nur Programmcode innerhalb der BackgroundGrid Klasse darauf Zugriff hat. Die Methode ist eine Erweiterung der SchachKing() Methode, womit diese auch von dort aufgerufen wird. \\
+Der Rückgabetyp der Methode ist ein boolean, welches true ergibt wenn ein Unentschieden vorliegt und false im anderen Fall.
+
+ \subsubsection{DRAW (Code)}
+ \label{SUBSUBSEC:DRAW-CODE}
+
+Folgende Dokumentation des Codes geschieht als Pseudo-Code. Die Kommentare geschehen in Englisch.
+
+\textbf{\lstset{language=Java}}
+\begin{lstlisting}
+private boolean CalcDraw(int iID, int[][] iBackground, int KingX, int KingY, boolean team, BackgroundGrid BGG ){
+	
+	int iSum1 = CountMeeplesForTeamWhite;
+	int iSum2 = CountMeeplesForTeamBlack;
+	
+	if(only King alive - with right team){
+		ArrayList-Typ-MovePos KingMoves = GetAllPossibleKingMoves;
+		for(MovePos MP : KingMoves){ 
+			//foreach
+			SimulateAllMoves;
+			if(!SchachAtOneMove){
+				return false;
+			}		
+		}		
+	} else if(Only very few Meeples left, so no CheckMate may occur){
+		return true;		
+	}
+	
+	if(TurnRound >= 50){
+		iMeeples = CurrentTotalMeepleCount;
+		
+		for(simLast50Turns){
+			iMeepleRef = TotalMeepleCountAtRoundX;
+			
+			if(iMeepleRef == iMeeples for the last 50 turns){
+				return true;
+			}
+			if(APawnHasMovedRelativeToTheCurrentBoardState){
+				return false;
+			}
+		}
+		
+	}else if(TurnRound >= 6){
+	BoardStates = getAllBoardStates;
+	
+	if(OneBoardStateOccursThreeTime){
+		APlayerCanClaimDrawByThreefoldRepetition;	
+		returned value depends on player decision;
+	}
+	}
+}
+\end{lstlisting}
 
 \subsection{LAN-Mode}
 
@@ -1184,7 +1262,13 @@ Im weiteren Sinne ist dies der Grund warum solche künstlichen Intelligenzen geg
 
 In den Kapiteln \ref{SUBSUBSEC:GenAI} und \ref{SUBSUBSEC:OurAI} wurde erwähnt, dass die JavaChess AI nach dem Min-Max Prinzip funktioniert, nur was ist dieses Prinzip?
 
-\includegraphics[width=16cm]{graphics/MinMax.jpg}
+\begin{figure}[H]
+  \centering
+   	\includegraphics[width=16cm]{graphics/MinMax.jpg}
+  \caption{Min-Max}
+  \label{FIG:MINMAX}
+\end{figure}
+
 
 MinMax ist nichts anderes, als das Erhalten des bestmöglichen Ergebnisses für einen Spieler, wenn die Züge des Gegenspielers miteingerechnet werden. In diesem Beispiel haben wir zwei Teams, Weiß und Schwarz. Diese sind durch die weißen Blasen erkenntlich. Weiters gilt für ein kompetitives Spiel wie Schach, dass das weiße Team immer ihr bestes Ergebnis herausholen möchte und das Schwarze auch ihres. Die Zahlen repräsentieren die Günstigkeit der Stellung für das weiße Team, wobei 10 die best mögliche Stellung ist und 1 die schlechteste. Für das schwarze Team ist dies umgekehrt, für sie ist 10 das schlechteste Ergebnis und 1 das Beste. \\
 Somit wird das schwarze Team immer das kleinere Ergebnis nehmen, quasi das MINIMUM herausholen (=Min) und die Weißen immer das höchstmögliche, also das MAXIMUM (=Max). Daher auch der Name, MinMax. \\
@@ -1728,7 +1812,6 @@ Es wird ein RaspberryPI 3, eine mikro SD-Karte mit Raspbian, eine Stromversorgun
 	%\fbox{\parbox{0.9\linewidth}{ \rule{0pt}{80mm} }}\hfill
 	\\[2mm]
 	\hspace*{12mm}
-	%\includegraphics[width=0.83\linewidth]{imgs/msproj01.png}
 	\rule{37mm}{0pt} Abbildung 2: Projektzeitplan
 
  \subsection{Projektpersonalplanung und Kostenplanung}

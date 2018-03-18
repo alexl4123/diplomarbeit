@@ -4,23 +4,23 @@
 \BOOKMARK [3][-]{subsubsection.1.1.1}{Alexander Beiser}{subsection.1.1}% 4
 \BOOKMARK [3][-]{subsubsection.1.1.2}{Marcel Huber}{subsection.1.1}% 5
 \BOOKMARK [2][-]{subsection.1.2}{Projektergebnis}{section.1}% 6
-\BOOKMARK [1][-]{section.2}{Lizenz:}{}% 7
+\BOOKMARK [1][-]{section.2}{Lizenz}{}% 7
 \BOOKMARK [1][-]{section.1}{Einleitung}{}% 8
 \BOOKMARK [1][-]{section.2}{Vertiefende Aufgabenstellung}{}% 9
 \BOOKMARK [2][-]{subsection.2.1}{Alexander Beiser}{section.2}% 10
 \BOOKMARK [2][-]{subsection.2.2}{Marcel Huber}{section.2}% 11
 \BOOKMARK [1][-]{section.3}{Schach, eine Erkl\344rung}{}% 12
 \BOOKMARK [2][-]{subsection.3.1}{Was ist Schach?}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.2}{Spielregeln:}{section.3}% 14
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Zugregel Bauer:}{subsection.3.2}% 15
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Zugregel Springer:}{subsection.3.2}% 16
-\BOOKMARK [3][-]{subsubsection.3.2.3}{Zugregel L\344ufer:}{subsection.3.2}% 17
-\BOOKMARK [3][-]{subsubsection.3.2.4}{Zugregel Turm:}{subsection.3.2}% 18
-\BOOKMARK [3][-]{subsubsection.3.2.5}{Zugregel Dame:}{subsection.3.2}% 19
-\BOOKMARK [3][-]{subsubsection.3.2.6}{Zugregel K\366nig:}{subsection.3.2}% 20
-\BOOKMARK [2][-]{subsection.3.3}{Schachmaschinen:}{section.3}% 21
+\BOOKMARK [2][-]{subsection.3.2}{Spielregeln}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Zugregel Bauer}{subsection.3.2}% 15
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Zugregel Springer}{subsection.3.2}% 16
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Zugregel L\344ufer}{subsection.3.2}% 17
+\BOOKMARK [3][-]{subsubsection.3.2.4}{Zugregel Turm}{subsection.3.2}% 18
+\BOOKMARK [3][-]{subsubsection.3.2.5}{Zugregel Dame}{subsection.3.2}% 19
+\BOOKMARK [3][-]{subsubsection.3.2.6}{Zugregel K\366nig}{subsection.3.2}% 20
+\BOOKMARK [2][-]{subsection.3.3}{Schachmaschinen}{section.3}% 21
 \BOOKMARK [1][-]{section.4}{Java Chess}{}% 22
-\BOOKMARK [2][-]{subsection.4.1}{Einf\374hrung:}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.1}{Einf\374hrung}{section.4}% 23
 \BOOKMARK [2][-]{subsection.4.2}{Java Chess - \334bersicht}{section.4}% 24
 \BOOKMARK [3][-]{subsubsection.4.2.1}{Blockschaltbild}{subsection.4.2}% 25
 \BOOKMARK [3][-]{subsubsection.4.2.2}{Initialisierung}{subsection.4.2}% 26
@@ -28,45 +28,47 @@
 \BOOKMARK [2][-]{subsection.4.4}{Zugmechanik und Local-Mode}{section.4}% 28
 \BOOKMARK [3][-]{subsubsection.4.4.1}{Die Move Klasse - Funktion}{subsection.4.4}% 29
 \BOOKMARK [3][-]{subsubsection.4.4.2}{Die Move Klasse - Code}{subsection.4.4}% 30
-\BOOKMARK [2][-]{subsection.4.5}{Schach und Schachmatt Abfrage:}{section.4}% 31
+\BOOKMARK [2][-]{subsection.4.5}{Schach, Schachmatt und Patt Abfrage}{section.4}% 31
 \BOOKMARK [3][-]{subsubsection.4.5.1}{Schach}{subsection.4.5}% 32
 \BOOKMARK [3][-]{subsubsection.4.5.2}{Schachmatt}{subsection.4.5}% 33
 \BOOKMARK [3][-]{subsubsection.4.5.3}{Schachking}{subsection.4.5}% 34
-\BOOKMARK [2][-]{subsection.4.6}{LAN-Mode}{section.4}% 35
-\BOOKMARK [2][-]{subsection.4.7}{AI-Mode}{section.4}% 36
-\BOOKMARK [3][-]{subsubsection.4.7.1}{Prinzipielle Moeglichkeiten einer AI}{subsection.4.7}% 37
-\BOOKMARK [3][-]{subsubsection.4.7.2}{Verwendete Schach-AI-Funktion}{subsection.4.7}% 38
-\BOOKMARK [3][-]{subsubsection.4.7.3}{Der MinMax-Algorithmus:}{subsection.4.7}% 39
-\BOOKMARK [3][-]{subsubsection.4.7.4}{Code}{subsection.4.7}% 40
-\BOOKMARK [1][-]{section.5}{ChessPI}{}% 41
-\BOOKMARK [2][-]{subsection.5.1}{RaspberryPI}{section.5}% 42
-\BOOKMARK [2][-]{subsection.5.2}{Touchscreen}{section.5}% 43
-\BOOKMARK [2][-]{subsection.5.3}{Implementierung von JavaChess}{section.5}% 44
-\BOOKMARK [1][-]{section.6}{Akkusteuerung}{}% 45
-\BOOKMARK [1][-]{section.7}{Geh\344use}{}% 46
-\BOOKMARK [1][-]{section.8}{Android}{}% 47
-\BOOKMARK [1][-]{section.9}{Fertigungsdokumentation}{}% 48
-\BOOKMARK [1][-]{section.10}{Benutzerdokumentation}{}% 49
-\BOOKMARK [2][-]{subsection.10.1}{Installationsanleitung}{section.10}% 50
-\BOOKMARK [2][-]{subsection.10.2}{Anwendungsbeispiele}{section.10}% 51
-\BOOKMARK [2][-]{subsection.10.3}{Referenzhandbuch}{section.10}% 52
-\BOOKMARK [2][-]{subsection.10.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.10}% 53
-\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 54
-\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 55
-\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 56
-\BOOKMARK [1][-]{appendix.F}{Pflichtenheft}{}% 57
-\BOOKMARK [2][-]{subsection.F.1}{Funktionale Anforderungen}{appendix.F}% 58
-\BOOKMARK [2][-]{subsection.F.2}{Schnittstellen}{appendix.F}% 59
-\BOOKMARK [2][-]{subsection.F.3}{Abnahmekriterien}{appendix.F}% 60
-\BOOKMARK [2][-]{subsection.F.4}{Dokumentationsanforderungen}{appendix.F}% 61
-\BOOKMARK [2][-]{subsection.F.5}{Qualit\344tsstandards}{appendix.F}% 62
-\BOOKMARK [2][-]{subsection.F.6}{Abwicklungsprozess}{appendix.F}% 63
-\BOOKMARK [1][-]{appendix.G}{Zusammenfassung}{}% 64
-\BOOKMARK [2][-]{subsection.G.1}{Schlussfolgerung / Projekterfahrung}{appendix.G}% 65
-\BOOKMARK [2][-]{subsection.G.2}{Projektterminplanung}{appendix.G}% 66
-\BOOKMARK [2][-]{subsection.G.3}{Projektpersonalplanung und Kostenplanung}{appendix.G}% 67
-\BOOKMARK [3][-]{subsubsection.G.3.1}{Projektkostenplan}{subsection.G.3}% 68
-\BOOKMARK [3][-]{subsubsection.G.3.2}{Arbeitsnachweis Diplomarbeit}{subsection.G.3}% 69
-\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.G.3.2}% 70
-\BOOKMARK [3][-]{subsubsection.G.3.3}{Leistungscontrolling}{subsection.G.3}% 71
-\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.G.3.3}% 72
+\BOOKMARK [3][-]{subsubsection.4.5.4}{DRAW \(Patt\)}{subsection.4.5}% 35
+\BOOKMARK [3][-]{subsubsection.4.5.5}{DRAW \(Code\)}{subsection.4.5}% 36
+\BOOKMARK [2][-]{subsection.4.6}{LAN-Mode}{section.4}% 37
+\BOOKMARK [2][-]{subsection.4.7}{AI-Mode}{section.4}% 38
+\BOOKMARK [3][-]{subsubsection.4.7.1}{Prinzipielle Moeglichkeiten einer AI}{subsection.4.7}% 39
+\BOOKMARK [3][-]{subsubsection.4.7.2}{Verwendete Schach-AI-Funktion}{subsection.4.7}% 40
+\BOOKMARK [3][-]{subsubsection.4.7.3}{Der MinMax-Algorithmus:}{subsection.4.7}% 41
+\BOOKMARK [3][-]{subsubsection.4.7.4}{Code}{subsection.4.7}% 42
+\BOOKMARK [1][-]{section.5}{ChessPI}{}% 43
+\BOOKMARK [2][-]{subsection.5.1}{RaspberryPI}{section.5}% 44
+\BOOKMARK [2][-]{subsection.5.2}{Touchscreen}{section.5}% 45
+\BOOKMARK [2][-]{subsection.5.3}{Implementierung von JavaChess}{section.5}% 46
+\BOOKMARK [1][-]{section.6}{Akkusteuerung}{}% 47
+\BOOKMARK [1][-]{section.7}{Geh\344use}{}% 48
+\BOOKMARK [1][-]{section.8}{Android}{}% 49
+\BOOKMARK [1][-]{section.9}{Fertigungsdokumentation}{}% 50
+\BOOKMARK [1][-]{section.10}{Benutzerdokumentation}{}% 51
+\BOOKMARK [2][-]{subsection.10.1}{Installationsanleitung}{section.10}% 52
+\BOOKMARK [2][-]{subsection.10.2}{Anwendungsbeispiele}{section.10}% 53
+\BOOKMARK [2][-]{subsection.10.3}{Referenzhandbuch}{section.10}% 54
+\BOOKMARK [2][-]{subsection.10.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.10}% 55
+\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 56
+\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 57
+\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 58
+\BOOKMARK [1][-]{appendix.F}{Pflichtenheft}{}% 59
+\BOOKMARK [2][-]{subsection.F.1}{Funktionale Anforderungen}{appendix.F}% 60
+\BOOKMARK [2][-]{subsection.F.2}{Schnittstellen}{appendix.F}% 61
+\BOOKMARK [2][-]{subsection.F.3}{Abnahmekriterien}{appendix.F}% 62
+\BOOKMARK [2][-]{subsection.F.4}{Dokumentationsanforderungen}{appendix.F}% 63
+\BOOKMARK [2][-]{subsection.F.5}{Qualit\344tsstandards}{appendix.F}% 64
+\BOOKMARK [2][-]{subsection.F.6}{Abwicklungsprozess}{appendix.F}% 65
+\BOOKMARK [1][-]{appendix.G}{Zusammenfassung}{}% 66
+\BOOKMARK [2][-]{subsection.G.1}{Schlussfolgerung / Projekterfahrung}{appendix.G}% 67
+\BOOKMARK [2][-]{subsection.G.2}{Projektterminplanung}{appendix.G}% 68
+\BOOKMARK [2][-]{subsection.G.3}{Projektpersonalplanung und Kostenplanung}{appendix.G}% 69
+\BOOKMARK [3][-]{subsubsection.G.3.1}{Projektkostenplan}{subsection.G.3}% 70
+\BOOKMARK [3][-]{subsubsection.G.3.2}{Arbeitsnachweis Diplomarbeit}{subsection.G.3}% 71
+\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.G.3.2}% 72
+\BOOKMARK [3][-]{subsubsection.G.3.3}{Leistungscontrolling}{subsection.G.3}% 73
+\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.G.3.3}% 74
