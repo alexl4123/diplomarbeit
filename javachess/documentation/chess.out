@@ -23,52 +23,85 @@
 \BOOKMARK [2][-]{subsection.4.1}{Einf\374hrung}{section.4}% 23
 \BOOKMARK [2][-]{subsection.4.2}{Java Chess - \334bersicht}{section.4}% 24
 \BOOKMARK [3][-]{subsubsection.4.2.1}{Blockschaltbild}{subsection.4.2}% 25
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Initialisierung}{subsection.4.2}% 26
-\BOOKMARK [2][-]{subsection.4.3}{Repr\344sentation der Figuren:}{section.4}% 27
-\BOOKMARK [2][-]{subsection.4.4}{Zugmechanik und Local-Mode}{section.4}% 28
-\BOOKMARK [3][-]{subsubsection.4.4.1}{Die Move Klasse - Funktion}{subsection.4.4}% 29
-\BOOKMARK [3][-]{subsubsection.4.4.2}{Die Move Klasse - Code}{subsection.4.4}% 30
-\BOOKMARK [2][-]{subsection.4.5}{Schach, Schachmatt und Patt Abfrage}{section.4}% 31
-\BOOKMARK [3][-]{subsubsection.4.5.1}{Schach}{subsection.4.5}% 32
-\BOOKMARK [3][-]{subsubsection.4.5.2}{Schachmatt}{subsection.4.5}% 33
-\BOOKMARK [3][-]{subsubsection.4.5.3}{Schachking}{subsection.4.5}% 34
-\BOOKMARK [3][-]{subsubsection.4.5.4}{DRAW \(Patt\)}{subsection.4.5}% 35
-\BOOKMARK [3][-]{subsubsection.4.5.5}{DRAW \(Code\)}{subsection.4.5}% 36
-\BOOKMARK [2][-]{subsection.4.6}{LAN-Mode}{section.4}% 37
-\BOOKMARK [2][-]{subsection.4.7}{AI-Mode}{section.4}% 38
-\BOOKMARK [3][-]{subsubsection.4.7.1}{Prinzipielle Moeglichkeiten einer AI}{subsection.4.7}% 39
-\BOOKMARK [3][-]{subsubsection.4.7.2}{Verwendete Schach-AI-Funktion}{subsection.4.7}% 40
-\BOOKMARK [3][-]{subsubsection.4.7.3}{Der MinMax-Algorithmus:}{subsection.4.7}% 41
-\BOOKMARK [3][-]{subsubsection.4.7.4}{Code}{subsection.4.7}% 42
-\BOOKMARK [1][-]{section.5}{ChessPI}{}% 43
-\BOOKMARK [2][-]{subsection.5.1}{RaspberryPI}{section.5}% 44
-\BOOKMARK [2][-]{subsection.5.2}{Touchscreen}{section.5}% 45
-\BOOKMARK [2][-]{subsection.5.3}{Implementierung von JavaChess}{section.5}% 46
-\BOOKMARK [1][-]{section.6}{Akkusteuerung}{}% 47
-\BOOKMARK [1][-]{section.7}{Geh\344use}{}% 48
-\BOOKMARK [1][-]{section.8}{Android}{}% 49
-\BOOKMARK [1][-]{section.9}{Fertigungsdokumentation}{}% 50
-\BOOKMARK [1][-]{section.10}{Benutzerdokumentation}{}% 51
-\BOOKMARK [2][-]{subsection.10.1}{Installationsanleitung}{section.10}% 52
-\BOOKMARK [2][-]{subsection.10.2}{Anwendungsbeispiele}{section.10}% 53
-\BOOKMARK [2][-]{subsection.10.3}{Referenzhandbuch}{section.10}% 54
-\BOOKMARK [2][-]{subsection.10.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.10}% 55
-\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 56
-\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 57
-\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 58
-\BOOKMARK [1][-]{appendix.F}{Pflichtenheft}{}% 59
-\BOOKMARK [2][-]{subsection.F.1}{Funktionale Anforderungen}{appendix.F}% 60
-\BOOKMARK [2][-]{subsection.F.2}{Schnittstellen}{appendix.F}% 61
-\BOOKMARK [2][-]{subsection.F.3}{Abnahmekriterien}{appendix.F}% 62
-\BOOKMARK [2][-]{subsection.F.4}{Dokumentationsanforderungen}{appendix.F}% 63
-\BOOKMARK [2][-]{subsection.F.5}{Qualit\344tsstandards}{appendix.F}% 64
-\BOOKMARK [2][-]{subsection.F.6}{Abwicklungsprozess}{appendix.F}% 65
-\BOOKMARK [1][-]{appendix.G}{Zusammenfassung}{}% 66
-\BOOKMARK [2][-]{subsection.G.1}{Schlussfolgerung / Projekterfahrung}{appendix.G}% 67
-\BOOKMARK [2][-]{subsection.G.2}{Projektterminplanung}{appendix.G}% 68
-\BOOKMARK [2][-]{subsection.G.3}{Projektpersonalplanung und Kostenplanung}{appendix.G}% 69
-\BOOKMARK [3][-]{subsubsection.G.3.1}{Projektkostenplan}{subsection.G.3}% 70
-\BOOKMARK [3][-]{subsubsection.G.3.2}{Arbeitsnachweis Diplomarbeit}{subsection.G.3}% 71
-\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.G.3.2}% 72
-\BOOKMARK [3][-]{subsubsection.G.3.3}{Leistungscontrolling}{subsection.G.3}% 73
-\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.G.3.3}% 74
+\BOOKMARK [2][-]{subsection.4.3}{Package- und Klassen\374bersicht}{section.4}% 26
+\BOOKMARK [3][-]{subsubsection.4.3.1}{audio}{subsection.4.3}% 27
+\BOOKMARK [3][-]{subsubsection.4.3.2}{backgroundmatrix}{subsection.4.3}% 28
+\BOOKMARK [3][-]{subsubsection.4.3.3}{game}{subsection.4.3}% 29
+\BOOKMARK [3][-]{subsubsection.4.3.4}{gui}{subsection.4.3}% 30
+\BOOKMARK [3][-]{subsubsection.4.3.5}{images}{subsection.4.3}% 31
+\BOOKMARK [3][-]{subsubsection.4.3.6}{launchpad}{subsection.4.3}% 32
+\BOOKMARK [3][-]{subsubsection.4.3.7}{network}{subsection.4.3}% 33
+\BOOKMARK [3][-]{subsubsection.4.3.8}{saveload}{subsection.4.3}% 34
+\BOOKMARK [3][-]{subsubsection.4.3.9}{start}{subsection.4.3}% 35
+\BOOKMARK [2][-]{subsection.4.4}{Initialisierung}{section.4}% 36
+\BOOKMARK [2][-]{subsection.4.5}{Repr\344sentation der Figuren:}{section.4}% 37
+\BOOKMARK [2][-]{subsection.4.6}{Zugmechanik und Local-Mode}{section.4}% 38
+\BOOKMARK [3][-]{subsubsection.4.6.1}{Die Move Klasse - Funktion}{subsection.4.6}% 39
+\BOOKMARK [3][-]{subsubsection.4.6.2}{Die Move Klasse - Code}{subsection.4.6}% 40
+\BOOKMARK [2][-]{subsection.4.7}{Schach, Schachmatt und Patt Abfrage}{section.4}% 41
+\BOOKMARK [3][-]{subsubsection.4.7.1}{Schach}{subsection.4.7}% 42
+\BOOKMARK [3][-]{subsubsection.4.7.2}{Schachmatt}{subsection.4.7}% 43
+\BOOKMARK [3][-]{subsubsection.4.7.3}{Schachking}{subsection.4.7}% 44
+\BOOKMARK [3][-]{subsubsection.4.7.4}{DRAW \(Patt\)}{subsection.4.7}% 45
+\BOOKMARK [3][-]{subsubsection.4.7.5}{DRAW \(Code\)}{subsection.4.7}% 46
+\BOOKMARK [2][-]{subsection.4.8}{LAN-Mode}{section.4}% 47
+\BOOKMARK [3][-]{subsubsection.4.8.1}{Netzwerkprogrammierung unter Java}{subsection.4.8}% 48
+\BOOKMARK [3][-]{subsubsection.4.8.2}{Verbindungsvorgang des Clients}{subsection.4.8}% 49
+\BOOKMARK [3][-]{subsubsection.4.8.3}{Verbingdungsvorgang des Hosts}{subsection.4.8}% 50
+\BOOKMARK [3][-]{subsubsection.4.8.4}{Spielfluss im LAN-Modus}{subsection.4.8}% 51
+\BOOKMARK [3][-]{subsubsection.4.8.5}{Beenden einer Verbindung}{subsection.4.8}% 52
+\BOOKMARK [3][-]{subsubsection.4.8.6}{Das Heartbeat - System}{subsection.4.8}% 53
+\BOOKMARK [2][-]{subsection.4.9}{AI-Mode}{section.4}% 54
+\BOOKMARK [3][-]{subsubsection.4.9.1}{Prinzipielle M\366glichkeiten einer AI}{subsection.4.9}% 55
+\BOOKMARK [3][-]{subsubsection.4.9.2}{Verwendete Schach-AI-Funktion}{subsection.4.9}% 56
+\BOOKMARK [3][-]{subsubsection.4.9.3}{Der MinMax-Algorithmus:}{subsection.4.9}% 57
+\BOOKMARK [3][-]{subsubsection.4.9.4}{Code}{subsection.4.9}% 58
+\BOOKMARK [1][-]{section.5}{ChessPI}{}% 59
+\BOOKMARK [2][-]{subsection.5.1}{RaspberryPI}{section.5}% 60
+\BOOKMARK [2][-]{subsection.5.2}{Touchscreen}{section.5}% 61
+\BOOKMARK [2][-]{subsection.5.3}{Implementierung von JavaChess}{section.5}% 62
+\BOOKMARK [1][-]{section.6}{Akkusteuerung}{}% 63
+\BOOKMARK [2][-]{subsection.6.1}{Kenngr\366\337en des ben\366tigten Akkumulators}{section.6}% 64
+\BOOKMARK [2][-]{subsection.6.2}{W\344hlen des Akkumulators}{section.6}% 65
+\BOOKMARK [2][-]{subsection.6.3}{Der Li-Ion Akku}{section.6}% 66
+\BOOKMARK [2][-]{subsection.6.4}{Idee der 1. Akkusteuerungsschaltung}{section.6}% 67
+\BOOKMARK [3][-]{subsubsection.6.4.1}{Laden der Akkus}{subsection.6.4}% 68
+\BOOKMARK [3][-]{subsubsection.6.4.2}{Entladen der Akkus}{subsection.6.4}% 69
+\BOOKMARK [3][-]{subsubsection.6.4.3}{Seriell-Parallel Schaltung}{subsection.6.4}% 70
+\BOOKMARK [3][-]{subsubsection.6.4.4}{Sicherheit}{subsection.6.4}% 71
+\BOOKMARK [3][-]{subsubsection.6.4.5}{Schaltung}{subsection.6.4}% 72
+\BOOKMARK [3][-]{subsubsection.6.4.6}{Messung}{subsection.6.4}% 73
+\BOOKMARK [2][-]{subsection.6.5}{Idee der 2. Akkusteuerungsschaltung}{section.6}% 74
+\BOOKMARK [3][-]{subsubsection.6.5.1}{Laden der Akkus}{subsection.6.5}% 75
+\BOOKMARK [3][-]{subsubsection.6.5.2}{Entladen der Akkus}{subsection.6.5}% 76
+\BOOKMARK [3][-]{subsubsection.6.5.3}{Sicherheit}{subsection.6.5}% 77
+\BOOKMARK [3][-]{subsubsection.6.5.4}{Messung}{subsection.6.5}% 78
+\BOOKMARK [3][-]{subsubsection.6.5.5}{Schaltung}{subsection.6.5}% 79
+\BOOKMARK [2][-]{subsection.6.6}{Verwendete L\366sung}{section.6}% 80
+\BOOKMARK [1][-]{section.7}{Geh\344use}{}% 81
+\BOOKMARK [1][-]{section.8}{Android}{}% 82
+\BOOKMARK [1][-]{section.9}{Fertigungsdokumentation}{}% 83
+\BOOKMARK [1][-]{section.10}{Benutzerdokumentation}{}% 84
+\BOOKMARK [2][-]{subsection.10.1}{Installationsanleitung}{section.10}% 85
+\BOOKMARK [2][-]{subsection.10.2}{Anwendungsbeispiele}{section.10}% 86
+\BOOKMARK [2][-]{subsection.10.3}{Referenzhandbuch}{section.10}% 87
+\BOOKMARK [2][-]{subsection.10.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.10}% 88
+\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 89
+\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 90
+\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 91
+\BOOKMARK [1][-]{appendix.F}{Pflichtenheft}{}% 92
+\BOOKMARK [2][-]{subsection.F.1}{Funktionale Anforderungen}{appendix.F}% 93
+\BOOKMARK [2][-]{subsection.F.2}{Schnittstellen}{appendix.F}% 94
+\BOOKMARK [2][-]{subsection.F.3}{Abnahmekriterien}{appendix.F}% 95
+\BOOKMARK [2][-]{subsection.F.4}{Dokumentationsanforderungen}{appendix.F}% 96
+\BOOKMARK [2][-]{subsection.F.5}{Qualit\344tsstandards}{appendix.F}% 97
+\BOOKMARK [2][-]{subsection.F.6}{Abwicklungsprozess}{appendix.F}% 98
+\BOOKMARK [1][-]{appendix.G}{Zusammenfassung}{}% 99
+\BOOKMARK [2][-]{subsection.G.1}{Schlussfolgerung / Projekterfahrung}{appendix.G}% 100
+\BOOKMARK [2][-]{subsection.G.2}{Projektterminplanung}{appendix.G}% 101
+\BOOKMARK [2][-]{subsection.G.3}{Projektpersonalplanung und Kostenplanung}{appendix.G}% 102
+\BOOKMARK [3][-]{subsubsection.G.3.1}{Projektkostenplan}{subsection.G.3}% 103
+\BOOKMARK [3][-]{subsubsection.G.3.2}{Arbeitsnachweis Diplomarbeit}{subsection.G.3}% 104
+\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.G.3.2}% 105
+\BOOKMARK [3][-]{subsubsection.G.3.3}{Leistungscontrolling}{subsection.G.3}% 106
+\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.G.3.3}% 107
