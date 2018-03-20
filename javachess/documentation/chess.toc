@@ -47,62 +47,67 @@
 \contentsline {subsubsection}{\numberline {4.7.5}DRAW (Code)}{29}{subsubsection.4.7.5}
 \contentsline {subsection}{\numberline {4.8}LAN-Mode}{31}{subsection.4.8}
 \contentsline {subsubsection}{\numberline {4.8.1}Netzwerkprogrammierung unter Java}{31}{subsubsection.4.8.1}
-\contentsline {subsubsection}{\numberline {4.8.2}Verbindungsvorgang des Clients}{32}{subsubsection.4.8.2}
-\contentsline {subsubsection}{\numberline {4.8.3}Verbingdungsvorgang des Hosts}{32}{subsubsection.4.8.3}
-\contentsline {subsubsection}{\numberline {4.8.4}Spielfluss im LAN-Modus}{32}{subsubsection.4.8.4}
-\contentsline {subsubsection}{\numberline {4.8.5}Beenden einer Verbindung}{32}{subsubsection.4.8.5}
-\contentsline {subsubsection}{\numberline {4.8.6}Das Heartbeat - System}{32}{subsubsection.4.8.6}
-\contentsline {subsection}{\numberline {4.9}AI-Mode}{33}{subsection.4.9}
-\contentsline {subsubsection}{\numberline {4.9.1}Prinzipielle M\IeC {\"o}glichkeiten einer AI}{33}{subsubsection.4.9.1}
-\contentsline {subsubsection}{\numberline {4.9.2}Verwendete Schach-AI-Funktion}{34}{subsubsection.4.9.2}
-\contentsline {subsubsection}{\numberline {4.9.3}Der MinMax-Algorithmus:}{35}{subsubsection.4.9.3}
-\contentsline {subsubsection}{\numberline {4.9.4}Code}{36}{subsubsection.4.9.4}
-\contentsline {section}{\numberline {5}ChessPI}{40}{section.5}
-\contentsline {subsection}{\numberline {5.1}RaspberryPI}{40}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Touchscreen}{40}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Implementierung von JavaChess}{40}{subsection.5.3}
-\contentsline {section}{\numberline {6}Akkusteuerung}{43}{section.6}
-\contentsline {subsection}{\numberline {6.1}Kenngr\IeC {\"o}\IeC {\ss }en des ben\IeC {\"o}tigten Akkumulators}{43}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}W\IeC {\"a}hlen des Akkumulators}{43}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Der Li-Ion Akku}{44}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Idee der 1. Akkusteuerungsschaltung}{44}{subsection.6.4}
-\contentsline {subsubsection}{\numberline {6.4.1}Laden der Akkus}{44}{subsubsection.6.4.1}
-\contentsline {subsubsection}{\numberline {6.4.2}Entladen der Akkus}{45}{subsubsection.6.4.2}
-\contentsline {subsubsection}{\numberline {6.4.3}Seriell-Parallel Schaltung}{45}{subsubsection.6.4.3}
-\contentsline {subsubsection}{\numberline {6.4.4}Sicherheit}{46}{subsubsection.6.4.4}
-\contentsline {subsubsection}{\numberline {6.4.5}Schaltung}{47}{subsubsection.6.4.5}
-\contentsline {subsubsection}{\numberline {6.4.6}Messung}{48}{subsubsection.6.4.6}
-\contentsline {subsection}{\numberline {6.5}Idee der 2. Akkusteuerungsschaltung}{49}{subsection.6.5}
-\contentsline {subsubsection}{\numberline {6.5.1}Laden der Akkus}{49}{subsubsection.6.5.1}
-\contentsline {subsubsection}{\numberline {6.5.2}Entladen der Akkus}{49}{subsubsection.6.5.2}
-\contentsline {subsubsection}{\numberline {6.5.3}Sicherheit}{50}{subsubsection.6.5.3}
-\contentsline {subsubsection}{\numberline {6.5.4}Messung}{50}{subsubsection.6.5.4}
-\contentsline {subsubsection}{\numberline {6.5.5}Schaltung}{51}{subsubsection.6.5.5}
-\contentsline {subsection}{\numberline {6.6}Verwendete L\IeC {\"o}sung}{52}{subsection.6.6}
-\contentsline {section}{\numberline {7}Geh\IeC {\"a}use}{53}{section.7}
-\contentsline {section}{\numberline {8}Android}{54}{section.8}
-\contentsline {section}{\numberline {9}\sc Fertigungsdokumentation}{55}{section.9}
-\contentsline {section}{\numberline {10}\sc Benutzerdokumentation}{55}{section.10}
-\contentsline {subsection}{\numberline {10.1}Installationsanleitung}{55}{subsection.10.1}
-\contentsline {subsection}{\numberline {10.2}Anwendungsbeispiele}{55}{subsection.10.2}
-\contentsline {subsection}{\numberline {10.3}Referenzhandbuch}{55}{subsection.10.3}
-\contentsline {subsection}{\numberline {10.4}Fehlermeldungen und Hinweise auf Fehlerursachen}{55}{subsection.10.4}
-\contentsline {section}{\numberline {I\tmspace +\thickmuskip {.2777em}}Abbildungsverzeichnis}{56}{section.1}
-\contentsline {section}{\numberline {II\tmspace +\thickmuskip {.2777em}}\sc Tabellenverzeichnis}{56}{section.2}
-\contentsline {section}{\numberline {III\tmspace +\thickmuskip {.2777em}}Literaturverzeichnis}{57}{section.3}
-\contentsline {section}{\numberline {6\tmspace +\thickmuskip {.2777em}}\sc Pflichtenheft}{58}{appendix.F}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.1}Funktionale Anforderungen}{58}{subsection.F.1}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.2}Schnittstellen}{58}{subsection.F.2}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.3}Abnahmekriterien}{58}{subsection.F.3}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.4}Dokumentationsanforderungen}{58}{subsection.F.4}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.5}Qualit\IeC {\"a}tsstandards}{59}{subsection.F.5}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.6}Abwicklungsprozess}{59}{subsection.F.6}
-\contentsline {section}{\numberline {7\tmspace +\thickmuskip {.2777em}}\sc Zusammenfassung}{61}{appendix.G}
-\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.1}Schlussfolgerung / Projekterfahrung}{61}{subsection.G.1}
-\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.2}Projektterminplanung}{61}{subsection.G.2}
-\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3}Projektpersonalplanung und Kostenplanung}{61}{subsection.G.3}
-\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.1}Projektkostenplan}{61}{subsubsection.G.3.1}
-\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.2}Arbeitsnachweis Diplomarbeit}{61}{subsubsection.G.3.2}
-\contentsline {paragraph}{\color {teal}Tabelle 1: Arbeitsaufstellung}{62}{section*.4}
-\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.3}Leistungscontrolling}{62}{subsubsection.G.3.3}
-\contentsline {paragraph}{\em Abzugeben sind:}{63}{section*.5}
+\contentsline {subsubsection}{\numberline {4.8.2}Netzwerkprogrammierung in JavaChess}{32}{subsubsection.4.8.2}
+\contentsline {subsubsection}{\numberline {4.8.3}Verbindungsvorgang des Clients}{33}{subsubsection.4.8.3}
+\contentsline {subsubsection}{\numberline {4.8.4}Verbingdungsvorgang des Hosts}{35}{subsubsection.4.8.4}
+\contentsline {subsubsection}{\numberline {4.8.5}Spielfluss im LAN-Modus}{37}{subsubsection.4.8.5}
+\contentsline {subsubsection}{\numberline {4.8.6}Das Heartbeat - System}{39}{subsubsection.4.8.6}
+\contentsline {subsection}{\numberline {4.9}AI-Mode}{42}{subsection.4.9}
+\contentsline {subsubsection}{\numberline {4.9.1}Prinzipielle M\IeC {\"o}glichkeiten einer AI}{42}{subsubsection.4.9.1}
+\contentsline {subsubsection}{\numberline {4.9.2}Verwendete Schach-AI-Funktion}{43}{subsubsection.4.9.2}
+\contentsline {subsubsection}{\numberline {4.9.3}Der MinMax-Algorithmus:}{44}{subsubsection.4.9.3}
+\contentsline {subsubsection}{\numberline {4.9.4}Code}{45}{subsubsection.4.9.4}
+\contentsline {section}{\numberline {5}ChessPI}{49}{section.5}
+\contentsline {subsection}{\numberline {5.1}RaspberryPI}{49}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Touchscreen}{49}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Implementierung von JavaChess}{49}{subsection.5.3}
+\contentsline {section}{\numberline {6}Akkusteuerung}{52}{section.6}
+\contentsline {subsection}{\numberline {6.1}Kenngr\IeC {\"o}\IeC {\ss }en des ben\IeC {\"o}tigten Akkumulators}{52}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}W\IeC {\"a}hlen des Akkumulators}{52}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Der Li-Ion Akku}{53}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Idee der 1. Akkusteuerungsschaltung}{53}{subsection.6.4}
+\contentsline {subsubsection}{\numberline {6.4.1}Laden der Akkus}{53}{subsubsection.6.4.1}
+\contentsline {subsubsection}{\numberline {6.4.2}Entladen der Akkus}{54}{subsubsection.6.4.2}
+\contentsline {subsubsection}{\numberline {6.4.3}Seriell-Parallel Schaltung}{54}{subsubsection.6.4.3}
+\contentsline {subsubsection}{\numberline {6.4.4}Sicherheit}{55}{subsubsection.6.4.4}
+\contentsline {subsubsection}{\numberline {6.4.5}Schaltung}{56}{subsubsection.6.4.5}
+\contentsline {subsubsection}{\numberline {6.4.6}Messung}{57}{subsubsection.6.4.6}
+\contentsline {subsection}{\numberline {6.5}Idee der 2. Akkusteuerungsschaltung}{58}{subsection.6.5}
+\contentsline {subsubsection}{\numberline {6.5.1}Laden der Akkus}{58}{subsubsection.6.5.1}
+\contentsline {subsubsection}{\numberline {6.5.2}Entladen der Akkus}{58}{subsubsection.6.5.2}
+\contentsline {subsubsection}{\numberline {6.5.3}Sicherheit}{59}{subsubsection.6.5.3}
+\contentsline {subsubsection}{\numberline {6.5.4}Messung}{59}{subsubsection.6.5.4}
+\contentsline {subsubsection}{\numberline {6.5.5}Schaltung}{60}{subsubsection.6.5.5}
+\contentsline {subsection}{\numberline {6.6}Verwendete L\IeC {\"o}sung}{61}{subsection.6.6}
+\contentsline {section}{\numberline {7}Geh\IeC {\"a}use}{62}{section.7}
+\contentsline {subsection}{\numberline {7.1}Ma\IeC {\ss }e der Bauteile}{62}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Geplantes mit dem 3D-Drucker gefertigtes Geh\IeC {\"a}use}{62}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Geh\IeC {\"a}use - Kunststoffwerkst\IeC {\"a}tte}{64}{subsection.7.3}
+\contentsline {section}{\numberline {8}Android}{65}{section.8}
+\contentsline {section}{\numberline {9}\sc Fertigungsdokumentation}{66}{section.9}
+\contentsline {section}{\numberline {10}\sc Benutzerdokumentation}{66}{section.10}
+\contentsline {subsection}{\numberline {10.1}Installationsanleitung}{66}{subsection.10.1}
+\contentsline {subsection}{\numberline {10.2}Anwendungsbeispiele}{66}{subsection.10.2}
+\contentsline {subsection}{\numberline {10.3}Referenzhandbuch}{66}{subsection.10.3}
+\contentsline {subsection}{\numberline {10.4}Fehlermeldungen und Hinweise auf Fehlerursachen}{66}{subsection.10.4}
+\contentsline {section}{\numberline {I\tmspace +\thickmuskip {.2777em}}Abbildungsverzeichnis}{67}{section.1}
+\contentsline {section}{\numberline {II\tmspace +\thickmuskip {.2777em}}\sc Tabellenverzeichnis}{67}{section.2}
+\contentsline {section}{\numberline {III\tmspace +\thickmuskip {.2777em}}Literaturverzeichnis}{68}{section.3}
+\contentsline {section}{\numberline {6\tmspace +\thickmuskip {.2777em}}\sc Pflichtenheft}{69}{appendix.F}
+\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.1}\sc JavaChess Konzept}{70}{subsection.F.1}
+\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.2}Einzubauende Features}{70}{subsection.F.2}
+\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.2.1}JavaChess (Desktop Version - Windows}{70}{subsubsection.F.2.1}
+\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.2.2}ChessPI (Raspberry PI 3}{71}{subsubsection.F.2.2}
+\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.2.3}AndChess (Android)}{71}{subsubsection.F.2.3}
+\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.3}Appendix}{71}{subsection.F.3}
+\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.3.1}Vorhandene Bugs}{71}{subsubsection.F.3.1}
+\contentsline {section}{\numberline {7\tmspace +\thickmuskip {.2777em}}\sc Zusammenfassung}{76}{appendix.G}
+\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.1}Schlussfolgerung / Projekterfahrung}{76}{subsection.G.1}
+\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.2}Projektterminplanung}{76}{subsection.G.2}
+\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3}Projektpersonalplanung und Kostenaufstellung}{76}{subsection.G.3}
+\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.1}Kostenaufstellung}{77}{subsubsection.G.3.1}
+\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.2}Projektkostenplan}{77}{subsubsection.G.3.2}
+\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.3}Arbeitsnachweis Diplomarbeit}{77}{subsubsection.G.3.3}
+\contentsline {paragraph}{\color {teal}Tabelle 1: Arbeitsaufstellung}{78}{section*.4}
+\contentsline {subsubsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3.4}Leistungscontrolling}{78}{subsubsection.G.3.4}
+\contentsline {paragraph}{\em Abzugeben sind:}{79}{section*.5}

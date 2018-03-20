@@ -61,6 +61,7 @@
 \usepackage[ngerman]{babel}
 \usepackage[pdfborderstyle={/S/U/W 1}]{hyperref}
 \usepackage{float}
+\usepackage{booktabs}
 %\usepackage[demo]{graphicx}
 %\addto{\captionsngerman}{%
   %\renewcommand*{\contentsname}{Inhaltsverzeichnis}
@@ -489,7 +490,7 @@
 	Alexander Beiser war für große Teile des Backends zuständig. Ein Hauptteil bestand aus der Entwicklung einer Chess Engine, also eines Zündungsmechanismus, welcher speziell für die ebenso von Alexander Beiser erschaffene künstliche Intelligenz performiert wurde. Er entwickelte auch die Akkusteuerung für den Raspberry PI und designete das Gehäuse.
 	
 	\subsubsection{Marcel Huber}
-	Marcel Huber war für weite Teile des Frontend Bereichs zuständig. Die anderen Schwerpunkte bestanden in der Entwicklung des Netzwerkalgorithmus und der Entwicklung des Schachspiels für Android Geräte. 
+	Marcel Huber war für weite Teile des Frontend Bereichs zuständig. Der Schwerpunkt lag auf dem Implementieren von JavaFX, dem Verbessern der audiovisuellen Gestaltung und dem Entwickeln eines Netzwerkspielmodus. Auch eine Andorid - app sollte entwickelt werden.
  
 	\vfill
 	\newpage	
@@ -793,7 +794,8 @@ Im folgenden werden die groben Inhalte und Funktionen der Packages und Klassen z
 Dieses Package beinhaltet alle Klassen, die benötigt werden, um die Soundeffekte im Spiel abzuspielen. Zusätzlich sind die benötigten Audiofiles enthalten.\
 
 \begin{itemize}
-	\item{\textbf{AudioManager.java}: Diese Klasse Managed die zwei Möglichkeiten, Audiodateien im Programm abzuspielen. Warum dies notwendig ist, wird in der entsprechenden Sektion erklärt.TODO Auch die Einstellungsvariablen für die Sounds (z.B. Lautstärke) werden hier gespeichert. }
+	\item{\textbf{AudioManager.java}: Diese Klasse Managed die zwei Möglichkeiten, Audiodateien im Programm abzuspielen. Warum dies notwendig ist, wird in der entsprechenden Sektion erklärt. %TODO
+Auch die Einstellungsvariablen für die Sounds (z.B. Lautstärke) werden hier gespeichert. }
 	
 	\item{\textbf{JavaFxAudio.Java}: Mit dieser Klasse werden die Sounds für den JavaFX - Soundplayer geladen und abgespielt. }	
 	
@@ -815,7 +817,7 @@ In diesesm Package sind Klassen beheimatet, die für die Spiellogik verantwortli
 \subsubsection{game}
 
 Die Klassen für die einzelnen Spielmodi werden in diesem Package abgelegt. 
-\cmnt{TODO : AI AND AI LOGIC}
+
 
 \begin{itemize}
 
@@ -863,7 +865,7 @@ Dieses Package enthält alle Bilddateien die benötigt werden, um das Spielfeld 
 
 In diesem Package sind alle Klassen beinhaltet, welche den Launchpad-Support ermöglichen. 
 
-\cmnt{TODO Launchpad-Doku}
+%TODO Launchpad-Doku
 
 \subsubsection{network}
 
@@ -932,7 +934,9 @@ Durch diese Matrix werden in Folge alle Zugberechnungen, KI-Berechnungen, etc. d
 \subsection{Zugmechanik und Local-Mode}
 \label{SUBSEC:LOCAL_MODE}
 
-Sobald das Spiel geladen und initialisiert ist, wird automatisch der Hot-Seat Spielmodus ausgewählt. Beim Hotseat Modus spielt man auf einem Device nacheinander. Dieses eigentliche Spiel geschieht in einem Objekt der ,,BoardGui'' Klasse. Die BoardGui Klasse ist ein Canvas Objekt, also ein Objekt, auf dem man zum Beispiel zeichnen kann. Diese Funktion wird ausgenutzt, um das Spielfeld zu zeichnen. Wie dies genau geschieht wird in \textbf{TODO} erläutert.  \\
+Sobald das Spiel geladen und initialisiert ist, wird automatisch der Hot-Seat Spielmodus ausgewählt. Beim Hotseat Modus spielt man auf einem Device nacheinander. Dieses eigentliche Spiel geschieht in einem Objekt der ,,BoardGui'' Klasse. Die BoardGui Klasse ist ein Canvas Objekt, also ein Objekt, auf dem man zum Beispiel zeichnen kann. Diese Funktion wird ausgenutzt, um das Spielfeld zu zeichnen. Wie dies genau geschieht wird in \textbf{ %TODO
+ } 
+erläutert.  \\
 Nun ist der weiße Spieler an der Reihe. Welches Team an der Reihe ist, wird durch den Boolean ,,team'' bestimmt. Dieser Spielstand wird in einem Objekt der Backgroundgrid Klasse gespeichert. True bedeutet, dass der weiße Spieler am Zug ist, false das der Schwarze am Zug ist. \\
 Der Spieler kann nun die Figur anwählen, die er bewegen möchte, oder die linke Maustaste gedrückt halten und so die Figur über das Brett ,,schweben'' lassen. In dieser Position werden alle möglichen Bewegungen des Spielsteins angezeigt. Hier ist zu erwähnen, dass potenzielle Angriffe anders dargestellt werden, wie eine Bewegung. \\
 Nun muss der Spieler nur noch das Feld, auf das er ziehen möchte, klicken bzw. die Figur darüber absetzen. Der Move Algorithmus berechnet nun, ob dieser Zug auch möglich ist. Falls dieser Zug erlaubt ist, wird die Hintergrundmatrix entsprechend umgeschrieben, entsprechend den neuen Positionen der Figuren. \\
@@ -1337,28 +1341,258 @@ Um nun auch Daten senden zu können, muss eine Kette aus 'Streams' erstellt werd
 Um Objekte Senden und Empfangen zu können, werden ObjectInput- beziehungsweise ObjectOutputStereams verwendet. Dies sind Streams zur 'vorverarbeitung', welche die Daten für einen 'lowlevel-Stream' vorbereiten. Der lowlevel-Stream kümmert sich dann um das schlussendliche Versenden der Daten. \\[2ex]
 Wenn man nun Objekte mithilfe der Sockets versenden will, so erstellt man einen ObjectStream, welchem man den lowlevel-Stream des entsprechenden Sockets als Argument mitgibt. Diesen erhält man von einer Funktion des Sockets. War der Vorgang erfolgreich können nun ganz bequem mittels Funktion des entsprechenden Streams Daten gesendet und Empfangen werden.
 
+\subsubsection{Netzwerkprogrammierung in JavaChess}
+\label{SUBSUBSEC:NETWORKJC}
+
+In JavaChess gibt es einen Host und einen Client. Diese unterscheiden sich nur beim Verbindungsvorgang. Der Host wartet auf eine eingehende Verbindung, der Client baut aktiv eine Verbindung auf. Nach dem Aufbauen einer Verbindung wird der Serversocket vom Host zu einem 'normalen' Socket umgewandelt. Ab diesem Zeitpunkt befinden sich die beiden Teilnehmer im Spielfluss und führen den selben Code aus. Das bedeutet, dass sowohl der Code für den Host als auch der Code für den Client, bis auf die Verbindungsvorgänge, absolut identisch sind. 
+
+
+\begin{figure}[H]
+  \centering
+   	\includegraphics[width=16cm]{graphics/SpielflussLAN.png}
+  \caption{Spielzyklus im LAN-Modus}
+  \label{fig:lan}
+\end{figure}
+
+
 \subsubsection{Verbindungsvorgang des Clients}
-\label{SUBSUBSEC: CONCLI}
+\label{SUBSUBSEC:CONCLI}
 
 Um mit dem Client eine Verbindung aufzubauen, muss in der Menüleiste der entsprechende Punkt angewählt. Es öffnet sich ein Dialogfenster (TODO: Verlinkung). Wird in diesem Dialogfenster der Punkt 'Join' angewählt, beginnt der Verbindungsvorgang. \\[2ex]
-Ein neues Dialogfenster wird angezeigt. Der Benutzer muss hier seine IP-Addresse eingeben. 
-Ist die eingegebene Addresse korrekt, so wird der Socket der LAN-Klasse mit dieser Ip-Addresse und einem fest vorgegebenen Port initialisiert. 
+Ein neues Dialogfenster wird angezeigt. Der Benutzer muss hier seine IP-Adresse eingeben. 
+Ist die eingegebene Adresse korrekt, so wird der Socket der LAN-Klasse mit dieser Ip-Adresse und einem fest vorgegebenen Port initialisiert. 
 Ist auch dies erfolgreich, so wird das Team des Clients auf Schwarz gesetzt, die Streams zur kommunikation erstellt und es werden ein Reader Thread (TODO: Vergleich einbauen) und ein Heartbeat Thread (TODO: Vergleich einbauen) gestartet.\\[2ex]
 
+Folgender Pseudocode zeigt den Verbingunsvorgang: \\
+\lstset{language=Java}
+\begin{lstlisting}
+
+if(join ausgewaehlt){				
+
+					wechsleSpielmodus(Lan);				
+					neuerDialog();
+					...							//graphisches Design des Popups
+					Optional<String> ipResult = ipDialogoue.showAndWait();
+					if (IP Adresse eingegeben){										
+						try {
+								joinAdress = eingegebene Adresse();
+								SocketErstellen();
+								//Streams erstellen und Teams setzen	
+								StreamsErstellen()
+								Verbindungsstatus(Verbunden);
+								Team(Schwarz);			
+								//Zugverzoegerung um einen Zug		
+								Zugverzoegerung(true);
+								SchachfelderKlickbar(false);
+								Thread rt = new Readinthread();  		
+								rt.start();
+								Thread th = new HeartbeatThreadThread(Heartbeat);
+								th.start();
+								//Menuepunke entfernen und hinzufuegen
+								menuFile.getItems().removeAll(Speichern und Laden);
+								menuGame.getItems().removeAll(Spielmodi);		
+								menuGame.getItems().addAll(disconnect);	
+								Gui.getBoardGui().DrawGrid(Hintergrundmatrix);		
+								Gui.getBoardGui().redraw();
+							}
+
+						} catch (UnknownHostException) {
+							...
+							spielerBenachrichtigen();
+							wechsleSpielmodus(Lan);		
+							
+						} catch (IOException e) {
+							...
+							spielerBenachrichtigen();
+							wechsleSpielmodus(Lan);		
+						} catch (ClassNotFoundException e) {
+							spielerBenachrichtigen();
+							wechsleSpielmodus(Lan);		
+						}
+\end{lstlisting}
 
 \subsubsection{Verbingdungsvorgang des Hosts}
+\label{SUBSUBSEC:CONHOST}
+
+Um ein Spiel zu hosten wird im Auswahldialog der entsprechende Punkt angewählt. 
+Im Hintergund wird ein ein neues Spielfeld erstellt, der Spielmodus gewechselt, und es wird der 'Hosting Thread' gestartet %TODO : Verlinkung Heartbeat
+Im vordergrund wird ein 'Blurry Menu' ( %TODO : Verlinkung GUI
+)gezeichnet. In diesem hat der Host die Option, den Wartevorgang abzubrechen und wieder in den lokalen Modus zurückzukehren. \\
+Der folgende Pseudocode zeigt, was bei dem Abbruchvorgang passiert: 
+\lstset{language=java}
+\begin{lstlisting}
+
+if(Verbindungsvorgang abgebrochen){
+
+					SchachfelderKlickbar= true; 
+					//widerherstellen der Menues
+					menues ruecksetzen();		
+						
+					try{	
+						HeartbeatThreadStoppen();
+						HostingThreadStoppen();}
+					} catch(Exception e){
+						...			 //Fehlerbehandlung
+					}
+						in lokalen Modus wechseln();
+						DrawGrid(_BGG);
+					}
+				}
+
+\end{lstlisting}
+
+Während die Schaltfläche für den Abbruch zu sehen ist, wird im Hintergrund der Hosting Thread ausgeführt. Dieser erstellt den Serversocket, startet den Heartbeat - Thread ( %TODO : Verlinkung Heartbeat
+) und wartet auf eine Verbindung. \\[2ex]
+Ist der Verbindungsvorgang erfolgreich, so erzeugt der Thread den Socket der LAN - Klasse, der zum Spielen notwendig ist. ER erzeugt die Streams um die kommunikation zu ermöglichen und setzt den Verbingdungsstatus auf 'Verbunden'. \\
+Anschließend muss noch die Schaltfläche zum Beenden des Wartevorganges verschwinden. Unter JavaFX kann die grafische Oberfläche allerdings nur von dem Hauptthread aus verändert werden.\\ Um dieses Problem zu umgehen wird ein Objekt der Klasse Robot erstellt. Mit diesem ist es möglich, den Mauszeiger auf die Schaltfläche zu führen und einen Klick auszulösen. 
+Diser Klick wird im Hauptthrad erkannt und das Feld wird neu gezeichnet. \\
+Der folgende Pseudocode zeigt die Geschehnisse im Hosting -Thread:\\
+\lstset{language=java}
+\begin{lstlisting}
+
+try {
+				
+				HeaertbeatThread= new Thread(Heartbeat);
+				TeamSetzen(Weiss);
+				//warten auf eingehende Verbindung
+				tempsock = VerbindungDesServersockets();
+				bgg.getLan().Streams erstellen();	//erstellen der Streams
+				bgg.getLan().setIsConnectet(true);
+				
+				//Ruecksetzen des Menues
+				Point b = Position der Maus
+				int xOrig, yOrig = Urspruengliche Mausposition
+		      
+		            try {
+		                Robot r = new Robot();
+		                r.mouseMove(Position des Mauszeigers);
+		                r.mousecklick(linke maustaste)
+		                //mauszeiger an die originale Position bewegen
+		                r.mouseMove(xOrig, yOrig);
+		            } catch (Exception e) {
+		                ...  	//Problembehandlung
+		            }
+			} catch (Exception e) {
+				...	//Problembehandlung
+			}		
+		}
+
+\end{lstlisting}
 
 \subsubsection{Spielfluss im LAN-Modus}
 
-\subsubsection{Beenden einer Verbindung}
+Bis auf den Verbindungsvorgang unterscheiden sich die mechaniken von Client und Host überhaupt nicht. Alle Variablen und Funktionen die notwendig sind, um den Spielfluss im LAN-Modus zu gewährleisten, sind in den Klassen 'LAN.java' und 'BoardGui.java' enthalten und werden sowohl vom Client als auch vom Host auf die Exakt gleiche Weise verwendet. Der einzige große unterschied ist, dass der Client zuerst mit dem Lesen, und der Host zuerst mit dem Schreiben von Daten beginnt. \\
+Der Spielzyklus der sich ergibt wird im folgenden von Anfang an erklärt. Für ein besseres Verständnis kann das Flussdiagramm (Abb.: \ref{fig:lan}) zu Rate gezogen werden.\\
+Sowohl das bewegen einer Figur, die Überprüfung, ob ein Zug erlaubt ist und die Schach/Schachmatt-Abfrage funktionieren exakt gleich wie im lokalen Spielmodus. Weiteres dazu ist im Kapitel \ref{SUBSEC:LOCAL_MODE} zu finden.\\[2ex]
+Wird ein lokaler Zug erkannt, so müssen die Daten an den zweiten Mitspieler versendet werden. Um möglichst wenige Daten zu versenden und eine einfache Implementierung zu ermöglichen wird, anstatt der ganzen Backgroundgrid - Klasse nur die repräsentative Zahlenmatrix (vgl. Abb.: \ref{TABLE:REPRESENTATION-MEEPLES}) mit den aktuellen Figurenpositionen versendet. Dies geschieht über die, beim Verbinden der Spieler erstellte, Kette aus Streams. Direkt nach dem versenden wird das Feld des Spielers neu geladen und dargestellt. Um den Rundenzähler aktuell zu halten wird die Rundenzählervariable erhöht. 
+Bevor das Programm in den Lesezustand geht werden die Schachfelder noch unklickbar gemacht.\\[2ex]
+Um dem Spieler die Möglichkeit zu bieten, die grafische Oberfläche weiter zu benutzen und beispielsweise das Netzwerkspiel zu verlassen oder das Spiel zu beenden, wird der Lesevorgang in einen Nebenläufigen Thread ausgelagert. Dies ist notwendig, da das Programm beim Lesevorgang stehen bleiben würde und nicht weiterläuft, bis der Lesevorgang abgeschlossen ist.\\
+Im folgenden wird Pseudocode angegeben, welcher den Schreibvorgang anschaulich darstellt:
 
-\label{SUBSUBSEC: READTHREAD}
-READING THREAD!!
+\lstset{language=java}
+\begin{lstlisting}
+
+if (Bewegung legal und Lan-Modus aktiv){
+				Stream.schreiben(Hintergrundmatrix);
+				zeichneSpielfeld(Hintergrundmatrix);
+				erhoeheRundenzaehler();
+				SpielfeldKlickbar(false);
+				starteReadThread();
+				
+}
+\end{lstlisting}
+Der Lesevorgang selbst wird über eine Variable getriggert, auf die ein ChangeListener aufgesetzt wird. Der Code innerhalb eines ChangeListeners wird dann ausgeführt, wenn sich die zugehörige Variable ändert. Diese Variable wird im Reader - Thread verändert, sobald das Programm bereit ist zu empfangen.
+Der Code, der zum Empfangen benörtigt wird, steht zwar in der BoardGui Klasse, wird aber aufgrund der Triggerung in dem zuvor erstellten Reader - Thread ausgeführt.\\[2ex]
+Beim empfangsvorgnang wird als erstes die Hintergrundmatrix neu gesetzt. Im Anschluss wird die Zuganzahl erhöht und das aktuell ziehende Team geändert.
+Danach wird das Feld mit der neuen Hintergrundmatrix neu gezeichnet. Zuletzt werden noch eine Schach- und Schachmatt abfrage für beide Teams durchgeführt.\\[2ex]
+Im folgenden Pseudocode wird der Empfangsvorgang anschaulich dargestellt.
+
+\lstset{language=java}
+\begin{lstlisting}
+
+	try {
+
+					Hintergrundmatrix=leseStream.lesen();
+					Zugnummer erhoehen
+					
+					if (Weisses Team am Zug){
+						Teamwechsel(Schwarz);
+					} else if (Schwarzes Team am Zug){
+						Teamwechsel(Weiss);
+					}
+
+				} catch (IOException e) {
+					
+					...  //Problembehandlung
+				}
+
+	BackGroundGrid.MatrixSetzen(Hintergrundmatrix);
+	SpielfeldKlickbar(true);
+	neuZeichnen();
+	Schachmattabfage(Team Weiss);
+	Schachmattabfrage(Team Schwarz);
+	Schachabfrage(Team Weiss);
+	Schachabfrage(Team Schwarz);
+	
+
+
+\end{lstlisting}
 
 
 \subsubsection{Das Heartbeat - System}
-\label{SUBSUBSEC: HEARTBEAT}
-%TODO
+\label{SUBSUBSEC:HEARTBEAT}
+
+Ein normales Trennen der Netzwerkverbindung ist einfach zu detektieren. Schwieriger wird es, wenn die Netzwerkverbindung abbricht oder eines der beiden System aufhört zu funktionieren. In diesen Fällen ist das Programm nicht mehr in der Lage, aktiv einen Befehl zum sauberen Trennen der Netzwerkverbindung mit dem gegenüber zu versenden. Das kann dazu führen, dass ein Benutzer, der auf den Zug seines Gegners wartet, nichts von einem potentiellen Verlieren der Netzwerkverbindung oder einem Systemabsturz seines Gegenübers mitbekommet. Das führt  dazu, dass der User keine Anzeige erhält, dass sein gegenüber nicht Verbunden ist, da sich das Programm im wartezustand befinden und nur weiterläuft, sobald entsprechende Daten empfangen wurden.\\
+Um dem vorzubeugen wurde ein 'Heartbeat' - System implementiert. Die idee dieses Systems ist simpel: In regelmäßigen zeitlichen Abständen, wie bei einem Herzschlag, deshalb Heartbeat, werden kleine Datenpakete über das Netzwerk zum Gegenspieler versendet. Wenn die Pakete über eine längere Zeitspanne ausbleiben, wird die Netzwerkverbindung abgebrochen.\\[3ex]
+Um den Heartbeat zu realisieren kann nicht der bestehende Socket verwendet werden, da dieser damit beschäftigt ist, die Spieldaten zu senden und zu empfangen.Das bedeute, dass ein neuer Socket und ein neuer Serversocket für Client und Host erstellt werden müssen. Dieser Socket benötigt einen anderen Port, da die Computer, auf denen die Programme ausgeführt werden, sonst nicht unterscheiden könnten, welches Paket für welchen Thread gedacht ist.\\ Zusätzlich muss das ganze System auf einen zusätzlichen Thread ausgelagert werden, da es sonst die abarbeitung anderer Teile des Programmes blockiert. \\
+Der Thread für den Heartbeat wird jeweils zusammen mit den Verbindungsvorgängen gestartet. Auch beim Heartbeat wird zwischen Host und Client unterschieden. 
+Wenn der Thread vom Client aus gestartet wurde, wird ein neuer Socket mit der gleichen Ip-Adresse wie jener Socket, der für die Spieldaten zuständig ist, erstellt. Wenn der Thread vom Host aus gestartet wurde, wird ein Serversocket, der auf den neuen Port hört, erstellt. Dieser wartet dann auch direkt auf eingehende Verbindungen. \\
+Ist ein Verbindungsvorgang erfolgreich, so erstellen beide Threads, also sowohl der vom Host, als auch der vom Client, ihre Input- und Outputstreams. Bei diesen handelt es sich um ObjectInput- und ObjectOutputStreams, die mit den lowlevel - Streams der jeweiligen Sockets verkettet werden. \\
+Vor den ersten Sende- und Empfangsvorgängen wird auf jeden Socket noch ein Timer gesetzt, welcher angibt, wie lange der Thread wartet, bis er beim ausbleiben der Pakete einen Trennungsvorgang einleitet. Dieser Timer wird nach jedem empfangenen Paket zurückgesetzt.\\
+Im Anschluss werden die eigentlichen Sende- und Empfangsschritte eingeleitet. Damit der Host und der Client nicht gleichzeitig mit dem Schreiben beginnen, wird eine einmalige Verzögerung beim Client eingebaut, die diesen mit dem Lesen beginnen lässt. Danach wechseln sich beide Parteien mit dem Lesen und Schreiben ab. Um das Netzwerk nicht mit 'Heartbeat - Traffic' zu fluten, wird der jeweilige Thread nach dem Senden für eine Sekunde deaktiviert.Sobald ein disconnect von Heartbeat erkannt wurde, wird mittels einer Triggervariable (also eine Variable mit Listener, ähnlich jener zum Emfpangen der Spieldaten) ein Informationsfeld gezeichnet, welches den Spieler über die verlorene Verbindung informiert. Dieses Informationsfeld ist klickbar und bringt den Spieler zurück in den Lokalen Spielmodus.\\[2ex]
+Im folgenden Pseudocode werden die Anweisungen im Heartbeat-Thread veranschaulicht.
+
+\lstset{language=java}
+\begin{lstlisting}
+
+	try {
+			if(Client){
+	
+				Socket = new Socket(Gleiche IP,neuer Port);
+				erstelleStreams(Socket);
+				Socket.TimeoutNach(15 Sekunden)
+			}
+
+			else if(Host){
+
+				Serversocket = new Serversocket(neuer Port);
+				Socket = Serversocket.warteAufVerbindung();
+				erstelleStreams(Socket);
+				Socket.TimeoutNach(15 Sekunden)
+
+			}
+			
+			while(Endlos){
+
+					if(Erster Lesevorgang des Clients){					
+					Stream.lesen();
+					}
+
+				Stream.schreiben(Testdaten);
+				Thread.sleep(1000);
+				Stream.lesen(Testdaten);
+
+			}
+
+
+		} catch (Exception e){
+			verbindungTrennen();
+			TriggervariableSetzen(); //triggert das Zeichnen der hinweisflaeche
+		}
+	}
+\end{lstlisting}
+
+
 
 \newpage
 
@@ -1386,8 +1620,7 @@ Durch diese Art des Spiels können die theoretisch besten Züge ermittelt werden
 Die andere Möglichkeit ist ein Machine-Learning-Algorithmus. Dieser versucht ein biologisches Gehirn nachzubauen, indem es ein Künstliches-Neurales-Netzwerk bildet. Diese Neuronen werden dahin gehend trainiert, dass die AI aus einem gegebenen Satz Daten und/bzw. mit Hilfe einer Lernfunktion Rückschlüsse auf mögliche zukünftige Ereignisse schließt. Mathematisch gesehen basiert diese Art der KI auf der Wahrscheinlichkeitsrechnung.  \\
 Wichtig ist noch anzumerken, dass diese Art der KI selber lernen kann, damit sie besser wird. Als Beispiel nehmen wir Schach: Die KI spielt über längere Zeit gegen sich selber und muss um sich zu verbessern nicht unbedingt gegen andere Spieler, sowohl menschlich als auch maschinell antreten. \\
 Maschinelles Lernen ist ein sehr umfangreiches Thema, womit hier nur noch gesagt sei, dass maschinelles Lernen in letzter Zeit einige Durchbrüche erlebt hat. Um noch ein konkretes Beispiel zu nennen: Im Dezember 2017 gewann der von Google entwickelte Algorithmus AlphaZero gegen die Chess-Engine ,,Stockfish 8''. AlphaZero basiert auf maschinellem Lernen und Stockfish 8 auf der Vorausberechnung aller möglichen Züge.\cite{SkyNet} \\[2ex]
-Wieso wurde die AI nicht im maschinellen Lernen verfahren entwickelt? \\
-Dies hätte den Rahmen der Diplomarbeit gesprengt und wäre für sich allein genommen eine eigene Diplomarbeit.
+
 
 \subsubsection{Verwendete Schach-AI-Funktion}
 \label{SUBSUBSEC:OurAI}
@@ -1803,7 +2036,7 @@ In dieser wird als Akkumulator+Schaltung eine Powerbank verwendet, für technisc
 \label{SUBSUBSEC:CIRCUIT-2}
 \begin{figure}[H]
   \centering
-		\includegraphics[scale=0.7, angle=90]{graphics/20171104-Shematics.pdf}
+	%	\includegraphics[scale=0.7, angle=90]{graphics/20171104-Shematics.pdf}
 		\caption{Die 2.Schaltung}
 		\label{fig:circuit2}
 \end{figure}
@@ -1819,8 +2052,13 @@ Diese muss folgende Aufgaben erfüllen:
 	\item{Spielzeit von >1h}
 \end{itemize}
 
-Als Powerbank wird das Model RP-PB17 von RAVPower verwendet. Dieses erfüllt alle Vorgaben, denn die Powerbank hat einen maximalen Ausgangsstrom von 2.4 Ampere und eine Kapazität von 5600 mAh, womit ein Betrieb von bis zu 2.5h möglich ist. Die Größe ist kleiner als der RaspberryPI, womit die Powerbank einfach in das Gehäuse integriert werden kann. \\
+Als Powerbank gibt es zwei zur Auswahl kommende Modelle:
+\begin{itemize}
+	\item{Das Modell RP-PB17 von RAVPower - Dieses erfüllt alle Vorgaben, denn die Powerbank hat einen maximalen Ausgangsstrom von 2.4 Ampere und eine Kapazität von 5600 mAh, womit ein Betrieb von bis zu 2.5h möglich ist. Die Größe ist kleiner als der RaspberryPI, womit die Powerbank einfach in das Gehäuse integriert werden kann. \\
 Datenblattreferenz für die Powerbank: \cite{Powerbank}
+	\item{Das Modell FREEPMULTI10000 von Cellularline - Dieses hat den Vorteil einer erhöhten Kapazität von 10.000 mAh gegenüber den 5600 des anderen Modells. Dafür sind die Abmessungen der FREEPMULTI1000 Powerbank größer, womit ein Einbau in ein Gehäuse nur schwer möglich ist.}
+}
+\end{itemize}
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -1828,6 +2066,46 @@ Datenblattreferenz für die Powerbank: \cite{Powerbank}
 \section{Gehäuse}
 \label{SEC:case}
 
+Aufgabe war es ein Gehäuse für den RaspberryPI mit Bildschirm und Akkusteruerung zu Designen. Anstatt der Akkusteuerung wird nach \ref{SUBSEC:POWERBANK} eine Powerbank verwendet. Für diese sollen noch Ein- und Ausschalter und eine Mikro-USB Buchse für die Versorgung vorgesehen werden. \\
+Das Gehäuse soll mittels 3D-Drucker erstellt werden bzw. falls dies nicht in entsprechender Qualität geschehen kann, soll eines in der Kunststoffwerkstätte produziert werden.\\
+
+\subsection{Maße der Bauteile}
+
+Die Maße für den Bildschirm, für den Akku und für den RaspberryPI werden im Anhang \nameref{SEC:DATASHEET} (\ref{SEC:DATASHEET}).
+gefunden.
+
+\subsection{Geplantes mit dem 3D-Drucker gefertigtes Gehäuse}
+
+Das Gehäuse wird nach den vorherigen Kriterien entwickelt.  Als Akkumodell wird der größere verwendet (FREEPMULTI10000).\\
+Da das Gehäuse mit einem 3D-Drucker gefertigt werden soll, unterliegt die Fertigung gewissen technischen Machbarkeiten. Unter anderem ist ein Gehäuse in der ursprünglich gewünschten Größe nicht möglich, da der Drucker nicht ein Gehäuse von 180x110x50mm, in einer realistischen Zeit und mit wirtschaftlichen Materialverbrauch drucken kann. Dies führt zu einer Stückelung des geplanten Gehäuses in drei Teile: \\
+Die Basis soll auf den RaspberryPI geschraubt werden, darauf soll die Akkuhalterung geklebt werden. Da die Akkuhalterung oben offen ist, wird für diese auch ein Deckel geplant, welcher ebenfalls aufgeklebt wird. \\
+Das Problem dieses Gehäuses ist ein persönliches, da das Aussehen Bestenfalls ,,als im Notfall akzeptabel'' bezeichnet werden kann. Somit wird das ,,richtige'' Gehäuse in der Kunststoffwerkstätte entwickelt und produziert. 
+
+\begin{figure}[H]
+  \centering
+		\includegraphics[scale=0.6, angle=90]{graphics/gehaeuse.png}
+		\caption{Das Gehäuse in den drei Teilen}
+		\label{fig:case-3D}
+\end{figure}
+
+\newpage
+\subsection{Gehäuse - Kunststoffwerkstätte}
+
+Als Alternativlösung wird das Gehäuse in der Kunststoffwerkstätte gefertigt. Dieses soll aus poliertem weißem Kunststoff bestehen. \\
+Dazu soll noch eine Ladebuchse und ein Schalter verbaut werden. \\
+Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterstützt hat, wurde das Gehäuse in folgenden Schritten produziert:
+\begin{itemize}
+	\item{Die Bodenplatte und die beiden Seitenteile werden aus weißem Kunststoff heraus geschnitten}
+	\item{Die Bodenplatte wird gebogen und mit den beiden Seitenteilen verklebt}
+	\item{Es werden vier Löcher als Befestigungsschrauben gebohrt}
+	\item{Die Platte für den Bildschirm wird Ausgeschnitten und die Versenkung für den Bildschirm hineingefräßt}
+	\item{Die Abstandshalter (innen) werden ausgeschnitten und in beide werden Löcher für die Schrauben gebohrt}
+	\item{Die Löcher für die Mikro-USB-Buchse und für den Ein-Ausschalter wird hineingeschnitten (Lasercutter)}
+	\item{Es werden Schrauben für das verschließen des Displays gesucht. Da es keine >50mm langen M3 Schrauben gibt, wird eine Gewindestange abgeschnitten und das Gehäuse mit einer Mutter befestigt.}
+	\item{Damit die Mutter nicht gesehen wird, werden vier Standfüße besorgt in denen die Mutter platz hat.}
+\end{itemize}
+
+%TODO BILD
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -2085,94 +2363,108 @@ Datenblattreferenz für die Powerbank: \cite{Powerbank}
 \renewcommand{\thesection}{\arabic{section}\;}
 \setcounter{section}{5}
 \section{\sc Pflichtenheft}
-	{\yhbu
-	Zur Umsetzung des Projektzieles werden messbare Kriterien formuliert.
-	}
- \subsection{Funktionale Anforderungen}
-	{\yhbu
-	Die Anforderungen müssen detailliert beschrieben werden,
-	sie müssen mess- und überprüfbar sein
-	(nicht: \dq{}Antwort so schnell wie möglich\dq{}, sondern: \dq{}Antwort in 0.5s\dq{}).
-	\\[1mm]
-	Sie definieren das Systemverhalten
-	(z. B. Erfassen und Interpretieren von Sensorwerten;
-	Suchen von Datenbankeinträgen\ldots).
-	Die Interaktionen (Mensch-Maschine, Maschine-Maschine)
-	sollen auch graphisch dargestellt werden.
-	}
+\vfill
+	\begin{center}\begin{huge}
+			\textbf{Pflichtenheft für die Diplomarbeit}\\ \vspace{1cm}
+			\textbf{JavaChess, ChessPI AndChess}
+	\end{huge}\end{center}
+\vfill
+\newpage
 
- \subsection{Schnittstellen}
-	{\yhbu
-	Technische Eigenschaften des Systems nach {\em außen}
-	(Hardware- und\slash{}oder Softwareschnittstellen).
-	Hier wird nur der Verweis auf verwendete Schnittstellen gegeben,
-	aber nicht die Definition oder Erklärung
-	(außer bei selbst definierten Schnittstellen).
-	}
+\subsection{\sc JavaChess Konzept}
 
- \subsection{Abnahmekriterien}
-	{\yhbu
-	Objektive Kriterien,
-	mit denen die Vollständigkeit und Korrektheit
-	der fertigen Lösung geprüft werden kann
-	(z.B.: Bei einem Signalgenerator wird das Ausgangssignal
-	in einem definierten Frequenzbereich mit einem Oszilloskop überprüft).
-	\\[1mm]
-	Die Prototypen der einzelnen Iterationen
-	(im Management ist Iteration eine Vorgehensweise,
-	um mit den Ungewissheiten und Überraschungen in komplexen Situationen umzugehen)
-	sind zu spezifizieren.
-	Die Funktionalität der Prototypen muss durch quantifizierbare Ergebnisse überprüfbar sein.
-	Die Spezifikation des Prototypen der nächsten Iteration
-	ist bei Präsentation einer Iteration vorzustellen.
-	Eine Iteration wird mit der Präsentation des Prototypen abgeschlossen (Meilenstein).
-	}
+Das Programm ist als 2D Schachspiel konzipiert. Basierend auf Java und JavaFX wird das Spiel entwickelt. \\
+Das Spiel soll Online spielbar gemacht werden, aber auch über einen Einzelspielermodus verfügen. Dieser Einzelspielermodus beinhaltet auch eine selbst entwickelte künstliche Intelligenz. \\
+Die Grafische Oberfläche setzt sich aus selbst designten Schachbrett, Bedienflächen und aus Opensource-Quellen stammenden Ressourcen für die Figuren zusammen.\\
+Selbstverständlich sollen alle möglichen Züge implementiert- und ein passender Schachmattalgorithmus entwickelt werden. \\
+Auf eine Ressourcenschonende Zugberechnung soll besonderen Wert gelegt werden, da die künstliche Intelligenz auf denselben Zugmechanismus zugreifen soll wie der menschliche Spieler. \\
+Die Bedienung des Programms soll auf mehrere Arten möglich sein:  mittels Click to Click* und Drag and Drop.\\
+*Click to Click: Spieler A klickt auf Feld d7 – dann auf Feld d6 – Figur bewegt sich von d7 nach d6.
 
- \subsection{Dokumentationsanforderungen}
-	{\yhbu
-	Anforderungen, die über das Dokument
-	\dq{}Gesamtdokumentation\_Vorlage.doc\dq{} hinausgehen
-	(z.B.: Online-Hilfe, Dokumentation in Englisch\ldots).
-	}
+\subsection{Einzubauende Features}
 
- \subsection{Qualitätsstandards}
-	{\yhbu
-	Die im Projekt verwendeten Qualitätsstandards und einzuhaltende Normen
-	werden festgelegt,
-	z.B. hausinterne oder industrielle Printfertigung, verwendete Normen\ldots
-	}
+\subsubsection{JavaChess (Desktop Version - Windows}
 
- \subsection{Abwicklungsprozess}{\yhbu
-	Für die Projektabwicklung an der
-	Abteilung für Elektronik und Technische Informatik der HTL-Anichstrasse
-	gelten folgende Phasen:
-	\\[4mm]\hspace*{-3mm}
-	\begin{tabular}{p{50mm} l}
-	Startphase Phase \#1
-			&(Sommersemester 4. Klasse):	\\
-			&Diskussion mit Betreuern -- Erstellung Pflichtenheft	\\
-% XH:{\korr do muass wos fahlen:}&\\
-	Phase \#2:	&Kontrolle der Meilensteine (fruehestens Oktober)	\\
-	Phase \#3:	&Kontrolle der Meilensteine	\\
-	Phase \#4:	&Kontrolle der Meilensteine	\\
-	Phase \#5:	&Kontrolle der Meilensteine	\\
-	Phase \#6:	&Kontrolle der Meilensteine	\\
-	Phase \#7:	&04.April 2017 - Abgabe		\\
-			&Präsentation und Demonstration der Ergebnisse
-	\end{tabular}\hfill
-	\\[4mm]
-	Die Termine für die Meilensteine werden mit der Betreuerin\slash{}dem Betreuer fixiert.
-	\\[2mm]
-	Vertiefende Aufgabenstellung laut Antrag.
-	\\[2mm]
-	Die Erstellung des Pflichtenheftes kann vor September erfolgen, es können auch
-	Vorarbeiten in den Ferien erfolgen, jedoch dürfen keine Meilensteine definiert
-	werden, die vor und unmittelbar nach der Startphase liegen. Die 150 – 180 Stunden
-	sind für das Abschlussjahr definiert.
-	}
+\begin{enumerate}
+	\item{GUI}
+	\begin{enumerate}
+		\item{2D Darstellung des Schachbretts}
+		\item{Bedienflächen, in Menüs geordnet}
+		\item{Spielstand Indikatoren}
+	\end{enumerate}
+	\item{Programmlogik}
+	\begin{enumerate}
+		\item{Zugfunktion}
+		\item{Schachmattalgorithmus}
+		\begin{enumerate}
+			\item{Es soll auf eine Übersichtlichkeit des Programmcodes geachtet werden}
+			\item{Die Kommentare des Programmcodes sollen auf Englisch erfolgen}
+		\end{enumerate}
+	\end{enumerate}
+	\item{Künstliche Intelligenz}
+	\begin{enumerate}
+		\item{Im Einzelspielermodues ist es möglich gegen eine selbst entwickelte möglich gegen eine selbst entwickelte künstliche Intelligenz zu spielen}
+		\item{Die Evaluierung des besten Zuges der künstlichen Intelligenz wird mithilfe eines abgeänderten MinMax-Algorithmus erfolgen.}
+	\end{enumerate}
+	\item{Netzwerk}
+	\begin{enumerate}
+		\item{Austausch der Spieldaten über ein Local Area Network.}
+	\end{enumerate}
+\end{enumerate}
+
+\subsubsection{ChessPI (Raspberry PI 3}
+
+\begin{enumerate}
+	\item{Für einen 7‘‘ Touchscreen optimierte Spielerfahrung}
+	\item{Optimierung der künstlichen Intelligenz für Niedrigleistung}
+	\item{Eigenentwickeltes Gehäuse, welches mithilfe eines 3D-Druckers gebaut wird}
+	\item{Selber entwickelte Akkuansteuerungsschaltung und Einbau des Akkus innerhalb des Gehäuses}
+\end{enumerate}
+
+\subsubsection{AndChess (Android)}
+
+\begin{enumerate}
+	\item{Vollständig portierter Programmcode für Android basierte mobile Geräte}
+	\item{Angepasste GUI für eine bessere Bedienung auf mobilen Geräten}
+\end{enumerate}
+
+\subsection{Appendix}
+\subsubsection{Vorhandene Bugs}
+
+Hier werden alle bekannten Bugs gelistet, welche behoben werden sollen:
+
+\begin{itemize}
+	\item{chachmattalgorithmus gibt außer in einem bestimmten Fall nur Schach aus.Dieser bestimmte Falls ist, wenn zwei gegnerische Figuren den König bedrohen.}
+	\item{Die Züge Rochade, En Passant, Bauerntausch und der Doppelzug des Bauern, falls dieser sich noch nicht bewegt hat, sind nicht eingebaut.}
+	\item{Die Züge des Läufers und der Dame haben den Fehler falls diese Diagonal ziehen, sind auch illegale Züge erlaubt. Z.B.: Lc8 -> Le6, dieser Zug funktioniert, sollte aber nicht}
+	\item{Es gibt keine Feststellung ob Team1 oder Team2 am Zug ist, beide funktionieren immer.}
+	\item{Falls eine Schachsituation entsteht, kann es unter besonderen Bedingungen zu einer Endlosschleife kommen. Diese lässt in Folge das Programm abstürzen.}
+\end{itemize}
 
 
+section{Datenblätter}
+\label{SEC:DATASHEET}
 
+\begin{figure}[H]
+  \centering
+		\includegraphics[scale=0.75, angle=0,page=1]{graphics/LM2596.pdf}
+		\caption{Datenblatt LM2596}
+		\label{datasheet:LM2596}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+		\includegraphics[scale=1.5, angle=90,page=2]{graphics/powerbank.pdf}
+		\caption{Datenblatt Powerbank}
+		\label{datasheet:powerbank}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+		\includegraphics[scale=0.7, angle=90]{graphics/screen.pdf}
+		\caption{Datenblatt RaspberryPI Bildschirm}
+		\label{datasheet:raspiscreen}
+\end{figure}
 
 
 
@@ -2218,7 +2510,7 @@ Datenblattreferenz für die Powerbank: \cite{Powerbank}
 	\hspace*{12mm}
 	\rule{37mm}{0pt} Abbildung 2: Projektzeitplan
 
- \subsection{Projektpersonalplanung und Kostenplanung}
+ \subsection{Projektpersonalplanung und Kostenaufstellung}
 	{\yhbu
 	Eine Abschätzung von
 	{\em Personal, Material, Fremdleistungen}
@@ -2232,6 +2524,62 @@ Datenblattreferenz für die Powerbank: \cite{Powerbank}
 	vorhanden bzw. frei sind.
 	Die Beschaffung der Materialien ist im Zeitplan mit zu berücksichtigen.
 	}
+  \subsubsection{Kostenaufstellung}
+	\begin{center}
+	
+	
+		\begin{tabular}{|c|c|c|}
+		\hline
+		 \sc Was & \sc Wie viel &  \sc $Preis(\euro)$\\
+		\specialrule{2.5pt}{1pt}{1pt}
+		N-Mosfet			&		7							&		3.78				\\
+		\hline
+		4 Ohm Resistor	&	5 (Packung)				&		1.51				\\
+		\hline
+		1N5408	 			& 10 (Packung)			&		5.2		\\
+		\hline
+		PNP-Transistor	&	10 (Packung)			&		2.99	\\
+		\hline
+		R-680 $\Omega$&	10 (Packung)			&		0.26		\\
+		\hline
+		R-3.9k$\Omega$	& 10 (Packung)			& 0.45		\\
+		\hline
+		1N5821				& 50 (Packung)			&	15.25		\\
+		\hline
+		Akku					&	2								& 35.94				\\
+			\hline
+		LM348					&		10 (Packung)		& 3.34				\\
+			\hline
+		R-1.8 k$\Omega$& 10 (Packung)			& 0.08				\\
+			\hline
+		LM2596				&	1								&	3.87			\\
+			\hline
+		C-100$\mu$F		&	5 (Packung)				&	1.23			\\
+			\hline
+		L-33 $\mu$H		&	1								& 2.89				\\
+			\hline
+		C-220$\mu$F		&	5 (Packung)				&	0.59			\\
+			\hline
+		Sicherung 4A		&	10 (Packung)			&	0.73			\\
+			\hline
+		Raspberry 3		&	1								&	61.41			\\
+			\hline
+		7'' Touchscreen	&	1								&	57.7			\\
+			\hline
+		Micro-USB Buchse& 1									&	 20.99			\\
+			\hline
+		Schalter				&	1								&			12.99	\\
+			\hline
+		M-3-Stange			&		1							& 0.89				\\
+			\hline
+			USB-2.0 Kabel		&	1								&	9.99			\\
+			\hline
+			Mikro-USB-Verlängerung		&	1								&		9.99		\\
+			\specialrule{2.5pt}{1pt}{1pt}
+			\multicolumn{2}{|c|}{$\sum$} & 260.89\\
+			\hline
+	\end{tabular}
+\end{center}
 
   \subsubsection{Projektkostenplan}
 	{\yhbu
