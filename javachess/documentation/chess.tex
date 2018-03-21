@@ -1,8 +1,10 @@
+
 %xhversion{v2.01 RdF} %PdJ,PdL,PdM,PdS,PdU,Pe6,PeI,PfB,PfD,RbN,RbP,RcL,RdC,RdD,RdF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TODO: -siehe GitHub-Projects
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%	ifn="MeinLatexFile.tex"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	die auskommentierten 'usepackage'-Anweisungen sind
 %	Alternativen oder Zusaetze, die iXH hier nicht,
 %	aber vielleicht DU brauchen kannst - XH
@@ -10,7 +12,6 @@
 %	XH Herstellungsprozess-Shellscript @15Apr17:
 %	--------------------------------------------
 %	#!/bin/sh
-%	ifn="MeinLatexFile.tex"
 %	latex $ifn
 %	fn2="$(echo $ifn|sed s/.tex/.dvi/)"
 %	fn3="$(echo $ifn|sed s/.tex/-pics.pdf/)"
@@ -20,11 +21,11 @@
 %	  ### now pdflateXing $ifn ... (zweimal - fuers Inhaltsverzeichnis)
 %	pdflatex $ifn
 %	pdflatex $ifn
+%\listfiles	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\listfiles			%lists included files while processing 'pdflatex'
+		%lists included files while processing 'pdflatex'
   %\documentclass[12pt,a4paper]{book}
   %\documentclass[11pt,a4paper]{article}
-\documentclass[12pt,a4paper]{article}
   %\documentclass[12pt,a4paper]{report}
 
   %\usepackage{etex}		%gegen 'no more room for new dimen...' error xh@RaE1
@@ -33,7 +34,8 @@
   %%\usepackage[latin1]{inputenc}
   %%\usepackage[ansinew]{inputenc}
   %%\usepackage[cp850]{inputenc}
-  %\usepackage[utf8x]{inputenc}
+  %\usepackage[utf8x]{inputenc}  
+\documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}  %\usepackage{amssymb}
 \usepackage{amsmath}
@@ -123,7 +125,9 @@
 \usepackage{pdfpages}
   %\usepackage[official]{eurosym}
 \usepackage[gen]{eurosym}
-
+\usepackage{acronym}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
 	% YHs Raender links 30mm rechts 25mm einstellen:
 \setlength{\hoffset}	{30mm-1in}
 \setlength{\oddsidemargin}{0pt}		%bei doppelseitigem Druck umstellen!
@@ -161,6 +165,7 @@
 
 \usepackage{listings}
 \usepackage{color}
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -286,7 +291,7 @@
 		Betreuer/Betreuerin:
 		\\[5.0mm]Ing. MSc. Signitzer Markus
 	  }
-	  \\[14mm]{Innsbruck, am 30.10.2017}
+	  \\[14mm]{Innsbruck, am 03.04.2018}
 	  \\[16mm]\rule{150mm}{0.5pt}
 	  \\[ 8mm]
 	  \parbox[t]{75mm}{
@@ -316,7 +321,7 @@
 %\tableofcontents
 %====================================================================================
 
-
+\renewcommand{\thepage}{\roman{page}}% Roman numerals for page counter
 	%/*Header-Einstellung*/
 \pagestyle{fancy}
 \fancyhf{}
@@ -329,7 +334,7 @@
 \lfoot{5CHEL-2018}
 \cfoot{\thesection-\rightmark}
 %\cfoot{\thesubsubsection-\rightmark}
-\rfoot[\thepage]{\thepage/\pageref{LastPage}}
+\rfoot[\thepage]{\thepage}
 \setlength{\headwidth}	{1.0\textwidth}
 \setlength{\headheight}{15mm}
 \renewcommand{\headrulewidth}{0.0pt}
@@ -338,7 +343,7 @@
 
 \vfill
 \newpage
-\tableofcontents
+
 
 
 
@@ -600,13 +605,37 @@ Allerdings muss dies unter den folgenden Bedingungen geschehen:
 	\item{\textbf{Gesetzeskonform:} Das Programm darf nicht so verändert werden, dass die Nutzung illegal wird.}
 \end{itemize}
 
+\newpage
+\section{Danksagung}
+\label{SEC:THANKS}
 
-
+Vor allem möchten wir unserem Betreuer Ing. MSc. Signitzer Markus für die Unterstüzung danken. \\
+Weiters bedanken wir uns bei Fachlehrer Strohmaier für die Unterstüzung beim Bau des Gehäuses. \\[1ex]
+Auch möchten wir uns bei Elektrotechnik Beiser - Andreas Beiser für die finanzielle Unterstüzung bedanken. \\[1ex]
+Bei unserern Eltern, Brigitte und Andreas Beiser, bzw. bei Gabriele und Alexander Huber. \\
+Die Bereitschaft unserer Beta-Tester unser Programm auf Herz und Nieren zu prüfen. \\
+Weiteres wollen wir uns bei folgenden Personen Bedanken:
+%\begin{itemize}
+%	\item{\textbf{Raphael Meier} - Für die Unterstüzung beim Gehäusebau }
+%	\item{\textbf{Chiara Polterauer (amtierende österreichische Schachmeisterin) %}- Für die Testung der KI}
+%	\item
+%	\item{\textbf{Brigitte Beiser} - Für das Korrekturlesen}
+%	\item{\textbf{Alina Schärmer} - Für das Korrekturlesen}
+%\end{itemize}
 
 
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
+
+\tableofcontents
+
+
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+\renewcommand{\thepage}{\arabic{page}}% Arabic numerals for page counter
+\setcounter{page}{1}
 \setcounter{section}{0}
 \section{\sc Einleitung}
 \label{SEC:INTRODUCTION}
@@ -764,7 +793,7 @@ Wir entschieden uns für diese Lösung.
 
 JavaChess ist in der Programmiersprache Java geschrieben. Java ist eine Objektorientierte, Klassenbasierte Hochsprache der Informatik. Java hat den Vorteil, dass es nicht Hardware gebunden ist und somit ein Programm, geschrieben auf einer Distribution des Betriebssystems GNU/Linux auf (zumindest theoretisch) allen unterstützten Systemen läuft. \\
 Somit können wir unser Spiel auch auf einem Raspberry-PI lauffähig machen. \\
-Das von uns verwendete GUI Environment ist JavaFX. Es wurde erstmals im Dezember 2008 den Programmierern zugänglich gemacht und soll das bis dahin Standard Java GUI Environment ,,Swing'' ersetzen. Die Unterschiede bestehen im Aufbau, wie eine GUI realisiert werden kann bis hin zu den verbesserten grafischen Effekten, die durch JavaFX möglich sind. \\
+Das von uns verwendete \acl{GUI} Environment ist JavaFX. Es wurde erstmals im Dezember 2008 den Programmierern zugänglich gemacht und soll das bis dahin Standard Java GUI Environment ,,Swing'' ersetzen. Die Unterschiede bestehen im Aufbau, wie eine GUI realisiert werden kann bis hin zu den verbesserten grafischen Effekten, die durch JavaFX möglich sind. \\
 
 Dadurch wurden die Entscheidungen gefällt Java mit JavaFX zu verwenden.\\
 Java Chess nützt in Folge einige dieser Vorteile aus, vor allem Objektorientiertes Design. 
@@ -2163,7 +2192,8 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
-
+\renewcommand{\thepage}{\Roman{page}}% Roman for page counter
+\setcounter{page}{1}
 \renewcommand{\thesection}{\Roman{section}\;}
 %\renewcommand{\labelsection}{(\roman{section})}
 \setcounter{section}{0}
@@ -2194,6 +2224,7 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
+%\renewcommand{\thepage}{\rom{page}}% Roman for page counter
 \renewcommand{\thesection}{\Roman{section}\;}
 \setcounter{section}{2}
 %\vspace*{-8mm}
@@ -2346,7 +2377,18 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 \endgroup
 
 
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+\renewcommand{\thesection}{\Roman{section}\;}
+\setcounter{section}{3}
+\section{Abkürzungen}
+\label{SEC:ACRONYMS}
 
+\begin{acronym}[acronyms]
+ \acro{GUI}{Graphical-User-Interface}
+ \acro{AI}{Artificial-Intelligence}
+\end{acronym}
 
 
 
@@ -2361,7 +2403,7 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 \appendix
 \part*{\sc Anhang}
 \renewcommand{\thesection}{\arabic{section}\;}
-\setcounter{section}{5}
+\setcounter{section}{4}
 \section{\sc Pflichtenheft}
 \vfill
 	\begin{center}\begin{huge}
@@ -2447,7 +2489,7 @@ section{Datenblätter}
 
 \begin{figure}[H]
   \centering
-		\includegraphics[scale=0.75, angle=0,page=1]{graphics/LM2596.pdf}
+		\includegraphics[scale=0.75, angle=0,page=1]{graphics/LM2596.PDF}
 		\caption{Datenblatt LM2596}
 		\label{datasheet:LM2596}
 \end{figure}
@@ -2590,13 +2632,47 @@ section{Datenblätter}
 	}
 
   \subsubsection{Arbeitsnachweis Diplomarbeit}
-	{\yhbu
-	Dieser erfolgt durch ständige Aufzeichnungen der Schüler im Projekttagebuch.
-	\\[1mm]
-	Für jeden Projektmitarbeiter wird eine Tabelle gemäß Muster ausgefüllt.
-	In dieser Aufzeichnung werden auch die Unterrichtsprojektanteile,
-	die in die Arbeit eingeflossen sind, aufgezeigt.
+	\label{SUBSEC:WORKDONE}	
+	\cmnt{
+	02.10.2017 -Alexander Beiser: Schachmatt Algorithmus und Vervollständigung des Hot-Seat Modus -Marcel Huber: Implementierung der Netzwerkfähigkeit
+
+06.11.2017 -Alexander Beiser: Entwicklung der künstlichen Intelligenz -Marcel Huber: Implementierung von Java FX.
+
+18.12.2017 -Alexander Beiser: Raspberry-PI Implementierung und Design des Gehäuses -Marcel Huber: Komplettüberarbeitung der GUI für eine bessere Benutzer-Erfahrung
+
+04.02.2018 -Alexander Beiser: Entwicklung der Akku-Steuerungsschaltung und Einbau dieser -Marcel Huber: Portierung auf Android
+
+05.03.2018 -Alexander Beiser: Durchführung einer Beta-Phase und Fehlerbehebungen -Marcel Huber: Durchführung einer Beta-Phase und Fehlerbehebungen 
+		
 	}
+	
+% Please add the following required packages to your document preamble:
+% \usepackage[normalem]{ulem}
+% \useunder{\uline}{\ul}{}
+\begin{table}[]
+\centering
+\begin{tabular}{ccccc}
+\multicolumn{5}{c}{\textbf{Arbeitsaufstellung}}                                                                                                                                                                                                                                  \\ \hline
+\multicolumn{1}{|c|}{{\ul Was}}                                                                                                     & \multicolumn{1}{c|}{{\ul Person}} & \multicolumn{1}{c|}{{\ul Stunden}} & \multicolumn{1}{c|}{{\ul Von}}  & \multicolumn{1}{c|}{{\ul Bis}}  \\ \hline
+\multicolumn{5}{|c|}{\textit{Beginn der Diplomarbeit - 14.09.2017}}                                                                                                                                                                                                              \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Schachmatt Algorithmus\\ und Hotseat Modus\end{tabular}}                            & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{30}            & \multicolumn{1}{c|}{14.09.2017} & \multicolumn{1}{c|}{02.10.2017} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Implementierung der \\ Netzwerkfähigkeit\end{tabular}}                              & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{35}            & \multicolumn{1}{c|}{14.09.2017} & \multicolumn{1}{c|}{02.10.2017} \\ \hline
+\multicolumn{5}{|c|}{{\textit{Meilenstein 1 - 02.10.2017}}}                                                                                                                                                                                                                           \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Entwicklung der künstlichen\\ Intelligenz\end{tabular}}                             & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{35}            & \multicolumn{1}{c|}{02.10.2017} & \multicolumn{1}{c|}{06.11.2017} \\ \hline
+\multicolumn{1}{|c|}{Implementierung von JavaFX}                                                                                    & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{50}            & \multicolumn{1}{c|}{02.10.2017} & \multicolumn{1}{c|}{06.11.2017} \\ \hline
+\multicolumn{5}{|c|}{{\textit{Meilenstein 2 - 06.11.2017}}}                                                                                                                                                                                                                           \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Raspberry-PI Implementierung\\ und Design des Gehäuses\end{tabular}}                & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{45}            & \multicolumn{1}{c|}{06.11.2017} & \multicolumn{1}{c|}{18.12.2017} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Komplettüberarbeitung der GUI\\ für eine bessere Benutzer\\ Erfahrung\end{tabular}} & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{40}            & \multicolumn{1}{c|}{06.11.2017} & \multicolumn{1}{c|}{18.12.2017} \\ \hline
+\multicolumn{5}{|c|}{{\textit{Meilenstein 3 - 18.12.2017}}}                                                                                                                                                                                                                           \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Entwicklung der Akku-\\ Steuerschaltung und Einbau \\ dieser\end{tabular}}          & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{40}            & \multicolumn{1}{c|}{18.12.2017} & \multicolumn{1}{c|}{04.02.2018} \\ \hline
+\multicolumn{1}{|c|}{Portierung auf Android}                                                                                        & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{15}            & \multicolumn{1}{c|}{18.12.2017} & \multicolumn{1}{c|}{04.02.2018} \\ \hline
+\multicolumn{5}{|c|}{{\textit{Meilenstein 4 - 04.02.2018}}}                                                                                                                                                                                                                           \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Durchführung einer Beta-Phase\\ und Fehlerbehebungen\end{tabular}}                  & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{30}            & \multicolumn{1}{c|}{04.02.2018} & \multicolumn{1}{c|}{05.03.2018} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Durchführung einer Beta-Phaseund \\ Fehlerbehebungen\end{tabular}}                  & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{40}            & \multicolumn{1}{c|}{04.02.2018} & \multicolumn{1}{c|}{05.03.2018} \\ \hline
+\end{tabular}
+\caption{Arbeitsaufstellung nach Meilensteine}
+\label{table:workgeneral}
+\end{table}
 
 	\paragraph{\color{teal}Tabelle 1: Arbeitsaufstellung}\hfill
 	{\fontsize{9pt}{9pt}\selectfont
