@@ -1,8 +1,10 @@
+
 %xhversion{v2.01 RdF} %PdJ,PdL,PdM,PdS,PdU,Pe6,PeI,PfB,PfD,RbN,RbP,RcL,RdC,RdD,RdF
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TODO: -siehe GitHub-Projects
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%	ifn="MeinLatexFile.tex"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	die auskommentierten 'usepackage'-Anweisungen sind
 %	Alternativen oder Zusaetze, die iXH hier nicht,
 %	aber vielleicht DU brauchen kannst - XH
@@ -10,7 +12,6 @@
 %	XH Herstellungsprozess-Shellscript @15Apr17:
 %	--------------------------------------------
 %	#!/bin/sh
-%	ifn="MeinLatexFile.tex"
 %	latex $ifn
 %	fn2="$(echo $ifn|sed s/.tex/.dvi/)"
 %	fn3="$(echo $ifn|sed s/.tex/-pics.pdf/)"
@@ -20,11 +21,11 @@
 %	  ### now pdflateXing $ifn ... (zweimal - fuers Inhaltsverzeichnis)
 %	pdflatex $ifn
 %	pdflatex $ifn
+%\listfiles	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\listfiles			%lists included files while processing 'pdflatex'
+		%lists included files while processing 'pdflatex'
   %\documentclass[12pt,a4paper]{book}
   %\documentclass[11pt,a4paper]{article}
-\documentclass[12pt,a4paper]{article}
   %\documentclass[12pt,a4paper]{report}
 
   %\usepackage{etex}		%gegen 'no more room for new dimen...' error xh@RaE1
@@ -33,7 +34,8 @@
   %%\usepackage[latin1]{inputenc}
   %%\usepackage[ansinew]{inputenc}
   %%\usepackage[cp850]{inputenc}
-  %\usepackage[utf8x]{inputenc}
+  %\usepackage[utf8x]{inputenc}  
+\documentclass[12pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}  %\usepackage{amssymb}
 \usepackage{amsmath}
@@ -55,12 +57,14 @@
 \usepackage{multirow}		% fuer 'tabular' - Tabellen
 \usepackage{makeidx}
 \usepackage{mdwlist}		% f. 'compact lists' "itemize*", "enumerate*", "description*"
+\usepackage{enumerate}
   %\usepackage{ulem}	... produziertma nFehler ban 'latex' run
 \usepackage{longtable}		% fuer tabellen ueber mehrere Seiten
 \usepackage{xcolor}
 \usepackage[ngerman]{babel}
 \usepackage[pdfborderstyle={/S/U/W 1}]{hyperref}
 \usepackage{float}
+\usepackage{booktabs}
 %\usepackage[demo]{graphicx}
 %\addto{\captionsngerman}{%
   %\renewcommand*{\contentsname}{Inhaltsverzeichnis}
@@ -122,7 +126,9 @@
 \usepackage{pdfpages}
   %\usepackage[official]{eurosym}
 \usepackage[gen]{eurosym}
-
+\usepackage{acronym}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
 	% YHs Raender links 30mm rechts 25mm einstellen:
 \setlength{\hoffset}	{30mm-1in}
 \setlength{\oddsidemargin}{0pt}		%bei doppelseitigem Druck umstellen!
@@ -160,6 +166,7 @@
 
 \usepackage{listings}
 \usepackage{color}
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -283,9 +290,10 @@
 	  \hspace*{6mm}
 	  \parbox[t]{50mm}{
 		Betreuer/Betreuerin:
-		\\[5.0mm]Ing. MSc. Signitzer Markus
+		\\[5.0mm]Ing. MSc. Signitzer
+		\\Markus
 	  }
-	  \\[14mm]{Innsbruck, am 30.10.2017}
+	  \\[14mm]{Innsbruck, am 03.04.2018}
 	  \\[16mm]\rule{150mm}{0.5pt}
 	  \\[ 8mm]
 	  \parbox[t]{75mm}{
@@ -315,7 +323,7 @@
 %\tableofcontents
 %====================================================================================
 
-
+\renewcommand{\thepage}{\roman{page}}% Roman numerals for page counter
 	%/*Header-Einstellung*/
 \pagestyle{fancy}
 \fancyhf{}
@@ -328,7 +336,7 @@
 \lfoot{5CHEL-2018}
 \cfoot{\thesection-\rightmark}
 %\cfoot{\thesubsubsection-\rightmark}
-\rfoot[\thepage]{\thepage/\pageref{LastPage}}
+\rfoot[\thepage]{\thepage}
 \setlength{\headwidth}	{1.0\textwidth}
 \setlength{\headheight}{15mm}
 \renewcommand{\headrulewidth}{0.0pt}
@@ -337,7 +345,7 @@
 
 \vfill
 \newpage
-\tableofcontents
+
 
 
 
@@ -446,18 +454,31 @@
 %====================================================================================
 
 \addcontentsline{toc}{section}{Erklärung der Eigenständigkeit der Arbeit}
+\renewcommand{\thesection}{\roman{section}\;}
 \section*{\Large\sc Erklärung der Eigenständigkeit der Arbeit}
 	\hfill\\[ 8mm]
 	EIDESSTATTLICHE ERKLÄRUNG
 	\\[3mm]
 \begin{spacing}{1.5}
 	\noindent%
-	Ich erkläre an Eides statt, dass ich die vorliegende Diplomarbeit selbstaendig und
+	Ich erkläre an Eides statt, dass ich die vorliegende Diplomarbeit selbständig und
 	ohne fremde Hilfe verfasst, andere als die angegebenen Quellen und Hilfsmittel
 	nicht benutzt und die den benutzten Quellen wörtlich und inhaltlich entnommenen
 	Stellen als solche erkenntlich gemacht habe.
 \end{spacing}\hfill
 	\\[12mm]
+	\parbox[b]{52mm}{
+		\rule{50mm}{0.2pt}\rule{0pt}{25mm}
+		\\\hspace*{6mm}{Ort, Datum}
+		\\[0mm]
+	}
+	\hfill
+	\parbox[b]{72mm}{
+		\rule{70mm}{0.2pt}\rule{0pt}{25mm}
+		\\\hspace*{6mm}{Verfasser, Verfasserinnen}
+		\\\hspace*{6mm}{Vor- und Zunamen}
+	}
+		\\[12mm]
 	\parbox[b]{52mm}{
 		\rule{50mm}{0.2pt}\rule{0pt}{25mm}
 		\\\hspace*{6mm}{Ort, Datum}
@@ -475,7 +496,6 @@
 
 
 
-
 %======================================================================================
 %\clearpage\vfill\newpage
 %======================================================================================
@@ -483,13 +503,13 @@
 \section{Zusammenfassung des Projektergebnisses}
  \subsection{Kurzfassung /Abstract}
  
-	Alexander Beiser und Marcel Huber entwickelten im Zuge ihrer Diplomarbeit 2017/18 ein Schachspiel, welches auf einem PC, Android-Smartphone und Raspberry PI spielbar ist. Das Schachspiel basierte auf einem bereits von ihnen geschriebenen rohen ,,Gerüst''. \\
+	Alexander Beiser und Marcel Huber entwickelten im Zuge ihrer Diplomarbeit 2017/18 ein Schachspiel, welches auf einem \ac{PC} , Android-Smartphone und Raspberry PI spielbar ist. Das Schachspiel basierte auf einem bereits von ihnen geschriebenen rohen ,,Gerüst''. \\
 	Dieses Spiel wurde mit der Programmiersprache Java entwickelt, weiteres war für den Raspberry PI ein Gehäuse zu designen und mit einem 3D Drucker zu realisieren. Um das Spielvergnügen für den Raspberry PI auch unterwegs zu ermöglichen, wurde eine Akkusteuerung entworfen und realisiert. \\
 	\subsubsection{Alexander Beiser}
-	Alexander Beiser war für große Teile des Backends zuständig. Ein Hauptteil bestand aus der Entwicklung einer Chess Engine, also eines Zündungsmechanismus, welcher speziell für die ebenso von Alexander Beiser erschaffene künstliche Intelligenz performiert wurde. Er entwickelte auch die Akkusteuerung für den Raspberry PI und designete das Gehäuse.
+	Alexander Beiser war für große Teile des Backends zuständig. Ein Hauptteil bestand aus der Entwicklung einer Chess Engine, also eines Zugmechanismus, welcher speziell für die ebenso von Alexander Beiser erschaffene künstliche Intelligenz performiert wurde. Er entwickelte auch die Akkusteuerung für den Raspberry PI und designte das Gehäuse.
 	
 	\subsubsection{Marcel Huber}
-	Marcel Huber war für weite Teile des Frontend Bereichs zuständig. Der Schwerpunkt lag auf dem Implementieren von JavaFX, dem Verbessern der audiovisuellen Gestaltung und dem Entwickeln eines Netzwerkspielmodus. Auch eine Andorid - app sollte entwickelt werden.
+	Marcel Huber war für weite Teile des Frontend Bereichs zuständig. Der Schwerpunkt lag auf dem Implementieren von JavaFX, dem Verbessern der audiovisuellen Gestaltung und dem Entwickeln eines Netzwerkspielmodus. Auch eine Andorid - \ac{App.} sollte entwickelt werden.
  
 	\vfill
 	\newpage	
@@ -513,68 +533,6 @@
 
 
 
-%======================================================================================
-\clearpage\vfill\newpage
-%======================================================================================
-\cmnt{	
-	\vspace*{-10mm}\noindent%
-	{\Large\bf Inhaltsverzeichnis}\\
- \renewcommand{\theenumii}{\arabic{enumii}}
- \renewcommand{\labelenumii}{\theenumi.\theenumii}
- \renewcommand{\theenumiii}{\arabic{enumiii}}
- \renewcommand{\labelenumiii}{\theenumi.\theenumii.\theenumiii}
-
-{\yhbu
-	Formale und sprachliche Aspekte \dotfill i		\\
-	Zitierregeln \dotfill iv				\\
-	Erklaerung der Eigenstaendigkeit der Arbeit \dotfill vii	\\
-	Zusammenfassung des Projektergebnisses \dotfill viii		\\
-	\phantom{11}Kurzfassung /Abstract \dotfill viii				\\
-	\phantom{11}Projektergebnis \dotfill viii					\\
-	1 Einleitung \dotfill 1					\\
-	2 Vertiefende Aufgabenstellung \dotfill 1		\\
-	\phantom{11}2.1 Schülername 1 \dotfill 1				\\
-	\phantom{11}2.2 Schülerinnenname 2 \dotfill 1			\\
-	3 Systemdokumentation \dotfill 2			\\
-	\phantom{11}3.1 Lösungsweg \dotfill 2				\\
-	\phantom{111}3.1.1 Gewählte Lösung \dotfill 2			\\
-	\phantom{111}3.1.2 Alternative Lösungen (sollten Alternativen besprochen worden sein) \dotfill 2	\\
-	\phantom{11}3.2 Grobentwurf \dotfill 2				\\
-	\phantom{11}3.3 Feinentwurf \dotfill 2				\\
-	\phantom{11}3.4 Implementierung \dotfill 2				\\
-	\phantom{111}3.4.1 Sourcecode \dotfill 2				\\
-	\phantom{111}3.4.2 Gesamtschaltplan und Fertigungsunterlagen \dotfill 3	\\
-	\phantom{111}3.4.3 Verwendete Technologien und Entwicklungswerkzeuge \dotfill 3	\\
-	\phantom{111}3.4.4 Testfälle \dotfill 4				\\
-	\phantom{111}3.4.5 Test- und Messergebnisse \dotfill 4		\\
-	4 Fertigungsdokumentation \dotfill 5			\\
-	5 Benutzerdokumentation \dotfill 5			\\
-	\phantom{11}5.1 Installationsanleitung \dotfill 5			\\
-	\phantom{11}5.2 Anwendungsbeispiele \dotfill 5			\\
-	\phantom{11}5.3 Referenzhandbuch \dotfill 5				\\
-	\phantom{11}5.4 Fehlermeldungen und Hinweise auf Fehlerursachen \dotfill 5		\\
-\clearpage\vfill\newpage{}\noindent%
-	I. Abbildungsverzeichnis \dotfill I		\\
-	II. Tabellenverzeichnis \dotfill I		\\
-	III. Literaturverzeichnis \dotfill II		\\
-	Anhang \dotfill IV				\\
-	6 Pflichtenheft \dotfill IV			\\
-	\phantom{11}6.1 Funktionale Anforderungen \dotfill IV	\\
-	\phantom{11}6.2 Schnittstellen \dotfill IV			\\
-	\phantom{11}6.3 Abnahmekriterien \dotfill IV		\\
-	\phantom{11}6.4 Dokumentationsanforderungen \dotfill IV	\\
-	\phantom{11}6.5 Qualitätsstandards \dotfill V		\\
-	\phantom{11}6.6 Abwicklungsprozess \dotfill V		\\
-	7 Zusammenfassung \dotfill VI			\\
-	\phantom{11}7.1 Schlussfolgerung / Projekterfahrung \dotfill VI	\\
-	\phantom{11}7.2 Projektterminplanung \dotfill VI		\\
-	\phantom{11}7.3 Projektpersonalplanung und Kostenplanung \dotfill VII	\\
-	\phantom{111}7.3.1 Projektkostenplan \dotfill VII		\\
-	\phantom{111}7.3.2 Arbeitsnachweis Diplomarbeit \dotfill VII	\\
-	\phantom{111}7.3.3 Leistungscontrolling \dotfill VII		\\
-}
-}	%
-
 
 
 %=================================================================================
@@ -584,7 +542,7 @@
 \section{Lizenz}
 \label{SEC:licence}
 
-Das Schachprogramm wird unter der ,,Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License'' entwickelt. \\
+Das Schachprogramm ist unter der ,,Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License'' entwickelt. \\
 Dies räumt jeden Menschen folgende Rechte ein: 
 \begin{itemize}
 	\item{\textbf{Teilen:} Das Programm darf frei kopiert und weiterverteilt werden.}
@@ -599,22 +557,39 @@ Allerdings muss dies unter den folgenden Bedingungen geschehen:
 	\item{\textbf{Gesetzeskonform:} Das Programm darf nicht so verändert werden, dass die Nutzung illegal wird.}
 \end{itemize}
 
+\newpage
+\section{Danksagung}
+\label{SEC:THANKS}
 
+Vor allem möchten wir unserem Betreuer Ing. MSc. Signitzer Markus für die Unterstützung Danken. \\
+Weiters bedanken wir uns bei Fachlehrer Strohmaier für die Unterstüzung beim Bau des Gehäuses. \\[1ex]
+Auch möchten wir uns bei Elektrotechnik Beiser - Andreas Beiser für die finanzielle Unterstüzung bedanken. \\[1ex]
+Bei unserern Eltern, Brigitte und Andreas Beiser, bzw. bei Gabriele und Alexander Huber. \\
+Die Bereitschaft unserer Beta-Tester unser Programm auf Herz und Nieren zu prüfen und wenn nötig sogar Blut dafür zu vergießen.\\
+Alexander Hold und Thomas Klotz, da wir mit ihnen das Programm so weiter entwickelt haben, um es mit ihrer ,,Launchpad'' Diplomarbeit kompatibel zu machen. \\
 
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+
+\tableofcontents
 
 
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
+\renewcommand{\thepage}{\arabic{page}}% Arabic numerals for page counter
+\renewcommand{\thesection}{\arabic{section}\;}
+\setcounter{page}{1}
 \setcounter{section}{0}
 \section{\sc Einleitung}
 \label{SEC:INTRODUCTION}
 
-	Alexander Beiser und Marcel Huber sind beide begeisterte Schachspieler, womit die Entwicklung eines Schachspiels naheliegt. Gegen Ende des 4.Jahres der HTL trafen sie die Entscheidung ein Schachspiel selber zu entwickeln und keine Diplomarbeit von einer Firma anzunehmen. Für die Entwicklung ihres Schachspiels werden sie von ,,Elektrotechnik Beiser'' unterstützt. Diese Firma übernimmt die anfallenden Kosten für die Hardwarekomponenten.\\
-	Anfang der 5.Klasse der HTL kamen die Sondierungsgespräche mit ihrem Betreuer Ing. MSc. Signitzer Markus, 
+	Alexander Beiser und Marcel Huber sind beide begeisterte Schachspieler, womit die Entwicklung eines Schachspiels naheliegt. Gegen Ende des 4.Jahres der \ac{HTL} trafen sie die Entscheidung ein Schachspiel selber zu entwickeln und keine Diplomarbeit von einer Firma anzunehmen. Für die Entwicklung ihres Schachspiels werden sie von ,,Elektrotechnik Beiser'' unterstützt. Diese Firma übernimmt die anfallenden Kosten für die Hardwarekomponenten.\\
+	Anfang der 5.Klasse der HTL fanden die Sondierungsgespräche mit ihrem Betreuer Ing. MSc. Signitzer Markus, statt 
 welcher ihnen bekannt gab, was im Zuge dieser Diplomarbeit alles erledigt werden muss. \\
-Durch die Gespräche kam man zum Schluss, dass für die Diplomarbeit ein Schachspiel in Java entwickelt werden muss und dieses auf einen RaspberryPI, als auch auf Android Geräte potiert werden soll. Weiteres wird eine Akkusteuerung für den RaspberryPI entwickelt und ein Gehäuse designt und mittels schuleigenen 3D-Drucker ausgedruckt. \\
-	Die GUI des Spiels soll mit JavaFX erstellt werden. Das Spiel soll gegen eine selbstentwickelte künstliche Intelligenz spielbar sein, im Hot Seat Modus oder im Local Area Network. \\
+Durch die Gespräche kam man zum Schluss, dass für die Diplomarbeit ein Schachspiel in Java entwickelt werden soll und dieses auf einen RaspberryPI und auch auf Android Geräte potiert werden muss. Weiteres wird eine Akkusteuerung für den RaspberryPI entwickelt und ein Gehäuse designt und mittels schuleigenen 3D-Drucker ausgedruckt. \\
+	Das  \acl{GUI} des Spiels soll mit JavaFX erstellt werden. Das Spiel soll gegen eine selbstentwickelte künstliche Intelligenz spielbar sein, im Hot Seat Modus oder im Local Area Network. \\
 	Im Hot Seat Modus spielt man auf einem PC abwechselnd die Partien.
 	Details werden in einem Pflichtenheft festgehalten, dieses Pflichtenheft befindet sich im Anhang.
 	
@@ -629,7 +604,7 @@ Durch die Gespräche kam man zum Schluss, dass für die Diplomarbeit ein Schachs
 \section{\sc Vertiefende Aufgabenstellung}
  \subsection{Alexander Beiser}
  	Überarbeitung des Schachmattalgorithmus, Entwicklung der Zugmechanik und Entwicklung einer künstlichen Intelligenz. \\
-Implementierung des Schachspiels auf den Raspberry-PI, gleichzeitige designen des Gehäuses für den Raspberry-PI und Entwicklung der Akkuansteuerungsschaltung. 
+Implementierung des Schachspiels auf den Raspberry-PI, gleichzeitiges designen des Gehäuses für den Raspberry-PI und Entwicklung der Akkuansteuerungsschaltung. 
 	
  \subsection{Marcel Huber}
 	Entwicklung der Netzwerkfähigkeit und Implementierung von Java FX.
@@ -646,7 +621,7 @@ Entwicklung der Android-App.
 
 \subsection{Was ist Schach?}
 \label{SUBSEC:CHESS-EXPLAIN}
-Um den Aufbau des Programmes nach vollziehen zu können, sollten die Grundregeln des Schachspiels geläufig sein. Hier haben wir versucht, die wichtigsten Regeln kurz zusammenzufassen. \\
+Um den Aufbau des Programmes nachvollziehen zu können, sollten die Grundregeln des Schachspiels geläufig sein. Hier haben wir versucht, die wichtigsten Regeln kurz zusammenzufassen. \\
 Was ist Schach? \\
 Schach ist ein strategisches Brettspiel, indem es darum geht, die feindliche Seite zu schlagen. Die feindliche Seite hat verloren, wenn der König im Schachmatt steht. \\
 Der Name Schach kommt aus dem persichen ,,Schah'' und bedeutet so viel wie König, woher der Name ,,königliches Spiel'' stammt. \\
@@ -668,7 +643,6 @@ Folgende Figuren sind zu Beginn am Feld:
 	\item{1 Dame}
 	\item{1 König}
 \end{itemize}
-
 Das Ende des Spiels erfolgt entweder durch schachmatt, Aufgabe oder durch ein Remis/Patt. Schachmatt bedeutet, dass der König bedroht wird und es dem Spieler nicht mehr möglich ist den König aus dieser Position zu befreien.
 Patt Möglichkeiten:
 \begin{itemize}
@@ -683,7 +657,7 @@ Nun folgen die Zugregeln:
 \subsubsection{Zugregel Bauer}
 \label{SUBSUBSEC:PAWN}
 \begin{itemize}
-	\item{Bauer darf einen Schritt nach vorne ziehen, wenn das Feld leer ist}
+	\item{Bauer darf einen Schritt nach vorne ziehen, wenn das Feld leer ist.}
 	\item{Befindet sich der Bauer in der Ausgangsposition und wurde noch nicht gezogen, kann er auch wahlweise zwei Schritte vorrücken.}
 	\item{Der Bauer schlägt vorwärts diagonal ein Feld.}
 	\item{Spezialzug: ,,En Passant''. Dies kann er als einzige Spielfigur, wenn ein feindlicher Bauer zuvor einen Doppelschritt gemacht hat und somit den eigenen Bauern die Option nimmt, den gegnerischen Bauern anzugreifen. Falls er ausgeführt wird, ist der feindliche Bauer vernichtet und der eigene rückt diagonal ein Feld hinter den nicht mehr existierenden Bauern.}
@@ -726,7 +700,7 @@ Nun folgen die Zugregeln:
 \subsection{Schachmaschinen}
 \label{SUBSUBSEC:CHESS-COMPUTERS}
 
-Seitdem es die Möglichkeit gibt einen Schach spielenden Mechanismus zu bauen, hat man dies auch getan. Zu Anfang war dies noch der ,,Schach spielende Türke'', welcher 1769 von Wolfgang von Kempelen konstruiert wurde. \\ 
+Seitdem es die Möglichkeit gibt einen schachspielenden Mechanismus zu bauen, hat man dies auch getan. Zu Anfang war dies noch der ,,Schach spielende Türke'', welcher 1769 von Wolfgang von Kempelen konstruiert wurde. \\ 
 Der richtige Durchbruch geschah aber erst durch die Erfindung des Computers. Die Hardware wurde immer Leistungsfähiger, wodurch der Mensch als Gegner immer weiter in Bedrängung geriet. 1997 schlug der von IBM speziell entwickelte Schachcomputer Deep Blue, den damaligen Schachweltmeister Kasparow, wodurch die Künstliche Intelligenz in diesem Bereich offiziell den Menschen überholt hat. \\
 Heutzutage wird gegen Schachcomputer vor allem zu Trainingszwecken gespielt. Solche Schachcomputer finden sich mittlerweile auf so ziemlich jedem Gerät, egal ob Smartphone, Tablet oder PC/Laptop. Meist sind diese Programme aber Proprietär und ,,closed source''. Wir entwickeln deshalb ein ,,open Source'' Schachspiel, dass auf mehreren Devices spielbar ist.
  
@@ -744,27 +718,23 @@ Heutzutage wird gegen Schachcomputer vor allem zu Trainingszwecken gespielt. Sol
 \subsection{Einführung}
 \label{SUBSEC:JAVACHESS-INTRO}
 
-Bevor mit der Dokumentation des Programmcodes begonnen werden kann, werden zuerst einige Möglichkeiten beschrieben, wie ein Schachprogramm prinzipiell programmiert werden kann.
-
+Bevor mit der Dokumentation des Programmcodes begonnen werden kann, werden zuerst einige Möglichkeiten beschrieben, wie ein Schachprogramm prinzipiell programmiert werden kann.\\
 Hierfür gibt es prinzipiell zwei Möglichkeiten:
+
 \begin{enumerate}
 	\item{Die Figuren kennen ihre Position}
 	\item{Das Brett kennt die Positionen der Figuren}
 \end{enumerate}
-
-Das die Figuren ihre Position kennen, klingt zuerst gar nicht so abwegig. Probleme treten aber auf, sobald schachmatt überprüft werden soll. Hierfür muss überprüft werden, ob irgendeine gegnerische Figur den König schlagen kann, wofür man aber das Objekt der Figur benötigt. Natürlich ist dies Programmiertechnisch kein Problem, dadurch entstehen aber längere Wartezeiten. 
-
-
+Das die Figuren ihre Position kennen, klingt zuerst gar nicht so abwegig. Probleme treten aber auf, sobald schachmatt überprüft werden soll. Hierfür muss überprüft werden, ob irgendeine gegnerische Figur den König schlagen kann, wofür man aber das Objekt der Figur benötigt. Natürlich ist dies Programmiertechnisch kein Problem, dadurch entstehen aber längere Wartezeiten. \\
 Falls das Brett die Position der Figuren kennt und diese Figuren lediglich über eine Zahlenmatrix dargestellt werden, ist das Spiel nicht nur sehr viel performanter, es ergeben sich auch große Vorteile beim Entwickeln der künstlichen Intelligenz. \\ 
 Wir entschieden uns für diese Lösung.
 
 \subsection{Java Chess - Übersicht}
 \label{SUBSEC:JAVACHESS-OVERVIEW}
 
-JavaChess ist in der Programmiersprache Java geschrieben. Java ist eine Objektorientierte, Klassenbasierte Hochsprache der Informatik. Java hat den Vorteil, dass es nicht Hardware gebunden ist und somit ein Programm, geschrieben auf einer Distribution des Betriebssystems GNU/Linux auf (zumindest theoretisch) allen unterstützten Systemen läuft. \\
+JavaChess ist in der Programmiersprache Java geschrieben. Java ist eine Objektorientierte, Klassenbasierte Hochsprache der Informatik. Java hat den Vorteil, dass es nicht Hardware gebunden ist und somit ein Programm, geschrieben auf einer Distribution des Betriebssystems GNU/Linux (\ac{GNU}) auf (zumindest theoretisch) allen unterstützten Systemen läuft. \\
 Somit können wir unser Spiel auch auf einem Raspberry-PI lauffähig machen. \\
-Das von uns verwendete GUI Environment ist JavaFX. Es wurde erstmals im Dezember 2008 den Programmierern zugänglich gemacht und soll das bis dahin Standard Java GUI Environment ,,Swing'' ersetzen. Die Unterschiede bestehen im Aufbau, wie eine GUI realisiert werden kann bis hin zu den verbesserten grafischen Effekten, die durch JavaFX möglich sind. \\
-
+Das von uns verwendete \ac{GUI} Environment ist JavaFX. Es wurde erstmals im Dezember 2008 den Programmierern zugänglich gemacht und soll das bis dahin Standard Java GUI Environment ,,Swing'' ersetzen. Die Unterschiede bestehen im Aufbau, wie eine GUI realisiert werden kann bis hin zu den verbesserten grafischen Effekten, die durch JavaFX möglich sind. \\[1ex]
 Dadurch wurden die Entscheidungen gefällt Java mit JavaFX zu verwenden.\\
 Java Chess nützt in Folge einige dieser Vorteile aus, vor allem Objektorientiertes Design. 
 
@@ -783,6 +753,7 @@ Hier wird ein Einblick gegeben, wie Java Chess funktioniert. Dies geschieht anha
   \label{fig:block}
 \end{figure}
 
+\newpage
 \subsection{Package- und Klassenübersicht}
 \label{SUBSEC:PACKAGE}
 
@@ -793,10 +764,10 @@ Im folgenden werden die groben Inhalte und Funktionen der Packages und Klassen z
 Dieses Package beinhaltet alle Klassen, die benötigt werden, um die Soundeffekte im Spiel abzuspielen. Zusätzlich sind die benötigten Audiofiles enthalten.\
 
 \begin{itemize}
-	\item{\textbf{AudioManager.java}: Diese Klasse Managed die zwei Möglichkeiten, Audiodateien im Programm abzuspielen. Warum dies notwendig ist, wird in der entsprechenden Sektion erklärt. %TODO
+	\item{\textbf{AudioManager.java}: Diese Klasse managed die zwei Möglichkeiten, Audiodateien im Programm abzuspielen. Warum dies notwendig ist, wird in der entsprechenden Sektion erklärt. %TODO
 Auch die Einstellungsvariablen für die Sounds (z.B. Lautstärke) werden hier gespeichert. }
 	
-	\item{\textbf{JavaFxAudio.Java}: Mit dieser Klasse werden die Sounds für den JavaFX - Soundplayer geladen und abgespielt. }	
+	\item{\textbf{JavaFxAudio.java}: Mit dieser Klasse werden die Sounds für den JavaFX - Soundplayer geladen und abgespielt. }	
 	
 	\item{\textbf{NativeAudio.java}: Dies Klasse wurde nachträglich hinzugefügt und ermöglicht das Abspielen von Sounds auf Systemen, welche den JavaFX-Soundplayer nicht unterstützen.}
 	
@@ -804,12 +775,12 @@ Auch die Einstellungsvariablen für die Sounds (z.B. Lautstärke) werden hier ge
 
 \subsubsection{backgroundmatrix}
 
-In diesesm Package sind Klassen beheimatet, die für die Spiellogik verantwortlich sind.
+In diesem Package sind Klassen beheimatet, die für die Spiellogik verantwortlich sind.
 
 \begin{itemize}
-	\item{\textbf{BackgroundGrid.java}: Dies ist eine 'Basisklasse' der Spiellogik. In ihr werden Schach- und Schachmattabfagen durchgeführt. Zusätzlich werden in ihr verschiedene Spielrelevante variablen gespeichert, beispielsweise das aktuell ziehende Team.}
+	\item{\textbf{BackgroundGrid.java}: Dies ist eine 'Basisklasse' der Spiellogik. In ihr werden Schach- und Schachmattabfagen durchgeführt. Zusätzlich werden in ihr verschiedene spielrelevante Variablen gespeichert, beispielsweise das aktuell ziehende Team.}
 	
-	\item{\textbf{Move.java}: In dieser Klasse werden die Erlaubten Zugmuster für jede einzelne Figur vermerkt und ausgewertet.  }
+	\item{\textbf{Move.java}: In dieser Klasse werden die erlaubten Zugmuster für jede einzelne Figur vermerkt und ausgewertet.  }
 
 \end{itemize}
  
@@ -820,17 +791,17 @@ Die Klassen für die einzelnen Spielmodi werden in diesem Package abgelegt.
 
 \begin{itemize}
 
-	\item{\textbf{AI}: Ist quasi Schnittstelle zwischen AILogic und restlichem Spiel. Wird als neuer Thread gestartet, um das restliche Spiel nicht zu beeinflussen. Ruft AILogic auf.}
+	\item{\textbf{AI.java}: Ist quasi Schnittstelle zwischen AILogic und restlichem Spiel. Wird als neuer Thread gestartet, um das restliche Spiel nicht zu beeinflussen. Ruft AILogic auf.}
 	
-	\item{\textbf{AILogic}: Hier ist der eigentliche KI-Algorithmus. Wertet alle möglichen Züge nach dem Bestmöglichen aus.}
+	\item{\textbf{AILogic.java}: Hier ist der eigentliche KI-Algorithmus. Wertet alle möglichen Züge nach dem Bestmöglichen aus.}
 
 	\item{\textbf{AIvsAI.java}: Diese Klasse reguliert den 'geheimen Spielmodus', in dem der Computer gegen sich selbst spielt. }
 	
 	\item{\textbf{LAN.java}: In dieser Klasse werden alle Variablen für den LAN-Spielmodus gespeichert. Zudem werden die Schnittstellen zur Netzwerkkommunikation bereitgestellt.}
 	
-	\item{\textbf{Local.java}: Diese Klasse beinhaltet die Variablen für den Lokalen Modus. }
+	\item{\textbf{Local.java}: Diese Klasse beinhaltet die Variablen für den lokalen Modus. }
 
-	\item{\textbf{MovePos.java}: Dies Klasse stellt eine Hilfsklasse dar. Sie wird benutzt, um die momentane, zukünftige, vergangene oder spezial Position von Figuren zu bestimmen.}
+	\item{\textbf{MovePos.java}: Diese Klasse stellt eine Hilfsklasse dar. Sie wird benutzt, um die momentane, zukünftige, vergangene oder Spezialposition von Figuren zu bestimmen.}
 
 \end{itemize}
 
@@ -840,19 +811,19 @@ In diesem Package sind alle Klassen zusammengefasst, die etwas mit der GUI, also
 
 \begin{itemize}
 
-	\item{\textbf{About.java}: Diese Klasse generiert ein Popup, welches auskunft über die Entwickler und die Lizenz gibt. }
+	\item{\textbf{About.java}: Diese Klasse generiert ein Popup, welches Auskunft über die Entwickler und die Lizenz gibt. }
 	
-	\item{\textbf{BoardGui.java}: In dieser Klasse wird das Schachbrett gezeichnet. Außerdem werden hier usereingaben mit der Maus verarbeitet und es werden grafische Effekte erzeugt. Auch wird in dieser Klasse ein Teil des Spielflussess, insbesondere das Senden und Empfangen des Lan-Modus, geregelt. }
+	\item{\textbf{BoardGui.java}: In dieser Klasse wird das Schachbrett gezeichnet. Außerdem werden hier Usereingaben mit der Maus verarbeitet und es werden graphische Effekte erzeugt. Auch wird in dieser Klasse ein Teil des Spielflussess, insbesondere das Senden und Empfangen des Lan-Modus, geregelt. }
 	
-	\item{\textbf{GUI.java}: Diese Klasse erweitert die FX - Applikationsklasse. Sie stellt alle graphischen Elemente dar und regelt deren Platzbedarf. Manche Funktionen, wie beispielsweise das starten eines neuen Spiels oder das Laden eines Spielfeldes, sind hier enthalten }
+	\item{\textbf{GUI.java}: Diese Klasse erweitert die FX - Applikationsklasse. Sie stellt alle graphischen Elemente dar und regelt deren Platzbedarf. Manche Funktionen, wie beispielsweise das Starten eines neuen Spiels oder das Laden eines Spielfeldes, sind hier enthalten }
 	
 	\item{\textbf{Help.java}: Die Helpklasse erzeugt ein Popup, in welchem die Spielanleitung angezeigt wird.}
 	
-	\item{\textbf{Menu.java}: Die Menüklasse erzeugt das Spielmenü. Alle Funktionen aus dem Menü werden hier ausgeführt oder zumindest aufgerufen. Konkreet werden Spielmodi gewechselt, Felder gespeichert oder geladen, neue Spiele gestartet und es werden die Popups aufgerufen.}
+	\item{\textbf{Menu.java}: Die Menüklasse erzeugt das Spielmenü. Alle Funktionen aus dem Menü werden hier ausgeführt oder zumindest aufgerufen. Konkret werden Spielmodi gewechselt, Felder gespeichert oder geladen, neue Spiele gestartet und es werden die Popups aufgerufen.}
 	
 	\item{\textbf{Popup.java}: Diese Klasse erzeugt ein Popup, in dem viele Spielelemente konfiguriert werden können. Genauer werden die Lautstärke, AI-Schwierigkeit, und weitere kleine Einstellungen angeboten. Zusätzlich werden Informationen zum Spiel angezeigt. }
 	
-	\item{\textbf{Tile.java}: Dies Klasse repräsentiert ein Feld auf dem Schachbrett und enthält dessen Informationen.}
+	\item{\textbf{Tile.java}: Diese Klasse repräsentiert ein Feld auf dem Schachbrett und enthält dessen Informationen.}
 
 \end{itemize}
 
@@ -868,11 +839,11 @@ In diesem Package sind alle Klassen beinhaltet, welche den Launchpad-Support erm
 
 \subsubsection{network}
 
-Dieses Package beinhaltet alle Klassen, die benötigt werden, um dan Netzwerkspielmodus zu ermöglchen.
+Dieses Package beinhaltet alle Klassen, die benötigt werden, um den Netzwerkspielmodus zu ermöglichen.
 
 \begin{itemize}
 	\item{\textbf{Heartbeat.java}: Diese Klasse stellt sicher, dass der Verlust einer Netzwerkverbindung erkannt wird.}
-	\item{\textbf{hostingJob.java}: Diese Klasse wird benötigt, um das Hosten eines Netzwerkspieles zu regeln. Genaueres dazu unter} %TODO
+	\item{\textbf{hostingJob.java}: Diese Klasse wird benötigt, um das Hosten eines Netzwerkspieles zu regeln. Genaueres dazu unter (TODO)} %TODO
 	\item{\textbf{ReadingJob.java}: Dies Klasse ermöglicht es, Objekte vom Netzwerk zu empfangen. }
 \end{itemize}
 
@@ -882,14 +853,14 @@ Dieses Package beinhaltet alle Klassen, die benötigt werden, um dan Netzwerkspi
 
 	\item{\textbf{Load.java}: Diese Klasse enthält alle notwendigen Funktionen, um Spielstände zu laden. Außerdem werden alle Fehler, die beim Ladevorgang auftreten können, hier bearbeitet.  }
 	
-	\item{\textbf{Save.java}: Um Spielstände zu speichern wird diese Klasse benötzigt. Sie enthält alle notwendige Funktionen dazu, und bearbeitet Fehler, die beim Speichern auftreten können. }
+	\item{\textbf{Save.java}: Um Spielstände zu speichern wird diese Klasse benötigt. Sie enthält alle notwendigen Funktionen dazu, und bearbeitet Fehler, die beim Speichern auftreten können. }
 
 
 \end{itemize}
 
 \subsubsection{start}
 
-Dieses Package entält die Klasse '\textit{Main.java}', welche nur dazu dient, das Spiel zu starten.
+Dieses Package enthält die Klasse '\textit{Main.java}', welche nur dazu dient, das Spiel zu starten.
 
 \newpage
 \subsection{Initialisierung}
@@ -1156,6 +1127,203 @@ public class Move{
 }
 \end{lstlisting}
 %\lstset{language=German}
+
+\newpage
+\subsection{Die grafische Benutzeroberfläche}
+Was währe ein Spiel ohne grafische Benutzeroberfläche? Eine ansehnliche GUI (engl.: \textit{Graphical User Interface}) ist ein Kernbestandteil jedes Spieles. Um unsere Oberfläche vom Jahre 1998, dem Erscheiungsjahr von Swing, dem Toolkit, das zuvor von uns verwendet, und auch im Unterricht erlernt wurde, in die Gegenwart zu befördern. Mit JavaFX wurde ein modernes und Platformunabhängiges Framework ausgewählt, um die grafische Oberfläche umzusetzen.
+
+\subsubsection{JavaFX}
+\label{SUBSUBSEC:JAVAFX}
+JavaFX ist, wie schon erwähnt, das von uns verwendete Grafikframework für Java. Es stellt den designierten Nachfolger von Swing dar. Das Framework soll das Erstellen von platformübergreifenden, multimedialen GUIs erleichtern und die Lücken, die die veralteten Frameworks beinhalten, füllen.
+Um JavaFX zu verstehen, wird nun die grundsätzliche Funktionsweise beschreiben.\\ [2ex]
+Nach dem Start, der nicht mehr mit der 'main-Methode', sondern über eine Launch-Methode vollzogen wird, wird eine so genannte 'Stage' angezeigt. Vereinfacht kann man sagen, dass es sich dabei um das Fenster handelt, das angezeigt wird.\\
+Auf der Stage werden überlicherweise eine oder auch mehrere 'Scenes' dargestellt. Eine Scene kann man sich vorstellen wie einen Container, der die grafischen Objekte des Programmes enthält. \\
+Der Szenengraph besteht weiters aus Nodes (also Knoten). Es gibt 'Parent - Nodes' die weitere Nodes als Kinder enhalten können. Eine Node ohne weiter Kinder nennt man 'Leaf'. Diese Leafs stellen die sichtbaren Elemente der GUI dar, also beispielsweise Buttins, Textfenster oder Ähnliches. Die Parten-Nodes sind sozusagen 'innere Knoten', die man sich als unsichtbare strukturelle Elemente vorstellen kann. Eine Applikation muss die Root-Node für eine Scene angeben. \\
+Die Scene stellt das Bindeglied zwischen dem aus Nodes bestehenden Szenengraphen und dem vom Betriebssystem zur verfügung gestellten Fenster dar. Um dies zu verstehen, nehemen wir beispielsweise an, wir wollen die Größe eines Fensters ändern. Sobald die Größe des Fensters verändert wurde, versucht die Scene, die Änderung an die Root-Node weiterzugeben. Dabei wird die Methode 'isResizable' der Root-Node aufgerufen, welche der Stage mitteilt, ob die Node auf Änderungen reagieren möchte. Ist dies der fall, verändert die Scene die Größe der Nodes, ansonsten belässt die Scene die bestehendne Größen. Auf diese Weise vermittelt die Scene zwischen der Stage und den Nodes. 
+
+\subsubsection{Das Darstellen des Schachfeldes}
+\label{SUBSUBSEC:BOARDGUI}
+
+Die erste Frage die bei dem erstellen der Gui aufgetreten ist, war, wie das eigentliche Schachfeld seinen Weg auf den Bildschirm findet. 
+Um diesen ursprünglichen Zweck zu erfüllen, wurde die Klasse 'BoardGui.java' eingeführt, die mittlerweile den Kern der grafischen Oberfläche, in dem das Hauptsächliche spielgeschehen stattfindet, eingeführt. \\
+Die Klasse ist eine erweiterung der Klasse 'Canvas.java', die mit dem JavaFX Framework einzug in die Welt von Java gefunden hat. Das Canvas stellt eine Node dar (vgl.  \ref{SUBSUBSEC:JAVAFX}) und kann somit direkt auf einer Scene angezeigt werden.\\
+Ein Canvas (dt. Leinwand) kann mit einer Zeichenfläche verglichen werden: Mithlife eines so genannten 'GraphicsContext', einer Klasse, die vom Canvas beinhaltet wird, können Methoden aufgerufen werden, die das Canvas in seiner Darstellung verändern. Somit ist es möglich, auf dem Canvas Linien, Formen, Farben und sogar Bilddateien 'zu zeichnen'. \\
+Da das Schachfeld im Spielverlauf sehr oft neu gezeichnet werden muss wurde dieser Vorgang auf eine Methode ausgelagert. Diese nennt sich 'redraw()'. Was genau geschieht, wenn diese Methode aufgerufen wird, wird im folgenden erläutert. \\[2ex]
+Als erstes wird mithilfe des GraphicsContext auf der größe des gesamten Canvas ein braunes Rechteck erstellt, um eine Grundierung für das Spielfeld zu erhalten. 
+Im Anschluss wird die Methdoe 'DrawGrid(Hintergrundmatrix)' aufgerufen, die mithilfe der Hintergrundmatrix (vgl. Abb. \ref{TABLE:REPRESENTATION-MEEPLES}) das eigentliche Spielfeld mitsamt den Figuren darstellt.\\ 
+Dort werden zuerst Skalierungsfaktoren erstellt, die es ermöglichen, die Längeneinheiten, die verwendet werden um Formen zu generieren, unabähngig von der aktuellen Größe des Canvas anzugeben. Diese Faktoren ergeben sich aus der simplen Teilung der aktuellen Canvasgröße durch den Faktor 100. Dadurch erhält man einen Wert, der einem Prozent der Canvasgröße entspricht. Nun ist es komfortabel möglich, die Positionen und Längen der anzuzeigenden Objekte am Bildschirm mithilfe dieses Skalierungswertes in einer prozentuellen Form anzugeben.\\
+Im nächsten Schritt wird begonnen, ein Raster aus zuerst vertikalen und dann horizontalen schwarzen Linien zu 'zeichnen'. Diese bestehen aus dünnen Rechtecken und sollen später die eigentlichen Schachfelder voneinander separieren und für eine saubere Trennung zwischen diesen sorgen.\\
+In einer Schleife werden Werte nach oben gezählt, mit deren Hilfe die Linien in regelmäßigen Abständen dargestellt werden können. Die Abstände, in denen sich die Linien befinden, setzen sich zusammen aus dem Wert, den der Zählstand erreich hat, multipliziert mit dem Skalierungsfaktor und der Summe aus der Breite einer Linie und der Breite eines späteren Schachfeldes.\\
+Im Folgenden werden die bisherigen Schritte in Form von Pseudocode deutlich gemacht.\\
+\lstset{language=java}
+\begin{lstlisting}
+
+		SkalierungX = Aktuelle Canvasbreite/100;
+		SkalierungY = Aktuelle Canvashoehe/100;
+		
+		/* Zeichnen eines Rechtecks: 
+		zeichneRechteck(PoistionX, PositionY, LaengeX, LaengeY);
+		*/
+	
+	//vertikale Linien
+		gc.setFill(Color.BLACK);
+		for (Zaehlen von 1 bis 9) {
+			 Abstand in X = (Zaehlstand * (Linienbreite in Prozent + Feldbreite in Prozent) * SkalierungX;
+			 
+			zeichneRechteck(Abstand in X, 0, Linienbreite * SkalierungX, aktuelle Canvashoehe);
+		}
+
+	//horizontale Linien		
+		for (Zaehlen von 1 bis 9)) {
+			 Abstand in Y = (Zaehlstand * (Linienbreite in Prozent + Feldbreite in Prozent) * SkalierungY;
+			 
+			zeichneRechteck(0, Abstand in Y, aktuelle Canvasbreite, Linienbreite * Skalierungsfaktor);
+		}
+		
+\end{lstlisting}
+Anmerkung: \textit{Im eingentlichen Code wird jeweils noch ein 'Offset' hinzugefügt, um Platz für die Beschriftung der Schachfelder zu lassen. Aus Verständlichkeitsgründen wurde hier jedoch auf die erwähnung von diesem Verzichtet.} \\[2ex]
+Im Anschluss dazu werden die eigentlichen Schachfelder eingefärbt. Dies erfolgt in zwei verschachtelten for-Schleifen, wobei immer eine Zeile von links nach rechts eingefärbt wird, um dann in die nächste Zeile zu springen. Die Farbe der Felder wird nach dem Zählstand der der zwei verschachteltetn Schleifen ausgewählt: Je nachdem, ob die Feldanzahl grade oder ungrade ist muss auch die passende Farbe verwendet werden. Die Positionierung der Felder geschieht mithilfe einer ähnlichen Formel wie zuvor für die Trennlinien - diese setzt sich zusammen aus dem Zählstand der Schleifen, den Breiten der Felder und Linien und dem Skalierungsfaktor. Nach dem Determiniere der Farben und Längen wird ein Objekt der Klasse 'Tile.java' erstellt, dem für spätere Zwecke eine ID zugewiesen wird. Zusätzlich erhält es die Positionierungs- und Farbparameter, die benötzigt werden, um es darzustellen. Danach werden die Felder gezeichnet. 
+Mithilfe des folgenden Pseudocodes sollen auch diese Schritte anschaulich dargestellt werden.
+\lstset{language=java}
+\begin{lstlisting}
+
+	
+		for (y von 1 bis 8 zaehlen) {
+			for (x von 1 bis 8 zaehlen) {
+				if ((y == gerade) { // Even Odd
+					if ((x == gerade) {
+						farbe1();
+					} else {
+						farbe2();
+					}
+				} else {
+					if ((x == gerade) {
+						farbe2();
+					} else {
+						farbe1();
+					}
+				}
+				
+				PositionInX = Zahelstand in X * Linienbreite + Zaehlstand in X * Feldbreite;
+				PositionInY = Zahelstand in Y * Linienbreite + Zaehlstand in Y * Feldbreite;
+				Tile Feld = new Tile(PositionInX, PositionInY);
+ 				...  //eigenschafte des Feldes setzen (Farbe, ID etc.)
+				ZeichneRechteck(PositionInX * SkalierungX, PositionInY * SkalierungY, Breite * SkalierungX, Hoehe * SkalierungY);
+
+	
+\end{lstlisting}
+Anmerkung: \textit{Auch hier wurden die 'Offsets' für die Feldbeschriftungen der Einfachheit halber nicht erwähnt.}\\[2ex]
+Die darstellung der Figuren erfolgt über eine ähnliche Technik. Wieder handelt es sich um 2 verschachtelte Schleifen, die Zeile für Zeile abarbeiten. Diesmal wird jedoch jedoch nicht unterschieden, ob die Zähler in den Schleifen gerade oder ungerade sind, sonder es wird nach dem zugrundeliegenden Hintergrundraster unterschieden.\\
+Die Figuren werden nicht über vorderfinierte Formen dargestellt, sondern als Bilddateien geladen und mithilfe des GraphicsContext auf die Canvas gebracht. Die Position der Figuren unterscheidet sich bis auf einen Faktor, der die Figuren in die Mitte eines Feld setzt, nicht von den Positionen der Spielfelder. \\[2ex]
+In folgendem Pseudocode wird dieser auch dieser Teil des Codes veranschaulicht.
+\lstset{language=java}
+\begin{lstlisting}
+
+		for (y von 1 bis 8 zaehlen) {
+			for (x von 1 bis 8 zaehlen) {	
+				PositionInX = PositionDesFeldesInX+Figurenkorrektur;
+				PositionInY = PositionDesFeldesInX+Figurenkorrektur;
+				Figurenzahl = Hintergrundraster bei Zeile x und Spalte y;
+				//weisses team
+				if (Figurenzahl < 110 && Figurenzahl >= 100) {
+					ZeichneFigur(PositionInX, PositionInY, weisser Bauer);
+				} else if (Figurenzahl >= 110 && Figurenzahl < 120) {
+					ZeichneFigur(PositionInX, PositionInY, weisser Turm);
+				} else if (Figurenzahl >= 120 && Figurenzahl < 130) { 
+					ZeichneFigur(PositionInX, PositionInY, weisser Springer);
+				} else if (Figurenzahl >= 130 && Figurenzahl < 140) { 
+					ZeichneFigur(PositionInX, PositionInY, weisser Laeufer);
+				} else if (Figurenzahl >= 140 && Figurenzahl < 150) { 
+					ZeichneFigur(PositionInX, PositionInY, weisse Koenigin);
+				} else if (Figurenzahl == 150) { // white king
+					ZeichneFigur(PositionInX, PositionInY, weisser Koenig);
+				}				
+				 //schwarzes Team
+				if (Figurenzahl < 210 && Figurenzahl >= 200) {
+					ZeichneFigur(PositionInX, PositionInY, schwarzer Bauer);
+				} else if (Figurenzahl >= 210 && Figurenzahl < 220) {
+					ZeichneFigur(PositionInX, PositionInY, schwarzer Turm);
+				} else if (Figurenzahl >= 220 && Figurenzahl < 230) {
+					ZeichneFigur(PositionInX, PositionInY, schwarzer Springer);
+				} else if (Figurenzahl >= 230 && Figurenzahl < 240) {
+					ZeichneFigur(PositionInX, PositionInY, schwarzer Laeufer);
+				} else if (Figurenzahl >= 240 && Figurenzahl < 250) { 
+					ZeichneFigur(PositionInX, PositionInY, schwarze Koenigin);
+				} else if (Figurenzahl == 250) { // black king
+					ZeichneFigur(PositionInX, PositionInY, schwarzer Koenig);
+				}
+			}
+		}
+
+\end{lstlisting}
+Um die Erstellung des Spielfeldes abzuschließen und eine Beschriftung für das Schachfeld einzubauen, werden 2 weitere Schleifen (diesmal allerdings nicht mehr verschachtelt) eingebaut. Anhand der Zählstände der Schleifen werden die passende position der Beschriftung und der passende Buchstabe bzw. die passende Zahl bestimmt.Bevor der Text eingefügt wird, werden noch braune Flächen generiert, die genau in den zuvor freigelassenen Offset passen.
+Anhand von folgendem Pseudocode wird auch dieser Vorgang veranschaulicht.
+\lstset{language=java}
+\begin{lstlisting}
+
+	for (y von 0 bis 7 zaehlen) { 
+			gc.fillRect(BreiteEinerLinie*SkalierungX, y*Offset*SkalierungY, Breite*SkalierungX, BreiteEinesFeldes*SkalierungY);
+			bezeichnung=y+1;
+			schreibeText(y);
+		}
+
+		for (x von 0 bis 7 zaelhen) {
+			gc.fillRect(x*Offset*SkalierungX, BreiteEinerLinie*SkalierungY, BreiteEinesFeldes*SkalierungX,Breite*SkalierungY );
+
+			switch (x) {
+			case 0:
+				s = "A";
+				break;
+			case 1:
+				s = "B";
+				break;
+			
+			...			
+			
+			case 7:
+				s = "H";
+				break;
+			}
+			schreibeText(s);
+		}
+	}
+
+\end{lstlisting}
+\newpage
+
+\subsubsection{Klickbarkeit der Schachfelder}
+\label{SUBSUBSECTION:CLICKABLE}
+Um den dargestellten Feldern nun auch eine Funktion zu geben, muss man sie dazu bringen, auf Mauseingaben zu reagieren. \\
+Unter JavaFX können die meisten Nodes mit so genannten 'ActionListener' bzw. 'EventListener' versehen werden. Dies sind Objekte, die ab ihrem Erstellungszeitpunkt auf einen bestimmten Typus von Ereignis warten. Die beschriebenen Ereignisse können Mauseingaben, aber auch Tastatureingaben oder die Veränderung einer bestimmten Variable sein. \\
+Auch die Klasse 'BoardGui.java' kann mit solchen EventHandlern versehen werden, da sie ja eine Tochterklasse der unter JavaFX standardmäßig enthaltenen Canvas - Klasse ist.\\
+Um die Schachfiguren zu bewegen, wurde die Methode 'setOnMouseReleased()' der BoardGui - Klasse verwendet. Diese Methode ist ein EventListener, der seinen Code ausführt, sobald ein Mausklick aufhört.
+In diesem Listener wird nun jener Code ausgeführt, der die korrekte Aktion für den gerade Aktiven Spielmodus ausführt. \\
+In folgendem Pseudocode wird dies deutlich gemacht.
+
+\lstset{language=java}
+\begin{lstlisting}
+
+for(jedes Feld){
+
+	if(Feld ageklickt && Feld mit Figur besetzt){
+		Figur angewaehlt;
+	}else if(Feld angeklickt && Feld nicht mit Figurbesetzt && Figur angewaehlt){
+			zugabfrage();
+			if(Zug ist gueltig){
+				if(Spielmodus ist lokal){
+				... 	//Lokaler Modus
+				}
+				if(Spielmodus ist LAN){
+				...		//LAN-Modus
+				}
+				if(Spielmodus ist AI){
+				...		//AI-Modus
+				}
+			}	
+	}
+}
+
+\end{lstlisting}
 
 \subsection{Schach, Schachmatt und Patt Abfrage}
 \label{SUBSEC:checkmate}
@@ -1632,9 +1800,13 @@ Nun befindet sich der Algorithmus wieder in der Tiefe 4, in welcher der 2. mögl
 Dies geschieht nun solange, bis alle relevanten Züge durchsucht wurden, welche nicht relevant sind wird in \ref{SUBSUBSEC:AICODE} behandelt. \\
 Sobald der beste Zug ermittelt wurde, folgt die übliche Schachmatt-Abfrage und das Überschreiben des Schachfeldes mit den neuen Positionen. Anschließend ist wie in \ref{SUBSUBSEC:BLOCKSCHALTBILD} gezeigt, wieder der Spieler an der Reihe. \\[2ex]
 Eines der größten Probleme des Algorithmus ist die Performance. Dazu ein simples Gedankenexperiment: Beim 1. Spielzug sind 20 mögliche Züge des weißen Spielers möglich und eben soviele beim darauffolgenden Zug des schwarzen Spielers. Daraus resultiert aus den beiden Spielzügen \(20 \cdot 20 = 400\) verschiedene Stellungen. \\
-Gemittelt gibt es im Schach 28 mögliche Züge pro Spielzug. Nach 5 Zügen ergeben sich daraus schon 3.200.000 mögliche Stellungen, nach 6 wären es 64.000.000. Um zu einer Entscheidung zu kommen, muss der Computer alle diese Züge analysieren und bewerten. Dies benötigt Rechenleistung, weshalb ein solcher Schachalgorithmus sehr abhängig von der verwendeten Hardware ist. \\
-Im weiteren Sinne ist dies der Grund, warum solche künstlichen Intelligenzen gegen Künstliche-Neuronale-Netzwerke verlieren (siehe \ref{SUBSUBSEC:GenAI}). Die Min-Max Algorithmen können nicht ausreichend optimiert werden bzw. moderne Hardware besitzt einfach nicht genügend Rechenleistung, um in diesem Wettlauf mithalten zu können. \\
+Gemittelt gibt es im Schach 28 mögliche Züge pro Spielzug. Nach 5 Zügen ergeben sich daraus schon 3.200.000 mögliche Stellungen, nach 6 wären es 64.000.000. Um zu einer Entscheidung zu kommen, muss der Computer alle diese Züge analysieren und bewerten. Dies benötigt Rechenleistung, weshalb ein solcher Schachalgorithmus sehr abhängig von der verwendeten Hardware ist. \\[1ex]
+In der theoretischen Informatik gibt es zu obigen Beispiel die O() Schreibweise, welche wahrscheinliche Laufzeitdauer eines Algorithmus angibt. Diese kann je nach verwendetem Algorithmus konstant, logarithmisch $\log(n)$, linear, logarithmisch ($n \cdot \log(n)$), quadratisch, kubisch oder exponentiell sein, wobei exponentielle Algorithmen die rechen aufwendigsten Algorithmen sind. \\
+MinMax ist ein exponentieller Logarithmus. Die Anzahl der verwendeten Rechenschritte hängt wie oben beschrieben, von der zu berechnenden Zugtiefe ab. Mathematisch können die zu berechnenden Fälle folgendermaßen ermittelt werden, wobei $n$ die Zugtiefe ist:
+\[Schritte(n) = 20^n\]
+Im weiteren Sinne ist dies der Grund, warum auf MinMax basierende künstlichen Intelligenzen gegen Künstliche-Neuronale-Netzwerke verlieren (siehe \ref{SUBSUBSEC:GenAI}). Die Min-Max Algorithmen können nicht ausreichend optimiert werden bzw. moderne Hardware besitzt einfach nicht genügend Rechenleistung, um in diesem Wettlauf mithalten zu können. \\
 
+\newpage
 \subsubsection{Der MinMax-Algorithmus:}
 \label{SUBSUBSEC:MinMax}
 
@@ -1667,7 +1839,7 @@ Klasse AI:
 \begin{lstlisting}
 	public class AI extends Thread{
 		public void run(){
-			AIL = initialisiere AILogic()
+			AILogic AIL = initialisiere AILogic()
 			AIL.alphaBeta()
 			//Besten Zug bekommen
 			Move = AIL.getMove()
@@ -1686,6 +1858,7 @@ Klasse AI-Logic:
 		//wird benoetigt um die maximale Tiefe festzulegen und um den Logarithmus zu verbessern
 		public float alphaBeta(tiefe, Hintergrundmatrix, Team){
 			MaximaleTiefe = tiefe
+			//Diese beiden Werte werden als Worst- und Best-Case Szenario verwendet.
 			alpha = 10000
 			beta = -10000
 			for(i<tiefe){
@@ -1708,10 +1881,12 @@ Klasse AI-Logic:
 			}
 			
 			for(X und Y Positionen des Spielfeldes){
-				if(Spielfigur an Position){
+				if(Spielfigur an Position X und Y){
 					Zuege = AlleMoeglichenZuegeDerSpielfigur
 					for(alle Moeglichen Zuege der Figur){
-						A = Zug						
+						
+						MovePos A = Zug der Figur					
+						
 						Den Zug auf das Spielfeld uebertragen
 						
 						Sum1 = -alphaBetaHelper(tiefe+1, BackgroundGrid, Teamwechsel, -alpha, -beta)
@@ -1783,7 +1958,8 @@ Klasse AI-Logic:
 			}
 		}
 		
-		...Tabellen fuer Bauern, Lauefer,...		
+		Hier folgen die Tabellen fuer die Spielfiguren.
+		Diese geben an, wo sich die Figuren am liebsten aufhalten.
 		
 	}	
 \end{lstlisting}
@@ -1890,7 +2066,7 @@ Die minimal benötigte Kapazität berechnet sich wie folgt, wenn eine Stromaufna
 \[Q_{min} = t*I = 1h * 2.5A = 2.5 Ah = 2500 mAh\]
 Bei der Verkäuferseite Reichelt wurde ein Akku mit diesen Vorgaben gefunden: \cite{akku-liion}\\
 Dieser Akku hat eine maximale Kapazität von 2600 mAh, einen maximalen Entladestrom von 2.5 A und eine Ladespannung von 4.2V. \\[1ex]
-Das Datenblatt zu allen technischen Eigenschaften befindet sich auf der Seite von Reichelt (\cite{akku-liion}).
+Das Datenblatt zu allen technischen Eigenschaften befindet sich auf der Seite von Reichelt bzw. im Anhang (Siehe Abbildung ~\ref{datasheet:akku} auf Seite ~\pageref{datasheet:akku}).
 
 \subsection{Idee der 1. Akkusteuerungsschaltung}
 \label{SUBSEC:AKKUSTEUR1}
@@ -1914,7 +2090,7 @@ In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des 1. Versuchs. 
 \label{SUBSUBSEC:AKKUENTLOAD1}
 
 Das Entladen der Akkus erfolgt durch die Seriellschaltung der Akkus (siehe \nameref{SUBSUBSEC:SERPAR}). Seriell geschalten addiert sich die Spannung der beiden Akkus auf 7.4 Volt. Diese Spannung wird mittels StepDown Converter (LM2596) auf 5 Volt herunter geregelt.  Dies kann als Versorgung für den Raspberry PI verwendet werden. \\
-Die Beschaltung erfolgt gemäß des Datenblattes (Siehe \cite{LM2596}) . Die Berechnung der beiden Widerstände erfolgt ebenfalls gemäß Datenblatt.
+Die Beschaltung erfolgt gemäß des Datenblattes (Siehe Abbildung ~\ref{datasheet:LM2596-2} auf Seite ~\pageref{datasheet:LM2596-2}) . Die Berechnung der beiden Widerstände erfolgt ebenfalls gemäß Datenblatt.
 \[R_2 = R_1 \cdot \left(\frac{V_{out}}{V_{ref}} - 1 \right)\]
 \[V_{ref} = 1.25 V - R_1 = 1 k\Omega - V_{out} = 5V\]
 \[R_2 = 1000*(4-1) = 3 k\Omega\]
@@ -1932,7 +2108,7 @@ Die Verbindung zwischen dem 2.Akku und dem LM2596 wird aufgetrennt, um ein Entla
 In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des 1. Versuchs. Folgende Bauteile dieser Schaltung werden ausschließlich für das Entladen verwendet:\\ $T_1,R_{T1},T_3,R_{T3},T_6,R_{T6},T_{m3},T_{m4}, Akku1, Akku2$ \\
 
 \subsubsection{Sicherheit}
-\label{SUBSUBSEC:Security}
+\label{SUBSUBSEC:Security1}
 
 Unter Sicherheit werden alle Sicherheitsmaßnahmen verstanden, die eine Fehlfunktion des Akkus verhindern. \\
 Dafür gibt es einen Spannungsteiler, welcher alle kritischen Spannungen für Komperatoren zu Verfügung stellt. \\
@@ -1993,7 +2169,7 @@ Die 2.Akkusteuerungsschaltung unterscheidet sich primär von der 1. in der Einga
 \label{SUBSUBSEC:AKKULOAD2}
 
 Das Micro-USB Kabel hat wiederum 5V Versorgungsspannung. Die beiden Akkus sind in Serie geschaltet, womit die Ladespannung 8.2V (2*4.1V) betragen muss. Diese Spannung wird durch einen StepUp Converter vom Typ LT1370 erreicht. Dieser ist ein verstellbarer StepUpDownConverter. \\
-Die Beschaltung des ICs und die Formel, zur Berechnung der Widerstände, wird wiederum aus dem Datenblatt entnommen (\cite{LT1370}). \\
+Die Beschaltung des ICs und die Formel, zur Berechnung der Widerstände, wird wiederum aus dem Datenblatt entnommen (Siehe Abbildung ~\ref{datasheet:LT1370-2} auf Seite ~\pageref{datasheet:LT1370-2}). \\
 \[V_{out}=8.2V;V_{ref}=1.245V;R_{SU2}=10k\Omega\]
 \[V_{out}=V_{ref} \cdot \left( 1 + \frac{R_{SU1}}{R_{SU2}} \right)\]
 \[R_{SU1} = R_{SU2} \cdot \left( \frac{V_{out}}{V_{ref}} - 1 \right) = 55.8 k\Omega \rightarrow E-12 \rightarrow R_{SU1} = 56 k \Omega\]
@@ -2010,7 +2186,7 @@ In Punkt \ref{SUBSUBSEC:CIRCUIT-2} befindet sich die Schaltung des 2. Versuchs. 
 \newpage
 
 \subsubsection{Sicherheit}
-\label{SUBSUBSEC:Security}
+\label{SUBSUBSEC:Security2}
 
 Als Sicherheit wird wiederum ein Über- und Unterladeschutz verwendet. So gibt es eine automatische Abschaltung, wenn der Akku vollgeladen oder entladen ist. Die Überwachung greift für jeden Akku einzeln, dies geschieht wieder über Komperatoren, aber nur einen Transistor. Dieser sperrt, wenn der Schutz greift und ist geöffnet, wenn der Akku geladen oder verwendet werden darf. \\
 Um den Schutz beider Akkus zu ermöglichen, ist in der Serienschaltung eine Subtrahiererschaltung eingebaut. Die Differenz dieser Schaltung ergibt den momentanen Ladezustand des 2.Akkus.\\
@@ -2035,7 +2211,7 @@ In dieser wird als Akkumulator+Schaltung eine Powerbank verwendet, für technisc
 \label{SUBSUBSEC:CIRCUIT-2}
 \begin{figure}[H]
   \centering
-	%	\includegraphics[scale=0.7, angle=90]{graphics/20171104-Shematics.pdf}
+		\includegraphics[scale=0.7, angle=90]{graphics/20171104-Shematics.pdf}
 		\caption{Die 2.Schaltung}
 		\label{fig:circuit2}
 \end{figure}
@@ -2054,9 +2230,10 @@ Diese muss folgende Aufgaben erfüllen:
 Als Powerbank gibt es zwei zur Auswahl kommende Modelle:
 \begin{itemize}
 	\item{Das Modell RP-PB17 von RAVPower - Dieses erfüllt alle Vorgaben, denn die Powerbank hat einen maximalen Ausgangsstrom von 2.4 Ampere und eine Kapazität von 5600 mAh, womit ein Betrieb von bis zu 2.5h möglich ist. Die Größe ist kleiner als der RaspberryPI, womit die Powerbank einfach in das Gehäuse integriert werden kann. \\
-Datenblattreferenz für die Powerbank: \cite{Powerbank}
+Datenblattreferenz für die Powerbank siehe Abbildung ~\ref{datasheet:powerbank} auf Seite ~\pageref{datasheet:powerbank}.
 	\item{Das Modell FREEPMULTI10000 von Cellularline - Dieses hat den Vorteil einer erhöhten Kapazität von 10.000 mAh gegenüber den 5600 des anderen Modells. Dafür sind die Abmessungen der FREEPMULTI1000 Powerbank größer, womit ein Einbau in ein Gehäuse nur schwer möglich ist.}
 }
+\end{itemize}
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -2111,6 +2288,59 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 \section{Android}
 \label{SEC:android}
 
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+\section{Beta}
+\label{SEC:beta}
+
+Der letzte Meilenstein war die Beta Phase. In dieser sollten alle Funktionen des Spiels durch ausgewählte Tester noch einmal auf Herz und Nieren geprüft werden. Die Beta Tester sind deshalb aus Verschiedenen Hintergründen ausgewählt worden, zum Beispiel eine professionelle Schachspielerin oder Software EntwicklerInnen. Dies hat den Vorteil unterschiedliche Nutzerverhalten zu Testen. \\[1ex]
+Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
+\begin{enumerate}[I]
+	\item{Generelles Spielgefühl}
+	\item{Eventuell gefundene Bugs bzw. Verbesserungsvorschläge}
+\end{enumerate}
+
+
+
+
+\subsection{AI und Spielmechanik}
+\label{SUBSEC:BETAGAME}
+
+
+\subsubsection*{Chiara Polterauer (Schach-Staatsmeisterin)}
+\begin{enumerate}[I]
+	\item{Findet das Spiel eigentlich ganz in Ordnung, hat aber ein paar Verbesserungsvorschläge für eine eventuelle Weiterentwicklung des Spiels.}
+	\item{Hat die KI im ,,Better AI'' Modus auf dem maximalen Level geschlagen (bis jetzt einzige TesterIn) und wünscht sich somit eine bessere KI. }
+\end{enumerate}
+
+\subsubsection*{Jonas Bangratz}
+\begin{enumerate}[I]
+	\item{Um hier Jonas Bangratz wörtlich zu zitieren (22.03.2018): ,,Neben einigen Unregelmäßigkeiten, welche die Beta-Verion zu diesem Zeitpunkt enthielt, war es für die Software dennoch möglich mir ein relativ gutes Spielgefühl zu vermitteln.''}
+	\item{Im Computermodus, auf der niedrigsten Schwierigkeitsstufe, war es möglich den feindlichen König zu schlagen. Genauer betrachtet ist der feindliche König auf ein Feld gefahren, dass bedroht wird, wodurch dieser im nächsten Zug geschlagen werden konnte. Dies kann eigentlich gar nicht geschehen, da die KI nie den eigenen König bedrohen würde. Da die KI auf der niedersten Schwierigkeitsstufe aber keine Züge voraus berechnet, weiß diese nicht, dass der König durch diesen Zug bedroht wird. Aus diesem Grund, wurde die KI mit einem menschlichem Spieler in der Spiellogik vollständig gleichgestellt und darf dies nun nicht mehr. Dies hat Performance Einbußen zur Folge, welche aber verschmerzbar sind. }
+\end{enumerate}
+
+\subsubsection*{Nadja Nicolussi}
+\begin{enumerate}[I]
+	\item{Findet das Design ansprechend und die verschiedenen Spielmodi vernünftig.}
+	\item{Nahezu am Ende des Spiels ist der feindliche König, dieses Team hat nur mehr eine Figur den König, nicht ins Schach zu setzen. Dies geschieht daher, dass es in der DRAW()-Methode eine Abfrage gibt, ob eine Patt Situation entstanden ist. Diese Abfrage wird erst gestartet, wenn der König die letzte verbleibende Figur ist. Diese Abfrage hatte einen Bug, der den König ,,ausweichen'' lies.}
+\end{enumerate}
+
+\subsubsection*{Moritz Schnell}
+\begin{enumerate}[I]
+	\item{Findet das Spielgefühl ziemlich intuitiv.}
+	\item{Kompletter Spielabsturz durch einen Logikfehler in der AI Klasse. Die GUI wurde nicht mehr anklickbar, da das Überschreiben des aktuellen Spielstandes nicht funktioniert hat, wodurch ein Weiterspielen unmöglich war. Dieser Fehler, ist durch ,,Race Conditions'' aufgetreten und wurde behoben.}
+\end{enumerate}
+
+\subsubsection*{Alina Schärmer}
+\begin{enumerate}[I]
+	\item{Hier wird Alina Schärmer wörtlich zitiert:,, Ich finde das Spiel echt gut gelungen.''}
+	\item{}
+\end{enumerate}
+
+\subsection{LAN und GUI}
+\label{SUBSEC:BETALAN}
+
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -2161,12 +2391,14 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
-
+\renewcommand{\thepage}{\Roman{page}}% Roman for page counter
+\setcounter{page}{1}
 \renewcommand{\thesection}{\Roman{section}\;}
 %\renewcommand{\labelsection}{(\roman{section})}
 \setcounter{section}{0}
 %\section{\sc \;}\hfill\\[-24mm]
 	%Abbildung 2: Zeitplanung Projekt	8
+	\part*{\sc Anhang}
 \section{Abbildungsverzeichnis}\noindent%
 \begingroup
 \renewcommand{\section}[2]{}
@@ -2192,6 +2424,7 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
+%\renewcommand{\thepage}{\rom{page}}% Roman for page counter
 \renewcommand{\thesection}{\Roman{section}\;}
 \setcounter{section}{2}
 %\vspace*{-8mm}
@@ -2330,21 +2563,42 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 	URL = \url{https://at.rs-online.com/web/c/batterien/akkus/lithium-akkus/?applied-dimensions=4294830943},
 	Notiz = Online; Stand 19.März 2018,
 	RS-Best Nr.: 125-1266
-	\bibitem{LM2596} 
-	Komponente: LM2596
 	
-	\bibitem{LT1370}
-	Komponente: LT1370
-	
-	\bibitem{Powerbank}
-	Komponente=Powerbank,\\
-	URL= \url{https://www.ravpower.com/support/product/manual/view/MjY5}
+	\bibitem{pragmatic}
+	Author 1 = Andrew Hund, Author 2 = David Thomas,
+	Titel = The Pragmactic Programmer, Untertitel = from journeyman to master,
+	Verlag = 
+ Nachname, Vorname: Titel. Untertitel. -
+		Verlagsort: Verlag, Jahr. Nachname,
+		Vorname: Titel. Untertitel. Auflage - Verlagsort: Verlag, Jahr.
+		\\[1mm]Beispiele:
+		\\Sandgruber, Roman: Bittersüße Genüsse. Kulturgeschichte der Genußmittel. – Wien:
+		Böhlau, 1986. Messmer, Hans-Peter: PC-Hardwarebuch. Aufbau, Funktionsweise,
+		Programmierung. Ein Handbuch nicht nur für Profis. 2. Aufl. - Bonn: Addison-Wesley,
+		1993.
 	
 \end{thebibliography}
 \endgroup
 
 
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+\renewcommand{\thesection}{\Roman{section}\;}
+\section{Abkürzungen}
+\label{SEC:ACRONYMS}
 
+\begin{acronym}[acronyms]
+\acro{PC}{Personal Computer}
+\acro{HTL}{Höhere Technische Lehranstalt}
+ \acro{GUI}{Graphical-User-Interface}
+ \acro{GNU}{GNU's Not Unix}
+ \acro{AI}{Artificial-Intelligence}
+ \acro{vgl.}{vergleiche}
+ \acro{dt.}{zu Deutsch}
+ \acro{engl.}{englisch}
+ \acro{App.}{Application}
+\end{acronym}
 
 
 
@@ -2356,10 +2610,6 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
-\appendix
-\part*{\sc Anhang}
-\renewcommand{\thesection}{\arabic{section}\;}
-\setcounter{section}{5}
 \section{\sc Pflichtenheft}
 \vfill
 	\begin{center}\begin{huge}
@@ -2440,15 +2690,10 @@ Hier werden alle bekannten Bugs gelistet, welche behoben werden sollen:
 \end{itemize}
 
 
-section{Datenblätter}
+\section{Datenblätter}
 \label{SEC:DATASHEET}
 
-\begin{figure}[H]
-  \centering
-		\includegraphics[scale=0.75, angle=0,page=1]{graphics/LM2596.pdf}
-		\caption{Datenblatt LM2596}
-		\label{datasheet:LM2596}
-\end{figure}
+
 
 \begin{figure}[H]
   \centering
@@ -2464,8 +2709,45 @@ section{Datenblätter}
 		\label{datasheet:raspiscreen}
 \end{figure}
 
+\begin{figure}[H]
+  \centering
+		\includegraphics[scale=0.75, angle=0,page=1]{graphics/LM2596.PDF}
+		\caption{Datenblatt LM2596-Seite 1}
+		\label{datasheet:LM2596-1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+		\includegraphics[scale=0.75, angle=0,page=7]{graphics/LM2596.PDF}
+		\caption{Datenblatt LM2596-Seite 7 (Berechnung)}
+		\label{datasheet:LM2596-2}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+		\includegraphics[scale=0.8, angle=0,page=1]{graphics/LT1370.PDF}
+		\caption{Datenblatt LT1370-Seite 1}
+		\label{datasheet:LT1370-1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+		\includegraphics[scale=0.8, angle=0,page=7]{graphics/LT1370.PDF}
+		\caption{Datenblatt LT1370-Seite 7 (Berechnung)}
+		\label{datasheet:LT1370-2}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+		\includegraphics[scale=0.8, angle=90]{graphics/akku.pdf}
+		\caption{Datenblatt Akku für Akkusteuerung}
+		\label{datasheet:akku}
+\end{figure}
 
 
+
+
+\cmnt{
 
 %==================================================================================
 \clearpage\vfill\newpage
@@ -2475,13 +2757,30 @@ section{Datenblätter}
 	\vfill
 	{\color{white} NIX}
 
-
+}
 
 
 %==================================================================================
 \clearpage\vfill\newpage
 %==================================================================================
 \section{\sc Zusammenfassung}
+
+\subsection{Alexander Beiser}
+
+Alexander Beiser war für einen Großteil der Spiellogik zuständig. Somit fallen darunter unter anderem:
+\begin{itemize}
+	\item{Logik des Ziehens der Spielfiguren,}
+	\item{schachmatt und schach Abfrage,}
+	\item{Speichern und Laden}
+	\item{und der Entwicklung des Computers (künstliche Intelligenz)}
+\end{itemize}
+zuständig. \\
+Außerhalb des JavaChess Bereiches, hat er trotz Hindernissen das Spiel auf den RaspberryPI potiert. Dazu hat er ein Gehäuse entwickelt und das ganze mit einem Akku abgerundet, wodurch ein mobiles spielen mit dem sogenannten ,,ChessPI'' möglich ist. \\
+Dies ist das abgelieferte Ergebnis. Zusätzliche Aufgabe war es, eine Akkusteuerung selber zu entwerfen. Technisch gesehen sind zwei fertige Entwürfe dieser Akkusteuerung entwickelt worden, in der Messung der jeweiligen Schaltung stellte sich heraus, das jedoch ein Laden mit diesen Schaltungen sehr lange dauern würde. Dadurch verfehlten diese Schaltungen ihren eigentlichen praktischen Nutzen. Die Weiterentwicklung dieser Schaltung, um dadurch ein Laden in entsprechender Zeit zu ermöglichen, schlugen fehl und somit wurde aus Zeitmangel heraus eine Powerbank verwendet.
+
+\newpage
+\subsection{Marcel Huber}
+
 	{\yhbu
 	Kurzbeschreibung in Deutsch, eine A4-Seite.
 	Die Zusammenfassung soll eine Einführung in das Thema
@@ -2491,7 +2790,26 @@ section{Datenblätter}
 	Die Zielgruppe der Zusammenfassung sind auch Nicht-Techniker!
 	}
 
+\newpage
  \subsection{Schlussfolgerung / Projekterfahrung}
+ 
+ Das Projekt, ist trotz einiger Rückschläge, in weiten Teilen erfolgreich. Die künstliche Intelligenz ist stark genug menschliche Spieler zu schlagen und das spielen im Online Modus funktioniert tadellos. \\
+ 
+ \subsection{Alexander Beiser}
+ 
+	Alexander Beiser hatte in einigen Punkten mit massiven Problemen zu kämpfen. Vor allem zwei Punkte stellten sich als größere Probleme heraus, als geplant:
+\begin{enumerate}
+	\item{Das Potieren auf den RaspberryPI}
+	\item{Die Entwicklung der Akkusteuerungsschaltung}
+\end{enumerate}
+1) - Das portieren auf den RaspberryPI stellte sich als einen sehr viel größeren Zeitaufwand heraus, als geplant. Oracle, also die Entwickler von Java, haben die Unterstützung von JavaFX für ,,Embedded-Processors'' eingestellt. Dadurch musste eine funktionierende Alternative gefunden werden. Nachdem diese Alternative gefunden wurde, stellte sich heraus, dass der Bildschirm in Verbindung mit Java einen gewissen ,,Offset'' besitzt, also der gedrückte Punkt stimmt nicht mit dem angezeigten überein. Dieser Fehler konnte ebenfalls unter entsprechendem Zeitaufwand behoben werden. \\[1ex]
+2) - Die Entwicklung der Akkusteuerung stellte sich als ebenfalls größeres Problem als gedacht dar, da der Ladestrom viel zu klein war, um eine praktische Verwendung zu ermöglichen. \\[2ex]
+Die wichtigste Projekterfahrung ist jedenfalls, dass bevor ein Projekt begonnen wird, eine Machbarkeitsstudie durchgeführt werden sollte. Dadurch können potentielle ,,Zeit fressende Singularitäten'' vermieden werden. Weiteres sollte man mehr Zeit für eventuelle Fehler einplanen, da der Zeitplan sonst unmöglich einzuhalten ist. \\
+In zukünftigen Arbeiten im Team, sollte man sich mehr absprechen und ständig in Kontakt über den momentanen Stand der Teammitglieder informiert sein, um die Effizienz und Effektivität zu steigern.
+ 
+ \newpage
+ \subsection{Marcel Huber}
+
 
  \subsection{Projektterminplanung}
 	{\yhbu
@@ -2508,7 +2826,9 @@ section{Datenblätter}
 	\hspace*{12mm}
 	\rule{37mm}{0pt} Abbildung 2: Projektzeitplan
 
- \subsection{Projektpersonalplanung und Kostenplanung}
+\newpage
+ \subsection{Projektpersonalplanung und Kostenaufstellung}
+ \cmnt{
 	{\yhbu
 	Eine Abschätzung von
 	{\em Personal, Material, Fremdleistungen}
@@ -2522,7 +2842,65 @@ section{Datenblätter}
 	vorhanden bzw. frei sind.
 	Die Beschaffung der Materialien ist im Zeitplan mit zu berücksichtigen.
 	}
+	}
+  \subsubsection{Kostenaufstellung}
+	\begin{center}
+	
+	
+		\begin{tabular}{|c|c|c|}
+		\hline
+		 \sc Was & \sc Wie viel &  \sc Preis($\euro$)\\
+		\specialrule{2.5pt}{1pt}{1pt}
+		N-Mosfet			&		7							&		3.78				\\
+		\hline
+		4 Ohm Widerstand	&	5 (Packung)				&		1.51				\\
+		\hline
+		1N5408	 			& 10 (Packung)			&		5.2		\\
+		\hline
+		PNP-Transistor	&	10 (Packung)			&		2.99	\\
+		\hline
+		R-680 $\Omega$&	10 (Packung)			&		0.26		\\
+		\hline
+		R-3.9k$\Omega$	& 10 (Packung)			& 0.45		\\
+		\hline
+		1N5821				& 50 (Packung)			&	15.25		\\
+		\hline
+		Akku					&	2								& 35.94				\\
+			\hline
+		LM348					&		10 (Packung)		& 3.34				\\
+			\hline
+		R-1.8 k$\Omega$& 10 (Packung)			& 0.08				\\
+			\hline
+		LM2596				&	1								&	3.87			\\
+			\hline
+		C-100$\mu$F		&	5 (Packung)				&	1.23			\\
+			\hline
+		L-33 $\mu$H		&	1								& 2.89				\\
+			\hline
+		C-220$\mu$F		&	5 (Packung)				&	0.59			\\
+			\hline
+		Sicherung 4A		&	10 (Packung)			&	0.73			\\
+			\hline
+		Raspberry 3		&	1								&	61.41			\\
+			\hline
+		7'' Touchscreen	&	1								&	57.7			\\
+			\hline
+		Micro-USB Buchse& 1									&	 20.99			\\
+			\hline
+		Schalter				&	1								&			12.99	\\
+			\hline
+		M-3-Stange			&		1							& 0.89				\\
+			\hline
+			USB-2.0 Kabel		&	1								&	9.99			\\
+			\hline
+			Mikro-USB-Verlängerung		&	1								&		9.99		\\
+			\specialrule{2.5pt}{1pt}{1pt}
+			\multicolumn{2}{|c|}{$\sum$} & 260.89\\
+			\hline
+	\end{tabular}
+\end{center}
 
+\cmnt{
   \subsubsection{Projektkostenplan}
 	{\yhbu
 	Kalkulation des Gesamtprojektes:
@@ -2530,43 +2908,57 @@ section{Datenblätter}
 	Kosten für Hard- und Software,
 	externe Kosten (z.B.: Sensoren, Bausteine, Kabelkanäle\ldots).
 	}
+	}
 
   \subsubsection{Arbeitsnachweis Diplomarbeit}
-	{\yhbu
-	Dieser erfolgt durch ständige Aufzeichnungen der Schüler im Projekttagebuch.
-	\\[1mm]
-	Für jeden Projektmitarbeiter wird eine Tabelle gemäß Muster ausgefüllt.
-	In dieser Aufzeichnung werden auch die Unterrichtsprojektanteile,
-	die in die Arbeit eingeflossen sind, aufgezeigt.
+	\label{SUBSEC:WORKDONE}	
+	\cmnt{
+	02.10.2017 -Alexander Beiser: Schachmatt Algorithmus und Vervollständigung des Hot-Seat Modus -Marcel Huber: Implementierung der Netzwerkfähigkeit
+
+06.11.2017 -Alexander Beiser: Entwicklung der künstlichen Intelligenz -Marcel Huber: Implementierung von Java FX.
+
+18.12.2017 -Alexander Beiser: Raspberry-PI Implementierung und Design des Gehäuses -Marcel Huber: Komplettüberarbeitung der GUI für eine bessere Benutzer-Erfahrung
+
+04.02.2018 -Alexander Beiser: Entwicklung der Akku-Steuerungsschaltung und Einbau dieser -Marcel Huber: Portierung auf Android
+
+05.03.2018 -Alexander Beiser: Durchführung einer Beta-Phase und Fehlerbehebungen -Marcel Huber: Durchführung einer Beta-Phase und Fehlerbehebungen 
+		
 	}
+	
+% Please add the following required packages to your document preamble:
+% \usepackage[normalem]{ulem}
+% \useunder{\uline}{\ul}{}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccccc}
+\multicolumn{5}{c}{\textbf{Arbeitsaufstellung}}                                                                                                                                                                                                                                  \\ \hline
+\multicolumn{1}{|c|}{{\ul Was  }}                                                                                                     & \multicolumn{1}{c|}{{\ul Person}} & \multicolumn{1}{c|}{{\ul Stunden}} & \multicolumn{1}{c|}{{\ul Von}}  & \multicolumn{1}{c|}{{\ul Bis}}  \\ \hline
+\multicolumn{5}{|c|}{\textit{Beginn der Diplomarbeit - 14.09.2017}}                                                                                                                                                                                                              \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Schachmatt Algorithmus\\ und Hotseat Modus\end{tabular}}                            & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{30}            & \multicolumn{1}{c|}{14.09.2017} & \multicolumn{1}{c|}{02.10.2017} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Implementierung der \\ Netzwerkfähigkeit\end{tabular}}                              & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{35}            & \multicolumn{1}{c|}{14.09.2017} & \multicolumn{1}{c|}{02.10.2017} \\ \hline
+\multicolumn{5}{|c|}{{\textit{Meilenstein 1 - 02.10.2017}}}                                                                                                                                                                                                                           \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Entwicklung der künstlichen\\ Intelligenz\end{tabular}}                             & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{35}            & \multicolumn{1}{c|}{02.10.2017} & \multicolumn{1}{c|}{06.11.2017} \\ \hline
+\multicolumn{1}{|c|}{Implementierung von JavaFX}                                                                                    & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{50}            & \multicolumn{1}{c|}{02.10.2017} & \multicolumn{1}{c|}{06.11.2017} \\ \hline
+\multicolumn{5}{|c|}{{\textit{Meilenstein 2 - 06.11.2017}}}                                                                                                                                                                                                                           \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Raspberry-PI Implementierung\\ und Design des Gehäuses\end{tabular}}                & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{45}            & \multicolumn{1}{c|}{06.11.2017} & \multicolumn{1}{c|}{18.12.2017} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Komplettüberarbeitung der GUI\\ für eine bessere Benutzer\\ Erfahrung\end{tabular}} & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{40}            & \multicolumn{1}{c|}{06.11.2017} & \multicolumn{1}{c|}{18.12.2017} \\ \hline
+\multicolumn{5}{|c|}{{\textit{Meilenstein 3 - 18.12.2017}}}                                                                                                                                                                                                                           \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Entwicklung der Akku-\\ Steuerschaltung und Einbau \\ dieser\end{tabular}}          & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{40}            & \multicolumn{1}{c|}{18.12.2017} & \multicolumn{1}{c|}{04.02.2018} \\ \hline
+\multicolumn{1}{|c|}{Portierung auf Android}                                                                                        & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{15}            & \multicolumn{1}{c|}{18.12.2017} & \multicolumn{1}{c|}{04.02.2018} \\ \hline
+\multicolumn{5}{|c|}{{\textit{Meilenstein 4 - 04.02.2018}}}                                                                                                                                                                                                                           \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Durchführung einer Beta-Phase\\ und Fehlerbehebungen\end{tabular}}                  & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{30}            & \multicolumn{1}{c|}{04.02.2018} & \multicolumn{1}{c|}{05.03.2018} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Durchführung einer Beta-Phase und \\ Fehlerbehebungen\end{tabular}}                  & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{40}            & \multicolumn{1}{c|}{04.02.2018} & \multicolumn{1}{c|}{05.03.2018} \\ \hline
+\end{tabular}
+\caption{Arbeitsaufstellung nach Meilensteine}
+\label{table:workgeneral}
+\end{table}
 
-	\paragraph{\color{teal}Tabelle 1: Arbeitsaufstellung}\hfill
-	{\fontsize{9pt}{9pt}\selectfont
-	\\\begin{tabular}{|l|l|l|p{80mm}|l|}
-	\hline
-	\multicolumn{5}{|c|}{\parbox{4em}{\hfill\\[-0mm]\color{dkbu}Name}}	\\
-	\hline
-	Datum	&Uhrzeit	&\parbox{4em}{\hfill\\[-0mm]Stunden\\nn:nn\vspace*{1mm}}
-					&Beschreibung	&Betreuer	\\
-	\hline
-	01.11.2004	&08:00–11:30
-				& &Was wurde gemacht (eine Zeile!) &	\\
-	\hline
-	& & & &\\
-	\hline
-	& & & &\\
-	\hline
-	& & SUMME & &	\\
-	\hline
-	\end{tabular}
-	}
 
 
 
 
 
-
-
+\cmnt{
   \subsubsection{Leistungscontrolling}
 	{\yhbu
 	Liefert Informationen über den Fortschritt der Projektleistungserstellung.
@@ -2596,6 +2988,7 @@ section{Datenblätter}
 	der einzelnen Kandidatin und des Kandidaten.
 	Die Teamleiterin\slash{}der Teamleiter gibt eine Gesamtübersicht des Projektes.
 	Die Präsentation dauert maximal 8 Minuten/KandidatIn.
+	}
 	}
 
 
