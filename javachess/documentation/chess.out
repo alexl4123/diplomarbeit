@@ -39,76 +39,81 @@
 \BOOKMARK [2][-]{subsection.4.6}{Zugmechanik und Local-Mode}{section.4}% 39
 \BOOKMARK [3][-]{subsubsection.4.6.1}{Die Move Klasse - Funktion}{subsection.4.6}% 40
 \BOOKMARK [3][-]{subsubsection.4.6.2}{Die Move Klasse - Code}{subsection.4.6}% 41
-\BOOKMARK [2][-]{subsection.4.7}{Schach, Schachmatt und Patt Abfrage}{section.4}% 42
-\BOOKMARK [3][-]{subsubsection.4.7.1}{Schach}{subsection.4.7}% 43
-\BOOKMARK [3][-]{subsubsection.4.7.2}{Schachmatt}{subsection.4.7}% 44
-\BOOKMARK [3][-]{subsubsection.4.7.3}{Schachking}{subsection.4.7}% 45
-\BOOKMARK [3][-]{subsubsection.4.7.4}{DRAW \(Patt\)}{subsection.4.7}% 46
-\BOOKMARK [3][-]{subsubsection.4.7.5}{DRAW \(Code\)}{subsection.4.7}% 47
-\BOOKMARK [2][-]{subsection.4.8}{LAN-Mode}{section.4}% 48
-\BOOKMARK [3][-]{subsubsection.4.8.1}{Netzwerkprogrammierung unter Java}{subsection.4.8}% 49
-\BOOKMARK [3][-]{subsubsection.4.8.2}{Netzwerkprogrammierung in JavaChess}{subsection.4.8}% 50
-\BOOKMARK [3][-]{subsubsection.4.8.3}{Verbindungsvorgang des Clients}{subsection.4.8}% 51
-\BOOKMARK [3][-]{subsubsection.4.8.4}{Verbingdungsvorgang des Hosts}{subsection.4.8}% 52
-\BOOKMARK [3][-]{subsubsection.4.8.5}{Spielfluss im LAN-Modus}{subsection.4.8}% 53
-\BOOKMARK [3][-]{subsubsection.4.8.6}{Das Heartbeat - System}{subsection.4.8}% 54
-\BOOKMARK [2][-]{subsection.4.9}{AI-Mode}{section.4}% 55
-\BOOKMARK [3][-]{subsubsection.4.9.1}{Prinzipielle M\366glichkeiten einer AI}{subsection.4.9}% 56
-\BOOKMARK [3][-]{subsubsection.4.9.2}{Verwendete Schach-AI-Funktion}{subsection.4.9}% 57
-\BOOKMARK [3][-]{subsubsection.4.9.3}{Der MinMax-Algorithmus:}{subsection.4.9}% 58
-\BOOKMARK [3][-]{subsubsection.4.9.4}{Code}{subsection.4.9}% 59
-\BOOKMARK [1][-]{section.5}{ChessPI}{}% 60
-\BOOKMARK [2][-]{subsection.5.1}{RaspberryPI}{section.5}% 61
-\BOOKMARK [2][-]{subsection.5.2}{Touchscreen}{section.5}% 62
-\BOOKMARK [2][-]{subsection.5.3}{Implementierung von JavaChess}{section.5}% 63
-\BOOKMARK [1][-]{section.6}{Akkusteuerung}{}% 64
-\BOOKMARK [2][-]{subsection.6.1}{Kenngr\366\337en des ben\366tigten Akkumulators}{section.6}% 65
-\BOOKMARK [2][-]{subsection.6.2}{W\344hlen des Akkumulators}{section.6}% 66
-\BOOKMARK [2][-]{subsection.6.3}{Der Li-Ion Akku}{section.6}% 67
-\BOOKMARK [2][-]{subsection.6.4}{Idee der 1. Akkusteuerungsschaltung}{section.6}% 68
-\BOOKMARK [3][-]{subsubsection.6.4.1}{Laden der Akkus}{subsection.6.4}% 69
-\BOOKMARK [3][-]{subsubsection.6.4.2}{Entladen der Akkus}{subsection.6.4}% 70
-\BOOKMARK [3][-]{subsubsection.6.4.3}{Seriell-Parallel Schaltung}{subsection.6.4}% 71
-\BOOKMARK [3][-]{subsubsection.6.4.4}{Sicherheit}{subsection.6.4}% 72
-\BOOKMARK [3][-]{subsubsection.6.4.5}{Schaltung}{subsection.6.4}% 73
-\BOOKMARK [3][-]{subsubsection.6.4.6}{Messung}{subsection.6.4}% 74
-\BOOKMARK [2][-]{subsection.6.5}{Idee der 2. Akkusteuerungsschaltung}{section.6}% 75
-\BOOKMARK [3][-]{subsubsection.6.5.1}{Laden der Akkus}{subsection.6.5}% 76
-\BOOKMARK [3][-]{subsubsection.6.5.2}{Entladen der Akkus}{subsection.6.5}% 77
-\BOOKMARK [3][-]{subsubsection.6.5.3}{Sicherheit}{subsection.6.5}% 78
-\BOOKMARK [3][-]{subsubsection.6.5.4}{Messung}{subsection.6.5}% 79
-\BOOKMARK [3][-]{subsubsection.6.5.5}{Schaltung}{subsection.6.5}% 80
-\BOOKMARK [2][-]{subsection.6.6}{Verwendete L\366sung}{section.6}% 81
-\BOOKMARK [1][-]{section.7}{Geh\344use}{}% 82
-\BOOKMARK [2][-]{subsection.7.1}{Ma\337e der Bauteile}{section.7}% 83
-\BOOKMARK [2][-]{subsection.7.2}{Geplantes mit dem 3D-Drucker gefertigtes Geh\344use}{section.7}% 84
-\BOOKMARK [2][-]{subsection.7.3}{Geh\344use - Kunststoffwerkst\344tte}{section.7}% 85
-\BOOKMARK [1][-]{section.8}{Android}{}% 86
-\BOOKMARK [1][-]{section.9}{Fertigungsdokumentation}{}% 87
-\BOOKMARK [1][-]{section.10}{Benutzerdokumentation}{}% 88
-\BOOKMARK [2][-]{subsection.10.1}{Installationsanleitung}{section.10}% 89
-\BOOKMARK [2][-]{subsection.10.2}{Anwendungsbeispiele}{section.10}% 90
-\BOOKMARK [2][-]{subsection.10.3}{Referenzhandbuch}{section.10}% 91
-\BOOKMARK [2][-]{subsection.10.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.10}% 92
-\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 93
-\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 94
-\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 95
-\BOOKMARK [1][-]{section.4}{Abk\374rzungen}{}% 96
-\BOOKMARK [1][-]{appendix.E}{Pflichtenheft}{}% 97
-\BOOKMARK [2][-]{subsection.E.1}{JavaChess Konzept}{appendix.E}% 98
-\BOOKMARK [2][-]{subsection.E.2}{Einzubauende Features}{appendix.E}% 99
-\BOOKMARK [3][-]{subsubsection.E.2.1}{JavaChess \(Desktop Version - Windows}{subsection.E.2}% 100
-\BOOKMARK [3][-]{subsubsection.E.2.2}{ChessPI \(Raspberry PI 3}{subsection.E.2}% 101
-\BOOKMARK [3][-]{subsubsection.E.2.3}{AndChess \(Android\)}{subsection.E.2}% 102
-\BOOKMARK [2][-]{subsection.E.3}{Appendix}{appendix.E}% 103
-\BOOKMARK [3][-]{subsubsection.E.3.1}{Vorhandene Bugs}{subsection.E.3}% 104
-\BOOKMARK [1][-]{appendix.F}{Zusammenfassung}{}% 105
-\BOOKMARK [2][-]{subsection.F.1}{Schlussfolgerung / Projekterfahrung}{appendix.F}% 106
-\BOOKMARK [2][-]{subsection.F.2}{Projektterminplanung}{appendix.F}% 107
-\BOOKMARK [2][-]{subsection.F.3}{Projektpersonalplanung und Kostenaufstellung}{appendix.F}% 108
-\BOOKMARK [3][-]{subsubsection.F.3.1}{Kostenaufstellung}{subsection.F.3}% 109
-\BOOKMARK [3][-]{subsubsection.F.3.2}{Projektkostenplan}{subsection.F.3}% 110
-\BOOKMARK [3][-]{subsubsection.F.3.3}{Arbeitsnachweis Diplomarbeit}{subsection.F.3}% 111
-\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.F.3.3}% 112
-\BOOKMARK [3][-]{subsubsection.F.3.4}{Leistungscontrolling}{subsection.F.3}% 113
-\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.F.3.4}% 114
+\BOOKMARK [2][-]{subsection.4.7}{Die grafische Benutzeroberfl\344che}{section.4}% 42
+\BOOKMARK [3][-]{subsubsection.4.7.1}{JavaFX}{subsection.4.7}% 43
+\BOOKMARK [2][-]{subsection.4.8}{Schach, Schachmatt und Patt Abfrage}{section.4}% 44
+\BOOKMARK [3][-]{subsubsection.4.8.1}{Schach}{subsection.4.8}% 45
+\BOOKMARK [3][-]{subsubsection.4.8.2}{Schachmatt}{subsection.4.8}% 46
+\BOOKMARK [3][-]{subsubsection.4.8.3}{Schachking}{subsection.4.8}% 47
+\BOOKMARK [3][-]{subsubsection.4.8.4}{DRAW \(Patt\)}{subsection.4.8}% 48
+\BOOKMARK [3][-]{subsubsection.4.8.5}{DRAW \(Code\)}{subsection.4.8}% 49
+\BOOKMARK [2][-]{subsection.4.9}{LAN-Mode}{section.4}% 50
+\BOOKMARK [3][-]{subsubsection.4.9.1}{Netzwerkprogrammierung unter Java}{subsection.4.9}% 51
+\BOOKMARK [3][-]{subsubsection.4.9.2}{Netzwerkprogrammierung in JavaChess}{subsection.4.9}% 52
+\BOOKMARK [3][-]{subsubsection.4.9.3}{Verbindungsvorgang des Clients}{subsection.4.9}% 53
+\BOOKMARK [3][-]{subsubsection.4.9.4}{Verbingdungsvorgang des Hosts}{subsection.4.9}% 54
+\BOOKMARK [3][-]{subsubsection.4.9.5}{Spielfluss im LAN-Modus}{subsection.4.9}% 55
+\BOOKMARK [3][-]{subsubsection.4.9.6}{Das Heartbeat - System}{subsection.4.9}% 56
+\BOOKMARK [2][-]{subsection.4.10}{AI-Mode}{section.4}% 57
+\BOOKMARK [3][-]{subsubsection.4.10.1}{Prinzipielle M\366glichkeiten einer AI}{subsection.4.10}% 58
+\BOOKMARK [3][-]{subsubsection.4.10.2}{Verwendete Schach-AI-Funktion}{subsection.4.10}% 59
+\BOOKMARK [3][-]{subsubsection.4.10.3}{Der MinMax-Algorithmus:}{subsection.4.10}% 60
+\BOOKMARK [3][-]{subsubsection.4.10.4}{Code}{subsection.4.10}% 61
+\BOOKMARK [1][-]{section.5}{ChessPI}{}% 62
+\BOOKMARK [2][-]{subsection.5.1}{RaspberryPI}{section.5}% 63
+\BOOKMARK [2][-]{subsection.5.2}{Touchscreen}{section.5}% 64
+\BOOKMARK [2][-]{subsection.5.3}{Implementierung von JavaChess}{section.5}% 65
+\BOOKMARK [1][-]{section.6}{Akkusteuerung}{}% 66
+\BOOKMARK [2][-]{subsection.6.1}{Kenngr\366\337en des ben\366tigten Akkumulators}{section.6}% 67
+\BOOKMARK [2][-]{subsection.6.2}{W\344hlen des Akkumulators}{section.6}% 68
+\BOOKMARK [2][-]{subsection.6.3}{Der Li-Ion Akku}{section.6}% 69
+\BOOKMARK [2][-]{subsection.6.4}{Idee der 1. Akkusteuerungsschaltung}{section.6}% 70
+\BOOKMARK [3][-]{subsubsection.6.4.1}{Laden der Akkus}{subsection.6.4}% 71
+\BOOKMARK [3][-]{subsubsection.6.4.2}{Entladen der Akkus}{subsection.6.4}% 72
+\BOOKMARK [3][-]{subsubsection.6.4.3}{Seriell-Parallel Schaltung}{subsection.6.4}% 73
+\BOOKMARK [3][-]{subsubsection.6.4.4}{Sicherheit}{subsection.6.4}% 74
+\BOOKMARK [3][-]{subsubsection.6.4.5}{Schaltung}{subsection.6.4}% 75
+\BOOKMARK [3][-]{subsubsection.6.4.6}{Messung}{subsection.6.4}% 76
+\BOOKMARK [2][-]{subsection.6.5}{Idee der 2. Akkusteuerungsschaltung}{section.6}% 77
+\BOOKMARK [3][-]{subsubsection.6.5.1}{Laden der Akkus}{subsection.6.5}% 78
+\BOOKMARK [3][-]{subsubsection.6.5.2}{Entladen der Akkus}{subsection.6.5}% 79
+\BOOKMARK [3][-]{subsubsection.6.5.3}{Sicherheit}{subsection.6.5}% 80
+\BOOKMARK [3][-]{subsubsection.6.5.4}{Messung}{subsection.6.5}% 81
+\BOOKMARK [3][-]{subsubsection.6.5.5}{Schaltung}{subsection.6.5}% 82
+\BOOKMARK [2][-]{subsection.6.6}{Verwendete L\366sung}{section.6}% 83
+\BOOKMARK [1][-]{section.7}{Geh\344use}{}% 84
+\BOOKMARK [2][-]{subsection.7.1}{Ma\337e der Bauteile}{section.7}% 85
+\BOOKMARK [2][-]{subsection.7.2}{Geplantes mit dem 3D-Drucker gefertigtes Geh\344use}{section.7}% 86
+\BOOKMARK [2][-]{subsection.7.3}{Geh\344use - Kunststoffwerkst\344tte}{section.7}% 87
+\BOOKMARK [1][-]{section.8}{Android}{}% 88
+\BOOKMARK [1][-]{section.9}{Beta}{}% 89
+\BOOKMARK [2][-]{subsection.9.1}{AI und Spielmechanik}{section.9}% 90
+\BOOKMARK [2][-]{subsection.9.2}{LAN und GUI}{section.9}% 91
+\BOOKMARK [1][-]{section.10}{Fertigungsdokumentation}{}% 92
+\BOOKMARK [1][-]{section.11}{Benutzerdokumentation}{}% 93
+\BOOKMARK [2][-]{subsection.11.1}{Installationsanleitung}{section.11}% 94
+\BOOKMARK [2][-]{subsection.11.2}{Anwendungsbeispiele}{section.11}% 95
+\BOOKMARK [2][-]{subsection.11.3}{Referenzhandbuch}{section.11}% 96
+\BOOKMARK [2][-]{subsection.11.4}{Fehlermeldungen und Hinweise auf Fehlerursachen}{section.11}% 97
+\BOOKMARK [1][-]{section.1}{Abbildungsverzeichnis}{}% 98
+\BOOKMARK [1][-]{section.2}{Tabellenverzeichnis}{}% 99
+\BOOKMARK [1][-]{section.3}{Literaturverzeichnis}{}% 100
+\BOOKMARK [1][-]{section.4}{Abk\374rzungen}{}% 101
+\BOOKMARK [1][-]{appendix.E}{Pflichtenheft}{}% 102
+\BOOKMARK [2][-]{subsection.E.1}{JavaChess Konzept}{appendix.E}% 103
+\BOOKMARK [2][-]{subsection.E.2}{Einzubauende Features}{appendix.E}% 104
+\BOOKMARK [3][-]{subsubsection.E.2.1}{JavaChess \(Desktop Version - Windows}{subsection.E.2}% 105
+\BOOKMARK [3][-]{subsubsection.E.2.2}{ChessPI \(Raspberry PI 3}{subsection.E.2}% 106
+\BOOKMARK [3][-]{subsubsection.E.2.3}{AndChess \(Android\)}{subsection.E.2}% 107
+\BOOKMARK [2][-]{subsection.E.3}{Appendix}{appendix.E}% 108
+\BOOKMARK [3][-]{subsubsection.E.3.1}{Vorhandene Bugs}{subsection.E.3}% 109
+\BOOKMARK [1][-]{appendix.F}{Zusammenfassung}{}% 110
+\BOOKMARK [2][-]{subsection.F.1}{Schlussfolgerung / Projekterfahrung}{appendix.F}% 111
+\BOOKMARK [2][-]{subsection.F.2}{Projektterminplanung}{appendix.F}% 112
+\BOOKMARK [2][-]{subsection.F.3}{Projektpersonalplanung und Kostenaufstellung}{appendix.F}% 113
+\BOOKMARK [3][-]{subsubsection.F.3.1}{Kostenaufstellung}{subsection.F.3}% 114
+\BOOKMARK [3][-]{subsubsection.F.3.2}{Projektkostenplan}{subsection.F.3}% 115
+\BOOKMARK [3][-]{subsubsection.F.3.3}{Arbeitsnachweis Diplomarbeit}{subsection.F.3}% 116
+\BOOKMARK [4][-]{section*.4}{tealTabelle 1: Arbeitsaufstellung}{subsubsection.F.3.3}% 117
+\BOOKMARK [3][-]{subsubsection.F.3.4}{Leistungscontrolling}{subsection.F.3}% 118
+\BOOKMARK [4][-]{section*.5}{Abzugeben sind:}{subsubsection.F.3.4}% 119

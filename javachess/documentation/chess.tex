@@ -289,7 +289,8 @@
 	  \hspace*{6mm}
 	  \parbox[t]{50mm}{
 		Betreuer/Betreuerin:
-		\\[5.0mm]Ing. MSc. Signitzer Markus
+		\\[5.0mm]Ing. MSc. Signitzer
+		\\Markus
 	  }
 	  \\[14mm]{Innsbruck, am 03.04.2018}
 	  \\[16mm]\rule{150mm}{0.5pt}
@@ -1186,6 +1187,19 @@ public class Move{
 }
 \end{lstlisting}
 %\lstset{language=German}
+
+\newpage
+\subsection{Die grafische Benutzeroberfläche}
+Was währe ein Spiel ohne grafische Benutzeroberfläche? Eine ansehnliche GUI (engl.: \textit{Graphical User Interface}) ist ein Kernbestandteil jedes Spieles. Um unsere Oberfläche vom Jahre 1998, dem Erscheiungsjahr von Swing, dem Toolkit, das zuvor von uns verwendet, und auch im Unterricht erlernt wurde, in die Gegenwart zu befördern. Mit JavaFX wurde ein modernes und Platformunabhängiges Framework ausgewählt, um die grafische Oberfläche umzusetzen.
+
+\subsubsection{JavaFX}
+JavaFX ist, wie schon erwähnt, das von uns verwendete Grafikframework für Java. Es stellt den designierten Nachfolger von Swing dar. Das Framework soll das Erstellen von platformübergreifenden, multimedialen GUIs erleichtern und die Lücken, die die veralteten Frameworks beinhalten, füllen.
+Um JavaFX zu verstehen, wird nun die grundsätzliche Funktionsweise beschreiben.\\ [2ex]
+Nach dem Start, der nicht mehr mit der 'main-Methode', sondern über eine Launch-Methode vollzogen wird, wird eine so genannte 'Stage' angezeigt. Vereinfacht kann man sagen, dass es sich dabei um das Fenster handelt, das angezeigt wird.\\
+Auf der Stage werden überlicherweise eine oder auch mehrere 'Scenes' dargestellt. Eine Scene kann man sich vorstellen wie einen Container, der die grafischen Objekte des Programmes enthält. \\
+Der Szenengraph besteht weiters aus Nodes (also Knoten). Es gibt 'Parent - Nodes' die weitere Nodes als Kinder enhalten können. Eine Node ohne weiter Kinder nennt man 'Leaf'. Diese Leafs stellen die sichtbaren Elemente der GUI dar, also beispielsweise Buttins, Textfenster oder Ähnliches. Die Parten-Nodes sind sozusagen 'innere Knoten', die man sich als unsichtbare strukturelle Elemente vorstellen kann. Eine Applikation muss die Root-Node für eine Scene angeben. \\
+Die Scene stellt das Bindeglied zwischen dem aus Nodes bestehenden Szenengraphen und dem vom Betriebssystem zur verfügung gestellten Fenster dar. Um dies zu verstehen, nehemen wir beispielsweise an, wir wollen die Größe eines Fensters ändern. Sobald die Größe des Fensters verändert wurde, versucht die Scene, die Änderung an die Root-Node weiterzugeben. Dabei wird die Methode 'isResizable' der Root-Node aufgerufen, welche der Stage mitteilt, ob die Node auf Änderungen reagieren möchte. Ist dies der fall, verändert die Scene die Größe der Nodes, ansonsten belässt die Scene die bestehendne Größen. Auf diese Weise vermittelt die Scene zwischen der Stage und den Nodes. 
+
 
 \subsection{Schach, Schachmatt und Patt Abfrage}
 \label{SUBSEC:checkmate}
@@ -2141,6 +2155,20 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier Tatkräftig unterst�
 %=================================================================================
 \section{Android}
 \label{SEC:android}
+
+%=================================================================================
+\clearpage\vfill\newpage{}
+%=================================================================================
+\section{Beta}
+\label{SEC:beta}
+
+\subsection{AI und Spielmechanik}
+\label{SUBSEC:BETAGAME}
+
+
+
+\subsection{LAN und GUI}
+\label{SUBSEC:BETALAN}
 
 
 %=================================================================================
