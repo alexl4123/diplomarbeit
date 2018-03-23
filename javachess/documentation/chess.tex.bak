@@ -453,7 +453,8 @@
 %====================================================================================
 
 \addcontentsline{toc}{section}{Erklärung der Eigenständigkeit der Arbeit}
-\renewcommand\thesection{\roman{section}}
+\setcounter{section}{1000}
+\renewcommand\thesection{i}
 \renewcommand\thesubsection{\thesection.\roman{subsection}}
 \renewcommand\thesubsubsection{\thesubsection.\roman{subsubsection}}
 \section*{\Large\sc Erklärung der Eigenständigkeit der Arbeit}
@@ -539,7 +540,7 @@
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
-
+\renewcommand\thesection{ii}
 \section{Lizenz}
 \label{SEC:licence}
 
@@ -559,6 +560,7 @@ Allerdings muss dies unter den folgenden Bedingungen geschehen:
 \end{itemize}
 
 \newpage
+\renewcommand\thesection{iii}
 \section{Danksagung}
 \label{SEC:THANKS}
 
@@ -2538,11 +2540,12 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 %=================================================================================
 \renewcommand{\thepage}{\Roman{page}}% Roman for page counter
 \setcounter{page}{1}
-\renewcommand{\thesection}{\Roman{section}\;}
-%\renewcommand{\labelsection}{(\roman{section})}
-\setcounter{section}{0}
-%\section{\sc \;}\hfill\\[-24mm]
-	%Abbildung 2: Zeitplanung Projekt	8
+
+\setcounter{section}{2000}
+\renewcommand\thesection{I}
+\renewcommand\thesubsection{\thesection.\Roman{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\Roman{subsubsection}}
+
 	\part*{\sc Anhang}
 \section{Abbildungsverzeichnis}\noindent%
 \begingroup
@@ -2552,6 +2555,7 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 
 %\section{\sc \;}\hfill\\[-23mm]
 	%Tabelle 1: Arbeitsaufstellung	9
+	\renewcommand\thesection{II}
 \section{\sc Tabellenverzeichnis}\noindent%
 \begingroup
 \renewcommand{\section}[2]{}	
@@ -2573,6 +2577,7 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 \renewcommand{\thesection}{\Roman{section}\;}
 \setcounter{section}{2}
 %\vspace*{-8mm}
+\renewcommand\thesection{III}
 \section{Literaturverzeichnis}
 \cmnt{
 	{\yhbu
@@ -2724,6 +2729,7 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 \clearpage\vfill\newpage{}
 %=================================================================================
 \renewcommand{\thesection}{\Roman{section}\;}
+\renewcommand\thesection{IV}
 \section{Abkürzungen}
 \label{SEC:ACRONYMS}
 
@@ -2751,6 +2757,7 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
+\renewcommand\thesection{V}
 \section{\sc Pflichtenheft}
 \vfill
 	\begin{center}\begin{huge}
@@ -2830,7 +2837,7 @@ Hier werden alle bekannten Bugs gelistet, welche behoben werden sollen:
 	\item{Falls eine ,,Schachsituation'' entsteht, kann es unter besonderen Bedingungen zu einer Endlosschleife kommen. Diese lässt in Folge das Programm abstürzen.}
 \end{itemize}
 
-
+\renewcommand\thesection{VI}
 \section{Datenblätter}
 \label{SEC:DATASHEET}
 
@@ -2904,6 +2911,7 @@ Hier werden alle bekannten Bugs gelistet, welche behoben werden sollen:
 %==================================================================================
 \clearpage\vfill\newpage
 %==================================================================================
+\renewcommand\thesection{VII}
 \section{\sc Zusammenfassung}
 
 \subsection{Alexander Beiser}

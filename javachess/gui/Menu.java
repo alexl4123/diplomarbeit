@@ -12,6 +12,8 @@ import javachess.network.ReadingJob;
 import javachess.network.hostingJob;
 import javachess.saveload.Load;
 import javachess.saveload.Save;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -41,10 +43,7 @@ public class Menu extends MenuBar {
 	public ReadingJob rj;
 	public hostingJob hostJob;
 
-	public javafx.scene.control.Menu menuFile;
-	public javafx.scene.control.Menu menuGame;
-	public javafx.scene.control.Menu menuOther;
-	public javafx.scene.control.Menu menuHelp;
+	public javafx.scene.control.Menu menuFile,forward, backward,menuGame,menuOther,menuHelp;
 	private PopUp pp;
 	private About about;
 	private Help help;
@@ -63,7 +62,8 @@ public class Menu extends MenuBar {
 		menuGame = new javafx.scene.control.Menu("Gamemodes");
 		menuOther = new javafx.scene.control.Menu("Other");
 		menuHelp = new javafx.scene.control.Menu("Help");
-		
+		forward = new javafx.scene.control.Menu("Forward");
+		backward = new javafx.scene.control.Menu("Backward");
 
 		//Adding Menu Items
 		newGame = new MenuItem("New");
@@ -72,6 +72,7 @@ public class Menu extends MenuBar {
 		Exit = new MenuItem("Exit");
 		disconnect = new MenuItem("Disconnect");
 		setUp = new MenuItem("Setup");
+
 
 		about_menu = new MenuItem("About");
 		help_menu = new MenuItem("Help");
@@ -108,14 +109,13 @@ public class Menu extends MenuBar {
 		ToggleGroup soundGroup = new ToggleGroup();
 		soundMute.setToggleGroup(soundGroup);
 
-
-
 		menuFile.getItems().addAll(newGame, Save, Load, Exit);						//delete refresh when publish
 		menuGame.getItems().addAll(GameMode0, GameMode1, GameMode2, GameMode5);
 		menuOther.getItems().addAll(setUp,Draw);
 		menuHelp.getItems().addAll(about_menu,help_menu);
 
-		this.getMenus().addAll(menuFile, menuGame, menuOther, menuHelp);
+		this.getMenus().addAll(menuFile, menuGame, menuOther, menuHelp,forward,backward);
+
 
 
 
@@ -302,7 +302,7 @@ public class Menu extends MenuBar {
 							Gui.wishDraw();
 						}else if(_GM==1) {
 							Gui.wishDraw();
-							
+
 						}else if(_GM==2) {
 							Gui.wishDraw();
 						}
@@ -331,11 +331,11 @@ public class Menu extends MenuBar {
 
 			@Override
 			public void handle(ActionEvent event) {
-				
+
 				Alert chooser = new Alert(AlertType.INFORMATION);
-					
-				
-				
+
+
+
 				Gui.getBoardGui().soundPlayer.playSound("menu");
 				int Backup = Gui.getChoose();
 				chooser.setTitle("Select Mode");
@@ -345,10 +345,10 @@ public class Menu extends MenuBar {
 				ButtonType hostButton = new ButtonType("host");
 				ButtonType joinButton = new ButtonType("join");
 				ButtonType abortButton = new ButtonType("abort", ButtonData.CANCEL_CLOSE);
-			
-				
+
+
 				chooser.getButtonTypes().setAll(hostButton, joinButton, abortButton);
-				
+
 				Optional <ButtonType> result = chooser.showAndWait();
 
 
@@ -380,7 +380,7 @@ public class Menu extends MenuBar {
 
 					Gui.getBoardGui().setHighlighting(false);
 					Gui.newBG();
-					
+
 					Gui.getBoardGui().drawBlurryMenu(hostJob);
 
 					hostingThread.start();
@@ -407,8 +407,8 @@ public class Menu extends MenuBar {
 					ipDialogoue.setTitle("Connecting");
 					ipDialogoue.setHeaderText("Please enter the IP address of the host!");
 					ipDialogoue.setContentText("The address should look like this: ");
-					
-					
+
+
 					Optional<String> ipResult = ipDialogoue.showAndWait();
 					if (ipResult.isPresent()){
 						try {
@@ -568,6 +568,119 @@ public class Menu extends MenuBar {
 		});
 
 
+
+		//Undo and Redo
+
+		MenuItem dummyItem = new MenuItem();
+		dummyItem.setVisible(false);
+		backward.getItems().add(dummyItem);
+		backward.setText("");
+		Label label = new Label();
+		label.setText("Backward");
+		label.setOnMouseClicked(evt -> {
+			// forced child MenuItem click (this item is hidden, so this action is not visible but triggers parent "onAction" event handler anyway)
+			dummyItem.fire();
+		});
+		backward.setGraphic(label);
+
+		dummyItem.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Habala");
+				if(Gui.getBGG2().getChoose()!=1){
+					backward.setDisable(false);
+					try{
+						int LoadTurn = Gui.getBGG2().getTurnRound()-1;
+						System.out.println("Loads Turn Round:"+LoadTurn);
+						//Get team and Board
+
+						int[][] iBoard = new int[8][8];
+						for(int iHY = 0; iHY < 8; iHY++){
+							for(int iHX = 0; iHX < 8; iHX++){
+								iBoard[iHX][iHY] = Gui.getBGG2().getBoardList().get(LoadTurn)[iHX][iHY];
+							}
+
+						}
+						Gui.getBGG2().iBackground = iBoard;
+						Gui.getBGG2().Board = iBoard;
+						Gui.getBGG2().setTeam(Gui.getBGG2().getTeamList().get(LoadTurn)[0]);
+						//System.out.println("team...:"+Gui.getBGG2().getTeam());
+
+						//Draw team and Board
+						Gui.getBoardGui().redraw();
+						Gui.getBoardGui().DrawGrid(Gui.getBGG2().iBackground);
+
+						Gui.getBGG2().setTurnRound((short) LoadTurn);
+						Gui.getBoardGui().turnProp.set(LoadTurn);
+
+					}catch(Exception ex){
+						System.out.println("Exceptioned..."+ex.getMessage());
+					}
+
+					Gui.getBoardGui().soundPlayer.playSound("menu");
+				}else{
+					backward.setDisable(true);
+				}
+
+			}
+		});
+
+
+
+		MenuItem dummyItem2 = new MenuItem();
+		dummyItem2.setVisible(false);
+		forward.getItems().add(dummyItem2);
+		forward.setText("");
+		Label label2 = new Label();
+		label2.setText("Forward");
+		label2.setOnMouseClicked(evt -> {
+			// forced child MenuItem click (this item is hidden, so this action is not visible but triggers parent "onAction" event handler anyway)
+			dummyItem2.fire();
+		});
+		forward.setGraphic(label2);    
+		
+		dummyItem2.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Forward");
+				if(Gui.getBGG2().getChoose()!=1){
+					forward.setDisable(false);
+					try{
+						if(Gui.getBGG2().getBoardList().size()-1 > Gui.getBGG2().getTurnRound()){
+							int LoadTurn = Gui.getBGG2().getTurnRound()+1;
+							System.out.println("Loads Turn Round:"+LoadTurn);
+							//Get team and Board
+							//Security measure (QA told me so)
+							int[][] iBoard = new int[8][8];
+							for(int iHY = 0; iHY < 8; iHY++){
+								for(int iHX = 0; iHX < 8; iHX++){
+									iBoard[iHX][iHY] = Gui.getBGG2().getBoardList().get(LoadTurn)[iHX][iHY];
+								}
+
+							}
+							Gui.getBGG2().iBackground = iBoard;
+							Gui.getBGG2().Board = iBoard;
+							Gui.getBGG2().setTeam(Gui.getBGG2().getTeamList().get(LoadTurn)[0]);
+
+							//Draw team and Board
+							Gui.getBoardGui().redraw();
+							Gui.getBoardGui().DrawGrid(Gui.getBGG2().iBackground);
+							Gui.getBGG2().setTurnRound((short) LoadTurn);
+							Gui.getBoardGui().turnProp.set(LoadTurn);
+						}
+
+					}catch(Exception ex){
+						System.out.println("Exceptioned..."+ex.getMessage());
+					}
+
+					Gui.getBoardGui().soundPlayer.playSound("menu");
+				}else{
+					forward.setDisable(true);
+				}
+			}
+		});
 
 	}
 

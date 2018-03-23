@@ -99,10 +99,6 @@ public class PopUp {
 		Turncount.setLayoutX(50);
 		Turncount.setLayoutY(221);
 
-		Label LoadTurnLabel = new Label("Load turn: ");
-		LoadTurnLabel.setLayoutX(50);
-		LoadTurnLabel.setLayoutY(267);
-
 		Label netPrefix = new Label("Connection:");
 		netPrefix.setLayoutX(190);
 		netPrefix.setLayoutY(221);
@@ -381,106 +377,7 @@ public class PopUp {
 			}
 		});
 
-		//Undo and Redo
-
-		Button BUndo = new Button("Undo");
-		BUndo.setLayoutX(157);
-		BUndo.setLayoutY(267);
 		
-
-		BUndo.setOnAction(new EventHandler<ActionEvent>(){
-
-			@Override
-			public void handle(ActionEvent Event) {
-
-				if(gui.getBGG2().getChoose()!=1){
-					BUndo.setDisable(false);
-					try{
-						int LoadTurn = gui.getBGG2().getTurnRound()-1;
-						System.out.println("Loads Turn Round:"+LoadTurn);
-						//Get team and Board
-						
-						int[][] iBoard = new int[8][8];
-						for(int iHY = 0; iHY < 8; iHY++){
-							for(int iHX = 0; iHX < 8; iHX++){
-								iBoard[iHX][iHY] = gui.getBGG2().getBoardList().get(LoadTurn)[iHX][iHY];
-							}
-
-						}
-						gui.getBGG2().iBackground = iBoard;
-						gui.getBGG2().Board = iBoard;
-						gui.getBGG2().setTeam(gui.getBGG2().getTeamList().get(LoadTurn)[0]);
-						//System.out.println("team...:"+gui.getBGG2().getTeam());
-
-						//Draw team and Board
-						gui.getBoardGui().redraw();
-						gui.getBoardGui().DrawGrid(gui.getBGG2().iBackground);
-
-						gui.getBGG2().setTurnRound((short) LoadTurn);
-						gui.getBoardGui().turnProp.set(LoadTurn);
-
-					}catch(Exception ex){
-						System.out.println("Exceptioned..."+ex.getMessage());
-					}
-
-					gui.getBoardGui().soundPlayer.playSound("menu");
-				}else{
-					BUndo.setDisable(true);
-				}
-			}
-
-
-		});
-		
-		
-		Button BRedo = new Button("Redo");
-		BRedo.setLayoutX(230);
-		BRedo.setLayoutY(267);
-		
-
-		BRedo.setOnAction(new EventHandler<ActionEvent>(){
-
-			@Override
-			public void handle(ActionEvent Event) {
-
-				if(gui.getBGG2().getChoose()!=1){
-					BRedo.setDisable(false);
-					try{
-						if(gui.getBGG2().getBoardList().size()-1 > gui.getBGG2().getTurnRound()){
-							int LoadTurn = gui.getBGG2().getTurnRound()+1;
-							System.out.println("Loads Turn Round:"+LoadTurn);
-							//Get team and Board
-							//Security measure (QA told me so)
-							int[][] iBoard = new int[8][8];
-							for(int iHY = 0; iHY < 8; iHY++){
-								for(int iHX = 0; iHX < 8; iHX++){
-									iBoard[iHX][iHY] = gui.getBGG2().getBoardList().get(LoadTurn)[iHX][iHY];
-								}
-
-							}
-							gui.getBGG2().iBackground = iBoard;
-							gui.getBGG2().Board = iBoard;
-							gui.getBGG2().setTeam(gui.getBGG2().getTeamList().get(LoadTurn)[0]);
-							
-							//Draw team and Board
-							gui.getBoardGui().redraw();
-							gui.getBoardGui().DrawGrid(gui.getBGG2().iBackground);
-							gui.getBGG2().setTurnRound((short) LoadTurn);
-							gui.getBoardGui().turnProp.set(LoadTurn);
-						}
-
-					}catch(Exception ex){
-						System.out.println("Exceptioned..."+ex.getMessage());
-					}
-
-					gui.getBoardGui().soundPlayer.playSound("menu");
-				}else{
-					BRedo.setDisable(true);
-				}
-			}
-
-
-		});
 
 		//Label-TurnRound-ComboBox
 		/*
@@ -531,7 +428,7 @@ public class PopUp {
 		 */
 
 		Group gp = new Group();
-		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, HardCoreAI, RectBoard, LoadTurnLabel, BUndo,BRedo);
+		gp.getChildren().addAll(c, vollabel,VolSlider, Audio, VolumeMute, VolTest, AI, INFO, Turncount, teamPrefix, teamLabel, AILabel, AIslider, AICombo, HardCoreAI, RectBoard);
 		Scene scene1= new Scene(gp, 600, 300, Color.WHITE);
 
 
