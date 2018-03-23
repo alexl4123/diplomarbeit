@@ -46,7 +46,6 @@
 \usepackage{moreverb}
 \usepackage{graphicx}
 \usepackage{wrapfig}
-%\usepackage{subfigure}\usepackage{hyperref}
 \usepackage{nameref}
   %\usepackage{theorem}
   %\usepackage[dvips]{color}
@@ -61,7 +60,7 @@
 \usepackage{longtable}		% fuer tabellen ueber mehrere Seiten
 \usepackage{xcolor}
 \usepackage[ngerman]{babel}
-\usepackage[pdfborderstyle={/S/U/W 1}]{hyperref}
+
 \usepackage{float}
 \usepackage{booktabs}
 %\usepackage[demo]{graphicx}
@@ -162,10 +161,11 @@
 
 
 %===================================================
-
+%[pdfborderstyle={/S/U/W 1}]
 \usepackage{listings}
 \usepackage{color}
-\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\usepackage{hyperref}
+\usepackage{bookmark}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -453,7 +453,10 @@
 %====================================================================================
 
 \addcontentsline{toc}{section}{Erklärung der Eigenständigkeit der Arbeit}
-\renewcommand{\thesection}{\roman{section}\;}
+\setcounter{section}{1000}
+\renewcommand\thesection{i}
+\renewcommand\thesubsection{\thesection.\roman{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\roman{subsubsection}}
 \section*{\Large\sc Erklärung der Eigenständigkeit der Arbeit}
 	\hfill\\[ 8mm]
 	EIDESSTATTLICHE ERKLÄRUNG
@@ -537,7 +540,7 @@
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
-
+\renewcommand\thesection{ii}
 \section{Lizenz}
 \label{SEC:licence}
 
@@ -557,6 +560,7 @@ Allerdings muss dies unter den folgenden Bedingungen geschehen:
 \end{itemize}
 
 \newpage
+\renewcommand\thesection{iii}
 \section{Danksagung}
 \label{SEC:THANKS}
 
@@ -571,16 +575,31 @@ Alexander Hold und Thomas Klotz, da wir mit ihnen das Programm so weiter entwick
 \clearpage\vfill\newpage{}
 %=================================================================================
 
+\clearpage
+\pdfbookmark[section]{\contentsname}{tableofcontents}
 \tableofcontents
+
 
 
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
+\cmnt{
 \renewcommand{\thepage}{\arabic{page}}% Arabic numerals for page counter
 \renewcommand{\thesection}{\arabic{section}\;}
-\setcounter{page}{1}
+
+
+}
 \setcounter{section}{0}
+\renewcommand\theHsection{\arabic{section}}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\theHsubsection{\theHsection.\arabic{subsection}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+%\renewcommand\theHsubsubsection{\thesHubsection.\arabic{subsubsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
 \section{\sc Einleitung}
 \label{SEC:INTRODUCTION}
 
@@ -1260,7 +1279,7 @@ Der Rückgabetyp der Methode ist ein boolean, welches true zurückgibt, wenn ein
  \subsubsection{DRAW (Code)}
  \label{SUBSUBSEC:DRAW-CODE}
 
-Folgende Dokumentation des Codes geschieht als Pseudo-Code. Die Kommentare geschehen in Englisch.
+Folgende Dokumentation des Codes geschieht als Pseudo-Code:
 
 \textbf{\lstset{language=Java}}
 \begin{lstlisting}
@@ -1269,40 +1288,42 @@ private boolean CalcDraw(int iID, int[][] iBackground, int KingX, int KingY, boo
 	int iSum1 = CountMeeplesForTeamWhite;
 	int iSum2 = CountMeeplesForTeamBlack;
 	
-	if(only King alive - with right team){
-		ArrayList-Typ-MovePos KingMoves = GetAllPossibleKingMoves;
-		for(MovePos MP : KingMoves){ 
-			//foreach
-			SimulateAllMoves;
-			if(!SchachAtOneMove){
-				return false;
+	if(Wenn der Koenig die letzte Spielfigur eines Teams ist){
+		ArrayList-Typ-MovePos KingMoves = Bekomme alle moeglichen Zuege des Koenigs;
+		for(Durch alle moeglichen Zuege durch gehen){ 
+			...Mache den Zug auf der Hintergrundmatrix...
+			if(Wenn bei einem Zug kein Schach vorherrscht){
+				return false; //kein Draw
 			}		
+			..Mache den Zug rueckgaengig...
 		}		
-	} else if(Only very few Meeples left, so no CheckMate may occur){
-		return true;		
+	} else if(Wenn zu wenige Spielfiguren uebrig sind, um ein Schachmatt noch zu erreichen){
+		return true;		//Draw
 	}
 	
-	if(TurnRound >= 50){
-		iMeeples = CurrentTotalMeepleCount;
+	if(Die Zugrunde ist >= 50){
+		iMeeples = Alle nocht vorhandenen Figuren;
 		
-		for(simLast50Turns){
-			iMeepleRef = TotalMeepleCountAtRoundX;
+		for(bekomme Spielfelder der letzten 50 Zuege und gehe durch diese durch){
+			iMeepleRef = Noch vorhandene Figuren zu Zug x
+			if(iMeeples == iMeepleRef){
+				count++; //Ein Zug wurde keine Figur geschlagen
+			}
 			
-			if(iMeepleRef == iMeeples for the last 50 turns){
+			if(Wenn die letzten 50 Zuege keine Figur geschlagen wurde und kein Bauer bewegt hat){
 				return true;
 			}
-			if(APawnHasMovedRelativeToTheCurrentBoardState){
+			if(Wenn sich in den letzten 50 Zuegen ein Bauer bewegt hat){
 				return false;
 			}
 		}
 		
 	}else if(TurnRound >= 6){
-	BoardStates = getAllBoardStates;
+		Bekomme alle Spielfelder 	
 	
-	if(OneBoardStateOccursThreeTime){
-		APlayerCanClaimDrawByThreefoldRepetition;	
-		returned value depends on player decision;
-	}
+		if(Wenn eine Spielposition (ganzes Brett) drei Mal im Spiel vorkommt){
+			Der Spieler kann ein Unentschieden proklamieren durch ,,threefold'' repetition
+		}
 	}
 }
 \end{lstlisting}
@@ -1920,15 +1941,14 @@ Somit wird das schwarze Team immer das kleinere Ergebnis nehmen, quasi das MINIM
 Zurück zum Beispiel: Schwarz kann einmal wählen zwischen den Zahlen 5 \& 3, zwischen 10 \& 2 und zwischen 7 \& 8. Da die Schwarzen immer die niedrigere Zahl nehmen, kann die niedrigere Zahl in den schwarzen Bubble geschrieben werden (3, 2 \& 7). \\
 Somit muss sich der weiße Spieler nur noch zwischen 3 Zahlen entscheiden, bei denen er die höchste nimmt, also 7. Dies ist das bestmögliche Ergebnis für das weiße Team.
 
+\newpage
 \subsubsection{Code}
 \label{SUBSUBSEC:AICODE}
 
 Die theoretischen Grundlagen zum Verständnis des Algorithmus sollten nun geklärt sein.\\
 Die KI besteht aus zwei Klassen, AI und AILogic. AI wird als neuer Thread ausgeführt. \\
-Der nachfolgende Code zur AI erfolgt als Pseudo-Code Dokumentation.
-
-
-Klasse AI:
+Der nachfolgende Code zur AI erfolgt als Pseudo-Code Dokumentation.\\
+Die Klasse AI bekommt eine ArrayList der besten Züge (von AILogic) und führt den letzten Eintrag der Liste aus. Falls sich herausstellen sollte, dass die KI dadurch den eigenen König bedroht, nimmt sie den vorletzten Zug. Wenn dieser Zug wiederum den König in eine bedrohte Situation bringt, wird der drit-letzte Eintrag ausgeführt. Dies geht solange weiter, bis alle Einträge der ArrayList aufgebraucht sind. Siehe pseudo Code:
 
 \lstset{language=Java}
 \begin{lstlisting}
@@ -1956,6 +1976,7 @@ Klasse AI:
 	}	
 \end{lstlisting}
 
+\newpage
 \textbf{Klasse AI-Logic:} Die Klasse AI-Logic führt die KI-Berechnung durch. Eingeteilt wird diese in die Methoden alphaBeta, aplphaBetaHelper, boardEvaluation und die verschiedenen SquaerRootTables.\\
 AlphaBeta bekommt die Informationen bis zu welcher Tiefe eine Suche stattfinden soll und für welches Team. Dies gibt AlphaBeta der Methode AlphaBetaHelper weiter. \\
  Da der AlphaBeta-Algorithmus durch ein sogenanntes ,,Iterative-Deepening'' modifiziert wurde, wird die weitergegebene Tiefe schrittweise erhöht. \\
@@ -1968,23 +1989,24 @@ AlphaBeta bekommt die Informationen bis zu welcher Tiefe eine Suche stattfinden 
 \begin{lstlisting}
 	public class AILogic{
 	
-		private MaximaleTiefe
-		//wird benoetigt um die maximale Tiefe festzulegen und um den Logarithmus zu verbessern
+		int MaximaleTiefe
+		
 		public float alphaBeta(tiefe, Hintergrundmatrix, Team){
 			MaximaleTiefe = tiefe
 			//Diese beiden Werte werden als Worst- und Best-Case Szenario verwendet.
 			alpha = 10000
 			beta = -10000
-			for(i<tiefe){
-				//Fuer den AlphaBeta algorithmus
-				beta = alphaBetaHelper(starte bei Tiefe 0, BackgroundMatrix, alpha,beta)
+			//Fuer iterative deepening
+			for(i=0;i<MaximaleTiefe,i++){
+				//Bekommt den Wert des besten Zuges
+				beta = alphaBetaHelper(starte bei Tiefe 0, Hintergrundmatrix, alpha,beta)
 			}
 			
 		}	
 	
 		//der AlphaBeta Algorithmus - zur Zugevaluation 
 		public float alphaBetaHelper(tiefe, Hintergrundmatrix, Team, alpha, beta){
-			Sum = boardEvaluation
+			Sum = boardEvaluation(Hintergrundmatrix, Team)
 			
 			if(Sum bedeutet das feindlicher Koenig geschlagen wird){
 				return 20000
@@ -2000,14 +2022,17 @@ AlphaBeta bekommt die Informationen bis zu welcher Tiefe eine Suche stattfinden 
 					for(alle Moeglichen Zuege der Figur){
 						
 						MovePos A = Zug der Figur					
-						
+						...
 						Den Zug auf das Spielfeld uebertragen
-						
+						Spezialzuege werden hier speziell behandelt						
+						...
 						Sum1 = -alphaBetaHelper(tiefe+1, BackgroundGrid, Teamwechsel, -alpha, -beta)
-						
-						Den Zug rueckgaengig machen		
-						
-						if(Sum1 >= beta){
+						...
+						Den Zug rueckgaengig machen	
+						Spezialzuege werden hier speziell behandelt	
+						...
+						//groesser fuer den ,,Better-AI'' Mode, groesser gleich fuer den normalen Modus (hier aus Uebersichtsgruenden nicht angefuehrt)
+						if(Better-AI && Sum1 > beta){
 							beta = Sum1	
 							if(Sum1 >= alpha){
 								return alpha
@@ -2015,16 +2040,14 @@ AlphaBeta bekommt die Informationen bis zu welcher Tiefe eine Suche stattfinden 
 							if(tiefe == 0){
 								ZuListeGuterZuegeHinzufuegen(A)						
 							}
-						}	
-						
+						}
 					}
 				}
-				
 			}
 		return beta			
 		}
 		
-		public float boardEvaluation(Backgroundgrid, Team){
+		public float boardEvaluation(Hintergrundmatrix, Team){
 			//Fuer die Material Balance
 			
 			for(X und Y Positionen des Spielfeldes){
@@ -2517,11 +2540,12 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 %=================================================================================
 \renewcommand{\thepage}{\Roman{page}}% Roman for page counter
 \setcounter{page}{1}
-\renewcommand{\thesection}{\Roman{section}\;}
-%\renewcommand{\labelsection}{(\roman{section})}
-\setcounter{section}{0}
-%\section{\sc \;}\hfill\\[-24mm]
-	%Abbildung 2: Zeitplanung Projekt	8
+
+\setcounter{section}{2000}
+\renewcommand\thesection{I}
+\renewcommand\thesubsection{\thesection.\Roman{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\Roman{subsubsection}}
+
 	\part*{\sc Anhang}
 \section{Abbildungsverzeichnis}\noindent%
 \begingroup
@@ -2531,6 +2555,7 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 
 %\section{\sc \;}\hfill\\[-23mm]
 	%Tabelle 1: Arbeitsaufstellung	9
+	\renewcommand\thesection{II}
 \section{\sc Tabellenverzeichnis}\noindent%
 \begingroup
 \renewcommand{\section}[2]{}	
@@ -2552,6 +2577,7 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 \renewcommand{\thesection}{\Roman{section}\;}
 \setcounter{section}{2}
 %\vspace*{-8mm}
+\renewcommand\thesection{III}
 \section{Literaturverzeichnis}
 \cmnt{
 	{\yhbu
@@ -2703,6 +2729,7 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 \clearpage\vfill\newpage{}
 %=================================================================================
 \renewcommand{\thesection}{\Roman{section}\;}
+\renewcommand\thesection{IV}
 \section{Abkürzungen}
 \label{SEC:ACRONYMS}
 
@@ -2730,6 +2757,7 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
+\renewcommand\thesection{V}
 \section{\sc Pflichtenheft}
 \vfill
 	\begin{center}\begin{huge}
@@ -2809,7 +2837,7 @@ Hier werden alle bekannten Bugs gelistet, welche behoben werden sollen:
 	\item{Falls eine ,,Schachsituation'' entsteht, kann es unter besonderen Bedingungen zu einer Endlosschleife kommen. Diese lässt in Folge das Programm abstürzen.}
 \end{itemize}
 
-
+\renewcommand\thesection{VI}
 \section{Datenblätter}
 \label{SEC:DATASHEET}
 
@@ -2883,6 +2911,7 @@ Hier werden alle bekannten Bugs gelistet, welche behoben werden sollen:
 %==================================================================================
 \clearpage\vfill\newpage
 %==================================================================================
+\renewcommand\thesection{VII}
 \section{\sc Zusammenfassung}
 
 \subsection{Alexander Beiser}

@@ -1,131 +1,131 @@
-\select@language {ngerman}
+\babel@toc {ngerman}{}
 \contentsline {section}{Erkl\IeC {\"a}rung der Eigenst\IeC {\"a}ndigkeit der Arbeit}{ii}{pspicture.1}
-\contentsline {section}{\numberline {i\tmspace +\thickmuskip {.2777em}}Zusammenfassung des Projektergebnisses}{iii}{section.1}
-\contentsline {subsection}{\numberline {i\tmspace +\thickmuskip {.2777em}.1}Kurzfassung /Abstract}{iii}{subsection.1.1}
-\contentsline {subsubsection}{\numberline {i\tmspace +\thickmuskip {.2777em}.1.1}Alexander Beiser}{iii}{subsubsection.1.1.1}
-\contentsline {subsubsection}{\numberline {i\tmspace +\thickmuskip {.2777em}.1.2}Marcel Huber}{iii}{subsubsection.1.1.2}
-\contentsline {subsection}{\numberline {i\tmspace +\thickmuskip {.2777em}.2}Projektergebnis}{iv}{subsection.1.2}
-\contentsline {section}{\numberline {ii\tmspace +\thickmuskip {.2777em}}Lizenz}{v}{section.2}
-\contentsline {section}{\numberline {iii\tmspace +\thickmuskip {.2777em}}Danksagung}{vi}{section.3}
-\contentsline {section}{\numberline {1\tmspace +\thickmuskip {.2777em}}\sc Einleitung}{1}{section.1}
-\contentsline {section}{\numberline {2\tmspace +\thickmuskip {.2777em}}\sc Vertiefende Aufgabenstellung}{2}{section.2}
-\contentsline {subsection}{\numberline {2\tmspace +\thickmuskip {.2777em}.1}Alexander Beiser}{2}{subsection.2.1}
-\contentsline {subsection}{\numberline {2\tmspace +\thickmuskip {.2777em}.2}Marcel Huber}{2}{subsection.2.2}
-\contentsline {section}{\numberline {3\tmspace +\thickmuskip {.2777em}}Schach, eine Erkl\IeC {\"a}rung}{3}{section.3}
-\contentsline {subsection}{\numberline {3\tmspace +\thickmuskip {.2777em}.1}Was ist Schach?}{3}{subsection.3.1}
-\contentsline {subsection}{\numberline {3\tmspace +\thickmuskip {.2777em}.2}Spielregeln}{3}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3\tmspace +\thickmuskip {.2777em}.2.1}Zugregel Bauer}{4}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3\tmspace +\thickmuskip {.2777em}.2.2}Zugregel Springer}{4}{subsubsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3\tmspace +\thickmuskip {.2777em}.2.3}Zugregel L\IeC {\"a}ufer}{4}{subsubsection.3.2.3}
-\contentsline {subsubsection}{\numberline {3\tmspace +\thickmuskip {.2777em}.2.4}Zugregel Turm}{4}{subsubsection.3.2.4}
-\contentsline {subsubsection}{\numberline {3\tmspace +\thickmuskip {.2777em}.2.5}Zugregel Dame}{5}{subsubsection.3.2.5}
-\contentsline {subsubsection}{\numberline {3\tmspace +\thickmuskip {.2777em}.2.6}Zugregel K\IeC {\"o}nig}{5}{subsubsection.3.2.6}
-\contentsline {subsection}{\numberline {3\tmspace +\thickmuskip {.2777em}.3}Schachmaschinen}{5}{subsection.3.3}
-\contentsline {section}{\numberline {4\tmspace +\thickmuskip {.2777em}}Java Chess}{6}{section.4}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.1}Einf\IeC {\"u}hrung}{6}{subsection.4.1}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.2}Java Chess - \IeC {\"U}bersicht}{6}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.2.1}Blockschaltbild}{7}{subsubsection.4.2.1}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3}Package- und Klassen\IeC {\"u}bersicht}{8}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3.1}audio}{8}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3.2}backgroundmatrix}{8}{subsubsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3.3}game}{8}{subsubsection.4.3.3}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3.4}gui}{9}{subsubsection.4.3.4}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3.5}images}{10}{subsubsection.4.3.5}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3.6}launchpad}{10}{subsubsection.4.3.6}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3.7}network}{10}{subsubsection.4.3.7}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3.8}saveload}{10}{subsubsection.4.3.8}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.3.9}start}{10}{subsubsection.4.3.9}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.4}Initialisierung}{11}{subsection.4.4}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.5}Repr\IeC {\"a}sentation der Figuren:}{11}{subsection.4.5}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.6}Zugmechanik und Local-Mode}{12}{subsection.4.6}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.6.1}Die Move Klasse - Funktion}{12}{subsubsection.4.6.1}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.6.2}Die Move Klasse - Code}{14}{subsubsection.4.6.2}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.7}Schach, Schachmatt und Patt Abfrage}{19}{subsection.4.7}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.7.1}BackgroundGrid - Klasse}{19}{subsubsection.4.7.1}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.7.2}Schachmatt - \IeC {\"U}bersicht}{19}{subsubsection.4.7.2}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.7.3}Schach}{19}{subsubsection.4.7.3}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.7.4}Schachmatt}{20}{subsubsection.4.7.4}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.7.5}Schachking}{21}{subsubsection.4.7.5}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.7.6}DRAW (Patt)}{22}{subsubsection.4.7.6}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.7.7}DRAW (Code)}{22}{subsubsection.4.7.7}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8}Die grafische Benutzeroberfl\IeC {\"a}che}{24}{subsection.4.8}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8.1}JavaFX}{24}{subsubsection.4.8.1}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8.2}Das Darstellen des Schachfeldes}{25}{subsubsection.4.8.2}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8.3}Klickbarkeit der Schachfelder}{30}{subsubsection.4.8.3}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8.4}Drag and Drop}{31}{subsubsection.4.8.4}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8.5}Hervorheben bestimmter Felder}{31}{subsubsection.4.8.5}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8.6}Startup - Bildschirm und Informationsbildschirm}{32}{subsubsection.4.8.6}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8.7}Die Men\IeC {\"u}leiste}{33}{subsubsection.4.8.7}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8.8}Die GUI - Klasse}{33}{subsubsection.4.8.8}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.8.9}Informations- und Optionspopups}{34}{subsubsection.4.8.9}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.9}LAN-Mode}{36}{subsection.4.9}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.9.1}Netzwerkprogrammierung unter Java}{36}{subsubsection.4.9.1}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.9.2}Netzwerkprogrammierung in JavaChess}{37}{subsubsection.4.9.2}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.9.3}Verbindungsvorgang des Clients}{38}{subsubsection.4.9.3}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.9.4}Verbingdungsvorgang des Hosts}{40}{subsubsection.4.9.4}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.9.5}Spielfluss im LAN-Modus}{42}{subsubsection.4.9.5}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.9.6}Das Heartbeat - System}{44}{subsubsection.4.9.6}
-\contentsline {subsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.10}Computer Modus (AI-Mode)}{47}{subsection.4.10}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.10.1}Prinzipielle M\IeC {\"o}glichkeiten einer AI}{47}{subsubsection.4.10.1}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.10.2}Verwendete Schach-AI-Funktion}{48}{subsubsection.4.10.2}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.10.3}Der MinMax-Algorithmus:}{50}{subsubsection.4.10.3}
-\contentsline {subsubsection}{\numberline {4\tmspace +\thickmuskip {.2777em}.10.4}Code}{51}{subsubsection.4.10.4}
-\contentsline {section}{\numberline {5\tmspace +\thickmuskip {.2777em}}ChessPI}{56}{section.5}
-\contentsline {subsection}{\numberline {5\tmspace +\thickmuskip {.2777em}.1}RaspberryPI}{56}{subsection.5.1}
-\contentsline {subsection}{\numberline {5\tmspace +\thickmuskip {.2777em}.2}Touchscreen}{56}{subsection.5.2}
-\contentsline {subsection}{\numberline {5\tmspace +\thickmuskip {.2777em}.3}Implementierung von JavaChess}{56}{subsection.5.3}
-\contentsline {subsection}{\numberline {5\tmspace +\thickmuskip {.2777em}.4}Wieso reicht die offizielle JDK bzw. die OpenJDK nicht aus?}{59}{subsection.5.4}
-\contentsline {subsection}{\numberline {5\tmspace +\thickmuskip {.2777em}.5}Konfiguration des Touchscreens}{59}{subsection.5.5}
-\contentsline {subsection}{\numberline {5\tmspace +\thickmuskip {.2777em}.6}Verwendete JavaChess Version}{59}{subsection.5.6}
-\contentsline {section}{\numberline {6\tmspace +\thickmuskip {.2777em}}Akkusteuerung}{60}{section.6}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.1}Kenngr\IeC {\"o}\IeC {\ss }en des ben\IeC {\"o}tigten Akkumulators}{60}{subsection.6.1}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.2}W\IeC {\"a}hlen des Akkumulators}{60}{subsection.6.2}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.3}Der Li-Ion Akku}{61}{subsection.6.3}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.4}Idee der 1. Akkusteuerungsschaltung}{61}{subsection.6.4}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.4.1}Laden der Akkus}{61}{subsubsection.6.4.1}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.4.2}Entladen der Akkus}{62}{subsubsection.6.4.2}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.4.3}Seriell-Parallel Schaltung}{62}{subsubsection.6.4.3}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.4.4}Sicherheit}{63}{subsubsection.6.4.4}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.4.5}Schaltung}{64}{subsubsection.6.4.5}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.4.6}Messung}{65}{subsubsection.6.4.6}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.5}Idee der 2. Akkusteuerungsschaltung}{66}{subsection.6.5}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.5.1}Laden der Akkus}{66}{subsubsection.6.5.1}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.5.2}Entladen der Akkus}{66}{subsubsection.6.5.2}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.5.3}Sicherheit}{67}{subsubsection.6.5.3}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.5.4}Messung}{67}{subsubsection.6.5.4}
-\contentsline {subsubsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.5.5}Schaltung}{68}{subsubsection.6.5.5}
-\contentsline {subsection}{\numberline {6\tmspace +\thickmuskip {.2777em}.6}Verwendete L\IeC {\"o}sung}{69}{subsection.6.6}
-\contentsline {section}{\numberline {7\tmspace +\thickmuskip {.2777em}}Geh\IeC {\"a}use}{70}{section.7}
-\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.1}Ma\IeC {\ss }e der Bauteile}{70}{subsection.7.1}
-\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.2}Geplantes mit dem 3D-Drucker gefertigtes Geh\IeC {\"a}use}{70}{subsection.7.2}
-\contentsline {subsection}{\numberline {7\tmspace +\thickmuskip {.2777em}.3}Geh\IeC {\"a}use - Kunststoffwerkst\IeC {\"a}tte}{72}{subsection.7.3}
-\contentsline {section}{\numberline {8\tmspace +\thickmuskip {.2777em}}Android}{73}{section.8}
-\contentsline {section}{\numberline {9\tmspace +\thickmuskip {.2777em}}Beta}{74}{section.9}
-\contentsline {subsection}{\numberline {9\tmspace +\thickmuskip {.2777em}.1}AI und Spielmechanik}{74}{subsection.9.1}
-\contentsline {subsection}{\numberline {9\tmspace +\thickmuskip {.2777em}.2}LAN und GUI}{75}{subsection.9.2}
-\contentsline {section}{\numberline {10\tmspace +\thickmuskip {.2777em}}\sc Fertigungsdokumentation}{76}{section.10}
-\contentsline {section}{\numberline {11\tmspace +\thickmuskip {.2777em}}\sc Benutzerdokumentation}{76}{section.11}
-\contentsline {subsection}{\numberline {11\tmspace +\thickmuskip {.2777em}.1}Installationsanleitung}{76}{subsection.11.1}
-\contentsline {subsection}{\numberline {11\tmspace +\thickmuskip {.2777em}.2}Anwendungsbeispiele}{76}{subsection.11.2}
-\contentsline {subsection}{\numberline {11\tmspace +\thickmuskip {.2777em}.3}Referenzhandbuch}{76}{subsection.11.3}
-\contentsline {subsection}{\numberline {11\tmspace +\thickmuskip {.2777em}.4}Fehlermeldungen und Hinweise auf Fehlerursachen}{76}{subsection.11.4}
-\contentsline {section}{\numberline {I\tmspace +\thickmuskip {.2777em}}Abbildungsverzeichnis}{I}{section.1}
-\contentsline {section}{\numberline {II\tmspace +\thickmuskip {.2777em}}\sc Tabellenverzeichnis}{I}{section.2}
-\contentsline {section}{\numberline {III\tmspace +\thickmuskip {.2777em}}Literaturverzeichnis}{II}{section.3}
-\contentsline {section}{\numberline {IV\tmspace +\thickmuskip {.2777em}}Abk\IeC {\"u}rzungen}{III}{section.4}
-\contentsline {section}{\numberline {V\tmspace +\thickmuskip {.2777em}}\sc Pflichtenheft}{IV}{section.5}
-\contentsline {subsection}{\numberline {V\tmspace +\thickmuskip {.2777em}.1}\sc JavaChess Konzept}{V}{subsection.5.1}
-\contentsline {subsection}{\numberline {V\tmspace +\thickmuskip {.2777em}.2}Einzubauende Features}{V}{subsection.5.2}
-\contentsline {subsubsection}{\numberline {V\tmspace +\thickmuskip {.2777em}.2.1}JavaChess (Desktop Version - Windows}{V}{subsubsection.5.2.1}
-\contentsline {subsubsection}{\numberline {V\tmspace +\thickmuskip {.2777em}.2.2}ChessPI (Raspberry PI 3)}{VI}{subsubsection.5.2.2}
-\contentsline {subsubsection}{\numberline {V\tmspace +\thickmuskip {.2777em}.2.3}AndChess (Android)}{VI}{subsubsection.5.2.3}
-\contentsline {subsection}{\numberline {V\tmspace +\thickmuskip {.2777em}.3}Appendix}{VI}{subsection.5.3}
-\contentsline {subsubsection}{\numberline {V\tmspace +\thickmuskip {.2777em}.3.1}Vorhandene Bugs}{VI}{subsubsection.5.3.1}
-\contentsline {section}{\numberline {VI\tmspace +\thickmuskip {.2777em}}Datenbl\IeC {\"a}tter}{VII}{section.6}
-\contentsline {section}{\numberline {VII\tmspace +\thickmuskip {.2777em}}\sc Zusammenfassung}{XIV}{section.7}
-\contentsline {subsection}{\numberline {VII\tmspace +\thickmuskip {.2777em}.1}Alexander Beiser}{XIV}{subsection.7.1}
-\contentsline {subsection}{\numberline {VII\tmspace +\thickmuskip {.2777em}.2}Marcel Huber}{XV}{subsection.7.2}
-\contentsline {subsection}{\numberline {VII\tmspace +\thickmuskip {.2777em}.3}Schlussfolgerung / Projekterfahrung}{XVI}{subsection.7.3}
-\contentsline {subsection}{\numberline {VII\tmspace +\thickmuskip {.2777em}.4}Kostenaufstellung und Arbeitsnachweis}{XVII}{subsection.7.4}
-\contentsline {subsubsection}{\numberline {VII\tmspace +\thickmuskip {.2777em}.4.1}Kostenaufstellung}{XVII}{subsubsection.7.4.1}
-\contentsline {subsubsection}{\numberline {VII\tmspace +\thickmuskip {.2777em}.4.2}Arbeitsnachweis Diplomarbeit}{XVIII}{subsubsection.7.4.2}
+\contentsline {section}{\numberline {i}Zusammenfassung des Projektergebnisses}{iii}{section.1001}
+\contentsline {subsection}{\numberline {i.i}Kurzfassung /Abstract}{iii}{subsection.1001.1}
+\contentsline {subsubsection}{\numberline {i.i.i}Alexander Beiser}{iii}{subsubsection.1001.1.1}
+\contentsline {subsubsection}{\numberline {i.i.ii}Marcel Huber}{iii}{subsubsection.1001.1.2}
+\contentsline {subsection}{\numberline {i.ii}Projektergebnis}{iv}{subsection.1001.2}
+\contentsline {section}{\numberline {ii}Lizenz}{v}{section.1002}
+\contentsline {section}{\numberline {iii}Danksagung}{vi}{section.1003}
+\contentsline {section}{\numberline {1}\sc Einleitung}{1}{section.1}
+\contentsline {section}{\numberline {2}\sc Vertiefende Aufgabenstellung}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Alexander Beiser}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Marcel Huber}{2}{subsection.2.2}
+\contentsline {section}{\numberline {3}Schach, eine Erkl\IeC {\"a}rung}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Was ist Schach?}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Spielregeln}{3}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Zugregel Bauer}{4}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Zugregel Springer}{4}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Zugregel L\IeC {\"a}ufer}{4}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Zugregel Turm}{4}{subsubsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.5}Zugregel Dame}{5}{subsubsection.3.2.5}
+\contentsline {subsubsection}{\numberline {3.2.6}Zugregel K\IeC {\"o}nig}{5}{subsubsection.3.2.6}
+\contentsline {subsection}{\numberline {3.3}Schachmaschinen}{5}{subsection.3.3}
+\contentsline {section}{\numberline {4}Java Chess}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Einf\IeC {\"u}hrung}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Java Chess - \IeC {\"U}bersicht}{6}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Blockschaltbild}{7}{subsubsection.4.2.1}
+\contentsline {subsection}{\numberline {4.3}Package- und Klassen\IeC {\"u}bersicht}{8}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}audio}{8}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}backgroundmatrix}{8}{subsubsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3}game}{8}{subsubsection.4.3.3}
+\contentsline {subsubsection}{\numberline {4.3.4}gui}{9}{subsubsection.4.3.4}
+\contentsline {subsubsection}{\numberline {4.3.5}images}{10}{subsubsection.4.3.5}
+\contentsline {subsubsection}{\numberline {4.3.6}launchpad}{10}{subsubsection.4.3.6}
+\contentsline {subsubsection}{\numberline {4.3.7}network}{10}{subsubsection.4.3.7}
+\contentsline {subsubsection}{\numberline {4.3.8}saveload}{10}{subsubsection.4.3.8}
+\contentsline {subsubsection}{\numberline {4.3.9}start}{10}{subsubsection.4.3.9}
+\contentsline {subsection}{\numberline {4.4}Initialisierung}{11}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Repr\IeC {\"a}sentation der Figuren:}{11}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Zugmechanik und Local-Mode}{12}{subsection.4.6}
+\contentsline {subsubsection}{\numberline {4.6.1}Die Move Klasse - Funktion}{12}{subsubsection.4.6.1}
+\contentsline {subsubsection}{\numberline {4.6.2}Die Move Klasse - Code}{14}{subsubsection.4.6.2}
+\contentsline {subsection}{\numberline {4.7}Schach, Schachmatt und Patt Abfrage}{19}{subsection.4.7}
+\contentsline {subsubsection}{\numberline {4.7.1}BackgroundGrid - Klasse}{19}{subsubsection.4.7.1}
+\contentsline {subsubsection}{\numberline {4.7.2}Schachmatt - \IeC {\"U}bersicht}{19}{subsubsection.4.7.2}
+\contentsline {subsubsection}{\numberline {4.7.3}Schach}{19}{subsubsection.4.7.3}
+\contentsline {subsubsection}{\numberline {4.7.4}Schachmatt}{20}{subsubsection.4.7.4}
+\contentsline {subsubsection}{\numberline {4.7.5}Schachking}{21}{subsubsection.4.7.5}
+\contentsline {subsubsection}{\numberline {4.7.6}DRAW (Patt)}{22}{subsubsection.4.7.6}
+\contentsline {subsubsection}{\numberline {4.7.7}DRAW (Code)}{22}{subsubsection.4.7.7}
+\contentsline {subsection}{\numberline {4.8}Die grafische Benutzeroberfl\IeC {\"a}che}{24}{subsection.4.8}
+\contentsline {subsubsection}{\numberline {4.8.1}JavaFX}{24}{subsubsection.4.8.1}
+\contentsline {subsubsection}{\numberline {4.8.2}Das Darstellen des Schachfeldes}{25}{subsubsection.4.8.2}
+\contentsline {subsubsection}{\numberline {4.8.3}Klickbarkeit der Schachfelder}{30}{subsubsection.4.8.3}
+\contentsline {subsubsection}{\numberline {4.8.4}Drag and Drop}{31}{subsubsection.4.8.4}
+\contentsline {subsubsection}{\numberline {4.8.5}Hervorheben bestimmter Felder}{31}{subsubsection.4.8.5}
+\contentsline {subsubsection}{\numberline {4.8.6}Startup - Bildschirm und Informationsbildschirm}{32}{subsubsection.4.8.6}
+\contentsline {subsubsection}{\numberline {4.8.7}Die Men\IeC {\"u}leiste}{33}{subsubsection.4.8.7}
+\contentsline {subsubsection}{\numberline {4.8.8}Die GUI - Klasse}{33}{subsubsection.4.8.8}
+\contentsline {subsubsection}{\numberline {4.8.9}Informations- und Optionspopups}{34}{subsubsection.4.8.9}
+\contentsline {subsection}{\numberline {4.9}LAN-Mode}{36}{subsection.4.9}
+\contentsline {subsubsection}{\numberline {4.9.1}Netzwerkprogrammierung unter Java}{36}{subsubsection.4.9.1}
+\contentsline {subsubsection}{\numberline {4.9.2}Netzwerkprogrammierung in JavaChess}{37}{subsubsection.4.9.2}
+\contentsline {subsubsection}{\numberline {4.9.3}Verbindungsvorgang des Clients}{38}{subsubsection.4.9.3}
+\contentsline {subsubsection}{\numberline {4.9.4}Verbingdungsvorgang des Hosts}{40}{subsubsection.4.9.4}
+\contentsline {subsubsection}{\numberline {4.9.5}Spielfluss im LAN-Modus}{42}{subsubsection.4.9.5}
+\contentsline {subsubsection}{\numberline {4.9.6}Das Heartbeat - System}{44}{subsubsection.4.9.6}
+\contentsline {subsection}{\numberline {4.10}Computer Modus (AI-Mode)}{47}{subsection.4.10}
+\contentsline {subsubsection}{\numberline {4.10.1}Prinzipielle M\IeC {\"o}glichkeiten einer AI}{47}{subsubsection.4.10.1}
+\contentsline {subsubsection}{\numberline {4.10.2}Verwendete Schach-AI-Funktion}{48}{subsubsection.4.10.2}
+\contentsline {subsubsection}{\numberline {4.10.3}Der MinMax-Algorithmus:}{50}{subsubsection.4.10.3}
+\contentsline {subsubsection}{\numberline {4.10.4}Code}{51}{subsubsection.4.10.4}
+\contentsline {section}{\numberline {5}ChessPI}{56}{section.5}
+\contentsline {subsection}{\numberline {5.1}RaspberryPI}{56}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Touchscreen}{56}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Implementierung von JavaChess}{56}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Wieso reicht die offizielle JDK bzw. die OpenJDK nicht aus?}{59}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Konfiguration des Touchscreens}{59}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}Verwendete JavaChess Version}{59}{subsection.5.6}
+\contentsline {section}{\numberline {6}Akkusteuerung}{60}{section.6}
+\contentsline {subsection}{\numberline {6.1}Kenngr\IeC {\"o}\IeC {\ss }en des ben\IeC {\"o}tigten Akkumulators}{60}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}W\IeC {\"a}hlen des Akkumulators}{60}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Der Li-Ion Akku}{61}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Idee der 1. Akkusteuerungsschaltung}{61}{subsection.6.4}
+\contentsline {subsubsection}{\numberline {6.4.1}Laden der Akkus}{61}{subsubsection.6.4.1}
+\contentsline {subsubsection}{\numberline {6.4.2}Entladen der Akkus}{62}{subsubsection.6.4.2}
+\contentsline {subsubsection}{\numberline {6.4.3}Seriell-Parallel Schaltung}{62}{subsubsection.6.4.3}
+\contentsline {subsubsection}{\numberline {6.4.4}Sicherheit}{63}{subsubsection.6.4.4}
+\contentsline {subsubsection}{\numberline {6.4.5}Schaltung}{64}{subsubsection.6.4.5}
+\contentsline {subsubsection}{\numberline {6.4.6}Messung}{65}{subsubsection.6.4.6}
+\contentsline {subsection}{\numberline {6.5}Idee der 2. Akkusteuerungsschaltung}{66}{subsection.6.5}
+\contentsline {subsubsection}{\numberline {6.5.1}Laden der Akkus}{66}{subsubsection.6.5.1}
+\contentsline {subsubsection}{\numberline {6.5.2}Entladen der Akkus}{66}{subsubsection.6.5.2}
+\contentsline {subsubsection}{\numberline {6.5.3}Sicherheit}{67}{subsubsection.6.5.3}
+\contentsline {subsubsection}{\numberline {6.5.4}Messung}{67}{subsubsection.6.5.4}
+\contentsline {subsubsection}{\numberline {6.5.5}Schaltung}{68}{subsubsection.6.5.5}
+\contentsline {subsection}{\numberline {6.6}Verwendete L\IeC {\"o}sung}{69}{subsection.6.6}
+\contentsline {section}{\numberline {7}Geh\IeC {\"a}use}{70}{section.7}
+\contentsline {subsection}{\numberline {7.1}Ma\IeC {\ss }e der Bauteile}{70}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Geplantes mit dem 3D-Drucker gefertigtes Geh\IeC {\"a}use}{70}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Geh\IeC {\"a}use - Kunststoffwerkst\IeC {\"a}tte}{72}{subsection.7.3}
+\contentsline {section}{\numberline {8}Android}{73}{section.8}
+\contentsline {section}{\numberline {9}Beta}{74}{section.9}
+\contentsline {subsection}{\numberline {9.1}AI und Spielmechanik}{74}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}LAN und GUI}{75}{subsection.9.2}
+\contentsline {section}{\numberline {10}\sc Fertigungsdokumentation}{76}{section.10}
+\contentsline {section}{\numberline {11}\sc Benutzerdokumentation}{76}{section.11}
+\contentsline {subsection}{\numberline {11.1}Installationsanleitung}{76}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}Anwendungsbeispiele}{76}{subsection.11.2}
+\contentsline {subsection}{\numberline {11.3}Referenzhandbuch}{76}{subsection.11.3}
+\contentsline {subsection}{\numberline {11.4}Fehlermeldungen und Hinweise auf Fehlerursachen}{76}{subsection.11.4}
+\contentsline {section}{\numberline {I}Abbildungsverzeichnis}{I}{section.2001}
+\contentsline {section}{\numberline {II}\sc Tabellenverzeichnis}{I}{section.2002}
+\contentsline {section}{\numberline {III}Literaturverzeichnis}{II}{section.3}
+\contentsline {section}{\numberline {IV}Abk\IeC {\"u}rzungen}{III}{section.4}
+\contentsline {section}{\numberline {V}\sc Pflichtenheft}{IV}{section.5}
+\contentsline {subsection}{\numberline {V.I}\sc JavaChess Konzept}{V}{subsection.5.1}
+\contentsline {subsection}{\numberline {V.II}Einzubauende Features}{V}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {V.II.I}JavaChess (Desktop Version - Windows}{V}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {V.II.II}ChessPI (Raspberry PI 3)}{VI}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {V.II.III}AndChess (Android)}{VI}{subsubsection.5.2.3}
+\contentsline {subsection}{\numberline {V.III}Appendix}{VI}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {V.III.I}Vorhandene Bugs}{VI}{subsubsection.5.3.1}
+\contentsline {section}{\numberline {VI}Datenbl\IeC {\"a}tter}{VII}{section.6}
+\contentsline {section}{\numberline {VII}\sc Zusammenfassung}{XIV}{section.7}
+\contentsline {subsection}{\numberline {VII.I}Alexander Beiser}{XIV}{subsection.7.1}
+\contentsline {subsection}{\numberline {VII.II}Marcel Huber}{XV}{subsection.7.2}
+\contentsline {subsection}{\numberline {VII.III}Schlussfolgerung / Projekterfahrung}{XVI}{subsection.7.3}
+\contentsline {subsection}{\numberline {VII.IV}Kostenaufstellung und Arbeitsnachweis}{XVII}{subsection.7.4}
+\contentsline {subsubsection}{\numberline {VII.IV.I}Kostenaufstellung}{XVII}{subsubsection.7.4.1}
+\contentsline {subsubsection}{\numberline {VII.IV.II}Arbeitsnachweis Diplomarbeit}{XVIII}{subsubsection.7.4.2}
