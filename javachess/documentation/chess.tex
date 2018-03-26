@@ -2426,8 +2426,18 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier dankenswerter Weise 
 	\item{Es werden Schrauben für das verschließen des Displays gesucht. Da es keine >50mm langen M3 Schrauben gibt, wird eine Gewindestange abgeschnitten und das Gehäuse mit einer Mutter befestigt.}
 	\item{Damit die Mutter nicht gesehen wird, werden vier Standfüße besorgt, in denen die Mutter platz hat.}
 \end{itemize}
+Der Akku wird mittels Kabelbindern und selbsthaftenden Pads befestigt. Von diesem geht ein aufgezwicktes USB-Kabel zum Schalter, um das Ein- und Ausschalten zu ermöglichen. \\
+Das Laden des Akkus erfolgt mittels Mikro-USB Kabel, von der Mikro-USB Buchse zum Akku. \\
+Ein Bild des fertigen ChessPI befindet sich auf der nächsten Seite.
 
-%TODO BILD
+\newpage
+
+\begin{figure}[H]
+  \centering
+		\includegraphics[height =  16cm, angle=90]{graphics/chesspi.jpg}
+		\caption{Der ChessPI}
+		\label{fig:case}
+\end{figure}
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -2441,8 +2451,8 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier dankenswerter Weise 
 \section{Beta}
 \label{SEC:beta}
 
-Der letzte Meilenstein war die Beta Phase. In dieser sollten alle Funktionen des Spiels durch ausgewählte Tester noch einmal auf Herz und Nieren geprüft werden. Die Beta Tester sind deshalb aus Verschiedenen Hintergründen ausgewählt worden, zum Beispiel eine professionelle Schachspielerin oder Software EntwicklerInnen. Dies hat den Vorteil unterschiedliche Nutzerverhalten zu Testen. \\[1ex]
-Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
+Der letzte Meilenstein war die Beta Phase. In dieser sollten alle Funktionen des Spiels durch ausgewählte Tester noch einmal auf Herz und Nieren geprüft werden. Die Beta Tester sind deshalb aus verschiedenen Hintergründen ausgewählt worden, zum Beispiel eine professionelle Schachspielerin oder Software EntwicklerInnen. Dies hat den Vorteil unterschiedliche Nutzerverhalten zu testen. \\[1ex]
+Sowohl Alexander Beiser und Marcel Huber hatten fünf Tester zu den Punkten:
 \begin{enumerate}[I]
 	\item{Generelles Spielgefühl}
 	\item{Eventuell gefundene Bugs bzw. Verbesserungsvorschläge}
@@ -2463,20 +2473,20 @@ Sowohl Alexander Beiser und Marcel Huber haben fünf Tester zu den Punkten:
 
 \subsubsection*{Jonas Bangratz}
 \begin{enumerate}[I]
-	\item{Um hier Jonas Bangratz wörtlich zu zitieren (22.03.2018): ,,Neben einigen Unregelmäßigkeiten, welche die Beta-Verion zu diesem Zeitpunkt enthielt, war es für die Software dennoch möglich mir ein relativ gutes Spielgefühl zu vermitteln.''}
-	\item{Im Computermodus, auf der niedrigsten Schwierigkeitsstufe, war es möglich den feindlichen König zu schlagen. Genauer betrachtet ist der feindliche König auf ein Feld gefahren, dass bedroht wird, wodurch dieser im nächsten Zug geschlagen werden konnte. Dies kann eigentlich gar nicht geschehen, da die KI nie den eigenen König bedrohen würde. Da die KI auf der niedersten Schwierigkeitsstufe aber keine Züge voraus berechnet, weiß diese nicht, dass der König durch diesen Zug bedroht wird. Aus diesem Grund, wurde die KI mit einem menschlichem Spieler in der Spiellogik vollständig gleichgestellt und darf dies nun nicht mehr. Dies hat Performance Einbußen zur Folge, welche aber verschmerzbar sind. }
+	\item{Um hier Jonas Bangratz wörtlich zu zitieren (22.03.2018): ,,Neben einigen Unregelmäßigkeiten, welche die Beta-Version zu diesem Zeitpunkt enthielt, war es für die Software dennoch möglich mir ein relativ gutes Spielgefühl zu vermitteln.''}
+	\item{Im Computermodus, auf der niedrigsten Schwierigkeitsstufe, war es möglich den feindlichen König zu schlagen. Genauer betrachtet ist der feindliche König auf ein Feld gefahren, dass bedroht wird, wodurch dieser im nächsten Zug geschlagen werden konnte. Dies kann eigentlich gar nicht geschehen, da die KI nie den eigenen König bedrohen würde. Da die KI auf der niedersten Schwierigkeitsstufe aber keine Züge voraus berechnet, weiß diese nicht, dass der König durch diesen Zug bedroht wird. Aus diesem Grund, wurde die KI mit einem menschlichem Spieler in der Spiellogik vollständig gleichgestellt und darf dies nun nicht mehr. Dies hat Performance-Einbußen zur Folge, welche aber verschmerzbar sind. }
 \end{enumerate}
 
 \subsubsection*{Nadja Nicolussi}
 \begin{enumerate}[I]
 	\item{Findet das Design ansprechend und die verschiedenen Spielmodi vernünftig.}
-	\item{Nahezu am Ende des Spiels ist der feindliche König, dieses Team hat nur mehr eine Figur den König, nicht ins Schach zu setzen. Dies geschieht daher, dass es in der DRAW()-Methode eine Abfrage gibt, ob eine Patt Situation entstanden ist. Diese Abfrage wird erst gestartet, wenn der König die letzte verbleibende Figur ist. Diese Abfrage hatte einen Bug, der den König ,,ausweichen'' lies.}
+	\item{Annahme: Ein Team hat als letzte Figur nur mehr den König. Dieser ist aber nicht ins Schach zu setzen, er weicht aus. Dies geschieht daher, dass es in der DRAW()-Methode eine Abfrage gibt, ob eine Patt Situation entstanden ist. Diese Abfrage wird erst gestartet, wenn der König die letzte verbleibende Figur ist. Diese Abfrage hatte einen Bug, der den König ,,ausweichen'' lies.}
 \end{enumerate}
 
 \subsubsection*{Moritz Schnell}
 \begin{enumerate}[I]
 	\item{Findet das Spielgefühl ziemlich intuitiv.}
-	\item{Kompletter Spielabsturz durch einen Logikfehler in der AI Klasse. Die GUI wurde nicht mehr anklickbar, da das Überschreiben des aktuellen Spielstandes nicht funktioniert hat, wodurch ein Weiterspielen unmöglich war. Dieser Fehler, ist durch ,,Race Conditions'' aufgetreten und wurde behoben.}
+	\item{Kompletter Spielabsturz durch einen Logikfehler in der AI Klasse. Die GUI war nicht mehr anklickbar, da das Überschreiben des aktuellen Spielstandes nicht funktioniert hat, wodurch ein Weiterspielen unmöglich war. Dieser Fehler ist durch ,,Race Conditions'' aufgetreten und wurde behoben.}
 \end{enumerate}
 
 \subsubsection*{Alina Schärmer}

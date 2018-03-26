@@ -1,4 +1,4 @@
-\babel@toc {ngerman}{}
+\select@language {ngerman}
 \contentsline {section}{Erkl\IeC {\"a}rung der Eigenst\IeC {\"a}ndigkeit der Arbeit}{ii}{pspicture.1}
 \contentsline {section}{\numberline {i}Zusammenfassung des Projektergebnisses}{iii}{section.1001}
 \contentsline {subsection}{\numberline {i.i}Kurzfassung /Abstract}{iii}{subsection.1001.1}
@@ -99,16 +99,16 @@
 \contentsline {subsection}{\numberline {7.1}Ma\IeC {\ss }e der Bauteile}{70}{subsection.7.1}
 \contentsline {subsection}{\numberline {7.2}Geplantes mit dem 3D-Drucker gefertigtes Geh\IeC {\"a}use}{70}{subsection.7.2}
 \contentsline {subsection}{\numberline {7.3}Geh\IeC {\"a}use - Kunststoffwerkst\IeC {\"a}tte}{72}{subsection.7.3}
-\contentsline {section}{\numberline {8}Android}{73}{section.8}
-\contentsline {section}{\numberline {9}Beta}{74}{section.9}
-\contentsline {subsection}{\numberline {9.1}AI und Spielmechanik}{74}{subsection.9.1}
-\contentsline {subsection}{\numberline {9.2}LAN und GUI}{75}{subsection.9.2}
-\contentsline {section}{\numberline {10}\sc Fertigungsdokumentation}{76}{section.10}
-\contentsline {section}{\numberline {11}\sc Benutzerdokumentation}{76}{section.11}
-\contentsline {subsection}{\numberline {11.1}Installationsanleitung}{76}{subsection.11.1}
-\contentsline {subsection}{\numberline {11.2}Anwendungsbeispiele}{76}{subsection.11.2}
-\contentsline {subsection}{\numberline {11.3}Referenzhandbuch}{76}{subsection.11.3}
-\contentsline {subsection}{\numberline {11.4}Fehlermeldungen und Hinweise auf Fehlerursachen}{76}{subsection.11.4}
+\contentsline {section}{\numberline {8}Android}{74}{section.8}
+\contentsline {section}{\numberline {9}Beta}{75}{section.9}
+\contentsline {subsection}{\numberline {9.1}AI und Spielmechanik}{75}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}LAN und GUI}{76}{subsection.9.2}
+\contentsline {section}{\numberline {10}\sc Fertigungsdokumentation}{77}{section.10}
+\contentsline {section}{\numberline {11}\sc Benutzerdokumentation}{77}{section.11}
+\contentsline {subsection}{\numberline {11.1}Installationsanleitung}{77}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}Anwendungsbeispiele}{77}{subsection.11.2}
+\contentsline {subsection}{\numberline {11.3}Referenzhandbuch}{77}{subsection.11.3}
+\contentsline {subsection}{\numberline {11.4}Fehlermeldungen und Hinweise auf Fehlerursachen}{77}{subsection.11.4}
 \contentsline {section}{\numberline {I}Abbildungsverzeichnis}{I}{section.2001}
 \contentsline {section}{\numberline {II}\sc Tabellenverzeichnis}{I}{section.2002}
 \contentsline {section}{\numberline {III}Literaturverzeichnis}{II}{section.3}

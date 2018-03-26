@@ -1,12 +1,14 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.3.18)  23 MAR 2018 17:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.3.21)  25 MAR 2018 17:40
 entering extended mode
-**./chess.tex
-(chess.tex
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**chess.tex
+(./chess.tex
 LaTeX2e <2017-04-15>
-Babel <3.18> and hyphenation patterns for 75 language(s) loaded.
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Babel <3.12> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\size12.clo"
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -21,19 +23,19 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def"
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
 File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -274,7 +276,7 @@ File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\ot1enc.dfu"
+(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
 File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -315,7 +317,7 @@ File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\omsenc.dfu"
+(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
 File: omsenc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -339,31 +341,31 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
-Package: amsmath 2017/09/02 v2.17a AMS math features
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/11/05 v2.16a AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
 \ex@=\dimen103
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen104
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count87
@@ -404,13 +406,13 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\wasysym\wasysym.sty
+(/usr/share/texlive/texmf-dist/tex/latex/wasysym/wasysym.sty
 Package: wasysym 2003/10/30 v2.0 Wasy-2 symbol support package
 \symwasy=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\pxfonts.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/pxfonts.sty
 Package: pxfonts 2008/01/22 v1.1.1
 LaTeX Font Info:    Redeclaring symbol font `operators' on input line 21.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -486,46 +488,46 @@ LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `bold'
 (Font)                  U/pxexa/m/n --> U/pxexa/bx/n on input line 129.
 LaTeX Info: Redefining \not on input line 997.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks21
 \verbatim@line=\toks22
 \verbatim@in@stream=\read1
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\alltt.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\moreverb\moreverb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
 Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
 \tab@position=\count99
 \tab@size=\count100
 \listing@line=\count101
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks23
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen112
 \Gin@req@width=\dimen113
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\wrapfig\wrapfig.sty
+(/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen114
 \WF@size=\dimen115
 \c@WF@wrappedlines=\count102
@@ -533,31 +535,31 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 \WF@everypar=\toks24
 Package: wrapfig 2003/01/31  v 3.6
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\refcount.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/refcount.sty
 Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 ))
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
@@ -570,7 +572,7 @@ Package etexcmds Info: Could not find \expanded.
 LaTeX Info: Redefining \ref on input line 355.
 LaTeX Info: Redefining \pageref on input line 355.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
 \c@tracingmulticols=\count104
 \mult@box=\box29
@@ -619,24 +621,24 @@ Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
 \colbreak@box=\box54
 \mc@col@check@num=\count112
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 \multirow@colwidth=\skip48
 \multirow@cntb=\count113
 \multirow@dima=\skip49
 \bigstrutjot=\dimen125
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\makeidx.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/base/makeidx.sty
 Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\mdwtools\mdwlist.sty
+(/usr/share/texlive/texmf-dist/tex/latex/mdwtools/mdwlist.sty
 Package: mdwlist 1996/05/02 1.1 Various list-related things
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty
 Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
 \@enLab=\toks25
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip50
 \LTright=\skip51
@@ -654,10 +656,10 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \c@LT@chunks=\count118
 \LT@p@ftn=\toks26
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -671,45 +673,39 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.sty"
-Package: babel 2018/02/14 3.18 The Babel package
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2017/06/29 3.12 The Babel package
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\babel\switch.def"
-File: switch.def 2018/02/14 3.18 Babel switching mechanism
+(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2017/06/29 3.12 Babel switching mechanism
 )
-*************************************
-* Local config file bblopts.cfg used
-*
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\arabi\bblopts.cfg
-File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
- babel
-)
-("C:\Program Files\MiKTeX 2.9\tex\latex\babel-german\ngerman.ldf"
+(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngerman.ldf
 Language: ngerman 2016/11/02 v2.9 German support for babel (new orthography)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\babel-german\ngermanb.ldf"
+(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngermanb.ldf
 Language: ngermanb 2016/11/02 v2.9 German support for babel (new orthography)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
-File: babel.def 2018/02/14 3.18 Babel common definitions
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2017/06/29 3.12 Babel common definitions
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2017/06/29 3.12 Babel switching mechanism
+)
 \babel@savecnt=\count119
 \U@D=\dimen127
-
-("C:\Program Files\MiKTeX 2.9\tex\generic\babel\txtbabel.def")
-\bbl@dirlevel=\count120
 )
 Package babel Info: Making " an active character on input line 125.
 )))
-("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count121
+\c@float@type=\count120
 \float@exts=\toks27
 \float@box=\box59
 \@float@everytoks=\toks28
 \@floatcapt=\box60
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\booktabs\booktabs.sty
-Package: booktabs 2005/04/14 v1.61803 publication quality tables
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \heavyrulewidth=\dimen128
 \lightrulewidth=\dimen129
 \cmidrulewidth=\dimen130
@@ -720,131 +716,117 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \cmidrulesep=\dimen135
 \cmidrulekern=\dimen136
 \defaultaddspace=\dimen137
-\@cmidla=\count122
-\@cmidlb=\count123
+\@cmidla=\count121
+\@cmidlb=\count122
 \@aboverulesep=\dimen138
 \@belowrulesep=\dimen139
-\@thisruleclass=\count124
-\@lastruleclass=\count125
+\@thisruleclass=\count123
+\@lastruleclass=\count124
 \@thisrulewidth=\dimen140
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
-Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
-\fancy@headwidth=\skip54
-\f@ncyO@elh=\skip55
-\f@ncyO@erh=\skip56
-\f@ncyO@olh=\skip57
-\f@ncyO@orh=\skip58
-\f@ncyO@elf=\skip59
-\f@ncyO@erf=\skip60
-\f@ncyO@olf=\skip61
-\f@ncyO@orf=\skip62
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip54
+\f@nch@O@elh=\skip55
+\f@nch@O@erh=\skip56
+\f@nch@O@olh=\skip57
+\f@nch@O@orh=\skip58
+\f@nch@O@elf=\skip59
+\f@nch@O@erf=\skip60
+\f@nch@O@olf=\skip61
+\f@nch@O@orf=\skip62
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\hyphenat\hyphenat.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyphenat/hyphenat.sty
 Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
-\langwohyphens=\language76
+\langwohyphens=\language84
 LaTeX Info: Redefining \_ on input line 43.
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\rotating\rotating.sty
-Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@r@tfl@t=\count126
+\c@r@tfl@t=\count125
 \rotFPtop=\skip63
 \rotFPbot=\skip64
 \rot@float@box=\box61
 \rot@mess@toks=\toks29
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pst-pdf\pst-pdf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pst-pdf/pst-pdf.sty
 Package: pst-pdf 2017/06/22 v1.2d PS graphics for pdfLaTeX (RN,HjG)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\luatex85\luatex85.sty
+(/usr/share/texlive/texmf-dist/tex/generic/luatex85/luatex85.sty
 Package: luatex85 2016/06/15 v1.4 pdftex aliases for luatex
 )
-\c@pspicture=\count127
+\c@pspicture=\count126
 Package pst-pdf Info: MODE: 1 (pdfTeX mode) on input line 214.
-("C:\Program Files\MiKTeX 2.9\tex\latex\pstricks\pstricks.sty"
-Package: pstricks 2018/01/06 v0.67 LaTeX wrapper for `PSTricks' (RN,HV)
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\iftex\iftex.sty
-Package: iftex 2013/04/04 v0.2 Provides if(tex) conditional for PDFTeX, XeTeX, 
-and LuaTeX
-)
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\shellesc.sty"
-Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
-Package shellesc Info: Restricted shell escape enabled on input line 69.
-)
-("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\pst-xkey.tex"
+(/usr/share/texlive/texmf-dist/tex/latex/pstricks/pstricks.sty
+Package: pstricks 2017/03/17 v0.63 LaTeX wrapper for `PSTricks' (RN,HV)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
 File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
-("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks30
 \XKV@tempa@toks=\toks31
 )
-\XKV@depth=\count128
+\XKV@depth=\count127
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )))
-("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\pstricks.tex"
-("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\pst-fp.tex"
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex
 `pst-fp' v0.05, 2010/01/17 (hv)
-\pstFP@xs=\count129
-\pstFP@xia=\count130
-\pstFP@xib=\count131
-\pstFP@xfa=\count132
-\pstFP@xfb=\count133
-\pstFP@rega=\count134
-\pstFP@regb=\count135
-\pstFP@regs=\count136
-\pstFP@times=\count137
+\pstFP@xs=\count128
+\pstFP@xia=\count129
+\pstFP@xib=\count130
+\pstFP@xfa=\count131
+\pstFP@xfb=\count132
+\pstFP@rega=\count133
+\pstFP@regb=\count134
+\pstFP@regs=\count135
+\pstFP@times=\count136
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-
-common.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks32
 \pgfutil@tempdima=\dimen141
 \pgfutil@tempdimb=\dimen142
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-
-common-lists.tex))
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeys.
-code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks33
 \pgfkeys@temptoks=\toks34
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeysf
-iltered.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
 \pgfkeys@tmptoks=\toks35
-))
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgffor.c
-ode.tex
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.
-tex
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathcalc.c
-ode.tex
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathutil.c
-ode.tex
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
 \pgf@x=\dimen143
 \pgf@xa=\dimen144
 \pgf@xb=\dimen145
@@ -853,52 +835,49 @@ ode.tex
 \pgf@ya=\dimen148
 \pgf@yb=\dimen149
 \pgf@yc=\dimen150
-\c@pgf@counta=\count138
-\c@pgf@countb=\count139
-\c@pgf@countc=\count140
-\c@pgf@countd=\count141
-\pgfutil@tempcnta=\count142
-\pgfutil@tempcntb=\count143
+\c@pgf@counta=\count137
+\c@pgf@countb=\count138
+\c@pgf@countc=\count139
+\c@pgf@countd=\count140
+\pgfutil@tempcnta=\count141
+\pgfutil@tempcntb=\count142
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathparser
-.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen151
-\pgfmath@count=\count144
+\pgfmath@count=\count143
 \pgfmath@box=\box62
 \pgfmath@toks=\toks36
 \pgfmath@stack@operand=\toks37
 \pgfmath@stack@operation=\toks38
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
-ons.code.tex
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
-ons.basic.code.tex)
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
-ons.trigonometric.code.tex)
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
-ons.random.code.tex)
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
-ons.comparison.code.tex)
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
-ons.base.code.tex)
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
-ons.round.code.tex)
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
-ons.misc.code.tex)
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
-ons.integerarithmetics.code.tex)))
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfloat.
-code.tex
-\c@pgfmathroundto@lastzeros=\count145
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count144
 ))
 \pgffor@iter=\dimen152
 \pgffor@skip=\dimen153
 \pgffor@stack=\toks39
 \pgffor@toks=\toks40
 )
-\psLoopIndex=\count146
+\psLoopIndex=\count145
 
-`PSTricks' v2.82  <2018/01/06> (tvz,hv)
+`PSTricks' v2.74  <2017/06/15> (tvz)
 \pst@dima=\dimen154
 \pst@dimb=\dimen155
 \pst@dimc=\dimen156
@@ -912,23 +891,23 @@ code.tex
 \pst@hbox=\box63
 \pst@ibox=\box64
 \pst@boxg=\box65
-\pst@cnta=\count147
-\pst@cntb=\count148
-\pst@cntc=\count149
-\pst@cntd=\count150
-\pst@cntg=\count151
-\pst@cnth=\count152
-\pst@cntm=\count153
-\pst@cntn=\count154
-\pst@cnto=\count155
-\pst@cntp=\count156
-\@zero=\count157
+\pst@cnta=\count146
+\pst@cntb=\count147
+\pst@cntc=\count148
+\pst@cntd=\count149
+\pst@cntg=\count150
+\pst@cnth=\count151
+\pst@cntm=\count152
+\pst@cntn=\count153
+\pst@cnto=\count154
+\pst@cntp=\count155
+\@zero=\count156
 \pst@toks=\toks41
-("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\pstricks.con")
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.con)
 \psunit=\dimen164
 \psxunit=\dimen165
 \psyunit=\dimen166
-\pst@C@@rType=\count158
+\pst@C@@rType=\count157
 \pslinewidth=\dimen167
 \psk@startLW=\dimen168
 \psk@endLW=\dimen169
@@ -944,99 +923,96 @@ code.tex
 \sh@wgridYunit=\dimen177
 \pst@shift=\dimen178
 )
-File: pstricks.tex 2018/01/06 v2.82 `PSTricks' (tvz,hv)
+File: pstricks.tex 2017/06/15 v2.74 `PSTricks' (tvz,hv)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\pst-fp.tex")
-File: pst-fp.tex 2018/01/06 v2.82 `PST-fp' (hv)
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex)
+File: pst-fp.tex 2017/06/15 v2.74 `PST-fp' (hv)
 )
 \ppf@output=\toks44
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\preview\preview.sty
-Package: preview 2017/04/24 11.91 (AUCTeX/preview-latex)
-\pr@snippet=\count159
+(/usr/share/texmf/tex/latex/preview/preview.sty
+Package: preview 2010/02/14 11.90 (AUCTeX/preview-latex)
+\pr@snippet=\count158
 \pr@box=\box66
 \pr@output=\toks45
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\dvips.def"
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/dvips.def
 File: dvips.def 2017/06/20 v3.1d Graphics/color driver for dvips
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\environ\environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\trimspaces\trimspaces.st
-y
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )))
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pst-circ\pst-circ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pst-circ/pst-circ.sty
 Package: pst-circ 2007/12/23 package wrapper for pst-circ.tex (hv)
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pst-circ\pst-circ.tex
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pst-node\pst-node.tex
- v1.41, 2017/12/30
-\psrow=\count160
-\pscol=\count161
-\psmatrixcnt=\count162
+(/usr/share/texlive/texmf-dist/tex/generic/pst-circ/pst-circ.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pst-node/pst-node.tex
+ v1.39, 2017/01/20
+\psrow=\count159
+\pscol=\count160
+\psmatrixcnt=\count161
 \psrowsep=\skip65
 \pscolsep=\skip66
-\pst@args=\count163
-\num@pts=\count164
-\pst@argcnt=\count165
+\pst@args=\count162
+\num@pts=\count163
+\pst@argcnt=\count164
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\multido\multido.tex
+(/usr/share/texlive/texmf-dist/tex/generic/multido/multido.tex
  v1.42, 2010/05/14 <tvz>
-\multido@count=\count166
-\multidocount=\count167
+\multido@count=\count165
+\multidocount=\count166
 \multido@stuff=\toks46
-) `pst-circ' v2.15(hv)
+) `pst-circ' v2.14(hv)
 \Pst@position=\dimen179
-\pst@count@i=\count168
-\pst@count@ii=\count169
-\pst@count@iii=\count170
+\pst@count@i=\count167
+\pst@count@ii=\count168
+\pst@count@iii=\count169
 \Pst@basesep=\dimen180
 )
-File: pst-circ.tex 2017/11/16 v2.15 `PST-circ' (CJ,hv)
+File: pst-circ.tex 2016/08/21 v2.14 `PST-circ' (CJ,hv)
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pst-plot\pst-plot.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pst-plot/pst-plot.sty
 Package: pst-plot 2011/06/05 v1.00 LaTeX wrapper for `pst-plot' (HV)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\pst-xkey.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/pst-xkey.sty
 Package: pst-xkey 2005/11/25 v1.6 package wrapper for pst-xkey.tex (HA)
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\multido\multido.sty
+(/usr/share/texlive/texmf-dist/tex/latex/multido/multido.sty
 Package: multido 2004/05/17 package wrapper for PSTricks `multido.tex', (HV/RN)
 
 )
 Package: pst-plot 2011/04/13 package wrapper for pst-plot.tex (hv)
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pst-plot\pst-plot.tex
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pst-tools\pst-tools.te
-x `PST-tools' v0.09b, 2017/12/03 (hv))
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pstricks-add\pstricks-
-add.tex
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pst-arrow\pst-arrow.te
-x `pst-arrow' v0.01, 2016/09/01 (dr,hv)
+(/usr/share/texlive/texmf-dist/tex/generic/pst-plot/pst-plot.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pst-tools/pst-tools.tex
+`PST-tools' v0.06, 2017/05/12 (hv))
+(/usr/share/texlive/texmf-dist/tex/generic/pstricks-add/pstricks-add.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pst-arrow/pst-arrow.tex
+`pst-arrow' v0.01, 2016/09/01 (dr,hv)
 \pshooklength=\dimen181
 \pshookwidth=\dimen182
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pst-3d\pst-3d.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pst-3d/pst-3d.tex
 `PST-3d' v1.11, 2010/02/14 (tvz))
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pst-math\pst-math.tex
-`pst-math' v0.63 , (CJ,hv)) `pstricks-add' v3.85a, 2018/02/03 (dr,hv)
+(/usr/share/texlive/texmf-dist/tex/generic/pst-math/pst-math.tex
+`pst-math' v0.63 , (CJ,hv)) `pstricks-add' v3.83, 2017/05/10 (dr,hv)
 \psparallelogramsep=\dimen183
-\pst@cntC=\count171
-\pst@stepcount=\count172
+\pst@cntC=\count170
 \chart@ColorIndex=\dimen184
 \chart@ColorStep=\dimen185
 \pst@chartHeight=\dimen186
 \pst@chartStackDepth=\dimen187
 \pst@chartStackWidth=\dimen188
-\chart@Toggle=\count173
-\psVectorCtr=\count174
+\chart@Toggle=\count171
+\psVectorCtr=\count172
 )
- v1.89, 2018/02/18 (tvz,hv)
+ v1.79, 2017/05/22 (tvz,hv)
 \pstRadUnit=\dimen189
 \pstRadUnitInv=\dimen190
-\pst@linecnt=\count175
+\pst@linecnt=\count173
 \RCD@file=\read2
 \psxlabelsep=\dimen191
 \psylabelsep=\dimen192
@@ -1047,7 +1023,7 @@ x `pst-arrow' v0.01, 2016/09/01 (dr,hv)
 \pst@yticksizeA=\dimen197
 \pst@yticksizeB=\dimen198
 \pst@yticksizeC=\dimen199
-\@digitcounter=\count176
+\@digitcounter=\count174
 \psk@llx=\dimen256
 \psk@lly=\dimen257
 \psk@urx=\dimen258
@@ -1055,50 +1031,51 @@ x `pst-arrow' v0.01, 2016/09/01 (dr,hv)
 \pst@xunit=\dimen260
 \pst@yunit=\dimen261
 )
-File: pst-plot.tex 2018/02/18 1.89 `pst-plot' (tvz,hv)
+File: pst-plot.tex 2017/05/22 1.79 `pst-plot' (tvz,hv)
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pst-uml\pst-uml.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pst-uml/pst-uml.sty
 Package: pst-uml 2007/01/03 v0.83 - diam@ensta.fr
 
    But : Quelques macros pstricks pour diagrammes UML.
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pst-node\pst-node.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pst-node/pst-node.sty
 Package: pst-node 2012/09/18 v1.01 LaTeX wrapper for `pst-node' (HV)
 Package: pst-node 2010/04/22 package wrapper for pst-node.tex
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pst-node\pst-node.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pst-node/pst-node.tex)
 File: pst-node.tex 2007/01/03 0.83 `pst-node' (tvz,hv)
-) (C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pst-tree\pst-tree.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pst-tree/pst-tree.sty
 Package: pst-tree 2009/01/25 package wrapper for pst-tree.tex
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\pst-tree\pst-tree.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pst-tree/pst-tree.tex
  v1.13, 2017/02/18(tvz,dg,hv)
 \pstree@rootbox=\box67
 \pstree@box=\box68
-\psnodecnt=\count177
-\pstreelevel=\count178
-\pstreecnt=\count179
-\pstree@cnt=\count180
-\pstree@stop=\count181
+\psnodecnt=\count175
+\pstreelevel=\count176
+\pstreecnt=\count177
+\pstree@cnt=\count178
+\pstree@stop=\count179
 )
 File: pst-tree.tex 2017/02/18 1.13 `pst-tree' (tvz,hv)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count182
-\calc@Bcount=\count183
+\calc@Acount=\count180
+\calc@Bcount=\count181
 \calc@Adimen=\dimen262
 \calc@Bdimen=\dimen263
 \calc@Askip=\skip67
 \calc@Bskip=\skip68
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count184
+\calc@Ccount=\count182
 \calc@Cskip=\skip69
 )
-\c@umlint@a=\count185
-\c@umlint@b=\count186
-\c@umlint@c=\count187
-\c@umlint@d=\count188
+\c@umlint@a=\count183
+\c@umlint@b=\count184
+\c@umlint@c=\count185
+\c@umlint@d=\count186
 \umldim@a=\skip70
 \umldim@b=\skip71
 \umldim@c=\skip72
@@ -1111,114 +1088,115 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \umlbox@c=\box71
 \umlbox@d=\box72
 \umlbox@out=\box73
-\c@umlDebug=\count189
+\c@umlDebug=\count187
 \umldim@StackSep=\skip77
 \umldim@StackWidth=\skip78
 \umldim@ClassWidth=\skip79
 \umldim@umlDoubleRuleSep=\skip80
 \umldim@ActorLineWidth=\skip81
-\c@umlCpt@Direction=\count190
+\c@umlCpt@Direction=\count188
 \umldim@PosX=\skip82
 \umldim@PosY=\skip83
 \X=\skip84
 \Y=\skip85
 
 Package pst-uml.sty is loaded.
-) (C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/fp/fp.sty
 Package: fp 1995/04/02
 
 `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\defpattern.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/defpattern.sty
 Package: defpattern 1994/10/12
-\actioncount=\count191
+\actioncount=\count189
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-basic.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-basic.sty
 Package: fp-basic 1996/05/13
-\FP@xs=\count192
-\FP@xia=\count193
-\FP@xib=\count194
-\FP@xfa=\count195
-\FP@xfb=\count196
-\FP@rega=\count197
-\FP@regb=\count198
-\FP@regs=\count199
-\FP@times=\count266
+\FP@xs=\count190
+\FP@xia=\count191
+\FP@xib=\count192
+\FP@xfa=\count193
+\FP@xfb=\count194
+\FP@rega=\count195
+\FP@regb=\count196
+\FP@regs=\count197
+\FP@times=\count198
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-addons.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-addons.sty
 Package: fp-addons 1995/03/15
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-snap.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-snap.sty
 Package: fp-snap 1995/04/05
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-exp.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-exp.sty
 Package: fp-exp 1995/04/03
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-trigo.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-trigo.sty
 Package: fp-trigo 1995/04/14
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-pas.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-pas.sty
 Package: fp-pas 1994/08/29
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-random.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-random.sty
 Package: fp-random 1995/02/23
-\FPseed=\count267
+\FPseed=\count199
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-eqn.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eqn.sty
 Package: fp-eqn 1995/04/03
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-upn.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-upn.sty
 Package: fp-upn 1996/10/21
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-eval.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fp/fp-eval.sty
 Package: fp-eval 1995/04/03
 ))
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pdfpages\pdfpages.sty
-Package: pdfpages 2017/06/14 v0.5i Insert pages of external PDF documents (AM)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2017/08/14 v0.5k Insert pages of external PDF documents (AM)
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\eso-pic\eso-pic.sty
+(/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
 ))
 \AM@pagewidth=\dimen264
 \AM@pageheight=\dimen265
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pdfpages\pppdftex.def
-File: pppdftex.def 2017/06/14 v0.5i Pdfpages driver for pdfTeX (AM)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2017/08/14 v0.5k Pdfpages driver for pdfTeX (AM)
 )
 \AM@pagebox=\box74
 \AM@global@opts=\toks47
 \AM@toc@title=\toks48
-\c@AM@survey=\count268
+\c@AM@survey=\count266
 \AM@templatesizebox=\box75
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\eurosym\eurosym.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/eurosym/eurosym.sty
 Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
 \@eurobox=\box76
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\acronym\acronym.sty
+(/usr/share/texlive/texmf-dist/tex/latex/acronym/acronym.sty
 Package: acronym 2015/03/21 v1.41 Support for acronyms (Tobias Oetiker)
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\bigfoot\suffix.sty
+(/usr/share/texlive/texmf-dist/tex/latex/bigfoot/suffix.sty
 Package: suffix 2006/07/15 1.5a Variant command support
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\xstring\xstring.sty
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\generic\xstring\xstring.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
 \@xs@message=\write3
-\integerpart=\count269
-\decimalpart=\count270
+\integerpart=\count267
+\decimalpart=\count268
 )
 Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
 )
 \AC@clearlist=\toks49
-) (C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\ulem\ulem.sty
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box77
 \UL@hyphenbox=\box78
 \UL@skip=\skip86
 \UL@hook=\toks50
 \UL@height=\dimen266
-\UL@pe=\count271
+\UL@pe=\count269
 \UL@pixel=\dimen267
 \ULC@box=\box79
 Package: ulem 2012/05/18
@@ -1229,42 +1207,42 @@ Package: ulem 2012/05/18
 
 
 Writing index file chess.idx
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\setspace\setspace.sty
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
-\lst@mode=\count272
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count270
 \lst@gtempboxa=\box80
 \lst@token=\toks51
-\lst@length=\count273
+\lst@length=\count271
 \lst@currlwidth=\dimen269
-\lst@column=\count274
-\lst@pos=\count275
+\lst@column=\count272
+\lst@pos=\count273
 \lst@lostspace=\dimen270
 \lst@width=\dimen271
-\lst@newlines=\count276
-\lst@lineno=\count277
+\lst@newlines=\count274
+\lst@lineno=\count275
 \lst@maxwidth=\dimen272
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count278
-\lst@skipnumbers=\count279
+\c@lstnumber=\count276
+\lst@skipnumbers=\count277
 \lst@framebox=\box81
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
-Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
 
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
 Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
 Package hobsub Info: Skipping package `infwarerr' (already loaded).
@@ -1276,7 +1254,7 @@ Package hobsub Info: Skipping package `ifpdf' (already loaded).
 Package hobsub Info: Skipping package `etexcmds' (already loaded).
 Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -1298,81 +1276,81 @@ Package hobsub Info: Skipping package `atbegshi' (already loaded).
 Package hobsub Info: Skipping package `refcount' (already loaded).
 Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
 \@linkdim=\dimen273
-\Hy@linkcounter=\count280
-\Hy@pagecounter=\count281
+\Hy@linkcounter=\count278
+\Hy@pagecounter=\count279
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
-File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count282
+\Hy@SavedSpaceFactor=\count280
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Hyper figures OFF on input line 4509.
-Package hyperref Info: Link nesting OFF on input line 4514.
-Package hyperref Info: Hyper index ON on input line 4517.
-Package hyperref Info: Plain pages OFF on input line 4524.
-Package hyperref Info: Backreferencing OFF on input line 4529.
+Package hyperref Info: Hyper figures OFF on input line 4498.
+Package hyperref Info: Link nesting OFF on input line 4503.
+Package hyperref Info: Hyper index ON on input line 4506.
+Package hyperref Info: Plain pages OFF on input line 4513.
+Package hyperref Info: Backreferencing OFF on input line 4518.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4762.
-\c@Hy@tempcnt=\count283
-LaTeX Info: Redefining \url on input line 5115.
+Package hyperref Info: Bookmarks ON on input line 4751.
+\c@Hy@tempcnt=\count281
+LaTeX Info: Redefining \url on input line 5104.
 \XeTeXLinkMargin=\dimen274
-\Fld@menulength=\count284
+\Fld@menulength=\count282
 \Field@Width=\dimen275
 \Fld@charsize=\dimen276
-Package hyperref Info: Hyper figures OFF on input line 6369.
-Package hyperref Info: Link nesting OFF on input line 6374.
-Package hyperref Info: Hyper index ON on input line 6377.
-Package hyperref Info: backreferencing OFF on input line 6384.
-Package hyperref Info: Link coloring OFF on input line 6389.
-Package hyperref Info: Link coloring with OCG OFF on input line 6394.
-Package hyperref Info: PDF/A mode OFF on input line 6399.
-LaTeX Info: Redefining \ref on input line 6439.
-LaTeX Info: Redefining \pageref on input line 6443.
-\Hy@abspage=\count285
-\c@Item=\count286
-\c@Hfootnote=\count287
+Package hyperref Info: Hyper figures OFF on input line 6358.
+Package hyperref Info: Link nesting OFF on input line 6363.
+Package hyperref Info: Hyper index ON on input line 6366.
+Package hyperref Info: backreferencing OFF on input line 6373.
+Package hyperref Info: Link coloring OFF on input line 6378.
+Package hyperref Info: Link coloring with OCG OFF on input line 6383.
+Package hyperref Info: PDF/A mode OFF on input line 6388.
+LaTeX Info: Redefining \ref on input line 6428.
+LaTeX Info: Redefining \pageref on input line 6432.
+\Hy@abspage=\count283
+\c@Item=\count284
+\c@Hfootnote=\count285
 )
-Package hyperref Info: Driver (autodetected): hpdftex.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
-File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
-\Fld@listcount=\count288
-\c@bookmark@seq@number=\count289
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
+\Fld@listcount=\count286
+\c@bookmark@seq@number=\count287
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip87
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\bookmark.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bookmark.sty
 Package: bookmark 2016/05/17 v1.26 PDF bookmarks (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\bkm-pdftex.def"
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bkm-pdftex.def
 File: bkm-pdftex.def 2016/05/17 v1.26 bookmark driver for pdfTeX (HO)
-\BKM@id=\count290
+\BKM@id=\count288
 ))
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-(chess.aux)
+) (./chess.aux)
 \openout1 = `chess.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 192.
 LaTeX Font Info:    Try loading font information for OML+pxmi on input line 192
 .
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\omlpxmi.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/omlpxmi.fd
 File: omlpxmi.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    ... okay on input line 192.
@@ -1384,7 +1362,7 @@ LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 192.
 LaTeX Font Info:    Try loading font information for OMS+pxsy on input line 192
 .
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\omspxsy.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/omspxsy.fd
 File: omspxsy.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    ... okay on input line 192.
@@ -1392,7 +1370,7 @@ LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 192.
 LaTeX Font Info:    Try loading font information for OMX+pxex on input line 192
 .
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\omxpxex.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/omxpxex.fd
 File: omxpxex.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    ... okay on input line 192.
@@ -1400,7 +1378,7 @@ LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 192.
 LaTeX Font Info:    Try loading font information for U+pxexa on input line 192.
 
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\upxexa.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxexa.fd
 File: upxexa.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    ... okay on input line 192.
@@ -1409,73 +1387,75 @@ LaTeX Font Info:    ... okay on input line 192.
 LaTeX Font Info:    Try loading font information for T1+pxss on input line 192.
 
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\t1pxss.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/t1pxss.fd
 File: t1pxss.fd 2000/12/14 v1.0
 )
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count291
+\scratchcounter=\count289
 \scratchdimen=\dimen277
 \scratchbox=\box82
-\nofMPsegments=\count292
-\nofMParguments=\count293
+\nofMPsegments=\count290
+\nofMParguments=\count291
 \everyMPshowfont=\toks52
-\MPscratchCnt=\count294
+\MPscratchCnt=\count292
 \MPscratchDim=\dimen278
-\MPnumerator=\count295
-\makeMPintoPDFobject=\count296
+\MPnumerator=\count293
+\makeMPintoPDFobject=\count294
 \everyMPtoPDFconversion=\toks53
 )
 Preview: Fontsize 12pt
 Preview: PDFoutput 1
 \AtBeginShipoutBox=\box83
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-\c@lstlisting=\count297
+\c@lstlisting=\count295
 Package hyperref Info: Link coloring OFF on input line 192.
 LaTeX Info: Redefining \ref on input line 192.
 LaTeX Info: Redefining \pageref on input line 192.
 LaTeX Info: Redefining \nameref on input line 192.
-<chess-pics.pdf, id=4, page=1, 57.90634pt x 57.90634pt>
+<chess-pics.pdf, id=5, page=1, pagebox=cropbox, 57.90634pt x 57.90634pt>
 File: chess-pics.pdf Graphic file (type pdf)
 <use chess-pics.pdf, page 1>
-Package pdftex.def Info: chess-pics.pdf , page1 used on input line 274.
-(pdftex.def)             Requested size: 57.90617pt x 57.90617pt.
+Package pdftex.def Info: chess-pics.pdf , page1 used on input line 274. on inpu
+t line 274.
+Package pdftex.def Info: Requested size: 57.90617pt x 57.90617pt on input line 
+274.
 LaTeX Font Info:    Try loading font information for OT1+pxr on input line 274.
 
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\ot1pxr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/ot1pxr.fd
 File: ot1pxr.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Try loading font information for U+wasy on input line 274.
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\wasysym\uwasy.fd
+(/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
 LaTeX Font Info:    Try loading font information for U+pxmia on input line 274.
 
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\upxmia.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxmia.fd
 File: upxmia.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Try loading font information for U+pxsya on input line 274.
 
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\upxsya.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxsya.fd
 File: upxsya.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Try loading font information for U+pxsyb on input line 274.
 
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\upxsyb.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxsyb.fd
 File: utxsyb.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Try loading font information for U+pxsyc on input line 274.
 
 
-(C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\upxsyc.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pxfonts/upxsyc.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
 Overfull \hbox (2.84525pt too wide) in paragraph at lines 283--307
@@ -1494,13 +1474,9 @@ Package babel Info: Redefining ngerman shorthand "~
 
 
 Non-PDF special ignored!
-<special> ps: /pssetRGBcolor /setrgbcolor load def /pssetCMYKcolor /setcmyk...
 Non-PDF special ignored!
-<special> ps:tx@Dict begin  gsave STV CP T /ps@rot 0 def grestore  end
-Non-PDF special ignored!
-<special> ps:tx@Dict begin  gsave STV CP T /ps@refangle 0.  def grestore  e...
-{C:/Users/alexl12/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./chess-p
-ics.pdf>]
+Non-PDF special ignored!{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./
+chess-pics.pdf>]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 455.
 Package babel Info: Redefining ngerman shorthand "~
@@ -1634,7 +1610,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 579.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 579.
- (chess.toc
+ (./chess.toc
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 35.
 Package babel Info: Redefining ngerman shorthand "~
@@ -1855,11 +1831,13 @@ Package babel Info: Redefining ngerman shorthand "~
  [6
 
 ]
-<graphics/block.png, id=349, 773.89125pt x 722.7pt>
+<graphics/block.png, id=352, 773.89125pt x 722.7pt>
 File: graphics/block.png Graphic file (type png)
 <use graphics/block.png>
-Package pdftex.def Info: graphics/block.png  used on input line 774.
-(pdftex.def)             Requested size: 398.33858pt x 371.99065pt.
+Package pdftex.def Info: graphics/block.png  used on input line 774. on input l
+ine 774.
+Package pdftex.def Info: Requested size: 398.33858pt x 371.99065pt on input lin
+e 774.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 779.
 Package babel Info: Redefining ngerman shorthand "~
@@ -2008,7 +1986,7 @@ Package babel Info: Redefining ngerman shorthand "~
 [13]
 LaTeX Font Info:    Try loading font information for T1+pxtt on input line 961.
 
- (C:\Users\alexl12\AppData\Roaming\MiKTeX\2.9\tex\latex\pxfonts\t1pxtt.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/pxfonts/t1pxtt.fd
 File: t1pxtt.fd 2000/12/14 v1.0
 )
 Package babel Info: Redefining ngerman shorthand "|
@@ -2019,8 +1997,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 991.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 991.
-
-[14]
+ [14]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1029.
 Package babel Info: Redefining ngerman shorthand "~
@@ -2038,7 +2015,8 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1069.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1069.
- [16]
+
+[16]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1108.
 Package babel Info: Redefining ngerman shorthand "~
@@ -2235,11 +2213,13 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1552.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1552.
-<graphics/Startup.png, id=890, 522.45187pt x 371.13657pt>
+<graphics/Startup.png, id=898, 522.45187pt x 371.13657pt>
 File: graphics/Startup.png Graphic file (type png)
 <use graphics/Startup.png>
-Package pdftex.def Info: graphics/Startup.png  used on input line 1557.
-(pdftex.def)             Requested size: 398.33858pt x 282.97281pt.
+Package pdftex.def Info: graphics/Startup.png  used on input line 1557. on inpu
+t line 1557.
+Package pdftex.def Info: Requested size: 398.33858pt x 282.97281pt on input lin
+e 1557.
 
 Underfull \hbox (badness 10000) in paragraph at lines 1554--1560
 
@@ -2288,11 +2268,13 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1590.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1590.
-<graphics/Menu.png, id=909, 368.577pt x 174.05025pt>
+<graphics/Menu.png, id=917, 368.577pt x 174.05025pt>
 File: graphics/Menu.png Graphic file (type png)
 <use graphics/Menu.png>
-Package pdftex.def Info: graphics/Menu.png  used on input line 1606.
-(pdftex.def)             Requested size: 398.33858pt x 188.10954pt.
+Package pdftex.def Info: graphics/Menu.png  used on input line 1606. on input l
+ine 1606.
+Package pdftex.def Info: Requested size: 398.33858pt x 188.10954pt on input lin
+e 1606.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1609.
 Package babel Info: Redefining ngerman shorthand "~
@@ -2333,11 +2315,13 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1628.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1628.
-<graphics/SpielflussLAN.png, id=924, 903.375pt x 966.61125pt>
+<graphics/SpielflussLAN.png, id=932, 903.375pt x 966.61125pt>
 File: graphics/SpielflussLAN.png Graphic file (type png)
 <use graphics/SpielflussLAN.png>
-Package pdftex.def Info: graphics/SpielflussLAN.png  used on input line 1636.
-(pdftex.def)             Requested size: 455.24408pt x 487.12451pt.
+Package pdftex.def Info: graphics/SpielflussLAN.png  used on input line 1636. o
+n input line 1636.
+Package pdftex.def Info: Requested size: 455.24408pt x 487.12451pt on input lin
+e 1636.
 
 Overfull \hbox (14.22635pt too wide) in paragraph at lines 1636--1637
  [][] 
@@ -2515,11 +2499,13 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 1926.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 1926.
-<graphics/MinMax.jpg, id=1168, 677.53125pt x 292.09125pt>
+<graphics/MinMax.jpg, id=1179, 677.53125pt x 292.09125pt>
 File: graphics/MinMax.jpg Graphic file (type jpg)
 <use graphics/MinMax.jpg>
-Package pdftex.def Info: graphics/MinMax.jpg  used on input line 1933.
-(pdftex.def)             Requested size: 455.24408pt x 196.26613pt.
+Package pdftex.def Info: graphics/MinMax.jpg  used on input line 1933. on input
+ line 1933.
+Package pdftex.def Info: Requested size: 455.24408pt x 196.26613pt on input lin
+e 1933.
 
 Overfull \hbox (14.22635pt too wide) in paragraph at lines 1933--1934
  [][] 
@@ -2838,12 +2824,14 @@ Package babel Info: Redefining ngerman shorthand "~
 
 pdfTeX warning: pdflatex (file ./graphics/20170920-Shematic.pdf): PDF inclusion
 : found PDF version <1.7>, but at most version <1.5> allowed
-<graphics/20170920-Shematic.pdf, id=1421, 845.07724pt x 597.55246pt>
+<graphics/20170920-Shematic.pdf, id=1434, pagebox=cropbox, 845.07724pt x 597.55
+246pt>
 File: graphics/20170920-Shematic.pdf Graphic file (type pdf)
 <use graphics/20170920-Shematic.pdf>
 Package pdftex.def Info: graphics/20170920-Shematic.pdf  used on input line 228
-1.
-(pdftex.def)             Requested size: 591.55003pt x 418.28386pt.
+1. on input line 2281.
+Package pdftex.def Info: Requested size: 591.55003pt x 418.28386pt on input lin
+e 2281.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 2286.
 Package babel Info: Redefining ngerman shorthand "~
@@ -2913,12 +2901,14 @@ Package babel Info: Redefining ngerman shorthand "~
 
 pdfTeX warning: pdflatex (file ./graphics/20171104-shematics.pdf): PDF inclusio
 n: found PDF version <1.7>, but at most version <1.5> allowed
-<graphics/20171104-shematics.pdf, id=1485, 845.07724pt x 597.55246pt>
+<graphics/20171104-shematics.pdf, id=1499, pagebox=cropbox, 845.07724pt x 597.5
+5246pt>
 File: graphics/20171104-shematics.pdf Graphic file (type pdf)
 <use graphics/20171104-shematics.pdf>
 Package pdftex.def Info: graphics/20171104-shematics.pdf  used on input line 23
-61.
-(pdftex.def)             Requested size: 591.55003pt x 418.28386pt.
+61. on input line 2361.
+Package pdftex.def Info: Requested size: 591.55003pt x 418.28386pt on input lin
+e 2361.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 2365.
 Package babel Info: Redefining ngerman shorthand "~
@@ -2967,11 +2957,13 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 2399.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 2399.
-<graphics/gehaeuse.png, id=1538, 1142.01656pt x 540.51938pt>
+<graphics/gehaeuse.png, id=1552, 1142.01656pt x 540.51938pt>
 File: graphics/gehaeuse.png Graphic file (type png)
 <use graphics/gehaeuse.png>
-Package pdftex.def Info: graphics/gehaeuse.png  used on input line 2408.
-(pdftex.def)             Requested size: 685.21523pt x 324.31412pt.
+Package pdftex.def Info: graphics/gehaeuse.png  used on input line 2408. on inp
+ut line 2408.
+Package pdftex.def Info: Requested size: 685.21523pt x 324.31412pt on input lin
+e 2408.
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 2412.
 Package babel Info: Redefining ngerman shorthand "~
@@ -3008,102 +3000,122 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 2433.
  [72]
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2435.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2435.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2439.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2439.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2439.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2439.
- [73
+<graphics/chesspi.jpg, id=1566, 4047.12pt x 3035.34pt>
+File: graphics/chesspi.jpg Graphic file (type jpg)
+<use graphics/chesspi.jpg>
+Package pdftex.def Info: graphics/chesspi.jpg  used on input line 2437. on inpu
+t line 2437.
+Package pdftex.def Info: Requested size: 606.98006pt x 455.24408pt on input lin
+e 2437.
 
-]
+Overfull \hbox (14.22635pt too wide) in paragraph at lines 2437--2438
+ [][] 
+ []
+
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2441.
+(babel)             in language  on input line 2446.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2441.
+(babel)             in language  on input line 2446.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2454.
+(babel)             in language  on input line 2446.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2454.
+(babel)             in language  on input line 2446.
+[73 <./graphics/chesspi.jpg>]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2474.
+(babel)             in language  on input line 2448.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2474.
+(babel)             in language  on input line 2448.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2474.
+(babel)             in language  on input line 2452.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2474.
+(babel)             in language  on input line 2452.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2452.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2452.
  [74
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2488.
+(babel)             in language  on input line 2454.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2488.
+(babel)             in language  on input line 2454.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2493.
+(babel)             in language  on input line 2467.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2493.
+(babel)             in language  on input line 2467.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2493.
+(babel)             in language  on input line 2487.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2493.
- [75]
+(babel)             in language  on input line 2487.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2495.
+(babel)             in language  on input line 2487.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2495.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2503.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2503.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2509.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2509.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2515.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2515.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2520.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2520.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2524.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2524.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2539.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2539.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2539.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2539.
- [76
+(babel)             in language  on input line 2487.
+ [75
 
 ]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2550.
+(babel)             in language  on input line 2501.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2550.
- (chess.lof)
+(babel)             in language  on input line 2501.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2506.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2506.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2506.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2506.
+ [76]
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2508.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2508.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2516.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2516.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2522.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2522.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2528.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2528.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2533.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2533.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2537.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2537.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2552.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2552.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2552.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2552.
+ [77
+
+]
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2563.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2563.
+ (./chess.lof)
 \tf@lof=\write6
 \openout6 = `chess.lof'.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2559.
+(babel)             in language  on input line 2572.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2559.
-
-(chess.lot
+(babel)             in language  on input line 2572.
+ (./chess.lot
 Overfull \hbox (7.41595pt too wide) detected at line 3
  []\T1/pxss/m/n/12 XVIII
  []
@@ -3113,174 +3125,174 @@ Overfull \hbox (7.41595pt too wide) detected at line 3
 \openout7 = `chess.lot'.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2574.
+(babel)             in language  on input line 2587.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2574.
+(babel)             in language  on input line 2587.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2574.
+(babel)             in language  on input line 2587.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2574.
+(babel)             in language  on input line 2587.
  [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{section.3}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2581 \section{Literaturverzeichnis}
+l.2594 \section{Literaturverzeichnis}
                                      
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2581.
+(babel)             in language  on input line 2594.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2581.
+(babel)             in language  on input line 2594.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2676--2678
+Underfull \hbox (badness 10000) in paragraph at lines 2689--2691
 []\T1/pxss/m/n/12 Author = Mi-ke Klein, Ti-tel = Goo-gle's Al-pha-Ze-ro De-stro
 ys Stock-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2676--2678
+Underfull \hbox (badness 10000) in paragraph at lines 2689--2691
 \T1/pxss/m/n/12 fish in 100-Game Match, URL = []$\T1/pxtt/m/n/12 https : / / ww
 w . chess . com / news / view /
  []
 
 
-Underfull \hbox (badness 1097) in paragraph at lines 2683--2685
+Underfull \hbox (badness 1097) in paragraph at lines 2696--2698
 \T1/pxss/m/n/12 SPECS, BENCH-MARKS & MO-RE, UTL = []$\T1/pxtt/m/n/12 https : / 
 / www . raspberrypi . org /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2687--2689
+Underfull \hbox (badness 10000) in paragraph at lines 2700--2702
 []\T1/pxss/m/n/12 Author = ,,Gor-don'', Ti-tel = THE EA-GER-LY AWAI-TED RASPBER
 -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2687--2689
+Underfull \hbox (badness 10000) in paragraph at lines 2700--2702
 \T1/pxss/m/n/12 RY PI DIS-PLAY, URL = []$\T1/pxtt/m/n/12 https : / / www . rasp
 berrypi . org / blog /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2691--2694
+Underfull \hbox (badness 10000) in paragraph at lines 2704--2707
 \T1/pxtt/m/n/12 raspberrypi . org / documentation / hardware / raspberrypi / po
 wer / README . md$[]\T1/pxss/m/n/12 ,
  []
 
 
-Underfull \hbox (badness 5245) in paragraph at lines 2711--2716
+Underfull \hbox (badness 5245) in paragraph at lines 2724--2729
 \T1/pxtt/m/n/12 lithium-[]akkus / ?applied-[]dimensions = 4294830943$[]\T1/pxss
 /m/n/12 , No-tiz = On-li-ne; Stand
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2729.
+(babel)             in language  on input line 2742.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2729.
+(babel)             in language  on input line 2742.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2729.
+(babel)             in language  on input line 2742.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2729.
+(babel)             in language  on input line 2742.
 [2
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{section.4}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2733 \section{Abkürzungen}
+l.2746 \section{Abkürzungen}
                              
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2733.
+(babel)             in language  on input line 2746.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2733.
+(babel)             in language  on input line 2746.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2758.
+(babel)             in language  on input line 2771.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2758.
+(babel)             in language  on input line 2771.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2758.
+(babel)             in language  on input line 2771.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2758.
+(babel)             in language  on input line 2771.
  [3
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{section.5}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2761 \section{\sc Pflichtenheft}
+l.2774 \section{\sc Pflichtenheft}
                                   
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2761.
+(babel)             in language  on input line 2774.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2761.
+(babel)             in language  on input line 2774.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2768.
+(babel)             in language  on input line 2781.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2768.
+(babel)             in language  on input line 2781.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2768.
+(babel)             in language  on input line 2781.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2768.
+(babel)             in language  on input line 2781.
  [4
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{subsection.5
 .1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2770 \subsection{\sc JavaChess Konzept}
+l.2783 \subsection{\sc JavaChess Konzept}
                                          
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2770.
+(babel)             in language  on input line 2783.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2770.
+(babel)             in language  on input line 2783.
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.5.
 2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2780 \subsection{Einzubauende Features}
+l.2793 \subsection{Einzubauende Features}
                                          
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2780.
+(babel)             in language  on input line 2793.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2780.
+(babel)             in language  on input line 2793.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2782.
+(babel)             in language  on input line 2795.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2782.
+(babel)             in language  on input line 2795.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2804.
+(babel)             in language  on input line 2817.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2804.
+(babel)             in language  on input line 2817.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2804.
+(babel)             in language  on input line 2817.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2804.
+(babel)             in language  on input line 2817.
  [5]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2811.
+(babel)             in language  on input line 2824.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2811.
+(babel)             in language  on input line 2824.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2820.
+(babel)             in language  on input line 2833.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2820.
+(babel)             in language  on input line 2833.
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.5.
 3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2827 \subsection{Appendix}
+l.2840 \subsection{Appendix}
                             
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2827.
+(babel)             in language  on input line 2840.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2827.
+(babel)             in language  on input line 2840.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2828.
+(babel)             in language  on input line 2841.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2828.
+(babel)             in language  on input line 2841.
 
-Overfull \hbox (31.21849pt too wide) in paragraph at lines 2833--2834
+Overfull \hbox (31.21849pt too wide) in paragraph at lines 2846--2847
 []\T1/pxss/m/n/12 Schachmattalgorithmus gibt, au-�er in ei-nem be-stimm-ten Fal
 l, nur Schach aus.Dieser
  []
@@ -3289,272 +3301,288 @@ pdfTeX warning (ext4): destination with the same identifier (name{section.6}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2841 \section{Datenblätter}
+l.2854 \section{Datenblätter}
                               
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2841.
+(babel)             in language  on input line 2854.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2841.
-<graphics/powerbank.pdf, id=1663, page=2, 398.3392pt x 312.9803pt>
+(babel)             in language  on input line 2854.
+<graphics/powerbank.pdf, id=1685, page=2, pagebox=cropbox, 398.3392pt x 312.980
+3pt>
 File: graphics/powerbank.pdf Graphic file (type pdf)
 <use graphics/powerbank.pdf, page 2>
-Package pdftex.def Info: graphics/powerbank.pdf , page2 used on input line 2848
-.
-(pdftex.def)             Requested size: 597.50731pt x 469.46928pt.
+Package pdftex.def Info: graphics/powerbank.pdf , page2 used on input line 2861
+. on input line 2861.
+Package pdftex.def Info: Requested size: 597.50731pt x 469.46928pt on input lin
+e 2861.
 
-Overfull \hbox (28.45155pt too wide) in paragraph at lines 2848--2849
+Overfull \hbox (28.45155pt too wide) in paragraph at lines 2861--2862
  [][] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2852.
+(babel)             in language  on input line 2865.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2852.
+(babel)             in language  on input line 2865.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2852.
+(babel)             in language  on input line 2865.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2852.
+(babel)             in language  on input line 2865.
 [6]
-<graphics/screen.pdf, id=1677, 845.1575pt x 597.23125pt>
+<graphics/screen.pdf, id=1700, pagebox=cropbox, 845.1575pt x 597.23125pt>
 File: graphics/screen.pdf Graphic file (type pdf)
 <use graphics/screen.pdf>
-Package pdftex.def Info: graphics/screen.pdf  used on input line 2855.
-(pdftex.def)             Requested size: 591.60622pt x 418.05902pt.
+Package pdftex.def Info: graphics/screen.pdf  used on input line 2868. on input
+ line 2868.
+Package pdftex.def Info: Requested size: 591.60622pt x 418.05902pt on input lin
+e 2868.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2859.
+(babel)             in language  on input line 2872.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2859.
+(babel)             in language  on input line 2872.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2859.
+(babel)             in language  on input line 2872.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2859.
+(babel)             in language  on input line 2872.
  [7 <./graphics/powerbank.pdf>]
-<graphics/LM2596.PDF, id=1698, page=1, 614.65634pt x 795.40363pt>
+<graphics/LM2596.PDF, id=1721, page=1, pagebox=cropbox, 614.65634pt x 795.40363
+pt>
 File: graphics/LM2596.PDF Graphic file (type pdf)
 <use graphics/LM2596.PDF, page 1>
-Package pdftex.def Info: graphics/LM2596.PDF , page1 used on input line 2862.
-(pdftex.def)             Requested size: 460.99113pt x 596.55125pt.
+Package pdftex.def Info: graphics/LM2596.PDF , page1 used on input line 2875. o
+n input line 2875.
+Package pdftex.def Info: Requested size: 460.99113pt x 596.55125pt on input lin
+e 2875.
 
-Overfull \hbox (19.9734pt too wide) in paragraph at lines 2862--2863
+Overfull \hbox (19.9734pt too wide) in paragraph at lines 2875--2876
  [][] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2866.
+(babel)             in language  on input line 2879.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2866.
+(babel)             in language  on input line 2879.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2866.
+(babel)             in language  on input line 2879.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2866.
+(babel)             in language  on input line 2879.
 [8 <./graphics/screen.pdf, page is rotated 270 degrees>]
-<graphics/LM2596.PDF, id=1743, page=7, 614.65634pt x 795.40363pt>
+<graphics/LM2596.PDF, id=1766, page=7, pagebox=cropbox, 614.65634pt x 795.40363
+pt>
 File: graphics/LM2596.PDF Graphic file (type pdf)
 <use graphics/LM2596.PDF, page 7>
-Package pdftex.def Info: graphics/LM2596.PDF , page7 used on input line 2869.
-(pdftex.def)             Requested size: 460.99113pt x 596.55125pt.
+Package pdftex.def Info: graphics/LM2596.PDF , page7 used on input line 2882. o
+n input line 2882.
+Package pdftex.def Info: Requested size: 460.99113pt x 596.55125pt on input lin
+e 2882.
 
-Overfull \hbox (19.9734pt too wide) in paragraph at lines 2869--2870
+Overfull \hbox (19.9734pt too wide) in paragraph at lines 2882--2883
  [][] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2873.
+(babel)             in language  on input line 2886.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2873.
+(babel)             in language  on input line 2886.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2873.
+(babel)             in language  on input line 2886.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2873.
+(babel)             in language  on input line 2886.
 [9 <./graphics/LM2596.PDF>]
-<graphics/LT1370.pdf, id=1786, page=1, 614.295pt x 794.97pt>
+<graphics/LT1370.pdf, id=1809, page=1, pagebox=cropbox, 614.295pt x 794.97pt>
 File: graphics/LT1370.pdf Graphic file (type pdf)
 <use graphics/LT1370.pdf, page 1>
-Package pdftex.def Info: graphics/LT1370.pdf , page1 used on input line 2876.
-(pdftex.def)             Requested size: 491.43666pt x 635.97687pt.
+Package pdftex.def Info: graphics/LT1370.pdf , page1 used on input line 2889. o
+n input line 2889.
+Package pdftex.def Info: Requested size: 491.43666pt x 635.97687pt on input lin
+e 2889.
 
-Overfull \hbox (50.41893pt too wide) in paragraph at lines 2876--2877
+Overfull \hbox (50.41893pt too wide) in paragraph at lines 2889--2890
  [][] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2880.
+(babel)             in language  on input line 2893.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2880.
+(babel)             in language  on input line 2893.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2880.
+(babel)             in language  on input line 2893.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2880.
+(babel)             in language  on input line 2893.
 [10 <./graphics/LM2596.PDF>]
-<graphics/LT1370.pdf, id=1809, page=7, 614.295pt x 794.97pt>
+<graphics/LT1370.pdf, id=1833, page=7, pagebox=cropbox, 614.295pt x 794.97pt>
 File: graphics/LT1370.pdf Graphic file (type pdf)
 <use graphics/LT1370.pdf, page 7>
-Package pdftex.def Info: graphics/LT1370.pdf , page7 used on input line 2883.
-(pdftex.def)             Requested size: 491.43666pt x 635.97687pt.
+Package pdftex.def Info: graphics/LT1370.pdf , page7 used on input line 2896. o
+n input line 2896.
+Package pdftex.def Info: Requested size: 491.43666pt x 635.97687pt on input lin
+e 2896.
 
-Overfull \hbox (50.41893pt too wide) in paragraph at lines 2883--2884
+Overfull \hbox (50.41893pt too wide) in paragraph at lines 2896--2897
  [][] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2887.
+(babel)             in language  on input line 2900.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2887.
+(babel)             in language  on input line 2900.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2887.
+(babel)             in language  on input line 2900.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2887.
+(babel)             in language  on input line 2900.
 [11 <./graphics/LT1370.pdf>]
-<graphics/akku.pdf, id=1855, 845.1575pt x 597.23125pt>
+<graphics/akku.pdf, id=1879, pagebox=cropbox, 845.1575pt x 597.23125pt>
 File: graphics/akku.pdf Graphic file (type pdf)
 <use graphics/akku.pdf>
-Package pdftex.def Info: graphics/akku.pdf  used on input line 2890.
-(pdftex.def)             Requested size: 676.12692pt x 477.78564pt.
+Package pdftex.def Info: graphics/akku.pdf  used on input line 2903. on input l
+ine 2903.
+Package pdftex.def Info: Requested size: 676.12692pt x 477.78564pt on input lin
+e 2903.
 
-Overfull \hbox (36.76791pt too wide) in paragraph at lines 2890--2891
+Overfull \hbox (36.76791pt too wide) in paragraph at lines 2903--2904
  [][] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2894.
+(babel)             in language  on input line 2907.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2894.
+(babel)             in language  on input line 2907.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2894.
+(babel)             in language  on input line 2907.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2894.
+(babel)             in language  on input line 2907.
 [12 <./graphics/LT1370.pdf>]
 Overfull \vbox (0.31616pt too high) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2894.
+(babel)             in language  on input line 2907.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2894.
+(babel)             in language  on input line 2907.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2894.
+(babel)             in language  on input line 2907.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2894.
+(babel)             in language  on input line 2907.
 
 [13 <./graphics/akku.pdf>]pdfTeX warning (ext4): destination with the same iden
 tifier (name{section.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2915 \section{\sc Zusammenfassung}
+l.2928 \section{\sc Zusammenfassung}
                                     
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2915.
+(babel)             in language  on input line 2928.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2915.
+(babel)             in language  on input line 2928.
 pdfTeX warning (ext4): destination with the same identifier (name{subsection.7.
 1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2917 \subsection{Alexander Beiser}
+l.2930 \subsection{Alexander Beiser}
                                     
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2917.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2917.
-Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 2930.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 2930.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2930.
+(babel)             in language  on input line 2943.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2930.
+(babel)             in language  on input line 2943.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 2943.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 2943.
  [14
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{subsection.7
 .2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2931 \subsection{Marcel Huber}
+l.2944 \subsection{Marcel Huber}
                                 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2931.
+(babel)             in language  on input line 2944.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2931.
+(babel)             in language  on input line 2944.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2942.
+(babel)             in language  on input line 2955.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2942.
+(babel)             in language  on input line 2955.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2942.
+(babel)             in language  on input line 2955.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2942.
+(babel)             in language  on input line 2955.
  [15]pdfTeX warning (ext4): destination with the same identifier (name{subsecti
 on.7.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2943 ...ion{Schlussfolgerung / Projekterfahrung}
+l.2956 ...ion{Schlussfolgerung / Projekterfahrung}
                                                   
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2943.
+(babel)             in language  on input line 2956.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2943.
+(babel)             in language  on input line 2956.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2945--2946
+Underfull \hbox (badness 10000) in paragraph at lines 2958--2959
 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2959.
+(babel)             in language  on input line 2972.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2959.
+(babel)             in language  on input line 2972.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2959.
+(babel)             in language  on input line 2972.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2959.
+(babel)             in language  on input line 2972.
 [16]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2960.
+(babel)             in language  on input line 2973.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2960.
+(babel)             in language  on input line 2973.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 2963.
+(babel)             in language  on input line 2976.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 2963.
+(babel)             in language  on input line 2976.
 LaTeX Font Info:    Font shape `U/eurosym/m/sc' in size <12> not available
-(Font)              Font shape `U/eurosym/m/n' tried instead on input line 2972
+(Font)              Font shape `U/eurosym/m/n' tried instead on input line 2985
 .
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 3024.
+(babel)             in language  on input line 3037.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 3024.
+(babel)             in language  on input line 3037.
 
-Overfull \hbox (13.47012pt too wide) in paragraph at lines 3044--3063
+Overfull \hbox (13.47012pt too wide) in paragraph at lines 3057--3076
  [][] 
  []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 3066.
+(babel)             in language  on input line 3079.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 3066.
+(babel)             in language  on input line 3079.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 3066.
+(babel)             in language  on input line 3079.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 3066.
+(babel)             in language  on input line 3079.
 [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3114.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3127.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 3114.
+(babel)             in language  on input line 3127.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 3114.
+(babel)             in language  on input line 3127.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 3114.
+(babel)             in language  on input line 3127.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 3114.
+(babel)             in language  on input line 3127.
  [18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3114.
- (chess.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3114.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3114.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3127.
+ (./chess.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3127.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3127.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3114.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3127.
  )
 (\end occurred inside a group at level 2)
 
@@ -3562,30 +3590,30 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3114.
 ### semi simple group (level 1) entered at line 445 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 26252 strings out of 493305
- 420463 string characters out of 3138868
- 692508 words of memory out of 3000000
- 28177 multiletter control sequences out of 15000+200000
- 99173 words of font info for 139 fonts, out of 3000000 for 9000
+ 26130 strings out of 492990
+ 414724 string characters out of 6135005
+ 686937 words of memory out of 5000000
+ 28073 multiletter control sequences out of 15000+600000
+ 99173 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,14n,72p,960b,2176s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/eurosym/feymr10.pfb><C:/Users/alexl12
-/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/pxfonts/pxex.pfb><C:/Users/alexl
-12/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/pxfonts/pxsy.pfb><C:/Users/ale
-xl12/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/pxfonts/rpxmi.pfb><C:/Users/
-alexl12/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/pxfonts/rpxr.pfb><C:/User
-s/alexl12/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/txfonts/rtxbsssc.pfb><C
-:/Users/alexl12/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/txfonts/rtxsssc.p
-fb><C:/Users/alexl12/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/txfonts/t1xt
-t.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palat
-ino/uplri8a.pfb>
-Output written on chess.pdf (104 pages, 4543418 bytes).
+ 43i,14n,72p,958b,2174s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</us
+r/share/texlive/texmf-dist/fonts/type1/public/eurosym/feymr10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/pxfonts/pxsy.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/pxfonts/rpxmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/pxfonts/rpxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rt
+xbsssc.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtxsssc.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/u
+plri8a.pfb>
+Output written on chess.pdf (105 pages, 5647663 bytes).
 PDF statistics:
- 2544 PDF objects out of 2984 (max. 8388607)
- 1064 named destinations out of 1200 (max. 500000)
- 1134 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2576 PDF objects out of 2984 (max. 8388607)
+ 2312 compressed objects within 24 object streams
+ 1066 named destinations out of 1200 (max. 500000)
+ 1139 words of extra memory for PDF output out of 10000 (max. 10000000)
 
