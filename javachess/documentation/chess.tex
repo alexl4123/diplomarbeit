@@ -60,6 +60,7 @@
 \usepackage{longtable}		% fuer tabellen ueber mehrere Seiten
 \usepackage{xcolor}
 \usepackage[ngerman]{babel}
+\usepackage{titlesec}
 
 \usepackage{float}
 \usepackage{booktabs}
@@ -188,6 +189,8 @@
   tabsize=3
 }
 
+\titleformat{\section}
+  {\Huge\scshape}{\thesection}{1em}{}
 %===================================================
 \begin{document}
 %\addtocontents{toc}{\protect\begin{multicols}{2}} %-fuer mehrspaltiges Inh.Verz
@@ -273,7 +276,7 @@
    \begin{center}
    \HtlHeader{}
 	\vspace*{-10mm}
-	{\fontsize{25pt}{25pt}\selectfont\bf \\[10mm]\text{DIPLOMARBEIT-V0.9}}
+	{\fontsize{25pt}{25pt}\selectfont\bf \\[10mm]\text{DIPLOMARBEIT-V0.91}}
 	\\[19mm]{\fontsize{20pt}{20pt}\selectfont\textbf{\textsc{JavaChess, ChessPI AndChess}}}
 	\\[15mm]{\fontsize{12.4pt}{12.4pt}\selectfont\bf
 		Höhere Technische Bundeslehr- und Versuchsanstalt Anichstrasse}
@@ -287,10 +290,9 @@
 		\\[2.5mm]Marcel Huber 5CHEL 
 	  }
 	  \hspace*{6mm}
-	  \parbox[t]{50mm}{
+	  \parbox[t]{70mm}{
 		Betreuer/Betreuerin:
-		\\[5.0mm]Ing. MSc. Markus
-		\\Signitzer
+		\\[5.0mm]Ing. MSc. Markus Signitzer
 	  }
 	  \\[14mm]{Innsbruck, am 03.04.2018}
 	  \\[16mm]\rule{150mm}{0.5pt}
@@ -457,7 +459,7 @@
 \renewcommand\thesection{i}
 \renewcommand\thesubsection{\thesection.\roman{subsection}}
 \renewcommand\thesubsubsection{\thesubsection.\roman{subsubsection}}
-\section*{\Large\sc Erklärung der Eigenständigkeit der Arbeit}
+\section*{Erklärung der Eigenständigkeit der Arbeit}
 	\hfill\\[ 8mm]
 	EIDESSTATTLICHE ERKLÄRUNG
 	\\[3mm]
@@ -544,7 +546,7 @@
 \section{Lizenz}
 \label{SEC:licence}
 
-Das Schachprogramm ist unter der ,,Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License'' entwickelt. \\
+Das Schachprogramm wird unter der ,,Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License'' entwickelt. \\
 Dies räumt jeden Menschen folgende Rechte ein: 
 \begin{itemize}
 	\item{\textbf{Teilen:} Das Programm darf frei kopiert und weiterverteilt werden.}
@@ -564,13 +566,13 @@ Allerdings muss dies unter den folgenden Bedingungen geschehen:
 \section{Danksagung}
 \label{SEC:THANKS}
 
-Vor allem möchten wir unserem Betreuer Ing. MSc. Markus Signitzer für die Unterstützung Danken. \\
+Vor allem möchten wir unserem Betreuer Ing. MSc. Markus Signitzer für die Unterstützung danken. \\
 Weiters bedanken wir uns bei Fachlehrer Strohmaier, für die Unterstüzung beim Bau des Gehäuses. \\[1ex]
 Auch möchten wir uns bei Elektrotechnik Beiser - Andreas Beiser, für die finanzielle Unterstüzung bedanken. \\[1ex]
 Bei unserern Eltern, Brigitte und Andreas Beiser, bzw. bei Gabriele und Alexander Huber. \\
-Die Bereitschaft unserer Beta-Tester, unser Programm auf Herz und Nieren zu prüfen und wenn nötig sogar Blut dafür zu vergießen.\\
+Die Bereitschaft unserer Beta-Tester unser Programm auf Herz und Nieren zu prüfen und wenn nötig sogar Blut dafür zu vergießen.\\
 Alexander Hold und Thomas Klotz, da wir mit ihnen das Programm so weiter entwickelt haben, um es mit ihrer ,,Launchpad'' Diplomarbeit kompatibel zu machen. \\
-Auch bedanken wir uns bei Raphael Meier, der uns bei dem ursprünglichen Gehäuse Design sehr geholfen hat.
+Auch bedanken wir uns bei Raphael Meier, der uns bei dem ursprünglichen Gehäusedesign sehr geholfen hat.
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -601,31 +603,22 @@ Auch bedanken wir uns bei Raphael Meier, der uns bei dem ursprünglichen Gehäus
 
 \setcounter{page}{1}
 \pagenumbering{arabic}
-\section{\sc Einleitung}
+\section{Einleitung}
 \label{SEC:INTRODUCTION}
 
-	Alexander Beiser und Marcel Huber sind beide begeisterte Schachspieler, womit die Entwicklung eines Schachspiels naheliegt. Gegen Ende des 4.Jahres der \ac{HTL} trafen sie die Entscheidung ein Schachspiel selber zu entwickeln und keine Diplomarbeit von einer Firma anzunehmen. Für die Entwicklung ihres Schachspiels werden sie von ,,Elektrotechnik Beiser'' unterstützt. Diese Firma übernimmt die anfallenden Kosten für die Hardwarekomponenten.\\
-	Anfang der 5.Klasse der HTL fanden die Sondierungsgespräche mit ihrem Betreuer Ing. MSc. Signitzer Markus, statt 
-welcher ihnen bekannt gab, was im Zuge dieser Diplomarbeit alles erledigt werden muss. \\
-Durch die Gespräche kam man zum Schluss, dass für die Diplomarbeit ein Schachspiel in Java entwickelt werden soll und dieses auf einen RaspberryPI und auch auf die Android Plattform potiert werden muss. Weiteres wird eine Akkusteuerung für den RaspberryPI entwickelt, ein Gehäuse designt und realisiert. \\
+	Alexander Beiser und Marcel Huber sind beide begeisterte Schachspieler, womit die Entwicklung eines Schachspiels naheliegt. Gegen Ende des 4. Jahres der HTL (\acl{HTL}) treffen sie die Entscheidung ein Schachspiel selber zu entwickeln und keine Diplomarbeit von einer Firma anzunehmen. Für die Entwicklung ihres Schachspiels werden sie von ,,Elektrotechnik Beiser'' unterstützt. Diese Firma übernimmt die anfallenden Kosten für die Hardwarekomponenten.\\
+	Anfang der 5.Klasse der HTL finden die Sondierungsgespräche mit ihrem Betreuer Ing. MSc. Signitzer Markus, statt 
+welcher ihnen bekannt gibt, was im Zuge dieser Diplomarbeit alles erledigt werden muss. \\
+Durch die Gespräche kommt man zum Schluss, dass für die Diplomarbeit ein Schachspiel in Java entwickelt werden soll und dieses auf einem RaspberryPI und auch auf die Android Plattform potiert werden muss. Weiteres wird eine Akkusteuerung für den RaspberryPI entwickelt, ein Gehäuse designt und realisiert. \\
 	Das  \acl{GUI} des Spiels soll mit JavaFX erstellt werden. Das Spiel soll gegen eine selbstentwickelte künstliche Intelligenz, im Hot Seat Modus oder im Local Area Network spielbar sein. \\
 	Im Hot Seat Modus spielt man auf einem PC abwechselnd die Partien.
-	Details werden in einem Pflichtenheft festgehalten, dieses Pflichtenheft befindet sich im Anhang.\\[1ex]
+	Details werden in einem Pflichtenheft festgehalten, dieses Pflichtenheft befindet sich im Anhang (\ref{SEC:PFLICHTENHEFT}).\\[1ex]
 	Der einfacheren Lesbarkeit halber verwenden wir bei häufigen
-Begriffen wie beispielsweise Spieler, usw., meistens die maskuline Form und bitten die
+Begriffen, wie beispielsweise Spieler, usw., meistens die maskuline Form und bitten die
 Leserinnen unserer Arbeit, sich genauso wie die männlichen Leser angesprochen zu fühlen.
 	
-\cmnt{
-	{\yhbu
-	In der Einleitung wird erklärt,
-	wieso man sich für dieses Thema entschieden hat.
-	(Zielsetzung und Aufgabenstellung des Gesamtprojekts,
-	fachliches und wirtschaftliches Umfeld)
-	}
-	}
-	
 	\newpage
-\section{\sc Vertiefende Aufgabenstellung}
+\section{Vertiefende Aufgabenstellung}
  \subsection{Alexander Beiser}
  	Überarbeitung des Schachmattalgorithmus, Entwicklung der Zugmechanik und Entwicklung einer künstlichen Intelligenz. \\
 Implementierung des Schachspiels auf den Raspberry-PI, gleichzeitiges designen des Gehäuses für den Raspberry-PI und Entwicklung der Akkuansteuerungsschaltung. 
@@ -679,7 +672,7 @@ Patt Möglichkeiten:
 \subsubsection{Zugregel Bauer}
 \label{SUBSUBSEC:PAWN}
 \begin{itemize}
-	\item{Bauer darf einen Schritt nach vorne ziehen, wenn das Feld leer ist.}
+	\item{Der Bauer darf einen Schritt nach vorne ziehen, wenn das Feld leer ist.}
 	\item{Befindet sich der Bauer in der Ausgangsposition und wurde noch nicht gezogen, kann er auch wahlweise zwei Schritte vorrücken.}
 	\item{Der Bauer schlägt vorwärts, diagonal ein Feld.}
 	\item{Spezialzug: ,,En Passant''. Dies kann er als einzige Spielfigur, wenn ein feindlicher Bauer zuvor einen Doppelschritt gemacht hat und somit den eigenen Bauern die Option nimmt, den gegnerischen Bauern anzugreifen. Falls er ausgeführt wird, ist der feindliche Bauer vernichtet und der eigene rückt diagonal ein Feld hinter den nicht mehr existierenden Bauern.}
@@ -723,7 +716,7 @@ Patt Möglichkeiten:
 \label{SUBSUBSEC:CHESS-COMPUTERS}
 
 Seitdem es die Möglichkeit gibt einen schachspielenden Mechanismus zu bauen, hat man dies auch getan. Zu Anfang war dies noch der ,,Schach spielende Türke'', welcher 1769 von Wolfgang von Kempelen konstruiert wurde. \cite{wiki:chess} \\ 
-Der richtige Durchbruch geschah aber erst durch die Erfindung des Computers. Die Hardware wurde immer Leistungsfähiger, wodurch der Mensch als Gegner immer weiter in Bedrängung geriet. 1997 schlug der von IBM speziell entwickelte Schachcomputer Deep Blue, den damaligen Schachweltmeister Kasparow, wodurch die künstliche Intelligenz in diesem Bereich offiziell den Menschen überholt hat. \\
+Der richtige Durchbruch geschah aber erst durch die Erfindung des Computers. Die Hardware wurde immer leistungsfähiger, wodurch der Mensch als Gegner immer weiter in Bedrängung geriet. 1997 schlug der von IBM speziell entwickelte Schachcomputer Deep Blue, den damaligen Schachweltmeister Kasparow, wodurch die künstliche Intelligenz in diesem Bereich offiziell den Menschen überholt hat. \\
 Heutzutage wird gegen Schachcomputer vor allem zu Trainingszwecken gespielt. Solche Schachcomputer finden sich mittlerweile auf so ziemlich jedem Gerät, egal ob Smartphone, Tablet oder PC/Laptop. Meist sind diese Programme aber proprietär und ,,closed source''. Wir entwickeln deshalb ein ,,open Source'' Schachspiel, dass auf mehreren Plattformen spielbar ist.
  
 %===========================================================================================
@@ -750,11 +743,11 @@ Wir entschieden uns für diese letztere Lösung.
 \subsection{Java Chess - Übersicht}
 \label{SUBSEC:JAVACHESS-OVERVIEW}
 
-JavaChess ist in der Programmiersprache Java geschrieben. Java ist eine Objektorientierte, Klassenbasierte Hochsprache der Informatik. Java hat den Vorteil, dass es nicht Hardware gebunden ist und somit ein Programm, geschrieben auf einer Distribution des Betriebssystems GNU/Linux (\ac{GNU}) auf (zumindest theoretisch) allen unterstützten Systemen läuft. \\
+JavaChess ist in der Programmiersprache Java geschrieben. Java ist eine objektorientierte, klassenbasierte Hochsprache der Informatik. Java hat den Vorteil, dass es nicht Hardware gebunden ist und somit ein Programm, geschrieben auf einer Distribution des Betriebssystems GNU/Linux (\ac{GNU}) auf (zumindest theoretisch) allen unterstützten Systemen läuft. \\
 Somit können wir unser Spiel auch auf einem Raspberry-PI lauffähig machen. \\
 Das von uns verwendete \ac{GUI} Environment ist JavaFX. Es wurde erstmals im Dezember 2008 den Programmierern zugänglich gemacht und soll das bis dahin verwendete GUI-Environment ,,Swing'' ersetzen. Die Unterschiede bestehen im Aufbau, wie eine GUI realisiert werden kann bis hin zu den verbesserten grafischen Effekten, die durch JavaFX möglich sind. \\[1ex]
 Dadurch wurden die Entscheidungen gefällt Java mit JavaFX zu verwenden.\\
-Java Chess nützt in Folge einige dieser Vorteile aus, vor allem Objektorientiertes Design. 
+Java Chess nützt in Folge einige dieser Vorteile aus, vor allem objektorientiertes Design. 
 
 
 \subsubsection{Blockschaltbild}
@@ -888,7 +881,7 @@ Dieses Package enthält die Klasse '\textit{Main.java}', welche nur dazu dient, 
 
 Als Referenz bzw. Hilfe siehe \ref{SUBSUBSEC:BLOCKSCHALTBILD}.
 Zuerst startet das Programm in der Main Methode der Main Klasse. Als Nächstes wird das Backgroundgrid Objekt und das GUI-Objekt von der GUI-Klasse initialisiert. \\
-Dieses Objekt ladet im Anschluss die Board Gui Klasse, welche eine Abstraktion eines Canvas ist. In einem Canvas ist eine gewisse Art des Zeichnens möglich. Dadurch wird auch das Schachbrett gezeichnet und weiteres findet in dieser Klasse der ,,Spielfluss'' statt. \\ 
+Dieses Objekt ladet im Anschluss die BoardGui Klasse, welche eine Abstraktion eines Canvas ist. In einem Canvas ist eine gewisse Art des Zeichnens möglich. Dadurch wird auch das Schachbrett gezeichnet und weiteres findet in dieser Klasse der ,,Spielfluss'' statt. \\ 
 Im Default Modus startet das Spiel im ,,Hot-Seat" game mode, siehe \ref{SUBSEC:LOCAL_MODE}. Hier spielt der Spieler zuerst einen Zug, woraufhin kontrolliert wird, ob der Zug legal ist. Da das Spiel im Hot-Seat-Mode startet, wechselt der Spieler/die Spielerin und das Schachbrett wird mit der Aufstellung nach Zug eins neu gezeichnet.
 
 \subsection{Repräsentation der Figuren:}
@@ -920,25 +913,25 @@ Zu Beginn einer jeden Partie wird einmal die Startaufstellung im ,,Constructor''
 \subsection{Zugmechanik und Local-Mode}
 \label{SUBSEC:LOCAL_MODE}
 
-Sobald das Spiel geladen und initialisiert ist, wird automatisch der Hot-Seat Spielmodus ausgewählt. Beim Hotseat Modus spielt man auf einem Device nacheinander. Dieses eigentliche Spiel geschieht in einem Objekt der ,,BoardGui'' Klasse. Die BoardGui Klasse ist ein Canvas Objekt, also ein Objekt, auf dem man zum Beispiel zeichnen kann. Diese Funktion wird ausgenutzt, um das Spielfeld zu zeichnen. Wie dies genau geschieht wird in \textbf{ \ref{SUBSUBSEC:BOARDGUI}} 
+Sobald das Spiel geladen und initialisiert ist, wird automatisch der Hot-Seat Spiel- modus ausgewählt. Beim Hotseat Modus spielt man auf einem Device nacheinander. Dieses eigentliche Spiel geschieht in einem Objekt der ,,BoardGui'' Klasse. Die BoardGui Klasse ist ein Canvas Objekt, also ein Objekt, auf dem man zum Beispiel zeichnen kann. Diese Funktion wird ausgenutzt, um das Spielfeld zu zeichnen. Wie dies genau geschieht wird in \textbf{ \ref{SUBSUBSEC:BOARDGUI}} 
 erläutert.  \\
-Nun ist der weiße Spieler an der Reihe. Welches Team an der Reihe ist, wird durch den Boolean ,,team'' bestimmt. Dieser Spielstand wird in einem Objekt der Backgroundgrid Klasse gespeichert. True bedeutet, dass der weiße Spieler am Zug ist, false das der Schwarze am Zug ist. \\
-Der Spieler kann nun die Figur anwählen, die er bewegen möchte, oder die linke Maustaste gedrückt halten und so die Figur via Drag \& Drop aufnehmen. In dieser Position, werden alle möglichen Bewegungen des Spielsteins angezeigt. Hier ist zu erwähnen, dass potenzielle Angriffe in rot und eine mögliche Bewegungen in grün, dargestellt werden.\\
-Nun muss der Spieler nur noch das Feld, auf das er ziehen möchte, klicken bzw. die Figur darüber absetzen. Der Move Algorithmus berechnet nun, ob dieser Zug auch möglich ist. Falls dieser Zug erlaubt ist, wird die Hintergrundmatrix, also das Spielfeld, entsprechend umgeschrieben, mit den neuen Positionen der Figuren. \\
-Im Hotseat Modus wird jetzt das Team gewechselt und die Gui neu gezeichnet, damit die Änderungen in der Matrix sichtbar werden. 
+Nun ist der weiße Spieler an der Reihe. Welches Team an der Reihe ist, wird durch den Boolean ,,team'' bestimmt. Dieser Spielstand wird in einem Objekt der Backgroundgrid Klasse gespeichert. True bedeutet, dass der weiße Spieler am Zug ist, false dass der Schwarze am Zug ist. \\
+Der Spieler kann nun die Figur anwählen, die er bewegen möchte, oder die linke Maustaste gedrückt halten und so die Figur via Drag \& Drop aufnehmen. In dieser Position werden alle möglichen Bewegungen des Spielsteins angezeigt. Hier ist zu erwähnen, dass potenzielle Angriffe in rot und eine mögliche Bewegungen in grün dargestellt werden.\\
+Nun muss der Spieler nur noch das Feld, auf das er ziehen möchte, klicken bzw. die Figur darüber absetzen. Der Move Algorithmus berechnet nun, ob dieser Zug auch möglich ist. Falls dieser Zug erlaubt ist, wird die Hintergrundmatrix, also das Spielfeld, entsprechend mit den neuen Positionen der Figuren, umgeschrieben. \\
+Im Hotseat Modus wird jetzt das Team gewechselt und die GUI neu gezeichnet, damit die Änderungen in der Matrix sichtbar werden. 
 
 \subsubsection{Die Move Klasse - Funktion}
 \label{SUBSUBSEC:MOVE}
 
 Wie in \ref{SUBSEC:LOCAL_MODE} beschrieben, gibt es eine Abfrage, ob ein Zug erlaubt ist. Dafür gibt es aber mehrere Möglichkeiten:\\
-Der erste Ansatz bestand darin, dass jede Figur ihren erlaubten Zug selber überprüft. Hierbei muss klar sein, dass wir für jede Figur ein eigenes Objekt des jeweiligen Klassentypes (z.B.: Bauer) angelegt haben. Für die Zugüberprüfung wird an die Figur die Position übergeben, wohin sie ziehen soll und das momentane Spielfeld. Ein Boolean als Rückgabewert hat dann indiziert, ob dieser Zug legal war. \\
-Bevor eine solche Move-Abfrage, aber überhaupt durchgeführt werden kann, muss diese auch aufgerufen werden und erkannt werden, welcher Spielstein ausgewählt wurde. Dies geschah in einem Abschnitt der BoardGui-Klasse. \\
-Der erste Ansatz war somit nicht wirklich eine Klasse, sondern auf viele Klassen verteilt. Funktioniert hat dies ohne bekannte Bugs, dadurch ist der Code aber stellenweise sehr unübersichtlich geworden. Das Spiel verbrauchte teilweise mehr Ressourcen, als unbedingt notwendig, eine AI und eine Zugindikation mit diesem Ansatz zu schreiben ist, aber schlicht unvorstellbar. \\[2ex]
-Der zweite Ansatz bestand darin, alle Zugabfragen in einer Klasse zu implementieren. Dazu wurde dem Objekt dieser Klasse, die Koordinaten des zu bewegenden Spielsteines gegeben, wo dieser ist, wohin gezogen werden soll und das Spielfeld als 8x8-Matrix. Geprüft wird wieder, ob der Spielzug erlaubt ist. Die Abfrage, welcher Spielstein ausgewählt wurde, geschieht über eine seperate Klasse.\\ 
+Der erste Ansatz besteht darin, dass jede Figur ihren erlaubten Zug selber überprüft. Hierbei muss klar sein, dass wir für jede Figur ein eigenes Objekt des jeweiligen Klassentypes (z.B.: Bauer) angelegt haben. Für die Zugüberprüfung wird an die Figur die Position übergeben, wohin sie ziehen soll und das momentane Spielfeld, als 8x8 Matrix. Ein Boolean als Rückgabewert indiziert, ob dieser Zug legal ist. \\
+Bevor eine solche Move-Abfrage aber überhaupt durchgeführt werden kann, muss diese auch aufgerufen werden und erkannt werden, welcher Spielstein ausgewählt wurde. Dies geschah in einem Abschnitt der BoardGui-Klasse. \\
+Der erste Ansatz ist somit nicht wirklich eine Klasse, sondern auf viele Klassen verteilt. Dis Funktioniert ohne bekannte Bugs, dadurch wird der Code aber stellenweise sehr unübersichtlich. Weiteres verbraucht das Spiel teilweise mehr Ressourcen, als unbedingt notwendig. Eine AI und eine Zugindikation mit diesem Ansatz zu schreiben ist, aber schlicht unvorstellbar. \\[2ex]
+Der zweite Ansatz besteht darin, alle Zugabfragen in einer Klasse zu implementieren. Dazu wird dem Objekt dieser Klasse die Koordinaten des zu bewegenden Spielsteines gegeben, wo dieser ist, wohin gezogen werden soll und das Spielfeld als 8x8-Matrix. Geprüft wird wieder, ob der Spielzug erlaubt ist. Die Abfrage, welcher Spielstein ausgewählt wurde, geschieht über eine seperate Klasse.\\ 
 Vorteile ergeben sich aus der Übersicht. Die Nachteile sind aber nach wie vor der Ressourcenverbrauch, die Schwierigkeit eine Zugindikation zu programmieren und eine KI-Kompatibilität zu schaffen.\\[2ex]
-Der dritte Ansatz beschäftigt sich mit der Vorschau der möglichen Züge. Man gibt dem Objekt der Move Klasse einfach alles, was bereits im zweiten Ansatz übergeben wurde. Nun wird aber ein Integer-2D-Array aus möglichen Zügen zurückgegeben. Dies funktionierte ohne Probleme. \\
-Das Einzige was als Problem deklariert werden kann, ist das dadurch das ,,DRY'' (Don't repeat yourself) Prinzip verletzt wurde. In der Move Klasse gab es nun einmal die Abfrage, ob der Zug erlaubt ist und einmal die Abfrage, welche Züge möglich sind. Für die KI ist es von Vorteil, wenn sie alle möglichen Züge eines Spielsteines bekommt. Es sollte aber auch klar sein, welcher Spielstein zuvor auf dem Feld stand, was durch diese Methode nur indirekt möglich ist. \\[2ex]
-Der vierte Ansatz nimmt sich allen diesen Problemen an, indem der dritte Ansatz ausbaut wird und eine neue ,,MovePos'' Klasse einführt. Die Move-Klasse kann nun als eine Art Black-Box verstanden werden: Man sagt der Move Methode, welche Figur man ausgewählt hat und man erhält alle möglichen Züge als MovePos-ArrayList zurück. Der eigentliche Zug muss aber extern durchgeführt werden. \\
+Der dritte Ansatz beschäftigt sich mit der Vorschau der möglichen Züge. Man gibt dem Objekt der Move Klasse einfach alles, was bereits im zweiten Ansatz übergeben wurde. Nun wird aber ein Integer-2D-Array aus möglichen Zügen zurückgegeben. Dies funktioniert ohne Probleme. \\
+Das Einzige was als Problem deklariert werden kann ist, dass dadurch das ,,DRY'' (Don't repeat yourself) Prinzip verletzt wird. In der Move Klasse gibt es nun einmal die Abfrage, ob der Zug erlaubt ist und einmal die Abfrage, welche Züge möglich sind. Für die KI ist es von Vorteil, wenn sie alle möglichen Züge eines Spielsteines bekommt. Es sollte aber auch klar sein, welcher Spielstein zuvor auf dem Feld stand, was durch diese Methode nur indirekt möglich ist. \\[2ex]
+Der vierte Ansatz nimmt sich allen diesen Problemen an, indem der dritte Ansatz ausgebaut wird und eine neue ,,MovePos'' Klasse einführt. Die Move-Klasse kann nun als eine Art Black-Box verstanden werden: Man sagt der Move Methode, welche Figur man ausgewählt hat und man erhält alle möglichen Züge als MovePos-ArrayList zurück. Der eigentliche Zug muss aber extern durchgeführt werden. \\
 Das Objekt der Klasse MovePos beinhaltet die alte Position des Spielsteins, die neue Position, die ID des Spielsteins, die ID des Feldes auf das gezogen wurde und für die Rochade bzw. den En-Passant noch zwei weitere Informationen zu den Feldern, wo und was darauf war. Die Klassen der Figuren werden nicht mehr benötigt. \\
 Dadurch wird für die KI-Berechnung, für die Schachmatt-Methode, für die Zugüberprüfung und für das Anzeigen aller möglichen Züge die gleiche Basisstruktur der Zugberechnung verwendet. Der Unterschied besteht darin, dass die KI direkt die Zugberechnung aufruft, währenddessen die Zugüberprüfung und das Anzeigen der möglichen Züge indirekt, durch die GetMove-Methode, darauf zugreift.\\
 
@@ -1001,8 +994,8 @@ public class Move{
 	}
 	\end{lstlisting}
 	Die getMoveMeeple-Methode gibt alle möglichen Spielzüge einer Figur zurück. Die Rückgabe erfolgt als eine MovePos-ArrayList. Ein Objekt der Klasse MovePos beinhaltet einen möglichen Zug einer Figur, z.B.: Bauer von A2 auf A3. \\
-	Die getMoveMeeple-Methode Unterscheidet zuerst nach der ausgewählten Figur, sprich Bauer, Turm, Läufer, Springer, Dame oder König. \\
-	Je nach Figur, wird überprüft ob die figurspezifischen Züge möglich sind. Falls ein solcher Zug möglich ist, wird dieser in die ArrayList geschrieben, welche am Ende zurückgegeben wird.
+	Die getMoveMeeple-Methode unterscheidet zuerst nach der ausgewählten Figur, sprich Bauer, Turm, Läufer, Springer, Dame oder König. \\
+	Je nach Figur wird überprüft, ob die figurspezifischen Züge möglich sind. Falls ein solcher Zug möglich ist, wird dieser in die ArrayList geschrieben, welche am Ende zurückgegeben wird.
 	
 	\lstset{language=Java}
 	\begin{lstlisting}
@@ -1151,12 +1144,12 @@ public class Move{
 
 \subsubsection{BackgroundGrid - Klasse}
 
-Die Schachmatt-Abfrage befindet sich in der BackgroundGrid Klasse. Diese Klasse beinhaltet alle wichtigen Variablen und dient intern quasi als ,,Speicher''. So wird in der BackgroundGrid-Klasse das momentan, am Zug befindliche Team oder die Zughistorie abgespeichert. \\
-Diese Klasse implementiert auch ,,Serializeable'', womit ein Objekt dieser Klasse, in der speichern Funktion in eine Datei geschrieben wird. \\
+Die Schachmatt-Abfrage befindet sich in der BackgroundGrid Klasse. Diese Klasse beinhaltet alle wichtigen Variablen und dient intern quasi als ,,Speicher''. So wird in der BackgroundGrid-Klasse das momentan am Zug befindliche Team oder die Zughistorie abgespeichert. \\
+Diese Klasse implementiert auch ,,Serializeable'', womit ein Objekt dieser Klasse in der speichern Funktion in eine Datei geschrieben wird. \\
 
 \subsubsection{Schachmatt - Übersicht}
 
-Die Schachmatt Abfrage teilt sich in drei Methoden innerhalb der Backgroundgrid Klasse auf:
+Die Schachmatt-Abfrage teilt sich in drei Methoden innerhalb der Backgroundgrid Klasse auf:
 \begin{itemize}
 	\item{\nameref{SUBSUBSEC:check}}
 	\item{\nameref{SUBSUBSEC:checkmate}}
@@ -1170,7 +1163,8 @@ Die Schachmatt Abfrage teilt sich in drei Methoden innerhalb der Backgroundgrid 
 
 Die Schachmethode kann auf JEDE Figur angewendet werden und gibt TRUE zurück, wenn diese von einer anderen Figur angegriffen werden kann. Logisch gesehen gibt sie FALSE zurück, wenn die Figur nicht angegriffen werden kann. \\
 Im Prinzip werden alle Figuren aufgerufen und überprüft, ob diese die ,,ausgewählte'' Figur angreifen können. \\
-Pseudo Code:
+\newpage
+\textbf{Pseudo Code:}
 
 \lstset{language=Java}
 \begin{lstlisting}
@@ -1201,7 +1195,7 @@ private boolean Schach(Spielfeld, Lokation der Spielfigur auf die Schach angewen
 \label{SUBSUBSEC:checkmate}
 
 Die Schachmatt-Methode kann nur auf den König angewendet werden. Diese überprüft nacheinander alle Bedingungen, ob der König wirklich Schachmatt ist. Anfangs wird überprüft, ob er dem Angreifer ausweichen kann bzw. schlagen kann. Falls dies nicht möglich ist, wird überprüft ob der Angreifer selbst geschlagen werden kann. \\
-Anschließend wird überprüft, ob es möglich ist, zwischen den Angreifer und den König mit irgendeiner Figur zu springen. \\
+Anschließend wird überprüft, ob es möglich ist, zwischen dem Angreifer und dem König mit irgendeiner Figur zu springen. \\
 Pseudo Code:
 
 \lstset{language=Java}
@@ -1234,7 +1228,7 @@ private boolean Schachmatt(Spielfeld, ID und Postion des Koenigs, Backgroundgrid
 \subsubsection{Schachking}
 \label{SUBSUBSEC:checkking}
 
-Die Schachking Methode wird immer am Ende eines Zuges aufgerufen und überprüft, ob ein Team schachmatt ist. Falls dieses nicht schach, also der König im schach steht, oder schachmatt ist, wird nachgesehen ob eine Patt Situation vorherrscht. Dies geschieht in der Draw Methode. \\
+Die Schachking-Methode wird immer am Ende eines Zuges aufgerufen und überprüft, ob ein Team schachmatt ist. Falls dieses nicht schach, also der König im schach steht, oder schachmatt ist, wird nachgesehen ob eine Patt-Situation vorherrscht. Dies geschieht in der Draw Methode. \\
 Falls ein Team schach ist, wird nachgesehen, ob dieses auch schachmatt ist. \\
 Pseudo Code:
 
@@ -1267,7 +1261,7 @@ public boolean Schacking(team,Spielfeld,auf welche Figur/Position die Abfrage ge
 Die CalcDraw-Methode überprüft, ob ein Unentschieden entstanden ist. Welche Möglichkeiten es für ein Unentschieden gibt, befindet sich in den \nameref{SUBSEC:GAMERULES}. \\
 Zuerst wird gezählt, wie viele Figuren das jeweilige Team noch hat. Wenn nur mehr der König übrig ist, wird überprüft, ob ein Patt vorherrscht. Es werden alle möglichen Züge des Königs durchsimuliert und falls kein gültiger dabei ist, herrscht ein Patt vor. \\
 Weiters wird geprüft, ob sich ein Patt durch zu wenige Spielfiguren ergeben hat, falls dies ebenso nicht der Fall ist, werden noch Threefold-Repetition und die 50 Zug Regel überprüft. \\[2ex]
-Die Methode CalcDraw ist eine Methode mit einem privaten Zugriffsmodifikator, womit nur Programmcode innerhalb der BackgroundGrid Klasse darauf Zugriff hat. Die Methode ist eine Erweiterung der SchachKing-Methode, womit diese auch von dort aufgerufen wird. \\
+Die Methode CalcDraw ist eine Methode mit einem privaten Zugriffsmodifikator, womit nur Methoden innerhalb der BackgroundGrid Klasse darauf Zugriff haben. Die Methode ist eine Erweiterung der SchachKing-Methode, womit diese auch von dort aufgerufen wird. \\
 Der Rückgabetyp der Methode ist ein boolean, welches true zurückgibt, wenn ein Unentschieden vorliegt und false im anderen Fall.
 
  \subsubsection{DRAW (Code)}
@@ -1891,7 +1885,8 @@ Für die Beantwortung dieser Frage werden folgende Kapitel behandelt:
 \subsubsection{Prinzipielle Möglichkeiten einer AI}
 \label{SUBSUBSEC:GenAI}
 
-Der Terminus ,,AI'', bzw. ,,KI'' wird sehr oft verwendet, jedoch gibt es Unterschiede zwischen den verschiedenen Konzepten der AI's, die größer nicht sein könnten. So gibt es zum Beispiel künstliche Intelligenzen, die auf Machine-Learning-Algorithmen basieren und andere, denen ein Min-Max Prinzip zu Grunde liegt. \\
+Der Terminus ,,AI'' (Artificial Intelligence), bzw. ,,KI'' (Künstliche Intelligenz) bedeuten das gleiche und werden anschließend abwechselnd verwendet. \\
+Beide werden sehr oft verwendet, jedoch gibt es Unterschiede zwischen den verschiedenen Konzepten der AI's, die größer nicht sein könnten. So gibt es zum Beispiel künstliche Intelligenzen, die auf Machine-Learning-Algorithmen basieren und andere, denen ein Min-Max Prinzip zu Grunde liegt. \\
 Das Min-Max Prinzip lässt sich aber nur bei Spielen mit perfekter Information anwenden, wie Schach eines ist. Ein Spiel mit perfekter Information bedeutet, dass jeder Spieler alles weiß, so haben im Schach immer beide Spieler das gesamte Spielfeld im Blick. \\[2ex]
 Durch diese Art des Spiels können die theoretisch besten Züge ermittelt werden, um den besten möglichen Zug zu ziehen. Dazu muss der Algorithmus alle möglichen Spielzüge analysieren, bewerten und vergleichen, um einen Zug zu tätigen. Der Nachteil von MinMax ist, dass dies ein sehr hoher Rechenaufwand ist. Der Vorteil von MinMax ist, dass es in der Zeitspanne der Diplomarbeit möglich ist, eine KI zu entwickeln.\\[2ex]
 Die andere Möglichkeit ist ein Machine-Learning-Algorithmus. Dieser versucht ein biologisches Gehirn nachzubauen, indem es ein künstliches-neurales-Netzwerk bildet. Diese Neuronen werden dahingehend trainiert, dass die AI aus einem gegebenen Satz Daten und/bzw. mit Hilfe einer Lernfunktion Rückschlüsse auf mögliche zukünftige Ereignisse schließt. Mathematisch gesehen basiert diese Art der KI auf der Wahrscheinlichkeitsrechnung.  \\
@@ -1902,7 +1897,7 @@ Maschinelles Lernen ist ein sehr umfangreiches Thema, womit hier nur noch gesagt
 \subsubsection{Verwendete Schach-AI-Funktion}
 \label{SUBSUBSEC:OurAI}
 
-Wie vorher schon beschrieben verwendet die Java-Chess-AI eine Abwandlung des Min-Max Algorithmus. Dieser wird ,,alphaBeta'' Algorithmus genannt. \\
+Wie vorher schon beschrieben, verwendet die Java-Chess-AI eine Abwandlung des Min-Max Algorithmus. Dieser wird ,,alphaBeta'' Algorithmus genannt. \\
 Prinzipiell sucht der Algorithmus nach dem besten Spielzug. Um dies tun zu können, benötigt es einen Algorithmus, welcher alle möglichen Spielzüge bis zu einer gewissen Tiefe durchsucht und den besten Spielzug in Folge herausschreibt. \\ 
 Hierfür muss geklärt werden, welcher Spieler gerade die Oberhand hat. Im entwickelten Algorithmus besteht die fundamentale ,,Board-Evaluation'' aus der materiellen Balance. Also welcher Spieler mehr und bessere Figuren hat. Anschließend werden noch  ,,Bauernformationen'', also wenn die Bauern sich gegenseitig decken und sogenannte ,,Piece Square Tables'' in die Kalkulation mit eingerechnet. Piece Square Tables geben an, wo die Figuren statistisch gesehen am besten stehen würden. Zum Beispiel stehen Türme lieber in der Mitte, als am Rand. Dadurch haben sie mehr Bewegungsfreiheit, was im Schachspiel eine der wichtigsten Strategien zum Sieg ist. Hierbei muss angemerkt werden, dass die Piece Square Tables von SchachmeisternInnen erstellt wurden, welche der Öffentlichkeit zugänglich gemacht worden sind.\cite{SquareTables} \\[2ex]
 Das Durchsuchen der möglichen Spielzüge läuft folgendermaßen ab: Es wird zuerst festgelegt bis zu welcher Tiefe (z.B.: 5) gesucht werden soll. Anschließend wird der erste mögliche Zug getätigt. Dann ruft sich die Methode selbst rekursiv auf, wobei die Tiefe erhöht und das Team gewechselt wird und tätigt wiederum den ersten möglichen Zug. Dies geschieht so lange, bis die gewünschte Tiefe (5) erreicht ist, bei welcher die ,,Board-Evaluation'' durchgeführt wird. Dieser Wert wird zwischengespeichert und der zuletzt getätigte Zug wird rückgängig gemacht. \\
@@ -1915,13 +1910,13 @@ Im fertigen Schachspiel gibt es zwei verschiedene ,,Modi'' der KI:
 	\item{Better AI}
 \end{itemize}
 Die Einstellungen hierfür finden sich im Setup.\\
-Der oben beschriebene Algorithmus ist die ,,Better AI''. Die Normal AI unterscheidet sich in Details von der ,,Better AI'', so wird hier nicht nur jeder Zug gespeichert, der besser ist als der zuletzt errechnete, sondern auch Züge die gleich gut sind als der Letzte. \\
+Der oben beschriebene Algorithmus ist die ,,Better AI''. Die ,,Normal AI'' unterscheidet sich in Details von der ,,Better AI'', so wird hier nicht nur jeder Zug gespeichert, der besser ist als der zuletzt errechnete, sondern auch Züge die gleich gut sind als der Letzte. \\
 In weiterer Folge gibt es mehrere gleich ,,gute'' Züge, welche die KI nehmen kann. Von diesen Zügen wird durch eine Zufallszahl einer ausgewählt. \\
-Die Schwierigkeit der better AI ist höher, da immer jene Züge die besten sind, die als letzte die vorherigen Züge überschreiben. Da durch die ,,normal AI'' keine Züge überschrieben werden, können auch schlechtere Züge ausgewählt werden, welche für die KI aber gleich gut wirken. In ~\ref{SUBSUBSEC:AICODE} wird aber rein auf die better AI eingegangen, um das Verständnis dieser zu vertiefen. Der Code für die ,,normal-AI'' befindet sich in den Source Files, Package game, Klasse AI und AILogic. \\[2ex]
-Eines der größten Probleme des Algorithmus, technisch gesehen unterscheidet sich der Basisalgorithmus zwischen normal- und better-AI nicht, ist die Performance. Dazu ein simples Gedankenexperiment: Beim 1. Spielzug sind 20 mögliche Züge des weißen Spielers möglich und eben soviele beim darauffolgenden Zug des schwarzen Spielers. Daraus resultiert aus den beiden Spielzügen \(20 \cdot 20 = 400\) verschiedene Stellungen. \\
+Die Schwierigkeit der better AI ist höher, da immer jene Züge die besten sind, die als letzte die vorherigen Züge überschreiben. Da durch die ,,Normal AI'' keine Züge überschrieben werden, können auch schlechtere Züge ausgewählt werden, welche für die KI aber gleich gut wirken. In ~\ref{SUBSUBSEC:AICODE} wird aber rein auf die better AI eingegangen, um das Verständnis dieser zu vertiefen. Der Code für die ,,Normal-AI'' befindet sich in den Source Files, Package game, Klasse AI und AILogic. \\[2ex]
+Eines der größten Probleme des Algorithmus, technisch gesehen unterscheidet sich der Basisalgorithmus zwischen normal- und better-AI nicht, ist die Performance. Dazu ein simples Gedankenexperiment: Beim ersten Spielzug sind 20 mögliche Züge des weißen Spielers möglich und eben soviele beim darauffolgenden Zug des schwarzen Spielers. Daraus resultiert aus den beiden Spielzügen \(20 \cdot 20 = 400\) verschiedene Stellungen. \\
 Gemittelt gibt es im Schach 28 mögliche Züge pro Spielzug. Nach 5 Zügen ergeben sich daraus schon 3.200.000 mögliche Stellungen, nach 6 wären es 64.000.000. Um zu einer Entscheidung zu kommen, muss der Computer alle diese Züge analysieren und bewerten. Dies benötigt Rechenleistung, weshalb ein solcher Schachalgorithmus sehr abhängig von der verwendeten Hardware ist. \\[1ex]
-In der theoretischen Informatik gibt es zu obigen Beispiel die O() (Siehe \cite{pragmatic} - Seite 178) Schreibweise, welche die wahrscheinliche Laufzeitdauer eines Algorithmus angibt. Diese kann je nach verwendetem Algorithmus konstant, logarithmisch $\log(n)$, linear, logarithmisch ($n \cdot \log(n)$), quadratisch, kubisch oder exponentiell sein, wobei exponentielle Algorithmen die rechen aufwendigsten Algorithmen sind. \\
-MinMax ist ein exponentieller Logarithmus. Die Anzahl der verwendeten Rechenschritte hängt wie oben beschrieben, von der zu berechnenden Zugtiefe ab. Mathematisch können die zu berechnenden Fälle folgendermaßen ermittelt werden, wobei $n$ die Zugtiefe ist:
+In der theoretischen Informatik gibt es zu obigen Beispiel die O()-Schreibweise (Siehe \cite{pragmatic} - Seite 178), welche die wahrscheinliche Laufzeitdauer eines Algorithmus angibt. Diese kann je nach verwendetem Algorithmus konstant, logarithmisch $\log(n)$, linear, logarithmisch ($n \cdot \log(n)$), quadratisch, kubisch oder exponentiell sein, wobei exponentielle Algorithmen die rechenaufwendigsten Algorithmen sind. \\
+MinMax ist ein exponentieller Logarithmus. Die Anzahl der verwendeten Rechenschritte hängt, wie oben beschrieben, von der zu berechnenden Zugtiefe ab. Mathematisch können die zu berechnenden Fälle folgendermaßen ermittelt werden, wobei $n$ die Zugtiefe ist und $Schritte(n)$ die möglichen Züge:
 \[Schritte(n) = 28^n\]
 Im weiteren Sinne ist dies der Grund, warum auf MinMax basierende künstlichen Intelligenzen gegen Künstliche-Neuronale-Netzwerke verlieren (siehe \ref{SUBSUBSEC:GenAI}). Die Min-Max Algorithmen können nicht ausreichend optimiert werden, bzw. moderne Hardware besitzt einfach nicht genügend Rechenleistung, um in diesem Wettlauf mithalten zu können. \\
 
@@ -1948,7 +1943,7 @@ Somit muss sich der weiße Spieler nur noch zwischen 3 Zahlen entscheiden, bei d
 Die theoretischen Grundlagen zum Verständnis des Algorithmus sollten nun geklärt sein.\\
 Die KI besteht aus zwei Klassen, AI und AILogic. AI wird als neuer Thread ausgeführt. \\
 Der nachfolgende Code zur AI erfolgt als Pseudo-Code Dokumentation.\\
-Die Klasse AI bekommt eine ArrayList der besten Züge (von AILogic) und führt den letzten Eintrag der Liste aus. Falls sich herausstellen sollte, dass die KI dadurch den eigenen König bedroht, nimmt sie den vorletzten Zug. Wenn dieser Zug wiederum den König in eine bedrohte Situation bringt, wird der drit-letzte Eintrag ausgeführt. Dies geht solange weiter, bis alle Einträge der ArrayList aufgebraucht sind. Siehe pseudo Code:
+Die Klasse AI bekommt eine ArrayList der besten Züge (von AILogic) und führt den letzten Eintrag der Liste aus. Falls sich herausstellen sollte, dass die KI dadurch den eigenen König bedroht, nimmt sie den vorletzten Zug. Wenn dieser Zug wiederum den König in eine bedrohte Situation bringt, wird der drittletzte Eintrag ausgeführt. Dies geht solange weiter, bis alle Einträge der ArrayList aufgebraucht sind. Siehe Pseudocode:
 
 \lstset{language=Java}
 \begin{lstlisting}
@@ -1975,7 +1970,6 @@ Die Klasse AI bekommt eine ArrayList der besten Züge (von AILogic) und führt d
 		}
 	}	
 \end{lstlisting}
-
 \newpage
 \textbf{Klasse AI-Logic:} Die Klasse AI-Logic führt die KI-Berechnung durch. Eingeteilt wird diese in die Methoden alphaBeta, aplphaBetaHelper, boardEvaluation und die verschiedenen SquareRootTables.\\
 AlphaBeta bekommt die Informationen bis zu welcher Tiefe eine Suche stattfinden soll und für welches Team. Dies gibt AlphaBeta der Methode AlphaBetaHelper weiter. \\
@@ -2109,8 +2103,8 @@ AlphaBeta bekommt die Informationen bis zu welcher Tiefe eine Suche stattfinden 
 \label{SEC:chesspi}
 
 ChessPI ist die Implementierung von JavaChess auf dem Raspberry PI. \\
-Wir haben uns zur Aufgabe gestellt, das Schachprogramm auf einem Mikro-Computer, wie dem RaspberryPI 3b, zu portieren.\\
-Die Benutzereingabe soll mittels einem Touchscreen erfolgen, womit an dem RaspberryPI ein Touchscreen angeschlossen wird. Weiteres soll für den ChessPI ein Gehäuse designt und eine Akkusteuerung entworfen werden. \\
+Wir haben uns zur Aufgabe gestellt, das Schachprogramm auf einen Mikro-Computer, wie den RaspberryPI 3b, zu portieren.\\
+Die Benutzereingabe soll mittels eines Touchscreens erfolgen, womit an dem RaspberryPI ein Touchscreen angeschlossen wird. Weiteres soll für den ChessPI ein Gehäuse designt und eine Akkusteuerung entworfen werden. \\
 
 \subsection{RaspberryPI}
 
@@ -2119,23 +2113,22 @@ Die von uns verwendete Version ist der Raspberry PI 3 model B. Dieser verfügt �
 
 \subsection{Touchscreen}
 
-Als Touchscreen wird das Ofizielle 7" Touchscreen Display verwendet. Dies hat eine Auflösung von 800x480 Pixel.\cite{RaspiScreen} \\
+Als Touchscreen wird das ofizielle 7" Touchscreen Display verwendet. Dies hat eine Auflösung von 800x480 Pixel.\cite{RaspiScreen} \\
 Zusätzlich zum Display gibt es auch eine Adapterplatine, mit der der Touchscreen versorgt wird. \\
 Halterungen für die Adapterplatine und den Raspberry PI gibt es auf der Rückseite des Touchscreens.
 
 \subsection{Implementierung von JavaChess}
 \label{SUBSEC:IMPLEMENTJAVACHESS}
 
-Alle benötigten Schritte beziehen sich lediglich auf die Software und Stromversorgungs Implementation, nicht auf die Powerbank und Gehäuse Implementation. \\[1ex]
-
+Alle benötigten Schritte beziehen sich lediglich auf die Software- und Stromversorgungs-Implementation, nicht auf die Powerbank- und Gehäuse-Implementation. \\[1ex]
 \textbf{Vorbereitung:} \\[2ex]
-Es wird ein RaspberryPI 3, eine Mikro SD-Karte mit Raspbian, eine Stromversorgung bzw. eine Powerbank mit einem maximalen Strom von 2.5 A, der 7" Touchscreen, die Adapterplatine, eine Internetverbindung idealerweise über ein LAN-Kabel und eine USB-Tastatur benötigt. \\
+Es wird ein RaspberryPI 3, eine Mikro SD-Karte mit Raspbian, eine Stromversorgung bzw. eine Powerbank mit einem maximalen Strom von 2.5 A, der 7" Touchscreen, die Adapterplatine, eine Internetverbindung, idealerweise über ein LAN-Kabel und eine USB-Tastatur benötigt. \\
 
 \begin{enumerate}
 	\item{Die SD Karte mit Raspbian wird in den Raspberry PI gesteckt.}
 	\item{Die Adapterplatine und der Raspberry PI wird auf den Touchscreen geschraubt.}
 	\item{Die Stromversorgung für den Display (VCC \& GND Pin- rotes und blaues Kabel) wird sichergestellt. Das Flachbandkabel / Datenkabel wird zwischen Raspberry PI und Adapterplatine angebracht.}
-	\item{Der Raspberry Pi wird an die Stromversorgung angeschlossen, dadurch sollte dieser nun booten und den Display automatisch erkennen.}
+	\item{Der Raspberry Pi wird an die Stromversorgung angeschlossen, dadurch sollte dieser nun booten und das Display automatisch erkennen.}
 	\item{Sobald Raspbian gebootet hat, wird das LAN-Kabel angeschlossen.}
 	\item{Nun sollten folgende Befehle in der BASH ausgeführt werden:}
 	\begin{enumerate}
@@ -2150,12 +2143,12 @@ Es wird ein RaspberryPI 3, eine Mikro SD-Karte mit Raspbian, eine Stromversorgun
 	\item{Die gedownloadete OpenJFX Zip muss im Installationsverzeichnis ovn Java-JDK8 ,,unzipped'' werden.}
 	\item{In der Commandline wird nun folgender Befehl ausgeführt: unzip openjfx-sdk-overlay-linux-arm6hf.zip -d /<installations-verzeichnis-von-Java \\
 	(z.B.: /home/pi/jdk1.8.0\_92)>}
-	\item{Nun wird das aktuelle Schachspiel gedownloaded. Achtung, es muss die ChessPI Version verwendet werden, siehe \ref{SUBSEC:USEDJAVACHESS}}.
+	\item{Nun wird das aktuelle Schachspiel gedownloaded. Achtung: Es muss die ChessPI Version verwendet werden, siehe \ref{SUBSEC:USEDJAVACHESS}}.
 	\item{Das Schachspiel wird in das Verzeichnis der Wahl abgelegt.}
 	\item{Nun kann das Schachspiel gestartet werden, dazu muss der Touchscreen aber noch konfiguriert werden, da sonst ein ,,interessanter'' Offset geschieht.}
 	\item{Dazu muss zuerst der Touchscreen identifiziert werden: cat /sys/class/input/event1/uevent}
 	\item{Bei dem Versuchs-Raspberry PI war dieses Input Device: 0/0/0/0}
-	\item{Um das Schachspiel bequem zu öffnen, wird empfohlen ein BASH-Skript zu erstellen. Bei diesem Startvorgang, muss noch angegeben werden, an welcher Position OpenJFX die Bildschirmeingaben verwenden soll. Dazu wurden die besten Werte empirisch ermittelt:}
+	\item{Um das Schachspiel bequem zu öffnen, wird empfohlen ein BASH-Skript zu erstellen. Bei diesem Startvorgang muss noch angegeben werden, an welcher Position OpenJFX die Bildschirmeingaben verwendet werden sollen. Dazu wurden die besten Werte empirisch ermittelt:}
 	\item{\# /bin/bash \\
 	java -Dmonocle.input.0/0/0/0.minX=0 -Dmonocle.input.0/0/0/0.minY=0 \\
 	-Dmonocle.input.0/0/0/0.maxX=800 -Dmonocle.input.0/0/0/0.maxY=500 \\
@@ -2164,7 +2157,7 @@ Es wird ein RaspberryPI 3, eine Mikro SD-Karte mit Raspbian, eine Stromversorgun
 	\item{Das Skript muss noch als ausführbar markiert werden: sudo chmod 777 <skript>}
 	\item{Nun das Skript öffnen: sudo ./<skript>}
 	\item{Das Schachspiel sollte sich nun öffnen.}
-	\item{Damit sich das Spiel, direkt nach dem Bootvorgang öffnet, das Skript in den Ordner /etc/init.d/ kopieren und als executeable marken. Hier muss die Verzeichnisstruktur des Jarfiles eventuell angepasst werden.}
+	\item{Damit sich das Spiel, direkt nach dem Bootvorgang öffnet, das Skript in den Ordner /etc/init.d/ kopieren und als ,,executeable marken''. Hier muss die Verzeichnisstruktur des Jarfiles eventuell angepasst werden.}
 \end{enumerate}
 
 \newpage
@@ -2183,9 +2176,9 @@ Der Touchscreen muss konfiguriert werden, da OpenJFX nicht weiß, wie groß das 
 \subsection{Verwendete JavaChess Version}
 \label{SUBSEC:USEDJAVACHESS}
 
-Die ChessPI Version unterscheidet sich leicht von der JavaChess Version. Diese beinhaltet keine Einstellungsmöglichkeiten und weiters kein Speichern/Laden des Spieles.\\
+Die ChessPI-Version unterscheidet sich leicht von der JavaChess Version. Diese beinhaltet keine Einstellungsmöglichkeiten und weiters kein Speichern/Laden des Spieles.\\
 Die KI befindet sich standardmäßig im ,,Better-AI'' Modus auf Schwierigkeitsstufe drei. Bei höheren Schwierigkeitsgraden wäre die vorrausgesetzte Performance nicht gegeben.\\[2ex]
-Die ChessPI Version befindet sich aus organisatorischen Gründen nicht auf GitHub. \\Für die ChessPI Version bitte Alexander Beiser anschreiben (E-Mail: alex@itbeiser.at, GitHub: alexl4123).
+Die ChessPI-Version befindet sich aus organisatorischen Gründen nicht auf GitHub. \\Für die ChessPI-Version bitte Alexander Beiser anschreiben (E-Mail: alex@itbeiser.at, GitHub: alexl4123).
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -2210,8 +2203,8 @@ Um einen Akku auswählen zu können, muss zuerst einmal definiert werden, was ge
 \subsection{Wählen des Akkumulators}
 \label{SUBSEC:CHOOSE-AKKU}
 
-Akkumulatoren Typen gibt es viele, für den Einsatz als RaspberryPI Versorgung schieden alle aus bis auf folgende Akkumulatorentypen: Lithium-Ionen (Li-Ion), Nickel-Cadmium (NiCd),  Lithium-Polymer (LiPo) und Lithium-Eisenphosphat ($LiFePO_4$). Jeder dieser Akkutypen bietet verschiedene Vorteile, so bietet LiPo relativ hohe Entladeströme und Li-Ion eine ziemlich hohe Energiedichte $_{\cite{wiki:akku}}$. \\
-Für den Einsatz als Versorgung für den RaspberryPI sollte ein Akku möglichst an die 5V Versorgungsspannung heran kommen. Dies in Betracht gezogen, scheiden NiCd (1.2V) und $LiFePO_4$ (3.3V) ebenfalls aus. \\
+Akkumulatoren Typen gibt es viele, für den Einsatz als RaspberryPI Versorgung schieden alle aus, bis auf folgende Akkumulatorentypen: Lithium-Ionen (Li-Ion), Nickel-Cadmium (NiCd),  Lithium-Polymer (LiPo) und Lithium-Eisenphosphat ($LiFePO_4$). Jeder dieser Akkutypen bietet verschiedene Vorteile, so bietet LiPo relativ hohe Entladeströme und Li-Ion eine ziemlich hohe Energiedichte $_{\cite{wiki:akku}}$. \\
+Für den Einsatz als Versorgung für den RaspberryPI sollte ein Akku möglichst an die 5V Versorgungsspannung herankommen. Dies in Betracht gezogen, scheiden NiCd (1.2V) und $LiFePO_4$ (3.3V) ebenfalls aus. \\
 So bleiben entweder der LiPo (3.7V) oder der Li-Ion (ca. 3.6V) Akkumulator übrig. Von beiden wurden gleichwertige Akkus verglichen, aufgrund der niedrigeren Kosten eines $Li-Ion_{\cite{akku-liion}}$ Akkumulators gegenüber eines $LiPo_{\cite{akku-lipo}}$ Akkumulators, ist die Entscheidung für den Li-Ion Akku gefallen.
 
 \subsection{Der Li-Ion Akku}
@@ -2222,12 +2215,12 @@ Die minimal benötigte Kapazität berechnet sich wie folgt, wenn eine Stromaufna
 \[Q_{min} = t*I = 1h * 2.5A = 2.5 Ah = 2500 mAh\]
 Bei der Verkäuferseite Reichelt wurde ein Akku mit diesen Vorgaben gefunden: \cite{akku-liion}\\
 Dieser Akku hat eine maximale Kapazität von 2600 mAh, einen maximalen Entladestrom von 2.5 A und eine Ladespannung von 4.2V. \\[1ex]
-Das Datenblatt zu allen technischen Eigenschaften befindet sich auf der Seite von Reichelt (\cite{akku-liion}) bzw. im Anhang (Siehe Abbildung ~\ref{datasheet:akku} auf Seite ~\pageref{datasheet:akku}).
+Das Datenblatt zu allen technischen Eigenschaften befindet sich auf der Seite von Reichelt \cite{akku-liion} bzw. im Anhang (Siehe Abbildung ~\ref{datasheet:akku} auf Seite ~\pageref{datasheet:akku}).
 
 \subsection{Idee der 1. Akkusteuerungsschaltung}
 \label{SUBSEC:AKKUSTEUR1}
 
-Die ursprüngliche Idee war es, die Akkus über eine Micro-USB Buchse zu laden und damit den Raspberry PI zu betreiben. Da USB eine Spannung von 5V aufweist, muss diese zum Laden der Akkus, auf 4.2 V, reduziert werden. Für den Betrieb des Raspberry PIs muss diese Spannung wieder auf 5V erhöht werden. \\
+Die ursprüngliche Idee war es, die Akkus über eine Micro-USB Buchse zu laden und damit den Raspberry PI zu betreiben. Da USB eine Spannung von 5V aufweist, muss diese zum Laden der Akkus auf 4.2 V reduziert werden. Für den Betrieb des Raspberry PIs muss diese Spannung wieder auf 5V erhöht werden. \\
 Geladen werden die Akkus parallel und entladen seriell, so muss eine Schaltung entwickelt werden, die eine Umschaltung von seriell auf parallel und umgekehrt, ermöglicht. \\
 Weiteres muss die Schaltung für den sicheren Betrieb der Akkus sorgen, so muss diese bei Unter- oder Überspannung abschalten und falls ein Kurzschluss auftritt Schlimmeres verhindern. \\
 Eine Akkuladestandanzeige wird mittels zwei LEDs realisiert, die eine schaltet bei 1/3 VCC und die andere bei 2/3 VCC. 
@@ -2238,7 +2231,7 @@ Eine Akkuladestandanzeige wird mittels zwei LEDs realisiert, die eine schaltet b
 Durch die Eingangsschaltung der Akkus wird die Versorgungsspannung auf unter 4.2 Volt gesenkt. Dies geschieht durch zwei in Serie liegende Dioden, eine SI-Diode mit einer Durchschaltspannung von ca. 0.7V und eine Shottky-Diode mit einer Durchschaltspannung von ca. 0.2V. \\
 Der Ladestrom darf maximal 2.5A betragen, sollte aber geringer sein, um den Akku nicht zu beschädigen. Als Begrenzung kommt ein Leistungsvorwiderstand zum Einsatz. Dieser hat 4$\Omega$ und begrenzt den Strom auf 1.25 Ampere. \\
 Da die Akkus parallel geladen werden, muss dies für jeden Akku einzeln aufgebaut werden. \\
-In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des 1. Versuchs. Folgende Bauteile dieser Schaltung werden für das Laden verwendet:\\
+In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des ersten Versuches. Folgende Bauteile dieser Schaltung werden für das Laden verwendet:\\
  $D_1,R_{sen1},R_{sen2},D_{s8},D_{S2},S_{I1},S_{I2}, Akku1, Akku2$ \\
 
 
@@ -2252,16 +2245,16 @@ Die Beschaltung erfolgt gemäß des Datenblattes (Siehe Abbildung ~\ref{datashee
 \[R_2 = 1000*(4-1) = 3 k\Omega\]
 
 Zum Ein- und Ausschalten des Raspberry PIs wird noch ein Schalter verbaut. \\
-In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des 1. Versuchs. Folgende Bauteile dieser Schaltung werden für das Entladen verwendet:\\ $LM2596,C_1,D_{s1},L_1,R_1,R_2,C_2,Schalter,Akku1, Akku2$ \\
+In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des ersten Versuches. Folgende Bauteile dieser Schaltung werden für das Entladen verwendet:\\ $LM2596,C_1,D_{s1},L_1,R_1,R_2,C_2,Schalter,Akku1, Akku2$ \\
 
-\subsubsection{Seriell-Parallel Schaltung}
+\subsubsection{Seriell-Parallel-Schaltung}
 \label{SUBSUBSEC:SERPAR}
 
-Die Seriell-Parallel Umschaltung ermöglicht das Wechseln zwischen dem parallelen Laden und dem seriellen Entladen. Es wird erkannt, ob eine Versorgung angeschlossen ist. Wenn diese angeschlossen ist, schalten die Transistoren so, dass der ohmsche Widerstand zwischen den beiden Akkus zu groß ist, um einen Einfluss auf die Schaltung zu haben.\\
-Weiteres wird das Potential des negativen Anschlusses des 2. Akkus auf Ground gesetzt, um das Laden zu ermöglichen. Die Versorgung wird direkt vor den Schalter des Ausganges gehängt, womit der Akku überbrückt wird, damit der Akku sich nicht gleichzeitig entladen und laden muss. \\[2ex] 
-Sobald das Micro USB Kabel ausgesteckt wurde, wird das Potential von VCC (Micro USB nicht vorhanden - also undefiniert) auf GND gehängt. Die Verbindung zwischen dem Pluspol des Akku1 und dem Minuspol des 2.Akkus wird wieder hergestellt. Dabei wird die Verbindung zwischen dem Minuspol des 2.Akkus und GND aufgehoben, um einen Kurzschluss zu verhindern.  \\
-Die Verbindung zwischen dem 2.Akku und dem LM2596 wird aufgetrennt, um ein Entladen des Akkus zu verhindern. \\
-In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des 1. Versuchs. Folgende Bauteile dieser Schaltung werden für das Entladen verwendet:\\ $T_1,R_{T1},T_3,R_{T3},T_6,R_{T6},T_{m3},T_{m4}, Akku1, Akku2$ \\
+Die Seriell-Parallel-Umschaltung ermöglicht das Wechseln zwischen dem parallelen Laden und dem seriellen Entladen. Es wird erkannt, ob eine Versorgung angeschlossen ist. Wenn diese angeschlossen ist, schalten die Transistoren so, dass der ohmsche Widerstand zwischen den beiden Akkus zu groß ist, um einen Einfluss auf die Schaltung zu haben.\\
+Weiteres wird das Potential des negativen Anschlusses des zweiten Akkus auf Ground gesetzt, um das Laden zu ermöglichen. Die Versorgung wird direkt vor dem Schalter des Ausganges gehängt, womit der Akku überbrückt wird, damit der Akku sich nicht gleichzeitig entladen und laden muss. \\[2ex] 
+Sobald das Micro USB Kabel ausgesteckt wurde, wird das Potential von VCC (Micro USB nicht vorhanden - also undefiniert) auf GND gehängt. Die Verbindung zwischen dem Pluspol des Akku1 und dem Minuspol des zweiten Akkus wird wiederhergestellt. Dabei wird die Verbindung zwischen dem Minuspol des zweiten Akkus und GND aufgehoben, um einen Kurzschluss zu verhindern.  \\
+Die Verbindung zwischen dem zweiten Akku und dem LM2596 wird aufgetrennt, um ein Entladen des Akkus zu verhindern. \\
+In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des ersten Versuches. Folgende Bauteile dieser Schaltung werden für das Entladen verwendet:\\ $T_1,R_{T1},T_3,R_{T3},T_6,R_{T6},T_{m3},T_{m4}, Akku1, Akku2$ \\
 
 \subsubsection{Sicherheit}
 \label{SUBSUBSEC:Security1}
@@ -2277,9 +2270,9 @@ Die Spannungen sind:
 \end{itemize}
 Wird die minimale Spannung unterschritten, wird die Verbindung zwischen Ausgang und den Akkus gekappt. \\
 Wird die maximale Ladespannung erreicht, wird die Verbindung zwischen VCC und den Akkus getrennt. Diese beiden Schutzmechanismen werden für jeden Akku verbaut.\\
-In der Schaltung sind drei, Vieramperesicherungen verbaut, diese sorgen für die nötige Kurzschlusssicherheit.  \\
-Die Spannungen $ U_{ref3}=3.3V$ und $U_{ref2} = 3.7V$, geben den Ladestand des 1.Akkus an. Zwei Komperatoren vergleichen fortlaufend die Referenzspannungen mit der Akkuspannung und geben über zwei LEDs den Akkustand wieder. Da beide Akkus immer den gleichen Ladestand haben sollten, braucht man keine zusätzliche Schaltung für den 2. Akku.
-In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des 1. Versuchs. Folgende Bauteile dieser Schaltung werden für das Entladen verwendet:\\ $OPV_1, OPV_2,T_2,T_4, T_5,LED_1,LED_2,R_{LED1},R_{LED2},R_{T2}, R_{T4},T_{T5}$ 
+In der Schaltung sind drei Vieramperesicherungen verbaut, diese sorgen für die nötige Kurzschlusssicherheit.  \\
+Die Spannungen $ U_{ref3}=3.3V$ und $U_{ref2} = 3.7V$ geben den Ladestand des ersten Akkus an. Zwei Komperatoren vergleichen fortlaufend die Referenzspannungen mit der Akkuspannung und geben über zwei LEDs den Akkustand wieder. Da beide Akkus immer den gleichen Ladestand haben sollten, braucht man keine zusätzliche Schaltung für den zweiten Akku.
+In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des ersten Versuches. Folgende Bauteile dieser Schaltung werden für das Entladen verwendet:\\ $OPV_1, OPV_2,T_2,T_4, T_5,LED_1,LED_2,R_{LED1},R_{LED2},R_{T2}, R_{T4},T_{T5}$ 
 \newpage
 \subsubsection{Schaltung}
 \label{SUBSUBSEC:CIRCUIT-1}
@@ -2302,13 +2295,11 @@ Die Messung wurde in mehrere Phasen gegliedert:
 	\item{Umschalten zwischen den Schaltungen}
 	\item{Gesamtschaltungsmessung}
 \end{enumerate}
-
 \textbf{Messung der Ausgangsschaltung:}  Es wurden lediglich die in \ref{SUBSUBSEC:AKKUENTLOAD1} erwähnten Bauteile verwendet. Damit die Akkus nicht gefährdet werden, wird die Messung mit einem Labornetzteil durchgeführt. \\
 Dieses wird auf 8.4V (max Akkuspannung) gestellt, anschließend wird der Ausgang gemessen. \\
-Die Ausgangsspannung beträgt wie gewünscht 5V.
+Die Ausgangsspannung beträgt, wie gefordert, 5V.
 Der maximale Ausgangsstrom beträgt mit $T_6$ lediglich 2 Ampere, ansonsten 3.2 Ampere. $T_6$ wird hierbei voll ausgesteuert. 2 Ampere reichen für den RaspberryPI ohne Peripherie, aber mit Display aus. \\
 Anschließend wird die Messung mit den Akkus wiederholt, wobei sich das Ergebnis nicht wesentlich ändert.\\[2ex]
-
 \textbf{Messung der Eingangsschaltung:} Es wurden lediglich die in \ref{SUBSUBSEC:AKKULOAD1} erwähnten Bauteile verwendet. Die Akkus werden sofort eingebaut. Als VCC wird ein Labornetzteil verwendet, welches auf VCC=5V eingestellt wird. \\
 Die Messung der Spannungspunkte ergibt das jeweils gewünschte Ergebnis. \\
 Der Ladestrom ist aber viel zu niedrig, 2 mA. Zu Testzwecken werden die Sicherheitstransistoren $T_4 und T_5$ ausgebaut. Ohne diese beiden Transistoren kommt man auf einen maximalen Eingangsstrom von ca. 25 mA, was ebenfalls zu niedrig ist. \\
@@ -2323,15 +2314,15 @@ Die zweite Akkusteuerungsschaltung unterscheidet sich primär von der ersten in 
 \subsubsection{Laden der Akkus}
 \label{SUBSUBSEC:AKKULOAD2}
 
-Das Micro-USB Kabel hat wiederum 5V Versorgungsspannung. Die beiden Akkus sind in Serie geschaltet, womit die Ladespannung 8.2V (2*4.1V) betragen muss. Diese Spannung wird durch einen StepUp Converter vom Typ LT1370 erreicht. Dieser ist ein verstellbarer StepUpDownConverter. \\
-Die Beschaltung des ICs und die Formel zur Berechnung der Widerstände, wird wiederum aus dem Datenblatt entnommen (Siehe Abbildung ~\ref{datasheet:LT1370-2} auf Seite ~\pageref{datasheet:LT1370-2}). \\
+Das Micro-USB-Kabel hat wiederum 5V Versorgungsspannung. Die beiden Akkus sind in Serie geschaltet, womit die Ladespannung 8.2V (2*4.1V) betragen muss. Diese Spannung wird durch einen StepUp Converter vom Typ LT1370 erreicht. Dieser ist ein verstellbarer StepUpDownConverter. \\
+Die Beschaltung des ICs und die Formel zur Berechnung der Widerstände wird wiederum aus dem Datenblatt entnommen (Siehe Abbildung ~\ref{datasheet:LT1370-2} auf Seite ~\pageref{datasheet:LT1370-2}). \\
 \[V_{out}=8.2V;V_{ref}=1.245V;R_{SU2}=10k\Omega\]
 \[V_{out}=V_{ref} \cdot \left( 1 + \frac{R_{SU1}}{R_{SU2}} \right)\]
 \[R_{SU1} = R_{SU2} \cdot \left( \frac{V_{out}}{V_{ref}} - 1 \right) = 55.8 k\Omega \rightarrow E-12 \rightarrow R_{SU1} = 56 k \Omega\]
 
 \vspace{1cm}
 Dieses Widerstandsverhältnis transformiert die Spannung von 5V auf 8.2V, womit die in Serie geschalteten Akkus geladen werden können.  \\
-In Punkt \ref{SUBSUBSEC:CIRCUIT-2} befindet sich die Schaltung des 2. Versuchs. Folgende Bauteile dieser Schaltung werden ausschließlich für das Laden verwendet:\\ $LT1370,C_{SU1},C_{SU2},C_{SU3}, L_{SU1},R_{SU1},R_{SU2},R_{SU3},D_{SU1}$ 
+In Punkt \ref{SUBSUBSEC:CIRCUIT-2} befindet sich die Schaltung des zweiten Versuches. Folgende Bauteile dieser Schaltung werden ausschließlich für das Laden verwendet:\\ $LT1370,C_{SU1},C_{SU2},C_{SU3}, L_{SU1},R_{SU1},R_{SU2},R_{SU3},D_{SU1}$ 
 
 \subsubsection{Entladen der Akkus}
 \label{SUBSUBSEC:AKKUENTLOAD2}
@@ -2354,11 +2345,11 @@ Die Referenzspannungen der Komperatoren ergeben sich aus einem Spannungsteiler u
 \label{SUBSUBSEC:MEASUREMENT2}
 
 Die Ausgangsschaltung wurde schon in \ref{SUBSUBSEC:MEASUREMENT1} gemessen und kann somit ausgelassen werden.  \\
-Das Hauptaugenmerk liegt auf der Eingangsstufe, welche die 1.Schaltung nutzlos gemacht hat. \\[1ex]
+Das Hauptaugenmerk liegt auf der Eingangsstufe, welche die erste Schaltung nutzlos gemacht hat. \\[1ex]
 \textbf{Eingangsschaltung: }Die Messung der Eingangsschaltung erfolgt auf einem Steckbrett. VCC wird mittels einem Labornetzteil bereitgestellt. Dieses wird auf 5V eingestellt. \\
 Die Spannungslevel stimmen bei allen Messpunkten. Der Eingangsstrom ist aber wiederum viel zu niedrig (10 mA mit $T_1$, ohne 50 mA). \\
-\textbf{Sicherheit:} Es wird überprüft, ob die Sicherheitsabschaltung funktioniert, dazu wird anstatt den Akkus ein Labornetzteil gehängt, welches einmal auf 8V Vout und einmal auf 2.5V Vout eingestellt wird. Durch diese Einstellung wird der Transistor $T_1$ hochohmig. \\
-Die Schaltung kann somit theoretisch, als sichere Ladeschaltung verwendet werde. Der Haken dabei ist, dass das Laden eines Akkus eine Woche dauert. Da das Entwickeln einer neuerlichen Schaltung aufgrund zeitlicher Beschränkungen nicht mehr möglich ist, wird eine Einigung mit Prof. Signitzer getroffen. \\
+\textbf{Sicherheit:} Es wird überprüft, ob die Sicherheitsabschaltung funktioniert. Dazu wird anstatt den Akkus ein Labornetzteil verwendet, welches einmal auf 8V $U_{A2}$ und einmal auf 2.5V $U_{A2}$ eingestellt wird. Durch diese Einstellung wird der Transistor $T_1$ hochohmig. \\
+Die Schaltung kann somit theoretisch als sichere Ladeschaltung verwendet werden. Der Haken dabei ist, dass das Laden eines Akkus eine Woche dauert. Da das Entwickeln einer neuerlichen Schaltung aufgrund zeitlicher Beschränkungen nicht mehr möglich ist, wird eine Einigung mit Prof. Signitzer getroffen. \\
 In dieser wird als Akkumulator+Schaltung eine Powerbank verwendet, für technische Daten siehe \ref{SUBSEC:POWERBANK}.
 
 \subsubsection{Schaltung}
@@ -2385,7 +2376,7 @@ Als Powerbank gibt es zwei zur Auswahl kommende Modelle:
 \begin{itemize}
 	\item{Das Modell RP-PB17 von RAVPower - Dieses erfüllt alle Vorgaben, denn die Powerbank hat einen maximalen Ausgangsstrom von 2.4 Ampere und eine Kapazität von 5600 mAh, womit ein Betrieb von bis zu 2.5h möglich ist. Die Größe ist kleiner als der RaspberryPI, womit die Powerbank einfach in das Gehäuse integriert werden kann. \\
 Datenblattreferenz für die Powerbank siehe Abbildung ~\ref{datasheet:powerbank} auf Seite ~\pageref{datasheet:powerbank}.
-	\item{Das Modell FREEPMULTI10000 von Cellularline - Dieses hat den Vorteil einer erhöhten Kapazität von 10.000 mAh gegenüber den 5600 des anderen Modells. Dafür sind die Abmessungen der FREEPMULTI1000 Powerbank größer, womit ein Einbau in ein Gehäuse nur schwer möglich ist.}
+	\item{Das Modell FREEPMULTI10000 von Cellularline - Dieses hat den Vorteil einer erhöhten Kapazität von 10.000 mAh gegenüber den 5600 mAh des anderen Modells. Dafür sind die Abmessungen der FREEPMULTI1000 Powerbank größer, womit ein Einbau in ein Gehäuse nur schwer möglich ist.}
 }
 \end{itemize}
 Schlussendlich wurde das erste Modell (RP-PB17) verbaut, da das zweite Modell, nicht im Gehäuse Platz hatte.
@@ -2396,7 +2387,7 @@ Schlussendlich wurde das erste Modell (RP-PB17) verbaut, da das zweite Modell, n
 \section{Gehäuse}
 \label{SEC:case}
 
-Aufgabe war es ein Gehäuse für den RaspberryPI mit Bildschirm und Akkusteuerung zu designen. Anstatt der Akkusteuerung wird nach \ref{SUBSEC:POWERBANK}, eine Powerbank verwendet. Für diese sollen noch Ein- und Ausschalter und eine Mikro-USB Buchse für die Versorgung eingebaut werden. \\
+Aufgabe war es, ein Gehäuse für den RaspberryPI mit Bildschirm und Akkusteuerung zu designen. Anstatt der Akkusteuerung wird nach \ref{SUBSEC:POWERBANK} eine Powerbank verwendet. Für diese sollen noch Ein- und Ausschalter und eine Mikro-USB Buchse für die Versorgung eingebaut werden. \\
 Das Gehäuse soll mittels 3D-Drucker erstellt werden bzw. falls dies nicht in entsprechender Qualität geschehen kann, soll eines in der Kunststoffwerkstätte produziert werden.\\
 
 \subsection{Maße der Bauteile}
@@ -2406,7 +2397,7 @@ gefunden.
 
 \subsection{Geplantes mit dem 3D-Drucker gefertigtes Gehäuse}
 
-Das Gehäuse wird nach den vorherigen Kriterien entwickelt.  Als Akkumodell wird der größere verwendet (FREEPMULTI10000).\\
+Das Gehäuse wird nach den vorherigen Kriterien entwickelt.  Als Akkumodell wird das größere verwendet (FREEPMULTI10000).\\
 Da das Gehäuse mit einem 3D-Drucker gefertigt werden soll, unterliegt die Fertigung gewissen technischen Machbarkeiten. Unter anderem ist ein Gehäuse in der ursprünglich gewünschten Größe nicht möglich, da der Drucker nicht ein Gehäuse von 180x110x50mm, in einer realistischen Zeit und mit wirtschaftlichen Materialverbrauch drucken kann. Dies führt zu einer Stückelung des geplanten Gehäuses in drei Teile: \\
 Die Basis soll auf den RaspberryPI geschraubt werden, darauf soll die Akkuhalterung geklebt werden. Da die Akkuhalterung oben offen ist, wird für diese auch ein Deckel geplant, welcher ebenfalls aufgeklebt wird. \\
 Das Problem dieses Gehäuses ist ein persönliches, da das Aussehen bestenfalls ,,als im Notfall akzeptabel'' bezeichnet werden kann. Somit wird das ,,richtige'' Gehäuse in der Kunststoffwerkstätte entwickelt und produziert. 
@@ -2431,7 +2422,7 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier dankenswerter Weise 
 	\item{Die Platte für den Bildschirm wird ausgeschnitten und die Versenkung für den Bildschirm hineingefräßt.}
 	\item{Die Abstandshalter (innen) werden ausgeschnitten und in beide werden Löcher für die Schrauben gebohrt.}
 	\item{Die Löcher für die Mikro-USB-Buchse und für den Ein-Ausschalter wird hineingeschnitten (Lasercutter).}
-	\item{Es werden Schrauben für das verschließen des Displays gesucht. Da es keine >50mm langen M3 Schrauben gibt, wird eine Gewindestange abgeschnitten und das Gehäuse mit einer Mutter befestigt.}
+	\item{Es werden Schrauben für das Verschließen des Displays gesucht. Da es keine >50mm langen M3 Schrauben gibt, wird eine Gewindestange abgeschnitten und das Gehäuse mit einer Mutter befestigt.}
 	\item{Damit die Mutter nicht gesehen wird, werden vier Standfüße besorgt, in denen die Mutter platz hat.}
 	\item{Der Akku wird mittels Kabelbindern und selbsthaftenden Pads befestigt.}
 	\item{Von diesem geht ein aufgezwicktes USB-Kabel zum Schalter, um das Ein- und Ausschalten zu ermöglichen. \\
@@ -2462,14 +2453,11 @@ Ein Bild des fertigen ChessPI befindet sich auf der nächsten Seite.
 \label{SEC:beta}
 
 Der letzte Meilenstein war die Beta Phase. In dieser sollten alle Funktionen des Spiels durch ausgewählte Tester noch einmal auf Herz und Nieren geprüft werden. Die Beta Tester sind deshalb aus verschiedenen Hintergründen ausgewählt worden, zum Beispiel eine professionelle Schachspielerin oder Software EntwicklerInnen. Dies hat den Vorteil unterschiedliche Nutzerverhalten zu testen. \\[1ex]
-Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber \ref{SUBSEC:BETALAN}) hatten fünf Tester zu den Punkten:
+Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber (\ref{SUBSEC:BETALAN}) hatten fünf Tester zu den Punkten:
 \begin{enumerate}[I]
 	\item{Generelles Spielgefühl}
 	\item{Eventuell gefundene Bugs bzw. Verbesserungsvorschläge}
 \end{enumerate}
-
-
-
 
 \subsection{AI und Spielmechanik}
 \label{SUBSEC:BETAGAME}
@@ -2484,7 +2472,7 @@ Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber \ref{SUBSEC:BET
 \subsubsection*{Jonas Bangratz}
 \begin{enumerate}[I]
 	\item{Um hier Jonas Bangratz wörtlich zu zitieren (22.03.2018): ,,Neben einigen Unregelmäßigkeiten, welche die Beta-Version zu diesem Zeitpunkt enthielt, war es für die Software dennoch möglich mir ein relativ gutes Spielgefühl zu vermitteln.''}
-	\item{Im Computermodus, auf der niedrigsten Schwierigkeitsstufe, war es möglich den feindlichen König zu schlagen. Genauer betrachtet ist der feindliche König auf ein Feld gefahren, dass bedroht wird, wodurch dieser im nächsten Zug geschlagen werden konnte. Dies kann eigentlich gar nicht geschehen, da die KI nie den eigenen König bedrohen würde. Da die KI auf der niedersten Schwierigkeitsstufe aber keine Züge voraus berechnet, weiß diese nicht, dass der König durch diesen Zug bedroht wird. Aus diesem Grund, wurde die KI mit einem menschlichem Spieler in der Spiellogik vollständig gleichgestellt und darf dies nun nicht mehr. Dies hat Performance-Einbußen zur Folge, welche aber verschmerzbar sind. }
+	\item{Im Computermodus auf der niedrigsten Schwierigkeitsstufe, war es möglich den feindlichen König zu schlagen. Genauer betrachtet ist der feindliche König auf ein Feld gefahren, dass bedroht wird, wodurch dieser im nächsten Zug geschlagen werden konnte. Dies kann eigentlich gar nicht geschehen, da die KI nie den eigenen König bedrohen würde. Da die KI auf der niedersten Schwierigkeitsstufe aber keine Züge voraus berechnet, weiß diese nicht, dass der König durch diesen Zug bedroht werden kann. Aus diesem Grund wurde die KI mit einem menschlichem Spieler in der Spiellogik vollständig gleichgestellt und darf diesen Zug nun nicht mehr ausführen. Dies hat Performance-Einbußen zur Folge, welche aber verschmerzbar sind. }
 \end{enumerate}
 
 \subsubsection*{Nadja Nicolussi}
@@ -2594,8 +2582,6 @@ Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber \ref{SUBSEC:BET
 \clearpage\vfill\newpage{}
 %=================================================================================
 %\renewcommand{\thepage}{\rom{page}}% Roman for page counter
-\renewcommand{\thesection}{\Roman{section}\;}
-\setcounter{section}{2}
 %\vspace*{-8mm}
 \renewcommand\thesection{III}
 \section{Literaturverzeichnis}
@@ -2748,7 +2734,6 @@ Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber \ref{SUBSEC:BET
 %=================================================================================
 \clearpage\vfill\newpage{}
 %=================================================================================
-\renewcommand{\thesection}{\Roman{section}\;}
 \renewcommand\thesection{IV}
 \section{Abkürzungen}
 \label{SEC:ACRONYMS}
@@ -2779,6 +2764,7 @@ Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber \ref{SUBSEC:BET
 %=================================================================================
 \renewcommand\thesection{V}
 \section{\sc Pflichtenheft}
+\label{SEC:PFLICHTENHEFT}
 \vfill
 	\begin{center}\begin{huge}
 			\textbf{Pflichtenheft für die Diplomarbeit}\\ \vspace{1cm}
@@ -2939,11 +2925,11 @@ Hier werden alle bekannten Bugs gelistet, welche behoben werden sollen:
 Alexander Beiser war für einen Großteil der Spiellogik zuständig. Somit fallen darunter unter anderem:
 \begin{itemize}
 	\item{Logik des Ziehens der Spielfiguren,}
-	\item{schachmatt und schach Abfrage,}
+	\item{Schachmatt und Schach Abfrage,}
 	\item{Speichern und Laden,}
 	\item{und der Entwicklung des Computers (künstliche Intelligenz).}
 \end{itemize}
-Außerhalb des JavaChess Bereiches, hat er trotz Hindernissen das Spiel auf den RaspberryPI portiert. Dazu hat er ein Gehäuse entwickelt und das ganze mit einem Akku abgerundet, wodurch ein mobiles Spielen mit dem sogenannten ,,ChessPI'' möglich ist. \\
+Außerhalb des JavaChess Bereiches hat er, trotz Hindernissen, das Spiel auf den RaspberryPI portiert. Dazu hat er ein Gehäuse entwickelt und das Ganze mit einem Akku abgerundet, wodurch ein mobiles Spielen mit dem sogenannten ,,ChessPI'' möglich ist. \\
 Dies ist das abgelieferte Ergebnis. Zusätzliche Aufgabe war es, eine Akkusteuerung selber zu entwerfen. Technisch gesehen sind zwei fertige Entwürfe dieser Akkusteuerung entwickelt worden, in der Messung der jeweiligen Schaltung stellte sich heraus, dass jedoch ein Laden mit diesen Schaltungen sehr lange dauern würde. Dadurch verfehlten diese Schaltungen ihren eigentlichen praktischen Nutzen. Die Weiterentwicklung dieser Schaltung, um dadurch ein Laden in entsprechender Zeit zu ermöglichen, schlugen fehl und somit wurde aus Zeitmangel heraus eine Powerbank verwendet.
 
 \newpage
@@ -2961,7 +2947,7 @@ Dies ist das abgelieferte Ergebnis. Zusätzliche Aufgabe war es, eine Akkusteuer
 \newpage
  \subsection{Schlussfolgerung / Projekterfahrung}
  
- Das Projekt, ist trotz einiger Rückschläge, in weiten Teilen erfolgreich. Die künstliche Intelligenz ist stark genug menschliche Spieler zu schlagen und das spielen im Online Modus funktioniert tadellos. \\
+ Das Projekt ist trotz einiger Rückschläge, in weiten Teilen erfolgreich. Die künstliche Intelligenz ist stark genug um menschliche Spieler zu schlagen und das Spielen im Online Modus funktioniert tadellos. \\
  
 	Beide Kandidaten hatten in einigen Punkten mit massiven Problemen zu kämpfen. Vor allem drei Punkte stellten sich als einen größeren Zeitaufwand heraus, als geplant:
 \begin{enumerate}
@@ -2970,10 +2956,10 @@ Dies ist das abgelieferte Ergebnis. Zusätzliche Aufgabe war es, eine Akkusteuer
 	\item{Die Entwicklung der Akkusteuerungsschaltung}
 \end{enumerate}
 1) - \\
-2) - Das Portieren auf den RaspberryPI stellte sich als einen sehr viel größeren Zeitaufwand heraus, als geplant. Oracle, also die Entwickler von Java, haben die Unterstützung von JavaFX für ,,Embedded-Processors'' eingestellt. Dadurch musste eine funktionierende Alternative gefunden werden. Nachdem diese Alternative gefunden wurde, stellte sich heraus, dass der Bildschirm in Verbindung mit Java einen gewissen ,,Offset'' besitzt, also der gedrückte Punkt stimmt nicht mit dem angezeigten überein. Dieser Fehler konnte ebenfalls unter entsprechendem Zeitaufwand behoben werden. \\[1ex]
+2) - Das Portieren auf den RaspberryPI stellte sich als eine sehr viel größeren Zeitaufwand heraus, als geplant. Oracle, also die Entwickler von Java, haben die Unterstützung von JavaFX für ,,Embedded-Processors'' eingestellt. Dadurch musste eine funktionierende Alternative gefunden werden. Nachdem diese Alternative gefunden wurde, stellte sich heraus, dass der Bildschirm in Verbindung mit Java einen gewissen ,,Offset'' besitzt, also der gedrückte Punkt stimmt nicht mit dem angezeigten überein. Dieser Fehler konnte ebenfalls unter entsprechendem Zeitaufwand behoben werden. \\[1ex]
 3) - Die Entwicklung der Akkusteuerung stellte sich als ebenfalls größeres Problem als gedacht dar, da der Ladestrom viel zu klein war, um eine praktische Verwendung zu ermöglichen. \\[2ex]
 Die wichtigste Projekterfahrung ist jedenfalls, dass bevor ein Projekt begonnen wird, eine Machbarkeitsstudie durchgeführt werden sollte. Dadurch können potentielle ,,Zeit fressende Singularitäten'' vermieden werden. Weiteres sollte man mehr Zeit für eventuelle Fehler einplanen, da der Zeitplan sonst unmöglich einzuhalten ist. \\
-In zukünftigen Arbeiten im Team, sollte man sich mehr absprechen und ständig in Kontakt über den momentanen Stand der Teammitglieder informiert sein, um die Effizienz und Effektivität zu steigern.
+In zukünftigen Arbeiten im Team sollte man sich mehr absprechen und ständig in Kontakt über den momentanen Stand der Teammitglieder informiert sein, um die Effizienz und Effektivität zu steigern.
 
 \newpage
  \subsection{Kostenaufstellung und Arbeitsnachweis}

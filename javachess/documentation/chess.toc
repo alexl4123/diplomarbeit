@@ -7,8 +7,8 @@
 \contentsline {subsection}{\numberline {i.ii}Projektergebnis}{iv}{subsection.1001.2}
 \contentsline {section}{\numberline {ii}Lizenz}{v}{section.1002}
 \contentsline {section}{\numberline {iii}Danksagung}{vi}{section.1003}
-\contentsline {section}{\numberline {1}\sc Einleitung}{1}{section.1}
-\contentsline {section}{\numberline {2}\sc Vertiefende Aufgabenstellung}{2}{section.2}
+\contentsline {section}{\numberline {1}Einleitung}{1}{section.1}
+\contentsline {section}{\numberline {2}Vertiefende Aufgabenstellung}{2}{section.2}
 \contentsline {subsection}{\numberline {2.1}Alexander Beiser}{2}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Marcel Huber}{2}{subsection.2.2}
 \contentsline {section}{\numberline {3}Schach, eine Erkl\IeC {\"a}rung}{3}{section.3}
@@ -18,7 +18,7 @@
 \contentsline {subsubsection}{\numberline {3.2.2}Zugregel Springer}{4}{subsubsection.3.2.2}
 \contentsline {subsubsection}{\numberline {3.2.3}Zugregel L\IeC {\"a}ufer}{4}{subsubsection.3.2.3}
 \contentsline {subsubsection}{\numberline {3.2.4}Zugregel Turm}{4}{subsubsection.3.2.4}
-\contentsline {subsubsection}{\numberline {3.2.5}Zugregel Dame}{5}{subsubsection.3.2.5}
+\contentsline {subsubsection}{\numberline {3.2.5}Zugregel Dame}{4}{subsubsection.3.2.5}
 \contentsline {subsubsection}{\numberline {3.2.6}Zugregel K\IeC {\"o}nig}{5}{subsubsection.3.2.6}
 \contentsline {subsection}{\numberline {3.3}Schachmaschinen}{5}{subsection.3.3}
 \contentsline {section}{\numberline {4}Java Chess}{6}{section.4}
@@ -84,7 +84,7 @@
 \contentsline {subsection}{\numberline {6.4}Idee der 1. Akkusteuerungsschaltung}{62}{subsection.6.4}
 \contentsline {subsubsection}{\numberline {6.4.1}Laden der Akkus}{62}{subsubsection.6.4.1}
 \contentsline {subsubsection}{\numberline {6.4.2}Entladen der Akkus}{63}{subsubsection.6.4.2}
-\contentsline {subsubsection}{\numberline {6.4.3}Seriell-Parallel Schaltung}{63}{subsubsection.6.4.3}
+\contentsline {subsubsection}{\numberline {6.4.3}Seriell-Parallel-Schaltung}{63}{subsubsection.6.4.3}
 \contentsline {subsubsection}{\numberline {6.4.4}Sicherheit}{64}{subsubsection.6.4.4}
 \contentsline {subsubsection}{\numberline {6.4.5}Schaltung}{65}{subsubsection.6.4.5}
 \contentsline {subsubsection}{\numberline {6.4.6}Messung}{66}{subsubsection.6.4.6}
@@ -111,21 +111,21 @@
 \contentsline {subsection}{\numberline {11.4}Fehlermeldungen und Hinweise auf Fehlerursachen}{78}{subsection.11.4}
 \contentsline {section}{\numberline {I}Abbildungsverzeichnis}{I}{section.2001}
 \contentsline {section}{\numberline {II}\sc Tabellenverzeichnis}{I}{section.2002}
-\contentsline {section}{\numberline {III}Literaturverzeichnis}{II}{section.3}
-\contentsline {section}{\numberline {IV}Abk\IeC {\"u}rzungen}{III}{section.4}
-\contentsline {section}{\numberline {V}\sc Pflichtenheft}{IV}{section.5}
-\contentsline {subsection}{\numberline {V.I}\sc JavaChess Konzept}{V}{subsection.5.1}
-\contentsline {subsection}{\numberline {V.II}Einzubauende Features}{V}{subsection.5.2}
-\contentsline {subsubsection}{\numberline {V.II.I}JavaChess (Desktop Version - Windows}{V}{subsubsection.5.2.1}
-\contentsline {subsubsection}{\numberline {V.II.II}ChessPI (Raspberry PI 3)}{VI}{subsubsection.5.2.2}
-\contentsline {subsubsection}{\numberline {V.II.III}AndChess (Android)}{VI}{subsubsection.5.2.3}
-\contentsline {subsection}{\numberline {V.III}Appendix}{VI}{subsection.5.3}
-\contentsline {subsubsection}{\numberline {V.III.I}Vorhandene Bugs}{VI}{subsubsection.5.3.1}
-\contentsline {section}{\numberline {VI}Datenbl\IeC {\"a}tter}{VII}{section.6}
-\contentsline {section}{\numberline {VII}\sc Zusammenfassung}{XIV}{section.7}
-\contentsline {subsection}{\numberline {VII.I}Alexander Beiser}{XIV}{subsection.7.1}
-\contentsline {subsection}{\numberline {VII.II}Marcel Huber}{XV}{subsection.7.2}
-\contentsline {subsection}{\numberline {VII.III}Schlussfolgerung / Projekterfahrung}{XVI}{subsection.7.3}
-\contentsline {subsection}{\numberline {VII.IV}Kostenaufstellung und Arbeitsnachweis}{XVII}{subsection.7.4}
-\contentsline {subsubsection}{\numberline {VII.IV.I}Kostenaufstellung}{XVII}{subsubsection.7.4.1}
-\contentsline {subsubsection}{\numberline {VII.IV.II}Arbeitsnachweis Diplomarbeit}{XVIII}{subsubsection.7.4.2}
+\contentsline {section}{\numberline {III}Literaturverzeichnis}{II}{section.2003}
+\contentsline {section}{\numberline {IV}Abk\IeC {\"u}rzungen}{III}{section.2004}
+\contentsline {section}{\numberline {V}\sc Pflichtenheft}{IV}{section.2005}
+\contentsline {subsection}{\numberline {V.I}\sc JavaChess Konzept}{V}{subsection.2005.1}
+\contentsline {subsection}{\numberline {V.II}Einzubauende Features}{V}{subsection.2005.2}
+\contentsline {subsubsection}{\numberline {V.II.I}JavaChess (Desktop Version - Windows}{V}{subsubsection.2005.2.1}
+\contentsline {subsubsection}{\numberline {V.II.II}ChessPI (Raspberry PI 3)}{VI}{subsubsection.2005.2.2}
+\contentsline {subsubsection}{\numberline {V.II.III}AndChess (Android)}{VI}{subsubsection.2005.2.3}
+\contentsline {subsection}{\numberline {V.III}Appendix}{VI}{subsection.2005.3}
+\contentsline {subsubsection}{\numberline {V.III.I}Vorhandene Bugs}{VI}{subsubsection.2005.3.1}
+\contentsline {section}{\numberline {VI}Datenbl\IeC {\"a}tter}{VII}{section.2006}
+\contentsline {section}{\numberline {VII}\sc Zusammenfassung}{XIV}{section.2007}
+\contentsline {subsection}{\numberline {VII.I}Alexander Beiser}{XIV}{subsection.2007.1}
+\contentsline {subsection}{\numberline {VII.II}Marcel Huber}{XV}{subsection.2007.2}
+\contentsline {subsection}{\numberline {VII.III}Schlussfolgerung / Projekterfahrung}{XVI}{subsection.2007.3}
+\contentsline {subsection}{\numberline {VII.IV}Kostenaufstellung und Arbeitsnachweis}{XVII}{subsection.2007.4}
+\contentsline {subsubsection}{\numberline {VII.IV.I}Kostenaufstellung}{XVII}{subsubsection.2007.4.1}
+\contentsline {subsubsection}{\numberline {VII.IV.II}Arbeitsnachweis Diplomarbeit}{XVIII}{subsubsection.2007.4.2}
