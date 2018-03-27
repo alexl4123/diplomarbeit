@@ -61,7 +61,7 @@
 \contentsline {subsubsection}{\numberline {4.8.9}Informations- und Optionspopups}{44}{subsubsection.4.8.9}
 \contentsline {subsection}{\numberline {4.9}Sounds}{47}{subsection.4.9}
 \contentsline {subsubsection}{\numberline {4.9.1}Der JavaFX - Soundplayer}{47}{subsubsection.4.9.1}
-\contentsline {subsubsection}{\numberline {4.9.2}Der alternative Soundplayer}{48}{subsubsection.4.9.2}
+\contentsline {subsubsection}{\numberline {4.9.2}Der alternative Soundplayer}{49}{subsubsection.4.9.2}
 \contentsline {subsection}{\numberline {4.10}LAN-Mode}{50}{subsection.4.10}
 \contentsline {subsubsection}{\numberline {4.10.1}Netzwerkprogrammierung unter Java}{50}{subsubsection.4.10.1}
 \contentsline {subsubsection}{\numberline {4.10.2}Netzwerkprogrammierung in JavaChess}{51}{subsubsection.4.10.2}
@@ -72,58 +72,58 @@
 \contentsline {subsection}{\numberline {4.11}Computer Modus (AI-Mode)}{63}{subsection.4.11}
 \contentsline {subsubsection}{\numberline {4.11.1}Prinzipielle M\IeC {\"o}glichkeiten einer AI}{63}{subsubsection.4.11.1}
 \contentsline {subsubsection}{\numberline {4.11.2}Verwendete Schach-AI-Funktion}{64}{subsubsection.4.11.2}
-\contentsline {subsubsection}{\numberline {4.11.3}Der Min-Max-Algorithmus}{68}{subsubsection.4.11.3}
-\contentsline {subsubsection}{\numberline {4.11.4}Code}{70}{subsubsection.4.11.4}
-\contentsline {section}{\numberline {5}ChessPI}{77}{section.5}
-\contentsline {subsection}{\numberline {5.1}RaspberryPI}{77}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Touchscreen}{77}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Implementierung von JavaChess}{78}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Wieso reicht die offizielle JDK bzw. die OpenJDK nicht aus?}{81}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}Konfiguration des Touchscreens}{81}{subsection.5.5}
-\contentsline {subsection}{\numberline {5.6}Verwendete JavaChess Version}{81}{subsection.5.6}
-\contentsline {section}{\numberline {6}Akkusteuerung}{82}{section.6}
-\contentsline {subsection}{\numberline {6.1}Kenngr\IeC {\"o}\IeC {\ss }en des ben\IeC {\"o}tigten Akkumulators}{82}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}W\IeC {\"a}hlen des Akkumulators}{82}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Der Li-Ion Akku}{83}{subsection.6.3}
-\contentsline {subsection}{\numberline {6.4}Idee der ersten Akkusteuerungsschaltung}{83}{subsection.6.4}
-\contentsline {subsubsection}{\numberline {6.4.1}Laden der Akkus}{84}{subsubsection.6.4.1}
-\contentsline {subsubsection}{\numberline {6.4.2}Entladen der Akkus}{84}{subsubsection.6.4.2}
-\contentsline {subsubsection}{\numberline {6.4.3}Seriell-Parallel-Schaltung}{85}{subsubsection.6.4.3}
-\contentsline {subsubsection}{\numberline {6.4.4}Sicherheit}{86}{subsubsection.6.4.4}
-\contentsline {subsubsection}{\numberline {6.4.5}Schaltung}{88}{subsubsection.6.4.5}
-\contentsline {subsubsection}{\numberline {6.4.6}Messung}{89}{subsubsection.6.4.6}
-\contentsline {subsection}{\numberline {6.5}Idee der zweiten Akkusteuerungsschaltung}{91}{subsection.6.5}
-\contentsline {subsubsection}{\numberline {6.5.1}Laden der Akkus}{91}{subsubsection.6.5.1}
-\contentsline {subsubsection}{\numberline {6.5.2}Entladen der Akkus}{91}{subsubsection.6.5.2}
-\contentsline {subsubsection}{\numberline {6.5.3}Sicherheit}{93}{subsubsection.6.5.3}
-\contentsline {subsubsection}{\numberline {6.5.4}Messung}{93}{subsubsection.6.5.4}
-\contentsline {subsubsection}{\numberline {6.5.5}Schaltung}{95}{subsubsection.6.5.5}
-\contentsline {subsection}{\numberline {6.6}Verwendete L\IeC {\"o}sung}{96}{subsection.6.6}
-\contentsline {section}{\numberline {7}Geh\IeC {\"a}use}{97}{section.7}
-\contentsline {subsection}{\numberline {7.1}Ma\IeC {\ss }e der Bauteile}{97}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Geplantes mit dem 3D-Drucker gefertigtes Geh\IeC {\"a}use}{97}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Geh\IeC {\"a}use - Kunststoffwerkst\IeC {\"a}tte}{100}{subsection.7.3}
-\contentsline {section}{\numberline {8}Android}{103}{section.8}
-\contentsline {section}{\numberline {9}Beta}{104}{section.9}
-\contentsline {subsection}{\numberline {9.1}AI und Spielmechanik}{104}{subsection.9.1}
-\contentsline {subsection}{\numberline {9.2}LAN und GUI}{106}{subsection.9.2}
-\contentsline {subsubsection}{\numberline {9.2.1}Josef Scharmer}{106}{subsubsection.9.2.1}
-\contentsline {subsubsection}{\numberline {9.2.2}Sabrina Schiestl}{106}{subsubsection.9.2.2}
-\contentsline {subsubsection}{\numberline {9.2.3}Katharina Weide}{106}{subsubsection.9.2.3}
-\contentsline {subsubsection}{\numberline {9.2.4}Fabian Thurnes}{107}{subsubsection.9.2.4}
-\contentsline {section}{\numberline {10}\sc Benutzerdokumentation}{108}{section.10}
-\contentsline {subsection}{\numberline {10.1}Installationsanleitung}{108}{subsection.10.1}
-\contentsline {subsection}{\numberline {10.2}Benutzung des Spiels}{108}{subsection.10.2}
-\contentsline {subsubsection}{\numberline {10.2.1}Der Hot Seat - Modus}{108}{subsubsection.10.2.1}
-\contentsline {subsubsection}{\numberline {10.2.2}Der LAN - Modus}{109}{subsubsection.10.2.2}
-\contentsline {subsubsection}{\numberline {10.2.3}Der AI - Modus}{110}{subsubsection.10.2.3}
-\contentsline {subsubsection}{\numberline {10.2.4}Die erweiterten Optionen}{111}{subsubsection.10.2.4}
-\contentsline {subsubsection}{\numberline {10.2.5}Alle Men\IeC {\"u}punkte}{112}{subsubsection.10.2.5}
-\contentsline {subsection}{\numberline {10.3}Fehlermeldungen und Hinweise auf Fehlerursachen}{114}{subsection.10.3}
-\contentsline {subsubsection}{\numberline {10.3.1}Fehler beim Starten des Spiels}{114}{subsubsection.10.3.1}
-\contentsline {subsubsection}{\numberline {10.3.2}Fehler beim Speichern eines Spielstandes}{114}{subsubsection.10.3.2}
-\contentsline {subsubsection}{\numberline {10.3.3}Fehler beim Laden eines Spielstandes}{114}{subsubsection.10.3.3}
-\contentsline {subsubsection}{\numberline {10.3.4}Fehler im LAN - Modus}{114}{subsubsection.10.3.4}
+\contentsline {subsubsection}{\numberline {4.11.3}Der Min-Max-Algorithmus}{67}{subsubsection.4.11.3}
+\contentsline {subsubsection}{\numberline {4.11.4}Code}{68}{subsubsection.4.11.4}
+\contentsline {section}{\numberline {5}ChessPI}{75}{section.5}
+\contentsline {subsection}{\numberline {5.1}RaspberryPI}{75}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Touchscreen}{75}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Implementierung von JavaChess}{76}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Wieso reicht die offizielle JDK nicht aus?}{79}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Konfiguration des Touchscreens}{79}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}Verwendete JavaChess Version}{79}{subsection.5.6}
+\contentsline {section}{\numberline {6}Akkusteuerung}{80}{section.6}
+\contentsline {subsection}{\numberline {6.1}Kenngr\IeC {\"o}\IeC {\ss }en des ben\IeC {\"o}tigten Akkumulators}{80}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}W\IeC {\"a}hlen des Akkumulators}{80}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Der Li-Ion Akku}{81}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Idee der ersten Akkusteuerungsschaltung}{81}{subsection.6.4}
+\contentsline {subsubsection}{\numberline {6.4.1}Laden der Akkus}{82}{subsubsection.6.4.1}
+\contentsline {subsubsection}{\numberline {6.4.2}Entladen der Akkus}{82}{subsubsection.6.4.2}
+\contentsline {subsubsection}{\numberline {6.4.3}Seriell-Parallel-Schaltung}{83}{subsubsection.6.4.3}
+\contentsline {subsubsection}{\numberline {6.4.4}Sicherheit}{84}{subsubsection.6.4.4}
+\contentsline {subsubsection}{\numberline {6.4.5}Schaltung}{86}{subsubsection.6.4.5}
+\contentsline {subsubsection}{\numberline {6.4.6}Messung}{87}{subsubsection.6.4.6}
+\contentsline {subsection}{\numberline {6.5}Idee der zweiten Akkusteuerungsschaltung}{88}{subsection.6.5}
+\contentsline {subsubsection}{\numberline {6.5.1}Laden der Akkus}{88}{subsubsection.6.5.1}
+\contentsline {subsubsection}{\numberline {6.5.2}Entladen der Akkus}{89}{subsubsection.6.5.2}
+\contentsline {subsubsection}{\numberline {6.5.3}Sicherheit}{89}{subsubsection.6.5.3}
+\contentsline {subsubsection}{\numberline {6.5.4}Messung}{89}{subsubsection.6.5.4}
+\contentsline {subsubsection}{\numberline {6.5.5}Schaltung}{91}{subsubsection.6.5.5}
+\contentsline {subsection}{\numberline {6.6}Verwendete L\IeC {\"o}sung}{92}{subsection.6.6}
+\contentsline {section}{\numberline {7}Geh\IeC {\"a}use}{93}{section.7}
+\contentsline {subsection}{\numberline {7.1}Ma\IeC {\ss }e der Bauteile}{93}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Geplantes mit dem 3D-Drucker gefertigtes Geh\IeC {\"a}use}{93}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Geh\IeC {\"a}use - Kunststoffwerkst\IeC {\"a}tte}{96}{subsection.7.3}
+\contentsline {section}{\numberline {8}Android}{99}{section.8}
+\contentsline {section}{\numberline {9}Beta}{100}{section.9}
+\contentsline {subsection}{\numberline {9.1}AI und Spielmechanik}{100}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}LAN und GUI}{102}{subsection.9.2}
+\contentsline {subsubsection}{\numberline {9.2.1}Josef Scharmer}{102}{subsubsection.9.2.1}
+\contentsline {subsubsection}{\numberline {9.2.2}Sabrina Schiestl}{102}{subsubsection.9.2.2}
+\contentsline {subsubsection}{\numberline {9.2.3}Katharina Weide}{102}{subsubsection.9.2.3}
+\contentsline {subsubsection}{\numberline {9.2.4}Fabian Thurnes}{103}{subsubsection.9.2.4}
+\contentsline {section}{\numberline {10}\sc Benutzerdokumentation}{104}{section.10}
+\contentsline {subsection}{\numberline {10.1}Installationsanleitung}{104}{subsection.10.1}
+\contentsline {subsection}{\numberline {10.2}Benutzung des Spiels}{104}{subsection.10.2}
+\contentsline {subsubsection}{\numberline {10.2.1}Der Hot Seat - Modus}{104}{subsubsection.10.2.1}
+\contentsline {subsubsection}{\numberline {10.2.2}Der LAN - Modus}{105}{subsubsection.10.2.2}
+\contentsline {subsubsection}{\numberline {10.2.3}Der AI - Modus}{106}{subsubsection.10.2.3}
+\contentsline {subsubsection}{\numberline {10.2.4}Die erweiterten Optionen}{107}{subsubsection.10.2.4}
+\contentsline {subsubsection}{\numberline {10.2.5}Alle Men\IeC {\"u}punkte}{108}{subsubsection.10.2.5}
+\contentsline {subsection}{\numberline {10.3}Fehlermeldungen und Hinweise auf Fehlerursachen}{110}{subsection.10.3}
+\contentsline {subsubsection}{\numberline {10.3.1}Fehler beim Starten des Spiels}{110}{subsubsection.10.3.1}
+\contentsline {subsubsection}{\numberline {10.3.2}Fehler beim Speichern eines Spielstandes}{110}{subsubsection.10.3.2}
+\contentsline {subsubsection}{\numberline {10.3.3}Fehler beim Laden eines Spielstandes}{110}{subsubsection.10.3.3}
+\contentsline {subsubsection}{\numberline {10.3.4}Fehler im LAN - Modus}{110}{subsubsection.10.3.4}
 \contentsline {section}{\numberline {I}Abbildungsverzeichnis}{I}{section.2001}
 \contentsline {section}{\numberline {II}\sc Tabellenverzeichnis}{I}{section.2002}
 \contentsline {section}{\numberline {III}Literaturverzeichnis}{II}{section.2003}
@@ -139,7 +139,7 @@
 \contentsline {section}{\numberline {VI}Datenbl\IeC {\"a}tter}{IX}{section.2006}
 \contentsline {section}{\numberline {VII}\sc Zusammenfassung}{XVI}{section.2007}
 \contentsline {subsection}{\numberline {VII.I}Alexander Beiser}{XVI}{subsection.2007.1}
-\contentsline {subsection}{\numberline {VII.II}Marcel Huber}{XVI}{subsection.2007.2}
+\contentsline {subsection}{\numberline {VII.II}Marcel Huber}{XVII}{subsection.2007.2}
 \contentsline {subsection}{\numberline {VII.III}Schlussfolgerung / Projekterfahrung}{XVIII}{subsection.2007.3}
 \contentsline {subsection}{\numberline {VII.IV}Kostenaufstellung und Arbeitsnachweis}{XIX}{subsection.2007.4}
 \contentsline {subsubsection}{\numberline {VII.IV.I}Kostenaufstellung}{XIX}{subsubsection.2007.4.1}
