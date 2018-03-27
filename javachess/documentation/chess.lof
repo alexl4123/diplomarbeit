@@ -1,17 +1,17 @@
-\select@language {ngerman}
-\contentsline {figure}{\numberline {1}{\ignorespaces Das Blockschaltbild}}{7}{figure.1}
-\contentsline {figure}{\numberline {2}{\ignorespaces Informationsbildschirm beim starten des Spiels}}{32}{figure.2}
-\contentsline {figure}{\numberline {3}{\ignorespaces Optionspopup }}{35}{figure.3}
-\contentsline {figure}{\numberline {4}{\ignorespaces Spielzyklus im LAN-Modus}}{38}{figure.4}
-\contentsline {figure}{\numberline {5}{\ignorespaces Min-Max}}{51}{figure.5}
-\contentsline {figure}{\numberline {6}{\ignorespaces Die 1.Schaltung}}{65}{figure.6}
-\contentsline {figure}{\numberline {7}{\ignorespaces Die 2.Schaltung}}{69}{figure.7}
-\contentsline {figure}{\numberline {8}{\ignorespaces Das Geh\IeC {\"a}use in den drei Teilen}}{72}{figure.8}
-\contentsline {figure}{\numberline {9}{\ignorespaces Der ChessPI}}{74}{figure.9}
-\contentsline {figure}{\numberline {10}{\ignorespaces Datenblatt Powerbank}}{VII}{figure.10}
-\contentsline {figure}{\numberline {11}{\ignorespaces Datenblatt RaspberryPI Bildschirm}}{VIII}{figure.11}
-\contentsline {figure}{\numberline {12}{\ignorespaces Datenblatt LM2596-Seite 1}}{IX}{figure.12}
-\contentsline {figure}{\numberline {13}{\ignorespaces Datenblatt LM2596-Seite 7 (Berechnung)}}{X}{figure.13}
-\contentsline {figure}{\numberline {14}{\ignorespaces Datenblatt LT1370-Seite 1}}{XI}{figure.14}
-\contentsline {figure}{\numberline {15}{\ignorespaces Datenblatt LT1370-Seite 7 (Berechnung)}}{XII}{figure.15}
-\contentsline {figure}{\numberline {16}{\ignorespaces Datenblatt Akku f\IeC {\"u}r Akkusteuerung}}{XIII}{figure.16}
+\babel@toc {ngerman}{}
+\contentsline {figure}{\numberline {1}{\ignorespaces Das Blockschaltbild}}{9}{figure.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Informationsbildschirm beim Starten des Spiels}}{42}{figure.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Optionspopup }}{46}{figure.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Spielzyklus im LAN-Modus}}{52}{figure.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Min-Max}}{69}{figure.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Die 1.Schaltung}}{88}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Die 2.Schaltung}}{95}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Das Geh\IeC {\"a}use in den drei Teilen}}{99}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Der ChessPI}}{102}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Datenblatt Powerbank}}{IX}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Datenblatt RaspberryPI Bildschirm}}{X}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Datenblatt LM2596-Seite 1}}{XI}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Datenblatt LM2596-Seite 7 (Berechnung)}}{XII}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Datenblatt LT1370-Seite 1}}{XIII}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Datenblatt LT1370-Seite 7 (Berechnung)}}{XIV}{figure.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Datenblatt Akku f\IeC {\"u}r Akkusteuerung}}{XV}{figure.16}
