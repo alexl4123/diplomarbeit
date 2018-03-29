@@ -2,16 +2,15 @@ package javachess.backgroundmatrix;
 
 import java.util.ArrayList;
 import javachess.game.MovePos;
-import javachess.meeple.*;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * @author alex - 2017
- * @version 1.1 - Draw
+ * @author alexl4123 - 2018
+ * @version 2.0 - Release
  * 
- *          A class for moving around the Meeples Contains the Move Method Also
+ *          A class for moving around the Meeples - Contains the Move Method Also
  *          the View Method is inside. This is one of the most important game
  *          rule classes
  * 
@@ -1111,15 +1110,15 @@ public class Move {
 			_BGG2.higherQueenNumber();
 			Number = _BGG2.getQueenNumber();
 			_BGG2.setBackgroundGrid(XX, YY, Number + 140);
-			Queen khaleesi = new Queen(true, Number + 140, XX, YY);
-			_BGG2.Objectives.set(Number + 140, khaleesi);
+			//Queen khaleesi = new Queen(true, Number + 140, XX, YY);
+			//_BGG2.Objectives.set(Number + 140, khaleesi);
 			_BGG2.iBackground[XX][YY] = 140 + Number;
 		} else {
 			_BGG2.higherQueenNumber();
 			Number = _BGG2.getQueenNumber();
 			_BGG2.setBackgroundGrid(XX, YY, Number + 240);
-			Queen khaleesi = new Queen(false, Number + 240, XX, YY);
-			_BGG2.Objectives.set(Number + 240, khaleesi);
+			//Queen khaleesi = new Queen(false, Number + 240, XX, YY);
+			//_BGG2.Objectives.set(Number + 240, khaleesi);
 			TheMove[XX][YY] = 240 + Number;
 		}
 		_BGG2.setMove(true);
@@ -1134,17 +1133,23 @@ public class Move {
  */
 public void getSchach() {
 
-	King K1, K2;
-	int XKing1, XKing2;
-	int YKing1, YKing2;
-
-	K1 = (King) _BGG2.Objects(150);
-	XKing1 = K1.getXMeeplePos();
-	YKing1 = K1.getYMeeplePos();
-
-	K2 = (King) _BGG2.Objects(250);
-	XKing2 = K2.getXMeeplePos();
-	YKing2 = K2.getYMeeplePos();
+	int XKing2, YKing2, XKing1, YKing1;
+	XKing2 = 10;
+	XKing1 = 10;
+	YKing1 = 10;
+	YKing2 = 10;
+	for (int Y = 0; Y < 8; Y++) {
+		for (int X = 0; X < 8; X++) {
+			if (TheMove[X][Y] == 150) {
+				XKing1 = X;
+				YKing1 = Y;
+			}
+			if (TheMove[X][Y] == 250) {
+				XKing2 = X;
+				YKing2 = Y;
+			}
+		}
+	}
 
 	_Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, true, false);
 	if (_Blackschach) {
@@ -1204,7 +1209,9 @@ public void getSchach2() {
 		});
 
 	}
+	System.out.println("1-Mated Black::"+_BGG2.getSchachmattBlack()+"::Mated White::"+_BGG2.getSchachmattWhite());
 	Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, false, false);
+	System.out.println("2-Mated Black::"+_BGG2.getSchachmattBlack()+"::Mated White::"+_BGG2.getSchachmattWhite());
 	if (Whiteschach == true && !_BGG2.getSchachmattWhite()) {
 		Platform.runLater(new Runnable() {
 			@Override
@@ -1224,6 +1231,8 @@ public void getSchach2() {
 		});
 
 	}
+	
+	System.out.println("Mated Black::"+_BGG2.getSchachmattBlack()+"::Mated White::"+_BGG2.getSchachmattWhite());
 
 }
 

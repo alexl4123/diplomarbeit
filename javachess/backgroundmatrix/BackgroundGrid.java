@@ -7,7 +7,6 @@ import java.util.Optional;
 import javachess.game.AILogic;
 import javachess.game.LAN;
 import javachess.game.MovePos;
-import javachess.meeple.*;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -15,8 +14,8 @@ import javafx.scene.control.Alert.AlertType;
 
 
 /**
- * @author alex - 2017
- * @version 1.1 - Draw
+ * @author alexl4123 - 2018
+ * @version 2.0 - Release
  * 
  * 
  *          The class BackgroundGrid is basically the ,,save-class'' So it
@@ -43,10 +42,7 @@ public class BackgroundGrid implements Serializable {
 	 * A nother representation of the Meeples (contains the Meeple Objects)
 	 */
 	public ArrayList<Object> Objectives = new ArrayList<Object>(); // to save
-	// all the
-	// meeples
-	// (number
-	// of item =
+
 	/**
 	 * The current team // ID)
 	 */
@@ -78,21 +74,50 @@ public class BackgroundGrid implements Serializable {
 	private int _iAiDepth;
 	//----------------------------------------------------------------------------	
 
-	//public ArrayList<MovePos> _TotalMoveList;
+	/**
+	 * This list is needed for the forward/backward function (how does the board look like?)
+	 */
 	private ArrayList<int[][]> _AllBoardStatesList;
+	
+	/**
+	 * This list is needed for the forward/backward function (which team plays at that round?)
+	 */
 	private ArrayList<boolean[]> _AllTeamStatesList;
-
-	boolean move; // when you can move
-	short TurnRound; // to measure the turns of the current game
-	int QueenNumber;// how many add. queens are
-	int TowerNumber;// how many add. towers are
-	int JumperNumber;// how many add. jumpers are
-	int RunnerNumber;// how many add. runners are
-	String name; // just for debugging
-	int _Choose; // Which game mode is selected
+	
+	/**
+	 * The indication, if you can move
+	 */
+	private boolean move;
+	
+	/**
+	 * This measures the current turn round
+	 */
+	private short TurnRound;
+	
+	/**
+	 * How many additional queens are in the game
+	 */
+	private int QueenNumber;
+	
+	/**
+	 * Which Game-Mode is selected
+	 */
+	private int _Choose; 
+	
+	/**
+	 * needed for LAN stuff
+	 */
 	public LAN _Lan;
+	
+	/**
+	 * Which team the AI should play
+	 */
 	private boolean _bAITeam;
-	private boolean[] bPawnSpecMoved, bKingMoved, bTowerMoved;
+	
+	/**
+	 * Boolean if a special move occured
+	 */
+	private boolean[] bKingMoved, bTowerMoved;
 
 	/**
 	 * creates the default background grid
@@ -104,16 +129,12 @@ public class BackgroundGrid implements Serializable {
 	public BackgroundGrid() {
 
 		//some inits
-		bPawnSpecMoved = new boolean[20];
 		bKingMoved = new boolean[2];
 		bTowerMoved = new boolean[4];
 		HardCoreAI = false;
 		
 
 		QueenNumber = 0;
-		TowerNumber = 0;
-		JumperNumber = 0;
-		RunnerNumber = 0;
 		TurnRound = 0;
 		move = true;
 		_iAiDepth = 3;
@@ -194,27 +215,6 @@ public class BackgroundGrid implements Serializable {
 		this.move = temp;
 	}
 
-
-
-	/**
-	 * only for debugging
-	 * 
-	 * @return name - String - for debugging only
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * only for debugging
-	 * 
-	 * @param n
-	 *            - String - for debugging only
-	 */
-	public void setName(String n) {
-		this.name = n;
-	}
-
 	/**
 	 * if a "bauerntausch" occurs and a queen is selected this will be increased
 	 */
@@ -229,59 +229,6 @@ public class BackgroundGrid implements Serializable {
 	 */
 	public int getQueenNumber() {
 		return QueenNumber;
-	}
-
-	/**
-	 * if a "bauerntausch" occurs and a jumper is selected this will be
-	 * increased
-	 */
-	public void higherJumperNumber() {
-		this.JumperNumber++;
-	}
-
-	/**
-	 * for "bauerntausch"
-	 * 
-	 * @return JumperNumber - int - returns the current number of Jumpers
-	 *         (Knights)
-	 */
-	public int getJumperNumber() {
-		return JumperNumber;
-	}
-
-	/**
-	 * if a "bauerntausch" occurs and a runnner (bishop) is selected this will
-	 * be increased
-	 */
-	public void higherRunnerNumber() {
-		this.RunnerNumber++;
-	}
-
-	/**
-	 * for "bauerntausch"
-	 * 
-	 * @return RunnerNumber - int - returns the current number of Runners
-	 *         (bishops)
-	 */
-	public int getRunnerNumber() {
-		return RunnerNumber;
-	}
-
-	/**
-	 * if a "bauerntausch" occurs and a tower (rook) is selected this will be
-	 * increased
-	 */
-	public void higherTowerNumber() {
-		this.TowerNumber++;
-	}
-
-	/**
-	 * for "bauerntausch"
-	 * 
-	 * @return TowerNumber - int - returns the current number of Towers (rooks)
-	 */
-	public int getTowerNumber() {
-		return TowerNumber;
 	}
 
 	/**
@@ -427,13 +374,9 @@ public class BackgroundGrid implements Serializable {
 			boolean bSimKingOnTile) {
 		int LocalTurn = TurnRound;
 
-		SchachmattWhite= false;
-		SchachmattBlack= false;
-
 		if(KingX <0 || KingX >= 8 || KingY < 0 || KingY >= 8){
 			return false;
 		}
-
 
 		int iID;
 		boolean Schach = false;
@@ -496,10 +439,8 @@ public class BackgroundGrid implements Serializable {
 
 						}
 					});
-
 					SchachmattBlack =false;
 					SchachmattWhite = true;
-
 				} else {
 					SchachmattBlack = true;
 					SchachmattWhite = false;
@@ -521,16 +462,9 @@ public class BackgroundGrid implements Serializable {
 
 						}
 					});
-
-
-
 				} 
-
 			}
 		}
-
-
-
 		return Schach;
 	}
 
@@ -754,7 +688,7 @@ public class BackgroundGrid implements Serializable {
 
 	/**
 	 * If a King is in check, 
-	 * let�s look if he is mated
+	 * lets look if he is mated
 	 * @param iID - ID of the king
 	 * @param iBackground - current state of the board
 	 * @param KingX - X-Location where the king is
@@ -1075,7 +1009,7 @@ public class BackgroundGrid implements Serializable {
 					if(BoardsEqual){
 						
 						iCount++;
-						System.out.println("Equals..."+iCount+"::LIST_SIZE::"+_AllBoardStatesList.size());
+						//System.out.println("Equals..."+iCount+"::LIST_SIZE::"+_AllBoardStatesList.size());
 					}
 						
 					
@@ -1167,118 +1101,34 @@ public class BackgroundGrid implements Serializable {
 				} else if (Y == 1) {
 					// team white
 					iBackground[X][Y] = 101 + X; // 101 due to Move
-					Farmer TheFarmer = new Farmer(true, iBackground[X][Y], X, Y);
-					TheFarmer.setMeepleXPos(X);
-					TheFarmer.setMeepleYPos(Y);
-					Objectives.set(iBackground[X][Y], TheFarmer);
-
+					
 				} else if (Y == 6) {
 					// team black
 					iBackground[X][Y] = 200 + X;
-
-					Farmer TheFarmer = new Farmer(false, iBackground[X][Y], X, Y);
-					TheFarmer.setMeepleXPos(X);
-					TheFarmer.setMeepleYPos(Y);
-					Objectives.set(iBackground[X][Y], TheFarmer);
-
 				}
 			}
 		}
 		// team white
 		iBackground[0][0] = 110;// tower 1
-		Tower TheTower = new Tower(true, iBackground[0][0], 0, 0);
-		TheTower.setMeepleXPos(0);
-		TheTower.setMeepleYPos(0);
-		Objectives.set(iBackground[0][0], TheTower);
 		iBackground[7][0] = 111;// tower 2
-		TheTower = new Tower(true, iBackground[7][0], 7, 0);
-		TheTower.setMeepleXPos(7);
-		TheTower.setMeepleYPos(0);
-		Objectives.set(iBackground[7][0], TheTower);
-
 		iBackground[1][0] = 120; // rider 1
-		Jumper Drogo = new Jumper(true, iBackground[1][0], 1, 0);
-		Drogo.setMeepleXPos(1);
-		Drogo.setMeepleYPos(0);
-		Objectives.set(iBackground[1][0], Drogo);
-
 		iBackground[6][0] = 121; // rider 2
-		Drogo = new Jumper(true, iBackground[6][0], 6, 0);
-		Drogo.setMeepleXPos(6);
-		Drogo.setMeepleYPos(0);
-		Objectives.set(iBackground[6][0], Drogo);
-
 		iBackground[2][0] = 130; // runner 1
-		Runner TheRunner = new Runner(true, iBackground[2][0], 2, 0);
-		TheRunner.setMeepleXPos(2);
-		TheRunner.setMeepleYPos(0);
-		Objectives.set(iBackground[2][0], TheRunner);
 		iBackground[5][0] = 131; // runner 2
-		TheRunner = new Runner(true, iBackground[5][0], 5, 0);
-		TheRunner.setMeepleXPos(5);
-		TheRunner.setMeepleYPos(0);
-		Objectives.set(iBackground[5][0], TheRunner);
-
 		iBackground[3][0] = 140; // Queen
-		Queen khaleesi = new Queen(true, iBackground[3][0], 3, 0);
-		khaleesi.setMeepleXPos(3);
-		khaleesi.setMeepleYPos(0);
-		Objectives.set(iBackground[3][0], khaleesi);
-
 		iBackground[4][0] = 150; // King
-		King TheKingWhite = new King(true, 150, 4, 0);
-		TheKingWhite.setMeepleXPos(4);
-		TheKingWhite.setMeepleYPos(0); // only for the Kings
-		Objectives.set(150, TheKingWhite);
-
+		
 		// team black
 		// same for the other team except king and queen changed X-Pos+
 		iBackground[0][7] = 210; // tower 1
-		TheTower = new Tower(false, iBackground[0][7], 0, 7);
-		TheTower.setMeepleXPos(0);
-		TheTower.setMeepleYPos(7);
-		Objectives.set(iBackground[0][7], TheTower);
 		iBackground[7][7] = 211; // tower 2
-		TheTower = new Tower(false, iBackground[7][7], 7, 7);
-		TheTower.setMeepleXPos(7);
-		TheTower.setMeepleYPos(7);
-		Objectives.set(iBackground[7][7], TheTower);
-
 		iBackground[1][7] = 220; // rider 1
-		Drogo = new Jumper(false, iBackground[1][7], 1, 7);
-		Drogo.setMeepleXPos(1);
-		Drogo.setMeepleYPos(7);
-		Objectives.set(iBackground[1][7], Drogo);
-
 		iBackground[6][7] = 221; // rider 2
-		Drogo = new Jumper(false, iBackground[6][7], 6, 7);
-		Drogo.setMeepleXPos(6);
-		Drogo.setMeepleYPos(7);
-		Objectives.set(iBackground[6][7], Drogo);
-
 		iBackground[2][7] = 230; // runner 1
-		TheRunner = new Runner(false, iBackground[2][7], 2, 7);
-		TheRunner.setMeepleXPos(2);
-		TheRunner.setMeepleYPos(7);
-		Objectives.set(iBackground[2][7], TheRunner);
 		iBackground[5][7] = 231; // runner 2
-		TheRunner = new Runner(false, iBackground[5][7], 5, 7);
-		TheRunner.setMeepleXPos(5);
-		TheRunner.setMeepleYPos(7);
-		Objectives.set(iBackground[5][7], TheRunner);
-
 		iBackground[3][7] = 240; // queen
-		khaleesi = new Queen(false, iBackground[3][7], 3, 7);
-		khaleesi.setMeepleXPos(3);
-		khaleesi.setMeepleYPos(7);
-		Objectives.set(iBackground[3][7], khaleesi);
-
 		iBackground[4][7] = 250; // king
-		King TheKingBlack = new King(false, iBackground[4][7], 4, 7);
-		TheKingBlack.setMeepleXPos(4);
-		TheKingBlack.setMeepleYPos(7); // only for the Kings
-		Objectives.set(iBackground[4][7], TheKingBlack);
-
+		
 		_Lan=new LAN(iBackground, this);
 	}
 

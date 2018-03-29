@@ -42,21 +42,21 @@ public class Save {
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("File couldn�t be saved!");
+			alert.setHeaderText("File could not be saved!");
 			alert.setContentText("File could not be found!");
 			alert.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("File couldn�t be saved!");
+			alert.setHeaderText("File couldn not be saved!");
 			alert.setContentText("Input Output error. Should this error continue to pop up, please contact us!");
 			alert.showAndWait();
 		} catch (NullPointerException e){
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("File couldn�t be saved!");
+			alert.setHeaderText("File couldn not be saved!");
 			alert.setContentText("File could not be found!");
 			alert.showAndWait();
 		}

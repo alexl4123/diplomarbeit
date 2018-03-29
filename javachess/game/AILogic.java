@@ -6,9 +6,9 @@ import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.backgroundmatrix.Move;
 /**
  * 
- * @author alexl12 - 2017
+ * @author alexl12 - 2018
  * @category AI
- * @version 1.1 - Draw
+ * @version 2.0 - Release
  * 
  *          Class for the AI Logic Here has the AI its brain Here is the AI The
  *          AI is basically a MinMax AI with a EvaluationMethod. But MinMax has
@@ -16,7 +16,7 @@ import javachess.backgroundmatrix.Move;
  *          ,,better moves''
  * 
  *          The improvements of MinMax are there for efficiency, so at a depth
- *          of 5, there mustn�t be searched 36^(5), but less (cut offs)
+ *          of 5, there must not be searched 36^(5), but less (cut offs)
  * 
  *          The evaluation basic principle is Material Balance (what is on the
  *          field). But it also has PawnFormations and a table for each Meeple

@@ -110,10 +110,15 @@ public class About {
 		URL_Label.setLayoutX(325);
 		URL_Label.setLayoutY(250);
 		
+		//----------------------------------------------------------
+		Label version = new Label("Version 2.0");
+		version.setLayoutX(525);
+		version.setLayoutY(280);
+		version.setTextFill(Color.RED);
 		
 		//----------------------------------------------------------
 		Group gp = new Group();
-		gp.getChildren().addAll(Title, c,Devs,Beiser,Beiser_Task,Huber,Huber_Task, Licence, Licence_Text,Further,gitHub);
+		gp.getChildren().addAll(Title, c,Devs,Beiser,Beiser_Task,Huber,Huber_Task, Licence, Licence_Text,Further,gitHub, version);
 		Scene scene1= new Scene(gp, 600, 300, Color.WHITE);
 		
 		

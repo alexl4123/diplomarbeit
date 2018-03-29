@@ -157,15 +157,15 @@ public class AI extends Thread {
 
 					_BGG2.iBackground[A.PX][A.PY] = A.ID;
 					_BGG2.iBackground[A.X][A.Y] = 0; // makes the move
-					
+
 					if(A.ID==150||A.ID==250){
 						_BGG2.setbKingMoved(A.ID, true);
 					}
-					
+
 					if((110 < A.ID && A.ID <= 119) || (210 < A.ID && A.ID <=219)){
 						_BGG2.setbRookMoved(A.ID,true);
 					}
-					
+
 					if (A.ID3 > 0) {
 						_BGG2.iBackground[A.X3][A.Y3] = 0;
 					}
@@ -233,7 +233,7 @@ public class AI extends Thread {
 						_BGG2.higherTurnRound();
 						_BGG2.addTeamState(!_AiTeam);
 						try{
-						_Gui.turnProp.set(_BGG2.getTurnRound());
+							_Gui.turnProp.set(_BGG2.getTurnRound());
 						}catch(Exception ex){
 							System.out.println("Exception handeled:"+ex.getMessage());
 						}
@@ -269,15 +269,15 @@ public class AI extends Thread {
 
 					if(i==0){
 						//if the AI has no moves left
-							Platform.runLater(new Runnable() {
+						Platform.runLater(new Runnable() {
 
-								@Override
-								public void run() {
-									getSchach();
+							@Override
+							public void run() {
+								getSchach();
 
-								}
+							}
 
-							});
+						});
 						if(!_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack()){
 							Platform.runLater(new Runnable() {
 
@@ -304,17 +304,9 @@ public class AI extends Thread {
 						}else{
 							_BGG2.setSchachmattBlack(true);
 						}
-
-
 						break;
 					}
 				}
-
-
-
-
-
-
 
 			}catch(Exception ex) {
 				ex.printStackTrace();
@@ -324,7 +316,6 @@ public class AI extends Thread {
 
 
 		}
-
 
 		//that the player may move
 		_Gui.setThinking(false);
@@ -392,6 +383,8 @@ public class AI extends Thread {
 			alert.setHeaderText("Blackking is in check!");
 			alert.setContentText("Blackking is in check!");
 			alert.showAndWait();
+		} else if(_Blackschach && _BGG2.getSchachmattBlack()) {
+			System.out.println("The AI found out that the black team is mated!");
 		}
 		_Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, false, false);
 		if (_Whiteschach == true  && !_BGG2.getSchachmattWhite()) {

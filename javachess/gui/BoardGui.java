@@ -22,13 +22,8 @@ import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.backgroundmatrix.Move;
 import javachess.game.*;
 import javachess.launchpad.*;
-import javachess.meeple.Jumper;
-import javachess.meeple.Queen;
-import javachess.meeple.Runner;
-import javachess.meeple.Tower;
 import javachess.network.ReadingJob;
 import javachess.network.hostingJob;
-import javachess.threadjobs.HighlightingJob;
 import javafx.event.EventHandler;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -326,8 +321,8 @@ public class BoardGui extends Canvas {
 					alert.showAndWait();
 
 				}
-				
-				
+
+
 				//---------------------------------------------------------------------------------
 
 			}
@@ -355,7 +350,7 @@ public class BoardGui extends Canvas {
 					}
 				}
 				//System.out.println("Draw:"+_BGG2.SchachKing(true, _BGG2, KingX, KingY, false, false));
-				System.out.println("HardCoreMode::"+_BGG2.getHardCoreAI());
+				System.out.println("Schachmatt black::"+_BGG2.getSchachmattBlack());
 
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
 					System.out.println("Pressed");
@@ -457,17 +452,17 @@ public class BoardGui extends Canvas {
 					_BGG = _BGG2.iBackground;
 					int iPos = OMove.getISelect();
 
-					System.out.println("::DEBUG::"+(ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260)))) + "::BUTTON::"+ButtonPressed+"::IPOS::"+(iMatrix > 0 && iMatrix < 160)+"::IPOS::"+iMatrix+"::SELECT::"+OMove.getBSelect()+"::iSelect::"+OMove.getISelect());
+					//System.out.println("::DEBUG::"+(ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260)))) + "::BUTTON::"+ButtonPressed+"::IPOS::"+(iMatrix > 0 && iMatrix < 160)+"::IPOS::"+iMatrix+"::SELECT::"+OMove.getBSelect()+"::iSelect::"+OMove.getISelect());
 					if (((!ButtonPressed && (OMove.getISelect() > 0) && (iPos != iMatrix)) || (ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260))))) && (_iChoose == 1 || (_iChoose == 2 && _BGG2.getAITeam() && !L.getTeam()) || (_iChoose == 2 && !_BGG2.getAITeam() && L.getTeam()) || _iChoose == 0)) { // if move is possible
+						System.out.println("Init player move");
 						soundPlayer.playSound("move");
 						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
-						System.out.println("VALID-Move::");
 						_BGG = XY;
 						_BGG2 = OMove.getBGG2();
 						L.setTeam(_BGG2.getTeam());
 						_Gui.setBGG2(_BGG2);
 						turnProp.setValue(_BGG2.getTurnRound());
-
+						System.out.println("Player move finished::MatedWhite"+_BGG2.getSchachmattWhite()+"::MATEDBLACK::"+_BGG2.getSchachmattBlack());
 					}
 
 
@@ -501,31 +496,18 @@ public class BoardGui extends Canvas {
 						rt.start();
 						System.out.println("Habs gezeichnet");
 
-
-						/*
-						_BGG = (int[][]) _BGG2.getLan().netReadStream.readObject();
-						System.out.println("Hab gelesen du affe");
-						bThinking = false;
-						redraw();
-						 */
-
-
-						//Give board to LAN Partner
-						//No press possible
-						//get Board
-
-					} else if (!ButtonPressed && _iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer() && _BGG2.getAITeam()) {
+					} else if (!ButtonPressed && !_BGG2.getSchachmattWhite() && _iChoose == 2 && _BGG2.getTeam() && !OMove.getBauer() && _BGG2.getAITeam()) {
 						//White AI
-						System.out.println("AI-Depth" + _BGG2.getAiDepth());
+						System.out.println("White AI init");
 						AI _AI = new AI(_BGG2, this,true,false,_BGG2.getAiDepth());
 						_AI.start();
 						LastMoveList = _AI.getLMoveList();
 						bThinking = true;
 						redraw();
 						_BGG2.setTeam(false);
-					} else if (!ButtonPressed && _iChoose == 2 && !_BGG2.getTeam() && !OMove.getBauer() && !_BGG2.getAITeam()) {
+					} else if (!ButtonPressed && !_BGG2.getSchachmattBlack() && _iChoose == 2 && !_BGG2.getTeam() && !OMove.getBauer() && !_BGG2.getAITeam()) {
 						//Black AI
-						System.out.println("AI-Depth" + _BGG2.getAiDepth());
+						System.out.println("Black AI init");
 						AI _AI = new AI(_BGG2, this,false,false,_BGG2.getAiDepth());
 
 						_AI.start();
@@ -538,9 +520,10 @@ public class BoardGui extends Canvas {
 						AIFuckUp.start();
 						bThinking = true;
 					}
-					
+
+					System.out.println("LINE 541");
 					if(_BGG2.getSchachmattBlack() || _BGG2.getSchachmattWhite()){
-						
+						System.out.println("LINE 543");
 						_Gui.newBG();
 					}
 
@@ -680,23 +663,9 @@ public class BoardGui extends Canvas {
 
 		if(getHighlighting() == true){
 
-			if(getHighlightAnimations()==true){
-
-				setHighlightAnimationRunning(true);
-				HighlightingJob hj=new HighlightingJob(this, T, this.gc, moveBlue, secondMoveBlue);
-				Thread th=new Thread(hj);
-				th.start();
-
-
-			}else{
-
-
-				gc.setStroke(getLinearGradient(secondMoveBlue, moveBlue, 1));
-				gc.setLineWidth(2);
-				gc.strokeRect(T.getX()*P1X, T.getY()*P1Y, T.getH()*P1X, T.getW()*P1Y);
-
-			}
-
+			gc.setStroke(getLinearGradient(secondMoveBlue, moveBlue, 1));
+			gc.setLineWidth(2);
+			gc.strokeRect(T.getX()*P1X, T.getY()*P1Y, T.getH()*P1X, T.getW()*P1Y);
 
 		}
 
