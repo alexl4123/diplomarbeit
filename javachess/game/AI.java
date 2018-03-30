@@ -11,16 +11,13 @@ import javafx.scene.control.Alert.AlertType;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * @author alex - 2017
- * @version 1.1 - Draw
+ * @author alexl4123 - 2018
+ * @version 2.0 - release
  * 
  *	Class AI extends Thread.
  *	If the thread AI is started,
  *	it starts the AI process.
  *	Calls in class AILogic the AlphaBeta part
- * 
- * 
- *
  */
 public class AI extends Thread {
 
@@ -62,10 +59,19 @@ public class AI extends Thread {
 	 */
 	private static boolean bRunning = false;
 
+	/**
+	 * If the ,,SkyNet'' mode is currently chosen
+	 */
 	private boolean _AIvsAI;
 
+	/**
+	 * The object for the AIvsAI mode
+	 */
 	private AIvsAI _AIFuckUp;
 
+	/**
+	 * The max depth of the AI search
+	 */
 	private int _depth;
 
 

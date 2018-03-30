@@ -15,7 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 
 /**
  * @author alexl4123 - 2018
- * @version 2.0 - Release
+ * @version 2.0 - release
  * 
  * 
  *          The class BackgroundGrid is basically the ,,save-class'' So it
@@ -25,7 +25,7 @@ import javafx.scene.control.Alert.AlertType;
  * 
  *          -On start the default position of the Meeples is added here -It
  *          contains the ,,iBackground[][]''. This is the representation of the
- *          position of the meeples. -Also the CheckMate Method (and also Draw calc) is located here
+ *          position of the meeples. -Also the CheckMate Method (and also DrawCalc) is located here
  * 
  *
  */
@@ -78,42 +78,42 @@ public class BackgroundGrid implements Serializable {
 	 * This list is needed for the forward/backward function (how does the board look like?)
 	 */
 	private ArrayList<int[][]> _AllBoardStatesList;
-	
+
 	/**
 	 * This list is needed for the forward/backward function (which team plays at that round?)
 	 */
 	private ArrayList<boolean[]> _AllTeamStatesList;
-	
+
 	/**
 	 * The indication, if you can move
 	 */
 	private boolean move;
-	
+
 	/**
 	 * This measures the current turn round
 	 */
 	private short TurnRound;
-	
+
 	/**
 	 * How many additional queens are in the game
 	 */
 	private int QueenNumber;
-	
+
 	/**
 	 * Which Game-Mode is selected
 	 */
 	private int _Choose; 
-	
+
 	/**
 	 * needed for LAN stuff
 	 */
 	public LAN _Lan;
-	
+
 	/**
 	 * Which team the AI should play
 	 */
 	private boolean _bAITeam;
-	
+
 	/**
 	 * Boolean if a special move occured
 	 */
@@ -132,7 +132,7 @@ public class BackgroundGrid implements Serializable {
 		bKingMoved = new boolean[2];
 		bTowerMoved = new boolean[4];
 		HardCoreAI = false;
-		
+
 
 		QueenNumber = 0;
 		TurnRound = 0;
@@ -177,7 +177,7 @@ public class BackgroundGrid implements Serializable {
 	public void higherTurnRound() {
 		TurnRound++;
 	}
-	
+
 	public void setTurnRound(short TR){
 		TurnRound = TR;
 	}
@@ -260,62 +260,6 @@ public class BackgroundGrid implements Serializable {
 		iBackground[X][Y] = iBG;
 	}
 
-	int X;
-	int Y;
-	Object OBJ;
-
-	/**
-	 * sets the X and Y pos from the previous button press (currently not used)
-	 * 
-	 * @param X1
-	 *            - int - prev. button press
-	 * @param Y1
-	 *            - int - prev. button press
-	 */
-	public void setXY(int X1, int Y1) {
-
-		X = X1;
-		Y = Y1;
-	}
-
-	/**
-	 * Sets the selected Meeple For instance if you click on a knight, this sets
-	 * the knight (currently not used)
-	 * 
-	 * @param Ob
-	 *            - Object - which object to set as selected (for moving)
-	 */
-	public void setObject(Object Ob) {
-		OBJ = Ob;
-	}
-
-	/**
-	 * returns the X of the previous turn (currently not used)
-	 * 
-	 * @return X - int - selected X Position
-	 */
-	public int getX() {
-
-		return X;
-	}
-
-	/**
-	 * returns the Y of the previous turn (currently not used)
-	 * 
-	 * @return Y - int - returns the selected Y pos
-	 */
-	public int getY() {
-		return Y;
-	}
-
-	/**
-	 * returns the object of the previous selected item (currently not used)
-	 * 
-	 * @return OBJ - Object - the selected Meeple
-	 */
-	public Object getObject() {
-		return OBJ;
-	}
 
 	/**
 	 * gets the current team
@@ -374,10 +318,12 @@ public class BackgroundGrid implements Serializable {
 			boolean bSimKingOnTile) {
 		int LocalTurn = TurnRound;
 
+		//if there is a wrong calling
 		if(KingX <0 || KingX >= 8 || KingY < 0 || KingY >= 8){
 			return false;
 		}
 
+		//sets the ID of the king/meeple
 		int iID;
 		boolean Schach = false;
 		if (KingX <= 7 && KingY <= 7) {
@@ -386,6 +332,7 @@ public class BackgroundGrid implements Serializable {
 			iID = 0;
 		}
 
+		//if a king should be ,,simulated'' at this tile
 		if (bSimKingOnTile && team) {
 			iID = 150;
 		} else if (bSimKingOnTile && !team) {
@@ -394,6 +341,7 @@ public class BackgroundGrid implements Serializable {
 
 		//System.out.println("team:" + team + ":KingX:" + KingX + ":KingY:" + KingY + ":iID:" + iID);
 		//System.out.println(iID + ":IID:");
+		//checks if the King is in check
 		switch (iID) {
 		case 150: {
 			Schach = Schach(BGG.iBackground, KingX, KingY, team);
@@ -409,16 +357,18 @@ public class BackgroundGrid implements Serializable {
 		break;
 		}
 
+		//when there is no check, calculate a Draw
 		if(!SchachMatt && !Schach && !_Draw){
 			_Draw = CalcDraw(iID, BGG.iBackground, KingX, KingY, team, BGG);
 		}
 
+		//when there is a check, calculate if there is a Checkmate
 		if (Schach && !SchachMatt) {
 
 			SchachmattWhite = SchachMatt(iID, BGG.iBackground, KingX, KingY, team, BGG);
 			System.out.println("Schach:" + Schach + ":SchachmattW" + SchachmattWhite);
 			if(SchachmattWhite){
-
+				//if there is a checkmate
 				if (team) {
 
 					Platform.runLater(new Runnable() {
@@ -430,7 +380,7 @@ public class BackgroundGrid implements Serializable {
 								alert.setTitle("Check Mate");
 
 								alert.setHeaderText("White lost the game! The game took " + LocalTurn + " turns.");
-								
+
 								alert.showAndWait();
 
 							} catch (Exception ex) {
@@ -453,7 +403,7 @@ public class BackgroundGrid implements Serializable {
 								Alert alert = new Alert(AlertType.INFORMATION);
 								alert.setTitle("Check Mate");
 								alert.setHeaderText("Black lost the game! The game took " + LocalTurn + "turns.");
-								
+
 								alert.showAndWait();
 
 							} catch (Exception ex) {
@@ -469,7 +419,7 @@ public class BackgroundGrid implements Serializable {
 	}
 
 	/**
-	 * Checks if a king is in check.
+	 * Checks if a king is in check. Simply tries with every enemy meeple, to hit the king
 	 * @param i - ID of the King
 	 * @param iBackground - current state of the board
 	 * @param KingX - X-Location where the king is
@@ -699,7 +649,7 @@ public class BackgroundGrid implements Serializable {
 	private boolean SchachMatt(int iID, int[][] iBackground, int KingX, int KingY, boolean Team, BackgroundGrid BGG) {
 
 
-
+		//let's see, if the king can get free on his own... (if he can attack the aggressor, or he can move away)
 		for (int Y = -1; Y <= 1; Y++) {
 			for (int X = -1; X <= 1; X++) {
 				if(KingX+X >= 0 && KingX+X <8 && KingY+Y >= 0 && KingY+Y < 8){ //Due to bugs
@@ -723,19 +673,15 @@ public class BackgroundGrid implements Serializable {
 
 		}
 
+		//gets every possible move of the attacker and than tries to intercept it, or hit him
 		Move Moves = new Move();
 		Moves.setBGG(iBackground);
 		Moves.setBGG2(BGG);
 		//Moves.GetMove(iID, KingX, KingY, BGG);
 		Moves.setBSelect(false);
-		System.out.println("line 908:");
 
 		int iYA, iXA;
 
-		/*if(Schach(iBackground, _iX, _iY, !Team)){
-			System.out.println("line 913");
-			return false;
-		}*/
 		int iBB = iBackground[_iX][_iY];
 		ArrayList<MovePos> AttackMoves = Moves.getMoveMeeple(iBackground, !Team, iBB, _iX, _iY);
 		MovePos MPSelf = new MovePos();
@@ -751,7 +697,7 @@ public class BackgroundGrid implements Serializable {
 				for(iXA = 0; iXA < 8; iXA ++){
 					int iBack = iBackground[iXA][iYA];
 					ArrayList<MovePos> DefenseMoves = Moves.getMoveMeeple(iBackground, Team, iBack, iXA, iYA);
-
+					//checks if a friend may intercept
 
 					for(MovePos MPA : DefenseMoves){
 						if(MP.PX == MPA.PX && MP.PY == MPA.PY){
@@ -775,13 +721,14 @@ public class BackgroundGrid implements Serializable {
 								System.out.println("");
 							}
 
-							//get the king positition
+							//get the king position
 
 
 							System.out.println("KingX::"+KingX+"::KingY::"+KingY);
 							System.out.println("SchachKing:" + Schach(iBackground, KingX, KingY, Team) + "::Team::" + Team + "::MPA.PX::" + MPA.PX + "::MPA.PY::" + MPA.PY);
 							if(!SchachKing(Team, BGG, KingX, KingY, true, false) && !Schach(iBackground, KingX, KingY, Team)){
 								//System.out.println(MPA.PX + "::" + MPA.PY + "::Funkt");
+								//no checkmate
 								iBackground[MPA.PX][MPA.PY] = MPA.ID2;
 								iBackground[MPA.X][MPA.Y] = MPA.ID;
 								System.out.println("line 941");
@@ -796,40 +743,12 @@ public class BackgroundGrid implements Serializable {
 			}
 		}
 
-		for(int iHelp = 0; iHelp < Moves.getMoveList().size(); iHelp++){
-			int[] IDAR = Moves.getMoveList().get(iHelp);
-			int IDA = IDAR[0];
-
-			if(IDA < 8)
-			{
-				iYA = 0;
-			} else if(IDA >= 8 && IDA < 16){
-				iYA = 1;
-			} else if(IDA >= 16 && IDA < 24){
-				iYA = 2;
-			}else if(IDA >= 24 && IDA < 32){
-				iYA = 3;
-			}else if(IDA >= 32 && IDA < 40){
-				iYA = 4;
-			}else if(IDA >= 40 && IDA < 48){
-				iYA = 5;
-			} else if(IDA >= 48 && IDA <56){
-				iYA = 6;
-			}else{
-				iYA = 7;
-			}
-
-			iXA = IDA - (iYA * 8);
-
-			//System.out.println(iXA + ":: " + iYA);
-
-			if(Schach(iBackground, _iX, _iY, !Team)){
-				System.out.println("line 981");
-				return false;
-			}
-
-
+		//if the meeple is strikeable
+		if(Schach(iBackground, _iX, _iY, !Team)){
+			System.out.println("line 981");
+			return false;
 		}
+
 
 
 		return true;
@@ -919,7 +838,7 @@ public class BackgroundGrid implements Serializable {
 					alert.setHeaderText("Draw");
 					alert.setContentText("The game cannot be continued due to the impossible of check mate.");
 					alert.setTitle("Draw");
-					
+
 					Optional<ButtonType> result = alert.showAndWait();
 					if(result.get() == ButtonType.OK){
 						setDraw(true);
@@ -989,15 +908,15 @@ public class BackgroundGrid implements Serializable {
 				return true;
 			}
 		}
-		
+
 		//claim draw by threefold repetition
 		if(TurnRound >= 6){
 			int iCount = 0;
 			boolean BoardsEqual = true;
-			
+
 			for(int[][] iBoards : _AllBoardStatesList){
 				iCount = 0;
-				
+
 				for(int[][] iBoards2 : _AllBoardStatesList){
 					BoardsEqual = true;
 					for(int iY = 0; iY < 8; iY++){
@@ -1007,12 +926,12 @@ public class BackgroundGrid implements Serializable {
 						}
 					}
 					if(BoardsEqual){
-						
+
 						iCount++;
 						//System.out.println("Equals..."+iCount+"::LIST_SIZE::"+_AllBoardStatesList.size());
 					}
-						
-					
+
+
 				}
 				if(iCount >= 3 && (_Choose != 2 ||(_Choose == 2 && _bAITeam != this.team))){
 					Platform.runLater(new Runnable() {
@@ -1026,16 +945,11 @@ public class BackgroundGrid implements Serializable {
 							alert.showAndWait();
 						}
 					});
-					
+
 					return true;
 				}
 			}
-			
-			
-			
-			
 		}
-
 		return Draw;
 	}
 
@@ -1049,11 +963,11 @@ public class BackgroundGrid implements Serializable {
 		TurnRound = 0;
 		_AllBoardStatesList.clear();
 		_AllTeamStatesList.clear();
-		
-		
-		
+
+
+
 		//add the team states
-		
+
 		setbKingMoved(150, false);
 		setbKingMoved(250, false);
 		setbRookMoved(110, false);
@@ -1063,12 +977,12 @@ public class BackgroundGrid implements Serializable {
 
 		team = true;
 		setTeam(true);
-		
-		
+
+
 		SchachmattBlack = false;
 		SchachmattWhite = false;
 		_Draw = false;
-		
+
 		int[][] iBoard = new int[8][8];
 		for(int iHY = 0; iHY < 8; iHY++){
 			for(int iHX = 0; iHX < 8; iHX++){
@@ -1078,10 +992,13 @@ public class BackgroundGrid implements Serializable {
 		}
 		_AllBoardStatesList.add(iBoard);
 		addTeamState(getTeam());
-		
-		
+
+
 	}
 
+	/**
+	 * For a new game - reset the Board
+	 */
 	public void NewBoard(){
 		for (int i = 0; i < 300; i++) {
 			Objectives.add(i);
@@ -1101,7 +1018,7 @@ public class BackgroundGrid implements Serializable {
 				} else if (Y == 1) {
 					// team white
 					iBackground[X][Y] = 101 + X; // 101 due to Move
-					
+
 				} else if (Y == 6) {
 					// team black
 					iBackground[X][Y] = 200 + X;
@@ -1117,7 +1034,7 @@ public class BackgroundGrid implements Serializable {
 		iBackground[5][0] = 131; // runner 2
 		iBackground[3][0] = 140; // Queen
 		iBackground[4][0] = 150; // King
-		
+
 		// team black
 		// same for the other team except king and queen changed X-Pos+
 		iBackground[0][7] = 210; // tower 1
@@ -1128,7 +1045,7 @@ public class BackgroundGrid implements Serializable {
 		iBackground[5][7] = 231; // runner 2
 		iBackground[3][7] = 240; // queen
 		iBackground[4][7] = 250; // king
-		
+
 		_Lan=new LAN(iBackground, this);
 	}
 
@@ -1267,43 +1184,9 @@ public class BackgroundGrid implements Serializable {
 	public void setDraw(boolean Draw){
 		_Draw = Draw;
 	}
-	/*
+	
 	/**
-	 * add a new move to the MoveList
-	 * @param MP - MovePos object - will be added to the MoveList
-	 *
-	public void addMoveListItem(MovePos MP){
-		_TotalMoveList.add(MP);
-	}
-
-	/**
-	 * Remove last Item in the Move List
-	 *
-	public void removeLastMoveListItem(){
-		if(_TotalMoveList.size()-1 > 0){
-			_TotalMoveList.remove((_TotalMoveList.size()-1));
-		}
-
-	}
-
-	/**
-	 * get a item from the Move List
-	 * @param i - which item
-	 * @return - MovePos object
-	 *
-	public MovePos getMovelistItem(int i){
-		if(i >= 0 && i < _TotalMoveList.size()){
-			return _TotalMoveList.get(i);
-		}
-
-		return null;
-
-	}*/
-
-
-
-	/**
-	 * I think i need this for the Move class...
+	 * This Board is needed for the move class
 	 */
 	public int[][] Board;
 
@@ -1363,18 +1246,34 @@ public class BackgroundGrid implements Serializable {
 		return _AllTeamStatesList;
 	}
 
+	/**
+	 * Sets the AI Team (true -> white ai)
+	 * @param AITeam
+	 */
 	public void setAITeam(boolean AITeam) {
 		_bAITeam = AITeam;
 	}
 
+	/**
+	 * Returns, which team the AI should play
+	 * @return boolean - AITeam
+	 */
 	public boolean getAITeam() {
 		return _bAITeam;
 	}
 
+	/**
+	 * Checks, if the HardCoreAi-Mode is selected
+	 * @return
+	 */
 	public boolean getHardCoreAI() {
 		return HardCoreAI;
 	}
 
+	/**
+	 * Sets the HardcoreAI mode
+	 * @param hardCoreAI - sets the HardCoreAI Mode
+	 */
 	public void setHardCoreAI(boolean hardCoreAI) {
 		HardCoreAI = hardCoreAI;
 	}

@@ -8,19 +8,16 @@ import javafx.scene.control.Alert.AlertType;
 
 /**
  * @author alexl4123 - 2018
- * @version 2.0 - Release
+ * @version 2.0 - release
  * 
- *          A class for moving around the Meeples - Contains the Move Method Also
- *          the View Method is inside. This is one of the most important game
- *          rule classes
- * 
- * 
- *
+ *          A class for moving around the Meeples
+ *          All move operations are checked here.
+ *          
  */
 public class Move {
 	/**
-	 * _BGG - int[][] - set due to need of it TheMove - int[][] - returned to
-	 * Gui - after the move
+	 * _BGG - int[][] - set due to need of it 
+	 * 	TheMove - int[][] - returned to Gui - after the move
 	 */
 	private int[][] _BGG, TheMove;
 
@@ -72,14 +69,16 @@ public class Move {
 
 
 
-
+	/**
+	 * default constructor - sets move selected to false
+	 */
 	public Move() {
 		_bSelect = false;
 
 	}
 
 	/**
-	 * Returns the BackgroundGrid (int[][]) to be drawn Dependend on.
+	 * This methode returns the backgroundGrid, which should be drawn
 	 * Just uses one other method to identify the possible moves.
 	 * These moves are returned via a MovePos object.
 	 * 
@@ -354,9 +353,10 @@ public class Move {
 	}
 
 	/**
-	 * Is the move method for AI and Player This method follows the DRY
-	 * principle (=Dont�t repead yourself) This methode gives back all possible
-	 * moves for one Meeple
+	 * Is the move method for AI and Player. This method follows the DRY
+	 * principle (=Do not repeat yourself) This methode gives back all possible
+	 * moves for one Meeple, as a MovePos ArrayList 
+	 * -> one MovePos object is one possible move
 	 * 
 	 * @param BGG
 	 *            - Board representation
@@ -1093,7 +1093,7 @@ public class Move {
 
 	/**
 	 * Bauerntausch: if a pawn gets to the other side of the fied, than the
-	 * player can change him to a Queen, Jumper, Runner of tower.
+	 * player can change him to a Queen
 	 * 
 	 * TODO -Upgrade to fx
 	 * 
@@ -1110,281 +1110,277 @@ public class Move {
 			_BGG2.higherQueenNumber();
 			Number = _BGG2.getQueenNumber();
 			_BGG2.setBackgroundGrid(XX, YY, Number + 140);
-			//Queen khaleesi = new Queen(true, Number + 140, XX, YY);
-			//_BGG2.Objectives.set(Number + 140, khaleesi);
 			_BGG2.iBackground[XX][YY] = 140 + Number;
 		} else {
 			_BGG2.higherQueenNumber();
 			Number = _BGG2.getQueenNumber();
 			_BGG2.setBackgroundGrid(XX, YY, Number + 240);
-			//Queen khaleesi = new Queen(false, Number + 240, XX, YY);
-			//_BGG2.Objectives.set(Number + 240, khaleesi);
 			TheMove[XX][YY] = 240 + Number;
 		}
 		_BGG2.setMove(true);
 
-	
-}
 
-/**
- * getSchach() simply returns a true _Blackschach when the Black king is in
- * check and a _Whiteschach when the White king is in check. This method is
- * use mainly for Moveing & Viewing
- */
-public void getSchach() {
+	}
 
-	int XKing2, YKing2, XKing1, YKing1;
-	XKing2 = 10;
-	XKing1 = 10;
-	YKing1 = 10;
-	YKing2 = 10;
-	for (int Y = 0; Y < 8; Y++) {
-		for (int X = 0; X < 8; X++) {
-			if (TheMove[X][Y] == 150) {
-				XKing1 = X;
-				YKing1 = Y;
-			}
-			if (TheMove[X][Y] == 250) {
-				XKing2 = X;
-				YKing2 = Y;
+	/**
+	 * getSchach() simply returns a true _Blackschach when the Black king is in
+	 * check and a _Whiteschach when the White king is in check. This method is
+	 * use mainly for Moveing & Viewing
+	 */
+	public void getSchach() {
+
+		int XKing2, YKing2, XKing1, YKing1;
+		XKing2 = 10;
+		XKing1 = 10;
+		YKing1 = 10;
+		YKing2 = 10;
+		for (int Y = 0; Y < 8; Y++) {
+			for (int X = 0; X < 8; X++) {
+				if (TheMove[X][Y] == 150) {
+					XKing1 = X;
+					YKing1 = Y;
+				}
+				if (TheMove[X][Y] == 250) {
+					XKing2 = X;
+					YKing2 = Y;
+				}
 			}
 		}
+
+		_Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, true, false);
+		if (_Blackschach) {
+
+		}
+		_Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, true, false);
+		if (_Whiteschach) {
+		}
+
 	}
 
-	_Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, true, false);
-	if (_Blackschach) {
+	/**
+	 * to check if a king is in real ''Schach''. Different output for each King Not for
+	 * SCHACHMATT!!! Schachmatt is detected automatically, but you get it via
+	 * BackgroundGrid.getSchachmatt()
+	 */
+	public void getSchach2() {
 
-	}
-	_Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, true, false);
-	if (_Whiteschach) {
-	}
-
-}
-
-/**
- * to check if a king is in "Schach". Different output for each King Not for
- * SCHACHMATT!!! Schachmatt is detected automatically, but you get it via
- * BackgroundGrid.getSchachmatt()
- */
-public void getSchach2() {
-
-	boolean Blackschach, Whiteschach;
-	int XKing2, YKing2, XKing1, YKing1;
-	XKing2 = 10;
-	XKing1 = 10;
-	YKing1 = 10;
-	YKing2 = 10;
-	for (int Y = 0; Y < 8; Y++) {
-		for (int X = 0; X < 8; X++) {
-			if (TheMove[X][Y] == 150) {
-				XKing1 = X;
-				YKing1 = Y;
-			}
-			if (TheMove[X][Y] == 250) {
-				XKing2 = X;
-				YKing2 = Y;
+		boolean Blackschach, Whiteschach;
+		int XKing2, YKing2, XKing1, YKing1;
+		XKing2 = 10;
+		XKing1 = 10;
+		YKing1 = 10;
+		YKing2 = 10;
+		for (int Y = 0; Y < 8; Y++) {
+			for (int X = 0; X < 8; X++) {
+				if (TheMove[X][Y] == 150) {
+					XKing1 = X;
+					YKing1 = Y;
+				}
+				if (TheMove[X][Y] == 250) {
+					XKing2 = X;
+					YKing2 = Y;
+				}
 			}
 		}
-	}
-	_BGG2.iBackground = TheMove;
+		_BGG2.iBackground = TheMove;
 
-	Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, false, false);
-	if (Blackschach == true && !_BGG2.getSchachmattBlack()) {
-		Platform.runLater(new Runnable() {
+		Blackschach = _BGG2.SchachKing(false, _BGG2, XKing2, YKing2, false, false);
+		if (Blackschach == true && !_BGG2.getSchachmattBlack()) {
+			Platform.runLater(new Runnable() {
 
-			@Override
-			public void run() {
-				try {
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("check");
-					alert.setHeaderText("Blackking is in check!");
-					alert.setContentText("Blackking is in check!");
-					alert.showAndWait();
+				@Override
+				public void run() {
+					try {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("check");
+						alert.setHeaderText("Blackking is in check!");
+						alert.setContentText("Blackking is in check!");
+						alert.showAndWait();
 
-				} catch (Exception ex) {
-					ex.printStackTrace();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+
 				}
+			});
 
-			}
-		});
+		}
+		System.out.println("1-Mated Black::"+_BGG2.getSchachmattBlack()+"::Mated White::"+_BGG2.getSchachmattWhite());
+		Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, false, false);
+		System.out.println("2-Mated Black::"+_BGG2.getSchachmattBlack()+"::Mated White::"+_BGG2.getSchachmattWhite());
+		if (Whiteschach == true && !_BGG2.getSchachmattWhite()) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("check");
+						alert.setHeaderText("Whiteking is in check!");
+						alert.setContentText("Whiteking is in check!");
+						alert.showAndWait();
 
-	}
-	System.out.println("1-Mated Black::"+_BGG2.getSchachmattBlack()+"::Mated White::"+_BGG2.getSchachmattWhite());
-	Whiteschach = _BGG2.SchachKing(true, _BGG2, XKing1, YKing1, false, false);
-	System.out.println("2-Mated Black::"+_BGG2.getSchachmattBlack()+"::Mated White::"+_BGG2.getSchachmattWhite());
-	if (Whiteschach == true && !_BGG2.getSchachmattWhite()) {
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("check");
-					alert.setHeaderText("Whiteking is in check!");
-					alert.setContentText("Whiteking is in check!");
-					alert.showAndWait();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
 
-				} catch (Exception ex) {
-					ex.printStackTrace();
 				}
+			});
 
-			}
-		});
+		}
+
+		System.out.println("Mated Black::"+_BGG2.getSchachmattBlack()+"::Mated White::"+_BGG2.getSchachmattWhite());
 
 	}
-	
-	System.out.println("Mated Black::"+_BGG2.getSchachmattBlack()+"::Mated White::"+_BGG2.getSchachmattWhite());
 
-}
+	/**
+	 * @param int[][]
+	 *            BGG - is a int[][] - to set the Background Array
+	 */
+	public void setBGG(int[][] BGG) {
+		_BGG = BGG;
+	}
 
-/**
- * @param int[][]
- *            BGG - is a int[][] - to set the Background Array
- */
-public void setBGG(int[][] BGG) {
-	_BGG = BGG;
-}
+	/**
+	 * @param boolean
+	 *            sel - set boolean _bSelect (if a Meeple has been selected)
+	 */
+	public void setBSelect(boolean sel) {
+		_bSelect = sel;
+	}
 
-/**
- * @param boolean
- *            sel - set boolean _bSelect (if a Meeple has been selected)
- */
-public void setBSelect(boolean sel) {
-	_bSelect = sel;
-}
+	/**
+	 * @return int[][] _BGG - returns the BackgroundGrid,Grid
+	 */
+	public int[][] getBGG() {
+		return _BGG;
+	}
 
-/**
- * @return int[][] _BGG - returns the BackgroundGrid,Grid
- */
-public int[][] getBGG() {
-	return _BGG;
-}
+	/**
+	 * @return int _iSelect - Returns the number of the previous selected Meeple
+	 */
+	public int getISelect() {
+		return _iSelect;
+	}
 
-/**
- * @return int _iSelect - Returns the number of the previous selected Meeple
- */
-public int getISelect() {
-	return _iSelect;
-}
+	/**
+	 * @return boolean _beSelect - returns if a Meeple has been selected
+	 */
+	public boolean getBSelect() {
+		return _bSelect;
+	}
 
-/**
- * @return boolean _beSelect - returns if a Meeple has been selected
- */
-public boolean getBSelect() {
-	return _bSelect;
-}
+	/**
+	 * @return boolean _Bauerntausch - returns true if a Bauerntausch is
+	 *         currently happening
+	 */
+	public boolean getBauer() {
+		return _Bauerntausch;
+	}
 
-/**
- * @return boolean _Bauerntausch - returns true if a Bauerntausch is
- *         currently happening
- */
-public boolean getBauer() {
-	return _Bauerntausch;
-}
+	/**
+	 * @return ArrayList<int[]> MoveList - The List for the possible Moves
+	 */
+	public ArrayList<int[]> getMoveList() {
+		return _MoveList;
+	}
 
-/**
- * @return ArrayList<int[]> MoveList - The List for the possible Moves
- */
-public ArrayList<int[]> getMoveList() {
-	return _MoveList;
-}
+	/**
+	 * Sets the move list
+	 * @param newMovelist
+	 */
+	public void setMoveList(ArrayList<int[]> newMovelist){
+		_MoveList = newMovelist;
+	}
 
-/**
- * Sets the move list
- * @param newMovelist
- */
-public void setMoveList(ArrayList<int[]> newMovelist){
-	_MoveList = newMovelist;
-}
+	/**
+	 * @return ArrayList<int[]> HitList - The List for the possible strikes
+	 */
+	public ArrayList<int[]> getHitList() {
+		return _HitList;
+	}
 
-/**
- * @return ArrayList<int[]> HitList - The List for the possible strikes
- */
-public ArrayList<int[]> getHitList() {
-	return _HitList;
-}
+	/**
+	 * 
+	 * @return ArrayList<int[]> - LastMoveList - List where you have last moved
+	 */
+	public ArrayList<int[]> getLastMoveList() {
+		return _LastMoveList;
+	}
 
-/**
- * 
- * @return ArrayList<int[]> - LastMoveList - List where you have last moved
- */
-public ArrayList<int[]> getLastMoveList() {
-	return _LastMoveList;
-}
+	/**
+	 * Sets the last move list
+	 * @param newLastMoveList - ArrayList<int[]>
+	 */
+	public void setLastMoveList(ArrayList<int[]> newLastMoveList){
+		_LastMoveList = newLastMoveList;
+	}
 
-/**
- * Sets the last move list
- * @param newLastMoveList - ArrayList<int[]>
- */
-public void setLastMoveList(ArrayList<int[]> newLastMoveList){
-	_LastMoveList = newLastMoveList;
-}
+	/**
+	 * @return int _iPosX - Returns the previous selected Meeples X Position in
+	 *         8x8
+	 */
+	public int getIPosX() {
+		return _iPosX;
+	}
 
-/**
- * @return int _iPosX - Returns the previous selected Meeples X Position in
- *         8x8
- */
-public int getIPosX() {
-	return _iPosX;
-}
+	/**
+	 * overrides the last x pos
+	 * @param x - the x value of the meeple
+	 */
+	public void setIPosX(int x) {
+		_iPosX = x;
+	}
 
-/**
- * overrides the last x pos
- * @param x - the x value of the meeple
- */
-public void setIPosX(int x) {
-	_iPosX = x;
-}
+	/**
+	 * overrides the last y pos
+	 * @param y - the y value of the meeple
+	 */
+	public void setIPosY(int y) {
+		_iPosY = y;
+	}
 
-/**
- * overrides the last y pos
- * @param y - the y value of the meeple
- */
-public void setIPosY(int y) {
-	_iPosY = y;
-}
+	/**
+	 * @return int _iPosY - Returns the previous selected Meeples Y Position in
+	 *         8x8
+	 */
+	public int getIPosY() {
+		return _iPosY;
+	}
 
-/**
- * @return int _iPosY - Returns the previous selected Meeples Y Position in
- *         8x8
- */
-public int getIPosY() {
-	return _iPosY;
-}
+	/**
+	 * 
+	 * @return _BGG2 - backgroundGrid - returns the BackgroundGrid object - used
+	 *         for drawing
+	 */
+	public BackgroundGrid getBGG2() {
+		return _BGG2;
+	}
 
-/**
- * 
- * @return _BGG2 - backgroundGrid - returns the BackgroundGrid object - used
- *         for drawing
- */
-public BackgroundGrid getBGG2() {
-	return _BGG2;
-}
-
-/**
- * Set the Backgroundgrid
- * 
- * @param BGG
- *            - object of class BackgroundGrid
- */
-public void setBGG2(BackgroundGrid BGG) {
-	_BGG2 = BGG;
-}
+	/**
+	 * Set the Backgroundgrid
+	 * 
+	 * @param BGG
+	 *            - object of class BackgroundGrid
+	 */
+	public void setBGG2(BackgroundGrid BGG) {
+		_BGG2 = BGG;
+	}
 
 
 
-/**
- * 
- * @param ID - int - overrides the last meeple
- */
-public void setLastID(int ID) {
-	_iSelect = ID;
-}
+	/**
+	 * 
+	 * @param ID - int - overrides the last meeple
+	 */
+	public void setLastID(int ID) {
+		_iSelect = ID;
+	}
 
-/**
- * for the launchpad - if move has happenend
- * @return boolean - if move has happenend
- */
-public boolean getMoveAlowed() {
-	return _moveAllowed;
-}
+	/**
+	 * for the launchpad - if move has happenend
+	 * @return boolean - if move has happenend
+	 */
+	public boolean getMoveAlowed() {
+		return _moveAllowed;
+	}
 }

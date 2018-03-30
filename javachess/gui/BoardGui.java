@@ -47,7 +47,6 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import sun.net.InetAddressCachePolicy;
 
 /**
  * @author alex12 - 2017

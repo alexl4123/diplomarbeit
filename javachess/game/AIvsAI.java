@@ -3,15 +3,41 @@ package javachess.game;
 import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.gui.BoardGui;
 
+/**
+ * @author alexl4123 - 2018
+ * @version 2.0 - release
+ * 
+ * This class is used for the ,,secret'' GameMode (type SkyNet into the IP-Addresse field).
+ * Here the AI plays against the AI. 
+ * This class extends Thread, so i won't affect the other game.
+ */
 public class AIvsAI extends Thread {
 	
+	/**
+	 * Object of BackgroundGrid - used for Board states
+	 */
 	private BackgroundGrid _BGG2;
 	
+	/**
+	 * Object of the BoardGui - used for updating GUI
+	 */
 	private BoardGui _BG;
 	
+	/**
+	 * Is set to true, when the white AI calculates a turn, so the black AI won't fire
+	 */
 	public boolean bAI_Thinking_White;
+	
+	/**
+	 * Is set to true, when the black AI calculates a turn
+	 */
 	public boolean bAI_Thinking_Black;
 	
+	/**
+	 * This is the constructor for the AIvsAI mode - sets the _BG and _BGG2
+	 * @param BGG2 sets _BGG2
+	 * @param BG sets _BG
+	 */
 	public AIvsAI(BackgroundGrid BGG2, BoardGui BG) {
 		bAI_Thinking_White = false;
 		bAI_Thinking_Black = false;
@@ -19,6 +45,12 @@ public class AIvsAI extends Thread {
 		_BG = BG;
 	}
 	
+	/**
+	 * when the new thread is fired,
+	 * this is executed. 
+	 * So here the AI plays truely against itself
+	 * At first the white AI is called, then the black and so on
+	 */
 	public void run() {
 		_BG.setThinking(true);
 		boolean isRunning = true;

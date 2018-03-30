@@ -3,10 +3,10 @@ package javachess.game;
 import java.io.Serializable;
 
 /**
- * Saves the AI-Moves
- * @author alexl12 - 2017
- * @version 1.1 - Draw
+ * @author alexl4123 - 2018
+ * @version 2.0 - release
  *
+ * This class stores a move. For instance: Pawn B2 -> B3
  */
 public class MovePos implements Serializable{
 	

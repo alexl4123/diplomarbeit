@@ -6,12 +6,11 @@ import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.backgroundmatrix.Move;
 /**
  * 
- * @author alexl12 - 2018
- * @category AI
+ * @author alexl4123 - 2018
  * @version 2.0 - Release
  * 
- *          Class for the AI Logic Here has the AI its brain Here is the AI The
- *          AI is basically a MinMax AI with a EvaluationMethod. But MinMax has
+ *          Class for the AI Logic, here the AI has its brain
+ *          The AI is basically a MinMax-Algorithm AI with an Evaluation-Method. But MinMax has
  *          certain improvements like AlphaBeta, iterative deepening and
  *          ,,better moves''
  * 
@@ -21,17 +20,8 @@ import javachess.backgroundmatrix.Move;
  *          The evaluation basic principle is Material Balance (what is on the
  *          field). But it also has PawnFormations and a table for each Meeple
  *          what position is best.
- * 
- *          The class also has a own MoveMethod
- * 
- *
  */
 public class AILogic {
-
-	/**
-	 * Both are not used
-	 */
-	private BackgroundGrid _WorkPos, _BestPos;
 
 	/**
 	 * to what depth should we search?
@@ -69,25 +59,6 @@ public class AILogic {
 	}
 
 	/**
-	 * should be at first a caller for AlphaBeta method. Currently not used!
-	 * 
-	 * @param BGG2
-	 *            - BackgroundGrid - used for moves,...
-	 * @param Team
-	 *            - the current team
-	 * @return BackgroundGrid - what has changed
-	 */
-	public BackgroundGrid playGame(BackgroundGrid BGG2, boolean Team) {
-
-		_WorkPos = BGG2;
-		_BestPos = null;
-
-		Float x = alphaBeta(0, _WorkPos, Team);
-
-		return BGG2;
-	}
-
-	/**
 	 * This Method is for IterativeDeepening. Iterative Deepening searches
 	 * increasingly, beginning at depth 0 to MaxDepth
 	 * 
@@ -104,24 +75,21 @@ public class AILogic {
 	public float alphaBeta(int depth, BackgroundGrid BGG2, boolean Team) {
 		MaxDepth = depth;
 		count = 0;
-		float beta = -10000.0f;
+		float beta1 = -10000.0f;
 
-		beta = alphaBetaHelper(0, BGG2, Team, -beta, beta);
-		System.out.println(beta);
+		//System.out.println(beta);
 
-		/*
-		for (int i = 1; i <= depth; i++) {
+		for(int i = 1; i <= depth; i++) {
 			MaxDepth = i;
-			float fNewBeta = -10000;
-			fNewBeta = alphaBetaHelper(0, BGG2, Team, -beta, beta);
-			if(fNewBeta > beta) {
-				beta = fNewBeta;
+			float beta = alphaBetaHelper(0, BGG2, Team, -beta1, beta1);
+			if(beta > beta1) {
+				beta1 = beta;
 			}
-			System.out.println(beta);
+			
 		}
-		 */
+		 
 
-		return beta;
+		return beta1;
 	}
 
 	/**
@@ -160,7 +128,7 @@ public class AILogic {
 				if (iPos > 0) {
 					Move M = new Move();
 					M.setBGG(BGG2.iBackground);
-					
+
 					M.setBGG2(BGG2);
 
 					/* no comment */
@@ -331,7 +299,7 @@ public class AILogic {
 
 	/**
 	 * At current stage of development, this evaluation method contains Material
-	 * Balance Pawn formations And piece square tables Evaluates a float number
+	 * Balance Pawn formations and piece square tables. It evaluates a float number
 	 * for the given BackgroundGrid.
 	 * 
 	 * @param BGG2

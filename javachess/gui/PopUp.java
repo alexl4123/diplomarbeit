@@ -1,7 +1,5 @@
 package javachess.gui;
-
-import com.sun.glass.ui.Screen;
-
+//import com.sun.glass.ui.Screen;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -19,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
@@ -286,10 +285,9 @@ public class PopUp {
 					if(gui.getBoardGui().isRectMode() == false){
 						gui.getBoardGui().setRectMode(true);
 						gui.getStage().setResizable(false);
-
 						gui.S.setY(50);
-						gui.S.setWidth(Screen.getMainScreen().getVisibleHeight() - 200);
-						gui.S.setHeight(Screen.getMainScreen().getVisibleHeight() - 200);
+						gui.S.setWidth(Screen.getPrimary().getVisualBounds().getHeight() - 200);
+						gui.S.setHeight(Screen.getPrimary().getVisualBounds().getHeight() - 200);
 					}else{
 						gui.getBoardGui().setRectMode(false);
 						gui.getStage().setResizable(true);

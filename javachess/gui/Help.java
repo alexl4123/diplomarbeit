@@ -1,15 +1,5 @@
 package javachess.gui;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

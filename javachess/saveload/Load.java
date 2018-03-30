@@ -5,20 +5,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
 import javachess.backgroundmatrix.BackgroundGrid;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * @author alex - 2017
- * @version 1.1
+ * @author alexl4123 - 2018
+ * @version 2.0 - release
  *
  *	Class for loading.
  *	Gets the File and returns a BackgroundGrid
  */
 public class Load {
-	
+
 	/**
 	 * only method - returns BackgroundGrid.
 	 * Opens a given File
@@ -29,11 +28,11 @@ public class Load {
 	public BackgroundGrid openFile(File f){
 		BackgroundGrid BGG2;
 		BGG2 = null;
-		
+
 		try {
 			FileInputStream fis = new FileInputStream(f);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			
+
 			BGG2 = (BackgroundGrid) ois.readObject();
 			ois.close();
 			fis.close();
@@ -57,10 +56,10 @@ public class Load {
 			alert.showAndWait();
 		} catch (ClassNotFoundException e) {
 			Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Error");
-		alert.setHeaderText("File could not be loaded!");
-		alert.setContentText("Wrong file?");
-		alert.showAndWait();
+			alert.setTitle("Error");
+			alert.setHeaderText("File could not be loaded!");
+			alert.setContentText("Wrong file?");
+			alert.showAndWait();
 		} catch (NullPointerException e){
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
@@ -68,7 +67,7 @@ public class Load {
 			alert.setContentText("File could not be found at the location!");
 			alert.showAndWait();
 		}
-		
+
 		return BGG2;
 	}
 }

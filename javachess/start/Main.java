@@ -9,15 +9,23 @@ import javafx.stage.Stage;
 /**
  * Here starts the fun ;) Main extends Application and launches it then it makes
  * a Platform.runLater with a new Runnable. This one starts the real chess Gui.
+ * This should fix some JavaFX bugs
  * 
- * @author alexl12
- * @version 1.1 - Draw
+ * @author alexl4123 - 2018
+ * @version 2.0 - release
  *
  */
 public class Main extends Application {
 	
-	GUI G;
+	/**
+	 * Object of GUI
+	 */
+	private GUI G;
 
+	/**
+	 * Main methode
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		launch();
@@ -44,7 +52,9 @@ public class Main extends Application {
 
 	}
 	
-	@Override
+	/**
+	 * When the connetion ends...
+	 */
 	public void stop(){
 		
 	    try {

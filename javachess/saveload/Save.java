@@ -11,14 +11,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * @author alex - 2017
- * @version 1.0
+ * @author alexl4123 - 2018
+ * @version 2.0 - release 
  * 
  * Saves the BackgroundGrid to a given location
  *
  */
 public class Save {
-	
+
 	/**
 	 * only method - simply saves the BackgroundGrid to File f
 	 * @param BGG2 - BackgroundGrid - what to save? - this
@@ -28,11 +28,11 @@ public class Save {
 		try {
 			FileOutputStream fos = new FileOutputStream(f);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			
+
 			oos.writeObject(BGG2);
 			oos.close();
 			fos.close();
-			
+
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Success");
 			alert.setHeaderText("File could be saved!");
@@ -60,6 +60,6 @@ public class Save {
 			alert.setContentText("File could not be found!");
 			alert.showAndWait();
 		}
-		
+
 	}
 }
