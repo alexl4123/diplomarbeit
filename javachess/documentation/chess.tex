@@ -1844,15 +1844,15 @@ Im fertigen Schachspiel gibt es zwei verschiedene ,,Modi'' der KI:
 	\item{Better AI}
 \end{itemize}
 Die Einstellungen hierfür finden sich im Setup.\\
-Der oben beschriebene Algorithmus ist die ,,Better AI''. Die ,,Normal AI'' unterscheidet sich in Details von der ,,Better AI'', so wird hier nicht nur jeder Zug gespeichert, der besser ist als der zuletzt errechnete, sondern auch Züge die gleich gut sind als der Letzte. \\
+Der oben beschriebene Algorithmus ist die ,,Better AI''. Die ,,Normal AI'' unterscheidet sich in Details von der ,,Better AI'', so wird hier nicht nur jeder Zug gespeichert, der besser ist als der zuletzt errechnete, sondern auch Züge die gleich gut sind wie der Letzte. \\
 In weiterer Folge gibt es mehrere gleich ,,gute'' Züge, welche die KI nehmen kann. Von diesen Zügen wird durch eine Zufallszahl einer ausgewählt. \\
-Die Schwierigkeit der better AI ist höher, da immer jene Züge die besten sind, die als letzte die vorherigen Züge überschreiben. Da durch die ,,Normal AI'' keine Züge überschrieben werden, können auch schlechtere Züge ausgewählt werden, welche für die KI aber gleich gut wirken. In ~\ref{SUBSUBSEC:AICODE} wird aber rein auf die better AI eingegangen, um das Verständnis dieser zu vertiefen. Der Code für die ,,Normal-AI'' befindet sich in den Source Files, Package game, Klasse AI und AILogic. \\[2ex]
-Eines der größten Probleme des Algorithmus, technisch gesehen unterscheidet sich der Basisalgorithmus zwischen normal- und better-AI nicht, ist die Performance. Dazu ein simples Gedankenexperiment: Beim ersten Spielzug sind 20 mögliche Züge des weißen Spielers möglich und eben soviele beim darauffolgenden Zug des schwarzen Spielers. Daraus resultieren aus den beiden Spielzügen \(20 \cdot 20 = 400\) verschiedene Stellungen. \\
+Die Schwierigkeit der ,,Better AI'' ist höher, da immer jene Züge die besten sind, die als letzte die vorherigen Züge überschreiben. Da durch die ,,Normal AI'' keine Züge überschrieben werden, können auch schlechtere Züge ausgewählt werden, welche für die KI aber gleich gut wirken. In ~\ref{SUBSUBSEC:AICODE} wird aber rein auf die ,,Better AI'' eingegangen, um das Verständnis dieser zu vertiefen. Der Code für die ,,Normal AI'' befindet sich in den Source Files, Package game, Klasse AI und AILogic. \\[2ex]
+Eines der größten Probleme des Algorithmus, technisch gesehen unterscheidet sich der Basisalgorithmus zwischen ,,Normal'' und ,,Better AI'' nicht, ist die Performance. Dazu ein simples Gedankenexperiment: Beim ersten Spielzug sind 20 mögliche Züge des weißen Spielers möglich und eben soviele beim darauffolgenden Zug des schwarzen Spielers. Daraus resultieren aus den beiden Spielzügen \(20 \cdot 20 = 400\) verschiedene Stellungen. \\
 Gemittelt gibt es im Schach 28 mögliche Züge pro Spielzug. Nach fünf Zügen ergeben sich daraus schon 3.200.000 mögliche Stellungen, nach sechs wären es 64.000.000. Um zu einer Entscheidung zu kommen, muss der Computer alle diese Züge analysieren und bewerten. Dies benötigt Rechenleistung, weshalb ein solcher Schachalgorithmus sehr abhängig von der verwendeten Hardware ist. \\[1ex]
 In der theoretischen Informatik gibt es zu obigen Beispiel die O()-Notation (Siehe \cite{pragmatic} - Seite 178), welche die voraussichtliche Laufzeit eines Algorithmus angibt. Diese kann je nach verwendetem Algorithmus konstant, logarithmisch $\log(n)$, linear, logarithmisch ($n \cdot \log(n)$), quadratisch, kubisch oder exponentiell sein, wobei exponentielle Algorithmen die rechenaufwendigsten Algorithmen sind. \\
 Min-Max ist ein exponentieller Logarithmus. Die Anzahl der verwendeten Rechenschritte hängt, wie oben beschrieben, von der zu berechnenden Zugtiefe ab. Mathematisch können die zu berechnenden Fälle folgendermaßen ermittelt werden, wobei $n$ die Zugtiefe ist und $Schritte(n)$ die möglichen Züge:
 \[Schritte(n) = 28^n\]
-Im weiteren Sinne ist dies der Grund, warum auf Min-Max basierende künstlichen Intelligenzen gegen künstliche neuronale Netzwerke verlieren (siehe \ref{SUBSUBSEC:GenAI}). Die Min-Max-Algorithmen können nicht ausreichend optimiert werden, bzw. moderne Hardware besitzt einfach nicht genügend Rechenleistung, um in diesem Wettlauf mithalten zu können. \\
+Im weiteren Sinne ist dies der Grund, warum auf Min-Max basierende künstliche Intelligenzen gegen künstliche neuronale Netzwerke verlieren (siehe \ref{SUBSUBSEC:GenAI}). Die Min-Max-Algorithmen können nicht ausreichend optimiert werden, bzw. moderne Hardware besitzt einfach nicht genügend Rechenleistung, um in diesem Wettlauf mithalten zu können. \\
 
 \subsubsection{Der Min-Max-Algorithmus}
 \label{SUBSUBSEC:MinMax}
@@ -2045,7 +2045,7 @@ Von uns wurde der RaspberryPI 3 Modell B verwendet. Dieser verfügt über eine Q
 
 \subsection{Touchscreen}
 
-Als Touchscreen wird das ofizielle 7" Touchscreen Display verwendet. Dies hat eine Auflösung von 800x480 Pixel.\cite{RaspiScreen} \\
+Als Touchscreen wird das ofizielle 7'' Touchscreen Display verwendet. Dies hat eine Auflösung von 800x480 Pixel.    \cite{RaspiScreen} \\
 Zusätzlich zum Display gibt es auch eine Adapterplatine, mit welcher der Touchscreen versorgt wird. \\
 Halterungen für die Adapterplatine und den Raspberry PI gibt es auf der Rückseite des Touchscreens.
 
@@ -2059,8 +2059,8 @@ Es wird ein RaspberryPI 3, eine Mikro SD-Karte mit Raspbian, eine Stromversorgun
 \begin{enumerate}
 	\item{Die SD-Karte mit Raspbian wird in den Raspberry PI gesteckt.}
 	\item{Die Adapterplatine und der Raspberry PI wird auf den Touchscreen geschraubt.}
-	\item{Die Stromversorgung für das Display (VCC \& GND Pin- rotes und blaues Kabel, siehe \cite{RaspiScreen}) wird sichergestellt. Das Flachbandkabel / Datenkabel wird zwischen Raspberry PI und Adapterplatine angebracht.}
-	\item{Der Raspberry Pi wird an die Stromversorgung angeschlossen, dadurch sollte dieser nun booten und das Display automatisch erkennen.}
+	\item{Die Stromversorgung für das Display (VCC \& GND Pin, rotes und blaues Kabel, siehe \cite{RaspiScreen}) wird sichergestellt. Das Flachbandkabel / Datenkabel wird zwischen Raspberry PI und Adapterplatine angebracht.}
+	\item{Der Raspberry PI wird an die Stromversorgung angeschlossen, dadurch sollte dieser nun booten und das Display automatisch erkennen.}
 	\item{Sobald Raspbian gebootet hat, wird das LAN-Kabel angeschlossen.}
 	\item{Nun sollten folgende Befehle in der BASH ausgeführt werden:}
 	\begin{enumerate}
@@ -2071,7 +2071,7 @@ Es wird ein RaspberryPI 3, eine Mikro SD-Karte mit Raspbian, eine Stromversorgun
 	\end{enumerate}
 	\item{Nach der Java Installation muss noch JavaFX ,,dazuinstalliert'' werden, da dies nicht in der Java-Embedded-JDK Serie enthalten ist.}
 	\item{Es muss OpenJFX gedownloaded werden. URL: https://chriswhocodes.com/}
-	\item{Hier die Version für den Raspberry PI downloaden (ARMv6)}
+	\item{Hier ist die Version für den Raspberry PI zu downloaden (ARMv6)}
 	\item{Die gedownloadete OpenJFX-Zip Datei muss im Installationsverzeichnis von Java-JDK8 entpackt werden.}
 	\item{In der Commandline wird nun folgender Befehl ausgeführt: unzip openjfx-sdk-overlay-linux-arm6hf.zip -d /<installations-verzeichnis-von-Java \\
 	(z.B.: /home/pi/jdk1.8.0\_92)>}
@@ -2095,9 +2095,9 @@ Es wird ein RaspberryPI 3, eine Mikro SD-Karte mit Raspbian, eine Stromversorgun
 \newpage
 \subsection{Wieso reicht die offizielle JDK nicht aus?}
 
-Oracle (Entwickler von Java) hat 2015 die Unterstützung für JavaFX auf \ac{ARM} Plattformen gestrichen.Die OpenJDK besitzt, je nach Version, eine unvollständige bzw. ebenfalls keine JavaFX Unterstüzung für ARM. \\
+Oracle (Entwickler von Java) hat 2015 die Unterstützung für JavaFX auf \ac{ARM} Plattformen gestrichen. Die OpenJDK besitzt, je nach Version, eine unvollständige bzw. ebenfalls keine JavaFX Unterstüzung für ARM. \\
 Dies hat zur Folge, dass JavaChess auf einem RaspberryPI eigentlich gar nicht funktionieren sollte. \\
-Aufgrund einiger Recherche, konnte das Spiel dennoch lauffähig gemacht werden, da zusätzlich zu der offiziellen JavaJDK von Oracle, das OpenJFX Paket installiert wurde. \\
+Aufgrund einiger Recherchen, konnte das Spiel dennoch lauffähig gemacht werden, da zusätzlich zu der offiziellen JavaJDK von Oracle, das OpenJFX Paket installiert wurde. \\
  \\
 
 
@@ -2119,8 +2119,8 @@ Die ChessPI-Version befindet sich aus organisatorischen Gründen nicht auf GitHu
 \section{Akkusteuerung}
 \label{SEC:AKKUSTEUR}
 
-Ziel ist es eine Akkusteuerung zu entwerfen. Diese soll es ermöglichen, den ChessPI auch unterwegs verwenden zu können. \\
-Die mobile Spieldauer soll größer einer Stunde sein. \\[1ex]
+Ziel ist es, eine Akkusteuerung zu entwerfen. Diese soll es ermöglichen, den ChessPI auch unterwegs verwenden zu können. \\
+Die mobile Spieldauer soll größer als eine Stunde sein. \\[1ex]
 Für eine Akkusteuerung gibt es prinzipiell mehrere Möglichkeiten, angefangen bei der Powerbank, über bestimmte ICs bis hin zu einer selbst entwickelten Akkusteuerung. Als Ziel ist eine selbst entwickelte Akkusteuerung definiert.\\
 
 \subsection{Kenngrößen des benötigten Akkumulators}
@@ -2136,7 +2136,7 @@ Um einen Akku auswählen zu können, muss zuerst einmal definiert werden, was ge
 \subsection{Wählen des Akkumulators}
 \label{SUBSEC:CHOOSE-AKKU}
 
-Akkumulatoren-Typen gibt es viele, für den Einsatz als RaspberryPI-Versorgung schieden alle aus, bis auf folgende Akkumulatorentypen: Lithium-Ionen (Li-Ion), Nickel-Cadmium (NiCd),  Lithium-Polymer (LiPo) und Lithium-Eisenphosphat ($LiFePO_4$). Jeder dieser Akkutypen bietet verschiedene Vorteile, so bietet LiPo relativ hohe Entladeströme und Li-Ion eine ziemlich hohe Energiedichte $_{\cite{wiki:akku}}$. \\
+Akkumulatoren-Typen gibt es viele, für den Einsatz als RaspberryPI-Versorgung schieden alle aus, bis auf folgende Akkumulatorentypen: Lithium-Ionen (Li-Ion), Nickel-Cadmium (NiCd),  Lithium-Polymer (LiPo) und Lithium-Eisenphosphat ($LiFePO_4$). Jeder dieser Akkutypen bietet verschiedene Vorteile, so bietet LiPo relativ hohe Entladeströme und Li-Ion eine ziemlich hohe Energiedichte \cite{wiki:akku}. \\
 Für den Einsatz als Versorgung für den RaspberryPI sollte ein Akku möglichst an die 5V Versorgungsspannung herankommen. Dies in Betracht ziehend, scheiden NiCd (1,2V) und $LiFePO_4$ (3,3V) ebenfalls aus. \\
 So bleiben entweder der LiPo (3,7V) oder der Li-Ion (ca. 3,6V) Akkumulator übrig. Von beiden wurden gleichwertige Akkus verglichen, aufgrund der niedrigeren Kosten eines $Li-Ion_{\cite{akku-liion}}$ Akkumulators gegenüber eines $LiPo_{\cite{akku-lipo}}$ Akkumulators, ist die Entscheidung für den Li-Ion Akku gefallen.
 
@@ -2148,7 +2148,7 @@ Die minimal benötigte Kapazität berechnet sich wie folgt, wenn eine Stromaufna
 \[Q_{min} = t*I = 1h * 2,5A = 2,5 Ah = 2500 mAh\]
 Bei der Verkäuferseite Reichelt wurde ein Akku mit diesen Vorgaben gefunden: \cite{akku-liion}\\
 Dieser Akku hat eine maximale Kapazität von 2600 mAh, einen maximalen Entladestrom von 2,5 A und eine Ladespannung von 4,2V. \\[1ex]
-Das Datenblatt zu allen technischen Eigenschaften befindet sich auf der Seite von Reichelt \cite{akku-liion} bzw. im Anhang (Siehe Abbildung ~\ref{datasheet:akku} auf Seite ~\pageref{datasheet:akku}).
+Das Datenblatt zu allen technischen Eigenschaften befindet sich auf der Seite von Reichelt \cite{akku-liion} bzw. im Anhang (Siehe Abbildung~\ref{datasheet:akku} auf Seite ~\pageref{datasheet:akku}).
 
 \subsection{Idee der ersten Akkusteuerungsschaltung}
 \label{SUBSEC:AKKUSTEUR1}
@@ -2161,7 +2161,7 @@ Eine Akkuladestandanzeige wird mittels zwei LEDs realisiert, die eine schaltet b
 \subsubsection{Laden der Akkus}
 \label{SUBSUBSEC:AKKULOAD1}
 
-Durch die Eingangsschaltung der Akkus wird die Versorgungsspannung auf unter 4,2 Volt gesenkt. Dies geschieht durch zwei in Serie liegende Dioden, eine SI-Diode mit einer Durchschaltspannung von ca. 0,7V und eine Shottky-Diode mit einer Durchschaltspannung von ca. 0,2V. \\
+Durch die Eingangsschaltung der Akkus wird die Versorgungsspannung auf unter 4,2 V gesenkt. Dies geschieht durch zwei in Serie liegende Dioden, eine SI-Diode mit einer Durchschaltspannung von ca. 0,7V und eine Shottky-Diode mit einer Durchschaltspannung von ca. 0,2V. \\
 Der Ladestrom darf maximal 2,5A betragen, sollte aber geringer sein, um den Akku nicht zu beschädigen. Als Begrenzung kommt ein Leistungsvorwiderstand zum Einsatz. Dieser hat 4$\Omega$ und begrenzt den Strom auf 1,25 Ampere. \\
 Da die Akkus parallel geladen werden, muss dies für jeden Akku einzeln aufgebaut werden. \\
 In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des ersten Versuches. Folgende Bauteile dieser Schaltung werden für das Laden verwendet:\\
@@ -2171,7 +2171,7 @@ In Punkt \ref{SUBSUBSEC:CIRCUIT-1} befindet sich die Schaltung des ersten Versuc
 \subsubsection{Entladen der Akkus}
 \label{SUBSUBSEC:AKKUENTLOAD1}
 
-Das Entladen der Akkus erfolgt durch die Seriellschaltung der Akkus (siehe \nameref{SUBSUBSEC:SERPAR}). Seriell geschalten addiert sich die Spannung der beiden Akkus ,,normal'' auf 7.4 Volt, maximal auf 8.4V. Diese Spannung wird mittels Step-Down-Converter (LM2596) auf 5 Volt herunter geregelt.  Dies kann als Versorgung für den Raspberry PI verwendet werden. \\
+Das Entladen der Akkus erfolgt durch die Seriellschaltung der Akkus (siehe \nameref{SUBSUBSEC:SERPAR}). Seriell geschalten addiert sich die Spannung der beiden Akkus ,,normal'' auf 7.4 V, maximal auf 8.4V. Diese Spannung wird mittels Step-Down-Converter (LM2596) auf 5 V herunter geregelt.  Dies kann als Versorgung für den Raspberry PI verwendet werden. \\
 Die Beschaltung erfolgt gemäß des Datenblattes (Siehe Abbildung ~\ref{datasheet:LM2596-2} auf Seite ~\pageref{datasheet:LM2596-2}). Die Berechnung der beiden Widerstände erfolgt ebenfalls gemäß Datenblatt.
 \[R_2 = R_1 \cdot \left(\frac{V_{out}}{V_{ref}} - 1 \right)\]
 \[V_{ref} = 1.25 V - R_1 = 1 k\Omega - V_{out} = 5V\]
@@ -2211,7 +2211,7 @@ In Punkt \ref{SUBSUBSEC:CIRCUIT-1} ist die Schaltung des ersten Versuches ersich
 \begin{figure}[H]
   \centering
 		\includegraphics[scale=0.7, angle=90]{graphics/20170920-Shematic.pdf}
-		\caption{Die 1.Schaltung}
+		\caption{Die 1. Schaltung}
 		\label{fig:circuit1}
 \end{figure}
 
@@ -2230,12 +2230,12 @@ Die Messung wird in mehrere Phasen gegliedert:
 \textbf{Messung der Ausgangsschaltung:}  Es werden ausschließlich die in \ref{SUBSUBSEC:AKKUENTLOAD1} erwähnten Bauteile verwendet. Damit die Akkus nicht gefährdet werden, wird die Messung mit einem Labornetzteil durchgeführt. \\
 Dieses wird auf 8,4V (max Akkuspannung) gestellt, anschließend wird der Ausgang gemessen. \\
 Die Ausgangsspannung beträgt, wie gefordert, 5V.
-Der maximale Ausgangsstrom beträgt mit $T_6$ lediglich zwei Ampere, ansonsten 3,2 Ampere. $T_6$ wird hierbei voll ausgesteuert. Zwei Ampere reichen für den RaspberryPI ohne Peripherie, aber mit Display aus. \\
+Der maximale Ausgangsstrom beträgt mit $T_6$ lediglich 2,0 Ampere, ansonsten 3,2 Ampere. $T_6$ wird hierbei voll ausgesteuert. Zwei Ampere reichen für den RaspberryPI ohne Peripherie, aber mit Display aus. \\
 Anschließend wird die Messung mit den Akkus wiederholt, wobei sich das Ergebnis nicht wesentlich ändert.\\[2ex]
 \textbf{Messung der Eingangsschaltung:} Es werden ausschließlich die in \ref{SUBSUBSEC:AKKULOAD1} erwähnten Bauteile verwendet. Die Akkus werden sofort eingebaut. Als VCC wird ein Labornetzteil verwendet, welches auf VCC=5V eingestellt wird. \\
 Die Messung der Spannungspunkte ergibt das jeweils gewünschte Ergebnis. \\
 Der Ladestrom ist aber viel zu niedrig, 2 mA. Zu Testzwecken werden die Sicherheitstransistoren $T_4$ und $T_5$ ausgebaut. Ohne diese beiden Transistoren kommt man auf einen maximalen Eingangsstrom von etwa 25 mA, was ebenfalls zu niedrig ist. \\
-Es werden noch mehrere Versuche unternommen die Schaltung zu retten, was aber nicht gelingt. Somit wird eine komplett neue Eingangsstufe entworfen, siehe hierfür auch die \nameref{SUBSEC:AKKUSTEUR2}(\ref{SUBSEC:AKKUSTEUR2}).
+Es werden noch mehrere Versuche unternommen, die Schaltung zu retten, was aber nicht gelingt. Somit wird eine komplett neue Eingangsstufe entworfen, siehe hierfür auch die \nameref{SUBSEC:AKKUSTEUR2} (\ref{SUBSEC:AKKUSTEUR2}).
 
 
 \subsection{Idee der zweiten Akkusteuerungsschaltung}
@@ -2251,7 +2251,6 @@ Die Beschaltung des ICs und die Formel zur Berechnung der Widerstände wird wied
 \[V_{out}=8,2V;V_{ref}=1,245V;R_{SU2}=10k\Omega\]
 \[V_{out}=V_{ref} \cdot \left( 1 + \frac{R_{SU1}}{R_{SU2}} \right)\]
 \[R_{SU1} = R_{SU2} \cdot \left( \frac{V_{out}}{V_{ref}} - 1 \right) = 55,8 k\Omega \rightarrow E-12 \rightarrow R_{SU1} = 56 k \Omega\]
-\vspace{1cm}
 Dieses Widerstandsverhältnis transformiert die Spannung von 5V auf 8,2V, wodurch die in Serie geschalteten Akkus geladen werden können.  \\
 In Punkt \ref{SUBSUBSEC:CIRCUIT-2} ist die Schaltung des zweiten Versuches ersichtlich. Folgende Bauteile dieser Schaltung werden ausschließlich für das Laden verwendet:\\ $LT1370,C_{SU1},C_{SU2},C_{SU3}, L_{SU1},R_{SU1},R_{SU2},R_{SU3},D_{SU1}$ 
 
@@ -2287,7 +2286,7 @@ In dieser wird statt eines Akkumulators und einer Schaltung eine Powerbank verwe
 \begin{figure}[H]
   \centering
 		\includegraphics[scale=0.7, angle=90]{graphics/20171104-shematics.pdf}
-		\caption{Die 2.Schaltung}
+		\caption{Die 2. Schaltung}
 		\label{fig:circuit2}
 \end{figure}
 
@@ -2304,12 +2303,12 @@ Diese muss folgende Aufgaben erfüllen:
 
 Als Powerbank gibt es zwei zur Auswahl stehende Modelle:
 \begin{itemize}
-	\item{Das Modell RP-PB17 von RAVPower: Dieses erfüllt alle Anforderungen,welche die Powerbank erfüllen muss. Sie hat einen maximalen Ausgangsstrom von 2,4 Ampere und eine Kapazität von 5600 mAh, womit ein Betrieb von bis zu 2,5h möglich ist. Die Größe ist kleiner als der RaspberryPI, womit die Powerbank einfach in das Gehäuse integriert werden kann. \\
+	\item{Das Modell RP-PB17 von RAVPower: Dieses erfüllt alle Anforderungen, welche die Powerbank erfüllen muss. Sie hat einen maximalen Ausgangsstrom von 2,4 Ampere und eine Kapazität von 5600 mAh, womit ein Betrieb von bis zu 2,5h möglich ist. Die Größe ist kleiner als der RaspberryPI, womit die Powerbank einfach in das Gehäuse integriert werden kann. \\
 Datenblattreferenz für die Powerbank siehe Abbildung ~\ref{datasheet:powerbank} auf Seite ~\pageref{datasheet:powerbank}.
-	\item{Das Modell FREEPMULTI10000 von Cellularline - Dieses hat den Vorteil einer erhöhten Kapazität von 10.000 mAh gegenüber den 5600 mAh des anderen Modells. Dafür sind die Abmessungen der FREEPMULTI10000 Powerbank größer, womit ein Einbau in ein Gehäuse nur schwer möglich ist.}
+	\item{Das Modell FREEPMULTI10000 von Cellularline - Dieses hat den Vorteil einer erhöhten Kapazität von 10.000 mAh gegenüber den 5600 mAh des anderen Modells. Dafür sind die Abmessungen der FREEPMULTI10000 Powerbank größer, womit ein Einbau in das Gehäuse nur schwer möglich ist.}
 }
 \end{itemize}
-Schlussendlich wird das erste Modell (RP-PB17) verbaut, da das zweite Modell, nicht im Gehäuse Platz hat.
+Schlussendlich wird das erste Modell (RP-PB17) verbaut, da das zweite Modell nicht im Gehäuse Platz hat.
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -2318,12 +2317,11 @@ Schlussendlich wird das erste Modell (RP-PB17) verbaut, da das zweite Modell, ni
 \label{SEC:case}
 
 Aufgabe war es, ein Gehäuse für den RaspberryPI mit Bildschirm und Akkusteuerung zu designen. Anstatt der Akkusteuerung wird nach \ref{SUBSEC:POWERBANK} eine Powerbank verwendet. Für diese sollen noch Ein- und Ausschalter und eine Mikro-USB Buchse für die Versorgung eingebaut werden. \\
-Das Gehäuse soll mittels 3D-Drucker erstellt werden bzw. falls dies nicht in entsprechender Qualität geschehen kann, soll eines in der Kunststoffwerkstätte produziert werden.\\
+Das Gehäuse soll mittels 3D-Drucker erstellt werden, bzw. falls dies nicht in entsprechender Qualität geschehen kann, soll eines in der Kunststoffwerkstätte produziert werden.\\
 
 \subsection{Maße der Bauteile}
 
-Die Maße für den Bildschirm, den Akku und den RaspberryPI können im Anhang \nameref{SEC:DATASHEET} (\ref{SEC:DATASHEET}).
-gefunden werden.
+Die Maße für den Bildschirm, den Akku und den RaspberryPI können im Anhang \nameref{SEC:DATASHEET} (\ref{SEC:DATASHEET}) gefunden werden.
 
 \subsection{Geplantes mit dem 3D-Drucker gefertigtes Gehäuse}
 
@@ -2352,9 +2350,9 @@ Nach Absprache mit Fachlehrer Strohmaier, welcher mich hier dankenswerter Weise 
 	\item{Es werden vier Löcher in das Gehäuse, für die Befestigungsschrauben gebohrt.}
 	\item{Die Platte für den Bildschirm wird ausgeschnitten und die Senkung für den Bildschirm hineingefräst.}
 	\item{Die Abstandshalter (innen) werden ausgeschnitten und in beide werden Löcher für die Schrauben gebohrt.}
-	\item{Die Löcher für die Mikro-USB-Buchse und für den Ein-Ausschalter wird hineingeschnitten (Lasercutter).}
+	\item{Die Löcher für die Mikro-USB-Buchse und für den Ein-Ausschalter werden hineingeschnitten (Lasercutter).}
 	\item{Es werden Schrauben für das Verschließen des Displays gesucht. Da es keine >50mm langen M3 Schrauben gibt, wird eine Gewindestange abgeschnitten und das Gehäuse mit einer Mutter befestigt.}
-	\item{Damit die Mutter nicht gesehen wird, werden vier Standfüße besorgt, in denen die Mutter platz hat.}
+	\item{Damit die Mutter nicht gesehen wird, werden vier Standfüße besorgt, in denen die Mutter Platz hat.}
 	\item{Der Akku wird mittels Kabelbindern und selbsthaftenden Pads befestigt.}
 	\item{Von diesem geht ein aufgezwicktes USB-Kabel zum Schalter, um das Ein- und Ausschalten zu ermöglichen. \\
 Das Laden des Akkus erfolgt mittels Mikro-USB Kabel, von der Mikro-USB Buchse zum Akku.}
@@ -2377,9 +2375,9 @@ Ein Bild des fertigen ChessPI befindet sich auf der nächsten Seite.
 \section{Android}
 \label{SEC:android}
 
-Um das Schachspiel überall spielen zu können, wird geplant, eine Version für die Plattform 'Android' zu entwickeln. \\
+Um das Schachspiel überall spielen zu können, wird geplant, eine Version für die Plattform ,,Android'' zu entwickeln. \\
 Diese soll eine vollständige Portierung von JavaChess darstellen und alle diese Funktionen beinhalten. Die Menüführung soll auf Benutzung mittels Wischgesten optimiert werden.\\ [2ex]
-Da die Entwicklung der App eine komplett neue Implementierung der graphischen Benutzeroberfläche erfordern würde, und die Entwicklung der App zu einem relativ späten Zeitpunkt geplant ist, zu dem die Desktop-Variante noch große Probleme beinhaltet, wird in Rücksprache mit dem Betreuer beschlossen, die Portierung der Android - App in der Frühphase abzubrechen. 
+Da die Entwicklung der App eine komplett neue Implementierung der graphischen Benutzeroberfläche erfordern würde, und die Entwicklung der App zu einem relativ späten Zeitpunkt geplant ist, zudem die Desktop-Variante noch große Probleme beinhaltet, wird in Rücksprache mit dem Betreuer beschlossen, die Portierung der Android - App in der Frühphase abzubrechen. 
 
 %=================================================================================
 \clearpage\vfill\newpage{}
@@ -2388,7 +2386,7 @@ Da die Entwicklung der App eine komplett neue Implementierung der graphischen Be
 \label{SEC:beta}
 
 Der letzte Meilenstein war die Beta-Phase. In dieser sollten alle Funktionen des Spiels durch ausgewählte Tester noch einmal auf Herz und Nieren geprüft werden. Die Beta Tester sind deshalb aus verschiedenen Hintergründen ausgewählt worden, zum Beispiel eine professionelle Schachspielerin oder Software-EntwicklerInnen. Dies hat den Vorteil unterschiedliche Nutzerverhalten zu testen. \\[1ex]
-Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber (\ref{SUBSEC:BETALAN}) hatten fünf Tester zu den Punkten:
+Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) als auch Marcel Huber (\ref{SUBSEC:BETALAN}) hatten fünf Tester zu den Punkten:
 \begin{enumerate}[I]
 	\item{Generelles Spielgefühl}
 	\item{Eventuell gefundene Bugs bzw. Verbesserungsvorschläge}
@@ -2423,8 +2421,8 @@ Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber (\ref{SUBSEC:BE
 
 \subsubsection*{Alina Schärmer}
 \begin{enumerate}[I]
-	\item{Hier wird Alina Schärmer wörtlich zitiert:,, Ich finde das Spiel echt gut gelungen.''}
-	\item{Annahme: Der Spieler des weißen Teams bewegt einen Bauern im Hotseat-Modus, anschließend wird in den KI-Modus (Standard-Einstellungen) gewechselt. Nach neuerlichem Anklicken des Spielfeldes, sollte die KI einen Zug tätigen. Die KI tätigt aber zwei Züge, was nicht erlaubt ist. Dieser Fehler trat durch Race-Conditions beim Setzen des Boolean Team auf und ist mittlerweile behoben. }
+	\item{Hier wird Alina Schärmer wörtlich zitiert:,,Ich finde das Spiel echt gut gelungen.''}
+	\item{Annahme: Der Spieler des weißen Teams bewegt einen Bauern im Hot-Seat-Modus, anschließend wird in den KI-Modus (Standard-Einstellungen) gewechselt. Nach neuerlichem Anklicken des Spielfeldes, sollte die KI einen Zug tätigen. Die KI tätigt aber zwei Züge, was nicht erlaubt ist. Dieser Fehler trat durch Race-Conditions beim Setzen des Boolean Team auf und ist mittlerweile behoben. }
 \end{enumerate}
 
 \subsection{LAN und GUI}
@@ -2432,21 +2430,21 @@ Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber (\ref{SUBSEC:BE
 
 \subsubsection{Josef Scharmer}
 \begin{enumerate}
-	\item{Findet das Spiel unterhaltsam und ansprechend}
+	\item{Findet das Spiel unterhaltsam und ansprechend.}
 	
 	\item{Joseph Scharmer fand in Zusammenarbeit mit Stefan Pichler einen Bug, der im LAN-Modus verhinderte, dass die Informationspopups bezüglich Schach und Schachmatt angezeigt werden. Dies lag an einer nicht ausgelösten Schach- bzw. Schachmattabfrage beim Empfangen des neuen Spielfeldes. Um das Problem zu lösen, wurden zusätzliche Schach- und Schachmattabfragen beim Empfangen eines Spielfeldes eingebaut.}
 \end{enumerate}
 
 \subsubsection{Sabrina Schiestl}
 \begin{enumerate}
-	\item{Findet das Spielgefühl intuitiv und gelungen}
+	\item{Findet das Spielgefühl intuitiv und gelungen.}
 
-	\item{Sabrina Schiestl entdeckte Fehler beim verändern der Größe des Spielfeldes. In manchen Spielzuständen wurde die graphische Oberfläche beim Verändern der Größe des Fensters nicht richtig mitverändert. Diese Fehler wurden größten Teils behoben. Bei manchen Gelegenheiten wird das Verändern der Fenstergrößte deaktiviert, um die Fehler zu vermeiden. }
+	\item{Sabrina Schiestl entdeckte Fehler beim Verändern der Größe des Spielfeldes. In manchen Spielzuständen wurde die graphische Oberfläche beim Verändern der Größe des Fensters nicht richtig mitverändert. Diese Fehler wurden größten Teils behoben. Bei manchen Gelegenheiten wird das Verändern der Fenstergrößte deaktiviert, um die Fehler zu vermeiden. }
 \end{enumerate}
 
 \subsubsection{Katharina Weide}
 \begin{enumerate}
-	\item{Nach den anfänglichen abstürzen in der Betaphase gefiel ihr das Spielgefühl gut.}
+	\item{Nach den anfänglichen Abstürzen in der Betaphase gefiel ihr das Spielgefühl gut.}
 
 	\item{Katharina Weide stellte bei ihrem ersten Spielstart fest, dass das Spiel direkt abstürzt. Dies lag an einem Crash des Soundplayers, der auf ihrem Betriebssystem nicht verfügbar war. Die Lösung dieses Problems wurde im Kapitel \ref{SUBSUBSEC:SOUNDBUG} behandelt.}
 	
@@ -2454,9 +2452,9 @@ Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber (\ref{SUBSEC:BE
 
 \subsubsection{Fabian Thurnes}
 \begin{enumerate}
-	\item{Lieferte Folgendes Statement zum Programm ab: ,,Bei Casual Games ist mir ein besonders intuitives Nutzererlebnis wichtig. Ich freue mich, zum Erfolg dieses Projektes beigetragen zu haben.''}
+	\item{Lieferte folgendes Statement zum Programm ab: ,,Bei Casual Games ist mir ein besonders intuitives Nutzererlebnis wichtig. Ich freue mich, zum Erfolg dieses Projektes beigetragen zu haben.''}
 
-	\item{Fabian Thrunes war zwar weniger an der Bugfindung beteiligt, half aber sehr bei der Bewertung der Nutzerfreundlichkeit mit und machte Vorschläge diese zu verbessern. Konkret bot er den Vorschlag für die neute Menüführung.}
+	\item{Fabian Thrunes war zwar weniger an der Bugfindung beteiligt, half aber sehr bei der Bewertung der Nutzerfreundlichkeit mit und machte Vorschläge diese zu verbessern. Konkret unterbreitete er den Vorschlag für die neue Menüführung.}
 \end{enumerate}
 
 
@@ -2465,21 +2463,21 @@ Sowohl Alexander Beiser (\ref{SUBSEC:BETAGAME}) und Marcel Huber (\ref{SUBSEC:BE
 %=================================================================================
 
 \section{\sc Benutzerdokumentation}
-	Im folgenden Kapitel ist eine Bedienungsanleitung für JavaChess angegeben. Auch auf mögliche Fehlermeldungen, die das Programm ausgeben kann, werden im Folgendem abgehandelt. 
+	Im folgenden Kapitel ist eine Bedienungsanleitung für JavaChess angegeben. Auch mögliche Fehlermeldungen, die das Programm ausgeben kann, werden im Folgendem abgehandelt. 
 	
  \subsection{Installationsanleitung}
-	Grundsätzlich ist keine Installation von JavaChess notwendig. Zur Ausführung wird allerdings die aktuelle Version der ,,Java Runtime Environment'', oder kurz JRE benötigt.\\
-Um diese zu installieren, öffnet man einen Webbrowser und navigiert zur Homepage von Oracle. Dort wählt man im Menü den Punkt ,,Downloads'' aus. In den darauf folgenden Submenüs navigiert man weiter zum Punkt ,,Java'', und dann zu ,,Java RuntimeEnviroment'' (es kann auch dieser Link verwendet werden: https://java.com/de/download/ ).  Dort klickt man auf den ,,Download'' Button und wählt die gewünschte Version zum Download aus. 
+	Grundsätzlich ist keine Installation von JavaChess notwendig. Zur Ausführung wird allerdings die aktuelle Version der ,,Java Runtime Environment'' oder kurz JRE, benötigt.\\
+Um diese zu installieren, öffnet man einen Webbrowser und navigiert zur Homepage von Oracle. Dort wählt man im Menü den Punkt ,,Downloads'' aus. In den darauf folgenden Submenüs navigiert man weiter zum Punkt ,,Java'', und dann zu ,,Java RuntimeEnviroment'' (es kann auch dieser Link verwendet werden: https://java.com/de/download/).  Dort klickt man auf den ,,Download'' Button und wählt die gewünschte Version zum Download aus. 
 Die heruntergeladene Datei muss ausgeführt werden. Um die Installation abzuschließen, muss den Anweisungen im Wizard gefolgt werden. \\
 Nach der erfolgreichen Installation der JRE kann JavaChess einfach ausgeführt werden.
 
  \subsection{Benutzung des Spiels}
 	
-	\subsubsection{Der Hot Seat - Modus}
+	\subsubsection{Der Hot-Seat-Modus}
 	\label{SUBSUBSEC:USERDOCHOTSEAT}
 	
- Um ein Spiel zu starten, muss einfach im Titelbildschirm mit der Maus geklickt werden. Das Programm wird automatisch in den ,,Hot Seat'' - Spielmodus springen.\\
-Im ,,Hot Seat'' - Modus, oder auch lokaler Modus, können zwei Spieler am selben Computer gegeneinander spielen. \\
+ Um ein Spiel zu starten, muss einfach im Titelbildschirm mit der Maus geklickt werden. Das Programm wird automatisch in den ,,Hot-Seat'' - Spielmodus springen.\\
+Im ,,Hot-Seat'' - Modus, oder auch lokaler Modus, können zwei Spieler am selben Computer gegeneinander spielen. \\
 Um eine Figur zu bewegen, gibt es 2 Möglichkeiten:
 \begin{itemize}
 
@@ -2489,7 +2487,7 @@ Um eine Figur zu bewegen, gibt es 2 Möglichkeiten:
 
 Wenn ein Spieler in den Zustand ,,Schach'' gerät, wird er mithilfe eines Popups darüber benachrichtigt. Dieses kann mit der vorgesehenen Schaltfläche geschlossen werden.\\
 Erreicht ein Spieler den ,,Schachmatt'' - Zustand, so wird er ebenfalls mit einem Popup darüber informiert. Betätigt er auch hier die Schaltfläche, so wird das Popup geschlossen und ein neues Spiel wird gestartet. \\
-Um von einem anderen Spielmodus in den Hot Seat - Modus zurückzukehren, muss der Punkt ,,HotSeat'' im Menü ,,Gamemodes'' ausgewählt werden.
+Um von einem anderen Spielmodus in den Hot-Seat - Modus zurückzukehren, muss der Punkt ,,Hot-Seat'' im Menü ,,Gamemodes'' ausgewählt werden.
 	}
 
 \end{itemize}
@@ -2501,13 +2499,13 @@ Mithilfe des LAN-Modus, auch Netzwerkmodus oder Onlinemodus genannt, können zwe
 Vorraussetzung dafür ist die Konnektivität mit einem Netzwerk, in dem sich beide Computer befinden. \\
 Unterschieden wird in diesem Modus zwischen ,,Host'' und ,,Client''. Der Host wartet auf eine eingehende Verbindung, der Client initiiert diese.\\
 Um im LAN-Modus zu spielen, wird der Punkt ,,Network'' im Menü ,,Gamemodes'' ausgewählt.\\
-Nach dem Auswählen dieses Spielmodus öffnet sich ein Dialogfenster. In diesem gibt es 3 Möglichkeiten zur Auswahl: ,,host'', ,,join'' und ,,abort''. Mit der Schaltfäche ,,abort'' gelangt man zurück in den Hot Seat - Modus. \\
+Nach dem Auswählen dieses Spielmodus öffnet sich ein Dialogfenster. In diesem gibt es 3 Möglichkeiten zur Auswahl: ,,host'', ,,join'' und ,,abort''. \\
 Wird die Schaltfläche ,,host'' ausgewählt, so erscheint ein Wartebildschirm. Auf diesem wird unter anderem die IP-Adresse angezeigt, die der Client zum Verbindungsaufbau benötigt. Während der Wartebildschirm angezeigt wird, wartet das Programm im Hintergrund auf eingehende Verbindungen. Mittels Mausklick kann der Wartevorgang abgebrochen werden. Dies versetzt das Programm zurück in den lokalen Modus. Verschwindet der Wartebildschirm automatisch, so war der Verbindungsvorgang erfolgreich. \\
-Wird die Schaltfläche ,,join'' im Dialogfenster ausgewählt, so erscheint ein weiteres Popup. In diesem Popup befindet sich ein Eingabefeld, und zwei Schaltflächen.\\
-Die Schaltfläche ,,abort'' versetzt das Programm zurück in den Hot Seat - Modus.\\
+Wird die Schaltfläche ,,join'' im Dialogfenster ausgewählt, so erscheint ein weiteres Popup. In diesem Popup befindet sich ein Eingabefeld und zwei Schaltflächen.\\
+Die Schaltfläche ,,abort'' versetzt das Programm zurück in den Hot-Seat - Modus.\\
 Wird die Schaltfläche ,,Ok'' betätigt, so startet der Verbindungsvorgang zu der im Eingabefeld beschriebenen IP-Adresse.\\[2ex]
-Sobald eine erfolgreiche Verbindung besteht, kann das Spiel beginnen. Standardmäßig bewegt der Host die weißen Figuren und der Client die schwarzen Figuren. Die Steuerung des Spiels verläuft äquivalent zum Hot Seat - Modus. Das bedeutet, die Figuren lassen sich sowohl durch Klicks, als auch durch Klicken und Ziehen bewegen. Auch die Informationspopups, die auf Schach- und Schachmattzustände hinweisen, sind im LAN - Modus vorhanden.\\
-Um eine bestehende Verbindung zu trennen, muss im Menü ,,Gamemodes'' der Menüpunkt ,,disconnect'' ausgewählt werden. Anschließend befindet sich das Spiel wieder im Hot Seat - Modus. 
+Sobald eine erfolgreiche Verbindung besteht, kann das Spiel beginnen. Standardmäßig bewegt der Host die weißen Figuren und der Client die schwarzen Figuren. Die Steuerung des Spiels verläuft äquivalent zum Hot-Seat - Modus. Das bedeutet, die Figuren lassen sich sowohl durch Klicks, als auch durch Klicken und Ziehen bewegen. Auch die Informationspopups, die auf Schach- und Schachmattzustände hinweisen, sind im LAN - Modus vorhanden.\\
+Um eine bestehende Verbindung zu trennen, muss im Menü ,,Gamemodes'' der Menüpunkt ,,disconnect'' ausgewählt werden. Anschließend befindet sich das Spiel wieder im Hot-Seat - Modus. 
 
 	\subsubsection{Der AI - Modus}
 	\label{SUBSUBSEC:USERDOCAI}
@@ -2515,20 +2513,20 @@ Um eine bestehende Verbindung zu trennen, muss im Menü ,,Gamemodes'' der Menüp
 Der AI - Modus, auch KI - Modus oder Computermodus genannt, ermöglicht es, alleine gegen einen Computergegner zu spielen. \\
 Um in diesem Modus zu spielen, muss im Menü ,,Gamemodes'' der Menüpunkt ,,Computer'' ausgewählt werden. Ohne weitere Umwege startet der Modus.\\
 Standardmäßig übernimmt der Computer die schwarzen Figuren. \\
-Die Steuerung des Spiels verläuft auch hier äquivalent zum Hot Seat - Modus. Das bedeutet, dass die Figuren auch in diesem Modus durch Klicken oder Drag and Drop bewegt werden können. Auch die bekannten Informationspopups treten in diesem Spielmodus auf.\\
+Die Steuerung des Spiels verläuft auch hier äquivalent zum Hot-Seat - Modus. Das bedeutet, dass die Figuren auch in diesem Modus durch Klicken oder Drag and Drop bewegt werden können. Auch die bekannten Informationspopups treten in diesem Spielmodus auf.\\
 Nachdem ein Zug getätigt wurde, beginnt der Computer, seinen Gegenzug zu berechnen. \textbf{Achtung:} Dieser Berechnungsvorgang kann je nach Rechenleistung des Computers, auf dem das Spiel gestartet wurde, und der Schwierigkeitsstufe der AI, einen längeren Zeitraum in Anspruch nehmen. Um ein optimales Spielgefühl zu gewährleisten wird empfohlen, auf schwacher Hardware eine der niedrigeren Schwierigkeitsstufen auszuwählen. 
 \\Um den Computermodus wieder zu verlassen, muss im Menü ,,Gamemodes'' einer der anderen Spielmodi, also der Punkt ,,Network'' oder ,,HotSeat'' ausgewählt werden. 
 
 	\subsubsection{Die erweiterten Optionen}
 	\label{SUBSUBSEC:USERDOCSETUP}
 	
-	Im Menü ,,other'', unter dem Menüpunkt ,,setup'', sind die erweiterten Einstellungen und Anzeigen zu finden. Diese werden in Form eines Popups zugänglich gemacht und sollen dazu dienen, mehr Informationen über das aktuelle Spiel zu erhalten und allgemeine Einstellungen zu verändern. \\
+	Im Menü ,,other'' unter dem Menüpunkt ,,setup'' sind die erweiterten Einstellungen und Anzeigen zu finden. Diese werden in Form eines Popups zugänglich gemacht und sollen dazu dienen, mehr Informationen über das aktuelle Spiel zu erhalten und allgemeine Einstellungen zu verändern. \\
 Grob gesagt unterteilt sich das Popup in drei Sektionen: \\
 \begin{itemize}
 
-	\item{\textbf{Audio Options}: In dieser Sektion werden Möglichkeiten gegeben, die Lautstärke des Spiels mithilfe eines Schiebereglers zu verändern, oder den Sound mithilfe einer Checkbox aus- oder einzuschalten. Zusätzlich wird neben dem Schieberegler die aktuelle Lautstärke angezeigt und es wird eine Schaltfläche angezeigt, mit deren Hilfe ein Testgeräusch abgespielt werden kann. } 
+	\item{\textbf{Audio Options}: In dieser Sektion werden Möglichkeiten gegeben, die Lautstärke des Spiels mithilfe eines Schiebereglers zu verändern oder den Sound mithilfe einer Checkbox aus- oder einzuschalten. Zusätzlich wird neben dem Schieberegler die aktuelle Lautstärke angezeigt und es wird eine Schaltfläche angezeigt, mit deren Hilfe ein Testgeräusch abgespielt werden kann. } 
 
-	\item{\textbf{AI Options}: Diese Sektion bietet die Möglichkeit, die Schwierigkeit des Computergegners anzupassen. Auch wird eine Einstellung zur Verfügung gestellt, mit deren Hilfe die Farbe, welche der Computergegner übernimmt, angepasst werden kann. Mit der Chechbox ,,Better-AI'' kann ein alternativer AI-Algorithmus aktiviert werden, der einen noch schwierigeren Gegner bietet. }
+	\item{\textbf{AI Options}: Diese Sektion bietet die Möglichkeit, die Schwierigkeit des Computergegners anzupassen. Auch wird eine Einstellung zur Verfügung gestellt, mit deren Hilfe die Farbe, welche der Computergegner übernimmt, angepasst werden kann. Mit der Checkbox ,,Better-AI'' kann ein alternativer AI-Algorithmus aktiviert werden, der einen noch schwierigeren Gegner bietet. }
 
 	\item{\textbf{Other Information and Options}: Unter dieser Sektion sind Informationen über den aktuellen Rundenstand zu finden und das aktuell ziehende Team wird angezeigt. Aufgrund der Wünsche unserer Betatester wurde die Checkbox ,,Square Board'' eingebaut. Diese hat die Funktion, das Schachfeld auf ein quadratisches Seitenverhältnis zu beschränken.}
 	
@@ -2550,13 +2548,13 @@ Grob gesagt unterteilt sich das Popup in drei Sektionen: \\
 		
 	\item{\textbf{Gamemodes}: \begin{itemize}
 			
-		\item{\textbf{HotSeat}: Dieser Menüpunkt erlaubt es, den HotSeat - Spielmodus auszuwählen (vgl. \ref{SUBSUBSEC:USERDOCHOTSEAT}).}
+		\item{\textbf{Hot-Seat}: Dieser Menüpunkt erlaubt es, den Hot-Seat - Spielmodus auszuwählen (vgl. \ref{SUBSUBSEC:USERDOCHOTSEAT}).}
 	
 		\item{\textbf{Network}: Mit dem Auswählen dieses Menüpunktes beginnt die Konfiguration des LAN - Spielmodus (vgl. \ref{SUBSUBSEC:USERDOCLAN}). }
 		
 		\item{\textbf{Computer}: Durch das Auswählen dieses Menüpunktes startet der AI - Modus (vgl. \ref{SUBSUBSEC:USERDOCAI}). }
 		
-		\item{\textbf{Launchpad}: Solange der Launchpad - Modus aktiv ist, ist es möglich, die Schachfiguren mithilfe des ,,Launchpad'' zu verschieben. Er funktioniert nur, wenn ein Launchpad verbunden ist. Dieser Modus ist durch eine Kooperation mit der Diplomarbeit ,,Launchpad'', von Alexander Hold und Thomas Klotz, entstanden. Weitere Informationen über das Launchpad sind in dieser Arbeit enthalten.}	
+		\item{\textbf{Launchpad}: Solange der Launchpad - Modus aktiv ist, ist es möglich, die Schachfiguren mithilfe des ,,Launchpad'' zu verschieben. Er funktioniert nur, wenn ein Launchpad verbunden ist. Dieser Modus ist durch eine Kooperation mit der Diplomarbeit ,,Launchpad'', von Alexander Hold und Thomas Klotz, entstanden. Weitere Informationen über das Launchpad sind in deren Arbeit enthalten (siehe GitHub: DarkSunHD - STM32F1 MIDI Serial Bridge).}	
 	\end{itemize}}
 	
 	\item{\textbf{Other}: \begin{itemize}
@@ -2571,7 +2569,7 @@ Grob gesagt unterteilt sich das Popup in drei Sektionen: \\
 
 		\item{\textbf{About}: Wenn dieser Menüpunkt ausgewählt wird, öffnet sich ein Popup, in dem Informationen über die Entwickler, die verwendete Lizenz und die GitHub - Repository und das Logo des Spiels angeführt sind. }	
 		
-		\item{\textbf{Help}: Beim Auswählen dieses Menüpunktes öffnet sich ein weiters Popup, in dem eine Kurzfassung dieser Anleitung zu finden ist. }	
+		\item{\textbf{Help}: Beim Auswählen dieses Menüpunktes öffnet sich ein weiteres Popup, in dem eine Kurzfassung dieser Anleitung zu finden ist. }	
 	
 	\end{itemize}}
 	
@@ -2585,7 +2583,7 @@ Grob gesagt unterteilt sich das Popup in drei Sektionen: \\
  
  \subsubsection{Fehler beim Starten des Spiels}
  
-  Wenn die ,,.jar - File'' nicht ausgeführt werden kann, überprüfen Sie bitte, ob eine funktionierende Version der ,,Java Runtime Environment'' auf ihrem System installiert ist, und ob sie über die aktuelle Version von JavaChess verfügen. 
+  Wenn die ,,.jar - File'' nicht ausgeführt werden kann, überprüfen Sie bitte, ob eine funktionierende Version der ,,Java Runtime Environment'' auf ihrem System installiert ist, und ob Sie über die aktuelle Version von JavaChess verfügen. 
  
  \subsubsection{Fehler beim Speichern eines Spielstandes}
  
@@ -2594,17 +2592,17 @@ Wenn beim Speichern eines Spieles ein Fehler auftritt, erscheint ein Popup mit d
 
 \item{In dem Dateinamen, unter dem das Feld gespeichert werden sollte, ist ein Sonderzeichen enthalten, das nicht vom Dateisystem unterstützt wird. In diesem Fall muss der Name der zu speichernden Datei angepasst werden. }
 
-\item{Das Programm hat keine Schreibrechte. In diesem Fall muss dem Programm die Berechtigung zum Schreiben gegeben werden bzw. muss das Programm als Administrator/Superuser gestartet werden. }
+\item{Das Programm hat keine Schreibrechte. In diesem Fall muss dem Programm die Berechtigung zum Schreiben gegeben werden, bzw. muss das Programm als Administrator/Superuser gestartet werden. }
 
 \end{itemize}
 
 	\subsubsection{Fehler beim Laden eines Spielstandes}
 
-Wenn beim Laden eines Spieles ein Fehler auftritt, erscheint ein Popup mit der beschriftung ,,File could not be loaded!''. Dies kann folgende Ursachen haben:
+Wenn beim Laden eines Spieles ein Fehler auftritt, erscheint ein Popup mit der Beschriftung ,,File could not be loaded!''. Dies kann folgende Ursachen haben:
 
 \begin{itemize}
 
-\item{Die Datei, die versucht wird zu laden, ist keine .sav Datei, die vom Programm JavaChess gespeichert wurde. Stellen Sie sicher dass Sie die richtige Datei ausgewählt haben. }
+\item{Die Datei, die versucht wird zu laden, ist keine .sav Datei, die vom Programm JavaChess gespeichert wurde. Stellen Sie sicher, dass Sie die richtige Datei ausgewählt haben. }
 
 \item{Die zu ladende Datei wurde verändert und deshalb beschädigt. In diesem Fall ist der Spielstand leider verloren und nicht wiederherzustellen.}
 
@@ -2866,9 +2864,9 @@ Folgende Fehlermeldungen könne im LAN - Modus auftreten:
 \subsection{\sc JavaChess Konzept}
 
 Das Programm ist als 2D Schachspiel konzipiert. Basierend auf Java und JavaFX wird das Spiel entwickelt. \\
-Das Spiel soll online spielbar gemacht werden, aber auch über einen Einzelspielermodus verfügen. Dieser Einzelspielermodus beinhaltet auch eine selbst entwickelte künstliche Intelligenz. \\
+Das Spiel soll online spielbar gemacht werden, aber auch über einen Einzelspielermodus verfügen. Dieser Einzelspielermodus beinhaltet zudem eine selbst entwickelte künstliche Intelligenz. \\
 Die grafische Oberfläche setzt sich aus einem selbst designten Schachbrett, Bedienflächen und aus Opensource-Quellen stammenden Ressourcen für die Figuren zusammen.\\
-Selbstverständlich sollen alle möglichen Züge implementiert- und ein passender Schachmattalgorithmus entwickelt werden. \\
+Selbstverständlich sollen alle möglichen Züge implementiert- und ein passender Schachmatt-Algorithmus entwickelt werden. \\
 Auf eine ressourcenschonende Zugberechnung soll besonderer Wert gelegt werden, da die künstliche Intelligenz auf denselben Zugmechanismus zugreift, wie der menschliche Spieler. \\
 Die Bedienung des Programms soll auf mehrere Arten möglich sein:  mittels Click to Click* und Drag and Drop.\\
 *Click-to-Click: Spieler A klickt auf Feld d7 – dann auf Feld d6 – Figur bewegt sich von d7 nach d6.
@@ -2887,7 +2885,7 @@ Die Bedienung des Programms soll auf mehrere Arten möglich sein:  mittels Click
 	\item{Programmlogik}
 	\begin{enumerate}
 		\item{Zugfunktion}
-		\item{Schachmattalgorithmus}
+		\item{Schachmatt-Algorithmus}
 		\begin{enumerate}
 			\item{Es soll auf die Übersichtlichkeit des Programmcodes geachtet werden}
 			\item{Die Kommentare des Programmcodes sollen auf Englisch erfolgen}
@@ -2895,7 +2893,7 @@ Die Bedienung des Programms soll auf mehrere Arten möglich sein:  mittels Click
 	\end{enumerate}
 	\item{Künstliche Intelligenz}
 	\begin{enumerate}
-		\item{Im Einzelspielermodus ist es möglich gegen eine selbst entwickelte künstliche Intelligenz zu spielen}
+		\item{Im Einzelspielermodus ist es möglich, gegen eine selbst entwickelte künstliche Intelligenz zu spielen.}
 		\item{Die Evaluierung des besten Zuges der künstlichen Intelligenz erfolgt mithilfe eines abgeänderten Min-Max-Algorithmus.}
 	\end{enumerate}
 	\item{Netzwerk}
@@ -2926,10 +2924,10 @@ Die Bedienung des Programms soll auf mehrere Arten möglich sein:  mittels Click
 Hier werden alle bekannten Bugs gelistet, welche behoben werden sollen:
 
 \begin{itemize}
-	\item{Schachmattalgorithmus gibt, außer in einem bestimmten Fall, nur Schach aus.Dieser bestimmte Fall ist, wenn zwei gegnerische Figuren den König bedrohen.}
+	\item{Schachmatt-Algorithmus gibt, außer in einem bestimmten Fall, nur Schach aus. Dieser bestimmte Fall tritt ein, wenn zwei gegnerische Figuren den König bedrohen.}
 	\item{Die Züge Rochade, En Passant, Bauerntausch und der Doppelzug des Bauern, falls dieser sich noch nicht bewegt hat, sind nicht eingebaut.}
 	\item{Die Züge des Läufers und der Dame haben den Fehler, falls diese diagonal ziehen, sind auch illegale Züge erlaubt. Z.B.: Lc8 -> Le6}
-	\item{Es gibt keine Feststellung ob Team1 oder Team2 am Zug ist, beide funktionieren immer.}
+	\item{Es gibt keine Feststellung, ob Team1 oder Team2 am Zug ist, beide funktionieren immer.}
 	\item{Falls es zu einer ,,Schachsituation'' kommt, kann unter besonderen Bedingungen eine Endlosschleife entstehen, die das Programm abstürzen lassen kann.}
 \end{itemize}
 
@@ -3027,22 +3025,21 @@ Dies ist das abgelieferte Ergebnis. Zusätzliche Aufgabe war es, eine Akkusteuer
 
 	Marcel Huber war für große Teile des ,,Frontends'' zuständig. Er entwickelte die grafische Benutzeroberfläche und gestaltete diese in Rücksprache mit den Testern so, dass sie ein optimales Spielerlebnis bietet. \\[2ex]
 Er implementierte weitere Optionen und sorgte für eine passende Untermalung des Spielerlebnisses mithilfe von Soundeffekten.\\
-Zudem wurde ein Spielmodus entwickelt, der es ermöglicht, zwei Spielern über ein Netzwerk spielen zu lassen. \\
+Zudem wurde ein Spielmodus entwickelt, der es ermöglicht, zwei Spieler über ein Netzwerk spielen zu lassen. \\
 Die Entwicklung der Android - Version wurde aufgrund von massivem Zeitmangel in der Frühphase eingestellt. 
 
 \newpage
  \subsection{-Schlussfolgerung / Projekterfahrung}
  
- Das Projekt ist trotz einiger Rückschläge, in weiten Teilen erfolgreich. Die künstliche Intelligenz ist stark genug um menschliche Spieler zu schlagen und das Spielen im Online Modus funktioniert tadellos. \\
- 
+ Das Projekt ist trotz einiger Rückschläge in weiten Teilen erfolgreich. Die künstliche Intelligenz ist stark genug um menschliche Spieler zu schlagen und das Spielen im Online Modus funktioniert tadellos. \\
 	Beide Kandidaten hatten in einigen Punkten mit massiven Problemen zu kämpfen. Vor allem drei Punkte stellten sich als einen größeren Zeitaufwand heraus, als geplant:
 \begin{enumerate}
 	\item{Implementierung von JavaFX}
-	\item{Das Potieren auf den RaspberryPI}
+	\item{Das Portieren auf den RaspberryPI}
 	\item{Die Entwicklung der Akkusteuerungsschaltung}
 \end{enumerate}
-1) - Das verwenden von JavaFx bereitete anfänglich Probleme. Besonderns im bereich des Multithreading, also das Auslagern von gewissen Aufgaben auf andere Abarbeitungsstränge, sorgte im Zusammenhang mit JavaFx für schwierigkeiten. Auch die mangelnde Ausbildung bezüglich JavaFx im Unterricht und die daraus folgende selbstständige Einarbeitung stellten eine besondere Herausforderung dar.  \\[1ex]
-2) - Das Portieren auf den RaspberryPI stellte sich als eine sehr viel größeren Zeitaufwand heraus, als geplant. Oracle, also die Entwickler von Java, haben die Unterstützung von JavaFX für ,,Embedded-Processors'' eingestellt. Dadurch musste eine funktionierende Alternative gefunden werden. Nachdem diese Alternative gefunden wurde, stellte sich heraus, dass der Bildschirm in Verbindung mit Java einen gewissen ,,Offset'' besitzt, also der gedrückte Punkt stimmt nicht mit dem angezeigten überein. Dieser Fehler konnte ebenfalls unter entsprechendem Zeitaufwand behoben werden. \\[1ex]
+1) - Das Verwenden von JavaFx bereitete anfänglich Probleme. Besonderns im Bereich des Multithreading, also das Auslagern von gewissen Aufgaben auf andere Abarbeitungsstränge sorgte im Zusammenhang mit JavaFx für Schwierigkeiten. Auch die mangelnde Ausbildung bezüglich JavaFx im Unterricht und die daraus folgende selbstständige Einarbeitung stellten eine besondere Herausforderung dar.  \\[1ex]
+2) - Das Portieren auf den RaspberryPI stellte sich als einen sehr viel größeren Zeitaufwand heraus, als geplant. Oracle, also die Entwickler von Java, haben die Unterstützung von JavaFX für ,,Embedded-Processors'' eingestellt. Dadurch musste eine funktionierende Alternative gefunden werden. Nachdem diese Alternative gefunden wurde, stellte sich heraus, dass der Bildschirm in Verbindung mit Java einen gewissen ,,Offset'' besitzt, also der gedrückte Punkt stimmt nicht mit dem angezeigten überein. Dieser Fehler konnte ebenfalls unter entsprechendem Zeitaufwand behoben werden. \\[1ex]
 3) - Die Entwicklung der Akkusteuerung stellte sich als ebenfalls größeres Problem als gedacht dar, da der Ladestrom viel zu klein war, um eine praktische Verwendung zu ermöglichen. \\[2ex]
 Die wichtigste Projekterfahrung ist jedenfalls, dass bevor ein Projekt begonnen wird, eine Machbarkeitsstudie durchgeführt werden sollte. Dadurch können potentielle ,,Zeit fressende Singularitäten'' vermieden werden. Weiteres sollte man mehr Zeit für eventuelle Fehler einplanen, da der Zeitplan sonst unmöglich einzuhalten ist. \\
 In zukünftigen Arbeiten im Team sollte man sich mehr absprechen und ständig in Kontakt über den momentanen Stand der Teammitglieder informiert sein, um die Effizienz und Effektivität zu steigern.
@@ -3157,7 +3154,7 @@ In zukünftigen Arbeiten im Team sollte man sich mehr absprechen und ständig in
 \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Dokumentation\end{tabular}}                  & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{21}            & \multicolumn{1}{c|}{14.09.2017} & \multicolumn{1}{c|}{04.04.2018} 
                                                                                                                                                                                                                            \\ \hline
 \end{tabular}
-\caption{Arbeitsaufstellung nach Meilensteine}
+\caption{Arbeitsaufstellung nach Meilensteinen}
 \label{table:workgeneral}
 \end{table}
 

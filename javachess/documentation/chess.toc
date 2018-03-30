@@ -114,7 +114,7 @@
 \contentsline {section}{\numberline {10}\sc Benutzerdokumentation}{103}{section.10}
 \contentsline {subsection}{\numberline {10.1}Installationsanleitung}{103}{subsection.10.1}
 \contentsline {subsection}{\numberline {10.2}Benutzung des Spiels}{103}{subsection.10.2}
-\contentsline {subsubsection}{\numberline {10.2.1}Der Hot Seat - Modus}{103}{subsubsection.10.2.1}
+\contentsline {subsubsection}{\numberline {10.2.1}Der Hot-Seat-Modus}{103}{subsubsection.10.2.1}
 \contentsline {subsubsection}{\numberline {10.2.2}Der LAN - Modus}{104}{subsubsection.10.2.2}
 \contentsline {subsubsection}{\numberline {10.2.3}Der AI - Modus}{105}{subsubsection.10.2.3}
 \contentsline {subsubsection}{\numberline {10.2.4}Die erweiterten Optionen}{106}{subsubsection.10.2.4}
