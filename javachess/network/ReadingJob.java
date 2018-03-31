@@ -2,76 +2,50 @@ package javachess.network;
 
 import javachess.gui.GUI;
 
-
+/**
+ * 
+ * @author mhub - 2018
+ * @version 2.0
+ * 
+ * This class is used to parallely read from sockets, so u can use the gui meanwhile reading. 
+ * Maybe looks strange, but if the 'Trigger' is changed, Code from gui will be executed in this thread, not in gui - thread. 
+ * Implements Runable - so it is a trheadjob. 
+ *
+ */
 public class ReadingJob implements Runnable {
 	
-	private GUI theGui;
-	private int[][] compBGG1, compBGG2;
 	
+	/**
+	 * GUI for Triggering
+	 */
+	private GUI theGui;
+
+	/**
+	 * Thre Constructor.
+	 * @param newGui - The current GUI - instance
+	 */
 	public ReadingJob(GUI newGui){
 		
 		this.theGui = newGui;
 	}
 
-
 	@Override
 	public void run() {
 		
-		
-		
 		System.out.println("reading Job running");
-		compBGG1 = theGui.getBGG1();
-		compBGG2 = compBGG1;
-		
-		
-		
-			
-			
-			
-			
+				
 			try {
 				
 				if (theGui.getBoardGui().getBthinking()== true){
 				System.out.println("read in reader thread");
-				
-				/*compBGG2 = (int[][]) theGui.getBGG2().getLan().netReadStream.readObject();
-				for(int y = 0; y<8;y++){
-					for(int x = 0; x<8;x++){
-						System.out.print(":"+compBGG2[x][y]+":");
-					}
-					System.out.println(" ");
-				}
-				*/
-				
-				System.out.println("finished reading in reader Thread");
-				
-				compBGG1 = compBGG2;
-				System.out.println("successfully compared in reader thread");
-				theGui.getBoardGui().BGGChange.set(theGui.getBoardGui().BGGChange.get()+1);;
+				theGui.getBoardGui().BGGChange.set(theGui.getBoardGui().BGGChange.get()+1);		//Chaning the trigger so the code from gui is executed here.
 				System.out.println("Trigger Value changed");
 				
-				}
-				
-				
-				
-				
-				
-				
-			
+				}				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				
-			}	
-			
-			
-			
-			
-		}
-		
-	
 
-	public int[][] getBGG(){
-		return compBGG1;
-	}
-	
+			}	
+
+		}
+
 }

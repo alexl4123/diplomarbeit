@@ -11,33 +11,83 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
 
+/**
+ * 
+ * @author mhub - 2018
+ * @version 2.0
+ * 
+ * This class was introduced to work around the gamebreaking but at linux - systems,
+ * where the fx-soundplayer broke the application.
+ * It plays sounds with the help of a native soundplayer.
+ *
+ */
 public class NativeAudio {
 	
-	
+	/**
+	 * Determins wether the player is muted.
+	 */
 	private boolean isMuted = false;
+	
+	/**
+	 * The current Volume
+	 */
 	private double Volume;
+	
+	/**
+	 * Size of the Buffer
+	 */
 	private final int BUFFER_SIZE = 128000;
+	
+	/**
+	 * The soundFile
+	 */
 	private File soundFile;
+	
+	/**
+	 * The inputStream for Audio
+	 */
 	private AudioInputStream audioStream;
+	
+	/**
+	 * The format of the audio
+	 */
 	private AudioFormat audioFormat;
+	
+	/**
+	 * the SourceDataLine
+	 */
 	private SourceDataLine sourceLine;
+	
+	/**
+	 *location of a sound
+	 */
 	private final URL meeplesound = AudioSystem.class.getResource("/javachess/audio/MeepleClick.wav");
+	
+	/**
+	 *location of a sound
+	 */
 	private final URL menusound = AudioSystem.class.getResource("/javachess/audio/MenuClick.wav");
+	
+	/**
+	 *location of a sound
+	 */
 	private final URL startupsound = AudioSystem.class.getResource("/javachess/audio/Startup.wav");
-
+	
+	/**
+	 * The Constructor. Sets the default volume. 
+	 */
 	public NativeAudio() {
-		
 		Volume = 0.5;
-
 	}
 	
-
+	
+	/**
+	 * Method to play a native sound. 
+	 * @param filename the sound to be played. 
+	 */
 	private void play(URL filename) {
 		
-		
-
-
-		try {
+		try {												//loading the File
 			soundFile = new File(filename.getPath());
 		} catch (Exception e) {
 			System.out.println("no file");
@@ -45,20 +95,19 @@ public class NativeAudio {
 			System.exit(1);
 		}
 
-		try {
-			//AudioSystem.getAudioInputStream(AudioSystem.class.getResource(filename))
+		try {												//Creating aUdioStream
 			audioStream = AudioSystem.getAudioInputStream(filename);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
 
-		audioFormat = audioStream.getFormat();
+		audioFormat = audioStream.getFormat();				//Setting the format
 
-		DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+		DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);			//Creating the audioline
 		try {
-			sourceLine = (SourceDataLine) AudioSystem.getLine(info);
-			sourceLine.open(audioFormat);
+			sourceLine = (SourceDataLine) AudioSystem.getLine(info);						//some casting  - yey
+			sourceLine.open(audioFormat);													//opening the audioformat
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -83,11 +132,15 @@ public class NativeAudio {
 			}
 		}
 
-		sourceLine.drain();
+		sourceLine.drain();					//closing  the line now
 		sourceLine.close();
 	}
 
-
+	
+	/**
+	 * Method to choose the sound to play. 
+	 * @param choose the sound to play. 
+	 */
 	public void playSound(String choose) {
 
 		if (!isMuted) {
@@ -118,19 +171,34 @@ public class NativeAudio {
 	}
 	
 	
-
+	/**
+	 * Sets the muting state of the soundplayer.
+	 * @param b - wether the sound is muted
+	 */
 	public void setIsMuted(boolean b) {
 		this.isMuted = b;
 	}
 
+	/**
+	 * 
+	 * @return the current mutet satet
+	 */
 	public boolean getIsMuted() {
 		return this.isMuted;
 	}
 
+	/**
+	 * Sets the current Volume
+	 * @param d - the volume to be set
+	 */
 	public void setVolume(double d) {
 		this.Volume = d;
 	}
 
+	/**
+	 *
+	 * @return the current volume
+	 */
 	public double getVolume() {
 		return this.Volume;
 	}

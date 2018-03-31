@@ -9,49 +9,94 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import javafx.beans.property.IntegerProperty;
 
+/**
+ *
+ * @author mhub - 2018
+ *
+ */
 public class Heartbeat implements Runnable {
 
+	/**
+	 * Current Thread
+	 */
 	public static Thread heartThread;
+	
+	/**
+	 * Some booleans used later
+	 */
 	private boolean isHoster, isRunning, firsttry, initiateDisconnect;
+	
+	/**
+	 * Serversocket for Hosting a heartbeat
+	 */
 	private ServerSocket heartBeatSocket;
+	
+	/**
+	 * Triggers Code in GUi if the hearbeat detects a disconnect.
+	 */
 	private IntegerProperty trigger;
+	
+	/**
+	 * IP of the client
+	 */
 	private InetAddress Clientadress;
+	
+	/**
+	 * Socket used for heatbeat - coms
+	 */
 	private Socket clientHeartSocket;
+	
+	/**
+	 * Stream to write Heaertbeats
+	 */
 	public ObjectOutputStream heartWriteStream;
+	
+	/**
+	 * Stream to read Heartbeats
+	 */
 	public ObjectInputStream heartReadStream;
 
 
+	/**
+	 * The Constructor.
+	 * @param Clientadress - Address of the Client
+	 * @param host - wether the heartbeat is host
+	 * @param trigger - the trigger variable from the gui
+	 */
 	public Heartbeat(InetAddress Clientadress, boolean host, IntegerProperty trigger){
-
 		
 		this.Clientadress = Clientadress;
 		this.isHoster = host;
 		this.trigger = trigger;
 		initiateDisconnect = false;
 
-
-
 	}
 
 
 	@Override
+	/**
+	 * Sets and starts the Heartbeat-Process. Used for client and host
+	 */
 	public void run() {
 
 		try {
+			
 			if(isHoster == false){
 
-				
+				//Connecting with the normal socket - normal client behaviour. Setting up streams n stuff
 				System.out.println("settintHeartClientSock");
 				clientHeartSocket = new Socket(Clientadress, 23420);
 				createHeartbeatStreams(clientHeartSocket);
 				firsttry = true;
-				clientHeartSocket.setSoTimeout(15000);
+				clientHeartSocket.setSoTimeout(15000);	//timeout - counts down to zero - then kills the connection. Resets if data is received. 
+				
 			}
 
 
 
 			else if(isHoster == true){
-
+				
+				//Normal hosting behaviour - waiting for connections. Setting up streams n timeout
 				System.out.println("settingHostheartSock");
 				heartBeatSocket = new ServerSocket(23420);
 				clientHeartSocket=heartBeatSocket.accept();
@@ -59,12 +104,13 @@ public class Heartbeat implements Runnable {
 				clientHeartSocket.setSoTimeout(15000);
 
 			}
+			
 			int testnumber = 0;
 			isRunning = true;
 			while(isRunning){
 
 
-
+				//makes the client read first!
 				if(isHoster == false && firsttry == true){
 
 					
@@ -74,21 +120,22 @@ public class Heartbeat implements Runnable {
 					System.out.println("ReadheartBeat");
 				}
 
-				testnumber = 1337;
-				Thread.sleep(1000);
+				//continously reading and writing heartbeats
+				testnumber = 1337;			//1337!!! LEEET
+				Thread.sleep(1000);			//setting the thread so sleep for one second. 
 				heartWriteStream.writeInt(testnumber);
 				heartWriteStream.flush();
-		//		System.out.println("WroteheartBeat");
+				System.out.println("WroteheartBeat");
 				Thread.sleep(1000);
 				heartReadStream.readInt();
-		//		System.out.println("ReadheartBeat");
+				System.out.println("ReadheartBeat");
 
 				Thread currentThread = Thread.currentThread();
 				currentThread.sleep(5);
 
 			}
 
-
+			//on all catches --> Kill the connection
 		} catch (InterruptedIOException e){
 
 			System.out.println("Disconnected ");
@@ -112,35 +159,31 @@ public class Heartbeat implements Runnable {
 
 	}
 
+	/**
+	 * Creates streams nessecary for communication in heartbeat
+	 * @param tempSock - the socket for communication
+	 * @throws IOException
+	 */
 	private void createHeartbeatStreams(Socket tempSock) throws IOException{
-
-
-		System.out.println("trying to create Heartstreams");
-
-
+		
 		this.heartWriteStream = new ObjectOutputStream(tempSock.getOutputStream());
-
-		System.out.println("HeartStream one created");
-
 		this.heartWriteStream.flush();
-
 		heartReadStream = new ObjectInputStream(tempSock.getInputStream());
-		
-		
-
-
-		System.out.println("HeartStream two created");
 	}
 	
+	/**
+	 * Stops the Heartbeat
+	 */
 	public void stopHeartBeat(){
 		this.isRunning = false;
-		//this.heartThread.interrupt();
-		
 			
 			this.heartThread.interrupt();
 	
 	}
-	
+
+	/**
+	 * Stops the serversocket of the heartbeat
+	 */
 	public void stopServSocket(){
 		try {
 			heartBeatSocket.close();
@@ -150,10 +193,18 @@ public class Heartbeat implements Runnable {
 		}
 	}
 	
+	/**
+	 * Used to initate a normal disconnect by gui
+	 * @param c -  initiate disconnect true or false
+	 */
 	public void setDisconnectInitiation(boolean c){
 		this.initiateDisconnect = c;
 	}
 	
+	/**
+	 * 
+	 * @return the state of the disconnect initiation
+	 */
 	public boolean getDisconnectInitiation(){
 		return this.initiateDisconnect;
 	}
