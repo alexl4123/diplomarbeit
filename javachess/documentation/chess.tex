@@ -324,7 +324,7 @@
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\subsectionmark}[1]{\markright{#1}}
 \renewcommand{\subsubsectionmark}[1]{\markright{#1}}
-\lhead{Diplomarbeit - JavaChess - V1.1}
+\lhead{Diplomarbeit - JavaChess - V1.2}
 \chead{}
 \rhead{Alexander Beiser, Marcel Huber}
 \lfoot{5CHEL-2018}
@@ -2081,15 +2081,17 @@ Es wird ein RaspberryPI 3, eine Mikro SD-Karte mit Raspbian, eine Stromversorgun
 	\item{Dazu muss zuerst der Touchscreen identifiziert werden: cat /sys/class/input/event1/uevent}
 	\item{Bei dem Versuchs-Raspberry PI war dieses Input Device: 0/0/0/0}
 	\item{Um das Schachspiel bequem zu öffnen, wird empfohlen ein BASH-Skript zu erstellen. Bei diesem Startvorgang muss noch angegeben werden, an welcher Position OpenJFX die Bildschirmeingaben verwendet werden sollen. Dazu wurden die besten Werte empirisch ermittelt:}
-	\item{\# /bin/bash \\
-	java -Dmonocle.input.0/0/0/0.minX=0 -Dmonocle.input.0/0/0/0.minY=0 \\
+	\item{\#!/bin/bash \\
+	sudo java -Dmonocle.input.0/0/0/0.minX=0 -Dmonocle.input.0/0/0/0.minY=0 \\
 	-Dmonocle.input.0/0/0/0.maxX=800 -Dmonocle.input.0/0/0/0.maxY=500 \\
 	-jar chess.jar
 	}
 	\item{Das Skript muss noch als ausführbar markiert werden: sudo chmod 777 <skript>}
 	\item{Nun das Skript öffnen: sudo ./<skript>}
 	\item{Das Schachspiel sollte sich nun öffnen.}
-	\item{Damit sich das Spiel direkt nach dem Bootvorgang öffnet, muss das Skript in den Ordner /etc/init.d/ kopiert und als ,,executeable germarkt'' werden. Hier muss die Verzeichnisstruktur des Jarfiles eventuell angepasst werden.}
+	\item{Damit sich das Spiel direkt nach dem Bootvorgang öffnet, muss ein Skript in dem Ordner /etc/init.d/ erstellt werden. Dieses muss das bereits erstellte Skript ausführen.}
+	\item{\#!/bin/bash \\
+	/bin/bash <Pfad zum Skript>/<Skript.sh>}
 \end{enumerate}
 
 \newpage
@@ -3144,14 +3146,14 @@ In zukünftigen Arbeiten im Team sollte man sich mehr absprechen und ständig in
 \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Raspberry-PI Implementierung\\ und Design des Gehäuses\end{tabular}}                & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{35}            & \multicolumn{1}{c|}{06.11.2017} & \multicolumn{1}{c|}{18.12.2017} \\ \hline
 \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Komplettüberarbeitung der GUI\\ für eine bessere Benutzer\\ Erfahrung\end{tabular}} & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{34}            & \multicolumn{1}{c|}{06.11.2017} & \multicolumn{1}{c|}{18.12.2017} \\ \hline
 \multicolumn{5}{|c|}{{\textit{Meilenstein 3 - 18.12.2017}}}                                                                                                                                                                                                                           \\ \hline
-\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Entwicklung der Akku-\\ Steuerschaltung und Einbau \\ dieser\end{tabular}}          & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{36}            & \multicolumn{1}{c|}{18.12.2017} & \multicolumn{1}{c|}{04.02.2018} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Entwicklung der Akku-\\ Steuerschaltung und Einbau \\ dieser\end{tabular}}          & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{34}            & \multicolumn{1}{c|}{18.12.2017} & \multicolumn{1}{c|}{04.02.2018} \\ \hline
 \multicolumn{1}{|c|}{Portierung auf Android}                                                                                        & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{15}            & \multicolumn{1}{c|}{18.12.2017} & \multicolumn{1}{c|}{04.02.2018} \\ \hline
 \multicolumn{5}{|c|}{{\textit{Meilenstein 4 - 04.02.2018}}}                                                                                                                                                                                                                           \\ \hline
 \multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Durchführung einer Beta-Phase\\ und Fehlerbehebungen\end{tabular}}                  & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{30}            & \multicolumn{1}{c|}{04.02.2018} & \multicolumn{1}{c|}{05.03.2018} \\ \hline
-\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Durchführung einer Beta-Phase und \\ Fehlerbehebungen\end{tabular}}                  & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{40}            & \multicolumn{1}{c|}{04.02.2018} & \multicolumn{1}{c|}{05.03.2018} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Durchführung einer Beta-Phase und \\ Fehlerbehebungen\end{tabular}}                  & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{42}            & \multicolumn{1}{c|}{04.02.2018} & \multicolumn{1}{c|}{05.03.2018} \\ \hline
 \multicolumn{5}{|c|}{{\textit{Meilenstein Dokumentation}}} \\ \hline
-\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Dokumentation\end{tabular}}                  & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{19}            & \multicolumn{1}{c|}{14.09.2017} & \multicolumn{1}{c|}{04.04.2018} \\ \hline
-\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Dokumentation\end{tabular}}                  & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{21}            & \multicolumn{1}{c|}{14.09.2017} & \multicolumn{1}{c|}{04.04.2018} 
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Dokumentation\end{tabular}}                  & \multicolumn{1}{c|}{Beiser}       & \multicolumn{1}{c|}{21}            & \multicolumn{1}{c|}{14.09.2017} & \multicolumn{1}{c|}{04.04.2018} \\ \hline
+\multicolumn{1}{|c|}{\begin{tabular}[c]{@{}c@{}}Dokumentation\end{tabular}}                  & \multicolumn{1}{c|}{Huber}        & \multicolumn{1}{c|}{19}            & \multicolumn{1}{c|}{14.09.2017} & \multicolumn{1}{c|}{04.04.2018} 
                                                                                                                                                                                                                            \\ \hline
 \end{tabular}
 \caption{Arbeitsaufstellung nach Meilensteinen}
