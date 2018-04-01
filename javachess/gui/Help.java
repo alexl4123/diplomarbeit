@@ -4,13 +4,8 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -22,27 +17,42 @@ import javafx.stage.Stage;
 
 
 /**
- * This class gives information about the developers, the licence and a link to the GitHub page.
- * @author alexl12
+ * @author mhub - 2018
+ * @version 2.0
+ * 
+ * This class is used to display a window containing a little help page.
  *
  */
 public class Help {
 
 
+	/**
+	 * the current gui
+	 */
 	public GUI gui;
 
+	/**
+	 * A new Stage, so the popup can be used parallel to the main stage
+	 */
 	private Stage HelpWindow = new Stage();
 
+	/**
+	 * The constructor.
+	 * @param g - the current gui.
+	 */
 	public Help(GUI g){
 		this.gui = g;
 
 	}
 
+	/**
+	 * Method to create and position all stuff that needs to be displayed. 
+	 */
 	public void display(){
 
 
 		Font TitleFont = new Font(30);
-		Font subtitleFont = new Font(22);
+		Font subtitleFont = new Font(22);				//creating fonts
 		Font subSubTitleFont = new Font(18);
 
 
@@ -51,9 +61,9 @@ public class Help {
 		Canvas c = new Canvas(600,300);
 		GraphicsContext gc = c.getGraphicsContext2D(); 
 
-		ScrollPane scrollPane = new ScrollPane(c);
+		ScrollPane scrollPane = new ScrollPane(c);						//Scroll pane for good user-experience
 		scrollPane.setPrefSize(600, 300);
-		scrollPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+		scrollPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);		//some configuration of the scrollpane
 		scrollPane.setFitToWidth(true);
 		scrollPane.setFitToHeight(true);
 
@@ -66,13 +76,13 @@ public class Help {
 		Header.setFont(TitleFont);
 
 		Text general = new Text();
-		general.setFont(new Font(16));
+		general.setFont(new Font(16));									//standard creating and positioning of stuff
 		general.setWrappingWidth(500);
 		general.setLayoutX(20);
 		general.setLayoutY(65);
 		general.setTextAlignment(TextAlignment.JUSTIFY);
-		general.setText("This help box will give you an overview, how to use this game properly. \n"
-				+ "1) GameModes - What are the gamemodes? \n"
+		general.setText("This help box will give you an overview, how to use this game properly. \n"		//aaaand loads of text - yey
+				+ "1) GameModes - What are the gamemodes? \n"												//just the same for all following items
 				+ "2) GUI - How to use the graphical user interface \n"
 				+ "3) LAN - How to use the Online mode \n"
 				+ "4) AI - What are the AI-Options?");
@@ -196,6 +206,9 @@ public class Help {
 
 	}
 
+	/**
+	 * Method to show the popup. 
+	 */
 	public void showHelpWindow(){
 		HelpWindow.showAndWait();
 	}

@@ -2,19 +2,7 @@ package javachess.gui;
 
 import java.util.ArrayList;
 import java.util.Objects;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.InetAddress;
 
 import javachess.audio.AudioManager;
@@ -49,13 +37,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 /**
- * @author alex12 - 2017
- * @version 1.1 - Draw
+ * @author mhub - 2018
+ * @version 2.0 
  * 
- *          BoardGui extends Canvas BoardGui contains a GraphicsContext. With
- *          this GC we display the chess area Also calls the Moves
+ *          BoardGui extends Canvas BoardGui contains a GraphicsContext. The borad is displayed by this class.
+ *          Also contains listeners for actions. 
  * 
- *
  */
 public class BoardGui extends Canvas {
 
@@ -151,6 +138,9 @@ public class BoardGui extends Canvas {
 	 */
 	private boolean _blurryButtonOn, startupbuttonOn, heartbeatMenu, onlineHighlight;
 
+	/**
+	 * Audiomanager for playing Audio
+	 */
 	public AudioManager soundPlayer;
 
 	private ArrayList<int[]> LastMoveList = new ArrayList<int[]>();
@@ -167,7 +157,9 @@ public class BoardGui extends Canvas {
 	private Launchpad _Lauch;
 
 
-
+	/**
+	 * Integerproperties to trigger certain actions 
+	 */
 	public IntegerProperty BGGChange, Heartbeat, turnProp, conProp, teamProp;
 	public javachess.network.Heartbeat heartBeatJob;
 
@@ -209,7 +201,7 @@ public class BoardGui extends Canvas {
 		conProp.setValue(0);
 		teamProp.setValue(0);
 
-
+		//this code is triggerd after the Heartbeat property is changed --> if connection loss - do this
 		this.Heartbeat.addListener(new ChangeListener<Number>() {
 
 			@Override
@@ -229,6 +221,7 @@ public class BoardGui extends Canvas {
 			}
 		});
 
+		//This code is exectued (in an other Trhead) when receiving the new Matrix in LAN
 		this.BGGChange.addListener(new ChangeListener<Number>() {
 
 			@Override
@@ -330,7 +323,7 @@ public class BoardGui extends Canvas {
 
 
 
-
+		//setting listeners for various occasions and doing what is necessary when the event happens
 		this.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -348,7 +341,7 @@ public class BoardGui extends Canvas {
 						}
 					}
 				}
-				//System.out.println("Draw:"+_BGG2.SchachKing(true, _BGG2, KingX, KingY, false, false));
+
 				System.out.println("Schachmatt black::"+_BGG2.getSchachmattBlack());
 
 				if (!bThinking && !_BGG2.getSchachmattWhite() && !_BGG2.getSchachmattBlack() && !_BGG2.getDraw()) {
@@ -361,6 +354,7 @@ public class BoardGui extends Canvas {
 			}
 		});
 
+		//setting listener for a drag
 		this.setOnDragDetected(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -375,6 +369,7 @@ public class BoardGui extends Canvas {
 			}
 		});
 
+		//also a listener for a drag
 		this.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -384,6 +379,7 @@ public class BoardGui extends Canvas {
 			}
 		});
 
+		//what happens on mouse relesased
 		this.setOnMouseReleased(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -400,10 +396,8 @@ public class BoardGui extends Canvas {
 	}
 
 	/**
-	 * Drag Start
-	 * 
-	 * @param e
-	 *            - MouseEvenet
+	 * Method to handle drag starts
+	 * @param e - MouseEvenet
 	 */
 	private void ButtonDragE(MouseEvent e) {
 		if (!bThinking) {
@@ -432,10 +426,10 @@ public class BoardGui extends Canvas {
 	ArrayList<int[]> SaveMoveList = new ArrayList<int[]>();
 
 	/**
-	 * For Drag end or button clicked
+	 * This Method is used for drags and button presses.
+	 * Everything happens here. LAN, Local or AI Mode.
 	 * 
-	 * @param e
-	 *            - Event (Mouse Event)
+	 * @param e - Event (Mouse Event)
 	 */
 	private void ButtonReleased(MouseEvent e, boolean ButtonPressed) {
 		try {
@@ -444,7 +438,7 @@ public class BoardGui extends Canvas {
 			System.out.println("BoardGui-TileList:" +TileList.size());
 
 			for (Tile T : TileList) {
-				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && !OMove.getBauer()) {
+				if (T.Hit(e.getX() / P1X, e.getY() / P1Y) && !OMove.getBauer()) {			//getting hits
 
 					int iMatrix = _BGG[T.getXP()][T.getYP()];
 					_BGG2.setTeam(L.getTeam());
@@ -455,7 +449,7 @@ public class BoardGui extends Canvas {
 					if (((!ButtonPressed && (OMove.getISelect() > 0) && (iPos != iMatrix)) || (ButtonPressed && ((_BGG2.getTeam() && (iMatrix > 0 && iMatrix < 160)) || (!_BGG2.getTeam() && (iMatrix > 160 && iMatrix < 260))))) && (_iChoose == 1 || (_iChoose == 2 && _BGG2.getAITeam() && !L.getTeam()) || (_iChoose == 2 && !_BGG2.getAITeam() && L.getTeam()) || _iChoose == 0)) { // if move is possible
 						System.out.println("Init player move");
 						soundPlayer.playSound("move");
-						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);
+						int[][] XY = OMove.GetMove(iMatrix, T.getXP(), T.getYP(), _BGG2);					//setting nessecary stuff for local
 						_BGG = XY;
 						_BGG2 = OMove.getBGG2();
 						L.setTeam(_BGG2.getTeam());
@@ -473,7 +467,7 @@ public class BoardGui extends Canvas {
 						System.out.println("schreib jetzt1");
 						_BGG2.getLan().netWriteStream.writeObject(_BGG);
 						_BGG2.getLan().netWriteStream.flush();
-						//_Gui.getStage().setResizable(false);						
+						//_Gui.getStage().setResizable(false);												//stuff for LAN aka. sending
 						for(int y = 0; y<8;y++){
 							for(int x = 0; x<8;x++){
 								System.out.print(":"+_BGG[x][y]+":");
@@ -499,7 +493,7 @@ public class BoardGui extends Canvas {
 						//White AI
 						System.out.println("White AI init");
 						AI _AI = new AI(_BGG2, this,true,false,_BGG2.getAiDepth());
-						_AI.start();
+						_AI.start();															//Code for the AIs
 						LastMoveList = _AI.getLMoveList();
 						bThinking = true;
 						redraw();
@@ -533,18 +527,16 @@ public class BoardGui extends Canvas {
 		}
 		if(_bLauch){
 			//For @Hold and @Klotz
-			_Lauch.setBG(_Gui.getBoardGui());
+			_Lauch.setBG(_Gui.getBoardGui());				//launchpad - stuff
 			_Lauch.setBGG(_BGG2);
 		}
 		redraw();
 	}
 
 	/**
-	 * Is called while Dragging Simply redraws the Node and it looks like you
-	 * have the meeple in your hand ;)
+	 * Is called while Dragging Simply redraws the Node while dragging it around
 	 * 
-	 * @param e
-	 *            - MouseEvent
+	 * @param e- MouseEvent
 	 */
 	private void ButtonDragD(MouseEvent e) {
 		int iBGG = _BGG[OMove.getIPosX()][OMove.getIPosY()];
@@ -654,6 +646,10 @@ public class BoardGui extends Canvas {
 	}
 	//-----------------------------------------------------------------------------------------------------------
 
+	/**
+	 * New method to highlight a moveable field
+	 * @param tileNumber
+	 */
 	public void newHighlightMoveField(int tileNumber){
 
 		Tile T= TileList.get(tileNumber);
@@ -670,6 +666,10 @@ public class BoardGui extends Canvas {
 
 	}
 
+	/**
+	 * New Method for highlighting strike fields
+	 * @param tileNumber
+	 */
 	public void newHighlightStrikeField(int tileNumber){
 		Tile T= TileList.get(tileNumber);
 		Color agressorRed = Color.rgb(187, 6, 6);
@@ -692,23 +692,7 @@ public class BoardGui extends Canvas {
 	}
 
 
-	public void newHighlightLastField(int tileNumber){
 
-		if(getHighlighting()){
-
-			if(getHighlightAnimations()==true){
-
-				//insert Animatet codes here
-
-			}else{
-
-				//insert non - Animatet codes here
-
-			}
-
-		}
-
-	}
 
 
 	// ------------------------------------------------------------------------------------------------------
@@ -1026,6 +1010,11 @@ public class BoardGui extends Canvas {
 
 	}
 
+
+	/**
+	 * Method which  draws an infoscreen for hosting or disconnecting
+	 * @param stopJob - threadjob to stop the connection
+	 */
 	public void drawBlurryMenu(hostingJob stopJob){
 
 		P1X = (_X / 100);
@@ -1034,17 +1023,17 @@ public class BoardGui extends Canvas {
 
 		System.out.println("drawing blurry menu");
 		BoxBlur frostEffect = new BoxBlur(10, 10, 1000);
-		gc.setEffect(frostEffect);
+		gc.setEffect(frostEffect);									//cool effekts
 		setBlurryButtonOn(true);
 		bThinking=true;
 
 
-		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		this.setOnMouseClicked(new EventHandler<MouseEvent>() {		//making the screen clickable
 
 			@Override
 			public void handle(MouseEvent event) {
 
-				if(_blurryButtonOn == true && heartbeatMenu == true){
+				if(_blurryButtonOn == true && heartbeatMenu == true){		//determin wether disconnect or hosting
 
 					bThinking=false;
 
@@ -1055,7 +1044,7 @@ public class BoardGui extends Canvas {
 					setOnlineHighlight(false);
 					setBlurryButtonOn(false);
 					System.out.println("Restore Menus");
-					_Gui.setChoose(0);
+					_Gui.setChoose(0);											//doing nessacery stuff for disconnecting 
 					_BGG2.setChoose(0);
 					_Gui.getMenu().setSelect(0);
 					_Gui.getMenu().menuFile.getItems().addAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame);
@@ -1088,7 +1077,7 @@ public class BoardGui extends Canvas {
 					setBlurryButtonOn(false);
 
 
-					if(_BGG2.getLan().getIsConnectet()==true){
+					if(_BGG2.getLan().getIsConnectet()==true){					//stuff for hosting
 
 						_Gui.getMenu().menuFile.getItems().removeAll(_Gui.getMenu().Load, _Gui.getMenu().Save, _Gui.getMenu().newGame, _Gui.getMenu().Draw);
 						_Gui.getMenu().menuGame.getItems().removeAll(_Gui.getMenu().GameMode0, _Gui.getMenu().GameMode1, _Gui.getMenu().GameMode2);
@@ -1117,9 +1106,6 @@ public class BoardGui extends Canvas {
 				_Gui.getStage().setResizable(true);
 
 
-
-
-
 				try {
 					DrawGrid(_BGG);
 				} catch (Exception e) {
@@ -1135,14 +1121,14 @@ public class BoardGui extends Canvas {
 			DrawGrid(_BGG);
 
 			gc.setFill(Color.ANTIQUEWHITE);
-			gc.setEffect(new DropShadow(10, Color.BLACK));
+			gc.setEffect(new DropShadow(10, Color.BLACK));			//drawing the menu finaly
 			gc.fillRect(20*P1X, 35*P1Y, 60*P1X, 20*P1Y);
 			gc.setEffect(null);
 			gc.setFill(Color.BLACK);
 			gc.setFont(new Font(2*P1X));
 
 			if(!heartbeatMenu){
-				InetAddress iadr = InetAddress.getLocalHost();
+				InetAddress iadr = InetAddress.getLocalHost();					//text for hostingscreen
 				String[] inetString = iadr.toString().split("/");
 				gc.fillText("Waiting for connections on IP " + inetString[1], 50*P1X, 40*P1Y);
 				gc.fillText("Click to abort and proceed in local mode!", 50*P1X, 48*P1Y);
@@ -1150,7 +1136,7 @@ public class BoardGui extends Canvas {
 			}
 			else if(heartbeatMenu){
 
-				if(heartBeatJob.getDisconnectInitiation()){
+				if(heartBeatJob.getDisconnectInitiation()){						//text for heartbeatscreen
 					gc.fillText("You disconnected!", 50*P1X, 40*P1Y);
 
 				}else if(!heartBeatJob.getDisconnectInitiation()){
@@ -1175,12 +1161,12 @@ public class BoardGui extends Canvas {
 			e.printStackTrace();
 		}
 
-
-
-
 	}
 
 
+	/**
+	 * This method draws the welcome screen at the beginning of the game
+	 */
 	public void drawStartMenu(){
 
 		P1X = (_X / 100);
@@ -1188,7 +1174,7 @@ public class BoardGui extends Canvas {
 
 		Color darkbrown=Color.web("#4D3322");
 		Color lightBrown= Color.web("#8C603C");
-		Color lightBrownGrad= Color.web("B78357");
+		Color lightBrownGrad= Color.web("B78357");			//define colors
 		Color birchBrown=Color.web("#D4AC7B");
 		Color birchBrownGrad= Color.web("#E8D1B7");
 
@@ -1208,6 +1194,7 @@ public class BoardGui extends Canvas {
 		}
 
 
+		//making the screen clickable
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -1219,7 +1206,7 @@ public class BoardGui extends Canvas {
 
 					try {
 						//soundPlayer.playSound("menu");
-						DrawGrid(_BGG);
+						DrawGrid(_BGG);									//hiding the menu again
 						bThinking=false;
 						_Gui.getStage().setResizable(true);
 						_Gui.getRoot().setTop(_Gui.getMenu());
@@ -1253,7 +1240,7 @@ public class BoardGui extends Canvas {
 		gc.setEffect(null);
 		gc.setFont(new Font(2.5*P1X*P1Y));
 		gc.fillText("JavaChess", 65*P1X, 40*P1Y);
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.BLACK);										//drawing this pretty pretty thing
 		gc.strokeText("JavaChess", 65*P1X, 40*P1Y);
 		gc.setFont(new Font(2.5*P1X));
 		gc.setFill(Color.BLACK);

@@ -12,19 +12,16 @@ import javachess.network.ReadingJob;
 import javachess.network.hostingJob;
 import javachess.saveload.Load;
 import javachess.saveload.Save;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.stage.FileChooser;
 
 /**
- * @author alex - 2017
- * @version 1.1 - Draw
+ * @author mhub - 2018
+ * @version 2.0
  *
  *
  *	Class Menu extends MenuBar
@@ -37,13 +34,33 @@ public class Menu extends MenuBar {
 	 * GameMode1 - if GameMode Lan has been selected
 	 * GameMode2 - if GameMode AI has been selected
 	 */
-	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode4, GameMode5, soundMute; //once upon a time, GameMode3 was the black AI...
+	public RadioMenuItem GameMode0, GameMode1, GameMode2, GameMode4, GameMode5, soundMute; 
+
+	/**
+	 * Menuitems to use
+	 */
 	public MenuItem newGame, Save, Load, Exit, disconnect, setUp, about_menu, help_menu, Draw;
+
 	int _GM;
+
+	/**
+	 * Threadjob for reading from lan
+	 */
 	public ReadingJob rj;
+
+	/**
+	 * ThreadJob fpr hosting a lan game
+	 */
 	public hostingJob hostJob;
 
+	/**
+	 * Menus
+	 */
 	public javafx.scene.control.Menu menuFile,forward, backward,menuGame,menuOther,menuHelp;
+
+	/**
+	 * Some popups windows
+	 */
 	private PopUp pp;
 	private About about;
 	private Help help;
@@ -52,7 +69,7 @@ public class Menu extends MenuBar {
 
 
 	/**
-	 * the constructor builds the GUI
+	 * The constructor. Builds the menu, sets the listeners and displays it. 
 	 * @param Gui - for adding to Application purposes
 	 */
 	public Menu(GUI Gui){
@@ -122,7 +139,7 @@ public class Menu extends MenuBar {
 		//-------------------------------------------------------------------------------------------------
 		//File Menu
 
-		//new Game
+		//new Game  -- setting a new menu
 		newGame.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -133,7 +150,7 @@ public class Menu extends MenuBar {
 			}
 		});
 
-		//Exit
+		//Exit		-- other option to exit
 		Exit.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -145,7 +162,7 @@ public class Menu extends MenuBar {
 			}
 		});
 
-		//SoundMute
+		//SoundMute  -- not used anymore
 
 		soundMute.setOnAction(new EventHandler<ActionEvent>(){
 
@@ -163,7 +180,7 @@ public class Menu extends MenuBar {
 			}
 		});
 
-		//Calling Popup
+		//Calling Popup  -- additional options 
 		setUp.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -176,7 +193,7 @@ public class Menu extends MenuBar {
 			}
 		});
 
-		//About
+		//About  -- showing the about options
 		about_menu.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -188,7 +205,7 @@ public class Menu extends MenuBar {
 			}
 		});
 
-		//Help
+		//Help   --  showing the help popups
 		help_menu.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -201,10 +218,7 @@ public class Menu extends MenuBar {
 		});
 
 
-
-
-
-		//disconnect
+		//disconnect	-- disconnecting for the lan mode
 		disconnect.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -213,7 +227,7 @@ public class Menu extends MenuBar {
 				Gui.getBoardGui().soundPlayer.playSound("menu");
 				Gui.getBoardGui().heartBeatJob.setDisconnectInitiation(true);
 				Gui.getBoardGui().heartBeatJob.stopHeartBeat();
-				Gui.getBoardGui().setOnlineHighlight(false);
+				Gui.getBoardGui().setOnlineHighlight(false);						//doing correct disconnecting
 				Gui.getBoardGui().setBthinking(false);
 				Gui.setChoose(0);
 				setSelect(0);
@@ -223,6 +237,7 @@ public class Menu extends MenuBar {
 				}catch(Exception e){
 
 				}
+				//Getting all the menues together
 				Gui.getMenu().menuFile.getItems().addAll(Gui.getMenu().Load, Gui.getMenu().Save, Gui.getMenu().newGame);
 				Gui.getMenu().menuGame.getItems().addAll(Gui.getMenu().GameMode0, Gui.getMenu().GameMode1, Gui.getMenu().GameMode2);
 				Gui.getMenu().menuGame.getItems().removeAll(Gui.getMenu().disconnect);
@@ -231,7 +246,7 @@ public class Menu extends MenuBar {
 
 		});
 
-		//Save
+		//Save   
 		Save.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -313,7 +328,7 @@ public class Menu extends MenuBar {
 			}
 		});
 
-
+		//-------GAMEMODES TO SET -----------
 		//Local
 		GameMode0.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -360,18 +375,6 @@ public class Menu extends MenuBar {
 					Gui.getBoardGui().soundPlayer.playSound("menu");
 					Gui.setChoose(1);
 
-					//Gui.getBGG2().setTeam(true);
-					//Gui.getBoardGui().setHighlighting(true);
-
-					/*try {
-						Gui.setBGG1(Gui.getBGG2().getLan().initSeed);
-						Gui.getBoardGui().DrawGrid(Gui.getBGG2().getLan().initSeed);
-						Gui.getBoardGui().redraw();
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
-
 					Gui.getBoardGui().setOnlineHighlight(true);
 
 					hostJob = new hostingJob(Gui);
@@ -379,20 +382,11 @@ public class Menu extends MenuBar {
 
 
 					Gui.getBoardGui().setHighlighting(false);
-					Gui.newBG();
+					Gui.newBG();										//starting all thread nessecary
 
 					Gui.getBoardGui().drawBlurryMenu(hostJob);
 
 					hostingThread.start();
-
-
-
-
-
-
-
-
-
 
 
 					//------------------------------JOINING---------------------------------------------------------------
@@ -409,22 +403,22 @@ public class Menu extends MenuBar {
 					ipDialogoue.setContentText("The address should look like this: ");
 
 
-					Optional<String> ipResult = ipDialogoue.showAndWait();
+					Optional<String> ipResult = ipDialogoue.showAndWait();				//displaying new popup and get the ip
 					if (ipResult.isPresent()){
 						try {
 
 							Gui.getBoardGui().soundPlayer.playSound("menu");
 							System.out.println(ipResult.get());
-							String SKY = ipResult.get();
+							String SKY = ipResult.get();						
 							String SkyNet = "SkyNet";
 							if(SKY.equals(SkyNet)) {
 								System.out.println("Sky");
-								_GM = 4;
+								_GM = 4;												//super sneaky skynet mode
 								Gui.setChoose(4);
 								ipDialogoue.close();
 							} else {
 								joinAdress = InetAddress.getByName(ipResult.get());
-								System.out.println(joinAdress.toString());
+								System.out.println(joinAdress.toString());							//getting the address
 								System.out.println(Gui.getBGG2().getLan().getIsConnectet());
 
 								Gui.getBGG2().getLan().createSock(joinAdress);
@@ -436,15 +430,15 @@ public class Menu extends MenuBar {
 								Gui.getBGG2().getLan().setFirstturn(true);
 								Gui.getBoardGui().setBthinking(true);
 
-								//	Gui.setBGG1( (int[][]) Gui.getBGG2().getLan().netReadStream.readObject());
+								
 								rj = new ReadingJob(Gui);
-								Thread rt = new Thread(rj);
+								Thread rt = new Thread(rj);											//Starging the read job
 								rt.start();
 
 								Gui.getBoardGui().heartBeatJob = new Heartbeat(joinAdress, false, Gui.getBoardGui().Heartbeat);
 								Thread th = new Thread(Gui.getBoardGui().heartBeatJob);
 								th.start();
-								Heartbeat.heartThread=th;
+								Heartbeat.heartThread=th;												//and the heartbeat
 
 								Gui.getBoardGui().L.setTeam(false);
 								Gui.getBGG2().setTeam(false);
@@ -452,11 +446,11 @@ public class Menu extends MenuBar {
 
 
 								menuFile.getItems().removeAll(Load, Save, newGame);
-								menuGame.getItems().removeAll(GameMode0, GameMode1, GameMode2);
+								menuGame.getItems().removeAll(GameMode0, GameMode1, GameMode2);		//handling menus
 								menuGame.getItems().addAll(disconnect);
 
 
-								//Gui.getBoardGui().setLastMoveList((ArrayList<int[]>) Gui.getBGG2().getLan().netReadStream.readObject());
+							
 								Gui.getBoardGui().DrawGrid(Gui.getBGG1());
 								Gui.getBoardGui().redraw();
 
@@ -465,7 +459,7 @@ public class Menu extends MenuBar {
 
 						} catch (UnknownHostException e) {
 							Alert addressAlert = new Alert(AlertType.ERROR);
-							addressAlert.setTitle("Error");
+							addressAlert.setTitle("Error");												//and important exception handling
 							addressAlert.setHeaderText("Connection Failed");
 							addressAlert.setContentText("It seems that something is wrong with the IP address!");
 							addressAlert.show();
@@ -484,13 +478,13 @@ public class Menu extends MenuBar {
 							Gui.setChoose(0);
 							setSelect(Gui.getChoose());
 						} catch (ClassNotFoundException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 							Gui.getBoardGui().setOnlineHighlight(false);
 							Gui.setChoose(0);
 							setSelect(Gui.getChoose());
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 							Gui.getBoardGui().setOnlineHighlight(false);
 							Gui.setChoose(0);
@@ -504,10 +498,7 @@ public class Menu extends MenuBar {
 						setSelect(Gui.getChoose());
 					}
 
-					//TODO BUG somewhere around here!
-
-					//----------------------------------------------------------------------------------------------------				
-
+					
 
 				}else if(result.get() == abortButton){
 
@@ -527,7 +518,7 @@ public class Menu extends MenuBar {
 
 			}
 		});
-		//----------------------------------------------------------------------------------------------------	
+		//-----------------------------Setting more Gamemodes------------------------------------------	
 		//AI
 		GameMode2.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -571,13 +562,13 @@ public class Menu extends MenuBar {
 
 		//Undo and Redo
 
-		MenuItem dummyItem = new MenuItem();
+		MenuItem dummyItem = new MenuItem();				//dummy item to add listeners to menus
 		dummyItem.setVisible(false);
 		backward.getItems().add(dummyItem);
 		backward.setText("");
 		Label label = new Label();
-		label.setText("Backward");
-		label.setOnMouseClicked(evt -> {
+		label.setText("Undo");
+		label.setOnMouseClicked(evt -> {  		//once again the new lambda - stuff
 			// forced child MenuItem click (this item is hidden, so this action is not visible but triggers parent "onAction" event handler anyway)
 			dummyItem.fire();
 		});
@@ -633,13 +624,13 @@ public class Menu extends MenuBar {
 		forward.getItems().add(dummyItem2);
 		forward.setText("");
 		Label label2 = new Label();
-		label2.setText("Forward");
+		label2.setText("Redo");
 		label2.setOnMouseClicked(evt -> {
 			// forced child MenuItem click (this item is hidden, so this action is not visible but triggers parent "onAction" event handler anyway)
 			dummyItem2.fire();
 		});
 		forward.setGraphic(label2);    
-		
+
 		dummyItem2.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override

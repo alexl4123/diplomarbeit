@@ -1,6 +1,6 @@
 package javachess.gui;
 
-import java.io.Serializable;
+
 import java.util.Optional;
 import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.launchpad.Launchpad;
@@ -9,17 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
- * Combines all the Graphical Nodes
- * Simply Implements BoardGui and if a Resize Occurs,
- * act properly to it
- * @author alexl12
- * @version 1.1 - Draw
+ * @author mhub - 2018
+ * @version 2.0
+ * 
+ * This class extends the Application. 
+ * It combines graphical nodes and sets the scenes, and acts to rezising. 
  *
  */
 public class GUI extends Application{
@@ -71,99 +70,45 @@ public class GUI extends Application{
 	double withsave;
 
 	@Override
+	
 	/**
-	 * Ever wondered what happens when the application is started,
-	 * the answer lies here!
-	 * 
-	 * Sets the stage, Menu Pos. and BoardGui pos
+	 * Method is called when the Application starts. 
 	 */
-
-	
-	
 	public void start(Stage _S) throws Exception {
 		S = _S;
 		S.setWidth(700);
-		S.setHeight(500);
+		S.setHeight(500);						//setting stage defaults
 
 		S.getIcons().add(new Image("javachess/images/JavaChess.png"));
-
-
 		setRoot(new BorderPane());
-		sc = new Scene(getRoot(), 600, 300);
-
+		sc = new Scene(getRoot(), 600, 300);					//Creating the scene
 		_BGG2.setChoose(0);
-		BG = new BoardGui(this);
-		BG.setXY(S.getWidth()-15, S.getHeight()-75);
-
-		/*
-		 * ------------ DELETE LATER ------------------   CODE FOR ANIMATIONS
-		 */
-
-
-
+		BG = new BoardGui(this);								//new boardgui
+		BG.setXY(S.getWidth()-15, S.getHeight()-75);	
 		BG.setHighlighting(true);
-
-
-
-
-
-
 		BG.setBGG2(_BGG2);
-		BG.DrawGrid(_BGG);
+		BG.DrawGrid(_BGG);										//drawing the chess board
 		BG.setChoose(0);
 		getRoot().setCenter(BG);
 		M = new Menu(this);
-		//root.setTop(M);
-
-		//------------------------------------------------
 		S.setTitle("JavaChess");
 		S.setScene(sc);
-		BG.setStartupbuttonOn(true);
+		BG.setStartupbuttonOn(true);	
 		
-
-
-
-
-		//-------------------------------------------------------
 		S.show();
 		S.setMinHeight(500);
-		S.setMinWidth(500);
-		BG.drawStartMenu();
+		S.setMinWidth(500);										//Showing the scene
+		BG.drawStartMenu();										//drawing the startmenu
 		
 		
-		
-
-	
-
+		//Setting up listeners on changes of size. Also tried out this new lamda notation - shorter, but i do not like it. 
 		S.widthProperty().addListener((obs, oldVal, newVal) -> {
-			
-			
-			
-				
-		
-				
 				BG.setXY(S.getWidth()-15, S.getHeight()-75);
-				
-				
-			
-
-			
-		
-
-			
 		});
 
 		S.heightProperty().addListener((obs,oldVal,newVal) -> {
-
-			
 				BG.setXY(S.getWidth()-15, S.getHeight()-75);
-			
 		});
-
-		
-
-
-
 	}
 
 	/**
@@ -216,14 +161,6 @@ public class GUI extends Application{
 		}catch(Exception ex) {
 			//no exception
 		}
-		
-		/*for(int iCount = 0;  iCount <= BGG2.getTurnRound(); iCount++) {
-			
-			M.getPp().getLoadTurn().getItems().add("Turn:"+iCount);
-			
-		}
-		M.getPp().getLoadTurn().getSelectionModel().select(0);
-		*/
 		
 		M.getPp().getAIslider().setValue(BGG2.getAiDepth());
 		M.getPp().getHardCoreAI().setSelected(BGG2.getHardCoreAI());
@@ -292,10 +229,19 @@ public class GUI extends Application{
 		return _BGG2.getChoose();
 	}
 
+	
+	/**
+	 * 
+	 * @return the backgroundmatrix
+	 */
 	public int[][] getBGG1(){
 		return _BGG;
 	}
-
+	
+	/**
+	 * 
+	 * @param bgg sets the backgroundmatrix
+	 */
 	public void setBGG1(int[][] bgg){
 		_BGG = bgg;
 	}
@@ -319,12 +265,6 @@ public class GUI extends Application{
 				getBoardGui().soundPlayer.playSound("menu");
 			}
 
-
-		} else if(BG.getChoose() == 1){ // network TODO for Hegl
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setHeaderText("Debug Message for Hegl");
-			alert.setContentText("Class GUI - Methode wishDraw() - place here what should be done in case of Network - switchTeam() already happend - send the request to the other player");
-
 		} else if(BG.getChoose() == 2){
 			System.out.println("line 271");
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -336,6 +276,10 @@ public class GUI extends Application{
 		}
 	}
 
+	/**
+	 * 
+	 * @return the game menu
+	 */
 	public Menu getMenu(){
 		return M;
 	}
@@ -355,10 +299,18 @@ public class GUI extends Application{
 		BG.setBLauch(true);
 	}
 
+	/**
+	 * 
+	 * @return  the root border pane
+	 */
 	public BorderPane getRoot() {
 		return root;
 	}
 
+	/**
+	 * set 
+	 * @param the root boderpane
+	 */
 	public void setRoot(BorderPane root) {
 		this.root = root;
 	}

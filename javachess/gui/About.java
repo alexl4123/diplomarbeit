@@ -3,20 +3,14 @@ package javachess.gui;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -25,37 +19,54 @@ import javafx.stage.Stage;
 
 
 /**
- * This class gives information about the developers, the licence and a link to the GitHub page.
- * @author alexl12
+ * 
+ * @author mhub - 2018
+ * @version 2.0
+ * 
+ * This class brings up a poupup, giving information about the developers, the licence and a link to the GitHub page.
  *
  */
 public class About {
 
 
+	/**
+	 * the current GUI
+	 */
 	public GUI gui;
 	
+	/**
+	 * A new Stage, so the popup can be used parallel to the main stage
+	 */
 	private Stage AboutWindow = new Stage();
 
+	
+	/**
+	 * The constructor.
+	 * @param g - the current gui.
+	 */
 	public About(GUI g){
 		this.gui = g;
-
 	}
 
+	
+	/**
+	 * Method to create and position all stuff that needs to be displayed. 
+	 */
 	public void display(){
 		
 		
 		Font TitleFont = new Font(30);
 		Font subtitleFont = new Font(22);
-		Font subSubTitleFont = new Font(18);
+		Font subSubTitleFont = new Font(18);						//creating fonts
 
 		
 		Canvas c = new Canvas(600,300);
 		GraphicsContext gc = c.getGraphicsContext2D(); 
 		
 		
-		Label Title = new Label("JavaChess, ChessPI AndChess");
-		Title.setFont(subtitleFont);
-		Title.setLayoutX(300);
+		Label Title = new Label("JavaChess, ChessPI AndChess");		//creating texts --> just like all following items
+		Title.setFont(subtitleFont);		
+		Title.setLayoutX(300);										//setting positions
 		Title.setLayoutY(5);
 		
 		Image image = new Image("/javachess/images/JavaChess.png");
@@ -115,11 +126,11 @@ public class About {
 		
 		//----------------------------------------------------------
 		Group gp = new Group();
-		gp.getChildren().addAll(Title, c,Devs,Beiser,Beiser_Task,Huber,Huber_Task, Licence, Licence_Text,Further,gitHub, version);
+		gp.getChildren().addAll(Title, c,Devs,Beiser,Beiser_Task,Huber,Huber_Task, Licence, Licence_Text,Further,gitHub, version); //cluttering all together
 		Scene scene1= new Scene(gp, 600, 300, Color.WHITE);
 		
 		
-		
+		//when one clicks on the link, this happens
 		gitHub.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -127,7 +138,7 @@ public class About {
 				 URI u;
 				try {
 					u = new URI("https://github.com/alexl4123/diplomarbeit");
-					java.awt.Desktop.getDesktop().browse(u);
+					java.awt.Desktop.getDesktop().browse(u);				//go to url!
 				} catch (URISyntaxException | IOException e) {
 					gp.getChildren().add(URL_Label);
 					e.printStackTrace();
@@ -137,20 +148,17 @@ public class About {
 			}
 		});
 		
-		
-
-
-		AboutWindow.initModality(Modality.NONE);
+		AboutWindow.initModality(Modality.NONE);		//making it run parallel to the main stage
 		AboutWindow.setTitle("About");
 		AboutWindow.getIcons().add(new Image("javachess/images/JavaChess.png"));
-
-
-		AboutWindow.setScene(scene1);
+		AboutWindow.setScene(scene1);					//other important stuff for displaying
 		AboutWindow.setResizable(false);
-		//popupwindow.showAndWait();
 		
 	}
 	
+	/**
+	 * Method to show the popup. 
+	 */
 	public void showAboutWindow(){
 		AboutWindow.showAndWait();
 	}

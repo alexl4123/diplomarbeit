@@ -3,8 +3,8 @@ package javachess.gui;
 import javafx.scene.paint.Color;
 
 /**
- * @author alexl12
- * @version 1.1 - Draw
+ * @author mhub - 2018
+ * @version 2.0
  * A chess tile, it has a Location, with, color etc.
  * The chess tiles are the black and white things...
  *
