@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  * a Platform.runLater with a new Runnable. This one starts the real chess Gui.
  * This should fix some JavaFX bugs
  * 
- * @author alexl4123 - 2018
+ * @author alexl4123, mhub - 2018
  * @version 2.0 - release
  *
  */
@@ -53,7 +53,7 @@ public class Main extends Application {
 	}
 	
 	/**
-	 * When the connetion ends...
+	 * When the application closes, this method  is called. Stops all open Threads. 
 	 */
 	public void stop(){
 		

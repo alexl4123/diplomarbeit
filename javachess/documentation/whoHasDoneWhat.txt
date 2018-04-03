@@ -1,16 +1,4 @@
 Alexander Beiser:
--LaTeX Setup 
--Struktuelles
-	-Titelseite
-	-Inhaltsverzeichnis
-	-Seitenanzahl
-	-Verlinkungen
-	-Anlegen der Verzeichnisse (Abbildung, etc.)
--i) Kurzfassung (Deutsch)
-	-i.i)
-	-i.i.i)
--ii) Lizenz
--iii) Danksagung
 
 -1) Einleitung
 -2) Vertiefende Aufgabenstellung (komplett)
@@ -30,11 +18,17 @@ Alexander Beiser:
 -9) Beta
 	-9.1) AI und Spielmechanik
 
--V) Pflichtenheft (alles)
--VI) Datenblätter
--VII) Zusammenfassung
-	-VII.I)
-	-VII.III) (alles außer 1.)
-	-VII.IV) (alles)
+
 
 Marcel Huber:
+-4) JavaChess
+	-4.3)Package und Klassenübersicht (alles)
+	-4.8)Die grafische Benutzeroberfläche (alles)
+	-4.9)Sounds (alles)
+	-4.10) LAN-Mode (alles)
+-8) Andorid
+-9) Beta
+	-9.2) LAN und GUI
+-10) Benutzerdokumentation (alles) 
+
+
