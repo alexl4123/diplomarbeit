@@ -55,7 +55,6 @@ public class About {
 	public void display(){
 		
 		
-		Font TitleFont = new Font(30);
 		Font subtitleFont = new Font(22);
 		Font subSubTitleFont = new Font(18);						//creating fonts
 

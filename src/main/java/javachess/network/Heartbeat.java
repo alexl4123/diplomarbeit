@@ -16,6 +16,8 @@ import javafx.beans.property.IntegerProperty;
  */
 public class Heartbeat implements Runnable {
 
+	public static final int TIMEOUT = 15000;
+	public static final int PORT = 23420;
 	/**
 	 * Current Thread
 	 */
@@ -39,7 +41,7 @@ public class Heartbeat implements Runnable {
 	/**
 	 * IP of the client
 	 */
-	private InetAddress Clientadress;
+	private InetAddress clientAddress;
 	
 	/**
 	 * Socket used for heatbeat - coms
@@ -59,13 +61,13 @@ public class Heartbeat implements Runnable {
 
 	/**
 	 * The Constructor.
-	 * @param Clientadress - Address of the Client
+	 * @param clientAdress - Address of the Client
 	 * @param host - wether the heartbeat is host
 	 * @param trigger - the trigger variable from the gui
 	 */
-	public Heartbeat(InetAddress Clientadress, boolean host, IntegerProperty trigger){
+	public Heartbeat(InetAddress clientAdress, boolean host, IntegerProperty trigger){
 		
-		this.Clientadress = Clientadress;
+		this.clientAddress = clientAdress;
 		this.isHoster = host;
 		this.trigger = trigger;
 		initiateDisconnect = false;
@@ -85,10 +87,10 @@ public class Heartbeat implements Runnable {
 
 				//Connecting with the normal socket - normal client behaviour. Setting up streams n stuff
 				System.out.println("settintHeartClientSock");
-				clientHeartSocket = new Socket(Clientadress, 23420);
+				clientHeartSocket = new Socket(clientAddress, PORT);
 				createHeartbeatStreams(clientHeartSocket);
 				firsttry = true;
-				clientHeartSocket.setSoTimeout(15000);	//timeout - counts down to zero - then kills the connection. Resets if data is received. 
+				clientHeartSocket.setSoTimeout(TIMEOUT);	//timeout - counts down to zero - then kills the connection. Resets if data is received.
 				
 			}
 
@@ -98,10 +100,10 @@ public class Heartbeat implements Runnable {
 				
 				//Normal hosting behaviour - waiting for connections. Setting up streams n timeout
 				System.out.println("settingHostheartSock");
-				heartBeatSocket = new ServerSocket(23420);
+				heartBeatSocket = new ServerSocket(PORT);
 				clientHeartSocket=heartBeatSocket.accept();
 				createHeartbeatStreams(clientHeartSocket);
-				clientHeartSocket.setSoTimeout(15000);
+				clientHeartSocket.setSoTimeout(TIMEOUT);
 
 			}
 			

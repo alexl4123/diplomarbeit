@@ -26,8 +26,7 @@ public class Load {
 	 * @return BackgroundGrid - returns the BackgroundGrid of the given File
 	 */
 	public BackgroundGrid openFile(File f){
-		BackgroundGrid BGG2;
-		BGG2 = null;
+		BackgroundGrid BGG2 = null;
 
 		try {
 			FileInputStream fis = new FileInputStream(f);

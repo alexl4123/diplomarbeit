@@ -53,13 +53,8 @@ public class Help {
 
 		Font TitleFont = new Font(30);
 		Font subtitleFont = new Font(22);				//creating fonts
-		Font subSubTitleFont = new Font(18);
-
-
-
 
 		Canvas c = new Canvas(600,300);
-		GraphicsContext gc = c.getGraphicsContext2D(); 
 
 		ScrollPane scrollPane = new ScrollPane(c);						//Scroll pane for good user-experience
 		scrollPane.setPrefSize(600, 300);

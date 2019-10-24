@@ -11,13 +11,11 @@ import javachess.backgroundmatrix.Move;
 import javachess.game.*;
 import javachess.launchpad.*;
 import javachess.network.ReadingJob;
-import javachess.network.hostingJob;
+import javachess.network.HostingJob;
 import javafx.event.EventHandler;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -201,123 +199,106 @@ public class BoardGui extends Canvas {
 		conProp.setValue(0);
 		teamProp.setValue(0);
 
-		//this code is triggerd after the Heartbeat property is changed --> if connection loss - do this
-		this.Heartbeat.addListener(new ChangeListener<Number>() {
+		//this code is triggered after the Heartbeat property is changed --> if connection loss - do this
+		this.Heartbeat.addListener((arg0, arg1, arg2) -> {
+			if(_Gui.getBGG2().getLan().getIsConnectet()==true){
+				System.out.println("Heartbeat Timeout");
+				_Gui.getBGG2().getLan().setIsConnectet(false);
+				heartbeatMenu = true;
+				_Gui.getBoardGui().drawBlurryMenu(Gui.getMenu().hostJob);
 
-			@Override
-			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-
-				if(_Gui.getBGG2().getLan().getIsConnectet()==true){
-					System.out.println("Heartbeat Timeout");
-					_Gui.getBGG2().getLan().setIsConnectet(false);
-					heartbeatMenu = true;
-					_Gui.getBoardGui().drawBlurryMenu(Gui.getMenu().hostJob);
-
-				}else{
-					System.out.println("here");
-				}
-
-
+			}else{
+				System.out.println("here");
 			}
 		});
 
 		//This code is exectued (in an other Trhead) when receiving the new Matrix in LAN
-		this.BGGChange.addListener(new ChangeListener<Number>() {
+		this.BGGChange.addListener((observable, oldValue, newValue) -> {
+			System.out.println("TRIGGERED");
+			try {
+				_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
+				_BGG2.higherTurnRound();
 
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-
-
-				System.out.println("TRIGGERED");
-				try {
-
-					_BGG =  (int[][]) Gui.getBGG2().getLan().netReadStream.readObject();
-					_BGG2.higherTurnRound();
-
-					if (_BGG2.getLan().getFirstturn() == true){
-						L.setTeam(false);
-						_BGG2.setTeam(false);
-					} else if (_BGG2.getLan().getFirstturn() == false){
-						L.setTeam(true);
-						_BGG2.setTeam(true);
-					}
-
-
-				} catch (ClassNotFoundException e) {
-					_blurryButtonOn = true;
-					heartbeatMenu = true;
-					drawBlurryMenu(null);
-					e.printStackTrace();
-				} catch (IOException e) {
-					_blurryButtonOn = true;
-					heartbeatMenu = true;
-					drawBlurryMenu(null);
-					e.printStackTrace();
+				if (_BGG2.getLan().getFirstturn() == true){
+					L.setTeam(false);
+					_BGG2.setTeam(false);
+				} else if (_BGG2.getLan().getFirstturn() == false){
+					L.setTeam(true);
+					_BGG2.setTeam(true);
 				}
 
-				_BGG2.iBackground = _BGG;
-				_BGG2.Board = _BGG;
-				_Gui.setBGG2(_BGG2);
-				bThinking = false;
-				System.out.println("switches bThinking to off");
-				redraw();
-				System.out.println("hab neu gezeichnet");
+			} catch (ClassNotFoundException e) {
+				_blurryButtonOn = true;
+				heartbeatMenu = true;
+				drawBlurryMenu(null);
+				e.printStackTrace();
+			} catch (IOException e) {
+				_blurryButtonOn = true;
+				heartbeatMenu = true;
+				drawBlurryMenu(null);
+				e.printStackTrace();
+			}
 
-				if(_bLauch){
-					//For @Hold and @Klotz
-					_Lauch.setBG(_Gui.getBoardGui());
-					_Lauch.setBGG(_BGG2);
-				}
+			_BGG2.iBackground = _BGG;
+			_BGG2.Board = _BGG;
+			_Gui.setBGG2(_BGG2);
+			bThinking = false;
+			System.out.println("switches bThinking to off");
+			redraw();
+			System.out.println("hab neu gezeichnet");
 
-				System.out.println("line 227");
-				int iWKingX,iBKingX, iWKingY, iBKingY;
-				iWKingX = 0;
-				iWKingY = 0;
-				iBKingX = 0;
-				iBKingY = 0;
-				for(int iY = 0; iY < 8; iY++){
-					for(int iX = 0; iX < 8; iX++){
-						if(_BGG2.iBackground[iX][iY]==150){
-							iWKingX=iX;
-							iWKingY=iY;
-						}else if(_BGG2.iBackground[iX][iY]==250){
-							iBKingX = iX;
-							iBKingY = iY;
-						}
+			if(_bLauch){
+				//For @Hold and @Klotz
+				_Lauch.setBG(_Gui.getBoardGui());
+				_Lauch.setBGG(_BGG2);
+			}
+
+			System.out.println("line 227");
+			int iWKingX,iBKingX, iWKingY, iBKingY;
+			iWKingX = 0;
+			iWKingY = 0;
+			iBKingX = 0;
+			iBKingY = 0;
+			for(int iY = 0; iY < 8; iY++){
+				for(int iX = 0; iX < 8; iX++){
+					if(_BGG2.iBackground[iX][iY]==150){
+						iWKingX=iX;
+						iWKingY=iY;
+					}else if(_BGG2.iBackground[iX][iY]==250){
+						iBKingX = iX;
+						iBKingY = iY;
 					}
 				}
+			}
 
-				System.out.println("Schach for Team True");
-				//	_BGG2.SchachKing(true, _BGG2, iWKingX, iWKingY, false, false);
-				System.out.println("Schach for Team false");
-				//_BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
+			System.out.println("Schach for Team True");
+			//	_BGG2.SchachKing(true, _BGG2, iWKingX, iWKingY, false, false);
+			System.out.println("Schach for Team false");
+			//_BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
 
-				//---------------------------------------------------------------------------------
+			//---------------------------------------------------------------------------------
 
-				boolean Blackschach = _BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
-				if (Blackschach == true && !_BGG2.getSchachmattBlack()) {							
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("check");
-					alert.setHeaderText("Blackking is in check!");
-					alert.setContentText("Blackking is in check!");
-					alert.showAndWait();
-
-				}
-				boolean Whiteschach = _BGG2.SchachKing(true, _BGG2, iWKingX, iWKingY, false, false);
-				if (Whiteschach == true && !_BGG2.getSchachmattWhite()) {		
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("check");
-					alert.setHeaderText("Whiteking is in check!");
-					alert.setContentText("Whiteking is in check!");
-					alert.showAndWait();
-
-				}
-
-
-				//---------------------------------------------------------------------------------
+			boolean Blackschach = _BGG2.SchachKing(false, _BGG2, iBKingX, iBKingY, false, false);
+			if (Blackschach == true && !_BGG2.getSchachmattBlack()) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("check");
+				alert.setHeaderText("Blackking is in check!");
+				alert.setContentText("Blackking is in check!");
+				alert.showAndWait();
 
 			}
+			boolean Whiteschach = _BGG2.SchachKing(true, _BGG2, iWKingX, iWKingY, false, false);
+			if (Whiteschach == true && !_BGG2.getSchachmattWhite()) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("check");
+				alert.setHeaderText("Whiteking is in check!");
+				alert.setContentText("Whiteking is in check!");
+				alert.showAndWait();
+
+			}
+
+
+			//---------------------------------------------------------------------------------
 
 		});
 
@@ -1015,7 +996,7 @@ public class BoardGui extends Canvas {
 	 * Method which  draws an infoscreen for hosting or disconnecting
 	 * @param stopJob - threadjob to stop the connection
 	 */
-	public void drawBlurryMenu(hostingJob stopJob){
+	public void drawBlurryMenu(HostingJob stopJob){
 
 		P1X = (_X / 100);
 		P1Y = (_Y / 100);

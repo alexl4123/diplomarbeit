@@ -9,7 +9,7 @@ import javachess.backgroundmatrix.BackgroundGrid;
 import javachess.launchpad.Launchpad;
 import javachess.network.Heartbeat;
 import javachess.network.ReadingJob;
-import javachess.network.hostingJob;
+import javachess.network.HostingJob;
 import javachess.saveload.Load;
 import javachess.saveload.Save;
 import javafx.event.ActionEvent;
@@ -51,7 +51,7 @@ public class Menu extends MenuBar {
 	/**
 	 * ThreadJob fpr hosting a lan game
 	 */
-	public hostingJob hostJob;
+	public HostingJob hostJob;
 
 	/**
 	 * Menus
@@ -377,7 +377,7 @@ public class Menu extends MenuBar {
 
 					Gui.getBoardGui().setOnlineHighlight(true);
 
-					hostJob = new hostingJob(Gui);
+					hostJob = new HostingJob(Gui);
 					Thread hostingThread = new Thread(hostJob);
 
 

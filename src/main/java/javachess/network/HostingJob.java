@@ -20,12 +20,12 @@ import javachess.gui.GUI;
  * 
  * Threadjob, which is used to host a game.
  */
-public class hostingJob implements Runnable {
+public class HostingJob implements Runnable {
 
 	/**
 	 * ServerSocket to Host the game
 	 */
-	private ServerSocket serversock = null;
+	private ServerSocket serverSock = null;
 	
 	/**
 	 * The current Backgroundgrid
@@ -62,7 +62,7 @@ public class hostingJob implements Runnable {
 	 * The Constructor.
 	 * @param newgui - hte current Gui.
 	 */
-	public hostingJob(GUI newgui){
+	public HostingJob(GUI newgui){
 		this.gui = newgui;
 		this.bgg=gui.getBGG2();
 		this.BG=gui.getBoardGui();
@@ -77,7 +77,7 @@ public class hostingJob implements Runnable {
 		try {
 			
 			//Setting the Socket
-			setServersock(new ServerSocket(22359));
+			setServerSock(new ServerSocket(22359));
 			running = true;
 			
 			
@@ -97,7 +97,7 @@ public class hostingJob implements Runnable {
 				Heartbeat.heartThread=th;
 				System.out.println("Hosting");
 				bgg.getLan().set_team(true);
-				tempsock = getServersock().accept();				//Waiting for connections
+				tempsock = getServerSock().accept();				//Waiting for connections
 				bgg.getLan().setSocket(tempsock);
 				bgg.getLan().connecting(true);
 				bgg.getLan().setIsConnectet(true);				//doing some connection stuff
@@ -109,8 +109,8 @@ public class hostingJob implements Runnable {
 					// resetting the blurry menu by a trick - pressing the mouse on the screen by the robot.
 					PointerInfo a = MouseInfo.getPointerInfo();
 					Point b = a.getLocation();
-					int xOrig = (int)b.getX();
-		            int yOrig = (int)b.getY();
+					int xOrig = new Double(b.getX()).intValue();
+		            int yOrig = new Double(b.getY()).intValue();
 		            
 		            try {
 		                Robot r = new Robot();
@@ -141,16 +141,16 @@ public class hostingJob implements Runnable {
 	 * 
 	 * @return the current serverscoket
 	 */
-	public ServerSocket getServersock() {
-		return serversock;
+	public ServerSocket getServerSock() {
+		return serverSock;
 	}
 
 	/**
 	 * Sets the Serversocket
-	 * @param serversock the Socket to be set
+	 * @param serverSock the Socket to be set
 	 */
-	public void setServersock(ServerSocket serversock) {
-		this.serversock = serversock;
+	public void setServerSock(ServerSocket serverSock) {
+		this.serverSock = serverSock;
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class hostingJob implements Runnable {
 	public void stopSocket(){
 		try {
 			
-			this.serversock.close();
+			this.serverSock.close();
 			gui.getBoardGui().heartBeatJob.stopHeartBeat();
 			this.running=false;
 			gui.getBGG2().getLan().setIsConnectet(false);

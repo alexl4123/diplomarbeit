@@ -27,7 +27,6 @@ public class Main extends Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
 		launch();
 	}
 
@@ -58,7 +57,7 @@ public class Main extends Application {
 	public void stop(){
 		
 	    try {
-	    if(G.getMenu().hostJob.getServersock() != null){
+	    if(G.getMenu().hostJob.getServerSock() != null){
 	    	G.getBoardGui().heartBeatJob.stopHeartBeat();
 	    	G.getMenu().hostJob.stopSocket();
 	    	
