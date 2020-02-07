@@ -1,4 +1,4 @@
-# Diplomarbeit
+# JavaChess - Diplomarbeit
 
 ## How to install?
 
